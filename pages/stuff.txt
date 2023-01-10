@@ -1,0 +1,41 @@
+NUXT_ENV_NEW_API_URL='http://172.17.131.81:5009/'
+
+
+const Cow = {
+  earTag: string,
+};
+
+const Milking = {
+  cowEarTag: string,
+  first: number,
+  seconde: number,
+};
+
+const Total = {
+  cow: Cow,
+  milking: Array,
+};
+
+const cows = [{ earTag: "1231312" }, { earTag: "44956" }, { earTag: "98878" }];
+
+const listOfAllMilking = [
+  { cowEarTag: "1231312", first: 32, seconde: 32 },
+  { cowEarTag: "1231312", first: 32, seconde: 32 },
+  { cowEarTag: "1231312", first: 40, seconde: 10 },
+  { cowEarTag: "44956", first: 45, seconde: 59 },
+  { cowEarTag: "1231312", first: 32, seconde: 32 },
+  { cowEarTag: "98878", first: 12, seconde: 8 },
+];
+
+let total = cows.map((cow) => {
+  return {
+    cow: cow,
+    milking: listOfAllMilking.filter((milk) => milk.cowEarTag === cow.earTag),
+  };
+});
+
+console.log(total);
+
+let total:Total[] =  cows.map((cow)=>{
+    return { cow:cow,milkings:milkings.filter((milk)=> milk.cowEarTag === cow.earTag)}
+})

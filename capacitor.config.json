@@ -1,0 +1,6 @@
+{
+  "appId": "litmas2.0",
+  "appName": "litmas2.0",
+  "webDir": "dist/server",
+  "bundledWebRuntime": false
+}
