@@ -14,7 +14,7 @@ export default {
   //target: 'server',
 
   head: {
-    title: 'LSCS Consultants Portal',
+    title: 'LSC consultants Portal',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -22,7 +22,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
 
@@ -78,7 +78,7 @@ export default {
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
     manifest: {
-      web_accessible_resources: ["assets/LSC2.png"],
+      web_accessible_resources: ["assets/litmas3.png"],
       lang: 'en'
     },
     icon: {

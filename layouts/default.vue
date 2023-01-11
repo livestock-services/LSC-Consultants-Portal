@@ -1,7 +1,7 @@
 <template>
   <div class="nav-padding">
     <nav
-    v-if ="!$auth.loggedIn"
+   
       class="navbar pl-5 header has-shadow color"
       role="navigation"
       aria-label="main navigation"
@@ -11,8 +11,12 @@
           class="navbar-item"
           href="/"
         >
-         <span class="litmas">LSCS </span>
-          
+         <span class="litmas mr-4">LSCS </span>
+          <img
+            src="~assets/images/LSC.jpg"
+            alt="Litmas"
+            height="22"
+          >
 
           <span class="litmas"> Consultants </span>
 
@@ -48,7 +52,7 @@
                 <b-icon class="media-left" icon="account"></b-icon>
                 <div class="media-content">
                     <h3>Logged in as</h3>
-                    <small> <span class="blue"> {{this.$auth.user.email}} </span></small>
+                    <small> <span class="blue"> </span></small>
                 </div>
             </div>
         </b-dropdown-item>
@@ -99,7 +103,7 @@
     </nav>
 
     <section class="main-content  columns">
-      <section v-if="!$auth.loggedIn" class="sidebar-layout ">
+      <section class="sidebar-layout ">
              <b-sidebar
                 position="static"
                 :mobile="mobile"
@@ -114,16 +118,20 @@
                    
                     <b-menu class=" height is-custom-mobile">
                         <b-menu-list label="Menu">
-                            <b-menu-item icon="home-outline"  v-if="this.$auth.user.email != 'kondwani1mwale@gmail.com'" @click="index" label="Home"></b-menu-item>
-                            <b-menu-item active expanded icon="hammer"  v-if="this.$auth.user.email != 'kondwani1mwale@gmail.com'" label="Tools">
+                            <b-menu-item icon="home-outline"  @click="index" label="Home"></b-menu-item>
+                            <b-menu-item active expanded icon="account"  label="Consultations">
 
-                                <b-menu-item id="tasks"  v-if="this.$auth.user.email != 'kondwani1mwale@gmail.com'"  icon="file-outline" @click="tasks" label="Tasks"></b-menu-item>
+                                <b-menu-item id="tasks"   icon="food" @click="nutrition" label="Animal Nutrition"></b-menu-item>
                               
-                                <b-menu-item icon="cow"  v-if="this.$auth.user.email != 'kondwani1mwale@gmail.com'"  @click="inventory" label="Herd">  </b-menu-item>
+                                <b-menu-item icon="cow"   @click="vetCon" label="Vet">  </b-menu-item>
 
-                                <b-menu-item  icon="book-outline"  v-if="this.$auth.user.email != 'kondwani1mwale@gmail.com'"  @click="records" label="Records">  </b-menu-item>
+                                <b-menu-item icon="biohazard"   @click="vetPost" label=" Vet Post Mortems">  </b-menu-item>
 
-                                <b-menu-item  icon="book-outline"  v-if="this.$auth.user.email != 'kondwani1mwale@gmail.com'"  @click="chart" label="Charts">  </b-menu-item>
+                                <b-menu-item  icon="flower"   @click="agro" label="Agronomy">  </b-menu-item>
+
+                                <b-menu-item  icon="wall"   @click="fence" label="Fencing">  </b-menu-item>
+
+                                <b-menu-item  icon="fish"   @click="fish" label="Fish">  </b-menu-item>
 
                                 
 
@@ -131,25 +139,19 @@
                                
                                
                             </b-menu-item>
-
-                             <b-menu-item  icon="account-outline" v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"  @click="admin" label="Admin Panel">
+<!-- 
+                             <b-menu-item  icon="account-outline"   @click="admin" label="Admin Panel">
                                 <b-menu-item icon="account-multiple-outline" @click="customers" label="Customers"></b-menu-item>
                                 <b-menu-item icon="cash" @click="checkProfile" label="Revenue"></b-menu-item>
                                  <b-menu-item icon="book-multiple" @click="costs" label="Application Costs"></b-menu-item>
-                                   <b-menu-item  icon="download"  v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"  @click="files" label="Files">  </b-menu-item>
+                                   <b-menu-item  icon="download"    @click="files" label="Files">  </b-menu-item>
 
-                            </b-menu-item>
+                            </b-menu-item> -->
 
 
-                            <b-menu-item icon="graph-outline" v-if="this.$auth.user.email !== 'kondwani1mwale@gmail.com'" label="Income & Expenses">
-                               
-                                <b-menu-item icon="cash" @click="sales" label="Sales & Expenses"></b-menu-item>
-                                 <!-- <b-menu-item icon="cash" @click="expenses" label="Total Expenses"></b-menu-item> -->
-                            </b-menu-item>
+                           
                         </b-menu-list>
-                        <b-menu-list>
-                            <b-menu-item label="Expo" v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'" icon="link"></b-menu-item>
-                        </b-menu-list>
+                       
                         <b-menu-list label="Actions">
                             <b-menu-item icon="logout" @click="logout" label="Logout"></b-menu-item>
                         </b-menu-list>
@@ -203,60 +205,50 @@ export default {
           to: { name: 'index' }
         },
         {
-          title: 'Tasks',
-          icon: 'papers',
-          to: { name: 'tasks' },
-          hash: 'tasks'
+          title: 'Animal Nutrition',
+          icon: 'food',
+          to: { name: 'nutrition' },
+          hash: 'nutrition'
         },
 
         {
-          title: 'Inventory',
-          icon: 'store',
-          to: { name: 'inventory' }
+          title: 'Vet Consultation',
+          icon: 'vet',
+          to: { name: 'vetCon' }
         },
 
         {
-          title: 'Records',
-          icon: 'book',
-          to: { name: 'records' }
+          title: 'Vet Post Mortems',
+          icon: 'vet',
+          to: { name: 'vetPost' }
+        },
+
+        {
+          title: 'Agronomy Consultation',
+          icon: 'plant',
+          to: { name: 'agro' }
         },
 
          {
-          title: 'Sales',
-          icon: 'book',
-          to: { name: 'sales' }
+          title: 'Fence Consultation',
+          icon: 'fence',
+          to: { name: 'fence' }
         },
 
 
           {
-          title: 'Customers',
-          icon: 'book',
-          to: { name: 'customers' }
+          title: 'Fish Consultation',
+          icon: 'fish',
+          to: { name: 'fish' }
         },
 
-        {
-          title: 'Admin Panel',
-          icon: 'book',
-          to: { name: 'admin-panel' }
-        },
+        // {
+        //   title: 'Admin Panel',
+        //   icon: 'book',
+        //   to: { name: 'admin-panel' }
+        // },
 
-        {
-          title: 'Costs',
-          icon: 'chart',
-          to: { name: 'costs' }
-        },
-
-         {
-          title: 'Charts',
-          icon: 'chart',
-          to: { name: 'chart' }
-        },
-
-         {
-          title: 'Files',
-          icon: 'download',
-          to: { name: 'files' }
-        },
+        
       ]
     }
   },
@@ -266,50 +258,38 @@ export default {
       this.$router.push("/")
     },
 
-     admin(){
-      this.$router.push("admin-panel")
-    },
+    //  admin(){
+    //   this.$router.push("admin-panel")
+    // },
 
       login(){
       this.$router.push("login")
     },
 
-    tasks(){
-      this.$router.push("tasks")
+    nutrition(){
+      this.$router.push("nutrition")
     },
-    inventory(){
-      this.$router.push("inventory")
-    },
-    records(){
-      this.$router.push("records")
+    vetCon(){
+      this.$router.push("vet-con")
     },
 
-     sales(){
-      this.$router.push("sales")
+    vetPost(){
+      this.$router.push("vet-post-mortems")
     },
 
-    costs(){
-      this.$router.push("costs")
+    agro(){
+      this.$router.push("agro")
     },
 
-     files(){
-      this.$router.push("files")
+     fence(){
+      this.$router.push("fence")
     },
 
-     customers(){
-      this.$router.push("customers")
+    fish(){
+      this.$router.push("fish")
     },
 
-     resetPassword(){
-      this.$router.push("records")
-    },
-     checkProfile(){
-      this.$router.push("records")
-    },
-
-      chart(){
-      this.$router.push("chart")
-    },
+   
     // async logout(){
 
     //   this.isLoading= true;
@@ -365,7 +345,7 @@ export default {
  
 }
 .color{
-  background-color: rgb(202, 226, 248);
+  background-color: rgb(231, 244, 240);
 }
 .right{
   float: right;

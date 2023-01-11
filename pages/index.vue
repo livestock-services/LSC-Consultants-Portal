@@ -1,5 +1,5 @@
 <template>
-  <section v-if="this.$auth.user.email != 'kondwanim@gmail.com' || this.$auth.user.email != 'kondwani1mwale@gmail.com'" class="section">
+  <section  class="section">
     <div class="columns is-mobile">
      <div class="card total-cow-card  card-body">
       
@@ -246,16 +246,16 @@
 </template>
 
 <script>
-import Card from '~/components/Card'
+import Card from '~/components/Tools/Card.vue'
  import countTo from 'vue-count-to';
 import {mapActions, mapGetters} from 'vuex'
-import CowStatTable from '~/components/tables/cow-stat-table.vue';
+
 export default {
   name: 'IndexPage',
   components: {
    countTo ,
     Card,
-    CowStatTable
+   
   },
 
   data(){

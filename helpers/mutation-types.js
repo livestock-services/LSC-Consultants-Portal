@@ -18,12 +18,12 @@ export const SET_SELECTED_PENDING_USER = 'SET_SELECTED_PENDING_USER'
 //----------------------------------------------------------------------------------------------------------------------
 
 
-//--------------------------------------- TASKS------------------------------------------------------------------
-export const ADD_TASK = 'ADD_TASK'
-export const SET_SELECTED_TASK  = 'SET_SELECTED_TASK '
-export const SET_ALL_TASKS = 'SET_ALL_TASKS'
-export const GET_ALL_TASKS = 'GET_ALL_TASKS'
-export const COMPLETE_TASK = 'COMPLETE_TASK'
+//--------------------------------------- AGRO RECORDS------------------------------------------------------------------
+export const ADD_AGRO_RECORD = 'ADD_AGRO_RECORD'
+export const SET_SELECTED_AGRO_RECORD  = 'SET_SELECTED_AGRO_RECORD '
+export const SET_ALL_AGRO_RECORDS = 'SET_ALL_AGRO_RECORDS'
+export const GET_ALL_AGRO_RECORDS = 'GET_ALL_AGRO_RECORDS'
+export const COMPLETE_AGRO_RECORD = 'COMPLETE_AGRO_RECORD'
 
 //----------------------------------------------------------------------------------------------------------------------
 

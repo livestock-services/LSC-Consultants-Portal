@@ -18,12 +18,10 @@ export const state = () => ({
     customerTasks: [],
     selectedTask: null,
 
-    taskForm:{
-        taskDescription:null,
-        selectPriority:null,
-        assignTask:null,
-        dateAssigned:null,
-        dueDate:null,
+    agroForm:{
+        clientName:null,
+        clientNumber:null,
+        selectCategory:null,
         createdBy:null
         
     },

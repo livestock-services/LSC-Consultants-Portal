@@ -260,10 +260,10 @@
 </template>
 
 <script>
-import Card from '~/components/Card'
+import Card from '~/components/Tools/Card.vue'
  import countTo from 'vue-count-to';
 import {mapActions, mapGetters} from 'vuex'
-import CowStatTable from '~/components/tables/cow-stat-table.vue';
+
 export default {
   name: 'IndexPage',
   components: {
