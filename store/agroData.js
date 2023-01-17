@@ -6,7 +6,12 @@ import {
         ADD_AGRO_RECORD,
         SET_ALL_AGRO_RECORDS, 
         GET_ALL_AGRO_RECORDS, 
+        
+        GET_FILTERED_START_TIME,
+        GET_FILTERED_END_TIME,
+        
         SET_LOADING,
+        
         SET_SELECTED_AGRO_RECORD,
 
         GET_ALL_LANDSCAPING_RECORDS,
@@ -20,6 +25,7 @@ import {
         GET_ALL_SOIL_ANALYSIS_RECORDS,
         GET_ALL_VEG_ENTERPRISE_BUDGET_RECORDS,
         GET_ALL_WEED_CONTROL_RECORDS,
+
 
         SET_ALL_LANDSCAPING_RECORDS,
         SET_ALL_AGRIC_FIELD_TERMITE_CONTROL_RECORDS,
@@ -37,6 +43,8 @@ import {
 export const state = () => ({
 
     loading: false,
+    filteredStartTime:[],
+    filteredEndTime:[],
     allAgroRecords:[],
     allLandscapingRecords:[],
     allPestControlVegRecords:[],
@@ -81,7 +89,13 @@ export const getters = {
         return state.selectedAgroRecord
       },
 
+      filteredStartTime(state){
+        return state.filteredStartTime
+      },
 
+      filteredEndTime(state){
+        return state.filteredEndTime
+      },
       //---------------------AGRO CONSULTS GETTERS--------------------------------------------//
 
     allAgroRecords(state){
@@ -155,6 +169,14 @@ export const mutations = {
       },
     [SET_ALL_AGRO_RECORDS](state, payload) {
         state.allAgroRecords = payload
+    },
+
+    [GET_FILTERED_START_TIME](state, payload){
+        state.filteredStartTime= payload
+    },
+
+    [GET_FILTERED_END_TIME](state, payload){
+        state.filteredEndTime= payload
     },
 
     //------------------------------------AGRO MUTATIONS---------------------------------------------//
@@ -484,27 +506,31 @@ export const actions = {
            //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
            commit(GET_ALL_AGRO_RECORDS, response.data);
 
+           commit(GET_FILTERED_START_TIME, newFilterRecord.startDate);
+
+           commit(GET_FILTERED_END_TIME, newFilterRecord.endDate);
+
            commit(GET_ALL_LANDSCAPING_RECORDS, filteredLandscapingRecords);
 
            commit(GET_ALL_PEST_CONTROL_VEG_RECORDS, filteredPestControlVegRecords);
 
-        //    commit(GET_ALL_HOUSEHOLD_TERMITES_CONTROL_RECORDS, filteredHouseholdTermitesRecords);
+           commit(GET_ALL_HOUSEHOLD_TERMITES_CONTROL_RECORDS, filteredHouseholdTermitesRecords);
 
-        //    commit(GET_ALL_AGRIC_FIELD_TERMITE_CONTROL_RECORDS, filteredAgricFieldTermitesRecords);
+           commit(GET_ALL_AGRIC_FIELD_TERMITE_CONTROL_RECORDS, filteredAgricFieldTermitesRecords);
 
-        //    commit(GET_ALL_GRAIN_PROTECTION_RECORDS, filteredGrainProtectionRecords);
+           commit(GET_ALL_GRAIN_PROTECTION_RECORDS, filteredGrainProtectionRecords);
 
-        //    commit(GET_ALL_WEED_CONTROL_RECORDS, filteredWeedControlRecords);
+           commit(GET_ALL_WEED_CONTROL_RECORDS, filteredWeedControlRecords);
 
-        //    commit(GET_ALL_PEST_CONTROL_FIELD_RECORDS, filteredPestControlFieldRecords);
+           commit(GET_ALL_PEST_CONTROL_FIELD_RECORDS, filteredPestControlFieldRecords);
 
-        //    commit(GET_ALL_PUBLIC_HEALTH_PEST_CONTROL_RECORDS, filteredPublicHealthRecords);
+           commit(GET_ALL_PUBLIC_HEALTH_PEST_CONTROL_RECORDS, filteredPublicHealthRecords);
 
-        //    commit(GET_ALL_VEG_ENTERPRISE_BUDGET_RECORDS, filteredVegEnterpriseBudgetRecords);
+           commit(GET_ALL_VEG_ENTERPRISE_BUDGET_RECORDS, filteredVegEnterpriseBudgetRecords);
 
-        //    commit(GET_ALL_PEST_CONTROL_ORCHARDS_RECORDS, filteredPestControlOrchardsRecords);
+           commit(GET_ALL_PEST_CONTROL_ORCHARDS_RECORDS, filteredPestControlOrchardsRecords);
 
-        //    commit(GET_ALL_SOIL_ANALYSIS_RECORDS, filteredSoilAnalysisRecords);
+           commit(GET_ALL_SOIL_ANALYSIS_RECORDS, filteredSoilAnalysisRecords);
 
        
            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED

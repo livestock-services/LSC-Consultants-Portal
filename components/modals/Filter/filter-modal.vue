@@ -159,9 +159,9 @@
   
             this.$buefy.toast.open({
               duration: 3000,
-              message: 'New Record Successfully Added!',
+              message: 'Results Successfully Found',
               position: 'is-top',
-              type: 'is-info is-light',
+              type: 'is-success',
             })
              this.clearForm();
             showNotifications();
@@ -195,9 +195,9 @@
   
        this.agroForm = {
         
-                clientName:null,
-                clientPhoneNumber:null,
-                agroCategory:null
+                startDate:null,
+                endDate:null,
+                
   
           
         }
