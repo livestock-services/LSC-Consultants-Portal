@@ -21,6 +21,10 @@
          <b-tooltip label="Refresh" type="is-dark">
          <b-button class="mx-2" icon-left="refresh" type="is-info" @click="refresh">Refresh</b-button>
          </b-tooltip>
+
+         <!-- <b-tooltip label="Add details of new tasks here" type="is-dark">
+        <b-button class="mx-2" icon-left="filter" type="is-warning" @click="filter">Filter</b-button>
+        </b-tooltip> -->
       </div>
 
       
@@ -40,6 +44,9 @@
       aria-page-label="Page"
       aria-current-label="Current Page"
     >
+
+  
+
        <b-table-column
         v-slot="props"
         field="taskDescription"
@@ -47,10 +54,23 @@
         searchable
         
       >
-      <span class="tag tasks">  {{ props.row.taskDescription }} </span>
+      <span class="tag tasks">  {{ props.row.clientName }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
+
+      <b-table-column
+        v-slot="props"
+        field="taskDescription"
+        label="Client Phone No."
+        
+        
+      >
+      <span class="tag tasks">  {{ props.row.clientPhoneNumber }} </span>
+       
+        <!-- {{ props.row.sumInsured }} -->
+      </b-table-column>
+
 
      <b-table-column
         v-slot="props"
@@ -59,53 +79,31 @@
         searchable
       >
 
-      <span
-          :class="[
-            'tag',
-            {
-              'is-danger ': props.row.selectPriority ===  'High',
-            },
+      <span class="tag is-info is-light">  {{ props.row.agroCategory }} </span>
+       
+      </b-table-column>
 
-            {
-              'is-warning  ' : props.row.selectPriority ===  'Medium',
-            },
+      <b-table-column
+        v-slot="props"
+        field="selectPriority"
+        label="Date"
+        sortable
+      >
 
-            {
-              'is-success ': props.row.selectPriority === 'Low',
-            },
-          ]"
-          >  {{ props.row.selectPriority }} </span
-        >
+      <span class="tag is-info is-light">  {{ props.row.date }} </span>
        
       </b-table-column>
       
+      
        
 
 
-        <b-table-column v-slot="props" field="date" label="Date" sortable>
-
-         <span
-          :class="[
-            'tag',
-          
-
-            {
-              'is-warning  ' : props.row.status ===  'Pending',
-            },
-
-            {
-              'is-success ': props.row.status === 'Completed',
-            },
-          ]"
-          > {{ props.row.status}}</span>
-
-      </b-table-column> 
-
+        
       
 
 
       
-     <b-table-column v-slot="props" label="Options">
+     <!-- <b-table-column v-slot="props" label="Options">
         <span class="buttons">
           <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
           <b-button
@@ -120,7 +118,7 @@
       </b-table-column>
 
       
-                
+                 -->
 
       
 
@@ -145,9 +143,10 @@
 import { mapActions, mapGetters } from 'vuex'
 
 import AgroModal from '@/components/modals/Agro Modal/agro-modal.vue'
-import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
+import FilterModal from '~/components/modals/Filter/filter-modal.vue'
+// import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
 export default {
-  name: 'UnreceiptedDebitsTable',
+  name: 'AgronomyTable',
 
   data() {  
   
@@ -168,13 +167,13 @@ export default {
 
   computed: {
     
-    ...mapGetters('taskData', {
+    ...mapGetters('agroData', {
         loading: 'loading',
-        tasks: 'allTasks',
+        agros: 'allAgroRecords',
       }),
     
      isEmpty() {
-     return this.tasks.length === 0
+     return this.agros.length === 0
      },
 
     
@@ -184,13 +183,13 @@ export default {
     },
     
     tableData() {
-      return this.isEmpty ? [] : this.tasks
+      return this.isEmpty ? [] : this.agros
     },
   },
 
   async created() {
   // await this.load()
-   this.selectTask(this.tasks[0])
+  // this.selectAgroRecord(this.agros[0])
   },
 
   
@@ -198,38 +197,42 @@ export default {
   methods: {
    
 
-     ...mapActions('taskData', ['addNewTask','getAllTasks', 'load', 'selectTask']),
+     ...mapActions('agroData', ['addNewAgroRecord','getAllAgroRecords', 'load']),
 
      async refresh(){
+
+      // alert(
+      //   "Refreshed!"
+      // )
     //  this.isLoading = true
-      await this.getAllTasks();
+     await this.getAllAgroRecords();
    //   this.isLoading = false
  
     },
 
 
-    captureReceipt(task) {
-      this.selectTask(task)
-      setTimeout(() => {
-        this.$buefy.modal.open({
-          parent: this,
-          component: AgroSnapshotModal,
-          hasModalCard: true,
-          trapFocus: true,
-          canCancel: ['x'],
-          destroyOnHide: true,
-          customClass: '',
-          onCancel: () => {
-            this.$buefy.toast.open({
-              message: `Snapshot closed`,
-              duration: 5000,
-              position: 'is-top',
-              type: 'is-info',
-            })
-          },
-        })
-      }, 300)
-    },
+    // captureReceipt(agro) {
+    //   this.selectAgroRecord(agro)
+    //   setTimeout(() => {
+    //     this.$buefy.modal.open({
+    //       parent: this,
+    //       component: AgroSnapshotModal,
+    //       hasModalCard: true,
+    //       trapFocus: true,
+    //       canCancel: ['x'],
+    //       destroyOnHide: true,
+    //       customClass: '',
+    //       onCancel: () => {
+    //         this.$buefy.toast.open({
+    //           message: `Snapshot closed`,
+    //           duration: 5000,
+    //           position: 'is-top',
+    //           type: 'is-info',
+    //         })
+    //       },
+    //     })
+    //   }, 300)
+    // },
 
      addNewTask() {
       
@@ -253,6 +256,29 @@ export default {
         })
       }, 300)
     },
+
+    filter() {
+        
+        setTimeout(() => {
+          this.$buefy.modal.open({
+            parent: this,
+            component: FilterModal,
+            hasModalCard: true,
+            trapFocus: true,
+            canCancel: ['x'],
+            destroyOnHide: true,
+            customClass: '',
+            onCancel: () => {
+              this.$buefy.toast.open({
+                message: `Task Snapshot closed!`,
+                duration: 5000,
+                position: 'is-top',
+                type: 'is-info',
+              })
+            },
+          })
+        }, 300)
+      },
   }
 
  

@@ -1,14 +1,14 @@
 <template>
   <div class="modal-card ">
     <header class="modal-card-head">
-      <h3 class="modal-card-title">Agronomy Snapshot</h3>
+      <h3 class="modal-card-title">Vet Snapshot</h3>
      
       <button type="button" class="delete" @click="close"></button>
     </header>
     <section class="modal-card-body has-background-white">
       <!-- Modal Content -->
       <div>
-       <b-form v-model="agroForm" class="form">
+       <b-form v-model="vetForm" class="form">
 
         <h4> <span class="is-blue"> Client Name</span></h4>
 
@@ -16,7 +16,7 @@
             
             <div  class="column is-three-quarters">
             
-            <b-input type="text" v-model="clientName" placeholder="Client name"></b-input>
+            <b-input type="text" v-model="vetClientName" placeholder="Client name"></b-input>
             </div>
           </div>
 
@@ -26,7 +26,7 @@
             
             <div  class="column is-three-quarters">
             
-            <b-input type="text" v-model="clientPhoneNumber" placeholder="Enter phone no. here..."></b-input>
+            <b-input type="text" v-model="vetClientNumber" placeholder="Enter phone no. here..."></b-input>
             </div>
           </div>
          
@@ -36,18 +36,17 @@
           
            <b-field  class="column is-full">
              
-           <b-select v-model="agroCategory" placeholder="Select a Category">
-             <option value="Landscaping establishment, mgt & pest control in lawns & ornaments">Landscaping establishment, mgt & pest control in lawns & ornaments</option>
-             <option value="Pest control, mgt & fertilization in vegetable crops">Pest control, mgt & fertilization in vegetable crops</option>
-             <option value="Household termites control">Household termites control</option>
-             <option value="Agricultural field termite control">Agricultural field termite control</option>
-             <option value="Grain Protection">Grain Protection</option>
-             <option value="Weed control in non-crop areas">Weed control in non-crop areas</option>
-             <option value="Pest control, mgt & fertilization in field crops">Pest control, mgt & fertilization in field crops</option>
-             <option value="Public health pest control">Public health pest control</option>
-             <option value="Vegetable enterprise budgets">Vegetable enterprise budgets</option>
-             <option value="Pest control, mgt & fertilization in orchards">Pest control, mgt & fertilization in orchards</option>
-             <option value="Soil analysis(all crops)">Soil analysis(all crops)</option>
+           <b-select v-model="selectVetCategory" placeholder="Select a Category">
+             <option value="Cattle">Cattle</option>
+             <option value="Goats">Goats</option>
+             <option value="Sheep">Sheep</option>
+             <option value="Pigs">Pigs</option>
+             <option value="Poultry">Poultry</option>
+             <option value="Dogs & Cats">Dogs & Cats</option>
+             <option value="Rabbits">Rabbits</option>
+             <option value="Wildlife/Game">Wildlife/Game</option>
+             <option value="Horses">Horses</option>
+     
            </b-select>
            </b-field>
          </div>
@@ -69,11 +68,11 @@
              
             
         
-             <p class="mx-4 cat">Client Name :  {{clientName}}</p>
+             <p class="mx-4 cat">Client Name :  {{vetClientName}}</p>
 
-             <p class="mx-4 cat">Client Number :  {{clientPhoneNumber}}</p>
+             <p class="mx-4 cat">Client Number :  {{vetClientNumber}}</p>
 
-            <p class="mx-4 cat">Category Selected :  {{agroCategory}}</p>
+            <p class="mx-4 cat">Category Selected :  {{selectVetCategory}}</p>
           
             
          
@@ -105,55 +104,53 @@
 import { mapActions, mapGetters } from 'vuex'
 import { mapFields } from 'vuex-map-fields'
 export default {
-  name: 'AgroModal',
+  name: 'VetModal',
 
    data() {
     return {
 
       data:[
-            'Landscaping establishment, mgt & pest control in lawns & ornaments',
-             'Pest control, mgt & fertilization in vegetable crops',
-             'Household termites control',
-             'Agricultural field termite control',
-             'Grain Protection',
-             'Weed control in non-crop areas',
-             'Pest control, mgt & fertilization in field crops',
-             'Public health pest control',
-             'Vegetable enterprise budgets',
-             'Pest control, mgt & fertilization in orchards',
-             'Soil analysis(all crops)'
+             'Cattle',
+             'Goats',
+             'Sheep',
+             'Pigs',
+             'Poultry',
+             'Dogs & Cats',
+             'Rabbits',
+             'Wildlife/Game',
+             'Horses'
       ],
 
 
       isFullPage: true,
-      // agroForm: {
+      vetForm: {
       
-      //         clientName:null,
+              vetClientName:null,
              
-      //         clientPhoneNumber:null,
+              vetClientNumber:null,
 
-      //         agroCategory:null,
+              selectVetCategory:null,
          
         
-      // },
+      },
      
     }
   },
 
    computed: {
 
-      ...mapFields('agroData', [
-      'agroForm',
-      'agroForm.clientName',
-      'agroForm.clientPhoneNumber',
-      'agroForm.agroCategory',
+      ...mapFields('vetData', [
+      'vetForm',
+      'vetForm.vetClientName',
+      'vetForm.vetClientNumber',
+      'vetForm.selectVetCategory',
       
       
   ]),
 
-      ...mapGetters('agroData', {
-       agro: 'selectedAgroRecord',
-      agroLoading: 'loading',
+      ...mapGetters('vetData', {
+       task: 'selectedVetRecord',
+      taskLoading: 'loading',
     }),
 
    },
@@ -167,10 +164,10 @@ export default {
   
 
   methods: {
-      ...mapActions('agroData', ['addNewAgroRecord','getAllAgroRecords', 'load']),
+      ...mapActions('vetData', ['addNewVetRecord','getAllVetRecords', 'load']),
 
    loading() {
-      return this.agroLoading 
+      return this.vetLoading 
     },
 
 
@@ -185,7 +182,7 @@ export default {
         hasIcon: true,
         onConfirm: async () => {
           
-         await this.addNewAgroRecord();
+         await this.addNewVetRecord();
 
           this.$buefy.toast.open({
             duration: 3000,
@@ -213,7 +210,7 @@ export default {
 
     close() {
       this.$buefy.toast.open({
-        message: 'Agro Snapshot closed.',
+        message: 'Task Snapshot closed.',
         duration: 2000,
         position: 'is-bottom',
         type: 'is-warning ',
@@ -223,12 +220,13 @@ export default {
 
     clearForm() {
 
-     this.agroForm = {
+     this.taskForm = {
       
-              clientName:null,
-              clientPhoneNumber:null,
-              agroCategory:null
-
+              taskDescription:null,
+              selectPriority:null,
+              assignTask:null,
+              dateAssigned:null,
+              dueDate:null         
         
       }
       

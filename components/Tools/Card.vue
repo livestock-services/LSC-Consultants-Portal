@@ -8,11 +8,26 @@
       </header>
       <div class="card-content">
         <div class="content has-text-centered">
-          <b-icon
-            :icon="icon"
-            size="is-large"
-            type="is-primary"
-          />
+          <div class="card my-4 px-2">
+              Cattle
+          </div>
+
+          <div class="card my-4 px-2">
+              Goats
+          </div>
+
+          <div class="card my-4 px-2">
+              Sheep
+          </div>
+
+          <div class="card my-4 px-2">
+              Pigs
+          </div>
+
+          <div class="card my-4 px-2">
+              Dogs & Cats
+          </div>
+
         </div>
       </div>
       <footer class="card-footer">
@@ -30,10 +45,7 @@
 export default {
   name: 'BuefyCard',
   props: {
-    title: {
-      type: String,
-      required: true
-    },
+    title: 'Records',
     icon: {
       type: String,
       required: true

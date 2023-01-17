@@ -121,11 +121,11 @@
                             <b-menu-item icon="home-outline"  @click="index" label="Home"></b-menu-item>
                             <b-menu-item active expanded icon="account"  label="Consultations">
 
-                                <b-menu-item id="tasks"   icon="food" @click="nutrition" label="Animal Nutrition"></b-menu-item>
-                              
+                                 <b-menu-item id="tasks"   icon="food" @click="nutrition" label="Animal Nutrition"></b-menu-item>
+                               
                                 <b-menu-item icon="cow"   @click="vetCon" label="Vet">  </b-menu-item>
 
-                                <b-menu-item icon="biohazard"   @click="vetPost" label=" Vet Post Mortems">  </b-menu-item>
+                              
 
                                 <b-menu-item  icon="flower"   @click="agro" label="Agronomy">  </b-menu-item>
 

@@ -1,21 +1,36 @@
 <template>
   <div>
     <b-tabs v-model="activeTab">
-                 
-                 <b-tab-item label="Cattle" >
-                      <CattleTable/>
+          <b-tab-item label="Animal Consultations">
+            <b-tabs>
+              <b-tab-item label="Consultations">
+                <VetTable/>
+              </b-tab-item>
+
+              <b-tab-item label="Records">
+               <AnimalCard/>
+              </b-tab-item>
+
+            </b-tabs>
+          </b-tab-item>   
+          
+          
+          <b-tab-item label="Post Mortems">
+            <b-tabs>
+              <b-tab-item label="Village Chickens" >
+                      <VillageChickensTable/>
                   </b-tab-item>
 
-                  <b-tab-item label="Goats" >
+                  <b-tab-item label="Broilers" >
                     <b-tooltip label="All your cows will show up here." type="is-dark">
-                       <GoatsTable/>
+                       <BroilersTable/>
                     </b-tooltip>
                       
                   </b-tab-item>
 
-                  <b-tab-item label="Sheep" >
+                  <b-tab-item label="Layers" >
                      <b-tooltip label="All your bulls will show up here." type="is-dark">
-                      <SheepTable/>
+                     <LayersTable/>
                      </b-tooltip>
                   </b-tab-item>
 
@@ -26,15 +41,15 @@
                     </b-tooltip>
                   </b-tab-item>
 
-                  <b-tab-item label="Poultry" >
+                  <b-tab-item label="Goats" >
                     <b-tooltip label="Both cows & bulls under treatment will show up here." type="is-dark">
-                      <RabbitsTable/>
+                     <GoatsTable/>
                     </b-tooltip>
                   </b-tab-item>
 
-                  <b-tab-item label="Dogs & Cats" >
+                  <b-tab-item label="Quails" >
                     <b-tooltip label="Both cows & bulls under treatment will show up here." type="is-dark">
-                      <RabbitsTable/>
+                     <QuailsTable/>
                     </b-tooltip>
                   </b-tab-item>
 
@@ -44,18 +59,16 @@
                     </b-tooltip>
                   </b-tab-item>
 
-                  <b-tab-item label="Wildlife/Game" >
+                  <b-tab-item label="Cattle" >
                     <b-tooltip label="Both cows & bulls under treatment will show up here." type="is-dark">
-                      <RabbitsTable/>
+                    <CattleTable/>
                     </b-tooltip>
                   </b-tab-item>
 
-                  <b-tab-item label="Horses" >
-                    <b-tooltip label="Both cows & bulls under treatment will show up here." type="is-dark">
-                      <HorsesTable/>
-                    </b-tooltip>
-                  </b-tab-item>
-
+            </b-tabs>
+           
+          </b-tab-item>
+                 
 
       </b-tabs>
 
@@ -72,10 +85,22 @@ import DogsAndCatsTable from '~/components/tables/Vet/dogs-and-cats-table.vue'
 import RabbitsTable from '~/components/tables/Vet/rabbits-table.vue'
 import HorsesTable from '~/components/tables/Vet/horses-table.vue'
 import WildlifeGameTable from '~/components/tables/Vet/wildlife-game-table.vue'
+import VetTable from '~/components/tables/Vet/vet-table.vue'
+import GoatsPMTable from '~/components/tables/Post Mortems/goats-table.vue'
+import CattlePMTable from '~/components/tables/Post Mortems/cattle-table.vue'
+import PigsPMTable from '~/components/tables/Post Mortems/pigs-table.vue'
+import BroilersPMTable from '~/components/tables/Post Mortems/broilers-table.vue'
+import LayersPMTable from '~/components/tables/Post Mortems/layers-table.vue'
+import QuailsPMTable from '~/components/tables/Post Mortems/quails-table.vue'
+import VillageChickensPMTable from '~/components/tables/Post Mortems/village-chickens-table.vue'
+import AnimalCard from '~/components/Tools/animal-cards.vue'
+
 export default {
   components: { CattleTable,GoatsTable,SheepTable,
     PigsTable,PoultryTable, DogsAndCatsTable, 
-    RabbitsTable, HorsesTable,WildlifeGameTable },
+    RabbitsTable, HorsesTable,WildlifeGameTable, 
+    BroilersPMTable, LayersPMTable, QuailsPMTable,
+     VillageChickensPMTable, GoatsPMTable, CattlePMTable, PigsPMTable, VetTable, AnimalCard },
 
   data(){
     return {

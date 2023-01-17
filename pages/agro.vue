@@ -6,6 +6,10 @@
                       <AgroTable/>
                   </b-tab-item>
 
+                  <b-tab-item label="Records">
+               <AgroCard/>
+              </b-tab-item>
+
           
 
       </b-tabs>
@@ -15,8 +19,9 @@
 
 <script>
 import AgroTable from '~/components/tables/Agro/agro-table.vue'
+import AgroCard from '~/components/Tools/agro-card.vue'
 export default {
-  components: { AgroTable },
+  components: { AgroTable, AgroCard },
 
   data(){
     return {
