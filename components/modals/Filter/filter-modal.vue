@@ -147,8 +147,8 @@
       async onGetResult() {
   
          await this.$buefy.dialog.confirm({
-          title: 'Add New Record',
-          message: 'Proceed to add new entry?',
+          title: 'Get Consultation Results',
+          message: 'Proceed to implement filter?',
           cancelText: 'Cancel',
           confirmText: 'Yes, entries are correct',
           type: 'is-success is-light',

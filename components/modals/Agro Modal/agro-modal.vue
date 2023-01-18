@@ -191,7 +191,7 @@ export default {
             duration: 3000,
             message: 'New Record Successfully Added!',
             position: 'is-top',
-            type: 'is-info is-light',
+            type: 'is-success',
           })
            this.clearForm();
           showNotifications();

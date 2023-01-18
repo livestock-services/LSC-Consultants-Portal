@@ -15,7 +15,14 @@
         </b-tooltip>
 
        <b-tooltip label="Export to Excel" type="is-dark">
-        <download-excel :data="tableData" name = "Milking Records">
+
+        <download-excel
+         :data="agro_data" 
+         :fields="agro_fields"
+         worksheet="Agro Worksheet"
+         type="xls"
+         name = "Agro Consultations.xls">
+        
         <b-button class="mx-2" icon-left="export" type="is-success ">Excel</b-button>
         <img src="download_icon.png" />
       </download-excel>   
@@ -23,11 +30,11 @@
 
       </div>
 
-        <div class="card-content my-4">
+        <b-form v-model="agroCard" class="card-content my-4">
           <div class="content has-text-left">
             <div class=" my-4 px-2">
                 Landscaping establishment, mgt & pest control in lawns & ornaments:
-                 <span class="tag is-primary mx-4 "> {{ landscaping.length }}</span>
+                 <b-field v-model="landscaping" id="landscape" class=" landscape tag is-primary mx-4"> {{ landscaping.length }}</b-field>
              
             </div>
   
@@ -104,14 +111,14 @@
              <span class="tag is-primary mx-4 "> {{ soilAnalysis.length }}</span>
             </div> 
 
-            <!-- <textarea class="card" v-model="agroConsultData">
-                   <ol>
-                    <li>Soil analysis(all crops): {{ soilAnalysis.length }}</li>
-                   </ol>
-                </textarea> -->
+             
            
           </div>
-        </div>
+
+          <!-- <pre>
+            {{ landscaping.length }}
+          </pre> -->
+        </b-form>
         <footer class="card-footer footy">
           <div class="card-footer-item">
             <div class="my-4 text ">
@@ -142,6 +149,7 @@
   import FilterModal from '~/components/modals/Filter/filter-modal.vue'
   import countTo from 'vue-count-to';
   import { mapActions, mapGetters } from 'vuex'
+
   export default {
     name: 'BuefyCard',
     components: {
@@ -149,26 +157,77 @@
    
   },
     props: {
+       // landscape: landscaping, 
       title: 'Records',
       icon: {
         type: String,
         required: true
-      }
+      },
+     
     },
+
+  
 
     data(){
+
+      
         return {
             startVal:0,
-            // startDate: this.filteredTimes.startDate,
-            // endDate: this.filteredTimes.endDate
+           
+          
+            agro_fields:{
+                "Consultations":"consultation",
+                "Number":"number",
+                "Total":"total",
+                "Start Date":"start_date",
+                "End Date":"end_date"
+            },
+
+            agro_data:[
+                
+                { 
+                  "consultation":"Landscaping establishment, mgt & pest control in lawns & ornaments",
+                  "number":98
+                },
+
+                 { "consultation":"Pest control, mgt & fertilization in vegetable crops" },
+
+                 { "consultation":"Household termites control" },
+
+                 { "consultation":"Agricultural field termite control" },
+
+                 { "consultation":"Grain Protection" },
+
+                 { "consultation":"Weed control in non-crop areas" },
+
+                 { "consultation":"Pest control, mgt & fertilization in field crops" },
+
+                 { "consultation":"Public health pest control" },
+
+                 { "consultation":" Vegetable enterprise budgets" },
+
+                 { "consultation":" Pest control, mgt & fertilization in orchards" },
+              
+                 { "consultation":"Soil Analysis(all crops )" },
+
+                 {"total":34 },
+
+                 {"start_date":this.startTime},
+
+                 {"end_date":this.endTime}
+                
+                
+            ]
         }
     },
+    
 
     computed: {
-    
+
+       
         ...mapGetters('agroData', {
-        loading: 'loading',
-        agros: 'allAgroRecords',
+         loading: 'loading',
+         agros: 'allAgroRecords',
          landscaping:'allLandscapingRecords',
          pestControlVeg:'allPestControlVegRecords',
          houseTermiteControl:'allHouseholdTermitesControlRecords',
@@ -181,14 +240,28 @@
          pestControlOrchard:'allPestControlOrchardRecords',
          soilAnalysis:'allSoilAnalysisRecords',
          startTime:'filteredStartTime',
-         endTime:'filteredEndTime'
-      }),
+         endTime:'filteredEndTime',
+
+        landscapeCount(){
+        return this.landscaping.length
+        }
+      },
+
+
+     
+      
+      
+      ),
+
 
     },
 
     async created() {
-  let filteredAgros = await this.getAllAgroRecords();
-   console.log(filteredAgros)
+  let allAgros = await this.getAllAgroRecords();
+  //let filteredAgros = await this.getFilteredAgroRecords();
+   
+   console.log(allAgros)
+   //console.log(filteredAgros)
 
   },
 
