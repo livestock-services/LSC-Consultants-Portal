@@ -17,7 +17,7 @@
        <b-tooltip label="Export to Excel" type="is-dark">
 
         <download-excel
-         :data="agro_data" 
+         :data="landscapeData" 
          :fields="agro_fields"
          worksheet="Agro Worksheet"
          type="xls"
@@ -119,6 +119,84 @@
             {{ landscaping.length }}
           </pre> -->
         </b-form>
+
+        <table :data="landscapeData" class="">
+          <tr>
+            <th>Consultations</th>
+            <th>number</th>
+            <th>Total</th>
+          </tr>
+          <tr >
+            <td class="ml-2">Landscaping establishment, mgt & pest control in lawns & ornaments</td>
+            <td>{{ landscaping.length }}</td>
+           
+          </tr>
+
+          <tr >
+            <td class="ml-2"> Pest control, mgt & fertilization in vegetable crops</td>
+            <td>{{ pestControlVeg.length }}</td>
+           
+          </tr>
+
+          <tr >
+            <td class="ml-2"> Household termites control</td>
+            <td>{{ houseTermiteControl.length }}</td>
+           
+          </tr>
+
+          <tr >
+            <td class="ml-2"> Agricultural field termite control</td>
+            <td>{{ fieldTermiteControl.length }}</td>
+           
+          </tr>
+
+          <tr >
+            <td class="ml-2">Grain Protection</td>
+            <td>{{ grainProtection.length }}</td>
+           
+          </tr>
+
+          <tr >
+            <td class="ml-2"> Weed control in non-crop areas</td>
+            <td>{{ weedControl.length }}</td>
+           
+          </tr>
+
+          <tr >
+            <td class="ml-2"> Pest control, mgt & fertilization in field crops</td>
+            <td>{{ pestControlField.length }}</td>
+           
+          </tr>
+
+          <tr >
+            <td class="ml-2">  Public health pest control</td>
+            <td>{{ publicHealthPestControl.length }}</td>
+           
+          </tr>
+
+          <tr >
+            <td class="ml-2"> Vegetable enterprise budgets</td>
+            <td>{{ vegEnterpriseBudget.length }}</td>
+           
+          </tr>
+
+          <tr >
+            <td class="ml-2"> Pest control, mgt & fertilization in orchards</td>
+            <td>{{ pestControlOrchard.length }}</td>
+           
+          </tr>
+
+          <tr >
+            <td class="ml-2">  Soil analysis(all crops)</td>
+            <td>{{ soilAnalysis.length }}</td>
+           
+          </tr>
+
+          
+        </table>
+
+
+      
         <footer class="card-footer footy">
           <div class="card-footer-item">
             <div class="my-4 text ">
@@ -170,10 +248,9 @@
 
     data(){
 
-      
+    
         return {
             startVal:0,
-           
           
             agro_fields:{
                 "Consultations":"consultation",
@@ -187,7 +264,7 @@
                 
                 { 
                   "consultation":"Landscaping establishment, mgt & pest control in lawns & ornaments",
-                  "number":98
+                  "number":23
                 },
 
                  { "consultation":"Pest control, mgt & fertilization in vegetable crops" },
@@ -242,11 +319,15 @@
          startTime:'filteredStartTime',
          endTime:'filteredEndTime',
 
-        landscapeCount(){
-        return this.landscaping.length
-        }
+
+         landscapeData() {
+          return this.isEmpty ? [] : this.landscaping
+        },
+
       },
 
+
+     
 
      
       
@@ -283,7 +364,7 @@
             customClass: '',
             onCancel: () => {
               this.$buefy.toast.open({
-                message: `Task Snapshot closed!`,
+                message: `Filter Snapshot closed!`,
                 duration: 5000,
                 position: 'is-top',
                 type: 'is-info',
@@ -302,6 +383,10 @@
     font-weight:700;
     color: rgb(54, 142, 113);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .ml-2{
+    margin-right: 2rem;
   }
 
   .footy{

@@ -22,9 +22,19 @@
          <b-button class="mx-2" icon-left="refresh" type="is-info" @click="refresh">Refresh</b-button>
          </b-tooltip>
 
-         <!-- <b-tooltip label="Add details of new tasks here" type="is-dark">
-        <b-button class="mx-2" icon-left="filter" type="is-warning" @click="filter">Filter</b-button>
-        </b-tooltip> -->
+         <b-tooltip label="Export to Excel" type="is-dark">
+
+            <download-excel
+            :data="tableData" 
+            
+            worksheet="Agro Worksheet"
+            type="xls"
+            name = "Agro Consultations.xls">
+
+            <b-button class="mx-2" icon-left="export" type="is-success ">Excel</b-button>
+            <img src="download_icon.png" />
+            </download-excel>   
+          </b-tooltip>
       </div>
 
       

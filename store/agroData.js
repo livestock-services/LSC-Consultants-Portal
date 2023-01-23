@@ -455,6 +455,11 @@ export const actions = {
         
         console.log(filteredLandscapingRecords.length);
 
+        var landscapingCount = filteredLandscapingRecords.length;
+
+        console.log(landscapingCount);
+        
+
         console.log(filteredPestControlVegRecords.length);
 
         console.log(filteredHouseholdTermitesRecords.length);
