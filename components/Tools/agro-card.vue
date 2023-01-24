@@ -1,4 +1,5 @@
 <template>
+  
     <div class="column">
       <div class="card  my-4">
         <header class="card-header footy my-4">
@@ -17,7 +18,7 @@
        <b-tooltip label="Export to Excel" type="is-dark">
 
         <download-excel
-         :data="landscapeData" 
+         :data="agro_data" 
          :fields="agro_fields"
          worksheet="Agro Worksheet"
          type="xls"
@@ -34,41 +35,41 @@
           <div class="content has-text-left">
             <div class=" my-4 px-2">
                 Landscaping establishment, mgt & pest control in lawns & ornaments:
-                 <b-field v-model="landscaping" id="landscape" class=" landscape tag is-primary mx-4"> {{ landscaping.length }}</b-field>
+                 <b-field v-model="landscaping" id="landscapes" class=" tag is-primary mx-4"> {{ landscaping }}</b-field>
              
             </div>
   
              <div class=" my-4 px-2">
                 Pest control, mgt & fertilization in vegetable crops: 
-                <span class="tag is-primary mx-4 "> {{ pestControlVeg.length }}</span>
+                <span class="tag is-primary mx-4 "> {{ pestControlVeg }}</span>
              
             </div>
   
           
             <div class=" my-4 px-2">
                 Household termites control: 
-                <span class="tag is-primary mx-4 "> {{ houseTermiteControl.length }}</span>
+                <span class="tag is-primary mx-4 "> {{ houseTermiteControl }}</span>
              
             </div>
 
               
             <div class=" my-4 px-2">
                 Agricultural field termite control:
-                 <span class="tag is-primary mx-4 "> {{ fieldTermiteControl.length }}</span>
+                 <span class="tag is-primary mx-4 "> {{ fieldTermiteControl }}</span>
              
             </div>
             
            
             <div class=" my-4 px-2">
                 Grain Protection:
-                 <span class="tag is-primary mx-4 "> {{ grainProtection.length }}</span>
+                 <span class="tag is-primary mx-4 " id="grain"> {{ grainProtection }}</span>
              
             </div>
 
             
             <div class=" my-4 px-2">
                 Weed control in non-crop areas:
-                 <span class="tag is-primary mx-4 "> {{  weedControl.length }}</span>
+                 <span class="tag is-primary mx-4 "> {{  weedControl }}</span>
              
              
             </div>
@@ -76,7 +77,7 @@
              
             <div class=" my-4 px-2">
                 Pest control, mgt & fertilization in field crops: 
-                <span class="tag is-primary mx-4 "> {{ pestControlField.length }}</span>
+                <span class="tag is-primary mx-4 "> {{ pestControlField }}</span>
              
              
             </div>
@@ -84,7 +85,7 @@
             
             <div class=" my-4 px-2">
                 Public health pest control:
-                 <span class="tag is-primary mx-4 "> {{ publicHealthPestControl.length }}</span>
+                 <span class="tag is-primary mx-4 "> {{ publicHealthPestControl }}</span>
              
              
             </div>
@@ -92,7 +93,7 @@
             
             <div class=" my-4 px-2">
                 Vegetable enterprise budgets:
-                 <span class="tag is-primary mx-4 "> {{ vegEnterpriseBudget.length }}</span>
+                 <span class="tag is-primary mx-4 "> {{ vegEnterpriseBudget }}</span>
              
             </div>
 
@@ -100,7 +101,7 @@
             <div class=" my-4 px-2">
               
              Pest control, mgt & fertilization in orchards: 
-             <span class="tag is-primary mx-4 ">{{ pestControlOrchard.length }}</span>
+             <span class="tag is-primary mx-4 ">{{ pestControlOrchard }}</span>
           
             </div>
 
@@ -108,7 +109,7 @@
             <div class=" my-4 px-2">
                 
              Soil analysis(all crops): 
-             <span class="tag is-primary mx-4 "> {{ soilAnalysis.length }}</span>
+             <span class="tag is-primary mx-4 "> {{ soilAnalysis }}</span>
             </div> 
 
              
@@ -120,81 +121,7 @@
           </pre> -->
         </b-form>
 
-        <table :data="landscapeData" class="">
-          <tr>
-            <th>Consultations</th>
-            <th>number</th>
-            <th>Total</th>
-          </tr>
-          <tr >
-            <td class="ml-2">Landscaping establishment, mgt & pest control in lawns & ornaments</td>
-            <td>{{ landscaping.length }}</td>
-           
-          </tr>
-
-          <tr >
-            <td class="ml-2"> Pest control, mgt & fertilization in vegetable crops</td>
-            <td>{{ pestControlVeg.length }}</td>
-           
-          </tr>
-
-          <tr >
-            <td class="ml-2"> Household termites control</td>
-            <td>{{ houseTermiteControl.length }}</td>
-           
-          </tr>
-
-          <tr >
-            <td class="ml-2"> Agricultural field termite control</td>
-            <td>{{ fieldTermiteControl.length }}</td>
-           
-          </tr>
-
-          <tr >
-            <td class="ml-2">Grain Protection</td>
-            <td>{{ grainProtection.length }}</td>
-           
-          </tr>
-
-          <tr >
-            <td class="ml-2"> Weed control in non-crop areas</td>
-            <td>{{ weedControl.length }}</td>
-           
-          </tr>
-
-          <tr >
-            <td class="ml-2"> Pest control, mgt & fertilization in field crops</td>
-            <td>{{ pestControlField.length }}</td>
-           
-          </tr>
-
-          <tr >
-            <td class="ml-2">  Public health pest control</td>
-            <td>{{ publicHealthPestControl.length }}</td>
-           
-          </tr>
-
-          <tr >
-            <td class="ml-2"> Vegetable enterprise budgets</td>
-            <td>{{ vegEnterpriseBudget.length }}</td>
-           
-          </tr>
-
-          <tr >
-            <td class="ml-2"> Pest control, mgt & fertilization in orchards</td>
-            <td>{{ pestControlOrchard.length }}</td>
-           
-          </tr>
-
-          <tr >
-            <td class="ml-2">  Soil analysis(all crops)</td>
-            <td>{{ soilAnalysis.length }}</td>
-           
-          </tr>
-
-          
-        </table>
-
+       
 
       
         <footer class="card-footer footy">
@@ -202,23 +129,25 @@
             <div class="my-4 text ">
               Total Consultations:<span class="is-success mx-4 "> 
                 <countTo :startVal='startVal' 
-                :endVal='landscaping.length +
-                 pestControlVeg.length + 
-                 houseTermiteControl.length + 
-                 fieldTermiteControl.length + 
-                 grainProtection.length + 
-                 weedControl.length + 
-                 pestControlField.length + 
-                 publicHealthPestControl.length + 
-                 vegEnterpriseBudget.length + 
-                 pestControlOrchard.length + 
-                 soilAnalysis.length' 
+                :endVal='landscaping +
+                 pestControlVeg + 
+                 houseTermiteControl + 
+                 fieldTermiteControl + 
+                 grainProtection + 
+                 weedControl + 
+                 pestControlField + 
+                 publicHealthPestControl + 
+                 vegEnterpriseBudget + 
+                 pestControlOrchard + 
+                 soilAnalysis' 
                  :duration='7000'
                  ></countTo>
                 </span>
             </div>
           </div>
         </footer>
+
+        
       </div>
     </div>
   </template>
@@ -227,8 +156,12 @@
   import FilterModal from '~/components/modals/Filter/filter-modal.vue'
   import countTo from 'vue-count-to';
   import { mapActions, mapGetters } from 'vuex'
+import { computed } from 'vue';
+
 
   export default {
+
+ 
     name: 'BuefyCard',
     components: {
     countTo 
@@ -247,11 +180,44 @@
   
 
     data(){
+      
+      var startDate = computed(()=>this.startTime)
 
-    
+      var endDate = computed(()=>this.endTime)
+
+      var landscapes = computed(()=> this.landscaping)
+      var pestsCtrlVeg = computed(()=>this.pestControlVeg)
+      var houseTermiteCtrl =computed(()=> this.houseTermiteControl)
+      var fieldTermiteCtrl = computed (()=> this.fieldTermiteControl)
+      var grainProtect = computed(()=> this.grainProtection)
+      var weedCtrl = computed(()=> this.weedControl)
+      var pestCtrlField = computed(()=> this.pestControlField)
+      var publicHealthPestCtrl = computed(()=> this.publicHealthPestControl)
+      var vegEntBudget = computed(()=> this.vegEnterpriseBudget)
+      var pestCtrlOrchard = computed(()=> this.pestControlOrchard)
+      var soilAna = computed(()=> this.soilAnalysis)
+
+      var totalConsults =  computed(
+                            ()=> this.landscaping +
+                                 this.pestControlVeg+
+                                 this.houseTermiteControl+
+                                 this.fieldTermiteControl+
+                                 this.grainProtection+
+                                 this.weedControl+
+                                 this.pestControlField+
+                                 this.publicHealthPestControl+
+                                 this.vegEnterpriseBudget+
+                                 this.pestControlOrchard+
+                                 this.soilAnalysis
+                                 
+                                 )
+                         
+                          
+      // console.log( this.landscape === this.landscaping)
+
         return {
             startVal:0,
-          
+           
             agro_fields:{
                 "Consultations":"consultation",
                 "Number":"number",
@@ -260,45 +226,71 @@
                 "End Date":"end_date"
             },
 
+            
+
             agro_data:[
+                
+                {"start_date": startDate,
+                 "end_date":endDate
+                },
+
+              
                 
                 { 
                   "consultation":"Landscaping establishment, mgt & pest control in lawns & ornaments",
-                  "number":23
+                  "number":landscapes
                 },
 
-                 { "consultation":"Pest control, mgt & fertilization in vegetable crops" },
+                 { "consultation":"Pest control, mgt & fertilization in vegetable crops",
+                    "number":pestsCtrlVeg
+                },
 
-                 { "consultation":"Household termites control" },
+                 { "consultation":"Household termites control",
+                    "number":houseTermiteCtrl
+                  },
 
-                 { "consultation":"Agricultural field termite control" },
+                 { "consultation":"Agricultural field termite control",
+                    "number":fieldTermiteCtrl
+                },
 
-                 { "consultation":"Grain Protection" },
+                 { "consultation":"Grain Protection",
+                    "number":grainProtect
+                  },
 
-                 { "consultation":"Weed control in non-crop areas" },
+                 { "consultation":"Weed control in non-crop areas",
+                    "number":weedCtrl
+                  },
 
-                 { "consultation":"Pest control, mgt & fertilization in field crops" },
+                 { "consultation":"Pest control, mgt & fertilization in field crops",
+                    "number":pestCtrlField
+                },
 
-                 { "consultation":"Public health pest control" },
+                 { "consultation":"Public health pest control",
+                    "number":publicHealthPestCtrl
+                  },
 
-                 { "consultation":" Vegetable enterprise budgets" },
+                 { "consultation":" Vegetable enterprise budgets",
+                    "number":vegEntBudget
+                  },
 
-                 { "consultation":" Pest control, mgt & fertilization in orchards" },
+                 { "consultation":" Pest control, mgt & fertilization in orchards",
+                    "number":pestCtrlOrchard
+                  },
               
-                 { "consultation":"Soil Analysis(all crops )" },
+                 { "consultation":"Soil Analysis(all crops )",
+                    "number":soilAna
+                  },
 
-                 {"total":34 },
+                 {"total":totalConsults },
 
-                 {"start_date":this.startTime},
-
-                 {"end_date":this.endTime}
+                
                 
                 
             ]
         }
     },
     
-
+    
     computed: {
 
        
@@ -319,11 +311,11 @@
          startTime:'filteredStartTime',
          endTime:'filteredEndTime',
 
+          
+        
 
-         landscapeData() {
-          return this.isEmpty ? [] : this.landscaping
-        },
-
+        
+      
       },
 
 
@@ -337,10 +329,30 @@
 
     },
 
+    provide(){
+      return{
+        landscapes: computed(() => this.landscaping)
+      }
+    },
+
+  //   mounted(){
+  //     const landscapeConsults = this.landscaping
+  //   this.landscapes = landscapeConsults 
+     
+      
+  //  console.log(landscapeConsults === this.landscapes)
+
+  //  console.log(this.landscapes)
+  //   },
+    
+
     async created() {
   let allAgros = await this.getAllAgroRecords();
+ //var landscape = this.landscaping
+  //console.log(landscape);
+  
   //let filteredAgros = await this.getFilteredAgroRecords();
-   
+     
    console.log(allAgros)
    //console.log(filteredAgros)
 
