@@ -270,7 +270,7 @@
   <script>
   import { mapActions, mapGetters } from 'vuex'
    import countTo from 'vue-count-to';
-   import FilterModal from '~/components/modals/Vet Modal/filter-modal.vue'
+   import VetFilterModal from '~/components/modals/Filter/vet-filter-modal.vue'
   export default {
     name: 'Animal Card',
     components: {

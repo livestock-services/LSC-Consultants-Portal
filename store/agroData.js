@@ -63,13 +63,14 @@ export const state = () => ({
     agroForm:{
         clientName:null,
         clientPhoneNumber:null,
+        clientLocation:null,
         agroCategory:null,
         date:new Date()
        // createdBy:null
         
     },
 
-    filterForm:{
+    agroFilterForm:{
         startDate:null,
         endDate:null
     }
@@ -341,7 +342,7 @@ export const actions = {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
 
-             const newFilterRecord = cloneDeep(state.filterForm);
+             const newFilterRecord = cloneDeep(state.agroFilterForm);
 
              newFilterRecord.startDate = newFilterRecord.startDate.toLocaleDateString('en-GB');
 

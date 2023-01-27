@@ -8,7 +8,7 @@
       <section class="modal-card-body has-background-white">
         <!-- Modal Content -->
         <div>
-            <b-form v-model="filterForm" class="form">
+            <b-form v-model="villageChickenPostMortemFilterForm" class="form">
   
   <h4> <span class="is-blue"> Start Date</span></h4>
 
@@ -41,7 +41,7 @@
        
       
         <div class="ml-4">
-            <h4>Selecting all Consultations from:</h4> 
+            <h4>Selecting all post mortems from:</h4> 
         </div>
 
        <p class="mx-4 cat">Start Date :  {{ startDate }}</p>
@@ -85,15 +85,13 @@
      data() {
       return {
   
-        filterForm: {
+        villageChickenPostMortemFilterForm: {
         
         startDate:null,
        
-        endDate:null,
-
-                   
+        endDate:null,                  
   
-},
+        },
   
   
         isFullPage: true,
@@ -113,19 +111,16 @@
   
      computed: {
   
-        ...mapFields('agroData', [
-        'filterForm',
-        'filterForm.startDate',
-        'filterForm.endDate'
+        ...mapFields('vetData', [
+        'villageChickenPostMortemFilterForm',
+        'villageChickenPostMortemFilterForm.startDate',
+        'villageChickenPostMortemFilterForm.endDate'
         
         
     ]),
-  
-        ...mapGetters('agroData', {
-         agro: 'selectedAgroRecord',
-        agroLoading: 'loading',
-      }),
-  
+
+   
+
      },
   
      
@@ -137,7 +132,9 @@
     
   
     methods: {
-        ...mapActions('agroData', ['addNewAgroRecord','getAllAgroRecords','getFilteredAgroRecords', 'load']),
+        ...mapActions('vetData', ['addNewVillageChickenPMRecord','getAllVillageChickenPMRecords','getFilteredVillageChickenPMRecords', 'load']),
+
+     
   
      loading() {
         return this.agroLoading 
@@ -147,7 +144,7 @@
       async onGetResult() {
   
          await this.$buefy.dialog.confirm({
-          title: 'Get Consultation Results',
+          title: 'Get Post Mortem Results',
           message: 'Proceed to implement filter?',
           cancelText: 'Cancel',
           confirmText: 'Yes, entries are correct',
@@ -155,7 +152,7 @@
           hasIcon: true,
           onConfirm: async () => {
             
-           await this.getFilteredAgroRecords();
+           await this.getFilteredVillageChickenPMRecords();
   
             this.$buefy.toast.open({
               duration: 3000,
@@ -193,7 +190,7 @@
   
       clearForm() {
   
-       this.agroForm = {
+       this.villageChickenPostMortemForm = {
         
                 startDate:null,
                 endDate:null,

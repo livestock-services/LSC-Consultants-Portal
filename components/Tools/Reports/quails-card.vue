@@ -4,7 +4,7 @@
       <div class="card  my-4">
         <header class="card-header footy my-4">
           <h1 class="card-header-title  header-text">
-           Agronomy Consultations between <span class="tag is-info is-light"> {{ startTime }} </span> and <span class="tag is-info is-light"> {{ endTime }} </span>
+           Quail Post Mortems between <span class="tag is-info is-light"> {{ startTime }} </span> and <span class="tag is-info is-light"> {{ endTime }} </span>
           </h1>
         </header>
 
@@ -31,43 +31,43 @@
 
       </div>
 
-        <b-form v-model="agroCard" class="card-content my-4">
+        <b-form v-model="agroCard" class="card-content mx-4 my-4">
           <div class="content has-text-left">
-            <div class=" my-4 px-2">
+            <div class=" my-4 pl-4">
                 Landscaping establishment, mgt & pest control in lawns & ornaments:
                  <b-field v-model="landscaping" id="landscapes" class=" tag is-primary mx-4"> {{ landscaping }}</b-field>
              
             </div>
   
-             <div class=" my-4 px-2">
+             <div class=" my-4 pl-4">
                 Pest control, mgt & fertilization in vegetable crops: 
                 <span class="tag is-primary mx-4 "> {{ pestControlVeg }}</span>
              
             </div>
   
           
-            <div class=" my-4 px-2">
+            <div class=" my-4 pl-4">
                 Household termites control: 
                 <span class="tag is-primary mx-4 "> {{ houseTermiteControl }}</span>
              
             </div>
 
               
-            <div class=" my-4 px-2">
+            <div class=" my-4 pl-4">
                 Agricultural field termite control:
                  <span class="tag is-primary mx-4 "> {{ fieldTermiteControl }}</span>
              
             </div>
             
            
-            <div class=" my-4 px-2">
+            <div class=" my-4 pl-4">
                 Grain Protection:
                  <span class="tag is-primary mx-4 " id="grain"> {{ grainProtection }}</span>
              
             </div>
 
             
-            <div class=" my-4 px-2">
+            <div class=" my-4 pl-4">
                 Weed control in non-crop areas:
                  <span class="tag is-primary mx-4 "> {{  weedControl }}</span>
              
@@ -75,7 +75,7 @@
             </div>
 
              
-            <div class=" my-4 px-2">
+            <div class=" my-4 pl-4">
                 Pest control, mgt & fertilization in field crops: 
                 <span class="tag is-primary mx-4 "> {{ pestControlField }}</span>
              
@@ -83,7 +83,7 @@
             </div>
 
             
-            <div class=" my-4 px-2">
+            <div class=" my-4 pl-4">
                 Public health pest control:
                  <span class="tag is-primary mx-4 "> {{ publicHealthPestControl }}</span>
              
@@ -91,14 +91,14 @@
             </div>
 
             
-            <div class=" my-4 px-2">
+            <div class=" my-4 pl-4">
                 Vegetable enterprise budgets:
                  <span class="tag is-primary mx-4 "> {{ vegEnterpriseBudget }}</span>
              
             </div>
 
            
-            <div class=" my-4 px-2">
+            <div class=" my-4 pl-4">
               
              Pest control, mgt & fertilization in orchards: 
              <span class="tag is-primary mx-4 ">{{ pestControlOrchard }}</span>
@@ -106,7 +106,7 @@
             </div>
 
              
-            <div class=" my-4 px-2">
+            <div class=" my-4 pl-4">
                 
              Soil analysis(all crops): 
              <span class="tag is-primary mx-4 "> {{ soilAnalysis }}</span>
@@ -153,7 +153,7 @@
   </template>
   
   <script>
-  import FilterModal from '~/components/modals/Filter/filter-modal.vue'
+  import AgroFilterModal from '~/components/modals/Filter/agro-filter-modal.vue'
   import countTo from 'vue-count-to';
   import { mapActions, mapGetters } from 'vuex'
 import { computed } from 'vue';
@@ -219,7 +219,7 @@ import { computed } from 'vue';
             startVal:0,
            
             agro_fields:{
-                "Consultations":"consultation",
+                "Consultations By Category":"consultation",
                 "Number":"number",
                 "Total":"total",
                 "Start Date":"start_date",
@@ -368,7 +368,7 @@ import { computed } from 'vue';
         setTimeout(() => {
           this.$buefy.modal.open({
             parent: this,
-            component: FilterModal,
+            component: AgroFilterModal,
             hasModalCard: true,
             trapFocus: true,
             canCancel: ['x'],

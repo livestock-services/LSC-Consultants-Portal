@@ -14,7 +14,7 @@
       </b-select>
 
      <div class="buttons">
-        <b-tooltip label="Add details of new tasks here" type="is-dark">
+        <b-tooltip label="Add details of new records here" type="is-dark">
         <b-button class="mx-2" icon-left="plus" type="is-success" @click="addNewTask">Add New Record</b-button>
         </b-tooltip>
 
@@ -22,19 +22,8 @@
          <b-button class="mx-2" icon-left="refresh" type="is-info" @click="refresh">Refresh</b-button>
          </b-tooltip>
 
-         <b-tooltip label="Export to Excel" type="is-dark">
-
-            <download-excel
-            :data="tableData" 
+       
             
-            worksheet="Agro Worksheet"
-            type="xls"
-            name = "Agro Consultations.xls">
-
-            <b-button class="mx-2" icon-left="export" type="is-success ">Excel</b-button>
-            <img src="download_icon.png" />
-            </download-excel>   
-          </b-tooltip>
       </div>
 
       
@@ -76,7 +65,19 @@
         
         
       >
-      <span class="tag tasks">  {{ props.row.clientPhoneNumber }} </span>
+      <span class="tag numbers">  {{ props.row.clientPhoneNumber }} </span>
+       
+        <!-- {{ props.row.sumInsured }} -->
+      </b-table-column>
+
+      <b-table-column
+        v-slot="props"
+        field="taskDescription"
+        label="Location"
+        
+        
+      >
+      <span class="tag is-primary is-light">  {{ props.row.clientLocation }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
@@ -153,7 +154,7 @@
 import { mapActions, mapGetters } from 'vuex'
 
 import AgroModal from '@/components/modals/Agro Modal/agro-modal.vue'
-import FilterModal from '~/components/modals/Filter/filter-modal.vue'
+
 // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
 export default {
   name: 'AgronomyTable',
@@ -267,28 +268,7 @@ export default {
       }, 300)
     },
 
-    filter() {
-        
-        setTimeout(() => {
-          this.$buefy.modal.open({
-            parent: this,
-            component: FilterModal,
-            hasModalCard: true,
-            trapFocus: true,
-            canCancel: ['x'],
-            destroyOnHide: true,
-            customClass: '',
-            onCancel: () => {
-              this.$buefy.toast.open({
-                message: `Task Snapshot closed!`,
-                duration: 5000,
-                position: 'is-top',
-                type: 'is-info',
-              })
-            },
-          })
-        }, 300)
-      },
+   
   }
 
  
@@ -308,6 +288,11 @@ export default {
 .tasks{
   background-color: rgb(247, 204, 179);
 }
+
+.numbers{
+  background-color: rgb(217, 249, 198);
+}
+
 
 .assignedTo{
   background-color: rgb(94, 241, 222);

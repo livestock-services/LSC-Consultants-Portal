@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import download from "~/components/Tools/download.vue"
+import download from "~/components/Tools/Other/download.vue"
 
 export default 
 {

@@ -246,7 +246,7 @@
 </template>
 
 <script>
-import Card from '~/components/Tools/Card.vue'
+import Card from '~/components/Tools/Other/Card.vue'
  import countTo from 'vue-count-to';
 import {mapActions, mapGetters} from 'vuex'
 

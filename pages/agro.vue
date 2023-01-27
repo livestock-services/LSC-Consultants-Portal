@@ -19,7 +19,7 @@
 
 <script>
 import AgroTable from '~/components/tables/Agro/agro-table.vue'
-import AgroCard from '~/components/Tools/agro-card.vue'
+import AgroCard from '~/components/Tools/Reports/agro-card.vue'
 export default {
   components: { AgroTable, AgroCard },
 
