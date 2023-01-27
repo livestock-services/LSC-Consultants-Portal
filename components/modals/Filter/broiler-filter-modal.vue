@@ -8,7 +8,7 @@
       <section class="modal-card-body has-background-white">
         <!-- Modal Content -->
         <div>
-            <b-form v-model="villageChickenPostMortemFilterForm" class="form">
+            <b-form v-model="broilerChickenPostMortemFilterForm" class="form">
   
   <h4> <span class="is-blue"> Start Date</span></h4>
 
@@ -80,12 +80,12 @@
   import { mapActions, mapGetters } from 'vuex'
   import { mapFields } from 'vuex-map-fields'
   export default {
-    name: 'FilterModal',
+    name: 'BroilerFilterModal',
   
      data() {
       return {
   
-        villageChickenPostMortemFilterForm: {
+        broilerChickenPostMortemFilterForm: {
         
         startDate:null,
        
@@ -112,9 +112,9 @@
      computed: {
   
         ...mapFields('vetData', [
-        'villageChickenPostMortemFilterForm',
-        'villageChickenPostMortemFilterForm.startDate',
-        'villageChickenPostMortemFilterForm.endDate'
+        'broilerChickenPostMortemFilterForm',
+        'broilerChickenPostMortemFilterForm.startDate',
+        'broilerChickenPostMortemFilterForm.endDate'
         
         
     ]),
@@ -132,7 +132,7 @@
     
   
     methods: {
-        ...mapActions('vetData', ['addNewVillageChickenPMRecord','getAllVillageChickenPMRecords','getFilteredVillageChickenPMRecords', 'load']),
+        ...mapActions('vetData', ['addNewVillageChickenPMRecord','getFilteredBroilerChickenPMRecords', 'load']),
 
      
   
@@ -152,7 +152,7 @@
           hasIcon: true,
           onConfirm: async () => {
             
-           await this.getFilteredVillageChickenPMRecords();
+           await this.getFilteredBroilerChickenPMRecords();
   
             this.$buefy.toast.open({
               duration: 3000,
@@ -190,7 +190,7 @@
   
       clearForm() {
   
-       this.villageChickenPostMortemForm = {
+       this.broilerChickenPostMortemForm = {
         
                 startDate:null,
                 endDate:null,

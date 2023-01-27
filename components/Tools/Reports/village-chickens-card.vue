@@ -18,11 +18,11 @@
        <b-tooltip label="Export to Excel" type="is-dark">
 
         <download-excel
-         :data="agro_data" 
-         :fields="agro_fields"
-         worksheet="Agro Worksheet"
+         :data="village_chicken_post_mortem_data" 
+         :fields="village_chicken_post_mortem_fields"
+         worksheet="Village Chicken Post Mortems Worksheet"
          type="xls"
-         name = "Agro Consultations.xls">
+         name = "LSC Village Chicken Post Mortems.xls">
         
         <b-button class="mx-2" icon-left="export" type="is-success ">Excel</b-button>
         <img src="download_icon.png" />
@@ -34,84 +34,90 @@
         <b-form v-model="agroCard" class="card-content mx-4 my-4">
           <div class="content has-text-left">
             <div class=" my-4 pl-4">
-                Landscaping establishment, mgt & pest control in lawns & ornaments:
-                 <b-field v-model="landscaping" id="landscapes" class=" tag is-primary mx-4"> {{ landscaping }}</b-field>
+                Infectious Laryngotracheitis:
+                 <b-field class=" tag is-primary mx-4"> {{ infectiousLary }}</b-field>
              
             </div>
   
              <div class=" my-4 pl-4">
-                Pest control, mgt & fertilization in vegetable crops: 
-                <span class="tag is-primary mx-4 "> {{ pestControlVeg }}</span>
+                Newcastle: 
+                <span class="tag is-primary mx-4 "> {{ newcastle }}</span>
              
             </div>
   
           
             <div class=" my-4 pl-4">
-                Household termites control: 
-                <span class="tag is-primary mx-4 "> {{ houseTermiteControl }}</span>
+                Gumboro: 
+                <span class="tag is-primary mx-4 "> {{ gumboro }}</span>
              
             </div>
 
               
             <div class=" my-4 pl-4">
-                Agricultural field termite control:
-                 <span class="tag is-primary mx-4 "> {{ fieldTermiteControl }}</span>
+                Coccidiosis:
+                 <span class="tag is-primary mx-4 "> {{ coccidiosis }}</span>
              
             </div>
             
            
             <div class=" my-4 pl-4">
-                Grain Protection:
-                 <span class="tag is-primary mx-4 " id="grain"> {{ grainProtection }}</span>
+               Fowl Pox:
+                 <span class="tag is-primary mx-4 " id="grain"> {{ fowlPox }}</span>
              
             </div>
 
             
             <div class=" my-4 pl-4">
-                Weed control in non-crop areas:
-                 <span class="tag is-primary mx-4 "> {{  weedControl }}</span>
+               Egg Peritonitis:
+                 <span class="tag is-primary mx-4 "> {{  eggPeritonitis }}</span>
              
              
             </div>
 
              
             <div class=" my-4 pl-4">
-                Pest control, mgt & fertilization in field crops: 
-                <span class="tag is-primary mx-4 "> {{ pestControlField }}</span>
-             
-             
-            </div>
-
-            
-            <div class=" my-4 pl-4">
-                Public health pest control:
-                 <span class="tag is-primary mx-4 "> {{ publicHealthPestControl }}</span>
+                Ectoparasites:
+                <span class="tag is-primary mx-4 "> {{ ectoParasites }}</span>
              
              
             </div>
 
             
             <div class=" my-4 pl-4">
-                Vegetable enterprise budgets:
-                 <span class="tag is-primary mx-4 "> {{ vegEnterpriseBudget }}</span>
+               Helminthiasis:
+                 <span class="tag is-primary mx-4 "> {{ helminthiasis}}</span>
+             
+             
+            </div>
+
+            
+            <div class=" my-4 pl-4">
+                Mycoplasmosis:
+                 <span class="tag is-primary mx-4 "> {{  mycoPlasmosis }}</span>
              
             </div>
 
            
             <div class=" my-4 pl-4">
               
-             Pest control, mgt & fertilization in orchards: 
-             <span class="tag is-primary mx-4 ">{{ pestControlOrchard }}</span>
+             Snake Bite: 
+             <span class="tag is-primary mx-4 ">{{ snakeBite }}</span>
           
             </div>
 
              
             <div class=" my-4 pl-4">
                 
-             Soil analysis(all crops): 
-             <span class="tag is-primary mx-4 "> {{ soilAnalysis }}</span>
+            Colibacillosis: 
+             <span class="tag is-primary mx-4 "> {{ colibacillosis }}</span>
             </div> 
 
+            <div class=" my-4 pl-4">
+                
+               Chronic Infectious Bronchitis:
+                 <span class="tag is-primary mx-4 "> {{ chronicInfectiousBronchy }}</span>
+            </div> 
+    
              
            
           </div>
@@ -127,19 +133,20 @@
         <footer class="card-footer footy">
           <div class="card-footer-item">
             <div class="my-4 text ">
-              Total Consultations:<span class="is-success mx-4 "> 
+              Total Post Mortems:<span class="is-success mx-4 "> 
                 <countTo :startVal='startVal' 
-                :endVal='landscaping +
-                 pestControlVeg + 
-                 houseTermiteControl + 
-                 fieldTermiteControl + 
-                 grainProtection + 
-                 weedControl + 
-                 pestControlField + 
-                 publicHealthPestControl + 
-                 vegEnterpriseBudget + 
-                 pestControlOrchard + 
-                 soilAnalysis' 
+                :endVal='infectiousLary +
+                 newcastle + 
+                 gumboro + 
+                 coccidiosis + 
+                 fowlPox + 
+                 eggPeritonitis + 
+                 ectoParasites + 
+                 helminthiasis + 
+                 mycoPlasmosis + 
+                 snakeBite + 
+                 colibacillosis+
+                 chronicInfectiousBronchy' 
                  :duration='7000'
                  ></countTo>
                 </span>
@@ -153,7 +160,7 @@
   </template>
   
   <script>
-  import AgroFilterModal from '~/components/modals/Filter/agro-filter-modal.vue'
+  import VillageChickenFilterModal from '~/components/modals/Filter/village-chicken-filter-modal.vue'
   import countTo from 'vue-count-to';
   import { mapActions, mapGetters } from 'vuex'
 import { computed } from 'vue';
@@ -185,30 +192,32 @@ import { computed } from 'vue';
 
       var endDate = computed(()=>this.endTime)
 
-      var landscapes = computed(()=> this.landscaping)
-      var pestsCtrlVeg = computed(()=>this.pestControlVeg)
-      var houseTermiteCtrl =computed(()=> this.houseTermiteControl)
-      var fieldTermiteCtrl = computed (()=> this.fieldTermiteControl)
-      var grainProtect = computed(()=> this.grainProtection)
-      var weedCtrl = computed(()=> this.weedControl)
-      var pestCtrlField = computed(()=> this.pestControlField)
-      var publicHealthPestCtrl = computed(()=> this.publicHealthPestControl)
-      var vegEntBudget = computed(()=> this.vegEnterpriseBudget)
-      var pestCtrlOrchard = computed(()=> this.pestControlOrchard)
-      var soilAna = computed(()=> this.soilAnalysis)
+      var infectiousLaryD = computed(()=> this.infectiousLary)
+      var newcastleD = computed(()=>this.newcastle)
+      var gumboroD =computed(()=> this.gumboro)
+      var coccidiosisD = computed (()=> this.coccidiosis)
+      var fowlPoxD = computed(()=> this.fowlPox)
+      var eggPeritonitisD = computed(()=> this.eggPeritonitis)
+      var ectoParasitesD = computed(()=> this.ectoParasites)
+      var helminthiasisD = computed(()=> this.helminthiasis)
+      var mycoPlasmosisD = computed(()=> this.mycoPlasmosis)
+      var snakeBiteD = computed(()=> this.snakeBite)
+      var colibacillosisD = computed(()=> this.colibacillosis)
+      var chronicInfectiousBronchyD = computed(()=> this.chronicInfectiousBronchy)
 
       var totalConsults =  computed(
-                            ()=> this.landscaping +
-                                 this.pestControlVeg+
-                                 this.houseTermiteControl+
-                                 this.fieldTermiteControl+
-                                 this.grainProtection+
-                                 this.weedControl+
-                                 this.pestControlField+
-                                 this.publicHealthPestControl+
-                                 this.vegEnterpriseBudget+
-                                 this.pestControlOrchard+
-                                 this.soilAnalysis
+                            ()=> this.infectiousLary +
+                                 this.newcastle+
+                                 this.gumboro+
+                                 this.coccidiosis+
+                                 this.fowlPox+
+                                 this.eggPeritonitis+
+                                 this.ectoParasites+
+                                 this.helminthiasis+
+                                 this.mycoPlasmosis+
+                                 this.snakeBite+
+                                 this.colibacillosis+
+                                 this.chronicInfectiousBronchy
                                  
                                  )
                          
@@ -218,17 +227,17 @@ import { computed } from 'vue';
         return {
             startVal:0,
            
-            agro_fields:{
-                "Consultations By Category":"consultation",
+            village_chicken_post_mortem_fields:{
+                "Post Mortems By Disease Category":"disease",
                 "Number":"number",
-                "Total":"total",
+             
                 "Start Date":"start_date",
                 "End Date":"end_date"
             },
 
             
 
-            agro_data:[
+            village_chicken_post_mortem_data:[
                 
                 {"start_date": startDate,
                  "end_date":endDate
@@ -237,51 +246,62 @@ import { computed } from 'vue';
               
                 
                 { 
-                  "consultation":"Landscaping establishment, mgt & pest control in lawns & ornaments",
-                  "number":landscapes
+                  "disease":"Infectious Laryngotracheitis",
+                  "number":infectiousLaryD
                 },
 
-                 { "consultation":"Pest control, mgt & fertilization in vegetable crops",
-                    "number":pestsCtrlVeg
+                 { "disease":"Newcastle",
+                    "number":newcastleD
                 },
 
-                 { "consultation":"Household termites control",
-                    "number":houseTermiteCtrl
+                 { "disease":"Gumboro",
+                    "number":gumboroD
                   },
 
-                 { "consultation":"Agricultural field termite control",
-                    "number":fieldTermiteCtrl
+                 { "disease":"Coccidiosis",
+                    "number":coccidiosisD
                 },
 
-                 { "consultation":"Grain Protection",
-                    "number":grainProtect
+                 { "disease":"Fowl Pox",
+                    "number":fowlPoxD
                   },
 
-                 { "consultation":"Weed control in non-crop areas",
-                    "number":weedCtrl
+                 { "disease":"Egg Peritonitis",
+                    "number":eggPeritonitisD
                   },
 
-                 { "consultation":"Pest control, mgt & fertilization in field crops",
-                    "number":pestCtrlField
+                 { "disease":"Ectoparasites",
+                    "number":ectoParasitesD
                 },
 
-                 { "consultation":"Public health pest control",
-                    "number":publicHealthPestCtrl
+                 { "disease":"Helminthiasis",
+                    "number":helminthiasisD
                   },
 
-                 { "consultation":" Vegetable enterprise budgets",
-                    "number":vegEntBudget
+                 { "disease":"Mycoplasmosis",
+                    "number":mycoPlasmosisD
                   },
 
-                 { "consultation":" Pest control, mgt & fertilization in orchards",
-                    "number":pestCtrlOrchard
+                 { "disease":" Snake Bite",
+                    "number":snakeBiteD
                   },
               
-                 { "consultation":"Soil Analysis(all crops )",
-                    "number":soilAna
+                 { "disease":"Colibacillosis",
+                    "number":colibacillosisD
                   },
 
-                 {"total":totalConsults },
+                  { "disease":"Chronic Infectious Bronchitis",
+                    "number":chronicInfectiousBronchyD
+                  },
+
+
+                 { "disease":"",
+                    "number":""
+                 },
+
+                 { "disease":"Total",
+                    "number":totalConsults
+                 },
 
                 
                 
@@ -294,22 +314,23 @@ import { computed } from 'vue';
     computed: {
 
        
-        ...mapGetters('agroData', {
+        ...mapGetters('vetData', {
          loading: 'loading',
-         agros: 'allAgroRecords',
-         landscaping:'allLandscapingRecords',
-         pestControlVeg:'allPestControlVegRecords',
-         houseTermiteControl:'allHouseholdTermitesControlRecords',
-         fieldTermiteControl:'allAgricFieldTermiteControlRecords',
-         grainProtection:'allGrainProtectionRecords',
-         weedControl:'allWeedControlRecords',
-         pestControlField:'allPestControlFieldRecords',
-         publicHealthPestControl:'allPublicHealthPestControlRecords',
-         vegEnterpriseBudget:'allVegEnterpriseBudgetRecords',
-         pestControlOrchard:'allPestControlOrchardRecords',
-         soilAnalysis:'allSoilAnalysisRecords',
-         startTime:'filteredStartTime',
-         endTime:'filteredEndTime',
+         agros: 'allVCPMs',
+         infectiousLary:'allILRecords',
+         newcastle:'allNewcastleRecords',
+         gumboro:'allGumboroRecords',
+         coccidiosis:'allCoccidiosisRecords',
+         fowlPox:'allFowlPoxRecords',
+         ectoParasites:'allEctoParasitesRecords',
+         eggPeritonitis:'allEggPeritonitisRecords',
+         helminthiasis:'allHelminthiasisRecords',
+         mycoPlasmosis:'allMycoPlasmosisRecords',
+         snakeBite:'allSnakeBiteRecords',
+         colibacillosis:'allColibacillosisRecords',
+         chronicInfectiousBronchy:'allChronicInfectiousBronchyRecords',
+         startTime:'filteredPMStartTime',
+         endTime:'filteredPMEndTime',
 
           
         
@@ -347,20 +368,20 @@ import { computed } from 'vue';
     
 
     async created() {
-  let allAgros = await this.getAllAgroRecords();
+  let allVCPMs = await this.getAllPostMortemRecords();
  //var landscape = this.landscaping
   //console.log(landscape);
   
   //let filteredAgros = await this.getFilteredAgroRecords();
      
-   console.log(allAgros)
+   console.log(allVCPMs)
    //console.log(filteredAgros)
 
   },
 
 
     methods:{
-        ...mapActions('agroData', ['getAllAgroRecords','getFilteredAgroRecords', 'load']),
+        ...mapActions('vetData', ['addNewVillageChickenPMRecord','getAllPostMortemRecords','getFilteredVillageChickenPMRecords', 'load']),
 
 
         filter() {
@@ -368,7 +389,7 @@ import { computed } from 'vue';
         setTimeout(() => {
           this.$buefy.modal.open({
             parent: this,
-            component: AgroFilterModal,
+            component: VillageChickenFilterModal,
             hasModalCard: true,
             trapFocus: true,
             canCancel: ['x'],

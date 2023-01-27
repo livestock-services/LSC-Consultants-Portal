@@ -221,7 +221,7 @@ import { computed } from 'vue';
             agro_fields:{
                 "Consultations By Category":"consultation",
                 "Number":"number",
-                "Total":"total",
+              
                 "Start Date":"start_date",
                 "End Date":"end_date"
             },
@@ -281,7 +281,14 @@ import { computed } from 'vue';
                     "number":soilAna
                   },
 
-                 {"total":totalConsults },
+               
+                  { "consultation":"",
+                    "number":""
+                 },
+
+                 { "consultation":"Total",
+                    "number":totalConsults
+                 },
 
                 
                 

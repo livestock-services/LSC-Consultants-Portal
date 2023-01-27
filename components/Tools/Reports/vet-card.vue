@@ -360,7 +360,7 @@ import { computed } from 'vue';
            
             vet_fields:{
                 "Consultations By Category":"consultation",
-                "Number":"number",
+             
                 "Total":"total",
                 "Start Date":"start_date",
                 "End Date":"end_date"
@@ -415,7 +415,14 @@ import { computed } from 'vue';
 
                   
 
-                 {"total":totalConsults },
+                
+                  { "consultation":"",
+                    "number":""
+                 },
+
+                 { "consultation":"Total",
+                    "number":totalConsults
+                 },
 
                 
                 

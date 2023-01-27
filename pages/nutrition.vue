@@ -31,9 +31,9 @@ import AnimalCard from '~/components/Tools/Other/animal-cards.vue'
 
 export default {
   components: { 
-                BroilersPMTable, LayersPMTable, QuailsPMTable,
-                VillageChickensPMTable, GoatsPMTable, 
-                CattlePMTable, PigsPMTable, VetTable, AnimalCard
+                
+                VillageChickensPMTable
+                , VetTable, AnimalCard
               },
 
   data(){
