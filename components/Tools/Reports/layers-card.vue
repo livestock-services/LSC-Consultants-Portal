@@ -18,11 +18,11 @@
        <b-tooltip label="Export to Excel" type="is-dark">
 
         <download-excel
-         :data="agro_data" 
-         :fields="agro_fields"
-         worksheet="Agro Worksheet"
+         :data="layer_data" 
+         :fields="layer_fields"
+         worksheet="Layer Worksheet"
          type="xls"
-         name = "Agro Consultations.xls">
+         name = "Layer Consultations.xls">
         
         <b-button class="mx-2" icon-left="export" type="is-success ">Excel</b-button>
         <img src="download_icon.png" />
@@ -31,87 +31,87 @@
 
       </div>
 
-        <b-form v-model="agroCard" class="card-content mx-4 my-4">
-          <div class="content has-text-left">
-            <div class=" my-4 pl-4">
-                Landscaping establishment, mgt & pest control in lawns & ornaments:
-                 <b-field v-model="landscaping" id="landscapes" class=" tag is-primary mx-4"> {{ landscaping }}</b-field>
+        <b-form v-model="layerCard" class="card-content mx-4 my-4">
+          <div class="content mx-6 has-text-left">
+            
+            <div class="columns">
+              <div class=" my-4 pl-4">
+                Fatty Liver HS:
+                 <b-field v-model="landscaping" id="landscapes" class=" tag is-primary mx-4"> {{ layerFattyLiverHS }}</b-field>
              
             </div>
   
              <div class=" my-4 pl-4">
-                Pest control, mgt & fertilization in vegetable crops: 
-                <span class="tag is-primary mx-4 "> {{ pestControlVeg }}</span>
+                Coccidiosis: 
+                <span class="tag is-primary mx-4 "> {{ layerCoccidiosis }}</span>
              
             </div>
   
           
             <div class=" my-4 pl-4">
-                Household termites control: 
-                <span class="tag is-primary mx-4 "> {{ houseTermiteControl }}</span>
+                Egg Peritonitis: 
+                <span class="tag is-primary mx-4 "> {{ layerEggPeritonitis }}</span>
              
             </div>
 
-              
-            <div class=" my-4 pl-4">
-                Agricultural field termite control:
-                 <span class="tag is-primary mx-4 "> {{ fieldTermiteControl }}</span>
-             
-            </div>
-            
-           
-            <div class=" my-4 pl-4">
-                Grain Protection:
-                 <span class="tag is-primary mx-4 " id="grain"> {{ grainProtection }}</span>
-             
             </div>
 
-            
-            <div class=" my-4 pl-4">
-                Weed control in non-crop areas:
-                 <span class="tag is-primary mx-4 "> {{  weedControl }}</span>
-             
-             
-            </div>
 
-             
-            <div class=" my-4 pl-4">
-                Pest control, mgt & fertilization in field crops: 
-                <span class="tag is-primary mx-4 "> {{ pestControlField }}</span>
-             
-             
-            </div>
-
-            
-            <div class=" my-4 pl-4">
-                Public health pest control:
-                 <span class="tag is-primary mx-4 "> {{ publicHealthPestControl }}</span>
-             
-             
-            </div>
-
-            
-            <div class=" my-4 pl-4">
-                Vegetable enterprise budgets:
-                 <span class="tag is-primary mx-4 "> {{ vegEnterpriseBudget }}</span>
-             
-            </div>
-
-           
-            <div class=" my-4 pl-4">
-              
-             Pest control, mgt & fertilization in orchards: 
-             <span class="tag is-primary mx-4 ">{{ pestControlOrchard }}</span>
-          
-            </div>
-
-             
-            <div class=" my-4 pl-4">
+            <div class="columns">
                 
-             Soil analysis(all crops): 
-             <span class="tag is-primary mx-4 "> {{ soilAnalysis }}</span>
-            </div> 
+            <div class=" my-4 pl-4">
+                Laryngotracheitis:
+                 <span class="tag is-primary mx-4 "> {{ laryngotracheitis }}</span>
+             
+            </div>
+            
+           
+            <div class=" my-4 pl-4">
+                Newcastle:
+                 <span class="tag is-primary mx-4 " id="grain"> {{ layerNewCastle }}</span>
+             
+            </div>
 
+            
+            <div class=" my-4 pl-4">
+                Helminthiasis:
+                 <span class="tag is-primary mx-4 "> {{  layerHelminthiasis }}</span>
+             
+             
+            </div>
+
+            </div>
+            
+            
+
+            <div class="columns">
+              
+             
+            <div class=" my-4 pl-4">
+                Infectious Bronchitis: 
+                <span class="tag is-primary mx-4 "> {{ infectiousBronchitis }}</span>
+             
+             
+            </div>
+
+            
+            <div class=" my-4 pl-4">
+                Gumboro:
+                 <span class="tag is-primary mx-4 "> {{ layerGumboro }}</span>
+             
+             
+            </div>
+
+            
+            <div class=" my-4 pl-4">
+                Calcium Deficiency:
+                 <span class="tag is-primary mx-4 "> {{ calciumDeficiency }}</span>
+             
+            </div>
+
+            </div>
+           
+           
              
            
           </div>
@@ -129,31 +129,27 @@
             <div class="my-4 text ">
               Total Consultations:<span class="is-success mx-4 "> 
                 <countTo :startVal='startVal' 
-                :endVal='landscaping +
-                 pestControlVeg + 
-                 houseTermiteControl + 
-                 fieldTermiteControl + 
-                 grainProtection + 
-                 weedControl + 
-                 pestControlField + 
-                 publicHealthPestControl + 
-                 vegEnterpriseBudget + 
-                 pestControlOrchard + 
-                 soilAnalysis' 
+                :endVal=' layerFattyLiverHS+
+                          layerCoccidiosis + 
+                          layerEggPeritonitis + 
+                          laryngotracheitis + 
+                          layerNewCastle + 
+                          layerHelminthiasis + 
+                          infectiousBronchitis + 
+                          layerGumboro + 
+                          calciumDeficiency' 
                  :duration='7000'
                  ></countTo>
                 </span>
             </div>
           </div>
-        </footer>
-
-        
+          </footer>
       </div>
     </div>
   </template>
   
   <script>
-  import AgroFilterModal from '~/components/modals/Filter/agro-filter-modal.vue'
+  import LayerFilterModal from '~/components/modals/Filter/layers-filter-modal.vue'
   import countTo from 'vue-count-to';
   import { mapActions, mapGetters } from 'vuex'
 import { computed } from 'vue';
@@ -185,30 +181,27 @@ import { computed } from 'vue';
 
       var endDate = computed(()=>this.endTime)
 
-      var landscapes = computed(()=> this.landscaping)
-      var pestsCtrlVeg = computed(()=>this.pestControlVeg)
-      var houseTermiteCtrl =computed(()=> this.houseTermiteControl)
-      var fieldTermiteCtrl = computed (()=> this.fieldTermiteControl)
-      var grainProtect = computed(()=> this.grainProtection)
-      var weedCtrl = computed(()=> this.weedControl)
-      var pestCtrlField = computed(()=> this.pestControlField)
-      var publicHealthPestCtrl = computed(()=> this.publicHealthPestControl)
-      var vegEntBudget = computed(()=> this.vegEnterpriseBudget)
-      var pestCtrlOrchard = computed(()=> this.pestControlOrchard)
-      var soilAna = computed(()=> this.soilAnalysis)
-
+      var fattyLiverHS = computed(()=> this.layerFattyLiverHS)
+      var layerCocci = computed(()=>this.layerCoccidiosis)
+      var eggPeriton =computed(()=> this.layerEggPeritonitis)
+      var lary = computed (()=> this.laryngotracheitis)
+      var layerNewCast = computed(()=> this.layerNewCastle)
+      var helmin = computed(()=> this.layerHelminthiasis)
+      var infectBronchy = computed(()=> this.infectiousBronchitis)
+      var layerGumbo = computed(()=> this.layerGumboro)
+      var calciumDef = computed(()=> this.calciumDeficiency)
+      
       var totalConsults =  computed(
-                            ()=> this.landscaping +
-                                 this.pestControlVeg+
-                                 this.houseTermiteControl+
-                                 this.fieldTermiteControl+
-                                 this.grainProtection+
-                                 this.weedControl+
-                                 this.pestControlField+
-                                 this.publicHealthPestControl+
-                                 this.vegEnterpriseBudget+
-                                 this.pestControlOrchard+
-                                 this.soilAnalysis
+                            ()=> this.layerFattyLiverHS +
+                                 this.layerCoccidiosis+
+                                 this.layerEggPeritonitis+
+                                 this.laryngotracheitis+
+                                 this.layerNewCastle+
+                                 this.layerHelminthiasis+
+                                 this.infectiousBronchitis+
+                                 this.layerGumboro+
+                                 this.calciumDeficiency
+                                 
                                  
                                  )
                          
@@ -218,7 +211,7 @@ import { computed } from 'vue';
         return {
             startVal:0,
            
-            agro_fields:{
+            layer_fields:{
                 "Consultations By Category":"consultation",
                 "Number":"number",
                 "Total":"total",
@@ -228,7 +221,7 @@ import { computed } from 'vue';
 
             
 
-            agro_data:[
+            layer_data:[
                 
                 {"start_date": startDate,
                  "end_date":endDate
@@ -237,51 +230,52 @@ import { computed } from 'vue';
               
                 
                 { 
-                  "consultation":"Landscaping establishment, mgt & pest control in lawns & ornaments",
-                  "number":landscapes
+                  "consultation":"Fatty Liver HS",
+                  "number":fattyLiverHS
                 },
 
-                 { "consultation":"Pest control, mgt & fertilization in vegetable crops",
-                    "number":pestsCtrlVeg
+                 { "consultation":"Coccidiosis",
+                    "number":layerCocci
                 },
 
-                 { "consultation":"Household termites control",
-                    "number":houseTermiteCtrl
+                 { "consultation":"Egg Peritonitis",
+                    "number":eggPeriton
                   },
 
-                 { "consultation":"Agricultural field termite control",
-                    "number":fieldTermiteCtrl
+                 { "consultation":"Laryngotracheitis",
+                    "number":lary
                 },
 
-                 { "consultation":"Grain Protection",
-                    "number":grainProtect
+                 { "consultation":"Newcastle",
+                    "number":layerNewCast
                   },
 
-                 { "consultation":"Weed control in non-crop areas",
-                    "number":weedCtrl
+                 { "consultation":"Helminthiasis",
+                    "number":helmin
                   },
 
-                 { "consultation":"Pest control, mgt & fertilization in field crops",
-                    "number":pestCtrlField
+                 { "consultation":"Infectious Bronchitis",
+                    "number":infectBronchy
                 },
 
-                 { "consultation":"Public health pest control",
-                    "number":publicHealthPestCtrl
+                 { "consultation":"Gumboro",
+                    "number":layerGumbo
                   },
 
-                 { "consultation":" Vegetable enterprise budgets",
-                    "number":vegEntBudget
+                 { "consultation":" Calcium Deficiency",
+                    "number":calciumDef
                   },
 
-                 { "consultation":" Pest control, mgt & fertilization in orchards",
-                    "number":pestCtrlOrchard
-                  },
-              
-                 { "consultation":"Soil Analysis(all crops )",
-                    "number":soilAna
-                  },
 
-                 {"total":totalConsults },
+                
+                  { "consultation":"",
+                    "number":""
+                 },
+
+                 { "consultation":"Total",
+                    "number":totalConsults
+                 },
+
 
                 
                 
@@ -294,23 +288,23 @@ import { computed } from 'vue';
     computed: {
 
        
-        ...mapGetters('agroData', {
+        ...mapGetters('vetData', {
+        
          loading: 'loading',
-         agros: 'allAgroRecords',
-         landscaping:'allLandscapingRecords',
-         pestControlVeg:'allPestControlVegRecords',
-         houseTermiteControl:'allHouseholdTermitesControlRecords',
-         fieldTermiteControl:'allAgricFieldTermiteControlRecords',
-         grainProtection:'allGrainProtectionRecords',
-         weedControl:'allWeedControlRecords',
-         pestControlField:'allPestControlFieldRecords',
-         publicHealthPestControl:'allPublicHealthPestControlRecords',
-         vegEnterpriseBudget:'allVegEnterpriseBudgetRecords',
-         pestControlOrchard:'allPestControlOrchardRecords',
-         soilAnalysis:'allSoilAnalysisRecords',
-         startTime:'filteredStartTime',
-         endTime:'filteredEndTime',
+         allPMs: 'allPostMortemRecords',
 
+         layerFattyLiverHS:'allLayerFattyLiverHSRecords',
+         layerCoccidiosis:'allLayerCoccidiosisRecords',
+         layerEggPeritonitis:'allLayerEggPeritonitisRecords',
+         laryngotracheitis:'allLayerLaryngotracheitisRecords',
+         layerNewCastle:'allLayerNewCastleRecords',
+         layerHelminthiasis:'allLayerHelminthiasisRecords',
+         infectiousBronchitis:'allLayerInfectiousBronchitisRecords',
+         layerGumboro:'allLayerGumboroRecords',       
+         calciumDeficiency:'allLayerCalciumDeficiencyRecords', 
+
+         startTime:'filteredLayerPMStartTime',
+         endTime:'filteredLayerPMEndTime',
           
         
 
@@ -329,38 +323,21 @@ import { computed } from 'vue';
 
     },
 
-    provide(){
-      return{
-        landscapes: computed(() => this.landscaping)
-      }
-    },
+  
 
-  //   mounted(){
-  //     const landscapeConsults = this.landscaping
-  //   this.landscapes = landscapeConsults 
-     
-      
-  //  console.log(landscapeConsults === this.landscapes)
 
-  //  console.log(this.landscapes)
-  //   },
-    
 
     async created() {
-  let allAgros = await this.getAllAgroRecords();
- //var landscape = this.landscaping
-  //console.log(landscape);
-  
-  //let filteredAgros = await this.getFilteredAgroRecords();
-     
-   console.log(allAgros)
+  //let allLayerss = await this.getAllLayerRecords();
+
+  // console.log(allLayers)
    //console.log(filteredAgros)
 
   },
 
 
     methods:{
-        ...mapActions('agroData', ['getAllAgroRecords','getFilteredAgroRecords', 'load']),
+        ...mapActions('vetData', ['getAllLayerRecords','getFilteredLayerRecords', 'load']),
 
 
         filter() {
@@ -368,7 +345,7 @@ import { computed } from 'vue';
         setTimeout(() => {
           this.$buefy.modal.open({
             parent: this,
-            component: AgroFilterModal,
+            component: LayerFilterModal,
             hasModalCard: true,
             trapFocus: true,
             canCancel: ['x'],

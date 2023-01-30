@@ -22,7 +22,7 @@
          :fields="village_chicken_post_mortem_fields"
          worksheet="Village Chicken Post Mortems Worksheet"
          type="xls"
-         name = "LSC Village Chicken Post Mortems.xls">
+         name = "Village Chicken Post Mortems.xls">
         
         <b-button class="mx-2" icon-left="export" type="is-success ">Excel</b-button>
         <img src="download_icon.png" />
@@ -32,7 +32,8 @@
       </div>
 
         <b-form v-model="agroCard" class="card-content mx-4 my-4">
-          <div class="content has-text-left">
+          <div class="content mx-6 has-text-left">
+           <div class="columns">
             <div class=" my-4 pl-4">
                 Infectious Laryngotracheitis:
                  <b-field class=" tag is-primary mx-4"> {{ infectiousLary }}</b-field>
@@ -60,13 +61,22 @@
             </div>
             
            
+           
+
+            
+            
+
+           </div>
+
+
+           <div class="columns">
+
             <div class=" my-4 pl-4">
                Fowl Pox:
                  <span class="tag is-primary mx-4 " id="grain"> {{ fowlPox }}</span>
              
             </div>
 
-            
             <div class=" my-4 pl-4">
                Egg Peritonitis:
                  <span class="tag is-primary mx-4 "> {{  eggPeritonitis }}</span>
@@ -74,7 +84,6 @@
              
             </div>
 
-             
             <div class=" my-4 pl-4">
                 Ectoparasites:
                 <span class="tag is-primary mx-4 "> {{ ectoParasites }}</span>
@@ -89,6 +98,10 @@
              
              
             </div>
+           </div>
+             
+          <div class="columns">
+            
 
             
             <div class=" my-4 pl-4">
@@ -118,6 +131,7 @@
                  <span class="tag is-primary mx-4 "> {{ chronicInfectiousBronchy }}</span>
             </div> 
     
+          </div>
              
            
           </div>

@@ -32,8 +32,10 @@
       </div>
 
         <b-form v-model="broilerCard" class="card-content mx-4 my-4">
-          <div class="content has-text-left">
-            <div class=" my-4 pl-4">
+          <div class="content mx-6 has-text-left">
+            
+            <div class="columns">
+              <div class=" my-4 pl-4">
                Gumboro:
                  <b-field  class=" tag is-primary mx-4"> {{ broilerGumboro }}</b-field>
              
@@ -52,6 +54,11 @@
              
             </div>
 
+            </div>
+              
+           
+           
+           <div class="columns">
               
             <div class=" my-4 pl-4">
                Heat Stress:
@@ -74,7 +81,10 @@
              
             </div>
 
+           </div>
              
+            
+           <div class="columns">
             <div class=" my-4 pl-4">
                 Chronic Respiratory Disease:
                 <span class="tag is-primary mx-4 "> {{ chronicRespDisease}}</span>
@@ -97,6 +107,7 @@
              
             </div>
 
+           </div>
            
             
            
@@ -113,7 +124,7 @@
         <footer class="card-footer footy">
           <div class="card-footer-item">
             <div class="my-4 text ">
-              Total Consultations:<span class="is-success mx-4 "> 
+              Total Post Mortems:<span class="is-success mx-4 "> 
                 <countTo :startVal='startVal' 
                 :endVal='
                  broilerGumboro +
@@ -258,7 +269,15 @@ import { computed } from 'vue';
 
                  
 
-                 {"total":totalConsults },
+               
+                  { "consultation":"",
+                    "number":""
+                 },
+
+                 { "consultation":"Total",
+                    "number":totalConsults
+                 },
+
 
                 
                 

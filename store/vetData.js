@@ -71,6 +71,9 @@ import {
         SET_ALL_SNAKE_BITE_RECORDS,
         SET_ALL_COLIBACILLOSIS_RECORDS,
         SET_ALL_CHRONIC_INFECTIOUS_BRONCHY_RECORDS,
+
+
+        //==============================================================================//
    
         
          //----------BROILER CHICKEN DISEASES------------------------
@@ -88,9 +91,83 @@ import {
          GET_ALL_BROILER_CHRONIC_RESP_DISEASE_RECORDS,
          GET_ALL_BROILER_ASCITES_RECORDS,
          GET_ALL_BROILER_TRAUMA_RECORDS,
+
         
- 
-         
+         //----------LAYER CHICKEN DISEASES------------------------
+        GET_FILTERED_LAYER_PM_START_TIME,
+        GET_FILTERED_LAYER_PM_END_TIME,
+
+
+        
+        GET_ALL_LAYER_NEWCASTLE_RECORDS,
+        GET_ALL_LAYER_GUMBORO_RECORDS,
+        GET_ALL_LAYER_FATTY_LIVER_HS_RECORDS,
+        GET_ALL_LAYER_EGG_PERITONITIS_RECORDS, 
+        GET_ALL_LAYER_COCCIDIOSIS_RECORDS,
+        GET_ALL_LAYER_INFECTIOUS_BRONCHITIS_RECORDS,
+        GET_ALL_LAYER_HELMINTHIASIS_RECORDS,
+        GET_ALL_LAYER_LARYNGOTRACHEITIS_RECORDS,
+        GET_ALL_LAYER_CALCIUM_DEFICIENCY_RECORDS,
+
+       //==============================================================================//
+
+
+        //-----------------PIG DISEASES---------------------------------//
+        GET_FILTERED_PIG_PM_START_TIME,
+        GET_FILTERED_PIG_PM_END_TIME,
+
+        GET_ALL_PIG_MYCOPLASMOSIS_RECORDS,
+        GET_ALL_PIG_PNEUMONIA_RECORDS,
+        GET_ALL_PIG_CLOSTRIDIAL_INFECTION_RECORDS,
+        GET_ALL_PIG_ENTERITIS_RECORDS,
+  
+       //==============================================================================//
+        
+        //-----------------GOAT DISEASES---------------------------------//
+         GET_FILTERED_GOAT_PM_START_TIME,
+         GET_FILTERED_GOAT_PM_END_TIME,
+
+         GET_ALL_GOAT_HELMINTHIASIS_RECORDS,
+         GET_ALL_GOAT_HEARTWATER_RECORDS,
+         GET_ALL_GOAT_TRAUMA_RECORDS,
+         GET_ALL_GOAT_HEMONCHOSIS_RECORDS,
+
+         //==============================================================================//
+
+
+        //-----------------QUAIL DISEASES---------------------------------//
+        GET_FILTERED_QUAIL_PM_START_TIME,
+        GET_FILTERED_QUAIL_PM_END_TIME,
+
+        GET_ALL_QUAIL_COLIBACILLOSIS_RECORDS,
+        GET_ALL_QUAIL_SALMONELLOSIS_RECORDS,
+     
+
+        //==============================================================================//
+
+        //-----------------RABBIT DISEASES---------------------------------//
+        GET_FILTERED_RABBIT_PM_START_TIME,
+        GET_FILTERED_RABBIT_PM_END_TIME,
+
+        GET_ALL_RABBIT_COCCIDIOSIS_RECORDS,
+        GET_ALL_RABBIT_BACTERIAL_INFECTION_RECORDS,
+       
+
+        //==============================================================================//
+
+
+        //-----------------CATTLE DISEASES---------------------------------//
+        GET_FILTERED_CATTLE_PM_START_TIME,
+        GET_FILTERED_CATTLE_PM_END_TIME,
+
+        GET_ALL_CATTLE_ANAPLASMOSIS_RECORDS ,
+      
+
+        //==============================================================================//
+     
+     
+
+
     
 
     } from '@/helpers/mutation-types'
@@ -148,6 +225,97 @@ export const state = () => ({
     //=---------------------------------------------------------------------------//
 
 
+        //-----------------------LAYER CHICKEN DISEASES---------------------------//
+        filteredLayerPMStartTime:[],
+        filteredLayerPMEndTime:[],
+    
+        allLayerGumboroRecords:[],
+        allLayerNewCastleRecords:[],
+        allLayerEggPeritonitisRecords:[],
+        allLayerFattyLiverHSRecords:[],
+        allLayerCoccidiosisRecords:[],
+        allLayerInfectiousBronchitisRecords:[],
+        allLayerLaryngotracheitisRecords:[],
+        allLayerCalciumDeficiencyRecords:[],
+        allLayerHelminthiasisRecords:[],
+        //=---------------------------------------------------------------------------//
+
+
+
+        //-----------------------------PIG DISEASES-----------------------------------//
+        filteredPigPMStartTime:[],
+        filteredPigPMEndTime:[],
+
+        allPigMycoPlasmosisRecords:[],
+        allPigPneumoniaRecords:[],
+        allPigClostridialInfectionRecords:[],
+        allPigEnteritisRecords:[],
+
+
+        //---------------------------------------------------------------------------//
+
+
+        //-----------------------------GOAT DISEASES-----------------------------------//
+        filteredGoatPMStartTime:[],
+        filteredGoatPMEndTime:[],
+
+        allGoatHelminthiasisRecords:[],
+        allGoatHeartWaterRecords:[],
+        allGoatTraumaRecords:[],
+        allGoatHemonchosisRecords:[],
+
+
+        //---------------------------------------------------------------------------//
+
+
+
+           //-----------------------------GOAT DISEASES-----------------------------------//
+           filteredGoatPMStartTime:[],
+           filteredGoatPMEndTime:[],
+   
+           allGoatHelminthiasisRecords:[],
+           allGoatHeartWaterRecords:[],
+           allGoatTraumaRecords:[],
+           allGoatHemonchosisRecords:[],
+   
+   
+           //---------------------------------------------------------------------------//
+
+           
+
+        //-----------------------------QUAIL DISEASES-----------------------------------//
+        filteredQuailPMStartTime:[],
+        filteredQuailPMEndTime:[],
+
+        allQuailColibacillosisRecords:[],
+        allQuailSalmonellosisRecords:[],
+     
+
+        //---------------------------------------------------------------------------//
+
+
+
+            //-----------------------------RABBIT DISEASES-----------------------------------//
+            filteredRabbitPMStartTime:[],
+            filteredRabbitPMEndTime:[],
+
+            allRabbitCoccidiosisRecords:[],
+            allRabbitBacterialInfectionRecords:[],
+       
+
+            //---------------------------------------------------------------------------//
+
+
+            //-----------------------------CATTLE DISEASES-----------------------------------//
+            filteredCattlePMStartTime:[],
+            filteredCattlePMEndTime:[],
+
+            allCattleAnaplasmosisRecords:[],
+           
+
+            //---------------------------------------------------------------------------//
+
+
 
     selectedVetRecord: null,
 
@@ -186,7 +354,44 @@ export const state = () => ({
     broilerChickenPostMortemFilterForm:{
         startDate:null,
         endDate:null
-    }
+    },
+
+
+    layerChickenPostMortemFilterForm:{
+        startDate:null,
+        endDate:null
+    },
+
+    pigPostMortemFilterForm:{
+        startDate:null,
+        endDate:null
+    },
+
+    goatPostMortemFilterForm:{
+        startDate:null,
+        endDate:null
+    },
+
+    quailPostMortemFilterForm:{
+        startDate:null,
+        endDate:null
+    },
+
+    rabbitPostMortemFilterForm:{
+        startDate:null,
+        endDate:null
+    },
+
+    cattlePostMortemFilterForm:{
+        startDate:null,
+        endDate:null
+    },
+
+
+
+
+
+
 
 
    
@@ -378,6 +583,183 @@ export const getters = {
     allBroilerTraumaRecords(state){
         return state.allBroilerTraumaRecords
     },
+
+
+    //------------------------------END OF BROILER SECTION----------------------------//
+
+
+    //-------------------------------BROILER CHICKEN GETTERS--------------------------------------//
+    filteredLayerPMStartTime(state){
+        return state.filteredLayerPMStartTime
+      },
+
+      filteredLayerPMEndTime(state){
+        return state.filteredLayerPMEndTime
+      },
+
+
+    allLayerGumboroRecords(state){
+        return state.allLayerGumboroRecords
+    },
+
+    allLayerNewCastleRecords(state){
+        return state.allLayerNewCastleRecords
+    },
+
+   
+     allLayerFattyLiverHSRecords(state){
+        return state.allLayerFattyLiverHSRecords
+    },
+
+    allLayerEggPeritonitisRecords(state){
+        return state.allLayerEggPeritonitisRecords
+    },
+
+    allLayerCoccidiosisRecords(state){
+        return state.allLayerCoccidiosisRecords
+    },
+
+    allLayerHelminthiasisRecords(state){
+        return state.allLayerHelminthiasisRecords
+    },
+
+    allLayerInfectiousBronchitisRecords(state){
+        return state.allLayerInfectiousBronchitisRecords
+    },
+
+    allLayerCalciumDeficiencyRecords(state){
+        return state.allLayerCalciumDeficiencyRecords
+    },
+
+    allLayerLaryngotracheitisRecords(state){
+        return state.allLayerLaryngotracheitisRecords
+    },
+
+    //-----------------------END OF LAYER SECTION---------------------------------//
+
+    //-------------------------PIG DISEASES SECTION---------------------------------------//
+    filteredPigPMStartTime(state){
+        return state.filteredPigPMStartTime
+      },
+
+      filteredPigPMEndTime(state){
+        return state.filteredPigPMEndTime
+      },
+
+    
+    
+    allPigMycoPlasmosisRecords(state){
+        return state.allPigMycoPlasmosisRecords
+    },
+
+    allPigPneumoniaRecords(state){
+        return state.allPigPneumoniaRecords
+    },
+
+    allPigClostridialInfectionRecords(state){
+        return state.allPigClostridialInfectionRecords
+    },
+
+    allPigEnteritisRecords(state){
+        return state.allPigEnteritisRecords
+    },
+    //----------------------------END OF PIG SECTION-------------------------------------//
+
+
+     //-------------------------GOAT DISEASES SECTION---------------------------------------//
+     filteredGoatPMStartTime(state){
+        return state.filteredGoatPMStartTime
+      },
+
+      filteredGoatPMEndTime(state){
+        return state.filteredGoatPMEndTime
+      },
+
+    
+    
+    allGoatHelminthiasisRecords(state){
+        return state.allGoatHelminthiasisRecords
+    },
+
+    allGoatHeartWaterRecords(state){
+        return state.allGoatHeartWaterRecords
+    },
+
+    allGoatTraumaRecords(state){
+        return state.allGoatTraumaRecords
+    },
+
+    allGoatHemonchosisRecords(state){
+        return state.allGoatHemonchosisRecords
+    },
+    //----------------------------END OF GOAT SECTION-------------------------------------//
+
+
+         //-------------------------QUAIL DISEASES SECTION---------------------------------------//
+         filteredQuailPMStartTime(state){
+            return state.filteredQuailPMStartTime
+          },
+    
+          filteredQuailPMEndTime(state){
+            return state.filteredQuailPMEndTime
+          },
+    
+        
+        
+        allQuailColibacillosisRecords(state){
+            return state.allQuailColibacillosisRecords
+        },
+    
+        allQuailSalmonellosisRecords(state){
+            return state.allQuailSalmonellosisRecords
+        },
+    
+        //----------------------------END OF QUAIL SECTION-------------------------------------//
+
+
+
+        //-------------------------RABBIT DISEASES SECTION---------------------------------------//
+        filteredRabbitPMStartTime(state){
+            return state.filteredRabbitPMStartTime
+        },
+
+        filteredRabbitPMEndTime(state){
+            return state.filteredRabbitPMEndTime
+        },
+
+        
+        
+        allRabbitCoccidiosisRecords(state){
+            return state.allRabbitCoccidiosisRecords
+        },
+
+        allRabbitBacterialInfectionRecords(state){
+            return state.allRabbitBacterialInfectionRecords
+        },
+
+      
+        //----------------------------END OF RABBIT SECTION-------------------------------------//
+
+
+
+         //-------------------------CATTLE DISEASES SECTION---------------------------------------//
+         filteredCattlePMStartTime(state){
+            return state.filteredCattlePMStartTime
+          },
+    
+          filteredCattlePMEndTime(state){
+            return state.filteredCattlePMEndTime
+          },
+    
+        
+        
+        allCattleAnaplasmosisRecords(state){
+            return state.allCattleAnaplasmosisRecords
+        },
+    
+        
+        //----------------------------END OF Cattle SECTION-------------------------------------//
+
 }
 
 
@@ -674,6 +1056,192 @@ export const mutations = {
     [GET_ALL_BROILER_TRAUMA_RECORDS](state, payload){
         state.allBroilerTraumaRecords = payload
     },
+  
+
+    //--------------------------END OF BROILER SECTION-------------------------------//
+
+
+
+
+     //-------------------------LAYER CHICKEN MUTATIONS----------------------------//
+
+     [GET_FILTERED_LAYER_PM_START_TIME](state, payload){
+        state.filteredLayerPMStartTime= payload
+    },
+
+    [GET_FILTERED_LAYER_PM_END_TIME](state, payload){
+        state.filteredLayerPMEndTime= payload
+    },
+
+
+    [GET_ALL_LAYER_GUMBORO_RECORDS](state, payload){
+        state.allLayerGumboroRecords = payload
+    },
+
+
+
+    [GET_ALL_LAYER_NEWCASTLE_RECORDS](state, payload){
+        state.allLayerNewCastleRecords = payload
+    },
+
+
+    
+    [GET_ALL_LAYER_EGG_PERITONITIS_RECORDS](state, payload){
+        state.allLayerEggPeritonitisRecords = payload
+    },
+
+    [GET_ALL_LAYER_LARYNGOTRACHEITIS_RECORDS](state, payload){
+        state.allLayerLaryngotracheitisRecords = payload
+    },
+
+    [GET_ALL_LAYER_COCCIDIOSIS_RECORDS](state, payload){
+        state.allLayerCoccidiosisRecords = payload
+    },
+
+    [GET_ALL_LAYER_HELMINTHIASIS_RECORDS](state, payload){
+        state.allLayerHelminthiasisRecords = payload
+    },
+
+    [GET_ALL_LAYER_INFECTIOUS_BRONCHITIS_RECORDS](state, payload){
+        state.allLayerInfectiousBronchitisRecords = payload
+    },
+
+    [GET_ALL_LAYER_FATTY_LIVER_HS_RECORDS](state, payload){
+        state.allLayerFattyLiverHSRecords = payload
+    },
+
+    [GET_ALL_LAYER_CALCIUM_DEFICIENCY_RECORDS](state, payload){
+        state.allLayerCalciumDeficiencyRecords = payload
+    },
+
+    //---------------------------END OF LAYERS SECTION------------------------//
+
+
+    //---------------------------PIG DISEASES MUTATIONS-----------------------//
+    [GET_FILTERED_PIG_PM_START_TIME](state, payload){
+        state.filteredPigPMStartTime= payload
+    },
+
+    [GET_FILTERED_PIG_PM_END_TIME](state, payload){
+        state.filteredPigPMEndTime= payload
+    },
+
+
+    
+    [GET_ALL_PIG_MYCOPLASMOSIS_RECORDS](state, payload){
+        state.allPigMycoPlasmosisRecords= payload
+    },
+
+    [GET_ALL_PIG_PNEUMONIA_RECORDS](state, payload){
+        state.allPigPneumoniaRecords = payload
+    },
+
+    [GET_ALL_PIG_CLOSTRIDIAL_INFECTION_RECORDS](state, payload){
+        state.allPigClostridialInfectionRecords = payload
+    },
+
+    [GET_ALL_PIG_ENTERITIS_RECORDS](state, payload){
+        state.allPigEnteritisRecords = payload
+    },
+
+    //-------------------------END OF PIG SECTION-----------------------------===//
+
+
+      //---------------------------GOAT DISEASES MUTATIONS-----------------------//
+      [GET_FILTERED_GOAT_PM_START_TIME](state, payload){
+        state.filteredGoatPMStartTime= payload
+    },
+
+    [GET_FILTERED_GOAT_PM_END_TIME](state, payload){
+        state.filteredGoatPMEndTime= payload
+    },
+
+
+    
+    [GET_ALL_GOAT_HELMINTHIASIS_RECORDS](state, payload){
+        state.allGoatHelminthiasisRecords= payload
+    },
+
+    [GET_ALL_GOAT_HEARTWATER_RECORDS](state, payload){
+        state.allGoatHeartWaterRecords = payload
+    },
+
+    [GET_ALL_GOAT_TRAUMA_RECORDS](state, payload){
+        state.allGoatTraumaRecords = payload
+    },
+
+    [GET_ALL_GOAT_HEMONCHOSIS_RECORDS](state, payload){
+        state.allGoatHemonchosisRecords = payload
+    },
+
+    //-------------------------END OF GOAT SECTION--------------------------------//
+
+
+      //---------------------------QUAIL DISEASES MUTATIONS-----------------------//
+      [GET_FILTERED_QUAIL_PM_START_TIME](state, payload){
+        state.filteredQuailPMStartTime= payload
+    },
+
+    [GET_FILTERED_QUAIL_PM_END_TIME](state, payload){
+        state.filteredQuailPMEndTime= payload
+    },
+
+
+    
+    [GET_ALL_QUAIL_COLIBACILLOSIS_RECORDS](state, payload){
+        state.allQuailColibacillosisRecords= payload
+    },
+
+    [GET_ALL_QUAIL_SALMONELLOSIS_RECORDS](state, payload){
+        state.allQuailSalmonellosisRecords = payload
+    },
+
+    //-------------------------END OF QUAIL SECTION--------------------------------//
+
+
+
+      //---------------------------RABBIT DISEASES MUTATIONS-----------------------//
+      [GET_FILTERED_RABBIT_PM_START_TIME](state, payload){
+        state.filteredRabbitPMStartTime= payload
+    },
+
+    [GET_FILTERED_RABBIT_PM_END_TIME](state, payload){
+        state.filteredRabbitPMEndTime= payload
+    },
+
+
+    
+    [GET_ALL_RABBIT_COCCIDIOSIS_RECORDS](state, payload){
+        state.allRabbitCoccidiosisRecords= payload
+    },
+
+    [GET_ALL_RABBIT_BACTERIAL_INFECTION_RECORDS](state, payload){
+        state.allRabbitBacterialInfectionRecords = payload
+    },
+
+
+    //-------------------------END OF RABBIT SECTION--------------------------------//
+
+
+
+      //---------------------------CATTLE DISEASES MUTATIONS-----------------------//
+      [GET_FILTERED_CATTLE_PM_START_TIME](state, payload){
+        state.filteredCattlePMStartTime= payload
+    },
+
+    [GET_FILTERED_CATTLE_PM_END_TIME](state, payload){
+        state.filteredCattlePMEndTime= payload
+    },
+
+
+    
+    [GET_ALL_CATTLE_ANAPLASMOSIS_RECORDS](state, payload){
+        state.allCattleAnaplasmosisRecords= payload
+    },
+
+   
+
+    //-------------------------END OF CATTLE SECTION--------------------------------//
   
 }
 
@@ -1340,6 +1908,583 @@ export const actions = {
             this.$log.error(error.message)
         }
     },
+
+
+    async getFilteredLayerChickenPMRecords({ state,commit }){
+        try {
+            //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+            commit(SET_LOADING, true)
+
+             const newPostMortemFilterRecord = cloneDeep(state.layerChickenPostMortemFilterForm);
+
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-GB');
+
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-GB');
+
+             console.log(newPostMortemFilterRecord.startDate);
+             console.log(newPostMortemFilterRecord.endDate);
+            
+           
+            //API REQUEST IS MADE AND RESULT IS STORED IN CONST
+           const {data: response} = await api.get(`/vet/allPostMortems`)
+
+           console.log(response.data)
+
+       //    const { data:fetchUsers } = await api.get(`/auth/allUsers`)
+        
+        //--------------------ALL AGRO RECORDS FILTERED BY CATEGORY --------------------------------// 
+        const layerChickenPostMortemRecords = response.data.filter( a=>
+         a.vetPostMortemCategory ==='Layers'
+       )
+
+       console.log(layerChickenPostMortemRecords.length);
+
+       const fattyLiveHSRecords = layerChickenPostMortemRecords.filter( af=>
+        af.vetPostMortemDiseases === 'Fatty Liver HS'
+       )
+
+       console.log(fattyLiveHSRecords.length)
+
+       const layerNewCastleRecords = layerChickenPostMortemRecords.filter( bf=>
+         bf.vetPostMortemDiseases === 'Newcastle'
+       )
+
+       console.log(layerNewCastleRecords.length)
+
+        const layerCoccidiosisRecords = layerChickenPostMortemRecords.filter( c=>
+          c.vetPostMortemDiseases === 'Coccidiosis'
+        )
+
+        const laryngotracheitisRecords = layerChickenPostMortemRecords.filter( d=>
+          d.vetPostMortemDiseases === 'Laryngotracheitis'
+        )
+
+        const layerEggPeritonitisRecords = layerChickenPostMortemRecords.filter( e=>
+          e.vetPostMortemDiseases === 'Egg Peritonitis'
+        )
+
+        const layerHelminthiasisRecords = layerChickenPostMortemRecords.filter( f=>
+          f.vetPostMortemDiseases === 'Helminthiasis'
+        )
+
+        const layerInfectiousBronchyRecords = layerChickenPostMortemRecords.filter( g=>
+          g.vetPostMortemDiseases === 'Infectious Bronchitis'
+        )
+
+        const layerCalciumDeficiencyRecords = layerChickenPostMortemRecords.filter( h=>
+          h.vetPostMortemDiseases === 'Calcium Deficiency'
+        )
+
+        const layerGumboroRecords = layerChickenPostMortemRecords.filter( i=>
+          i.vetPostMortemDiseases === 'Gumboro'
+        )
+
+      
+       
+           const filteredFattyLiverHSRecords = fattyLiveHSRecords.filter( atf => 
+           atf.date >= newPostMortemFilterRecord.startDate && atf.date <= newPostMortemFilterRecord.endDate
+           );
+
+           console.log(filteredFattyLiverHSRecords.length)
+
+              const filteredNewCastleRecords = layerNewCastleRecords.filter( btf => 
+              btf.date >= newPostMortemFilterRecord.startDate && btf.date <= newPostMortemFilterRecord.endDate
+              );
+
+            //  console.log(filteredNewCastleRecords)
+
+              const filteredGumboroRecords = layerGumboroRecords.filter( ctf => 
+              ctf.date >= newPostMortemFilterRecord.startDate && ctf.date <= newPostMortemFilterRecord.endDate
+              );
+
+               const filteredLayerCoccidiosisRecords = layerCoccidiosisRecords.filter( dtf => 
+               dtf.date >= newPostMortemFilterRecord.startDate && dtf.date <= newPostMortemFilterRecord.endDate
+               );
+
+               const filteredHelminthiasisRecords = layerHelminthiasisRecords.filter( etf => 
+               etf.date >= newPostMortemFilterRecord.startDate && etf.date <= newPostMortemFilterRecord.endDate
+               );
+
+             const filteredInfectiousBronchyRecords = layerInfectiousBronchyRecords.filter( ftf => 
+             ftf.date >= newPostMortemFilterRecord.startDate && ftf.date <= newPostMortemFilterRecord.endDate
+             );
+
+              const filteredEggPeritonitisRecords = layerEggPeritonitisRecords.filter( gtf => 
+                  gtf.date >= newPostMortemFilterRecord.startDate && gtf.date <= newPostMortemFilterRecord.endDate
+                  );
+    
+        
+
+               const filteredCalciumDeficiencyRecords = layerCalciumDeficiencyRecords.filter( ht => 
+               ht.date >= newPostMortemFilterRecord.startDate && ht.date <= newPostMortemFilterRecord.endDate
+               );
+
+              const filteredLaryngotracheitisRecords = laryngotracheitisRecords.filter( it => 
+              it.date >= newPostMortemFilterRecord.startDate && it.date <= newPostMortemFilterRecord.endDate
+              );
+    
+
+       
+            
+
+       
+            commit(GET_FILTERED_LAYER_PM_START_TIME, newPostMortemFilterRecord.startDate);
+
+            commit(GET_FILTERED_LAYER_PM_END_TIME, newPostMortemFilterRecord.endDate);
+
+
+             commit(GET_ALL_LAYER_FATTY_LIVER_HS_RECORDS, filteredFattyLiverHSRecords.length); 
+
+             commit(GET_ALL_LAYER_GUMBORO_RECORDS, filteredGumboroRecords.length);
+
+             commit(GET_ALL_LAYER_NEWCASTLE_RECORDS, filteredNewCastleRecords.length);
+
+             commit(GET_ALL_LAYER_EGG_PERITONITIS_RECORDS, filteredEggPeritonitisRecords.length);
+
+             commit(GET_ALL_LAYER_COCCIDIOSIS_RECORDS, filteredLayerCoccidiosisRecords.length);
+
+             commit(GET_ALL_LAYER_LARYNGOTRACHEITIS_RECORDS, filteredLaryngotracheitisRecords.length);
+
+             commit(GET_ALL_LAYER_HELMINTHIASIS_RECORDS, filteredHelminthiasisRecords.length);
+
+             commit(GET_ALL_LAYER_INFECTIOUS_BRONCHITIS_RECORDS, filteredInfectiousBronchyRecords.length);
+
+             commit(GET_ALL_LAYER_CALCIUM_DEFICIENCY_RECORDS, filteredCalciumDeficiencyRecords.length);
+
+           
+          
+          
+
+       
+           //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+           commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.$log.error(error.message)
+        }
+    },
+
+
+    
+    async getFilteredPigPMRecords({ state,commit }){
+        try {
+            //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+            commit(SET_LOADING, true)
+
+             const newPostMortemFilterRecord = cloneDeep(state.pigPostMortemFilterForm);
+
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-GB');
+
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-GB');
+
+             console.log(newPostMortemFilterRecord.startDate);
+             console.log(newPostMortemFilterRecord.endDate);
+            
+           
+            //API REQUEST IS MADE AND RESULT IS STORED IN CONST
+           const {data: response} = await api.get(`/vet/allPostMortems`)
+
+           console.log(response.data)
+
+       //    const { data:fetchUsers } = await api.get(`/auth/allUsers`)
+        
+        //--------------------ALL AGRO RECORDS FILTERED BY CATEGORY --------------------------------// 
+        const pigPostMortemRecords = response.data.filter( a=>
+         a.vetPostMortemCategory ==='Pigs'
+       )
+
+       console.log(pigPostMortemRecords.length);
+
+       const mycoPlasmosisRecords = pigPostMortemRecords.filter( ap=>
+        ap.vetPostMortemDiseases === 'Mycoplasmosis'
+       )
+
+       console.log(mycoPlasmosisRecords.length)
+
+       const pneumoniaRecords = pigPostMortemRecords.filter( bp=>
+         bp.vetPostMortemDiseases === 'Pneumonia'
+       )
+
+       console.log(pneumoniaRecords.length)
+
+        const clostridialInfectionRecords = pigPostMortemRecords.filter( cp=>
+          cp.vetPostMortemDiseases === 'Clostridial Infection'
+        )
+
+        const enteritisRecords = pigPostMortemRecords.filter( dp=>
+          dp.vetPostMortemDiseases === 'Enteritis'
+        )
+
+      
+       
+           const filteredMycoPlasmosisRecords = mycoPlasmosisRecords.filter( atp => 
+           atp.date >= newPostMortemFilterRecord.startDate && atp.date <= newPostMortemFilterRecord.endDate
+           );
+
+           console.log(filteredMycoPlasmosisRecords.length)
+
+              const filteredPneumoniaRecords = pneumoniaRecords.filter( btp => 
+              btp.date >= newPostMortemFilterRecord.startDate && btp.date <= newPostMortemFilterRecord.endDate
+              );
+
+             console.log(filteredPneumoniaRecords.length)
+
+              const filteredClostridialInfectionRecords = clostridialInfectionRecords.filter( ctp => 
+              ctp.date >= newPostMortemFilterRecord.startDate && ctp.date <= newPostMortemFilterRecord.endDate
+              );
+
+               const filteredEnteritisRecords = enteritisRecords.filter( dtp => 
+               dtp.date >= newPostMortemFilterRecord.startDate && dtp.date <= newPostMortemFilterRecord.endDate
+               );
+
+          
+       
+            
+
+       
+            commit(GET_FILTERED_PIG_PM_START_TIME, newPostMortemFilterRecord.startDate);
+
+            commit(GET_FILTERED_PIG_PM_END_TIME, newPostMortemFilterRecord.endDate);
+
+
+             commit(GET_ALL_PIG_MYCOPLASMOSIS_RECORDS, filteredMycoPlasmosisRecords.length); 
+
+             commit(GET_ALL_PIG_PNEUMONIA_RECORDS, filteredPneumoniaRecords.length);
+
+             commit(GET_ALL_PIG_CLOSTRIDIAL_INFECTION_RECORDS, filteredClostridialInfectionRecords.length);
+
+            commit(GET_ALL_PIG_ENTERITIS_RECORDS, filteredEnteritisRecords.length);
+
+               
+       
+           //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+           commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.$log.error(error.message)
+        }
+    },
+
+    async getFilteredGoatPMRecords({ state,commit }){
+        try {
+            //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+            commit(SET_LOADING, true)
+
+             const newPostMortemFilterRecord = cloneDeep(state.goatPostMortemFilterForm);
+
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-GB');
+
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-GB');
+
+             console.log(newPostMortemFilterRecord.startDate);
+             console.log(newPostMortemFilterRecord.endDate);
+            
+           
+            //API REQUEST IS MADE AND RESULT IS STORED IN CONST
+           const {data: response} = await api.get(`/vet/allPostMortems`)
+
+           console.log(response.data)
+
+       //    const { data:fetchUsers } = await api.get(`/auth/allUsers`)
+        
+        //--------------------ALL AGRO RECORDS FILTERED BY CATEGORY --------------------------------// 
+        const goatPostMortemRecords = response.data.filter( g=>
+         g.vetPostMortemCategory ==='Goats'
+       )
+
+       console.log(goatPostMortemRecords.length);
+
+       const helminthiasisRecords = goatPostMortemRecords.filter( ag=>
+        ag.vetPostMortemDiseases === 'Helminthiasis'
+       )
+
+       console.log(helminthiasisRecords.length)
+
+       const heartWaterRecords = goatPostMortemRecords.filter( bg=>
+         bg.vetPostMortemDiseases === 'Heartwater'
+       )
+
+       
+
+        const traumaRecords = goatPostMortemRecords.filter( cg=>
+          cg.vetPostMortemDiseases === 'Trauma'
+        )
+
+        const hemonchosisRecords = goatPostMortemRecords.filter( dg=>
+          dg.vetPostMortemDiseases === 'Hemonchosis'
+        )
+
+      
+       
+           const filteredHelminthiasisRecords = helminthiasisRecords.filter( atg => 
+           atg.date >= newPostMortemFilterRecord.startDate && atg.date <= newPostMortemFilterRecord.endDate
+           );
+
+           console.log(filteredHelminthiasisRecords.length)
+
+              const filteredHeartWaterRecords = heartWaterRecords.filter( btg => 
+              btg.date >= newPostMortemFilterRecord.startDate && btg.date <= newPostMortemFilterRecord.endDate
+              );
+
+             console.log(filteredHeartWaterRecords.length)
+
+              const filteredTraumaRecords = traumaRecords.filter( ctg => 
+              ctg.date >= newPostMortemFilterRecord.startDate && ctg.date <= newPostMortemFilterRecord.endDate
+              );
+
+               const filteredHemonchosisRecords = hemonchosisRecords.filter( dtg => 
+               dtg.date >= newPostMortemFilterRecord.startDate && dtg.date <= newPostMortemFilterRecord.endDate
+               );
+
+          
+       
+            
+
+       
+            commit(GET_FILTERED_GOAT_PM_START_TIME, newPostMortemFilterRecord.startDate);
+
+            commit(GET_FILTERED_GOAT_PM_END_TIME, newPostMortemFilterRecord.endDate);
+
+
+             commit(GET_ALL_GOAT_HELMINTHIASIS_RECORDS, filteredHelminthiasisRecords.length); 
+
+             commit(GET_ALL_GOAT_HEARTWATER_RECORDS, filteredHeartWaterRecords.length);
+
+             commit(GET_ALL_GOAT_TRAUMA_RECORDS, filteredTraumaRecords.length);
+
+            commit(GET_ALL_GOAT_HEMONCHOSIS_RECORDS, filteredHemonchosisRecords.length);
+
+               
+       
+           //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+           commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.$log.error(error.message)
+        }
+    },
+
+    async getFilteredQuailPMRecords({ state,commit }){
+        try {
+            //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+            commit(SET_LOADING, true)
+
+             const newPostMortemFilterRecord = cloneDeep(state.quailPostMortemFilterForm);
+
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-GB');
+
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-GB');
+
+             console.log(newPostMortemFilterRecord.startDate);
+             console.log(newPostMortemFilterRecord.endDate);
+            
+           
+            //API REQUEST IS MADE AND RESULT IS STORED IN CONST
+           const {data: response} = await api.get(`/vet/allPostMortems`)
+
+           console.log(response.data)
+
+       //    const { data:fetchUsers } = await api.get(`/auth/allUsers`)
+        
+        //--------------------ALL AGRO RECORDS FILTERED BY CATEGORY --------------------------------// 
+        const quailPostMortemRecords = response.data.filter( q=>
+         q.vetPostMortemCategory ==='Quails'
+       )
+
+       console.log(quailPostMortemRecords.length);
+
+       const colibacillosisRecords = quailPostMortemRecords.filter( aq=>
+        aq.vetPostMortemDiseases === 'Colibacillosis'
+       )
+
+       console.log(colibacillosisRecords.length)
+
+       const salmonellosisRecords = quailPostMortemRecords.filter( bq=>
+         bq.vetPostMortemDiseases === 'Salmonellosis'
+       )
+
+       
+       
+           const filteredColibacillosisRecords = colibacillosisRecords.filter( atq => 
+           atq.date >= newPostMortemFilterRecord.startDate && atq.date <= newPostMortemFilterRecord.endDate
+           );
+
+           console.log(filteredColibacillosisRecords.length)
+
+              const filteredSalmonellosisRecords = salmonellosisRecords.filter( btq => 
+              btq.date >= newPostMortemFilterRecord.startDate && btq.date <= newPostMortemFilterRecord.endDate
+              );
+
+             console.log(filteredSalmonellosisRecords.length)
+
+         
+       
+            commit(GET_FILTERED_QUAIL_PM_START_TIME, newPostMortemFilterRecord.startDate);
+
+            commit(GET_FILTERED_QUAIL_PM_END_TIME, newPostMortemFilterRecord.endDate);
+
+
+             commit(GET_ALL_QUAIL_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length); 
+
+             commit(GET_ALL_QUAIL_SALMONELLOSIS_RECORDS, filteredSalmonellosisRecords.length);
+
+             
+               
+       
+           //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+           commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.$log.error(error.message)
+        }
+    },
+
+    async getFilteredRabbitPMRecords({ state,commit }){
+        try {
+            //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+            commit(SET_LOADING, true)
+
+             const newPostMortemFilterRecord = cloneDeep(state.rabbitPostMortemFilterForm);
+
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-GB');
+
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-GB');
+
+             console.log(newPostMortemFilterRecord.startDate);
+             console.log(newPostMortemFilterRecord.endDate);
+            
+           
+            //API REQUEST IS MADE AND RESULT IS STORED IN CONST
+           const {data: response} = await api.get(`/vet/allPostMortems`)
+
+           console.log(response.data)
+
+       //    const { data:fetchUsers } = await api.get(`/auth/allUsers`)
+        
+        //--------------------ALL AGRO RECORDS FILTERED BY CATEGORY --------------------------------// 
+        const rabbitPostMortemRecords = response.data.filter( r=>
+         r.vetPostMortemCategory ==='Rabbits'
+       )
+
+       console.log(rabbitPostMortemRecords.length);
+
+       const coccidiosisRecords = rabbitPostMortemRecords.filter( aq=>
+        aq.vetPostMortemDiseases === 'Coccidiosis'
+       )
+
+       console.log(coccidiosisRecords.length)
+
+       const bacterialInfectionRecords = rabbitPostMortemRecords.filter( bq=>
+         bq.vetPostMortemDiseases === 'Bacterial Infection'
+       )
+
+       
+       
+           const filteredCoccidiosisRecords =coccidiosisRecords.filter( atq => 
+           atq.date >= newPostMortemFilterRecord.startDate && atq.date <= newPostMortemFilterRecord.endDate
+           );
+
+           console.log(filteredCoccidiosisRecords.length)
+
+              const filteredBacterialInfectionRecords = bacterialInfectionRecords.filter( btq => 
+              btq.date >= newPostMortemFilterRecord.startDate && btq.date <= newPostMortemFilterRecord.endDate
+              );
+
+             console.log(filteredBacterialInfectionRecords.length)
+
+         
+       
+            commit(GET_FILTERED_RABBIT_PM_START_TIME, newPostMortemFilterRecord.startDate);
+
+            commit(GET_FILTERED_RABBIT_PM_END_TIME, newPostMortemFilterRecord.endDate);
+
+
+             commit(GET_ALL_RABBIT_COCCIDIOSIS_RECORDS, filteredCoccidiosisRecords.length); 
+
+             commit(GET_ALL_RABBIT_BACTERIAL_INFECTION_RECORDS, filteredBacterialInfectionRecords.length);
+
+             
+               
+       
+           //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+           commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.$log.error(error.message)
+        }
+    },
+
+    async getFilteredCattlePMRecords({ state,commit }){
+        try {
+            //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+            commit(SET_LOADING, true)
+
+             const newPostMortemFilterRecord = cloneDeep(state.cattlePostMortemFilterForm);
+
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-GB');
+
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-GB');
+
+             console.log(newPostMortemFilterRecord.startDate);
+             console.log(newPostMortemFilterRecord.endDate);
+            
+           
+            //API REQUEST IS MADE AND RESULT IS STORED IN CONST
+           const {data: response} = await api.get(`/vet/allPostMortems`)
+
+           console.log(response.data)
+
+       //    const { data:fetchUsers } = await api.get(`/auth/allUsers`)
+        
+        //--------------------ALL AGRO RECORDS FILTERED BY CATEGORY --------------------------------// 
+        const cattlePostMortemRecords = response.data.filter( c=>
+         c.vetPostMortemCategory ==='Cattle'
+       )
+
+       console.log(cattlePostMortemRecords.length);
+
+       const anaPlasmosisRecords = cattlePostMortemRecords.filter( ac=>
+        ac.vetPostMortemDiseases === 'Anaplasmosis'
+       )
+
+       console.log(anaPlasmosisRecords.length)
+
+  
+       
+       
+           const filteredAnaPlasmosisRecords =anaPlasmosisRecords.filter( atq => 
+           atq.date >= newPostMortemFilterRecord.startDate && atq.date <= newPostMortemFilterRecord.endDate
+           );
+
+           console.log(filteredAnaPlasmosisRecords.length)
+
+       
+            commit(GET_FILTERED_CATTLE_PM_START_TIME, newPostMortemFilterRecord.startDate);
+
+            commit(GET_FILTERED_CATTLE_PM_END_TIME, newPostMortemFilterRecord.endDate);
+
+
+             commit(GET_ALL_CATTLE_ANAPLASMOSIS_RECORDS, filteredAnaPlasmosisRecords.length); 
+
+        
+             
+               
+       
+           //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+           commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.$log.error(error.message)
+        }
+    },
+
+
 
 
 

@@ -115,7 +115,8 @@
                 </optgroup>
 
                 <optgroup label="Pigs">
-                    <option value="Mycoplasmosis Pneumonia">Mycoplasmosis Pneumonia</option>
+                    <option value="Mycoplasmosis">Mycoplasmosis</option>
+                    <option value="Pneumonia">Pneumonia</option>
                     <option value="Clostridial Infection">Clostridial Infection</option>
                     <option value="Enteritis">Enteritis</option>
                    
