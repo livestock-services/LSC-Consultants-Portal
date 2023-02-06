@@ -1,7 +1,7 @@
 <template>
   <div class="nav-padding">
     <nav
-   
+      v-if="$auth.loggedIn"
       class="navbar pl-5 header has-shadow color"
       role="navigation"
       aria-label="main navigation"
@@ -11,18 +11,18 @@
           class="navbar-item"
           href="/"
         >
-         <span class="litmas mr-4">LSCS </span>
+         <span class="litmas tag is-success mr-4">LSC </span>
           <img
             src="~assets/images/LSC.jpg"
             alt="Litmas"
             height="22"
           >
 
-          <span class="litmas"> Consultants </span>
+          <span class=" tag is-success litmas"> Consultants </span>
 
-          <span class="ml-2 dairy">Portal</span>
+          <span class="ml-2 tag is-success dairy">Portal</span>
 
-          <span class="ml-2 dairy">BETA</span>
+          <span class="ml-2 tag is-warning dairy">BETA</span>
 
         </a>
 
@@ -105,7 +105,8 @@
       </div>
     </nav>
 
-    <section class="main-content  columns">
+    <section 
+    class="main-content  columns">
       <section class="sidebar-layout ">
              <b-sidebar
                 position="static"
@@ -115,42 +116,45 @@
                 :delay="expandWithDelay ? 500 : null"
                 type="is-dark"
                 open
-                
+                v-if="$auth.loggedIn"
                 
             >
                 <div class="m-5 ">
                    
                     <b-menu class="menu-bg height is-custom-mobile">
                         <b-menu-list label="Menu" class="menu-bg">
-                            <b-menu-item icon="home-outline"  @click="index" label="Home"></b-menu-item>
-                            <b-menu-item active expanded icon="account"  label="Consultations">
+                            <b-menu-item  v-if="$auth.user.email === 'kondwani1mwale@gmail.com'" icon="warehouse"  @click="index" label="Managers' Home"></b-menu-item>
 
-                                 <b-menu-item icon="food" @click="nutrition" label="Animal Nutrition"></b-menu-item>
+                            <!-- <b-menu-item icon="home-outline"  @click="indexConsultantsView" label="Consultants Home"></b-menu-item> -->
+
+                            <b-menu-list class="ml-2" icon="account"  label="Consultations">
+
+                                 <b-menu-item  v-if="$auth.user.email === 'nutrition@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="food" @click="nutrition" label="Animal Nutrition"></b-menu-item>
                                
-                                <b-menu-item icon="doctor"   @click="vetTech" label="Vet Technical">  </b-menu-item>
+                                <b-menu-item v-if="$auth.user.email === 'vet-technical@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="doctor"   @click="vetTech" label="Vet Technical">  </b-menu-item>
 
-                                <b-menu-item icon="sheep"   @click="vetSales" label="Vet Sales">  </b-menu-item>
+                                <b-menu-item v-if="$auth.user.email === 'vet-sales@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="sheep"   @click="vetSales" label="Vet Sales">  </b-menu-item>
 
 
-                                <b-menu-item  icon="pig"   @click="pigAI" label="Pig AI ">  </b-menu-item>
+                                <b-menu-item  v-if="$auth.user.email === 'beef-ai@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="pig"   @click="pigAI" label="Pig AI ">  </b-menu-item>
 
-                                <b-menu-item  icon="cow"   @click="beefAI" label="Beef AI ">  </b-menu-item>
+                                <b-menu-item  v-if="$auth.user.email === 'pig-ai@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="cow"   @click="beefAI" label="Beef AI ">  </b-menu-item>
 
-                                <b-menu-item  icon="flower"   @click="agro" label="Agronomy">  </b-menu-item>
+                                <b-menu-item  v-if="$auth.user.email === 'agro@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="flower"   @click="agro" label="Agronomy">  </b-menu-item>
 
-                                <b-menu-item  icon="wall"   @click="fence" label="Fencing">  </b-menu-item>
+                                <b-menu-item  v-if="$auth.user.email === 'fence@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="wall"   @click="fence" label="Fencing">  </b-menu-item>
 
-                                <b-menu-item  icon="fish"   @click="fish" label="Fish">  </b-menu-item>
+                                <b-menu-item  v-if="$auth.user.email === 'fish@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="fish"   @click="fish" label="Fish">  </b-menu-item>
 
-                                <b-menu-item  icon="water"   @click="irrgiate" label="Irrigation">  </b-menu-item>
+                                <b-menu-item  v-if="$auth.user.email === 'irrigation@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="water"   @click="irrgiate" label="Irrigation">  </b-menu-item>
 
-                                <b-menu-item  icon="pump"   @click="pump" label="Pumps">  </b-menu-item>
+                                <b-menu-item  v-if="$auth.user.email === 'pumps@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="pump"   @click="pump" label="Pumps">  </b-menu-item>
 
 
                               
                                
                                
-                            </b-menu-item>
+                            </b-menu-list>
 <!-- 
                              <b-menu-item  icon="account-outline"   @click="admin" label="Admin Panel">
                                 <b-menu-item icon="account-multiple-outline" @click="customers" label="Customers"></b-menu-item>
@@ -270,6 +274,10 @@ export default {
       this.$router.push("/")
     },
 
+    indexConsultantsView(){
+      this.$router.push("index-consultants-view")
+    },
+
     //  admin(){
     //   this.$router.push("admin-panel")
     // },
@@ -382,7 +390,7 @@ export default {
  
 }
 .color{
-  background-color:whitesmoke
+  background-color:rgb(249, 254, 249)
 }
 .right{
   float: right;

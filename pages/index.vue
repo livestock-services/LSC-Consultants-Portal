@@ -2,7 +2,7 @@
   <section  class="section">
 
     
-     <div class="buttons ml-5">
+     <div v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'" class="buttons ml-5">
         
 
         <b-tooltip label="Filter Consultations by date range" type="is-dark">
@@ -12,11 +12,11 @@
       <b-tooltip label="Export to Excel" type="is-dark">
 
        <download-excel
-        :data="agro_data" 
-        :fields="agro_fields"
-        worksheet="Agro Worksheet"
+        :data="totalConsults_data" 
+        :fields="totalConsults_fields"
+        worksheet="Total Consultations Worksheet"
         type="xls"
-        name = "Agro Consultations.xls">
+        name = "Total Consultations.xls">
        
        <b-button class="mx-2" icon-left="export" type="is-success ">Excel</b-button>
        <img src="download_icon.png" />
@@ -26,17 +26,18 @@
      </div> 
 
 
-    <div class="columns is-mobile">
-     <div class="card total-cow-card  card-body">
+    <div v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"  class="managers">
+      <div class="columns is-mobile">
+     <div class="card total-consult-card  card-body">
       
        <div  class="card-body">
         <a
-          class="navbar-item"
+          class="navbar-item mx-4"
           href="/"
         >
           <b-icon
-                icon="cow"
-                size="is-medium"
+                icon="home"
+                size="is-large"
                 type="is-dark">
             </b-icon>
 
@@ -61,7 +62,7 @@
       
        <div class="card-body">
         <a
-          class="navbar-item"
+          class="navbar-item mx-4 mt-2"
           href="/"
         >
           <b-icon
@@ -94,11 +95,11 @@
       
        <div class="card-body">
         <a
-          class="navbar-item"
+          class="navbar-item mx-4 mt-2"
           href="/"
         >
           <b-icon
-                icon="cow"
+                icon="doctor"
                 size="is-medium"
                 type="is-light">
             </b-icon>
@@ -116,11 +117,11 @@
       
        <div class="card-body px-5">
         <a
-          class="navbar-item"
+          class="navbar-item mx-4 mt-2"
           href="/"
         >
           <b-icon
-                icon="cow"
+                icon="wall"
                 size="is-medium"
                 type="is-dark">
             </b-icon>
@@ -140,11 +141,11 @@
       
        <div class="card-body">
         <a
-          class="navbar-item"
+          class="navbar-item mx-4 mt-2"
           href="/"
         >
            <b-icon
-                icon="cow"
+                icon="fish"
                 size="is-medium"
                 type="is-primary ">
             </b-icon>
@@ -173,11 +174,11 @@
       
        <div class="card-body">
         <a
-          class="navbar-item"
+          class="navbar-item mx-4 mt-2"
           href="/"
         >
           <b-icon
-                icon="cow"
+                icon="pipe"
                 size="is-medium"
                 type="is-primary">
             </b-icon>
@@ -195,11 +196,11 @@
       
        <div class="card-body px-5">
         <a
-          class="navbar-item"
+          class="navbar-item mx-4 mt-2"
           href="/"
         >
           <b-icon
-                icon="cow"
+                icon="sack"
                 size="is-medium"
                 type="is-light">
             </b-icon>
@@ -219,11 +220,11 @@
       
        <div class="card-body">
         <a
-          class="navbar-item"
+          class="navbar-item mx-4 mt-2"
           href="/"
         >
            <b-icon
-                icon="cow"
+                icon="pig"
                 size="is-medium"
                 type="is-info ">
             </b-icon>
@@ -246,18 +247,17 @@
       
     </div>
 
-
     <div class="columns my-4 is-mobile">
     
-    <div class="card yearlings-card  card-body">
+    <div class="card agro-card  card-body">
   
    <div class="card-body">
     <a
-      class="navbar-item"
+      class="navbar-item mx-4 mt-2"
       href="/"
     >
       <b-icon
-            icon="cow"
+            icon="flower"
             size="is-medium"
             type="is-primary">
         </b-icon>
@@ -271,15 +271,15 @@
   </div>
  </div>
 
-  <div class="card weaners-card ml-5 card-body">
+  <div class="card water-pump-card ml-5 card-body">
   
    <div class="card-body px-5">
     <a
-      class="navbar-item"
+      class="navbar-item mx-4 mt-2"
       href="/"
     >
       <b-icon
-            icon="cow"
+            icon="water"
             size="is-medium"
             type="is-light">
         </b-icon>
@@ -295,15 +295,15 @@
 
 
 
-  <div class="card calf-card ml-5 card-body">
+  <div class="card post-mortem-card ml-5 card-body">
   
    <div class="card-body">
     <a
-      class="navbar-item"
+      class="navbar-item mx-4 mt-2"
       href="/"
     >
        <b-icon
-            icon="cow"
+            icon="skull"
             size="is-medium"
             type="is-info ">
         </b-icon>
@@ -326,6 +326,73 @@
   
 </div>
 
+    </div>
+
+   
+
+
+<div v-if="this.$auth.user.email !== 'kondwani1mwale@gmail.com'" class="columns is-mobile">
+
+       <div class="card total-cow-card  card-body">
+        
+         <div  class="card-body">
+          <a
+            class="navbar-item mx-4"
+            href="/"
+          >
+            <b-icon
+                  icon="home"
+                  size="is-large"
+                  type="is-dark">
+              </b-icon>
+  
+        <!-- v-if="this.$auth.user.email === 'detroncattle@gmail.com'" -->
+          
+  
+          </a>
+  
+       <span><span class="text-consult-count mb-2"> <countTo :startVal='startVal' :endVal='totalConsults' :duration='10000'></countTo></span> <br/><span class="mx-5 my-6 totalConsults">Total Consultations between {{ startTime }} and {{ endTime }} </span></span>
+        <br>
+      
+        <!-- <span class="text-bull"> <countTo :startVal='startVal' :endVal='Bulls' :duration='3000'></countTo> Bulls</span><br>
+        <span class="text-cow"> <countTo :startVal='startVal' :endVal='Cows' :duration='3000'></countTo> Cows</span><br>
+        <span class="text-heifer"> <countTo :startVal='startVal' :endVal='Heifers' :duration='3000'></countTo> Heifers</span><br>
+        <span class="text-calves"> <countTo :startVal='startVal' :endVal='Calves' :duration='3000'></countTo> Calves</span> -->
+        </div>
+       </div>
+  
+    
+  
+       <div class="card under-treatment-card ml-5 card-body">
+        
+         <div class="card-body">
+          <a
+            class="navbar-item mx-4 mt-2"
+            href="/"
+          >
+            <b-icon
+                  icon="cow"
+                  size="is-medium"
+                  type="is-warning">
+              </b-icon>
+          </a>
+  
+       <span><span class="text-under-treatment-count mb-2"> <countTo :startVal='startVal' :endVal='beef' :duration='8000'></countTo></span> <br/><span class=" mx-4 text-under-treatment">Beef AI Consultations</span></span> <br>
+        <!-- <span class="text-bull"> <countTo :startVal='startVal' :endVal='Bulls' :duration='3000'></countTo> Bulls</span><br>
+        <span class="text-cow"> <countTo :startVal='startVal' :endVal='Cows' :duration='3000'></countTo> Cows</span><br>
+        <span class="text-heifer"> <countTo :startVal='startVal' :endVal='Heifers' :duration='3000'></countTo> Heifers</span><br>
+        <span class="text-calves"> <countTo :startVal='startVal' :endVal='Calves' :duration='3000'></countTo> Calves</span> -->
+        </div>
+       </div>
+      
+      
+     
+  
+  
+  
+        
+      </div>
+
     
 
     
@@ -340,6 +407,7 @@ import Card from '~/components/Tools/Other/Card.vue'
 import TotalConsultsFilterModal from '~/components/modals/Filter/total-consults-filter-modal.vue'
  import countTo from 'vue-count-to';
 import {mapActions, mapGetters} from 'vuex'
+import { computed } from 'vue';
 
 export default {
   name: 'IndexPage',
@@ -350,6 +418,39 @@ export default {
   },
 
   data(){
+
+    var startDate = computed(()=>this.startTime)
+
+      var endDate = computed(()=>this.endTime)
+
+      var agros = computed(()=> this.agros)
+      var beefAIs = computed(()=>this.beef)
+      var fences =computed(()=> this.fences)
+      var fishes = computed (()=> this.fish)
+      var irrigations = computed(()=> this.irrigation)
+      var nutritions = computed(()=> this.nutrition)
+      var pigAIs = computed(()=> this.pigAI)
+      var postMortems = computed(()=> this.PMs)
+      var vets = computed(()=> this.vet)
+      var waterPumps = computed(()=> this.pumps)
+      
+
+      var totalConsults =  computed(
+                            ()=> this.agros +
+                                 this.beef+
+                                 this.fences+
+                                 this.fish+
+                                 this.irrigation+
+                                 this.nutrition+
+                                 this.pigAI+
+                                 this.PMs+
+                                 this.vet+
+                                 this.pumps
+                                
+                                 
+                                 )
+      
+
     return{
       isLoading:false,
       startVal: 0,
@@ -357,7 +458,78 @@ export default {
         Bulls: 10,
         Cows:60,
         Heifers:10,
-        Calves: 20
+        Calves: 20,
+
+        totalConsults_fields:{
+                "Consultations By Category":"consultation",
+                "no. of Consultations":"no. of Consultations",
+              
+                "Start Date":"start_date",
+                "End Date":"end_date"
+            },
+
+            
+
+            totalConsults_data:[
+                
+                {"start_date": startDate,
+                 "end_date":endDate
+                },
+
+              
+                
+                { 
+                  "consultation":"Agronomy",
+                  "no. of Consultations":agros
+                },
+
+                 { "consultation":"Beef AI & Breeding",
+                    "no. of Consultations":beefAIs
+                },
+
+                 { "consultation":"Fencing",
+                    "no. of Consultations":fences
+                  },
+
+                 { "consultation":"Fish",
+                    "no. of Consultations":fishes
+                },
+
+                 { "consultation":"Irrigation",
+                    "no. of Consultations":irrigations
+                  },
+
+                 { "consultation":"Nutrition",
+                    "no. of Consultations":nutritions
+                  },
+
+                 { "consultation":"Pig AI & Breeding",
+                    "no. of Consultations":pigAIs
+                },
+
+                 { "consultation":"Post Mortems",
+                    "no. of Consultations":postMortems
+                  },
+
+                 { "consultation":"Vet",
+                    "no. of Consultations":vets
+                  },
+
+                 { "consultation":"Water Pumps",
+                    "no. of Consultations":waterPumps
+                  },
+              
+               
+               
+                  { "consultation":"",
+                    "no. of Consultations":""
+                 },
+
+                 { "consultation":"Total",
+                    "no. of Consultations":totalConsults
+                 },
+
+                ]
     }
   },
 
@@ -535,13 +707,36 @@ export default {
     margin-top: 4rem;
   }
 
+  .text-consult-count{
+    text-align: center;
+    margin-left: 20px;
+    font-size: 130px;
+      z-index: 2;
+    color: rgb(252, 242, 223);
+  }
+  
 
+  .totalConsults{
+  color: aliceblue;
+  font-size: 18px
+}
 
 .user{
   color: rgb(66, 151, 231);
 }
 
 .total-cow-card{
+  width: 620px;
+  height:420px;
+  
+   background-color: rgb(244, 172, 72); 
+   /* background: url('~/assets/cow5.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;  */
+}
+
+
+.total-consult-card{
   width: 620px;
   height:190px;
   
@@ -579,6 +774,25 @@ export default {
   background-color: rgb(188, 224, 245);
 }
 
+.post-mortem-card{
+  width: 300px;
+  height:190px;
+  background-color: rgb(253, 159, 145);
+}
+
+.water-pump-card{
+  width: 300px;
+  height:190px;
+  background-color: rgb(187, 136, 181);
+}
+
+.agro-card{
+  width: 300px;
+  height:190px;
+  background-color: rgb(253, 235, 145);
+}
+
+
 .cow-card {
   width: 300px;
   height:190px;
@@ -609,11 +823,11 @@ export default {
   background-color: rgb(226, 197, 250);
 }
 
-/* .bulling-heifers-card {
+.bulling-heifers-card {
   width: 300px;
   height:190px;
   background-color: rgb(240, 156, 170);
-} */
+} 
 
 @media only screen and (min-width: 1600px) {
   
@@ -629,6 +843,24 @@ export default {
  .calf-card{
   width: 400px;
   height:220px;
+}
+
+.post-mortem-card{
+  width: 400px;
+  height:220px;
+ 
+}
+
+.water-pump-card{
+  width: 400px;
+  height:220px;
+ 
+}
+
+.agro-card{
+  width: 400px;
+  height:220px;
+ 
 }
 
 .mortalities-card{
@@ -650,7 +882,14 @@ export default {
 
 .total-cow-card {
   width: 830px;
+  height:520px;
+}
+
+.total-consult-card{
+  width: 830px;
   height:220px;
+  
+  
 }
 
 .under-treatment-card {
@@ -677,6 +916,10 @@ export default {
  
 }
 
+.totalConsults{
+  color: aliceblue;
+  font-size: 24px
+}
 
 }
 
@@ -825,8 +1068,5 @@ export default {
   color: rgb(82, 236, 141);
 }
 
-.totalConsults{
-  color: aliceblue;
-  font-size: 24px
-}
+
 </style>

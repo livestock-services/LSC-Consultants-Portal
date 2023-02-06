@@ -115,13 +115,15 @@
         />
         <b-loading :active="isLoading" is-full-page></b-loading>
       
-        <p class="mt-2">
-          Already a member? 
-          <nuxt-link to="/auth/login"><span class="sign-up"> Login here</span></nuxt-link>
-        </p>
+       
 
         
       </FormulateForm>
+
+      <p class="mt-2">
+          Already a member? 
+          <nuxt-link to="/auth/login"><span class="sign-up"> Login here</span></nuxt-link>
+        </p>
   
     </div>
 
@@ -144,9 +146,9 @@ export default {
     return {
     
       registerForm:{
-            username:'',
-            email:'',
-            password:'',
+            // username:'',
+            // email:'',
+            // password:'',
         },
       
       hasError: true,
@@ -358,7 +360,7 @@ export default {
   grid-row: 1/3;
   grid-column: 3/3; 
   width: 80%;
-  background: url('../../assets/bird2.jpg');
+  background: url('../../assets/images/LSC3.png');
   background-repeat: no-repeat;
   background-size: cover;
    

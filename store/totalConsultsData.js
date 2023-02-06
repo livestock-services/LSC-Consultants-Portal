@@ -230,6 +230,20 @@ export const mutations = {
 export const actions = {
 
 
+    async getWeatherUpdate({state, commit}){
+        try {
+            commit(SET_LOADING, true) 
+            
+            const {data:weather} = await api.get('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m')
+            console.log(weather.data)
+
+            
+        } catch (error) {
+            
+        }
+    },
+
+
      async getFilteredTotalConsultsRecords({ state,commit }){
          try {
            //---  ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE

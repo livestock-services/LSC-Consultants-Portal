@@ -1,5 +1,5 @@
 <template>
-  <div class="box card form-card-2">
+  <div class="">
     <div class="grid is-full-height pt-2">
       <div class="card form-card-2"></div>
       
@@ -8,13 +8,13 @@
           #default="{ isLoading }"
           v-model="form"
           :class="['card-content']"
-          @submit="onLogin"
+          @submit="loginUser"
         >
           <h1 class="header center my-4">
             <span class="is-blueish">L</span> 
             <span class="is-blueish">S</span> 
             <span class="is-blueish">C</span>
-            <span class="is-blueish">S</span> <br> <span class="is-greenish"> Consultants Portal.</span>
+             <br> <span class="is-greenish"> Consultants Portal </span> <span class="tag is-warning">BETA</span>
           </h1>
          
         <div>
@@ -58,18 +58,20 @@
             type="is-info"
             tag="input"
             native-type="submit"
+           
             value="Login"
           />
           <b-loading :active="isLoading" is-full-page></b-loading>
-        <!--
-          <p>
-            Not Registered? Sign up
-            <nuxt-link to="/auth/register">here</nuxt-link>
-          </p>
-  
-          -->
+       
+        
+          
         </FormulateForm>
-    
+        
+        <!-- <p class="mt-2">
+          Not Registered? Sign up
+          <nuxt-link to="/auth/register"><span class="sign-up">here</span></nuxt-link>
+        </p>
+         -->
       </div>
   
      
@@ -84,13 +86,13 @@
   import { mapActions, mapGetters } from 'vuex'
   export default {
   
-      auth: 'guest',
+    auth: 'guest',
     data() {
       return {
         form: {
           
-          email: 'kondwanim@livestock.co.zm',
-          password: '123456',
+          email: '',
+          password: '',
         },
         hasError: true,
         isLoading: false,
@@ -110,7 +112,7 @@
   
      ...mapActions('users', ['getAllUsers']),
   
-    async onLogin(){
+    async onRegister(){
        this.$buefy.toast.open({
             duration: 3000,
             message: 'Welcome!',
@@ -120,7 +122,7 @@
     
        
    
-       this.$router.push({ path: '/' })
+       this.$router.push({ path: '/auth/register' })
   
          
     
@@ -228,11 +230,14 @@
   }
   
   .form-card-1 {
+
+    margin-bottom: 2rem;
      height: 92vh;  
     grid-row: 2/3;
     grid-column: 3/3;
     width: 100%;
-    background-color: rgba(204, 242, 248, 0.863);
+    background-color: rgba(243, 239, 195, 0.863);
+    
   }
   
   .card-content {
@@ -246,7 +251,7 @@
     grid-column: 1/3;
     background: url('../../assets/images/LSC2.png');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
   }
   
   .box{

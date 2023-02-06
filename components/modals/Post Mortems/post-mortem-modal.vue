@@ -178,7 +178,7 @@
   
             <b-button @click="onSubmit" type="is-info">Add </b-button>
 
-            <b-button @click="clearVetPMForm" type="is-warning">Clear Form </b-button>
+          
           </b-form>
         </div>
       </section>
