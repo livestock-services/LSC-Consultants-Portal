@@ -113,22 +113,28 @@
                 :expand-on-hover="expandOnHover"
                 :reduce="reduce"
                 :delay="expandWithDelay ? 500 : null"
-                type="is-light"
+                type="is-dark"
                 open
                 
+                
             >
-                <div class="p-5">
+                <div class="m-5 ">
                    
-                    <b-menu class=" height is-custom-mobile">
-                        <b-menu-list label="Menu">
+                    <b-menu class="menu-bg height is-custom-mobile">
+                        <b-menu-list label="Menu" class="menu-bg">
                             <b-menu-item icon="home-outline"  @click="index" label="Home"></b-menu-item>
                             <b-menu-item active expanded icon="account"  label="Consultations">
 
-                                 <b-menu-item id="tasks"   icon="food" @click="nutrition" label="Animal Nutrition"></b-menu-item>
+                                 <b-menu-item icon="food" @click="nutrition" label="Animal Nutrition"></b-menu-item>
                                
-                                <b-menu-item icon="cow"   @click="vetCon" label="Vet">  </b-menu-item>
+                                <b-menu-item icon="doctor"   @click="vetTech" label="Vet Technical">  </b-menu-item>
 
-                              
+                                <b-menu-item icon="sheep"   @click="vetSales" label="Vet Sales">  </b-menu-item>
+
+
+                                <b-menu-item  icon="pig"   @click="pigAI" label="Pig AI ">  </b-menu-item>
+
+                                <b-menu-item  icon="cow"   @click="beefAI" label="Beef AI ">  </b-menu-item>
 
                                 <b-menu-item  icon="flower"   @click="agro" label="Agronomy">  </b-menu-item>
 
@@ -136,7 +142,10 @@
 
                                 <b-menu-item  icon="fish"   @click="fish" label="Fish">  </b-menu-item>
 
-                                
+                                <b-menu-item  icon="water"   @click="irrgiate" label="Irrigation">  </b-menu-item>
+
+                                <b-menu-item  icon="pump"   @click="pump" label="Pumps">  </b-menu-item>
+
 
                               
                                
@@ -272,8 +281,12 @@ export default {
     nutrition(){
       this.$router.push("nutrition")
     },
-    vetCon(){
+    vetTech(){
       this.$router.push("vet-con")
+    },
+
+    vetSales(){
+      this.$router.push("vet-sales")
     },
 
     vetPost(){
@@ -284,6 +297,14 @@ export default {
       this.$router.push("agro")
     },
 
+    pigAI(){
+      this.$router.push("pig-ai-and-breeding")
+    },
+
+    beefAI(){
+      this.$router.push("beef-ai-and-breeding")
+    },
+
      fence(){
       this.$router.push("fence")
     },
@@ -291,6 +312,16 @@ export default {
     fish(){
       this.$router.push("fish")
     },
+
+    irrgiate(){
+      this.$router.push("irrigation")
+    },
+
+
+    pump(){
+      this.$router.push("pumps")
+    },
+
 
    
     // async logout(){
@@ -345,15 +376,18 @@ export default {
 }
 .navbar{
   width:100%;
+  position:fixed;
+  margin-left: 15rem;
+  padding-top: 1rem;
  
 }
 .color{
-  background-color: rgb(231, 244, 240);
+  background-color:whitesmoke
 }
 .right{
   float: right;
   margin-top: 1px;
-  margin-left: 760px;
+  margin-left: 520px;
   font-size: 17px;
 }
 
@@ -368,16 +402,35 @@ export default {
 
 
 @media only screen and (min-width: 1600px) {
+
+  .menu-bg{
+    color:aquamarine
+  }
+
  .right{
   float: right;
   margin-top: 1px;
   margin-left: 1100px;
   font-size: 17px;
-}
+
+  
 }
 
 .height{
-  height: 100vh;
+ 
+  height:100vh;
+  position:fixed;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+}
+
+.height{
+  height:100vh;
+  position:fixed;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 

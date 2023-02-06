@@ -53,7 +53,7 @@
         searchable
         
       >
-      <span class="tag tasks">  {{ props.row.fishClientName }} </span>
+      <span class="tag tasks">  {{ props.row.waterPumpClientName }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
@@ -65,7 +65,7 @@
         
         
       >
-      <span class="tag numbers">  {{ props.row.fishClientPhoneNumber }} </span>
+      <span class="tag numbers">  {{ props.row.waterPumpClientPhoneNumber }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
@@ -77,7 +77,7 @@
         
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.fishClientLocation }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.waterPumpClientLocation }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
@@ -126,7 +126,7 @@
       <template #empty>
 
         <b-tooltip  label="Once freshed, your details will appear here" type="is-dark">
-        <h4 class="is-size-4 text-center has-text-centered">No Fish Data yet. &#x1F4DA;. Click the <span class="tag is-info"> refresh button</span> right above</h4>
+        <h4 class="is-size-4 text-center has-text-centered">No Water Pump Data yet. &#x1F4DA;. Click the <span class="tag is-info"> refresh button</span> right above</h4>
         </b-tooltip>
 
       </template>
@@ -142,11 +142,11 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 
-import FishModal from '@/components/modals/Fish Modal/fish-modal.vue'
+import WaterPumpModal from '@/components/modals/Pumps Modal/pumps-modal.vue'
 
 // import FishSnapshotModal from '@/components/modals/Fish Modal/Fish-snapshot-modal.vue'
 export default {
-  name: 'FishnomyTable',
+  name: 'WaterPumpTable',
 
   data() {  
   
@@ -167,13 +167,13 @@ export default {
 
   computed: {
     
-    ...mapGetters('fishData', {
+    ...mapGetters('pumpData', {
         loading: 'loading',
-        fish: 'allFishRecords',
+        waterPump: 'allWaterPumpRecords',
       }),
     
      isEmpty() {
-    return this.fish.length === 0
+   return this.waterPump.length === 0
      },
 
     
@@ -183,13 +183,13 @@ export default {
     },
     
     tableData() {
-      return this.isEmpty ? [] : this.fish
+     return this.isEmpty ? [] : this.waterPump
     },
   },
 
   async created() {
   // await this.load()
-  // this.selectFishRecord(this.Fishs[0])
+  // this.selectwaterPumpRecord(this.waterPumps[0])
   },
 
   
@@ -197,7 +197,7 @@ export default {
   methods: {
    
 
-     ...mapActions('fishData', ['addNewFishRecord','getAllFishRecords', 'load']),
+     ...mapActions('pumpData', ['addNewWaterPumpRecord','getAllWaterPumpRecords', 'load']),
 
      async refresh(){
 
@@ -205,7 +205,7 @@ export default {
       //   "Refreshed!"
       // )
     //  this.isLoading = true
-     await this.getAllFishRecords();
+     await this.getAllWaterPumpRecords();
    //   this.isLoading = false
  
     },
@@ -239,7 +239,7 @@ export default {
       setTimeout(() => {
         this.$buefy.modal.open({
           parent: this,
-          component: FishModal,
+          component: WaterPumpModal,
           hasModalCard: true,
           trapFocus: true,
           canCancel: ['x'],

@@ -127,7 +127,7 @@
         <footer class="card-footer footy">
           <div class="card-footer-item">
             <div class="my-4 text ">
-              Total Consultations:<span class="is-success mx-4 "> 
+              Total Post Mortems:<span class="is-success mx-4 "> 
                 <countTo :startVal='startVal' 
                 :endVal=' layerFattyLiverHS+
                           layerCoccidiosis + 

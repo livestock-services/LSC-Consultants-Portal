@@ -20,9 +20,9 @@
         <download-excel
          :data="broiler_data" 
          :fields="broiler_fields"
-         worksheet="Agro Worksheet"
+         worksheet="Broiler Worksheet"
          type="xls"
-         name = "Agro Consultations.xls">
+         name = "Broiler Consultations.xls">
         
         <b-button class="mx-2" icon-left="export" type="is-success ">Excel</b-button>
         <img src="download_icon.png" />

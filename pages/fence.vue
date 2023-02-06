@@ -1,11 +1,14 @@
 <template>
   <div>
-    <b-tabs v-model="activeTab">
+    <b-tabs class="table" v-model="activeTab">
                  
-                 <b-tab-item label="Fencing Consultation" >
-                      <FenceTable/>
-                  </b-tab-item>
+                    <b-tab-item label="Fence Consultation" >
+                    <FenceTable/>
+                    </b-tab-item>
 
+                    <b-tab-item label="Records" >
+                       <FenceCard/>
+                    </b-tab-item>
           
 
       </b-tabs>
@@ -15,8 +18,9 @@
 
 <script>
 import FenceTable from '~/components/tables/Fencing/fencing-table.vue'
+import FenceCard from '~/components/Tools/Reports/fence-card.vue';
 export default {
-  components: { FenceTable },
+  components: { FenceTable, FenceCard },
 
   data(){
     return {
@@ -52,5 +56,7 @@ export default {
 </script>
 
 <style>
-
+.table{
+  margin-top: 4rem;
+}
 </style>

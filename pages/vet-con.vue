@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-tabs v-model="activeTab">
+    <b-tabs class="table" v-model="activeTab">
           <b-tab-item label="Animal Consultations">
             <b-tabs>
               <b-tab-item label="Consultations">
@@ -124,5 +124,7 @@ export default {
 </script>
 
 <style>
-
+.table{
+  margin-top: 4rem;
+}
 </style>

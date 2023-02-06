@@ -1,10 +1,14 @@
 <template>
   <div>
-    <b-tabs v-model="activeTab">
+    <b-tabs class="table" v-model="activeTab">
                  
                  <b-tab-item label="Fish Consultation" >
                       <FishTable/>
                   </b-tab-item>
+
+                  <b-tab-item label="Records" >
+                       <FishCard/>
+                    </b-tab-item>
 
           
 
@@ -15,8 +19,9 @@
 
 <script>
 import FishTable from '~/components/tables/Fish/fish-table.vue'
+import FishCard from '~/components/Tools/Reports/fish-card.vue';
 export default {
-  components: { FishTable },
+  components: { FishTable, FishCard },
 
   data(){
     return {
@@ -52,5 +57,7 @@ export default {
 </script>
 
 <style>
-
+.table{
+  margin-top: 4rem;
+}
 </style>

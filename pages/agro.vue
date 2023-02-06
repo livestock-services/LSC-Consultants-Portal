@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-tabs v-model="activeTab">
+    <b-tabs class="table" v-model="activeTab">
                  
                  <b-tab-item label="Agronomy Consultation" >
                       <AgroTable/>
@@ -57,5 +57,7 @@ export default {
 </script>
 
 <style>
-
+.table{
+  margin-top: 4rem;
+}
 </style>

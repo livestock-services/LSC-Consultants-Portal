@@ -14,13 +14,16 @@
       </b-select>
 
      <div class="buttons">
-        <b-tooltip label="Add details of new tasks here" type="is-dark">
+        <b-tooltip label="Add details of new records here" type="is-dark">
         <b-button class="mx-2" icon-left="plus" type="is-success" @click="addNewTask">Add New Record</b-button>
         </b-tooltip>
 
          <b-tooltip label="Refresh" type="is-dark">
          <b-button class="mx-2" icon-left="refresh" type="is-info" @click="refresh">Refresh</b-button>
          </b-tooltip>
+
+       
+            
       </div>
 
       
@@ -40,6 +43,9 @@
       aria-page-label="Page"
       aria-current-label="Current Page"
     >
+
+  
+
        <b-table-column
         v-slot="props"
         field="taskDescription"
@@ -47,65 +53,59 @@
         searchable
         
       >
-      <span class="tag tasks">  {{ props.row.taskDescription }} </span>
+      <span class="tag tasks">  {{ props.row.fenceClientName }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
-     <b-table-column
+      <b-table-column
+        v-slot="props"
+        field="taskDescription"
+        label="Client Phone No."
+        
+        
+      >
+      <span class="tag numbers">  {{ props.row.fenceClientPhoneNumber }} </span>
+       
+        <!-- {{ props.row.sumInsured }} -->
+      </b-table-column>
+
+      <b-table-column
+        v-slot="props"
+        field="taskDescription"
+        label="Location"
+        
+        
+      >
+      <span class="tag is-primary is-light">  {{ props.row.fenceClientLocation }} </span>
+       
+        <!-- {{ props.row.sumInsured }} -->
+      </b-table-column>
+
+
+    
+
+      <b-table-column
         v-slot="props"
         field="selectPriority"
-        label="Category"
-        searchable
+        label="Date"
+        sortable
       >
 
-      <span
-          :class="[
-            'tag',
-            {
-              'is-danger ': props.row.selectPriority ===  'High',
-            },
-
-            {
-              'is-warning  ' : props.row.selectPriority ===  'Medium',
-            },
-
-            {
-              'is-success ': props.row.selectPriority === 'Low',
-            },
-          ]"
-          >  {{ props.row.selectPriority }} </span
-        >
+      <span class="tag is-info is-light">  {{ props.row.date }} </span>
        
       </b-table-column>
       
+      
        
 
 
-        <b-table-column v-slot="props" field="date" label="Date" sortable>
-
-         <span
-          :class="[
-            'tag',
-          
-
-            {
-              'is-warning  ' : props.row.status ===  'Pending',
-            },
-
-            {
-              'is-success ': props.row.status === 'Completed',
-            },
-          ]"
-          > {{ props.row.status}}</span>
-
-      </b-table-column> 
-
+        
       
 
 
       
-     <b-table-column v-slot="props" label="Options">
+     <!-- <b-table-column v-slot="props" label="Options">
         <span class="buttons">
           <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
           <b-button
@@ -120,7 +120,7 @@
       </b-table-column>
 
       
-                
+                 -->
 
       
 
@@ -128,7 +128,7 @@
       <template #empty>
 
         <b-tooltip  label="Once freshed, your details will appear here" type="is-dark">
-        <h4 class="is-size-4 text-center has-text-centered">No Agro Data yet. &#x1F4DA;. Click the <span class="tag is-info"> refresh button</span> right above</h4>
+        <h4 class="is-size-4 text-center has-text-centered">No Fence Data yet. &#x1F4DA;. Click the <span class="tag is-info"> refresh button</span> right above</h4>
         </b-tooltip>
 
       </template>
@@ -143,10 +143,12 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import FencingModal from '@/components/modals/Fencing Modal/fencing-modal.vue'
-import FencingSnapshotModal from '@/components/modals/Fencing Modal/fencing-snapshot-modal.vue'
+
+import FenceModal from '@/components/modals/Fencing Modal/fencing-modal.vue'
+
+// import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
 export default {
-  name: 'UnreceiptedDebitsTable',
+  name: 'fenceTable',
 
   data() {  
   
@@ -167,13 +169,13 @@ export default {
 
   computed: {
     
-    ...mapGetters('taskData', {
+    ...mapGetters('fenceData', {
         loading: 'loading',
-        tasks: 'allTasks',
+        fences: 'allFenceRecords',
       }),
     
      isEmpty() {
-     return this.tasks.length === 0
+     return this.fences.length === 0
      },
 
     
@@ -183,13 +185,13 @@ export default {
     },
     
     tableData() {
-      return this.isEmpty ? [] : this.tasks
+      return this.isEmpty ? [] : this.fences
     },
   },
 
   async created() {
   // await this.load()
-   this.selectTask(this.tasks[0])
+  // this.selectAgroRecord(this.agros[0])
   },
 
   
@@ -197,45 +199,49 @@ export default {
   methods: {
    
 
-     ...mapActions('taskData', ['addNewTask','getAllTasks', 'load', 'selectTask']),
+     ...mapActions('fenceData', ['addNewFenceRecord','getAllFenceRecords', 'load']),
 
      async refresh(){
+
+      // alert(
+      //   "Refreshed!"
+      // )
     //  this.isLoading = true
-      await this.getAllTasks();
+     await this.getAllFenceRecords();
    //   this.isLoading = false
  
     },
 
 
-    captureReceipt(task) {
-      this.selectTask(task)
-      setTimeout(() => {
-        this.$buefy.modal.open({
-          parent: this,
-          component: FencingSnapshotModal,
-          hasModalCard: true,
-          trapFocus: true,
-          canCancel: ['x'],
-          destroyOnHide: true,
-          customClass: '',
-          onCancel: () => {
-            this.$buefy.toast.open({
-              message: `Snapshot closed`,
-              duration: 5000,
-              position: 'is-top',
-              type: 'is-info',
-            })
-          },
-        })
-      }, 300)
-    },
+    // captureReceipt(agro) {
+    //   this.selectAgroRecord(agro)
+    //   setTimeout(() => {
+    //     this.$buefy.modal.open({
+    //       parent: this,
+    //       component: AgroSnapshotModal,
+    //       hasModalCard: true,
+    //       trapFocus: true,
+    //       canCancel: ['x'],
+    //       destroyOnHide: true,
+    //       customClass: '',
+    //       onCancel: () => {
+    //         this.$buefy.toast.open({
+    //           message: `Snapshot closed`,
+    //           duration: 5000,
+    //           position: 'is-top',
+    //           type: 'is-info',
+    //         })
+    //       },
+    //     })
+    //   }, 300)
+    // },
 
      addNewTask() {
       
       setTimeout(() => {
         this.$buefy.modal.open({
           parent: this,
-          component: FencingModal,
+          component: FenceModal,
           hasModalCard: true,
           trapFocus: true,
           canCancel: ['x'],
@@ -243,7 +249,7 @@ export default {
           customClass: '',
           onCancel: () => {
             this.$buefy.toast.open({
-              message: `Task Snapshot closed!`,
+              message: `Fencing Snapshot closed!`,
               duration: 5000,
               position: 'is-top',
               type: 'is-info',
@@ -252,6 +258,8 @@ export default {
         })
       }, 300)
     },
+
+   
   }
 
  
@@ -271,6 +279,11 @@ export default {
 .tasks{
   background-color: rgb(247, 204, 179);
 }
+
+.numbers{
+  background-color: rgb(217, 249, 198);
+}
+
 
 .assignedTo{
   background-color: rgb(94, 241, 222);

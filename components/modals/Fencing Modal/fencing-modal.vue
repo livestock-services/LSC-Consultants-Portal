@@ -1,14 +1,14 @@
 <template>
   <div class="modal-card ">
     <header class="modal-card-head">
-      <h3 class="modal-card-title">Fencing Snapshot</h3>
+      <h3 class="modal-card-title">Pig AI Snapshot</h3>
      
       <button type="button" class="delete" @click="close"></button>
     </header>
     <section class="modal-card-body has-background-white">
       <!-- Modal Content -->
       <div>
-       <b-form v-model="agroForm" class="form">
+       <b-form v-model="fenceForm" class="form">
 
         <h4> <span class="is-blue"> Client Name</span></h4>
 
@@ -16,41 +16,38 @@
             
             <div  class="column is-three-quarters">
             
-            <b-input type="text" v-model="clientName" placeholder="Client name"></b-input>
+            <b-input type="text" v-model="fenceClientName" placeholder="Client name"></b-input>
             </div>
           </div>
 
           <h4> <span class="is-blue"> Contact Number</span></h4>
-
           <div class="columns">
+
             
             <div  class="column is-three-quarters">
             
-            <b-input type="text" v-model="clientNumber" placeholder="Enter phone no. here..."></b-input>
+            <b-input type="number" v-model="fenceClientPhoneNumber" placeholder="Enter phone no. here..."></b-input>
+            </div>
+
+          </div>
+
+          <h4> <span class="is-blue"> Location</span></h4>
+
+          <div class="columns">
+            
+            
+
+            <div  class="column is-three-quarters">
+            
+            <b-input type="text" v-model="fenceClientLocation" placeholder="Enter address here..."></b-input>
             </div>
           </div>
          
-            <!-- <h4> <span class="is-blue"> Select Category</span></h4>
+            <h4> <span class="is-blue"> Select Category</span></h4>
 
          <div class="columns">
           
-           <b-field  class="column is-full">
-             
-           <b-select v-model="selectCategory" placeholder="Select a Category">
-             <option value="Landscaping establishment, mgt & pest control in lawns & ornaments">Landscaping establishment, mgt & pest control in lawns & ornaments</option>
-             <option value="Pest control, mgt & fertilization in vegetable crops">Pest control, mgt & fertilization in vegetable crops</option>
-             <option value="Household termites control">Household termites control</option>
-             <option value="Agricultural field termite control">Agricultural field termite control</option>
-             <option value="Grain Protection">Grain Protection</option>
-             <option value="Weed control in non-crop areas">Weed control in non-crop areas</option>
-             <option value="Pest control, mgt & fertilization in field crops">Pest control, mgt & fertilization in field crops</option>
-             <option value="Public health pest control">Public health pest control</option>
-             <option value="Vegetable enterprise budgets">Vegetable enterprise budgets</option>
-             <option value="Pest control, mgt & fertilization in orchards">Pest control, mgt & fertilization in orchards</option>
-             <option value="Soil analysis(all crops)">Soil analysis(all crops)</option>
-           </b-select>
-           </b-field>
-         </div> -->
+         </div>
 
         
 
@@ -69,11 +66,13 @@
              
             
         
-             <p class="mx-4 cat">Client Name :  {{clientName}}</p>
+             <p class="mx-4 cat">Client Name :  {{fenceClientName}}</p>
 
-             <p class="mx-4 cat">Client Number :  {{clientNumber}}</p>
+             <p class="mx-4 cat">Client Number :  {{fenceClientPhoneNumber}}</p>
 
-            <!-- <p class="mx-4 cat">Category Selected :  {{selectCategory}}</p> -->
+             <p class="mx-4 cat">Client Location :  {{fenceClientLocation}}</p>
+
+           
           
             
          
@@ -105,55 +104,47 @@
 import { mapActions, mapGetters } from 'vuex'
 import { mapFields } from 'vuex-map-fields'
 export default {
-  name: 'AgroModal',
+  name: 'FenceModal',
 
    data() {
     return {
 
       data:[
-            'Landscaping establishment, mgt & pest control in lawns & ornaments',
-             'Pest control, mgt & fertilization in vegetable crops',
-             'Household termites control',
-             'Agricultural field termite control',
-             'Grain Protection',
-             'Weed control in non-crop areas',
-             'Pest control, mgt & fertilization in field crops',
-             'Public health pest control',
-             'Vegetable enterprise budgets',
-             'Pest control, mgt & fertilization in orchards',
-             'Soil analysis(all crops)'
+            
+             'Consultations',
+             'Sales'
       ],
 
 
       isFullPage: true,
-      agroForm: {
+      // fenceForm: {
       
-              clientName:null,
+      //         clientName:null,
              
-              clientNumber:null,
+      //         clientPhoneNumber:null,
 
-              selectCategory:null,
+      //         fenceCategory:null,
          
         
-      },
+      // },
      
     }
   },
 
    computed: {
 
-      ...mapFields('agroData', [
-      'agroForm',
-      'agroForm.clientName',
-      'agroForm.clientNumber',
-      'agroForm.selectCategory',
-      
+      ...mapFields('fenceData', [
+      'fenceForm',
+      'fenceForm.fenceClientName',
+      'fenceForm.fenceClientLocation',
+      'fenceForm.fenceClientPhoneNumber',
+    
       
   ]),
 
-      ...mapGetters('agroData', {
-       task: 'selectedAgro',
-      taskLoading: 'loading',
+      ...mapGetters('fenceData', {
+       fence: 'selectedfenceRecord',
+      fenceLoading: 'loading',
     }),
 
    },
@@ -167,10 +158,10 @@ export default {
   
 
   methods: {
-      ...mapActions('agroData', ['addNewAgroRecord','getAllAgroRecords', 'load']),
+      ...mapActions('fenceData', ['addNewFenceRecord','getAllFenceRecords', 'load']),
 
    loading() {
-      return this.agroLoading 
+      return this.fenceLoading 
     },
 
 
@@ -185,13 +176,13 @@ export default {
         hasIcon: true,
         onConfirm: async () => {
           
-         await this.addNewAgroRecord();
+         await this.addNewFenceRecord();
 
           this.$buefy.toast.open({
             duration: 3000,
             message: 'New Record Successfully Added!',
             position: 'is-top',
-            type: 'is-info is-light',
+            type: 'is-success',
           })
            this.clearForm();
           showNotifications();
@@ -213,7 +204,7 @@ export default {
 
     close() {
       this.$buefy.toast.open({
-        message: 'Task Snapshot closed.',
+        message: 'pig Snapshot closed.',
         duration: 2000,
         position: 'is-bottom',
         type: 'is-warning ',
@@ -223,13 +214,13 @@ export default {
 
     clearForm() {
 
-     this.taskForm = {
+     this.fenceForm = {
       
-              taskDescription:null,
-              selectPriority:null,
-              assignTask:null,
-              dateAssigned:null,
-              dueDate:null         
+              fenceClientName:null,
+              fenceClientPhoneNumber:null,
+              fenceClientLocation:null,
+              fenceCategory:null
+
         
       }
       

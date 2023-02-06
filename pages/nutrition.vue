@@ -1,14 +1,14 @@
 <template>
   <div>
     <b-tabs v-model="activeTab">
-          <b-tab-item label="Animal Consultations">
+          <b-tab-item label="Animal Feed Consultations">
             <b-tabs>
               <b-tab-item label="Consultations">
-                <VetTable/>
+                <NutritionTable/>
               </b-tab-item>
 
               <b-tab-item label="Records">
-               <AnimalCard/>
+               <NutritionCard/>
               </b-tab-item>
 
             </b-tabs>
@@ -24,16 +24,15 @@
 
 <script>
 
-import VetTable from '~/components/tables/Vet/vet-table.vue'
+import NutritionTable from '~/components/tables/Animal Nutrition/nutrition-table.vue'
 
-import VillageChickensPMTable from '~/components/tables/Post Mortems/post-mortem-table.vue'
-import AnimalCard from '~/components/Tools/Other/animal-cards.vue'
+import NutritionCard from '~/components/Tools/Reports/animal-nutrition-card.vue'
 
 export default {
   components: { 
                 
-                VillageChickensPMTable
-                , VetTable, AnimalCard
+               
+                 NutritionTable, NutritionCard
               },
 
   data(){

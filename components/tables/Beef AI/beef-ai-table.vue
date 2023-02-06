@@ -14,13 +14,16 @@
         </b-select>
   
        <div class="buttons">
-          <b-tooltip label="Add details of new tasks here" type="is-dark">
-          <b-button class="mx-2" icon-left="plus" type="is-success" @click="addNewTask">Add New Task</b-button>
+          <b-tooltip label="Add details of new records here" type="is-dark">
+          <b-button class="mx-2" icon-left="plus" type="is-success" @click="addNewTask">Add New Record</b-button>
           </b-tooltip>
   
            <b-tooltip label="Refresh" type="is-dark">
            <b-button class="mx-2" icon-left="refresh" type="is-info" @click="refresh">Refresh</b-button>
            </b-tooltip>
+  
+         
+              
         </div>
   
         
@@ -40,91 +43,78 @@
         aria-page-label="Page"
         aria-current-label="Current Page"
       >
+  
+    
+  
          <b-table-column
           v-slot="props"
           field="taskDescription"
-          label="Task Description"
+          label="Client Name"
           searchable
           
         >
-        <span class="tag tasks">  {{ props.row.taskDescription }} </span>
+        <span class="tag tasks">  {{ props.row.beefAIClientName }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
   
+        <b-table-column
+          v-slot="props"
+          field="taskDescription"
+          label="Client Phone No."
+          
+          
+        >
+        <span class="tag numbers">  {{ props.row.beefAIClientPhoneNumber }} </span>
+         
+          <!-- {{ props.row.sumInsured }} -->
+        </b-table-column>
+  
+        <b-table-column
+          v-slot="props"
+          field="taskDescription"
+          label="Location"
+          
+          
+        >
+        <span class="tag is-primary is-light">  {{ props.row.beefAIClientLocation }} </span>
+         
+          <!-- {{ props.row.sumInsured }} -->
+        </b-table-column>
+  
+  
        <b-table-column
           v-slot="props"
           field="selectPriority"
-          label="Priority"
+          label="Category"
           searchable
         >
   
-        <span
-            :class="[
-              'tag',
-              {
-                'is-danger ': props.row.selectPriority ===  'High',
-              },
+        <span class="tag is-info is-light">  {{ props.row.beefAICategory }} </span>
+         
+        </b-table-column>
   
-              {
-                'is-warning  ' : props.row.selectPriority ===  'Medium',
-              },
+        <b-table-column
+          v-slot="props"
+          field="selectPriority"
+          label="Date"
+          sortable
+        >
   
-              {
-                'is-success ': props.row.selectPriority === 'Low',
-              },
-            ]"
-            >  {{ props.row.selectPriority }} </span
-          >
+        <span class="tag is-info is-light">  {{ props.row.date }} </span>
          
         </b-table-column>
         
-         <b-table-column
-          v-slot="props"
-          field="pfiNumber"
-          label="Assigned To"
-          sortable
-        >
-         <span class="tag assignedTo"> {{ props.row.assignTask }} </span>
-        </b-table-column>
-  
-        <b-table-column v-slot="props" field="date" label="Date Assigned" sortable>
-  
-            <span class="tag is-info is-light">{{ props.row.dateAssigned}}</span>
-  
-        </b-table-column> 
-  
-          <b-table-column v-slot="props" field="date" label="Due Date" sortable>
-  
-            <span class="tag is-danger is-light">{{ props.row.dueDate}}</span>
-  
-        </b-table-column> 
+        
+         
   
   
-          <b-table-column v-slot="props" field="date" label="Status" sortable>
-  
-           <span
-            :class="[
-              'tag',
-            
-  
-              {
-                'is-warning  ' : props.row.status ===  'Pending',
-              },
-  
-              {
-                'is-success ': props.row.status === 'Completed',
-              },
-            ]"
-            > {{ props.row.status}}</span>
-  
-        </b-table-column> 
-  
+          
         
   
   
         
-       <b-table-column v-slot="props" label="Options">
+       <!-- <b-table-column v-slot="props" label="Options">
           <span class="buttons">
             <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
             <b-button
@@ -139,7 +129,7 @@
         </b-table-column>
   
         
-                  
+                   -->
   
         
   
@@ -147,7 +137,7 @@
         <template #empty>
   
           <b-tooltip  label="Once freshed, your details will appear here" type="is-dark">
-          <h4 class="is-size-4 text-center has-text-centered">No Tasks yet. &#x1F4DA;. Click the <span class="tag is-info"> refresh button</span> right above</h4>
+          <h4 class="is-size-4 text-center has-text-centered">No Beef AI Data yet. &#x1F4DA;. Click the <span class="tag is-info"> refresh button</span> right above</h4>
           </b-tooltip>
   
         </template>
@@ -162,9 +152,12 @@
   
   <script>
   import { mapActions, mapGetters } from 'vuex'
-
+  
+  import BeefAIModal from '@/components/modals/Beef AI Modal/beef-ai-modal.vue'
+  
+  // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
   export default {
-    name: 'UnreceiptedDebitsTable',
+    name: 'BeefAITable',
   
     data() {  
     
@@ -185,13 +178,13 @@
   
     computed: {
       
-      ...mapGetters('taskData', {
+      ...mapGetters('beefAIData', {
           loading: 'loading',
-          tasks: 'allTasks',
+          beefs: 'allBeefAIRecords',
         }),
       
        isEmpty() {
-       return this.tasks.length === 0
+       return this.beefs.length === 0
        },
   
       
@@ -201,13 +194,13 @@
       },
       
       tableData() {
-        return this.isEmpty ? [] : this.tasks
+        return this.isEmpty ? [] : this.beefs
       },
     },
   
     async created() {
     // await this.load()
-     this.selectTask(this.tasks[0])
+    // this.selectAgroRecord(this.agros[0])
     },
   
     
@@ -215,45 +208,49 @@
     methods: {
      
   
-       ...mapActions('taskData', ['addNewTask','getAllTasks', 'load', 'selectTask']),
+       ...mapActions('beefAIData', ['addNewBeefAIRecord','getAllBeefAIRecords', 'load']),
   
        async refresh(){
+  
+        // alert(
+        //   "Refreshed!"
+        // )
       //  this.isLoading = true
-        await this.getAllTasks();
+       await this.getAllBeefAIRecords();
      //   this.isLoading = false
    
       },
   
   
-      captureReceipt(task) {
-        this.selectTask(task)
-        setTimeout(() => {
-          this.$buefy.modal.open({
-            parent: this,
-            component: TaskSnapshotModal,
-            hasModalCard: true,
-            trapFocus: true,
-            canCancel: ['x'],
-            destroyOnHide: true,
-            customClass: '',
-            onCancel: () => {
-              this.$buefy.toast.open({
-                message: `Snapshot closed`,
-                duration: 5000,
-                position: 'is-top',
-                type: 'is-info',
-              })
-            },
-          })
-        }, 300)
-      },
+      // captureReceipt(agro) {
+      //   this.selectAgroRecord(agro)
+      //   setTimeout(() => {
+      //     this.$buefy.modal.open({
+      //       parent: this,
+      //       component: AgroSnapshotModal,
+      //       hasModalCard: true,
+      //       trapFocus: true,
+      //       canCancel: ['x'],
+      //       destroyOnHide: true,
+      //       customClass: '',
+      //       onCancel: () => {
+      //         this.$buefy.toast.open({
+      //           message: `Snapshot closed`,
+      //           duration: 5000,
+      //           position: 'is-top',
+      //           type: 'is-info',
+      //         })
+      //       },
+      //     })
+      //   }, 300)
+      // },
   
        addNewTask() {
         
         setTimeout(() => {
           this.$buefy.modal.open({
             parent: this,
-            component: TaskModal,
+            component: BeefAIModal,
             hasModalCard: true,
             trapFocus: true,
             canCancel: ['x'],
@@ -270,6 +267,8 @@
           })
         }, 300)
       },
+  
+     
     }
   
    
@@ -289,6 +288,11 @@
   .tasks{
     background-color: rgb(247, 204, 179);
   }
+  
+  .numbers{
+    background-color: rgb(217, 249, 198);
+  }
+  
   
   .assignedTo{
     background-color: rgb(94, 241, 222);
