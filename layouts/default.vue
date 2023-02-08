@@ -55,7 +55,7 @@
                 <b-icon class="media-left" icon="account"></b-icon>
                 <div class="media-content">
                     <h3>Logged in as</h3>
-                    <small> <span class="blue"> </span></small>
+                    <small> <span class="blue"> {{ this.$auth.user.email}} </span></small>
                 </div>
             </div>
         </b-dropdown-item>
@@ -129,16 +129,15 @@
 
                             <b-menu-list class="ml-2" icon="account"  label="Consultations">
 
-                                 <b-menu-item  v-if="$auth.user.email === 'nutrition@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="food" @click="nutrition" label="Animal Nutrition"></b-menu-item>
+                                 <b-menu-item  v-if="$auth.user.email === 'nutrition@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="food" @click="nutrition" label="Nutrition"></b-menu-item>
                                
-                                <b-menu-item v-if="$auth.user.email === 'vet-technical@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="doctor"   @click="vetTech" label="Vet Technical">  </b-menu-item>
-
-                                <b-menu-item v-if="$auth.user.email === 'vet-sales@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="sheep"   @click="vetSales" label="Vet Sales">  </b-menu-item>
+                                <b-menu-item v-if="$auth.user.email === 'vet-technical@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com' || $auth.user.email === 'vet-sales@livestock.co.zm'" icon="doctor"   @click="vetTech" label="Vet">  </b-menu-item>
 
 
-                                <b-menu-item  v-if="$auth.user.email === 'beef-ai@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="pig"   @click="pigAI" label="Pig AI ">  </b-menu-item>
 
-                                <b-menu-item  v-if="$auth.user.email === 'pig-ai@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="cow"   @click="beefAI" label="Beef AI ">  </b-menu-item>
+                                <b-menu-item  v-if="$auth.user.email === 'beef-ai@livestock.co.zm' || $auth.user.email === 'pig-ai@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="needle"   @click="AI" label="Artificial Insemination ">  </b-menu-item>
+
+
 
                                 <b-menu-item  v-if="$auth.user.email === 'agro@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="flower"   @click="agro" label="Agronomy">  </b-menu-item>
 
@@ -146,10 +145,9 @@
 
                                 <b-menu-item  v-if="$auth.user.email === 'fish@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="fish"   @click="fish" label="Fish">  </b-menu-item>
 
-                                <b-menu-item  v-if="$auth.user.email === 'irrigation@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="water"   @click="irrgiate" label="Irrigation">  </b-menu-item>
+                                <b-menu-item  v-if="$auth.user.email === 'irrigation@livestock.co.zm' || $auth.user.email === 'pumps@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="water"   @click="irrgiate" label="Irrigation & Water Pumps">  </b-menu-item>
 
-                                <b-menu-item  v-if="$auth.user.email === 'pumps@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="pump"   @click="pump" label="Pumps">  </b-menu-item>
-
+                               
 
                               
                                
@@ -305,13 +303,11 @@ export default {
       this.$router.push("agro")
     },
 
-    pigAI(){
-      this.$router.push("pig-ai-and-breeding")
+    AI(){
+      this.$router.push("ai-and-breeding")
     },
 
-    beefAI(){
-      this.$router.push("beef-ai-and-breeding")
-    },
+ 
 
      fence(){
       this.$router.push("fence")

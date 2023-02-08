@@ -1,5 +1,5 @@
 <template>
-  <section  class="section">
+  <section  class="section main-section">
 
     
      <div v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'" class="buttons ml-5">
@@ -377,7 +377,7 @@
                   type="is-info">
               </b-icon>
           </a>
-  
+          <h2 class="ml-4">Welcome to your dashboard. <br/> Time is:</h2>
        <span><span class="text-under-treatment-count mb-2"> <digital-clock :blink="true" :displaySeconds="true"/> </span> <br/><span class="tag is-info is-light mx-4 text-under-treatment">Logged in as: {{ this.$auth.user.email }}</span></span> <br>
       
         <!-- <span class="text-bull"> <countTo :startVal='startVal' :endVal='Bulls' :duration='3000'></countTo> Bulls</span><br>
@@ -644,6 +644,7 @@ export default {
 
 .section{
     margin-top: 4rem;
+    background-color: rgb(238, 250, 232);
   }
 
   .text-consult-count{
@@ -671,7 +672,7 @@ export default {
    /* background-color: rgb(244, 172, 72);  */
   background: url('~/assets/images/LSC2.png');
   background-repeat: no-repeat;
-  background-size: contain;  
+  background-size: cover;  
 }
 
 
@@ -752,7 +753,7 @@ export default {
 
 .consultants-card {
   width: 360px;
-  height:220px;
+  height:260px;
   background-color: rgb(214, 244, 241);
 }
 
@@ -831,7 +832,7 @@ export default {
 }
 
 .total-cow-card {
-  width: 830px;
+  width: 820px;
   height:520px;
 }
 
@@ -850,7 +851,7 @@ export default {
 
 .consultants-card{
   width: 400px;
-  height:220px;
+  height:260px;
 }
 
 .weaners-card{

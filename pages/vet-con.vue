@@ -1,6 +1,10 @@
 <template>
   <div>
     <b-tabs class="table" v-model="activeTab">
+          
+        <b-tab-item v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com' || this.$auth.user.email === 'vet-technical@livestock.co.zm' " label="Vet Technical">
+         <b-tabs>
+
           <b-tab-item label="Animal Consultations">
             <b-tabs>
               <b-tab-item label="Consultations">
@@ -12,7 +16,9 @@
               </b-tab-item>
 
             </b-tabs>
-          </b-tab-item>   
+          </b-tab-item>  
+          
+          
           
           
               <b-tab-item label="Post Mortems">
@@ -53,9 +59,30 @@
 
             </b-tabs>
                   
-              </b-tab-item> 
+              </b-tab-item>
 
-                  
+         </b-tabs> 
+
+          
+        </b-tab-item>
+
+        <b-tab-item v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com' || this.$auth.user.email === 'vet-sales@livestock.co.zm' " label="Vet Sales">
+         <b-tabs>
+          <b-tab-item label="Animal Consultations">
+              <b-tabs>
+                <b-tab-item label="Consultations">
+                  <VetTable/>
+                </b-tab-item>
+  
+                <b-tab-item label="Records">
+                 <VetCard/>
+                </b-tab-item>
+  
+              </b-tabs>
+            </b-tab-item>   
+         </b-tabs>
+  
+        </b-tab-item>
             
            
      
