@@ -123,7 +123,7 @@
                    
                     <b-menu class="menu-bg height is-custom-mobile">
                         <b-menu-list label="Menu" class="menu-bg">
-                            <b-menu-item  v-if="$auth.user.email === 'kondwani1mwale@gmail.com'" icon="warehouse"  @click="index" label="Managers' Home"></b-menu-item>
+                            <b-menu-item  icon="warehouse"  @click="index" label="Home"></b-menu-item>
 
                             <!-- <b-menu-item icon="home-outline"  @click="indexConsultantsView" label="Consultants Home"></b-menu-item> -->
 

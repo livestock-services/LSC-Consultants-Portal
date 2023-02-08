@@ -68,7 +68,7 @@
           <b-icon
                 icon="cow"
                 size="is-medium"
-                type="is-warning">
+                type="is-info">
             </b-icon>
         </a>
 
@@ -351,8 +351,9 @@
   
           </a>
   
-       <span><span class="text-consult-count mb-2"> <countTo :startVal='startVal' :endVal='totalConsults' :duration='10000'></countTo></span> <br/><span class="mx-5 my-6 totalConsults">Total Consultations between {{ startTime }} and {{ endTime }} </span></span>
-        <br>
+       <!-- <span><span class="text-cattle-count mb-2"> <countTo :startVal='startVal' :endVal='totalConsults' :duration='10000'></countTo></span> <br/> <br/></span>
+       <span class="mx-5 totalConsults-text">Total Consultations between {{ startTime }} and {{ endTime }} </span>
+        <br> -->
       
         <!-- <span class="text-bull"> <countTo :startVal='startVal' :endVal='Bulls' :duration='3000'></countTo> Bulls</span><br>
         <span class="text-cow"> <countTo :startVal='startVal' :endVal='Cows' :duration='3000'></countTo> Cows</span><br>
@@ -363,7 +364,7 @@
   
     
   
-       <div class="card under-treatment-card ml-5 card-body">
+       <div class="card consultants-card ml-5 card-body">
         
          <div class="card-body">
           <a
@@ -371,13 +372,14 @@
             href="/"
           >
             <b-icon
-                  icon="cow"
+                  icon="clock"
                   size="is-medium"
-                  type="is-warning">
+                  type="is-info">
               </b-icon>
           </a>
   
-       <span><span class="text-under-treatment-count mb-2"> <countTo :startVal='startVal' :endVal='beef' :duration='8000'></countTo></span> <br/><span class=" mx-4 text-under-treatment">Beef AI Consultations</span></span> <br>
+       <span><span class="text-under-treatment-count mb-2"> <digital-clock :blink="true" :displaySeconds="true"/> </span> <br/><span class="tag is-info is-light mx-4 text-under-treatment">Logged in as: {{ this.$auth.user.email }}</span></span> <br>
+      
         <!-- <span class="text-bull"> <countTo :startVal='startVal' :endVal='Bulls' :duration='3000'></countTo> Bulls</span><br>
         <span class="text-cow"> <countTo :startVal='startVal' :endVal='Cows' :duration='3000'></countTo> Cows</span><br>
         <span class="text-heifer"> <countTo :startVal='startVal' :endVal='Heifers' :duration='3000'></countTo> Heifers</span><br>
@@ -403,6 +405,8 @@
 </template>
 
 <script>
+import DigitalClock from "vue-digital-clock";
+
 import Card from '~/components/Tools/Other/Card.vue'
 import TotalConsultsFilterModal from '~/components/modals/Filter/total-consults-filter-modal.vue'
  import countTo from 'vue-count-to';
@@ -414,10 +418,15 @@ export default {
   components: {
    countTo ,
     Card,
+    DigitalClock,
+   
    
   },
 
   data(){
+
+
+
 
     var startDate = computed(()=>this.startTime)
 
@@ -459,7 +468,7 @@ export default {
         Cows:60,
         Heifers:10,
         Calves: 20,
-
+        
         totalConsults_fields:{
                 "Consultations By Category":"consultation",
                 "no. of Consultations":"no. of Consultations",
@@ -534,56 +543,6 @@ export default {
   },
 
   computed: {
-    //  ...mapGetters('agroData', {
-    //     loading: 'loading',
-    //      agros: 'allAgroRecords',
-    // }),
-
-    // ...mapGetters('beefAIData', {
-    //     loading: 'loading',
-    //     beef: 'allBeefAIRecords'
-    //   }),
-
-  
-    //   ...mapGetters('fenceData', {
-    //     loading: 'loading',
-    //     fences: 'allFenceRecords'
-    //   }),
-
-    //   ...mapGetters('fishData', {
-    //     loading: 'loading',
-    //     fish: 'allFishRecords'
-    //   }),
-
-    //   ...mapGetters('irrigationData', {
-    //     loading: 'loading',
-    //     irrigation: 'allIrrigationRecords'
-    //   }),
-
-    //   ...mapGetters('nutritionData', {
-    //     loading: 'loading',
-    //     nutrition: 'allNutritionRecords'
-    //   }),
-
-    //   ...mapGetters('pigAIData', {
-    //     loading: 'loading',
-    //     pigAI: 'allPigAIRecords'
-    //   }),
-
-    //   ...mapGetters('pumpData', {
-    //     loading: 'loading',
-    //     pumps: 'allWaterPumpRecords'
-    //   }),
-
-    //   ...mapGetters('vetData', {
-    //     loading: 'loading',
-    //     vet: 'allVetRecords'
-    //   }),
-
-    //   ...mapGetters('vetData', {
-    //     loading: 'loading',
-    //     PMs: 'allPostMortemRecords'
-    //   }),
 
       ...mapGetters('totalConsultsData', {
         loading: 'loading',
@@ -606,6 +565,9 @@ export default {
       isEmpty() {
  //  return this.calves === 0
      },
+
+
+
   },
 
 
@@ -621,31 +583,8 @@ export default {
   let pigAI = await this.getAllPigAIRecords();
   let pumps = await this.getAllWaterPumpRecords();
   let vet = await this.getAllVetRecords();
-  // let PMs = await this.getAllPostMortemRecords();
+  
 
-
-
-    //this.selectPfi(this.pfis[0])
-
-//     function showNotifications(){
-//    const notification = new Notification("Your Litmas dashboard.", {
-//        body: "This section gives an overview of all your animals. More details are in the herd & records section under 'Tools' .",
-//        icon: "http://localhost:3000/assets/litmas3.png",
-       
-
-//    }); 
-// }
-
-// if (Notification.permission === "granted") {
-//     showNotifications();
-// } else if(Notification.permission !== "denied") {
-//     Notification.requestPermission().then(permission =>{
-//         if (permission === "granted") {
-//             showNotifications();
-//         }
-      
-//     })
-// }
 
   },
 
@@ -726,13 +665,13 @@ export default {
 }
 
 .total-cow-card{
-  width: 620px;
-  height:420px;
+  width: 520px;
+  height:390px;
   
-   background-color: rgb(244, 172, 72); 
-   /* background: url('~/assets/cow5.jpg');
+   /* background-color: rgb(244, 172, 72);  */
+  background: url('~/assets/images/LSC2.png');
   background-repeat: no-repeat;
-  background-size: cover;  */
+  background-size: contain;  
 }
 
 
@@ -808,8 +747,15 @@ export default {
 .under-treatment-card {
   width: 300px;
   height:190px;
-  background-color: rgb(68, 66, 63);
+  background-color: rgb(214, 244, 241);
 }
+
+.consultants-card {
+  width: 360px;
+  height:220px;
+  background-color: rgb(214, 244, 241);
+}
+
 
 .weaners-card{
   width: 300px;
@@ -828,6 +774,10 @@ export default {
   height:190px;
   background-color: rgb(240, 156, 170);
 } 
+
+
+
+
 
 @media only screen and (min-width: 1600px) {
   
@@ -898,6 +848,11 @@ export default {
   
 }
 
+.consultants-card{
+  width: 400px;
+  height:220px;
+}
+
 .weaners-card{
   width: 400px;
   height:220px;
@@ -941,9 +896,10 @@ export default {
 .text-cattle-count{
   text-align: center;
   margin-left: 20px;
+  margin-top: 50px;
   font-size: 65px;
     z-index: 2;
-  color: rgb(252, 242, 223);
+  color: rgb(21, 21, 21);
 }
 
 .text-mortality-count{
@@ -1004,7 +960,11 @@ export default {
   text-align: center;
   margin-left: 20px;
   font-size: 65px;
-  color: rgb(233, 182, 16);
+  color: rgb(7, 38, 12);
+}
+
+.totalConsults-text{
+  margin-top: 80px;
 }
 
 .text-cattle{
@@ -1015,7 +975,7 @@ export default {
 .text-under-treatment{
     font-size: 18px;
   margin-top: 2px;
-  color: rgb(238, 210, 148);
+  color: rgb(19, 62, 28);
   
 }
 
