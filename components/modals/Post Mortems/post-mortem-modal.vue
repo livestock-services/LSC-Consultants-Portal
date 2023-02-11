@@ -153,6 +153,19 @@
         </b-field>
 
             </div>
+
+
+            <h4><span class="is-blue"> Comments/Remarks</span></h4>
+  
+            <div class="columns">
+              <div class="column is-three-quarters">
+                <b-input
+                  type="text"
+                  v-model="vetPMComments" 
+                  placeholder="Comments/Remarks"
+                ></b-input>
+              </div>
+            </div>
   
             <div class="card my-4">
               <div class="summary-content">
@@ -171,7 +184,8 @@
                 <p class="mx-4 cat">
                   Associated Disease Selected :  {{ vetPostMortemDiseases }}
                 </p>
-
+                
+                <p class="mx-4 cat">Comments/Remarks : {{ vetPMComments }}</p>
                
               </div>
             </div>
@@ -225,6 +239,8 @@
           vetPostMortemCategory: null,
 
           vetPostMortemDiseases: null,
+
+          vetPMComments: null,
         },
       };
     },
@@ -237,6 +253,7 @@
         "vetPostMortemForm.vetPostMortemClientLocation",
         "vetPostMortemForm.vetPostMortemCategory",
         "vetPostMortemForm.vetPostMortemDiseases",
+        "vetPostMortemForm.vetPMComments",
       ]),
   
       ...mapGetters("vetData", {
@@ -308,6 +325,7 @@
             vetPostMortemClientLocation:null,
             vetPostMortemCategory:null,
             vetPostMortemDiseases:null,
+            vetPMComments:null,
             
         }
       },

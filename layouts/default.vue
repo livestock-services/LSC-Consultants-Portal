@@ -117,9 +117,10 @@
                 type="is-dark"
                 open
                 v-if="$auth.loggedIn"
+                class="sidebar"
                 
             >
-                <div class="m-5 ">
+                <div class="m-6 ">
                    
                     <b-menu class="menu-bg height is-custom-mobile">
                         <b-menu-list label="Menu" class="menu-bg">
@@ -367,6 +368,14 @@ export default {
 
 <style>
 
+.sidebar-layout{
+  background-color:rgb(249, 229, 250);
+}
+
+.sidebar{
+  margin-right: 25px;
+}
+
 .dairy{
   color: rgba(40, 180, 5, 0.712);
   font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -381,7 +390,7 @@ export default {
 .navbar{
   width:100%;
   position:fixed;
-  margin-left: 15rem;
+  margin-left: 17rem;
   padding-top: 1rem;
  
 }

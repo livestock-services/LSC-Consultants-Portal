@@ -65,6 +65,18 @@
             </b-field>
           </div>
 
+          <h4><span class="is-blue"> Comments/Remarks</span></h4>
+
+          <div class="columns">
+            <div class="column is-three-quarters">
+              <b-input
+                type="text"
+                v-model="vetComments"
+                placeholder="Comments/Remarks"
+              ></b-input>
+            </div>
+          </div>
+
           <div class="card my-4">
             <div class="summary-content">
               <h2 class="tag is-info is-light mx-4 mb-4 summary">Summary</h2>
@@ -78,6 +90,9 @@
               <p class="mx-4 cat">
                 Category Selected : {{ vetCategory }}
               </p>
+
+              <p class="mx-4 cat">Comments/Remarks : {{ vetComments }}</p>
+
             </div>
           </div>
 
@@ -126,6 +141,8 @@ export default {
         vetClientLocation:null,
 
         vetCategory: null,
+
+        vetComments:null
       },
     };
   },
@@ -137,6 +154,7 @@ export default {
       "vetForm.vetClientPhoneNumber",
       "vetForm.vetClientLocation",
       "vetForm.vetCategory",
+      "vetForm.vetComments",
     ]),
 
     ...mapGetters("vetData", {
@@ -203,7 +221,8 @@ export default {
       vetClientName:null,
       vetClientPhoneNumber:null,
       vetClientLocation:null,
-      vetCategory:null
+      vetCategory:null,
+      vetComments:null
 
       }
     },

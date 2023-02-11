@@ -94,6 +94,18 @@
        
       </b-table-column>
 
+      
+     <b-table-column
+        v-slot="props"
+        field="selectPriority"
+        label="Comments/Remarks"
+        searchable
+      >
+
+      <span class="tag is-info is-light">  {{ props.row.vetComments }} </span>
+       
+      </b-table-column>
+
       <b-table-column
         v-slot="props"
         field="selectPriority"

@@ -645,6 +645,7 @@ export default {
 .section{
     margin-top: 4rem;
     background-color: rgb(238, 250, 232);
+    padding: 2rem
   }
 
   .text-consult-count{
@@ -783,7 +784,7 @@ export default {
 @media only screen and (min-width: 1600px) {
   
   .section{
-    margin-top: 4rem;
+    margin-top: 5rem;
   }
 
   .cow-card{
@@ -846,6 +847,7 @@ export default {
 .under-treatment-card {
   width: 400px;
   height:220px;
+  margin-right: 2rem;
   
 }
 

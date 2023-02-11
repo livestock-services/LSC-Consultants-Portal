@@ -97,6 +97,17 @@
         <b-table-column
           v-slot="props"
           field="selectPriority"
+          label="Comments/Remarks"
+          sortable
+        >
+  
+        <span class="tag is-info is-light">  {{ props.row.vetPMComments }} </span>
+         
+        </b-table-column>
+
+        <b-table-column
+          v-slot="props"
+          field="selectPriority"
           label="Disease"
          
         >

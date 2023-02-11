@@ -324,6 +324,7 @@ export const state = () => ({
         vetClientPhoneNumber:null,
         vetClientLocation:null,
         vetCategory:null,
+        vetComments:"Non"
        
         
     },
@@ -335,6 +336,7 @@ export const state = () => ({
         vetPostMortemClientLocation:null,
         vetPostMortemCategory:null,
         vetPostMortemDiseases:null,
+        vetPMComments:"Non"
        
         
     },
