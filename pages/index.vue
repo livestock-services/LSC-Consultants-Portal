@@ -162,7 +162,7 @@
             </b-icon>
         </a>
 
-     <span><span class="text-yearlings-count mb-2"> <countTo :startVal='startVal' :endVal='irrigation + pumps' :duration='5000'></countTo></span> <br/><span class=" mx-4 text-yearlings"> Irrigation & Water Pump Consultations</span></span> <br>
+     <span><span class="text-yearlings-count mb-2"> <countTo :startVal='startVal' :endVal='irrigation + pumps' :duration='5000'></countTo></span> <br/><span class=" mx-4 text-yearlings"> Irrigation & Pump Consultations</span></span> <br>
       <!-- <span class="text-bull"> <countTo :startVal='startVal' :endVal='Bulls' :duration='3000'></countTo> Bulls</span><br>
       <span class="text-cow"> <countTo :startVal='startVal' :endVal='Cows' :duration='3000'></countTo> Cows</span><br>
       <span class="text-heifer"> <countTo :startVal='startVal' :endVal='Heifers' :duration='3000'></countTo> Heifers</span><br>

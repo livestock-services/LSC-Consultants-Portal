@@ -1,6 +1,6 @@
 export const SET_LOADING = 'SET_LOADING'
 
-
+export const GET_ALL_USERS = 'GET_ALL_USERS'
 
 //--------------------------------------- AGRO RECORDS------------------------------------------------------------------
 export const ADD_AGRO_RECORD = 'ADD_AGRO_RECORD'

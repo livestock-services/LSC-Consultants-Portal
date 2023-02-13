@@ -5,6 +5,7 @@ import { getField, updateField } from 'vuex-map-fields'
 import {    SET_LOADING,
             SET_USERS,
             ADD_NEW_USER,
+            GET_ALL_USERS, 
             SET_CURRENT_USER,
             SET_SELECTED_USER, 
             ACTIVATE_SELECTED_USER ,
@@ -70,6 +71,11 @@ export const getters = {
 
 export const mutations = {
     updateField,
+
+    [GET_ALL_USERS](state, payload) {
+        state.users = payload
+    },
+
 
     [SET_USERS](state, payload) {
         state.users = payload
@@ -138,28 +144,28 @@ export const actions = {
             console.log(fetchUsers.data)
          //  console.log(fetchUsers.data.role.billingCycle)
             
-            const specialfilteredUSERS = fetchUsers.data.filter( usr => 
-                 usr.billingCycle === 'Monthly'
-               );
+            // const specialfilteredUSERS = fetchUsers.data.filter( usr => 
+            //      usr.billingCycle === 'Monthly'
+            //    );
 
-               const pendingUsers = fetchUsers.data.filter( peu => 
-                peu.paymentStatus === 'Pending'
-              );
+            //    const pendingUsers = fetchUsers.data.filter( peu => 
+            //     peu.paymentStatus === 'Pending'
+            //   );
 
-              const paidUsers = fetchUsers.data.filter( pau => 
-                pau.paymentStatus === 'Paid'
-              );
+            //   const paidUsers = fetchUsers.data.filter( pau => 
+            //     pau.paymentStatus === 'Paid'
+            //   );
 
 
-               console.log(specialfilteredUSERS);
-               console.log(pendingUsers);
-               console.log(paidUsers)
+            //    console.log(specialfilteredUSERS);
+            //    console.log(pendingUsers);
+            //    console.log(paidUsers)
 
-            commit(SET_USERS, fetchUsers.data);
+          //  commit(SET_USERS, fetchUsers.data);
 
-            commit(GET_ALL_PENDING_USERS, pendingUsers);
+            commit(GET_ALL_USERS, fetchUsers.data);
 
-            commit(GET_ALL_PAID_USERS, paidUsers);
+            // commit(GET_ALL_PAID_USERS, paidUsers);
 
             commit(SET_LOADING, false)
    

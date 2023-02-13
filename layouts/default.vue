@@ -130,9 +130,9 @@
 
                             <b-menu-list class="ml-2" icon="account"  label="Consultations">
 
-                                 <b-menu-item  v-if="$auth.user.email === 'nutrition@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="food" @click="nutrition" label="Nutrition"></b-menu-item>
+                                 <b-menu-item  v-if="$auth.user.email === 'nutrition@livestock.co.zm' ||  $auth.user.email === 'mataas@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="food" @click="nutrition" label="Nutrition"></b-menu-item>
                                
-                                <b-menu-item v-if="$auth.user.email === 'vet-technical@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com' || $auth.user.email === 'vet-sales@livestock.co.zm'" icon="doctor"   @click="vetTech" label="Vet">  </b-menu-item>
+                                <b-menu-item v-if="$auth.user.email === 'vet-technical@livestock.co.zm' || $auth.user.email === 'augustined@livestock.co.zm' || $auth.user.email === 'bornfacec@livestock.co.zm' ||  $auth.user.email === 'kondwani1mwale@gmail.com' || $auth.user.email === 'vet-sales@livestock.co.zm'" icon="doctor"   @click="vetTech" label="Vet">  </b-menu-item>
 
 
 
@@ -140,7 +140,7 @@
 
 
 
-                                <b-menu-item  v-if="$auth.user.email === 'agro@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="flower"   @click="agro" label="Agronomy">  </b-menu-item>
+                                <b-menu-item  v-if="$auth.user.email === 'agro@livestock.co.zm' || $auth.user.email === 'omegad@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="flower"   @click="agro" label="Agronomy">  </b-menu-item>
 
                                 <b-menu-item  v-if="$auth.user.email === 'fence@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="wall"   @click="fence" label="Fencing">  </b-menu-item>
 
@@ -154,14 +154,12 @@
                                
                                
                             </b-menu-list>
-<!-- 
-                             <b-menu-item  icon="account-outline"   @click="admin" label="Admin Panel">
-                                <b-menu-item icon="account-multiple-outline" @click="customers" label="Customers"></b-menu-item>
-                                <b-menu-item icon="cash" @click="checkProfile" label="Revenue"></b-menu-item>
-                                 <b-menu-item icon="book-multiple" @click="costs" label="Application Costs"></b-menu-item>
-                                   <b-menu-item  icon="download"    @click="files" label="Files">  </b-menu-item>
 
-                            </b-menu-item> -->
+                            
+                                <b-menu-item v-if="$auth.user.email === 'kondwani1mwale@gmail.com'" icon="account-multiple-outline" @click="customers" label="Users"></b-menu-item>
+                               
+
+                            
 
 
                            
@@ -277,12 +275,16 @@ export default {
       this.$router.push("index-consultants-view")
     },
 
-    //  admin(){
-    //   this.$router.push("admin-panel")
-    // },
+      admin(){
+       this.$router.push("admin-panel")
+     },
 
       login(){
       this.$router.push("login")
+    },
+    
+    customers(){
+      this.$router.push("customers")
     },
 
     nutrition(){
