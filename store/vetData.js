@@ -324,8 +324,8 @@ export const state = () => ({
         vetClientPhoneNumber:null,
         vetClientLocation:null,
         vetCategory:null,
-        vetComments:"Non"
-       
+        vetComments:null,
+        createdBy:null
         
     },
 
@@ -336,7 +336,8 @@ export const state = () => ({
         vetPostMortemClientLocation:null,
         vetPostMortemCategory:null,
         vetPostMortemDiseases:null,
-        vetPMComments:"Non"
+        vetPMComments:null,
+        createdBy:null
        
         
     },
@@ -1282,16 +1283,27 @@ export const actions = {
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/vet/allVetRecords`)
 
-        //   const { data:fetchUsers } = await api.get(`/auth/allUsers`)
-            
-          
-           
+           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
+            const customeUserRecords = response.data.filter( cur=>
+                cur.createdBy === this.$auth.user.email
+                      )
+                      console.log(customeUserRecords);
+                      commit(GET_ALL_VET_RECORDS, customeUserRecords);
+           }
 
-           console.log(response.data);
+
+           else{
+            console.log(response.data);
        
 
-           //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
-           commit(GET_ALL_VET_RECORDS, response.data);
+            //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
+            commit(GET_ALL_VET_RECORDS, response.data);
+           }
+           
+           
+           
+
+           
 
        
            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
@@ -1311,7 +1323,7 @@ export const actions = {
 
             const newVetRecord = cloneDeep(state.vetForm);
 
-         //   newVetRecord.createdBy = this.$auth.user.email;
+            newVetRecord.createdBy = this.$auth.user.email;
            
            
            console.log(newVetRecord);
@@ -1352,6 +1364,11 @@ export const actions = {
            console.log(response.data)
 
        //    const { data:fetchUsers } = await api.get(`/auth/allUsers`)
+
+    //    const customeUserRecords = response.data.filter( cur=>
+    //     cur.createdBy ===this.$auth.user.email
+    //           )
+
         
     //    //--------------------ALL AGRO RECORDS FILTERED BY CATEGORY --------------------------------// 
        const cattleRecords = response.data.filter( a=>

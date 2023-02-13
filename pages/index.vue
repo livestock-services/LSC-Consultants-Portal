@@ -58,28 +58,6 @@
 
   
 
-     <div class="card under-treatment-card ml-5 card-body">
-      
-       <div class="card-body">
-        <a
-          class="navbar-item mx-4 mt-2"
-          href="/"
-        >
-          <b-icon
-                icon="cow"
-                size="is-medium"
-                type="is-info">
-            </b-icon>
-        </a>
-
-     <span><span class="text-under-treatment-count mb-2"> <countTo :startVal='startVal' :endVal='beef' :duration='8000'></countTo></span> <br/><span class=" mx-4 text-under-treatment">Beef AI Consultations</span></span> <br>
-      <!-- <span class="text-bull"> <countTo :startVal='startVal' :endVal='Bulls' :duration='3000'></countTo> Bulls</span><br>
-      <span class="text-cow"> <countTo :startVal='startVal' :endVal='Cows' :duration='3000'></countTo> Cows</span><br>
-      <span class="text-heifer"> <countTo :startVal='startVal' :endVal='Heifers' :duration='3000'></countTo> Heifers</span><br>
-      <span class="text-calves"> <countTo :startVal='startVal' :endVal='Calves' :duration='3000'></countTo> Calves</span> -->
-      </div>
-     </div>
-    
     
    
 
@@ -178,13 +156,13 @@
           href="/"
         >
           <b-icon
-                icon="pipe"
+                icon="water"
                 size="is-medium"
-                type="is-primary">
+                type="is-info">
             </b-icon>
         </a>
 
-     <span><span class="text-yearlings-count mb-2"> <countTo :startVal='startVal' :endVal='irrigation' :duration='5000'></countTo></span> <br/><span class=" mx-4 text-yearlings"> Irrigation Consultations</span></span> <br>
+     <span><span class="text-yearlings-count mb-2"> <countTo :startVal='startVal' :endVal='irrigation + pumps' :duration='5000'></countTo></span> <br/><span class=" mx-4 text-yearlings"> Irrigation & Water Pump Consultations</span></span> <br>
       <!-- <span class="text-bull"> <countTo :startVal='startVal' :endVal='Bulls' :duration='3000'></countTo> Bulls</span><br>
       <span class="text-cow"> <countTo :startVal='startVal' :endVal='Cows' :duration='3000'></countTo> Cows</span><br>
       <span class="text-heifer"> <countTo :startVal='startVal' :endVal='Heifers' :duration='3000'></countTo> Heifers</span><br>
@@ -224,13 +202,13 @@
           href="/"
         >
            <b-icon
-                icon="pig"
+                icon="needle"
                 size="is-medium"
                 type="is-info ">
             </b-icon>
         </a>
 
-     <span><span class="text-calf-count mb-2"> <countTo :startVal='startVal' :endVal='pigAI' :duration='6000'></countTo></span> <br/><span class=" mx-4 text-calf">Pig AI Consultations</span></span> <br>
+     <span><span class="text-calf-count mb-2"> <countTo :startVal='startVal' :endVal='pigAI + beef' :duration='6000'></countTo></span> <br/><span class=" mx-4 text-calf"> AI Consultations</span></span> <br>
       <!-- <span class="text-bull"> <countTo :startVal='startVal' :endVal='Bulls' :duration='3000'></countTo> Bulls</span><br>
       <span class="text-cow"> <countTo :startVal='startVal' :endVal='Cows' :duration='3000'></countTo> Cows</span><br>
       <span class="text-heifer"> <countTo :startVal='startVal' :endVal='Heifers' :duration='3000'></countTo> Heifers</span><br>
@@ -279,13 +257,13 @@
       href="/"
     >
       <b-icon
-            icon="water"
+            icon="projector"
             size="is-medium"
             type="is-light">
         </b-icon>
     </a>
 
- <span><span class="text-weaners-count mb-2"> <countTo :startVal='startVal' :endVal='pumps' :duration='5000'></countTo></span> <br/><span class=" mx-4 text-weaners">Water Pump Consultations</span></span> <br>
+ <span><span class="text-weaners-count mb-2"> <countTo :startVal='startVal' :endVal='pumps' :duration='5000'></countTo></span> <br/><span class=" mx-4 text-weaners">Trainings</span></span> <br>
   <!-- <span class="text-bull"> <countTo :startVal='startVal' :endVal='Bulls' :duration='3000'></countTo> Bulls</span><br>
   <span class="text-cow"> <countTo :startVal='startVal' :endVal='Cows' :duration='3000'></countTo> Cows</span><br>
   <span class="text-heifer"> <countTo :startVal='startVal' :endVal='Heifers' :duration='3000'></countTo> Heifers</span><br>
@@ -432,7 +410,7 @@ export default {
 
       var endDate = computed(()=>this.endTime)
 
-      var agros = computed(()=> this.agros)
+      var agro = computed(()=> this.agros)
       var beefAIs = computed(()=>this.beef)
       var fences =computed(()=> this.fences)
       var fishes = computed (()=> this.fish)
@@ -471,7 +449,7 @@ export default {
         
         totalConsults_fields:{
                 "Consultations By Category":"consultation",
-                "no. of Consultations":"no. of Consultations",
+                "no. of Consultations":"consultations",
               
                 "Start Date":"start_date",
                 "End Date":"end_date"
@@ -489,53 +467,53 @@ export default {
                 
                 { 
                   "consultation":"Agronomy",
-                  "no. of Consultations":agros
+                  "consultations":agro
                 },
 
                  { "consultation":"Beef AI & Breeding",
-                    "no. of Consultations":beefAIs
+                    "consultations":beefAIs
                 },
 
                  { "consultation":"Fencing",
-                    "no. of Consultations":fences
+                    "consultations":fences
                   },
 
                  { "consultation":"Fish",
-                    "no. of Consultations":fishes
+                    "consultations":fishes
                 },
 
                  { "consultation":"Irrigation",
-                    "no. of Consultations":irrigations
+                    "consultations":irrigations
                   },
 
                  { "consultation":"Nutrition",
-                    "no. of Consultations":nutritions
+                    "consultations":nutritions
                   },
 
                  { "consultation":"Pig AI & Breeding",
-                    "no. of Consultations":pigAIs
+                    "consultations":pigAIs
                 },
 
                  { "consultation":"Post Mortems",
-                    "no. of Consultations":postMortems
+                    "consultations":postMortems
                   },
 
                  { "consultation":"Vet",
-                    "no. of Consultations":vets
+                    "consultations":vets
                   },
 
                  { "consultation":"Water Pumps",
-                    "no. of Consultations":waterPumps
+                    "consultations":waterPumps
                   },
               
                
                
                   { "consultation":"",
-                    "no. of Consultations":""
+                    "consultations":""
                  },
 
                  { "consultation":"Total",
-                    "no. of Consultations":totalConsults
+                    "consultations":totalConsults
                  },
 
                 ]
@@ -678,7 +656,7 @@ export default {
 
 
 .total-consult-card{
-  width: 620px;
+  width: 820px;
   height:190px;
   
    background-color: rgb(244, 172, 72); 
@@ -838,7 +816,7 @@ export default {
 }
 
 .total-consult-card{
-  width: 830px;
+  width: 1250px;
   height:220px;
   
   

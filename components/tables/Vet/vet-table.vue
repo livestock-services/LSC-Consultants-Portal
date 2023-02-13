@@ -36,7 +36,7 @@
       :current-page.sync="currentPage"
       :pagination-position="paginationPosition"
       :default-sort-direction="defaultSortDirection"
-      mobile-cards
+      debounce-search="1200"
       default-sort="selectPriority"
       aria-next-label="Next Page"
       aria-previous-label="Previous Page"
@@ -48,7 +48,7 @@
 
        <b-table-column
         v-slot="props"
-        field="taskDescription"
+        field="vetClientName"
         label="Client Name"
         searchable
         
@@ -72,9 +72,9 @@
 
       <b-table-column
         v-slot="props"
-        field="taskDescription"
+        field="vetClientLocation"
         label="Location"
-        
+        searchable
         
       >
       <span class="tag is-primary is-light">  {{ props.row.vetClientLocation }} </span>
@@ -85,7 +85,7 @@
 
      <b-table-column
         v-slot="props"
-        field="selectPriority"
+        field="vetCategory"
         label="Category"
         searchable
       >
@@ -99,21 +99,33 @@
         v-slot="props"
         field="selectPriority"
         label="Comments/Remarks"
-        searchable
+        
       >
 
-      <span class="tag is-info is-light">  {{ props.row.vetComments }} </span>
+      <span class=" is-info is-light">  {{ props.row.vetComments }} </span>
        
       </b-table-column>
 
       <b-table-column
         v-slot="props"
-        field="selectPriority"
+        field="date"
         label="Date"
-        sortable
+        searchable
       >
 
       <span class="tag is-info is-light">  {{ props.row.date }} </span>
+       
+      </b-table-column>
+
+      <b-table-column
+        v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"
+        v-slot="props"
+        field="selectPriority"
+        label="Created By"
+        searchable
+      >
+
+      <span class="tag is-success is-light">  {{ props.row.createdBy }} </span>
        
       </b-table-column>
       
@@ -184,6 +196,7 @@ export default {
       defaultSortDirection: 'asc',
       sortIcon: 'arrow-up',
       sortIconSize: 'is-small',
+      searchable:true
     }
   },
 

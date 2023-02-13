@@ -37,6 +37,7 @@
         :pagination-position="paginationPosition"
         :default-sort-direction="defaultSortDirection"
         mobile-cards
+        debounce-search="1200"
         default-sort="selectPriority"
         aria-next-label="Next Page"
         aria-previous-label="Previous Page"
@@ -48,7 +49,7 @@
   
          <b-table-column
           v-slot="props"
-          field="taskDescription"
+          field="beefAIClientName"
           label="Client Name"
           searchable
           
@@ -72,9 +73,9 @@
   
         <b-table-column
           v-slot="props"
-          field="taskDescription"
+          field="beefAIClientLocation"
           label="Location"
-          
+          searchable
           
         >
         <span class="tag is-primary is-light">  {{ props.row.beefAIClientLocation }} </span>
@@ -85,7 +86,7 @@
   
        <b-table-column
           v-slot="props"
-          field="selectPriority"
+          field="beefAICategory"
           label="Category"
           searchable
         >
@@ -106,7 +107,17 @@
         </b-table-column>
         
         
+        <b-table-column
+        v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"
+          v-slot="props"
+          field="createdBy"
+          label="Created By"
+          searchable
+        >
+  
+        <span class="tag is-info is-light">  {{ props.row.createdBy }} </span>
          
+        </b-table-column>
   
   
           

@@ -37,6 +37,7 @@
       :pagination-position="paginationPosition"
       :default-sort-direction="defaultSortDirection"
       mobile-cards
+      debounce-search="1200"
       default-sort="selectPriority"
       aria-next-label="Next Page"
       aria-previous-label="Previous Page"
@@ -48,7 +49,7 @@
 
        <b-table-column
         v-slot="props"
-        field="taskDescription"
+        field="fishClientName"
         label="Client Name"
         searchable
         
@@ -72,9 +73,9 @@
 
       <b-table-column
         v-slot="props"
-        field="taskDescription"
+        field="fishClientLocation"
         label="Location"
-        
+        searchable
         
       >
       <span class="tag is-primary is-light">  {{ props.row.fishClientLocation }} </span>
@@ -85,9 +86,9 @@
 
       <b-table-column
         v-slot="props"
-        field="selectPriority"
+        field="date"
         label="Date"
-        sortable
+        searchable
       >
 
       <span class="tag is-info is-light">  {{ props.row.date }} </span>
@@ -95,6 +96,17 @@
       </b-table-column>
       
       
+      <b-table-column
+        v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"
+          v-slot="props"
+          field="createdBy"
+          label="Created By"
+          sortable
+        >
+  
+        <span class="tag is-info is-light">  {{ props.row.createdBy }} </span>
+         
+        </b-table-column>
        
 
 

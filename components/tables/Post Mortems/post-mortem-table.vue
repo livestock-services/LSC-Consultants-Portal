@@ -41,6 +41,7 @@
         aria-next-label="Next Page"
         aria-previous-label="Previous Page"
         aria-page-label="Page"
+        debounce-search="1200"
         aria-current-label="Current Page"
       >
   
@@ -48,7 +49,7 @@
   
          <b-table-column
           v-slot="props"
-          field="taskDescription"
+          field="vetPostMortemClientName"
           label="Client Name"
           searchable
           
@@ -72,8 +73,9 @@
   
         <b-table-column
           v-slot="props"
-          field="taskDescription"
+          field="vetPostMortemClientLocation"
           label="Location"
+          searchable
           
           
         >
@@ -85,9 +87,9 @@
   
        <b-table-column
           v-slot="props"
-          field="selectPriority"
+          field="vetPostMortemCategory"
           label="Category"
-          sortable
+          searchable
         >
   
         <span class="tag is-info is-light">  {{ props.row.vetPostMortemCategory }} </span>
@@ -101,15 +103,15 @@
           sortable
         >
   
-        <span class="tag is-info is-light">  {{ props.row.vetPMComments }} </span>
+        <span class="is-info is-light">  {{ props.row.vetPMComments }} </span>
          
         </b-table-column>
 
         <b-table-column
           v-slot="props"
-          field="selectPriority"
+          field="vetPostMortemDiseases"
           label="Disease"
-         
+          searchable
         >
   
         <span class="tag is-info is-light">  {{ props.row.vetPostMortemDiseases }} </span>
@@ -119,12 +121,25 @@
   
         <b-table-column
           v-slot="props"
-          field="selectPriority"
+          field="date"
           label="Date"
-          sortable
+          searchable
         >
   
         <span class="tag is-info is-light">  {{ props.row.date }} </span>
+         
+        </b-table-column>
+
+        
+        <b-table-column
+        v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"
+          v-slot="props"
+          field="createdBy"
+          label="Created By"
+          searchable
+        >
+  
+        <span class="tag is-info is-light">  {{ props.row.createdBy }} </span>
          
         </b-table-column>
         

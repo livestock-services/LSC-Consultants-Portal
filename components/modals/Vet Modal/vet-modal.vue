@@ -61,6 +61,7 @@
                 <option value="Rabbits">Rabbits</option>
                 <option value="Wildlife Or Exotics">Wildlife Or Exotics</option>
                 <option value="Horses">Horses</option>
+                <option value="Other">Other</option>
               </b-select>
             </b-field>
           </div>
@@ -130,6 +131,7 @@ export default {
         "Rabbits",
         "Wildlife Or Exotics",
         "Horses",
+        "Other"
       ],
 
       isFullPage: true,
