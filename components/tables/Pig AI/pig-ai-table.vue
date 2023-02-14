@@ -83,7 +83,17 @@
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
-
+      <b-table-column
+          v-slot="props"
+          field="pigAIClientTown"
+          label="Town"
+         searchable 
+          
+        >
+        <span class="tag is-primary is-light">  {{ props.row.pigAIClientTown }} </span>
+         
+          <!-- {{ props.row.sumInsured }} -->
+        </b-table-column>
     
 
       <b-table-column
@@ -97,6 +107,17 @@
        
       </b-table-column>
       
+      <b-table-column
+          v-slot="props"
+          field="pigAIClientComments"
+          label="Comments/Remarks"
+         searchable 
+          
+        >
+        <span class="tag is-primary is-light">  {{ props.row.pigAIClientComments }} </span>
+         
+          <!-- {{ props.row.sumInsured }} -->
+        </b-table-column>
       
       <b-table-column
         v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"

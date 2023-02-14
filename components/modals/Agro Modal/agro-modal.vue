@@ -42,6 +42,18 @@
             <b-input type="text" v-model="clientLocation" placeholder="Enter address here..."></b-input>
             </div>
           </div>
+
+          <h4> <span class="is-blue"> Town</span></h4>
+
+          <div class="columns">
+            
+            
+
+            <div  class="column is-three-quarters">
+            
+            <b-input type="text" v-model="clientTown" placeholder="Enter town here..."></b-input>
+            </div>
+          </div>
          
             <h4> <span class="is-blue"> Select Category</span></h4>
 
@@ -67,7 +79,17 @@
 
         
 
-        
+          <h4> <span class="is-blue"> Comments/Remarks</span></h4>
+
+          <div class="columns">
+
+
+
+          <div  class="column is-three-quarters">
+
+          <b-input type="text" v-model="clientComments" placeholder="Comments/Remarks..."></b-input>
+          </div>
+          </div>
 
           
          
@@ -88,7 +110,11 @@
 
              <p class="mx-4 cat">Client Location :  {{clientLocation}}</p>
 
+             <p class="mx-4 cat">Client Town Location :  {{clientTown}}</p>
+
             <p class="mx-4 cat">Category Selected :  {{agroCategory}}</p>
+
+            <p class="mx-4 cat">Comments/Remarks :  {{clientComments}}</p>
           
             
          
@@ -161,8 +187,10 @@ export default {
       'agroForm',
       'agroForm.clientName',
       'agroForm.clientLocation',
+      'agroForm.clientTown',
       'agroForm.clientPhoneNumber',
       'agroForm.agroCategory',
+      'agroForm.clientComments',
       
       
   ]),
@@ -244,7 +272,9 @@ export default {
               clientName:null,
               clientPhoneNumber:null,
               clientLocation:null,
-              agroCategory:null
+              clientTown:null,
+              agroCategory:null,
+              clientComments:null
 
         
       }

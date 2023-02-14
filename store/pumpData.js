@@ -37,6 +37,8 @@ export const state = () => ({
         waterPumpClientName:null,
         waterPumpClientPhoneNumber:null,
         waterPumpClientLocation:null,
+        waterPumpClientTown:null,
+        waterPumpClientComments:null,
         // WaterPumpCategory:null,
         date:new Date()
        // createdBy:null

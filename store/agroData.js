@@ -64,6 +64,8 @@ export const state = () => ({
         clientName:null,
         clientPhoneNumber:null,
         clientLocation:null,
+        clientTown:null,
+        clientComments:null,
         agroCategory:null,
         date:new Date(),
         createdBy:null

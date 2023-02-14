@@ -82,6 +82,20 @@
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
+
+        <b-table-column
+          v-slot="props"
+          field="nutritionClientTown"
+          label="Town"
+         searchable 
+          
+        >
+        <span class="tag is-primary is-light">  {{ props.row.nutritionClientTown }} </span>
+         
+          <!-- {{ props.row.sumInsured }} -->
+        </b-table-column>
+
+        
   
   
        <b-table-column
@@ -104,6 +118,18 @@
   
         <span class="tag is-info is-light">  {{ props.row.date }} </span>
          
+        </b-table-column>
+
+        <b-table-column
+          v-slot="props"
+          field="nutritionClientComments"
+          label="Comments/Remarks"
+         searchable 
+          
+        >
+        <span class="tag is-primary is-light">  {{ props.row.nutritionClientComments }} </span>
+         
+          <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
 

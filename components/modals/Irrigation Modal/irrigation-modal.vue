@@ -42,12 +42,32 @@
               <b-input type="text" v-model="irrigationClientLocation" placeholder="Enter address here..."></b-input>
               </div>
             </div>
+
+            <h4> <span class="is-blue"> Town</span></h4>
+  
+            <div class="columns">
+              
+              
+
+              <div  class="column is-three-quarters">
+              
+              <b-input type="text" v-model="irrigationClientTown" placeholder="Enter town here..."></b-input>
+              </div>
+            </div>
            
              
   
-           <div class="columns">
-            
-           </div>
+            <h4> <span class="is-blue"> Comments/Remarks</span></h4>
+
+            <div class="columns">
+
+
+
+            <div  class="column is-three-quarters">
+
+            <b-input type="text" v-model="irrigationClientComments" placeholder="Comments/Remarks..."></b-input>
+            </div>
+            </div>
   
           
   
@@ -71,6 +91,10 @@
                <p class="mx-4 cat">Client Number :  {{ irrigationClientPhoneNumber }}</p>
   
                <p class="mx-4 cat">Client Location :  {{ irrigationClientLocation }}</p>
+
+               <p class="mx-4 cat">Client Town Location :  {{ irrigationClientTown }}</p>
+
+               <p class="mx-4 cat">Comments/Remarks :  {{ irrigationClientComments }}</p>
   
              
             
@@ -137,7 +161,9 @@
         'irrigationForm',
         'irrigationForm.irrigationClientName',
         'irrigationForm.irrigationClientLocation',
+        'irrigationForm.irrigationClientTown',
         'irrigationForm.irrigationClientPhoneNumber',
+        'irrigationForm.irrigationClientComments',
       
         
     ]),
@@ -219,7 +245,8 @@
                 irrigationClientName:null,
                 irrigationClientPhoneNumber:null,
                 irrigationClientLocation:null,
-                
+                irrigationClientTown:null,
+                irrigationClientComments:null
           
         }
         

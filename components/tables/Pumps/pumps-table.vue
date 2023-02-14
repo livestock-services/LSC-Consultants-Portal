@@ -83,6 +83,18 @@
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
+      <b-table-column
+        v-slot="props"
+        field="waterPumpClientTown"
+        label="Town"
+        searchable
+        
+      >
+      <span class="tag is-primary is-light">  {{ props.row.waterPumpClientTown }} </span>
+       
+        <!-- {{ props.row.sumInsured }} -->
+      </b-table-column>
+
 
       <b-table-column
         v-slot="props"
@@ -95,7 +107,20 @@
        
       </b-table-column>
       
+      <b-table-column
+        v-slot="props"
+        field="waterPumpClientComments"
+        label="Comments/Remarks"
+        searchable
+        
+      >
+      <span class="tag is-primary is-light">  {{ props.row.waterPumpClientComments }} </span>
+       
+        <!-- {{ props.row.sumInsured }} -->
+      </b-table-column>
       
+
+
       <b-table-column
         v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"
           v-slot="props"

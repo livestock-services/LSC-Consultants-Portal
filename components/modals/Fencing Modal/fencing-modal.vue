@@ -1,7 +1,7 @@
 <template>
   <div class="modal-card ">
     <header class="modal-card-head">
-      <h3 class="modal-card-title">Pig AI Snapshot</h3>
+      <h3 class="modal-card-title">Fence Snapshot</h3>
      
       <button type="button" class="delete" @click="close"></button>
     </header>
@@ -42,16 +42,36 @@
             <b-input type="text" v-model="fenceClientLocation" placeholder="Enter address here..."></b-input>
             </div>
           </div>
+
+
+          <h4> <span class="is-blue"> Town </span></h4>
+
+          <div class="columns">
+            
+            
+
+            <div  class="column is-three-quarters">
+            
+            <b-input type="text" v-model="fenceClientTown" placeholder="Enter town here..."></b-input>
+            </div>
+          </div>
+
+
          
-            <h4> <span class="is-blue"> Select Category</span></h4>
-
-         <div class="columns">
           
-         </div>
-
         
 
-        
+         <h4> <span class="is-blue"> Comments/Remarks </span></h4>
+
+          <div class="columns">
+            
+            
+
+            <div  class="column is-three-quarters">
+            
+            <b-input type="text" v-model="fenceClientComments" placeholder="Comments/Remarks..."></b-input>
+            </div>
+          </div>
 
           
          
@@ -70,9 +90,11 @@
 
              <p class="mx-4 cat">Client Number :  {{fenceClientPhoneNumber}}</p>
 
-             <p class="mx-4 cat">Client Location :  {{fenceClientLocation}}</p>
+             <p class="mx-4 cat">Client Location :  {{fenceClientLocation}}</p> 
 
-           
+             <p class="mx-4 cat">Client Town :  {{fenceClientTown}}</p>
+
+             <p class="mx-4 cat">Comments/Remarks :  {{fenceClientComments}}</p>
           
             
          
@@ -137,7 +159,9 @@ export default {
       'fenceForm',
       'fenceForm.fenceClientName',
       'fenceForm.fenceClientLocation',
+      'fenceForm.fenceClientTown',
       'fenceForm.fenceClientPhoneNumber',
+      'fenceForm.fenceClientComments',
     
       
   ]),
@@ -219,7 +243,9 @@ export default {
               fenceClientName:null,
               fenceClientPhoneNumber:null,
               fenceClientLocation:null,
-              fenceCategory:null
+              fenceClientTown:null,
+              fenceCategory:null,
+              fenceClientComments:null,
 
         
       }

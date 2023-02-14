@@ -82,6 +82,21 @@
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
+      <b-table-column
+          v-slot="props"
+          field="vetClientTown"
+          label="Town"
+         searchable 
+          
+        >
+        <span class="tag is-primary is-light">  {{ props.row.vetClientTown }} </span>
+         
+          <!-- {{ props.row.sumInsured }} -->
+        </b-table-column>
+
+        
+
+
 
      <b-table-column
         v-slot="props"
@@ -95,16 +110,7 @@
       </b-table-column>
 
       
-     <b-table-column
-        v-slot="props"
-        field="selectPriority"
-        label="Comments/Remarks"
-        
-      >
-
-      <span class=" is-info is-light">  {{ props.row.vetComments }} </span>
-       
-      </b-table-column>
+     
 
       <b-table-column
         v-slot="props"
@@ -114,6 +120,17 @@
       >
 
       <span class="tag is-info is-light">  {{ props.row.date }} </span>
+       
+      </b-table-column>
+
+      <b-table-column
+        v-slot="props"
+        field="selectPriority"
+        label="Comments/Remarks"
+        
+      >
+
+      <span class=" is-info is-light">  {{ props.row.vetComments }} </span>
        
       </b-table-column>
 

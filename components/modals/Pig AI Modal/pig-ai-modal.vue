@@ -42,20 +42,33 @@
               <b-input type="text" v-model="pigAIClientLocation" placeholder="Enter address here..."></b-input>
               </div>
             </div>
+
+
+            <h4> <span class="is-blue"> Town</span></h4>
+  
+                <div class="columns">
+                  
+                  
+
+                  <div  class="column is-three-quarters">
+                  
+                  <b-input type="text" v-model="pigAIClientTown" placeholder="Enter town here..."></b-input>
+                  </div>
+                </div>
            
-              <h4> <span class="is-blue"> Select Category</span></h4>
-  
-           <div class="columns">
-            
-           </div>
-  
-          
-  
-          
-  
-            
-           
-           
+
+                <h4> <span class="is-blue"> Comments/Remarks</span></h4>
+
+                <div class="columns">
+
+
+
+                <div  class="column is-three-quarters">
+
+                <b-input type="text" v-model="pigAIClientComments" placeholder="Comments/Remarks..."></b-input>
+                </div>
+                </div>
+
   
   
            
@@ -71,6 +84,10 @@
                <p class="mx-4 cat">Client Number :  {{pigAIClientPhoneNumber}}</p>
   
                <p class="mx-4 cat">Client Location :  {{pigAIClientLocation}}</p>
+
+               <p class="mx-4 cat">Client Town Location :  {{pigAIClientTown}}</p>
+
+               <p class="mx-4 cat">Comments/Remarks :  {{pigAIClientComments}}</p>
   
              
             
@@ -137,8 +154,9 @@
         'pigAIForm',
         'pigAIForm.pigAIClientName',
         'pigAIForm.pigAIClientLocation',
+        'pigAIForm.pigAIClientTown',
         'pigAIForm.pigAIClientPhoneNumber',
-      
+        'pigAIForm.pigAIClientComments',     
         
     ]),
   
@@ -219,7 +237,9 @@
                 pigAIClientName:null,
                 pigAIClientPhoneNumber:null,
                 pigAIClientLocation:null,
-                pigAICategory:null
+                pigAICategory:null,
+                pigAIClientTown:null,
+                pigAIClientComments:null
   
           
         }

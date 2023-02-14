@@ -37,6 +37,8 @@ export const state = () => ({
         irrigationClientName:null,
         irrigationClientPhoneNumber:null,
         irrigationClientLocation:null,
+        irrigationClientTown:null,
+        irrigationClientComments:null,
         // IRRIGATIONCategory:null,
         date:new Date()
        // createdBy:null

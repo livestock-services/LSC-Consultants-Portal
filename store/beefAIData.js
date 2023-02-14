@@ -35,6 +35,8 @@ export const state = () => ({
         beefAIClientName:null,
         beefAIClientPhoneNumber:null,
         beefAIClientLocation:null,
+        beefAIClientTown:null,
+        beefAIClientComments:null,
         beefAICategory:null,
         date:new Date()
        // createdBy:null

@@ -42,6 +42,21 @@
               <b-input type="text" v-model="beefAIClientLocation" placeholder="Enter address here..."></b-input>
               </div>
             </div>
+
+              <h4> <span class="is-blue"> Town</span></h4>
+
+              <div class="columns">
+
+
+
+              <div  class="column is-three-quarters">
+
+              <b-input type="text" v-model="beefAIClientTown" placeholder="Enter town here..."></b-input>
+              </div>
+              </div>
+
+
+
            
               <h4> <span class="is-blue"> Select Category</span></h4>
   
@@ -57,6 +72,19 @@
               
              </b-field>
            </div>
+
+
+           <h4> <span class="is-blue"> Comments/Remarks</span></h4>
+
+              <div class="columns">
+
+
+
+              <div  class="column is-three-quarters">
+
+              <b-input type="text" v-model="beefAIClientComments" placeholder="Comments/Remarks..."></b-input>
+              </div>
+              </div>
   
           
   
@@ -80,8 +108,12 @@
                <p class="mx-4 cat">Client Number :  {{beefAIClientPhoneNumber}}</p>
   
                <p class="mx-4 cat">Client Location :  {{beefAIClientLocation}}</p>
+
+               <p class="mx-4 cat">Client Town Location :  {{beefAIClientTown}}</p>
   
               <p class="mx-4 cat">Category Selected :  {{beefAICategory}}</p>
+
+              <p class="mx-4 cat">Comments/Remarks :  {{beefAIClientComments}}</p>
             
               
            
@@ -146,8 +178,10 @@
         'beefAIForm',
         'beefAIForm.beefAIClientName',
         'beefAIForm.beefAIClientLocation',
+        'beefAIForm.beefAIClientTown',
         'beefAIForm.beefAIClientPhoneNumber',
         'beefAIForm.beefAICategory',
+        'beefAIForm.beefAIComments',
         
         
     ]),
@@ -229,6 +263,8 @@
                 beefAIClientName:null,
                 beefAIClientPhoneNumber:null,
                 beefAIClientLocation:null,
+                beefAIClientTown:null,
+                beefAIClientComments:null,
                 beefAICategory:null
   
           

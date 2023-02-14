@@ -37,6 +37,8 @@ export const state = () => ({
         fenceClientName:null,
         fenceClientPhoneNumber:null,
         fenceClientLocation:null,
+        fenceClientTown:null,
+        fenceClientComments:null,
         // FenceCategory:null,
         date:new Date()
        // createdBy:null

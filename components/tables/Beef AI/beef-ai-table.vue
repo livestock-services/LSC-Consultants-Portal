@@ -83,7 +83,18 @@
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
   
-  
+        <b-table-column
+          v-slot="props"
+          field="beefAIClientTown"
+          label="Town"
+         searchable 
+          
+        >
+        <span class="tag is-primary is-light">  {{ props.row.beefAIClientTown }} </span>
+         
+          <!-- {{ props.row.sumInsured }} -->
+        </b-table-column>
+
        <b-table-column
           v-slot="props"
           field="beefAICategory"
@@ -106,7 +117,18 @@
          
         </b-table-column>
         
-        
+        <b-table-column
+          v-slot="props"
+          field="beefAIClientComments"
+          label="Comments/Remarks"
+         searchable 
+          
+        >
+        <span class="tag is-primary is-light">  {{ props.row.beefAIClientComments }} </span>
+         
+          <!-- {{ props.row.sumInsured }} -->
+        </b-table-column>
+
         <b-table-column
         v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"
           v-slot="props"

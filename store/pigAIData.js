@@ -37,6 +37,8 @@ export const state = () => ({
         pigAIClientName:null,
         pigAIClientPhoneNumber:null,
         pigAIClientLocation:null,
+        pigAIClientTown:null,
+        pigAIClientComments:null,
         // pigAICategory:null,
         date:new Date()
        // createdBy:null

@@ -44,6 +44,20 @@
                 ></b-input>
               </div>
             </div>
+
+            <h4><span class="is-blue"> Town</span></h4>
+  
+            <div class="columns">
+              <div class="column is-three-quarters">
+                <b-input
+                  type="text"
+                  v-model="nutritionClientTown"
+                  placeholder="Enter town here..."
+                ></b-input>
+              </div>
+            </div>
+
+
             <h4><span class="is-blue"> Select Category</span></h4>
   
             <div class="columns">
@@ -64,6 +78,19 @@
                 </b-select>
               </b-field>
             </div>
+
+
+              <h4><span class="is-blue"> Comments/Remarks</span></h4>
+
+              <div class="columns">
+              <div class="column is-three-quarters">
+              <b-input
+              type="text"
+              v-model="nutritionClientComments"
+              placeholder="Comments/Remarks..."
+              ></b-input>
+              </div>
+              </div>
   
             <div class="card my-4">
               <div class="summary-content">
@@ -74,6 +101,10 @@
                 <p class="mx-4 cat">Client Number : {{ nutritionClientPhoneNumber }}</p>
   
                 <p class="mx-4 cat">Client Location : {{ nutritionClientLocation }}</p>
+
+                <p class="mx-4 cat">Client Town Location : {{ nutritionClientTown }}</p>
+
+                <p class="mx-4 cat">Comments/Remarks : {{ nutritionClientComments }}</p>
   
                 <p class="mx-4 cat">
                   Category Selected : {{ nutritionCategory }}
@@ -124,8 +155,12 @@
           nutritionClientPhoneNumber: null,
   
           nutritionClientLocation:null,
+
+          nutritionClientTown:null,
   
           nutritionCategory: null,
+
+          nutritionClientComments:null
         },
       };
     },
@@ -136,7 +171,10 @@
         "nutritionForm.nutritionClientName",
         "nutritionForm.nutritionClientPhoneNumber",
         "nutritionForm.nutritionClientLocation",
+        "nutritionForm.nutritionClientTown",
         "nutritionForm.nutritionCategory",
+        "nutritionForm.nutritionClientComments",
+        
       ]),
   
       ...mapGetters("nutritionData", {
@@ -203,7 +241,10 @@
         nutritionClientName:null,
         nutritionClientPhoneNumber:null,
         nutritionClientLocation:null,
-        nutritionCategory:null
+        nutritionClientTown:null,
+        nutritionCategory:null,
+        nutritionClientComments:null
+
   
         }
       },

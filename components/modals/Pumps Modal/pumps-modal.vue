@@ -42,21 +42,31 @@
               <b-input type="text" v-model="waterPumpClientLocation" placeholder="Enter address here..."></b-input>
               </div>
             </div>
+
+
+            <h4> <span class="is-blue"> Town</span></h4>
+  
+            <div class="columns">
+              
+              
+  
+              <div  class="column is-three-quarters">
+              
+              <b-input type="text" v-model="waterPumpClientTown" placeholder="Enter town here..."></b-input>
+              </div>
+            </div>
            
-             
+            <h4> <span class="is-blue"> Comments/Remarks</span></h4>
   
-           <div class="columns">
-            
-           </div>
+            <div class="columns">
+              
+              
   
-          
-  
-          
-  
-            
-           
-           
-  
+              <div  class="column is-three-quarters">
+              
+              <b-input type="text" v-model="waterPumpClientComments" placeholder="Comments/Remarks..."></b-input>
+              </div>
+            </div>
   
            
           <div class=" card my-4 ">
@@ -71,6 +81,10 @@
                <p class="mx-4 cat">Client Number :  {{ waterPumpClientPhoneNumber }}</p>
   
                <p class="mx-4 cat">Client Location :  {{ waterPumpClientLocation }}</p>
+
+               <p class="mx-4 cat">Client Town Location :  {{ waterPumpClientTown }}</p>
+
+               <p class="mx-4 cat">Comments/Remarks :  {{ waterPumpClientComments }}</p>
   
              
             
@@ -137,7 +151,10 @@
         'waterPumpForm',
         'waterPumpForm.waterPumpClientName',
         'waterPumpForm.waterPumpClientLocation',
+        'waterPumpForm.waterPumpClientTown',
         'waterPumpForm.waterPumpClientPhoneNumber',
+        'waterPumpForm.waterPumpClientComments',
+       
       
         
     ]),
@@ -219,7 +236,8 @@
                 waterPumpClientName:null,
                 waterPumpClientPhoneNumber:null,
                 waterPumpClientLocation:null,
-                
+                waterPumpClientTown:null,
+                waterPumpClientComments:null
           
         }
         

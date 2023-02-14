@@ -44,6 +44,20 @@
                 ></b-input>
               </div>
             </div>
+
+            <h4><span class="is-blue"> Town </span></h4>
+  
+            <div class="columns">
+              <div class="column is-three-quarters">
+                <b-input
+                  type="text"
+                  v-model="vetPostMortemClientTown"
+                  placeholder="Enter town here..."
+                ></b-input>
+              </div>
+            </div>
+
+
             <h4><span class="is-blue"> Select Category</span></h4>
   
             <div class="columns">
@@ -176,6 +190,8 @@
                 <p class="mx-4 cat">Client Number : {{ vetPostMortemClientPhoneNumber }}</p>
   
                 <p class="mx-4 cat">Client Location : {{ vetPostMortemClientLocation }}</p>
+
+                <p class="mx-4 cat">Client Town Location : {{ vetPostMortemClientTown }}</p>
   
                 <p class="mx-4 cat">
                   Category Selected : {{ vetPostMortemCategory }}
@@ -235,6 +251,8 @@
           vetPostMortemClientPhoneNumber: null,
   
           vetPostMortemClientLocation:null,
+
+          vetPostMortemClientTown:null,
   
           vetPostMortemCategory: null,
 
@@ -251,6 +269,7 @@
         "vetPostMortemForm.vetPostMortemClientName",
         "vetPostMortemForm.vetPostMortemClientPhoneNumber",
         "vetPostMortemForm.vetPostMortemClientLocation",
+        "vetPostMortemForm.vetPostMortemClientTown",
         "vetPostMortemForm.vetPostMortemCategory",
         "vetPostMortemForm.vetPostMortemDiseases",
         "vetPostMortemForm.vetPMComments",
@@ -323,6 +342,7 @@
             vetPostMortemClientName:null,
             vetPostMortemClientPhoneNumber:null,
             vetPostMortemClientLocation:null,
+            vetPostMortemClientTown:null,
             vetPostMortemCategory:null,
             vetPostMortemDiseases:null,
             vetPMComments:null,

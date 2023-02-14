@@ -83,6 +83,19 @@
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
+      <b-table-column
+        v-slot="props"
+        field="clientTown"
+        label="Town"
+        searchable
+        
+      >
+      <span class="tag is-primary is-light">  {{ props.row.clientTown }} </span>
+       
+        <!-- {{ props.row.sumInsured }} -->
+      </b-table-column>
+
+
 
      <b-table-column
         v-slot="props"
@@ -106,6 +119,18 @@
        
       </b-table-column>
       
+      <b-table-column
+        v-slot="props"
+        field="clientComments"
+        label="Comments/Remarks"
+        searchable
+        
+      >
+      <span class="tag is-primary is-light">  {{ props.row.clientComments }} </span>
+       
+        <!-- {{ props.row.sumInsured }} -->
+      </b-table-column>
+
       
       <b-table-column
         v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"

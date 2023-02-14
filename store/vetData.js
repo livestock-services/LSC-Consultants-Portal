@@ -323,6 +323,7 @@ export const state = () => ({
         vetClientName:null,
         vetClientPhoneNumber:null,
         vetClientLocation:null,
+        vetClientTown:null,
         vetCategory:null,
         vetComments:null,
         createdBy:null
@@ -334,6 +335,7 @@ export const state = () => ({
         vetPostMortemClientName:null,
         vetPostMortemClientPhoneNumber:null,
         vetPostMortemClientLocation:null,
+        vetPostMortemClientTown:null,
         vetPostMortemCategory:null,
         vetPostMortemDiseases:null,
         vetPMComments:null,

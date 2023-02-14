@@ -44,6 +44,20 @@
               ></b-input>
             </div>
           </div>
+
+          <h4><span class="is-blue"> Town</span></h4>
+
+          <div class="columns">
+            <div class="column is-three-quarters">
+              <b-input
+                type="text"
+                v-model="vetClientTown"
+                placeholder="Enter town here..."
+              ></b-input>
+            </div>
+          </div>
+
+
           <h4><span class="is-blue"> Select Category</span></h4>
 
           <div class="columns">
@@ -87,6 +101,8 @@
               <p class="mx-4 cat">Client Number : {{ vetClientPhoneNumber }}</p>
 
               <p class="mx-4 cat">Client Location : {{ vetClientLocation }}</p>
+
+              <p class="mx-4 cat">Client Location : {{ vetClientTown }}</p>
 
               <p class="mx-4 cat">
                 Category Selected : {{ vetCategory }}
@@ -155,6 +171,7 @@ export default {
       "vetForm.vetClientName",
       "vetForm.vetClientPhoneNumber",
       "vetForm.vetClientLocation",
+      "vetForm.vetClientTown",
       "vetForm.vetCategory",
       "vetForm.vetComments",
     ]),
@@ -223,6 +240,7 @@ export default {
       vetClientName:null,
       vetClientPhoneNumber:null,
       vetClientLocation:null,
+      vetClientTown:null,
       vetCategory:null,
       vetComments:null
 

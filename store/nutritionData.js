@@ -52,7 +52,9 @@ import {
         nutritionClientName:null,
         nutritionClientPhoneNumber:null,
         nutritionClientLocation:null,
+        nutritionClientTown:null,
         nutritionCategory:null,
+        nutritionClientComments:null,
        
         
     },

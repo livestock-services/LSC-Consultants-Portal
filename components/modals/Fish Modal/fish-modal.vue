@@ -42,12 +42,31 @@
             <b-input type="text" v-model="fishClientLocation" placeholder="Enter address here..."></b-input>
             </div>
           </div>
-         
+          
+          <h4> <span class="is-blue"> Town</span></h4>
+
+          <div class="columns">
+
+
+
+          <div  class="column is-three-quarters">
+
+          <b-input type="text" v-model="fishClientTown" placeholder="Enter town here..."></b-input>
+          </div>
+          </div>
            
 
-         <div class="columns">
-          
-         </div>
+            <h4> <span class="is-blue"> Comments/Remarks</span></h4>
+
+            <div class="columns">
+
+
+
+            <div  class="column is-three-quarters">
+
+            <b-input type="text" v-model="fishClientComments" placeholder=" Comments/Remarks..."></b-input>
+            </div>
+            </div>
 
         
 
@@ -71,6 +90,10 @@
              <p class="mx-4 cat">Client Number :  {{fishClientPhoneNumber}}</p>
 
              <p class="mx-4 cat">Client Location :  {{fishClientLocation}}</p>
+
+             <p class="mx-4 cat">Client Town Location :  {{fishClientTown}}</p>
+
+             <p class="mx-4 cat">Comments/Remarks :  {{fishClientComments}}</p>
 
            
           
@@ -137,8 +160,9 @@ export default {
       'fishForm',
       'fishForm.fishClientName',
       'fishForm.fishClientLocation',
+      'fishForm.fishClientTown',
       'fishForm.fishClientPhoneNumber',
-    
+      'fishForm.fishClientComments',    
       
   ]),
 
@@ -219,6 +243,8 @@ export default {
               fishClientName:null,
               fishClientPhoneNumber:null,
               fishClientLocation:null,
+              fishClientTown:null,
+              fishClientComments:null,
               
         
       }

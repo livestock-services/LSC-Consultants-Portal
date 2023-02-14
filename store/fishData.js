@@ -37,6 +37,8 @@ export const state = () => ({
         fishClientName:null,
         fishClientPhoneNumber:null,
         fishClientLocation:null,
+        fishClientTown:null,
+        fishClientComments:null,
         // FishCategory:null,
         date:new Date()
        // createdBy:null
