@@ -172,6 +172,7 @@ import {
 
     } from '@/helpers/mutation-types'
 
+
 export const state = () => ({
 
     loading: false,
@@ -1324,8 +1325,73 @@ export const actions = {
 
 
             const newVetRecord = cloneDeep(state.vetForm);
-
             newVetRecord.createdBy = this.$auth.user.email;
+
+            //initial non-formatted entires
+            const str1 = newVetRecord.vetClientName;
+            const location1 = newVetRecord.vetClientLocation;
+            const town1 = newVetRecord.vetClientTown;
+            const comments1 = newVetRecord.vetComments;
+
+
+            //arrays for each entry
+            const arr = str1.split(" ");
+            const location1Arr = location1.split(" ");
+            const town1Arr = town1.split(" ");
+            const comments1Arr = comments1.split(" ");
+
+
+
+//loop through each element of the array and capitalize the first letter.
+
+
+            for (var i = 0; i < arr.length; i++) {
+                arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+
+            }
+
+            
+            for (var i = 0; i < location1Arr.length; i++) {
+                location1Arr[i] = location1Arr[i].charAt(0).toUpperCase() + location1Arr[i].slice(1);
+
+            }
+
+            for (var i = 0; i < town1Arr.length; i++) {
+                town1Arr[i] = town1Arr[i].charAt(0).toUpperCase() + town1Arr[i].slice(1);
+
+            }
+
+            for (var i = 0; i < comments1Arr.length; i++) {
+                comments1Arr[i] = comments1Arr[i].charAt(0).toUpperCase() + comments1Arr[i].slice(1);
+
+            }
+
+
+
+            //Join all the elements of the array back into a string 
+            //using a blankspace as a separator 
+            const str2 = arr.join(" ");
+            console.log(str2);
+
+            const location2 = location1Arr.join(" ");
+            console.log(location2);
+
+            const town2 = town1Arr.join(" ");
+            console.log(town2);
+
+            const comments2 = comments1Arr.join(" ");
+            console.log(comments2);
+
+            
+
+            console.log(newVetRecord.vetClientName)
+
+            //----------------------New Formatted entries---------------------------//
+            newVetRecord.vetClientName = str2;
+            newVetRecord.vetClientLocation = location2;
+            newVetRecord.vetClientTown = town2;
+            newVetRecord.vetComments = comments2;
+            
            
            
            console.log(newVetRecord);
@@ -1352,13 +1418,39 @@ export const actions = {
 
              const newFilterRecord = cloneDeep(state.vetFilterForm);
 
-             newFilterRecord.startDate = newFilterRecord.startDate.toLocaleDateString('en-GB');
+             newFilterRecord.startDate = newFilterRecord.startDate.toLocaleDateString('en-US');
 
-             newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString('en-GB');
+             newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString('en-US');
 
-             console.log(newFilterRecord.startDate);
-             console.log(newFilterRecord.endDate);
-            
+            console.log(newFilterRecord.startDate);
+            console.log(newFilterRecord.endDate);
+
+            let newDate =  new Date().toLocaleDateString();
+
+            console.log(newDate)
+          
+
+
+            const compareDates = (d1, d2) => {
+                let date1 = new Date(d1).getTime();
+                let date2 = new Date(d2).getTime();
+              
+                if (date1 < date2) {
+                  console.log(`${d1} is less than ${d2}`);
+                } else if (date1 > date2) {
+                  console.log(`${d1} is greater than ${d2}`);
+                } else {
+                  console.log(`Both dates are equal`);
+                }
+              };
+
+
+              compareDates("03/10/2023", "03/17/2023");
+
+             
+
+
+
            
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/vet/allVetRecords`)
@@ -1367,50 +1459,50 @@ export const actions = {
 
            if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
             const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
+                cur.createdBy == this.$auth.user.email
                       )
                       console.log(customeUserRecords);
                      
                       const cattleRecords = customeUserRecords.filter( a=>
-                        a.vetCategory ==='Cattle'
+                        a.vetCategory =='Cattle'
                        )
                 
                        console.log(cattleRecords.length)
                 
                         const goatRecords = customeUserRecords.filter( b=>
-                         b.vetCategory ==='Goats'
+                         b.vetCategory =='Goats'
                         )
                 
                         console.log(goatRecords.length)
                 
                         const sheepRecords = customeUserRecords.filter( c=>
-                         c.vetCategory ==='Sheep'
+                         c.vetCategory =='Sheep'
                         )
                 
                         const pigRecords = customeUserRecords.filter( d=>
-                         d.vetCategory ==='Pigs'
+                         d.vetCategory =='Pigs'
                         )
                 
-                        const poultryRecords = customeUserRecords.filter( d=>
-                            d.vetCategory ==='Poultry'
+                        const poultryRecords = customeUserRecords.filter( e=>
+                            e.vetCategory =='Poultry'
                            )
                 
-                        const dogsAndCatsRecords = customeUserRecords.filter( e=>
-                         e.vetCategory ==='Dogs & Cats'
+                        const dogsAndCatsRecords = customeUserRecords.filter( f=>
+                         f.vetCategory =='Dogs & Cats'
                         )
                 
                 
-                        const rabbitRecords = customeUserRecords.filter( f=>
-                         f.vetCategory ==='Rabbits'
+                        const rabbitRecords = customeUserRecords.filter( g=>
+                         g.vetCategory =='Rabbits'
                         )
                 
-                        const wildlifeOrExoticsRecords = customeUserRecords.filter( g=>
-                         g.vetCategory ==='Wildlife Or Exotics'
+                        const wildlifeOrExoticsRecords = customeUserRecords.filter( h=>
+                         h.vetCategory =='Wildlife Or Exotics'
                         )
                 
                        
-                        const horseRecords = customeUserRecords.filter( h=>
-                         h.vetCategory ==='Horses'
+                        const horseRecords = customeUserRecords.filter(i=>
+                         i.vetCategory =='Horses'
                         )
                 
                        
@@ -1422,10 +1514,14 @@ export const actions = {
                 
                 //    //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
                           const filteredCattleRecords = cattleRecords.filter( at => 
-                         at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                         (at.date <= newFilterRecord.startDate) & (at.date >= newFilterRecord.endDate)
+
+                         
                          );
-                
-                
+
+
+                            console.log(filteredCattleRecords);
+
                 
                          const filteredGoatRecords = goatRecords.filter( bt => 
                              bt.date >= newFilterRecord.startDate && bt.date <= newFilterRecord.endDate
@@ -1528,46 +1624,46 @@ export const actions = {
            else{
             console.log(response.data);
        
-            const cattleRecords = response.data.filter( a=>
-                a.vetCategory ==='Cattle'
+            const cattleRecords = response.data.filter( va=>
+               va.vetCategory ==='Cattle'
                )
         
                console.log(cattleRecords.length)
         
-                const goatRecords = response.data.filter( b=>
-                 b.vetCategory ==='Goats'
+                const goatRecords = response.data.filter( vb=>
+                 vb.vetCategory ==='Goats'
                 )
         
                 console.log(goatRecords.length)
         
-                const sheepRecords = response.data.filter( c=>
-                 c.vetCategory ==='Sheep'
+                const sheepRecords = response.data.filter( vc=>
+                 vc.vetCategory ==='Sheep'
                 )
         
-                const pigRecords = response.data.filter( d=>
-                 d.vetCategory ==='Pigs'
+                const pigRecords = response.data.filter( vd=>
+                vd.vetCategory ==='Pigs'
                 )
         
-                const poultryRecords = response.data.filter( d=>
-                    d.vetCategory ==='Poultry'
+                const poultryRecords = response.data.filter( ve=>
+                    ve.vetCategory ==='Poultry'
                    )
         
-                const dogsAndCatsRecords = response.data.filter( e=>
-                 e.vetCategory ==='Dogs & Cats'
+                const dogsAndCatsRecords = response.data.filter( vf=>
+                 vf.vetCategory ==='Dogs & Cats'
                 )
         
         
-                const rabbitRecords = response.data.filter( f=>
-                 f.vetCategory ==='Rabbits'
+                const rabbitRecords = response.data.filter( vg=>
+                 vg.vetCategory ==='Rabbits'
                 )
         
-                const wildlifeOrExoticsRecords = response.data.filter( g=>
-                 g.vetCategory ==='Wildlife Or Exotics'
+                const wildlifeOrExoticsRecords = response.data.filter( vh=>
+                 vh.vetCategory ==='Wildlife Or Exotics'
                 )
         
                
-                const horseRecords = response.data.filter( h=>
-                 h.vetCategory ==='Horses'
+                const horseRecords = response.data.filter( vi=>
+                 vi.vetCategory ==='Horses'
                 )
         
                
@@ -1578,42 +1674,42 @@ export const actions = {
         
         
         //    //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
-                  const filteredCattleRecords = cattleRecords.filter( at => 
-                 at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                  const filteredCattleRecords = cattleRecords.filter( vat => 
+                 vat.date >= newFilterRecord.startDate && vat.date <= newFilterRecord.endDate
                  );
         
         
         
-                 const filteredGoatRecords = goatRecords.filter( bt => 
-                     bt.date >= newFilterRecord.startDate && bt.date <= newFilterRecord.endDate
+                 const filteredGoatRecords = goatRecords.filter(vbt => 
+                     vbt.date >= newFilterRecord.startDate && vbt.date <= newFilterRecord.endDate
                      );
         
-                 const filteredSheepRecords = sheepRecords.filter( ct => 
-                 ct.date >= newFilterRecord.startDate && ct.date <= newFilterRecord.endDate
+                 const filteredSheepRecords = sheepRecords.filter( vct => 
+                 vct.date >= newFilterRecord.startDate && vct.date <= newFilterRecord.endDate
                  );
         
-                 const filteredPigRecords = pigRecords.filter( dt => 
-                 dt.date >= newFilterRecord.startDate && dt.date <= newFilterRecord.endDate
+                 const filteredPigRecords = pigRecords.filter( vdt => 
+                 vdt.date >= newFilterRecord.startDate && vdt.date <= newFilterRecord.endDate
                  );
         
-                 const filteredPoultryRecords = poultryRecords.filter( et => 
-                 et.date >= newFilterRecord.startDate && et.date <= newFilterRecord.endDate
+                 const filteredPoultryRecords = poultryRecords.filter( vet => 
+                 vet.date >= newFilterRecord.startDate && vet.date <= newFilterRecord.endDate
                  );
         
-                 const filteredDogsAndCatsRecords= dogsAndCatsRecords.filter( ft => 
-                 ft.date >= newFilterRecord.startDate && ft.date <= newFilterRecord.endDate
+                 const filteredDogsAndCatsRecords= dogsAndCatsRecords.filter( vft => 
+                 vft.date >= newFilterRecord.startDate && vft.date <= newFilterRecord.endDate
                  );
         
-                 const filteredRabbitRecords = rabbitRecords.filter( gt => 
-                 gt.date >= newFilterRecord.startDate && gt.date <= newFilterRecord.endDate
+                 const filteredRabbitRecords = rabbitRecords.filter( vgt => 
+                 vgt.date >= newFilterRecord.startDate && vgt.date <= newFilterRecord.endDate
                  );
         
-                 const filteredWildlifeOrExoticsRecords = wildlifeOrExoticsRecords.filter( ht => 
-                     ht.date >= newFilterRecord.startDate && ht.date <= newFilterRecord.endDate
+                 const filteredWildlifeOrExoticsRecords = wildlifeOrExoticsRecords.filter( vht => 
+                     vht.date >= newFilterRecord.startDate && vht.date <= newFilterRecord.endDate
                      );
         
-                 const filteredHorseRecords = horseRecords.filter( it => 
-                 it.date >= newFilterRecord.startDate && it.date <= newFilterRecord.endDate
+                 const filteredHorseRecords = horseRecords.filter( vit => 
+                vit.date >= newFilterRecord.startDate && vit.date <= newFilterRecord.endDate
                  );
         
                
@@ -1757,9 +1853,72 @@ export const actions = {
             const newVetRecord = cloneDeep(state.vetPostMortemForm);
 
             newVetRecord.createdBy = this.$auth.user.email;
+            
            
-           
-           console.log(newVetRecord);
+            const str1 = newVetRecord.vetPostMortemClientName;
+            const location1 = newVetRecord.vetPostMortemClientLocation;
+            const town1 = newVetRecord.vetPostMortemClientTown;
+            const comments1 = newVetRecord.vetPMComments;
+
+
+            //arrays for each entry
+            const arr = str1.split(" ");
+            const location1Arr = location1.split(" ");
+            const town1Arr = town1.split(" ");
+            const comments1Arr = comments1.split(" ");
+
+
+
+//loop through each element of the array and capitalize the first letter.
+
+
+            for (var i = 0; i < arr.length; i++) {
+                arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+
+            }
+
+            
+            for (var i = 0; i < location1Arr.length; i++) {
+                location1Arr[i] = location1Arr[i].charAt(0).toUpperCase() + location1Arr[i].slice(1);
+
+            }
+
+            for (var i = 0; i < town1Arr.length; i++) {
+                town1Arr[i] = town1Arr[i].charAt(0).toUpperCase() + town1Arr[i].slice(1);
+
+            }
+
+            for (var i = 0; i < comments1Arr.length; i++) {
+                comments1Arr[i] = comments1Arr[i].charAt(0).toUpperCase() + comments1Arr[i].slice(1);
+
+            }
+
+
+
+            //Join all the elements of the array back into a string 
+            //using a blankspace as a separator 
+            const str2 = arr.join(" ");
+            console.log(str2);
+
+            const location2 = location1Arr.join(" ");
+            console.log(location2);
+
+            const town2 = town1Arr.join(" ");
+            console.log(town2);
+
+            const comments2 = comments1Arr.join(" ");
+            console.log(comments2);
+
+            
+
+            console.log(newVetRecord.vetPostMortemClientName)
+
+            //----------------------New Formatted entries---------------------------//
+            newVetRecord.vetPostMortemClientName = str2;
+            newVetRecord.vetPostMortemClientLocation = location2;
+            newVetRecord.vetPostMortemClientTown = town2;
+            newVetRecord.vetPMComments = comments2;
+            
 
            
             const response = await api.post(`/vet/addNewPostMortem`, newVetRecord);
@@ -1784,9 +1943,9 @@ export const actions = {
 
              const newPostMortemFilterRecord = cloneDeep(state.villageChickenPostMortemFilterForm);
 
-             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-GB');
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString();
 
-             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-GB');
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
 
              console.log(newPostMortemFilterRecord.startDate);
              console.log(newPostMortemFilterRecord.endDate);
@@ -2116,9 +2275,9 @@ export const actions = {
 
              const newPostMortemFilterRecord = cloneDeep(state.broilerChickenPostMortemFilterForm);
 
-             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-GB');
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString();
 
-             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-GB');
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
 
              console.log(newPostMortemFilterRecord.startDate);
              console.log(newPostMortemFilterRecord.endDate);
@@ -2399,9 +2558,9 @@ export const actions = {
 
              const newPostMortemFilterRecord = cloneDeep(state.layerChickenPostMortemFilterForm);
 
-             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-GB');
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString();
 
-             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-GB');
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
 
              console.log(newPostMortemFilterRecord.startDate);
              console.log(newPostMortemFilterRecord.endDate);
@@ -2685,9 +2844,9 @@ export const actions = {
 
              const newPostMortemFilterRecord = cloneDeep(state.pigPostMortemFilterForm);
 
-             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-GB');
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString();
 
-             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-GB');
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
 
              console.log(newPostMortemFilterRecord.startDate);
              console.log(newPostMortemFilterRecord.endDate);
@@ -2858,9 +3017,9 @@ export const actions = {
 
              const newPostMortemFilterRecord = cloneDeep(state.goatPostMortemFilterForm);
 
-             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-GB');
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString();
 
-             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-GB');
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
 
              console.log(newPostMortemFilterRecord.startDate);
              console.log(newPostMortemFilterRecord.endDate);
@@ -3030,9 +3189,9 @@ export const actions = {
 
              const newPostMortemFilterRecord = cloneDeep(state.quailPostMortemFilterForm);
 
-             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-GB');
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString();
 
-             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-GB');
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
 
              console.log(newPostMortemFilterRecord.startDate);
              console.log(newPostMortemFilterRecord.endDate);
@@ -3155,9 +3314,9 @@ export const actions = {
 
              const newPostMortemFilterRecord = cloneDeep(state.rabbitPostMortemFilterForm);
 
-             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-GB');
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString();
 
-             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-GB');
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
 
              console.log(newPostMortemFilterRecord.startDate);
              console.log(newPostMortemFilterRecord.endDate);
@@ -3281,9 +3440,9 @@ export const actions = {
 
              const newPostMortemFilterRecord = cloneDeep(state.cattlePostMortemFilterForm);
 
-             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-GB');
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString();
 
-             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-GB');
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
 
              console.log(newPostMortemFilterRecord.startDate);
              console.log(newPostMortemFilterRecord.endDate);

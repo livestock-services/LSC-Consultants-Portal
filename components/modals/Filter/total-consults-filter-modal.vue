@@ -142,7 +142,7 @@
   
     methods: {
        
-        ...mapActions('totalConsultsData', ['getAllTotalConsultsRecords','getFilteredTotalConsultsRecords', 'load']),
+        ...mapActions('totalConsultsData', ['getFilteredTotalConsultsRecords', 'load']),
   
      loading() {
         return this.totalConsultsLoading 

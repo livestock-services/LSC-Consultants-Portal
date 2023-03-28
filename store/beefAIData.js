@@ -173,9 +173,9 @@ export const actions = {
 
              const newFilterRecord = cloneDeep(state.beefAIFilterForm);
 
-             newFilterRecord.startDate = newFilterRecord.startDate.toLocaleDateString('en-GB');
+             newFilterRecord.startDate = newFilterRecord.startDate.toLocaleDateString();
 
-             newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString('en-GB');
+             newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString();
 
              console.log(newFilterRecord.startDate);
              console.log(newFilterRecord.endDate);

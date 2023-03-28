@@ -128,9 +128,27 @@
 
                             <!-- <b-menu-item icon="home-outline"  @click="indexConsultantsView" label="Consultants Home"></b-menu-item> -->
 
+                            <b-menu-item v-if="this.$auth.user.email==='kondwani1mwale@gmail.com'
+                                         ||this.$auth.user.email==='isaacs@livestock.co.zm' "   
+                                         class="ml-2" icon="microscope"  label="Lab" 
+                                         @click="lab">
+                                            
+                               
+                                
+                            </b-menu-item>
+
+                            </b-menu-list>
+
+
                             <b-menu-list class="ml-2" icon="account"  label="Consultations">
 
                                  <b-menu-item  v-if="$auth.user.email === 'nutrition@livestock.co.zm' ||  $auth.user.email === 'mataas@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="food" @click="nutrition" label="Nutrition"></b-menu-item>
+
+                             
+                               
+
+
+                                
                                
                                 <b-menu-item v-if="$auth.user.email === 'vet-technical@livestock.co.zm' || $auth.user.email === 'augustined@livestock.co.zm' || $auth.user.email === 'bornfacec@livestock.co.zm' ||  $auth.user.email === 'kondwani1mwale@gmail.com' || $auth.user.email === 'vet-sales@livestock.co.zm'" icon="doctor"   @click="vetTech" label="Vet">  </b-menu-item>
 
@@ -149,21 +167,23 @@
                                 <b-menu-item  v-if="$auth.user.email === 'irrigation@livestock.co.zm' || $auth.user.email === 'pumps@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="water"   @click="irrgiate" label="Irrigation & Water Pumps">  </b-menu-item>
 
                                
-
+                                <b-menu-item v-if="$auth.user.email === 'kondwani1mwale@gmail.com'" icon="account-multiple-outline" @click="customers" label="Users"></b-menu-item>
+                              
                               
                                
                                
                             </b-menu-list>
 
                             
-                                <b-menu-item v-if="$auth.user.email === 'kondwani1mwale@gmail.com'" icon="account-multiple-outline" @click="customers" label="Users"></b-menu-item>
                                
 
                             
 
 
                            
-                        </b-menu-list>
+                        
+
+                        
                        
                         <b-menu-list label="Actions">
                             <b-menu-item icon="logout" @click="logout" label="Logout"></b-menu-item>
@@ -287,6 +307,10 @@ export default {
       this.$router.push("customers")
     },
 
+    lab(){
+      this.$router.push("lab")
+    },
+
     nutrition(){
       this.$router.push("nutrition")
     },
@@ -372,10 +396,11 @@ export default {
 
 .sidebar-layout{
   background-color:rgb(249, 229, 250);
+  padding-right: 2rem;
 }
 
 .sidebar{
-  margin-right: 25px;
+  margin-right: 1px;
 }
 
 .dairy{
@@ -392,7 +417,7 @@ export default {
 .navbar{
   width:100%;
   position:fixed;
-  margin-left: 17rem;
+  margin-left: 17.5rem;
   padding-top: 1rem;
  
 }

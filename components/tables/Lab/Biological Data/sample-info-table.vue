@@ -21,7 +21,34 @@
            <b-tooltip label="Refresh" type="is-dark">
            <b-button class="mx-2" icon-left="refresh" type="is-info" @click="refresh">Refresh</b-button>
            </b-tooltip>
-  
+           
+
+           <b-tooltip label="Export to Excel" type="is-dark">
+
+                  <download-excel  
+                  :fields="{
+                    'Submission Number':'submissionNumber',
+                    'Sample ID':'sampleID',
+                    'Sample Type':'sampleType',
+                    'Animal Type':'animalType',
+                    'Breed':'breed',
+                    'Age':'age',
+                    'Sex':'sex',
+                    'Sample Condition on Receipt':'sampleGoodOnReceipt',
+                    'Date Sample Collected':'dateSampleCollected',
+                    'Test Requested':'testRequested',
+                    'Comments':'comments',
+                    'Lab Findings':'labFindings'
+                  }"
+                  :data="samples" 
+                  worksheet="Sample Information Worksheet"
+                  type="xls"
+                  name = "Sample Information.xls">
+
+                  <b-button class="mx-2" icon-left="export" type="is-success ">Excel</b-button>
+                  <img src="download_icon.png" />
+                  </download-excel>   
+            </b-tooltip>
          
               
         </div>
@@ -29,6 +56,7 @@
         
       </b-field>
       <b-table
+        :sticky-header="stickyHeaders"
         :data="tableData"
         :loading="loading"
         :paginated="isPaginated"
@@ -37,11 +65,11 @@
         :pagination-position="paginationPosition"
         :default-sort-direction="defaultSortDirection"
         mobile-cards
+        debounce-search="1200"
         default-sort="selectPriority"
         aria-next-label="Next Page"
         aria-previous-label="Previous Page"
         aria-page-label="Page"
-        debounce-search="1200"
         aria-current-label="Current Page"
       >
   
@@ -49,116 +77,179 @@
   
          <b-table-column
           v-slot="props"
-          field="vetPostMortemClientName"
-          label="Client Name"
+          field="submissionNumber"
+          label="Submission No."
           searchable
           
         >
-        <span class=" ">  {{ props.row.vetPostMortemClientName }} </span>
+        <span class="tag tasks">  {{ props.row.submissionNumber }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
   
         <b-table-column
           v-slot="props"
-          field="taskDescription"
-          label="Client Phone No."
+          field="sampleID"
+          label="Sample ID"
           
           
         >
-        <span class="tag numbers">  {{ props.row.vetPostMortemClientPhoneNumber }} </span>
+        <span class="tag numbers">  {{ props.row.sampleID }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
   
         <b-table-column
           v-slot="props"
-          field="vetPostMortemClientLocation"
-          label="Location"
+          field="sampleType"
+          label="Sample Type"
           searchable
           
-          
         >
-        <span class="tag is-primary is-light">  {{ props.row.vetPostMortemClientLocation }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.sampleType }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
-        
+  
         <b-table-column
           v-slot="props"
-          field="vetPostMortemClientTown"
-          label="Town"
-         searchable 
+          field="animalType"
+          label="Animal Type"
+          searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.vetPostMortemClientTown }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.animalType }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
-
+  
+  
   
        <b-table-column
           v-slot="props"
-          field="vetPostMortemCategory"
-          label="Category"
+          field="breed"
+          label="Breed"
           searchable
         >
   
-        <span class="tag is-info is-light">  {{ props.row.vetPostMortemCategory }} </span>
+        <span class="tag is-info is-light">  {{ props.row.breed }} </span>
          
         </b-table-column>
-
-       
-
+  
         <b-table-column
           v-slot="props"
-          field="vetPostMortemDiseases"
-          label="Disease"
+          field="age"
+          label="Age"
           searchable
         >
   
-        <span class="is-info is-light">  {{ props.row.vetPostMortemDiseases }} </span>
+        <span class="tag is-info is-light">  {{ props.row.age }} </span>
          
         </b-table-column>
-  
-  
+        
         <b-table-column
           v-slot="props"
-          field="date"
-          label="Date"
+          field="sex"
+          label="Sex"
           searchable
+          
         >
-  
-        <span class="tag is-info is-light">  {{ props.row.date }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.sex }} </span>
          
+          <!-- {{ props.row.sumInsured }} -->
+        </b-table-column>
+
+
+        <b-table-column
+          v-slot="props"
+          field="sampleGoodOnReceipt"
+          label="Sample Condition on Receipt"
+          searchable
+          
+        >
+        <span :class="[
+            'tag',
+          
+
+            {
+              'is-success  ' : props.row.sampleGoodOnReceipt ===  'Good',
+            },
+
+            {
+              'is-warning ': props.row.sampleGoodOnReceipt === 'Satisfactory',
+            },
+
+            {
+              'is-danger ': props.row.sampleGoodOnReceipt === 'Bad',
+            },
+
+          ]"
+          
+          >  {{ props.row.sampleGoodOnReceipt }} </span>
+         
+          <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
         <b-table-column
           v-slot="props"
-          field="selectPriority"
+          field="dateSampleCollected"
+          label="Date Sample Collected"
+          searchable
+          
+        >
+        <span class="tag is-primary is-light">  {{ props.row.dateSampleCollected }} </span>
+         
+          <!-- {{ props.row.sumInsured }} -->
+        </b-table-column>
+
+        <b-table-column
+          v-slot="props"
+          field="testRequested"
+          label="Test Requested"
+          searchable
+          
+        >
+        <span class="tag is-primary is-light">  {{ props.row.testRequested }} </span>
+         
+          <!-- {{ props.row.sumInsured }} -->
+        </b-table-column>
+
+        <b-table-column
+          v-slot="props"
+          field="comments"
           label="Comments"
-          sortable
+          searchable
+          
         >
-  
-        <span class="is-info is-light">  {{ props.row.vetPMComments }} </span>
+        <span class="">  {{ props.row.comments }} </span>
          
+          <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
+        <b-table-column
+          v-slot="props"
+          field="labFindings"
+          label="Lab Findings"
+          searchable
+          
+        >
+        <span class="tag is-primary is-light">  {{ props.row.labFindings }} </span>
+         
+          <!-- {{ props.row.sumInsured }} -->
+        </b-table-column>
+  
         
         <b-table-column
-        v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"
-          v-slot="props"
-          field="createdBy"
-          label="Created By"
-          searchable
-        >
-  
-        <span class="tag is-info is-light">  {{ props.row.createdBy }} </span>
-         
-        </b-table-column>
-        
-        
-         
+          v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"
+            v-slot="props"
+            field="createdBy"
+            label="Created By"
+            searchable
+          >
+    
+          <span class="tag is-info is-light">  {{ props.row.createdBy }} </span>
+           
+          </b-table-column>
   
   
           
@@ -166,7 +257,7 @@
   
   
         
-       <!-- <b-table-column v-slot="props" label="Options">
+        <b-table-column v-slot="props" label="Options">
           <span class="buttons">
             <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
             <b-button
@@ -181,7 +272,7 @@
         </b-table-column>
   
         
-                   -->
+                   
   
         
   
@@ -189,7 +280,7 @@
         <template #empty>
   
           <b-tooltip  label="Once freshed, your details will appear here" type="is-dark">
-          <h4 class="is-size-4 text-center has-text-centered">No Post Mortem Data yet. &#x1F4CA;. Click the <span class="tag is-info"> refresh button</span> right above</h4>
+          <h4 class="is-size-4 text-center has-text-centered">No Sample Information Data yet. &#x1F4DA;. Click the <span class="tag is-info"> refresh button</span> right above</h4>
           </b-tooltip>
   
         </template>
@@ -205,15 +296,16 @@
   <script>
   import { mapActions, mapGetters } from 'vuex'
   
-  import PostMortemModal from '@/components/modals/Post Mortems/post-mortem-modal.vue'
+  import SampleInfoModal from '@/components/modals/Lab Modal/Biological Data/sample-info-modal.vue'
+  import { computed } from 'vue';
   
   // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
   export default {
-    name: 'VetTable',
+    name: 'SampleInfoTable',
   
     data() {  
     
-      
+      var allSamples = computed(()=>this.samples)
       return {
   
         isPaginated: true,
@@ -224,19 +316,33 @@
         defaultSortDirection: 'asc',
         sortIcon: 'arrow-up',
         sortIconSize: 'is-small',
+        stickyHeaders: true,
+
+        // samples_fields:{
+        //         "Submission No.":"submission_no",
+        //         "Number":"number",
+              
+        //     },
+
+            
+
+            agro_data:[
+              allSamples
+            ]
       }
+
     },
   
   
     computed: {
       
-      ...mapGetters('vetData', {
+      ...mapGetters('labData', {
           loading: 'loading',
-          PMs: 'allPostMortemRecords',
+          samples: 'allSampleInformationRecords',
         }),
       
        isEmpty() {
-       return this.PMs.length === 0
+       return this.samples.length === 0
        },
   
       
@@ -246,7 +352,7 @@
       },
       
       tableData() {
-        return this.isEmpty ? [] : this.PMs
+        return this.isEmpty ? [] : this.samples
       },
     },
   
@@ -260,7 +366,7 @@
     methods: {
      
   
-       ...mapActions('vetData', ['addNewPostMortemRecord','getAllPostMortemRecords', 'load']),
+       ...mapActions('labData', ['addNewSampleInformationRecord','getAllSampleInformationRecords', 'load']),
   
        async refresh(){
   
@@ -268,7 +374,7 @@
         //   "Refreshed!"
         // )
       //  this.isLoading = true
-       await this.getAllPostMortemRecords();
+       await this.getAllSampleInformationRecords();
      //   this.isLoading = false
    
       },
@@ -302,7 +408,7 @@
         setTimeout(() => {
           this.$buefy.modal.open({
             parent: this,
-            component: PostMortemModal,
+            component: SampleInfoModal,
             hasModalCard: true,
             trapFocus: true,
             canCancel: ['x'],

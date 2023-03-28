@@ -33,6 +33,8 @@ import {
        
     } from '@/helpers/mutation-types'
 
+
+
 export const state = () => ({
 
     loading: false,
@@ -230,19 +232,6 @@ export const mutations = {
 export const actions = {
 
 
-    async getWeatherUpdate({state, commit}){
-        try {
-            commit(SET_LOADING, true) 
-            
-            const {data:weather} = await api.get('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m')
-            console.log(weather.data)
-
-            
-        } catch (error) {
-            
-        }
-    },
-
 
      async getFilteredTotalConsultsRecords({ state,commit }){
          try {
@@ -251,16 +240,16 @@ export const actions = {
 
               const newFilterRecord = cloneDeep(state.totalConsultsFilterForm);
 
-              newFilterRecord.startDate = newFilterRecord.startDate.toLocaleDateString('en-GB');
+              newFilterRecord.startDate = newFilterRecord.startDate.toLocaleDateString('en-US');
 
-              newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString('en-GB');
+              newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString('en-US');
 
               console.log(newFilterRecord.startDate);
               console.log(newFilterRecord.endDate);
             
            
           //---   API REQUEST IS MADE AND RESULT IS STORED IN CONST
-            const {data: agro} = await api.get(`/agro/allAgroRecords`)
+            let {data: agro} = await api.get(`/agro/allAgroRecords`)
 
             const {data: beefAI} = await api.get(`/ai/beef/allBeefAIRecords`)
 
@@ -290,7 +279,12 @@ export const actions = {
  //   --------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
         const filteredTotalAgroConsultsRecords = agro.data.filter( at => 
         at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
-        );
+         );
+        
+         console.log(filteredTotalAgroConsultsRecords)
+        
+
+     
 
         const filteredTotalBeefAIConsultsRecords = beefAI.data.filter( bt => 
         bt.date >= newFilterRecord.startDate && bt.date <= newFilterRecord.endDate
@@ -311,6 +305,7 @@ export const actions = {
         const filteredTotalNutritionConsultsRecords = nutrition.data.filter( ft => 
         ft.date >= newFilterRecord.startDate && ft.date <= newFilterRecord.endDate
         );
+        console.log(filteredTotalNutritionConsultsRecords);
 
         const filteredTotalPigAIConsultsRecords = pigAI.data.filter( gt => 
         gt.date >= newFilterRecord.startDate && gt.date <= newFilterRecord.endDate
@@ -375,7 +370,7 @@ export const actions = {
 
             commit(GET_ALL_FILTERED_TOTAL_CONSULTS_RECORDS, finalTotalConsults);
 
-            commit(GET_ALL_FILTERED_TOTAL_CONSULTS_RECORDS, finalTotalConsults);
+
 
 
             commit(GET_ALL_FILTERED_TOTAL_AGRO_RECORDS, filteredTotalAgroConsultsRecords.length);
@@ -419,45 +414,7 @@ export const actions = {
         }
     },
 
-    //ADD NEW TotalConsultsRecord TO ALL TotalConsultsRecordS
-    async addNewTotalConsultsRecord({ state, commit}){
-        try {
-            commit(SET_LOADING, true);
 
-
-            const newTotalConsultsRecord = cloneDeep(state.TotalConsultsForm);
-
-        //     newTotalConsultsRecord.date = state.TotalConsultsForm.date.toLocaleDateString();
-
-
-
-        //    // newTotalConsultsRecord.createdBy = 'kondwanim@livestock.co.zm'
-        //    console.log(newTotalConsultsRecord.date);
-           
-           console.log(newTotalConsultsRecord);
-
-           
-            const response = await api.post(`/TotalConsults/addNewTotalConsultsRecord`, newTotalConsultsRecord);
-
-            console.log(response.data);
-
-            commit(ADD_TOTAL_CONSULTS_RECORD, response.data);
-            
-            commit(SET_LOADING, false);
-
-        } catch (error) {
-            commit(SET_LOADING, false);
-            this.log.error(error.message);
-        }
-    },
-
-    
-
-    
-        
-      
-
-  
 
 }
 
