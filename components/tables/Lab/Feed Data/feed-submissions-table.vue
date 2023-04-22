@@ -82,158 +82,71 @@
           searchable
           
         >
-        <span class="tag tasks">  {{ props.row.submissionNumber }} </span>
+        <span class="tag tasks">  {{ props.row.feedSubmissionNumber }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
   
         <b-table-column
           v-slot="props"
-          field="sampleID"
-          label="Sample ID"
+          field="clientName"
+          label="Client Name"
           sortable
           
         >
-        <span class="tag numbers">  {{ props.row.sampleID }} </span>
+        <span class="tag numbers">  {{ props.row.feedClientName }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
   
         <b-table-column
           v-slot="props"
-          field="sampleType"
-          label="Sample Type"
+          field="dateReceived"
+          label="Date Received"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.sampleType }} </span>
-         
-          <!-- {{ props.row.sumInsured }} -->
-        </b-table-column>
-  
-        <b-table-column
-          v-slot="props"
-          field="animalType"
-          label="Animal Type"
-          searchable
-          
-        >
-        <span class="tag is-primary is-light">  {{ props.row.animalType }} </span>
-         
-          <!-- {{ props.row.sumInsured }} -->
-        </b-table-column>
-  
-  
-  
-       <b-table-column
-          v-slot="props"
-          field="breed"
-          label="Breed"
-          searchable
-        >
-  
-        <span class="tag is-info is-light">  {{ props.row.breed }} </span>
-         
-        </b-table-column>
-  
-        <b-table-column
-          v-slot="props"
-          field="age"
-          label="Age"
-          searchable
-        >
-  
-        <span class="tag is-info is-light">  {{ props.row.age }} </span>
-         
-        </b-table-column>
-        
-        <b-table-column
-          v-slot="props"
-          field="sex"
-          label="Sex"
-          searchable
-          
-        >
-        <span class="tag is-primary is-light">  {{ props.row.sex }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.dateSubmitted }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
 
+       
+
         <b-table-column
           v-slot="props"
-          field="sampleGoodOnReceipt"
-          label="Sample Condition on Receipt"
+          field="description"
+          label="Description"
           searchable
           
         >
-        <span :class="[
-            'tag',
-          
-
-            {
-              'is-success  ' : props.row.sampleGoodOnReceipt ===  'Good',
-            },
-
-            {
-              'is-warning ': props.row.sampleGoodOnReceipt === 'Satisfactory',
-            },
-
-            {
-              'is-danger ': props.row.sampleGoodOnReceipt === 'Bad',
-            },
-
-          ]"
-          
-          >  {{ props.row.sampleGoodOnReceipt }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.feedDescription }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
         <b-table-column
           v-slot="props"
-          field="dateSampleCollected"
-          label="Date Sample Collected"
+          field="typeOfSample"
+          label="Type Of Sample"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.dateSampleCollected }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.typeOfSample }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
+       
         <b-table-column
           v-slot="props"
-          field="testRequested"
-          label="Test Requested"
+          field="timeStamp"
+          label="Time Stamp"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.testRequested }} </span>
-         
-          <!-- {{ props.row.sumInsured }} -->
-        </b-table-column>
-
-        <b-table-column
-          v-slot="props"
-          field="comments"
-          label="Comments"
-          searchable
-          
-        >
-        <span class="">  {{ props.row.comments }} </span>
-         
-          <!-- {{ props.row.sumInsured }} -->
-        </b-table-column>
-
-        <b-table-column
-          v-slot="props"
-          field="labFindings"
-          label="Lab Findings"
-          searchable
-          
-        >
-        <span class="tag is-primary is-light">  {{ props.row.labFindings }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.timeStamp }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
@@ -280,7 +193,7 @@
         <template #empty>
   
           <b-tooltip  label="Once freshed, your details will appear here" type="is-dark">
-          <h4 class="is-size-4 text-center has-text-centered">No Sample Information Data yet. &#x1F4DA;. Click the <span class="tag is-info"> refresh button</span> right above</h4>
+          <h4 class="is-size-4 text-center has-text-centered">No Feed Submissions Data yet. &#x1F4DA;. Click the <span class="tag is-info"> refresh button</span> right above</h4>
           </b-tooltip>
   
         </template>
@@ -296,7 +209,7 @@
   <script>
   import { mapActions, mapGetters } from 'vuex'
   
-  import SampleInfoModal from '@/components/modals/Lab Modal/Biological Data/sample-info-modal.vue'
+  import FeedSubmissionsModal from '@/components/modals/Lab Modal/Feed Data/feed-submissions-modal.vue'
   import { computed } from 'vue';
   
   // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
@@ -338,7 +251,7 @@
       
       ...mapGetters('labData', {
           loading: 'loading',
-          samples: 'allSampleInformationRecords',
+          samples: 'allFeedSubmissionsRecords',
         }),
       
        isEmpty() {
@@ -366,7 +279,7 @@
     methods: {
      
   
-       ...mapActions('labData', ['addNewSampleInformationRecord','getAllSampleInformationRecords', 'load']),
+       ...mapActions('labData', ['addNewFeedSubmissionRecord','getAllFeedSubmissionsRecords', 'load']),
   
        async refresh(){
   
@@ -374,7 +287,7 @@
         //   "Refreshed!"
         // )
       //  this.isLoading = true
-       await this.getAllSampleInformationRecords();
+       await this.getAllFeedSubmissionsRecords();
      //   this.isLoading = false
    
       },
@@ -408,7 +321,7 @@
         setTimeout(() => {
           this.$buefy.modal.open({
             parent: this,
-            component: SampleInfoModal,
+            component: FeedSubmissionsModal,
             hasModalCard: true,
             trapFocus: true,
             canCancel: ['x'],

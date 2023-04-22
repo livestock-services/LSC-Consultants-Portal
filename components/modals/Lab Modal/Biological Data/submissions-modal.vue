@@ -56,33 +56,33 @@
             </div>
           </div>
 
-          <h4><span class="is-blue"> Date & Time Received</span></h4>
+          <h4> <span class="is-blue"> Date Submitted </span></h4>
+            
+            <div class="columns">
+      
+            <div  class="column is-three-quarters">
+            
+                <b-datepicker
+                v-model="dateSubmitted"
+                placeholder="--select date--">
+                </b-datepicker>
+
+            </div>
+            </div>
+
+
+          <h4><span class="is-blue"> Time Submitted</span></h4>
 
           <div class="columns">
             <div class="column is-three-quarters">
-              <b-datetimepicker
-                v-model="dateTimeReceived"
-                placeholder="Click to select..."
-              >
-                <template #left>
-                  <b-button
-                    label="Now"
-                    type="is-primary"
-                    icon-left="clock"
-                    @click="datetime = new Date()"
-                  />
-                </template>
-
-                <template #right>
-                  <b-button
-                    label="Clear"
-                    type="is-danger"
-                    icon-left="close"
-                    outlined
-                    @click="datetime = null"
-                  />
-                </template>
-              </b-datetimepicker>
+                <b-field label="Select time">
+                    <b-timepicker
+                        v-model="timeSubmitted"
+                        placeholder="Click to select..."
+                        :min-time="minTime"
+                        :max-time="maxTime">
+                    </b-timepicker>
+                </b-field>
             </div>
           </div>
 
@@ -571,7 +571,10 @@
 
               <p class="mx-4 cat">Tel No.(For The Vet) : {{ vetPhoneNumber }}</p>
 
-              <p class="mx-4 cat">Date & Time Received: {{ dateTimeReceived }}</p>
+              <p class="mx-4 cat">Date Submitted: {{ dateSubmitted }}</p>
+
+              <p class="mx-4 cat">Time Submitted: {{ timeSubmitted }}</p>
+
 
               <p class="mx-4 cat">Received By: {{ receivedBy }}</p>
 
@@ -673,7 +676,7 @@ export default {
 
   data() {
     return {
-      dateTimeReceived: new Date(),
+
       data: ["Consultations", "Sales"],
 
       isFullPage: true,
@@ -697,7 +700,8 @@ export default {
       "submissionsForm.clientName",
       "submissionsForm.consultingVet",
       "submissionsForm.vetPhoneNumber",
-      "submissionsForm.dateTimeReceived",
+      "submissionsForm.dateSubmitted",
+      "submissionsForm.timeSubmitted",
       "submissionsForm.receivedBy",
       "submissionsForm.submittedBy",
       "submissionsForm.reportName",
@@ -808,7 +812,8 @@ export default {
         clientName: null,
         consultingVet: null,
         vetPhoneNumber: null,
-        dateTimeReceived: null,
+        dateSubmitted: null,
+        timeSubmitted: null,
         receivedBy: null,
         submittedBy: null,
         reportName: null,

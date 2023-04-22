@@ -588,7 +588,7 @@
   <script>
   import { mapActions, mapGetters } from 'vuex'
   
-  import SubmissionsModal from '@/components/modals/Lab Modal/Biological Data/submissions-modal.vue'
+  import SoyaFFSubmissionsModal from '@/components/modals/Lab Modal/Feed Data/soya-ff-modal.vue'
   
   // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
   export default {
@@ -686,7 +686,7 @@
         setTimeout(() => {
           this.$buefy.modal.open({
             parent: this,
-            component: SubmissionsModal,
+            component: SoyaFFSubmissionsModal,
             hasModalCard: true,
             trapFocus: true,
             canCancel: ['x'],

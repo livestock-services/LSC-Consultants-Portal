@@ -22,7 +22,63 @@
            <b-button class="mx-2" icon-left="refresh" type="is-info" @click="refresh">Refresh</b-button>
            </b-tooltip>
   
-         
+           <b-tooltip label="Export to Excel" type="is-dark">
+
+            <download-excel  
+            :fields="{
+            'Submissions No.':'submissionsNumber',
+            'Client Name':'clientName',
+            'Consulting Veterinarian':'consultingVet',
+            'Tel No.(For The Vet)':'vetPhoneNumber',
+            'Date & Time Received':'dateTimeReceived',
+            'Received By':'receivedBy',
+            'Submitted By':'submittedBy',
+            'Report Name':'reportName',
+            'Address':'address',
+            'Tel No.':'telPhoneNumber',
+            'Email':'email',
+            'Report to be sent via':'reportSentVia',
+
+            'Site/Farm Location':'siteLocation',
+            'Blood':'blood',
+            'Plasma':'plasma',
+            'Serum':'serum',
+            'Blood Smear':'bloodSmear',
+            'Impression Smear':'impressionSmear',
+            'Lymphnode Smear':'lymphnodeSmear',
+            'Brain Crush Smear':'brainCrushSmear',
+            'Urine':'urine',
+            'Faecal':'faecal',
+            'Milk':'milk',
+            'Semen':'semen',
+
+
+            'Tracheal Washing':'trachealWashing',
+            'Swab':'swab',
+            'Skin Scraping':'skinScraping',
+            'Abort/Fetal':'abortedOrFetal',
+            'Tissue/Organ':'tissueOrOrgan',
+            'Biopsy':'biopsy',
+            'Carcass':'carcass',
+            'Other(namely)':'other',
+            'Total No. Samples Submitted':'totalNumberOfSamplesSubmitted',
+            'Total No. Samples Rejected':'totalNumberOfSamplesRejected',
+            'Presenting Problems':'presentingProblems',
+            'Examination Requested':'examinationRequested',
+            'Test Urgency':'testUrgency',
+            'Submission Status':'submissionStatus',
+            'Invoice No.':'invoiceNumber'
+
+            }"
+            :data="submissions" 
+            worksheet="Submissions Information Worksheet"
+            type="xls"
+            name = "Submissions Information.xls">
+
+            <b-button class="mx-2" icon-left="export" type="is-success ">Excel</b-button>
+            <img src="download_icon.png" />
+            </download-excel>   
+            </b-tooltip>
               
         </div>
   
@@ -499,7 +555,23 @@
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.testUrgency }} </span>
+        <span :class="[
+            'tag',
+          
+
+            {
+              'is-success  ' : props.row.testUrgency ===  'Routine',
+            },
+
+            {
+              'is-warning ': props.row.testUrgency === 'Urgent',
+            },
+
+           
+
+          ]"
+          
+          >  {{ props.row.testUrgency }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
@@ -511,7 +583,23 @@
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.submissionStatus }} </span>
+        <span :class="[
+            'tag',
+          
+
+            {
+              'is-success is-light  ' : props.row.submissionStatus ===  'Dispatched',
+            },
+
+            {
+              'is-warning is-light': props.row.submissionStatus === 'Pending',
+            },
+
+           
+
+          ]"
+          
+          >  {{ props.row.submissionStatus }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>

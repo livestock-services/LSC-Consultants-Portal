@@ -50,12 +50,12 @@
   
          <b-table-column
           v-slot="props"
-          field="submissionsNumber"
+          field="dateOfSampleCollection"
           label="Submission No."
           searchable
           
         >
-        <span class="tag tasks">  {{ props.row.submissionsNumber }} </span>
+        <span class="tag tasks">  {{ props.row.dateOfSampleCollection }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
@@ -588,7 +588,7 @@
   <script>
   import { mapActions, mapGetters } from 'vuex'
   
-  import SubmissionsModal from '@/components/modals/Lab Modal/Biological Data/submissions-modal.vue'
+  import NumberThreeMealModal from '@/components/modals/Lab Modal/Feed Data/no-3-meal-modal.vue'
   
   // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
   export default {
@@ -686,7 +686,7 @@
         setTimeout(() => {
           this.$buefy.modal.open({
             parent: this,
-            component: SubmissionsModal,
+            component: NumberThreeMealModal,
             hasModalCard: true,
             trapFocus: true,
             canCancel: ['x'],

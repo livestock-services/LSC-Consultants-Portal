@@ -2,7 +2,9 @@
     <div>
       <b-tabs class="table" v-model="activeTab">
                    
-                   <b-tab-item label="Biological Data">
+                  <b-tab-item label="DATA FILES">
+                      <b-tabs>
+                        <b-tab-item label="Biological Data">
                     <b-tabs>
                       <b-tab-item label="Sample Information" >
                         <SampleInfoTable/>
@@ -17,15 +19,40 @@
 
                    <b-tab-item label="Feed Data">
                     <b-tabs>
-                      <b-tab-item label="Sample Information" >
-                        <SampleInfoTable/>
+                      <b-tab-item label="No. 3 Meal (NM)" >
+                        <No3MealTable/>
                     </b-tab-item>
   
-                    <b-tab-item label="Submissions">
-                       <SubmissionsTable/>
+                    <b-tab-item label="Soya (FF)">
+                       <SoyaFfTable/>
                     </b-tab-item>
+
+                    <b-tab-item label="Soya (ME)" >
+                        <No3MealTable/>
+                    </b-tab-item>
+  
+                    <b-tab-item label="Sunflower (SC)">
+                       <SoyaFfTable/>
+                    </b-tab-item>
+
+                    
                     </b-tabs>
                    </b-tab-item>
+                      </b-tabs>
+                  </b-tab-item>
+
+                  <b-tab-item label="RECEIVING">
+                    <b-tabs label="Lab Submissions" >
+                          <b-tab-item label="Biological Submissions">
+                            <BioSubmissionsTable/>
+                          </b-tab-item>
+
+                          <b-tab-item label="Feed Submissions">
+                            <FeedSubmissionsTable/>
+                          </b-tab-item>
+
+                      </b-tabs>
+                  </b-tab-item>
       
             
   
@@ -38,9 +65,14 @@
 
 import SampleInfoTable from '~/components/tables/Lab/Biological Data/sample-info-table.vue';
 import SubmissionsTable from '~/components/tables/Lab/Biological Data/submissions-table.vue';
-
+import No3MealTable from '~/components/tables/Lab/Feed Data/no-3-meal-table.vue';
+import SoyaFfTable from '~/components/tables/Lab/Feed Data/soya-ff-table.vue';
+import BioSubmissionsTable from '~/components/tables/Lab/Biological Data/bio-submissions-table.vue'
+import FeedSubmissionsTable from '~/components/tables/Lab/Feed Data/feed-submissions-table.vue'
   export default {
-    components: {  SampleInfoTable, SubmissionsTable },
+    components: { SampleInfoTable, SubmissionsTable, No3MealTable,
+                  SoyaFfTable, BioSubmissionsTable, FeedSubmissionsTable
+                 },
   
     data(){
       return {

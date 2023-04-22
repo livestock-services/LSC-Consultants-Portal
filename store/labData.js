@@ -18,6 +18,27 @@ import {
 
         GET_FILTERED_SUBMISSIONS_START_TIME,
         GET_FILTERED_SUBMISSIONS_END_TIME,
+
+
+        ADD_BIO_SUBMISSIONS_RECORD,
+
+        GET_ALL_BIO_SUBMISSIONS_RECORDS,
+        GET_ALL_FILTERED_BIO_SUBMISSIONS_RECORDS,
+
+        GET_FILTERED_BIO_SUBMISSIONS_START_TIME,
+        GET_FILTERED_BIO_SUBMISSIONS_END_TIME,
+
+
+        ADD_FEED_SUBMISSIONS_RECORD,
+
+        GET_ALL_FEED_SUBMISSIONS_RECORDS,
+        GET_ALL_FILTERED_FEED_SUBMISSIONS_RECORDS,
+
+        GET_FILTERED_FEED_SUBMISSIONS_START_TIME,
+        GET_FILTERED_FEED_SUBMISSIONS_END_TIME,
+
+
+
         
         SET_LOADING,
         
@@ -43,6 +64,13 @@ export const state = () => ({
 
     allSubmissionsRecords:[],
     allFilteredSubmissionsRecords:[],
+
+
+    allBioSubmissionsRecords:[],
+    allFilteredBioSubmissionsRecords:[],
+
+    allFeedSubmissionsRecords:[],
+    allFilteredFeedSubmissionsRecords:[],
 
 
     // allSAMPLE_INFORMATIONConsultsRecords:[],
@@ -72,7 +100,8 @@ export const state = () => ({
         clientName: null,
         consultingVet: null,
         vetPhoneNumber: null,
-        dateTimeReceived: null,
+        dateReceived: null,
+        timeReceived: null,
         receivedBy: null,
         submittedBy: null,
         reportName: null,
@@ -106,8 +135,90 @@ export const state = () => ({
         exmainationRequested:null,
         testUrgency:null,
         submissionStatus:null,
-        invoiceNumber:null
+        invoiceNumber:null,
+        createdBy:null
 
+    },
+
+    bioSubmissionsForm:{
+        bioSubmissionNumber:null,
+        clientName:null,
+        dateSubmitted:null,
+        timeStamp:null,
+    },
+
+
+    
+    feedSubmissionsForm:{
+        feedSubmissionNumber:null,
+        feedClientName:null,
+        feedDescription:null,
+        typeOfSample:null,
+        dateSubmitted:null,
+        timeStamp:null,
+    },
+
+    nmFeedSubmissionsForm:{
+        nmDateOfSampleCollected:null,
+
+        nmTimeOfReceipt:null,
+
+        nmSubmissionNumber:null,
+
+        nmSupplierName:null, 
+
+        nmNRC:null,
+
+        nmVehicleRegNumber:null,
+
+        nmTelNumber:null, 
+
+        nmEmail:null, 
+
+        nmSampleID:null,
+
+        nmTypeOfSample:null,
+
+        nmSiteLocation:null, 
+
+        nmNumberOfBagsPerTonnage:null,
+
+        nmNumberOfBagsSampled:null,
+
+        nmColor:null,
+
+        nmSmell:null,
+
+        nmTexture:null,
+
+        nmForeignBodies:null,
+
+        nmWeevilsOrInsects:null, 
+
+        nmBranContent:null,
+
+        nmGritContent:null,
+
+        nmPowderContent:null,
+
+        nmOther:null,
+
+        nmMoisture:null,
+
+        nmTechnician:null,
+
+        nmQualitativeScore:null,
+
+        nmFinalVerdict:null,
+
+        nmReasonForVerdict:null,
+
+        nmOtherReasomn:null, 
+
+        nmNumberOfBagsOrTonnageSelected:null,
+
+        nmNumberOfBagsOrTonnageRejected:null
+       
     },
 
     sampleInfoFilterForm:{
@@ -158,7 +269,7 @@ export const getters = {
     },
 
     allFilteredSampleInformationRecords(state){
-        return state.allfilteredSampleInformationRecords
+        return state.allFilteredSampleInformationRecords
     },
 
     
@@ -175,8 +286,31 @@ export const getters = {
     },
 
     allFilteredSubmissionsRecords(state){
-        return state.allfilteredSubmissionsRecords
+        return state.allFilteredSubmissionsRecords
     },
+
+
+
+     //---------------------RECEIVING, BIO SUBMISSIONS GETTERS--------------------------------------------//
+
+     allBioSubmissionsRecords(state){
+        return state.allBioSubmissionsRecords
+    },
+
+    allFilteredBioSubmissionsRecords(state){
+        return state.allFilteredBioSubmissionsRecords
+    },
+
+    //---------------------RECEIVING, FEED SUBMISSIONS GETTERS--------------------------------------------//
+
+    allFeedSubmissionsRecords(state){
+        return state.allFeedSubmissionsRecords
+    },
+
+    allFilteredFeedSubmissionsRecords(state){
+        return state.allFilteredFeedSubmissionsRecords
+    },
+
 
 
 }
@@ -249,6 +383,64 @@ export const mutations = {
     //------------------------------------------------------------------------------------//
 
    
+      //MUTATIONS FOR ADDING, SETTING AND GETTING LAB SUBMISSIONS
+      [ADD_BIO_SUBMISSIONS_RECORD](state, newBioSubmissionsRecord){
+        state.allBioSubmissionsRecords.push(newBioSubmissionsRecord)
+    },
+
+   
+  
+
+    [GET_FILTERED_BIO_SUBMISSIONS_START_TIME](state, payload){
+        state.filteredBioSubmissionsStartTime= payload
+    },
+
+    [GET_FILTERED_BIO_SUBMISSIONS_END_TIME](state, payload){
+        state.filteredBioSubmissionsEndTime= payload
+    },
+
+    //------------------------------------LAB SUBMISSIONS MUTATIONS---------------------------------------------//
+    [GET_ALL_BIO_SUBMISSIONS_RECORDS](state, payload){
+        state.allBioSubmissionsRecords = payload
+    },
+
+    [GET_ALL_FILTERED_BIO_SUBMISSIONS_RECORDS](state, payload){
+        state.allFilteredBioSubmissionsRecords = payload
+    },
+
+
+    //------------------------------------------------------------------------------------//
+
+
+
+     //MUTATIONS FOR ADDING, SETTING AND GETTING FEED SUBMISSIONS
+     [ADD_FEED_SUBMISSIONS_RECORD](state, newFeedSubmissionsRecord){
+        state.allFeedSubmissionsRecords.push(newFeedSubmissionsRecord)
+    },
+
+   
+  
+
+    [GET_FILTERED_FEED_SUBMISSIONS_START_TIME](state, payload){
+        state.filteredFeedSubmissionsStartTime= payload
+    },
+
+    [GET_FILTERED_FEED_SUBMISSIONS_END_TIME](state, payload){
+        state.filteredFeedSubmissionsEndTime= payload
+    },
+
+    //------------------------------------LAB SUBMISSIONS MUTATIONS---------------------------------------------//
+    [GET_ALL_FEED_SUBMISSIONS_RECORDS](state, payload){
+        state.allFeedSubmissionsRecords = payload
+    },
+
+    [GET_ALL_FILTERED_FEED_SUBMISSIONS_RECORDS](state, payload){
+        state.allFilteredFeedSubmissionsRecords = payload
+    },
+
+
+    //------------------------------------------------------------------------------------//
+
        
 }
 
@@ -264,11 +456,24 @@ export const actions = {
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/lab/sampleInfo/allSampleInformationRecords`)
 
-        //const { data:fetchUsers } = await api.get(`/auth/allUsers`)
+           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
+            const customeUserRecords = response.data.filter( cur=>
+                cur.createdBy === this.$auth.user.email
+                      )
 
+                      console.log(customeUserRecords);
+                      commit(GET_ALL_SAMPLE_INFORMATION_RECORDS, customeUserRecords);
+
+            }
+
+            else{
+
+                commit(GET_ALL_SAMPLE_INFORMATION_RECORDS, response.data);
+
+            }
    
            //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
-           commit(GET_ALL_SAMPLE_INFORMATION_RECORDS, response.data);
+           
 
        
        
@@ -398,11 +603,25 @@ export const actions = {
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/lab/submissions/allSubmissionsRecords`)
 
-        //const { data:fetchUsers } = await api.get(`/auth/allUsers`)
+           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
+            const customeUserRecords = response.data.filter( cur=>
+                cur.createdBy === this.$auth.user.email
+                      )
+
+                      console.log(customeUserRecords);
+                      commit(GET_ALL_SUBMISSIONS_RECORDS, customeUserRecords);
+
+            }
+
+            else{
+
+                commit(GET_ALL_SUBMISSIONS_RECORDS, response.data);
+
+            }
 
    
            //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
-           commit(GET_ALL_SUBMISSIONS_RECORDS, response.data);
+           
 
        
        
@@ -512,6 +731,310 @@ export const actions = {
             console.log(response.data);
 
             commit(ADD_SUBMISSIONS_RECORD, response.data);
+            
+            commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.log.error(error.message);
+        }
+    },
+
+
+
+     //-------------------------------------------------------------SUBMISSIONS RECORDS----------------------------------------------------------------------------------------//
+
+     async getAllBioSubmissionsRecords({ state,commit }){
+        try {
+            //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+            commit(SET_LOADING, true)
+
+            //API REQUEST IS MADE AND RESULT IS STORED IN CONST
+           const {data: response} = await api.get(`/lab/bioSubmissions/allBioSubmissions`)
+
+           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
+            const customeUserRecords = response.data.filter( cur=>
+                cur.createdBy === this.$auth.user.email
+                      )
+
+                      console.log(customeUserRecords);
+                      commit(GET_ALL_BIO_SUBMISSIONS_RECORDS, customeUserRecords);
+
+            }
+
+            else{
+
+                commit(GET_ALL_BIO_SUBMISSIONS_RECORDS, response.data);
+
+            }
+
+   
+           //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
+           
+
+       
+       
+           //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+           commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.$log.error(error.message)
+        }
+    },
+
+     async getFilteredBioSubmissionsRecords({ state,commit }){
+         try {
+           //---  ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+             commit(SET_LOADING, true)
+
+              const newFilterRecord = cloneDeep(state.BiosubmissionsFilterForm);
+
+              newFilterRecord.startDate = newFilterRecord.startDate.toLocaleDateString('en-US');
+
+              newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString('en-US');
+
+              console.log(newFilterRecord.startDate);
+              console.log(newFilterRecord.endDate);
+            
+           
+          //---   API REQUEST IS MADE AND RESULT IS STORED IN CONST
+            const {data: response} = await api.get(`/lab/bioSubmissions/allBioSubmissionsRecords`)
+
+         //   const { data:fetchUsers } = await api.get(`/auth/allUsers`)
+        
+       //  --------------------ALL BioSUBMISSIONS RECORDS FILTERED BY CATEGORY -------------------------------- //
+        // const BioSUBMISSIONSConsultsRecords = response.data.filter( a=>
+        //  a.BioSUBMISSIONSCategory ==='Consultation'
+        // )
+
+        // const BioSUBMISSIONSSalesRecords = response.data.filter( b=>
+        //  b.BioSUBMISSIONSCategory ==='Sales'
+        // )
+
+   // -------------------------------END OF FILTERING BY CATEGORY----------------------//
+
+
+
+
+ //   --------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
+          const filteredBioSubmissionsRecords = response.data.filter( at => 
+         at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+         );
+
+        //  const filteredBioSubmissionsSalesRecordsRecords = BioSUBMISSIONSSalesRecords.filter( bt => 
+        //      bt.date >= newFilterRecord.startDate && bt.date <= newFilterRecord.endDate
+        //      );
+
+       
+        
+         console.log(filteredBioSubmissionsRecords.length);
+
+      //   console.log(filteredBioSubmissionsSalesRecordsRecords.length);
+
+
+            console.log(response.data);
+
+          //  RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
+          //  commit(GET_ALL_BioSUBMISSIONS_RECORDS, response.data);
+
+            commit(GET_FILTERED_BIO_SUBMISSIONS_START_TIME, newFilterRecord.startDate);
+
+            commit(GET_FILTERED_BIO_SUBMISSIONS_END_TIME, newFilterRecord.endDate);
+
+            commit(GET_ALL_FILTERED_BIO_SUBMISSIONS_RECORDS, filteredBioSubmissionsRecords.length);
+
+         //   commit(GET_ALL_BioSUBMISSIONS_SALES_RECORDS, filteredBioSUBMISSIONSSalesRecordsRecords.length);
+
+       
+//            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+//            commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.$log.error(error.message)
+        }
+    },
+
+    //ADD NEW BioSUBMISSIONSRecord TO ALL BioSUBMISSIONSRecordS
+    async addNewBioSubmissionsRecord({ state, commit}){
+        try {
+            commit(SET_LOADING, true);
+
+
+            const newBioSubmissionsRecord = cloneDeep(state.bioSubmissionsForm);
+
+           newBioSubmissionsRecord.dateSubmitted = state.bioSubmissionsForm.dateSubmitted.toLocaleDateString('en-US');
+
+           newBioSubmissionsRecord.timeStamp = state.bioSubmissionsForm.timeStamp.toLocaleTimeString();
+
+
+
+         newBioSubmissionsRecord.createdBy = this.$auth.user.email;
+
+        //    console.log(newBioSubmissionsRecord.date);
+           
+           console.log(newBioSubmissionsRecord);
+
+           
+            const response = await api.post(`/lab/bioSubmissions/addNewBioSubmission`, newBioSubmissionsRecord);
+
+            console.log(response.data);
+
+            commit(ADD_BIO_SUBMISSIONS_RECORD, response.data);
+            
+            commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.log.error(error.message);
+        }
+    },
+
+
+
+
+     //------------------------------------------------------------- FEED SUBMISSIONS RECORDS----------------------------------------------------------------------------------------//
+
+     async getAllFeedSubmissionsRecords({ state,commit }){
+        try {
+            //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+            commit(SET_LOADING, true)
+
+            //API REQUEST IS MADE AND RESULT IS STORED IN CONST
+           const {data: response} = await api.get(`/lab/feedSubmissions/allFeedSubmissions`)
+
+           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
+            const customeUserRecords = response.data.filter( cur=>
+                cur.createdBy === this.$auth.user.email
+                      )
+
+                      console.log(customeUserRecords);
+                      commit(GET_ALL_FEED_SUBMISSIONS_RECORDS, customeUserRecords);
+
+            }
+
+            else{
+
+                commit(GET_ALL_FEED_SUBMISSIONS_RECORDS, response.data);
+
+            }
+
+   
+           //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
+           
+
+       
+       
+           //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+           commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.$log.error(error.message)
+        }
+    },
+
+     async getFilteredFeedSubmissionsRecords({ state,commit }){
+         try {
+           //---  ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+             commit(SET_LOADING, true)
+
+              const newFilterRecord = cloneDeep(state.feedSubmissionsFilterForm);
+
+              newFilterRecord.startDate = newFilterRecord.startDate.toLocaleDateString('en-US');
+
+              newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString('en-US');
+
+              console.log(newFilterRecord.startDate);
+              console.log(newFilterRecord.endDate);
+            
+           
+          //---   API REQUEST IS MADE AND RESULT IS STORED IN CONST
+            const {data: response} = await api.get(`/lab/feedSubmissions/allFeedSubmissionsRecords`)
+
+         //   const { data:fetchUsers } = await api.get(`/auth/allUsers`)
+        
+       //  --------------------ALL FeedSUBMISSIONS RECORDS FILTERED BY CATEGORY -------------------------------- //
+        // const FeedSUBMISSIONSConsultsRecords = response.data.filter( a=>
+        //  a.FeedSUBMISSIONSCategory ==='Consultation'
+        // )
+
+        // const FeedSUBMISSIONSSalesRecords = response.data.filter( b=>
+        //  b.FeedSUBMISSIONSCategory ==='Sales'
+        // )
+
+   // -------------------------------END OF FILTERING BY CATEGORY----------------------//
+
+
+
+
+ //   --------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
+          const filteredFeedSubmissionsRecords = response.data.filter( at => 
+         at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+         );
+
+        //  const filteredFeedSubmissionsSalesRecordsRecords = FeedSUBMISSIONSSalesRecords.filter( bt => 
+        //      bt.date >= newFilterRecord.startDate && bt.date <= newFilterRecord.endDate
+        //      );
+
+       
+        
+         console.log(filteredFeedSubmissionsRecords.length);
+
+      //   console.log(filteredFeedSubmissionsSalesRecordsRecords.length);
+
+
+            console.log(response.data);
+
+          //  RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
+          //  commit(GET_ALL_FeedSUBMISSIONS_RECORDS, response.data);
+
+            commit(GET_FILTERED_FEED_SUBMISSIONS_START_TIME, newFilterRecord.startDate);
+
+            commit(GET_FILTERED_FEED_SUBMISSIONS_END_TIME, newFilterRecord.endDate);
+
+            commit(GET_ALL_FILTERED_FEED_SUBMISSIONS_RECORDS, filteredFeedSubmissionsRecords.length);
+
+         //   commit(GET_ALL_FeedSUBMISSIONS_SALES_RECORDS, filteredFeedSUBMISSIONSSalesRecordsRecords.length);
+
+       
+//            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+//            commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.$log.error(error.message)
+        }
+    },
+
+    //ADD NEW FeedSUBMISSIONSRecord TO ALL FeedSUBMISSIONSRecordS
+    async addNewFeedSubmissionsRecord({ state, commit}){
+        try {
+            commit(SET_LOADING, true);
+
+
+            const newFeedSubmissionsRecord = cloneDeep(state.feedSubmissionsForm);
+
+            newFeedSubmissionsRecord.dateSubmitted = state.feedSubmissionsForm.dateSubmitted.toLocaleDateString('en-US');
+
+            newFeedSubmissionsRecord.timeStamp = state.feedSubmissionsForm.timeStamp.toLocaleTimeString();
+ 
+ 
+
+
+         newFeedSubmissionsRecord.createdBy = this.$auth.user.email;
+
+        //    console.log(newFeedSubmissionsRecord.date);
+           
+           console.log(newFeedSubmissionsRecord);
+
+           
+            const response = await api.post(`/lab/feedSubmissions/addNewFeedSubmission`, newFeedSubmissionsRecord);
+
+            console.log(response.data);
+
+            commit(ADD_FEED_SUBMISSIONS_RECORD, response.data);
             
             commit(SET_LOADING, false);
 

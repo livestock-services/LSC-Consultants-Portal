@@ -128,7 +128,14 @@
 
                             <!-- <b-menu-item icon="home-outline"  @click="indexConsultantsView" label="Consultants Home"></b-menu-item> -->
 
-                            <b-menu-item v-if="this.$auth.user.email==='kondwani1mwale@gmail.com'
+                           
+
+                            </b-menu-list>
+
+
+                            <b-menu-list class="ml-2" icon="account"  label="Consultations">
+
+                              <b-menu-item v-if="this.$auth.user.email==='kondwani1mwale@gmail.com'
                                          ||this.$auth.user.email==='isaacs@livestock.co.zm' "   
                                          class="ml-2" icon="microscope"  label="Lab" 
                                          @click="lab">
@@ -136,11 +143,6 @@
                                
                                 
                             </b-menu-item>
-
-                            </b-menu-list>
-
-
-                            <b-menu-list class="ml-2" icon="account"  label="Consultations">
 
                                  <b-menu-item  v-if="$auth.user.email === 'nutrition@livestock.co.zm' ||  $auth.user.email === 'mataas@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="food" @click="nutrition" label="Nutrition"></b-menu-item>
 
