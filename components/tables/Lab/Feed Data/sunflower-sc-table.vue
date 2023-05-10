@@ -50,12 +50,12 @@
 
        <b-table-column
         v-slot="props"
-        field="nmDateOfSampleCollection"
+        field="scDateOfSampleCollection"
         label="Date Of Sample Collection"
         searchable
         
       >
-      <span class="tag tasks">  {{ props.row.nmDateOfSampleCollected }} </span>
+      <span class="tag tasks">  {{ props.row.scDateOfSampleCollected }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
@@ -64,24 +64,24 @@
 
       <b-table-column
         v-slot="props"
-        field="nmTimeOfReceipt"
+        field="scTimeOfReceipt"
         label="Time"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmTimeOfReceipt }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scTimeOfReceipt }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
       <b-table-column
         v-slot="props"
-        field="nmSubmissionNumber"
+        field="scSubmissionNumber"
         label="Submission"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmSubmissionNumber }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scSubmissionNumber }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
@@ -90,80 +90,80 @@
 
      <b-table-column
         v-slot="props"
-        field="nmSupplierName"
+        field="scSupplierName"
         label="Supplier/Customer"
         searchable
       >
 
-      <span class="tag is-info is-light">  {{ props.row.nmSupplierName }} </span>
+      <span class="tag is-info is-light">  {{ props.row.scSupplierName }} </span>
        
       </b-table-column>
 
       <b-table-column
         v-slot="props"
-        field="nmNRC"
+        field="scNRC"
         label="NRC"
         searchable
       >
 
-      <span class="tag is-info is-light">  {{ props.row.nmNRC }} </span>
+      <span class="tag is-info is-light">  {{ props.row.scNRC }} </span>
        
       </b-table-column>
 
       <b-table-column
         v-slot="props"
-        field="nmVehicleRegNumber"
+        field="scVehicleRegNumber"
         label="Vehicle Reg No."
         searchable
       >
 
-      <span class="tag is-info is-light">  {{ props.row.nmVehicleRegNumber }} </span>
+      <span class="tag is-info is-light">  {{ props.row.scVehicleRegNumber }} </span>
        
       </b-table-column>
 
       <b-table-column
         v-slot="props"
-        field="nmTelNumber"
+        field="scTelNumber"
         label="Telephone No."
         searchable
       >
 
-      <span class="tag is-info is-light">  {{ props.row.nmTelNumber }} </span>
+      <span class="tag is-info is-light">  {{ props.row.scTelNumber }} </span>
        
       </b-table-column>
       
       <b-table-column
         v-slot="props"
-        field="nmEmail"
+        field="scEmail"
         label="Email"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmEmail }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scEmail }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
       <b-table-column
         v-slot="props"
-        field="nmSampleID"
+        field="scSampleID"
         label="Sample ID"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmSampleID }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scSampleID }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
       <b-table-column
         v-slot="props"
-        field="nmTypeOfSample"
+        field="scTypeOfSample"
         label="Type Of Sample"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmTypeOfSample }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scTypeOfSample }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
@@ -171,12 +171,12 @@
 
       <b-table-column
         v-slot="props"
-        field="nmSiteLocation"
+        field="scSiteLocation"
         label="Site/Location"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmSiteLocation }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scSiteLocation }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
@@ -184,24 +184,24 @@
 
       <b-table-column
         v-slot="props"
-        field="nmNumberOfBagsPerTon"
+        field="scNumberOfBagsPerTon"
         label="No. of Bags/Tonnage_Vehicle"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmNumberOfBagsPerTon }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scNumberOfBagsPerTon }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
       <b-table-column
         v-slot="props"
-        field="nmNumberOfBagsSampled"
+        field="scNumberOfBagsSampled"
         label="No. of Bags Sampled"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmNumberOfBagsSampled }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scNumberOfBagsSampled }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
@@ -209,12 +209,12 @@
 
       <b-table-column
         v-slot="props"
-        field="nmColor"
+        field="scColor"
         label="Color"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmColor }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scColor }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
@@ -222,48 +222,48 @@
 
       <b-table-column
         v-slot="props"
-        field="nmTexture"
+        field="scTexture"
         label="Texture"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmTexture }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scTexture }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
       <b-table-column
         v-slot="props"
-        field="nmSmell"
+        field="scSmell"
         label="Smell"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmSmell }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scSmell }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
       <b-table-column
         v-slot="props"
-        field="nmForeignBodies"
+        field="scForeignBodies"
         label="Foreign Bodies"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmForeignBodies }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scForeignBodies }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
       <b-table-column
         v-slot="props"
-        field="nmWeevilsInsects"
+        field="scWeevilsInsects"
         label="Weevils/Insects"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmWeevilsInsects }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scWeevilsInsects }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
@@ -271,36 +271,36 @@
 
       <b-table-column
         v-slot="props"
-        field="nmBranContent"
+        field="scBranContent"
         label="Bran Content"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmBranContent }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scBranContent }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
       <b-table-column
         v-slot="props"
-        field="nmGritContent"
+        field="scGritContent"
         label="Grit Content"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmGritContent }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scGritContent }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
       <b-table-column
         v-slot="props"
-        field="nmPowderContent"
+        field="scPowderContent"
         label="Powder Content"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmPowderContent }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scPowderContent }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
@@ -308,36 +308,36 @@
 
       <b-table-column
         v-slot="props"
-        field="nmOther"
+        field="scOther"
         label="Other"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmOther }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scOther }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
       <b-table-column
         v-slot="props"
-        field="nmMoisture"
+        field="scMoisture"
         label="Moisture"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmMoisture }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scMoisture }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
       <b-table-column
         v-slot="props"
-        field="nmTechnician"
+        field="scTechnician"
         label="Technician"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmTechnician }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scTechnician }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
@@ -345,12 +345,12 @@
 
       <b-table-column
           v-slot="props"
-          field="nmQualitativeScore"
+          field="scQualitativeScore"
           label="Overall Qualitative Score"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.nmQualitativeScore }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.scQualitativeScore }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
@@ -359,12 +359,12 @@
 
       <b-table-column
         v-slot="props"
-        field="nmFinalVerdict"
+        field="scFinalVerdict"
         label="Final Verdict"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmFinalVerdict }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scFinalVerdict }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
@@ -373,36 +373,36 @@
       
       <b-table-column
         v-slot="props"
-        field="nmReasonForVerdict"
+        field="scReasonForVerdict"
         label="Reason For Verdict"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmReasonForVerdict }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scReasonForVerdict }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
       <b-table-column
         v-slot="props"
-        field="nmReasonIsOther"
+        field="scReasonIsOther"
         label="Other Reason"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmReasonIsOther }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scReasonIsOther }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
       <b-table-column
         v-slot="props"
-        field="nmNumberOfBagsOrTonnageSelected"
+        field="scNumberOfBagsOrTonnageSelected"
         label="No. Of Bags/Tonnage Selected"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmNumberOfBagsOrTonnageSelected }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scNumberOfBagsOrTonnageSelected }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
@@ -410,12 +410,12 @@
 
       <b-table-column
         v-slot="props"
-        field="nmNumberOfBagsOrTonnageRejected"
+        field="scNumberOfBagsOrTonnageRejected"
         label="No. Of Bags/Tonnage Rejected"
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.nmNumberOfBagsOrTonnageRejected }} </span>
+      <span class="tag is-primary is-light">  {{ props.row.scNumberOfBagsOrTonnageRejected }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
@@ -482,7 +482,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 
-import NMModal from '@/components/modals/Lab Modal/Feed Data/no-3-meal-modal.vue'
+import SCModal from '@/components/modals/Lab Modal/Feed Data/sunflower-sc-modal.vue'
 
 // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
 export default {
@@ -510,11 +510,11 @@ export default {
     
     ...mapGetters('labData', {
         loading: 'loading',
-        NM: 'allNMRecords',
+        SC: 'allSCRecords',
       }),
     
      isEmpty() {
-    return this.NM.length === 0
+    return this.SC.length === 0
      },
 
     
@@ -524,7 +524,7 @@ export default {
     },
     
     tableData() {
-     return this.isEmpty ? [] : this.NM
+     return this.isEmpty ? [] : this.SC
     },
   },
 
@@ -538,7 +538,7 @@ export default {
   methods: {
    
 
-     ...mapActions('labData', ['addNewNMRecord','getAllNMRecords', 'load']),
+     ...mapActions('labData', ['addNewSCRecord','getAllSCRecords', 'load']),
 
      async refresh(){
 
@@ -546,7 +546,7 @@ export default {
       //   "Refreshed!"
       // )
     //  this.isLoading = true
-     await this.getAllNMRecords();
+     await this.getAllSCRecords();
    //   this.isLoading = false
  
     },
@@ -580,7 +580,7 @@ export default {
       setTimeout(() => {
         this.$buefy.modal.open({
           parent: this,
-          component: NMModal,
+          component: SCModal,
           hasModalCard: true,
           trapFocus: true,
           canCancel: ['x'],
@@ -588,7 +588,7 @@ export default {
           customClass: '',
           onCancel: () => {
             this.$buefy.toast.open({
-              message: `Soya (nm) Snapshot closed!`,
+              message: `Soya (sc) Snapshot closed!`,
               duration: 5000,
               position: 'is-top',
               type: 'is-info',

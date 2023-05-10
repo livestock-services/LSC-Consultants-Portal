@@ -39,6 +39,23 @@ import {
 
 
 
+        ADD_NO_3_MEAL_RECORD,
+        GET_ALL_NO_3_MEAL_RECORDS,
+
+        ADD_FF_RECORD,
+        GET_ALL_FF_RECORDS,
+
+        ADD_SE_RECORD,
+        GET_ALL_SE_RECORDS,
+
+        ADD_ME_RECORD,
+        GET_ALL_ME_RECORDS,
+
+        ADD_SUNFLOWER_CAKE_SC_RECORD,
+        GET_ALL_SUNFLOWER_CAKE_SC_RECORDS,
+
+
+
         
         SET_LOADING,
         
@@ -71,6 +88,13 @@ export const state = () => ({
 
     allFeedSubmissionsRecords:[],
     allFilteredFeedSubmissionsRecords:[],
+
+
+    allNMRecords:[],
+    allFFRecords:[],
+    allSERecords:[],
+    allMERecords:[],
+    allSCRecords:[],
 
 
     // allSAMPLE_INFORMATIONConsultsRecords:[],
@@ -145,6 +169,7 @@ export const state = () => ({
         clientName:null,
         dateSubmitted:null,
         timeStamp:null,
+        createdBy:null
     },
 
 
@@ -156,6 +181,7 @@ export const state = () => ({
         typeOfSample:null,
         dateSubmitted:null,
         timeStamp:null,
+        createdBy:null
     },
 
     nmFeedSubmissionsForm:{
@@ -213,13 +239,276 @@ export const state = () => ({
 
         nmReasonForVerdict:null,
 
-        nmOtherReasomn:null, 
+        nmOtherReason:null, 
 
         nmNumberOfBagsOrTonnageSelected:null,
 
-        nmNumberOfBagsOrTonnageRejected:null
+        nmNumberOfBagsOrTonnageRejected:null,
+
+        createdBy:null
        
     },
+
+    ffFeedSubmissionsForm: {
+        
+        ffDateReceived:null,
+
+        ffReceivedBy:null ,
+
+        ffTimeOfReceipt:null,
+
+        ffSubmissionNumber:null ,
+
+        ffSupplierName:null, 
+
+        ffNRC:null,
+
+        ffTelNumber:null, 
+
+        ffDescription:null,
+
+        ffSiteLocation:null, 
+
+        ffSampleID:null,
+
+        ffSamplePackaging:null,
+
+        ffSampleLabelling:null,
+
+        ffSampleCondition:null,
+
+        ffTestRequested:null,
+
+        ffColor:null,
+
+        ffSmell:null,
+
+        ffTexture:null,
+
+        ffForeignBodies:null,
+
+        ffOther:null,
+
+        ffQualitativeScore:null ,
+
+        ffAntiTrypsinTest:null ,
+
+        ffMoisture:null,
+
+        ffProtein:null,
+
+        ffFat:null,
+
+        ffFibre:null, 
+
+        ffAsh:null,
+
+        ffNutritionistComment:null,
+
+        ffSecondComment:null,
+
+        createdBy:null
+   
+
+      
+    },
+
+    seFeedSubmissionsForm: {
+        
+        seDateReceived:null,
+
+        seReceivedBy:null ,
+
+        seTimeOfReceipt:null,
+
+        seSubmissionNumber:null ,
+
+        seSupplierName:null, 
+
+        seNRC:null,
+
+        seTelNumber:null, 
+
+        seDescription:null,
+
+        seSiteLocation:null, 
+
+        seSampleID:null,
+
+        seSamplePackaging:null,
+
+        seSampleLabelling:null,
+
+        seSampleCondition:null,
+
+        seTestRequested:null,
+
+        seColor:null,
+
+        seSmell:null,
+
+        seTexture:null,
+
+        seForeignBodies:null,
+
+        seOther:null,
+
+        seQualitativeScore:null ,
+
+        seAntiTrypsinTest:null ,
+
+        seMoisture:null,
+
+        seProtein:null,
+
+        seFat:null,
+
+        seFibre:null, 
+
+        seAsh:null,
+
+        seNutritionistComment:null,
+
+        seSecondComment:null,
+
+        createdBy:null
+   
+
+      
+    },
+
+    meFeedSubmissionsForm: {
+        
+        meDateReceived:null,
+
+        meReceivedBy:null ,
+
+        meTimeOfReceipt:null,
+
+        meSubmissionNumber:null ,
+
+        meSupplierName:null, 
+
+        meNRC:null,
+
+        meTelNumber:null, 
+
+        meDescription:null,
+
+        meSiteLocation:null, 
+
+        meSampleID:null,
+
+        meSamplePackaging:null,
+
+        meSampleLabelling:null,
+
+        meSampleCondition:null,
+
+        meTestRequested:null,
+
+        meColor:null,
+
+        meSmell:null,
+
+        meTexture:null,
+
+        meForeignBodies:null,
+
+        meOther:null,
+
+        meQualitativeScore:null ,
+
+        meAntiTrypsinTest:null ,
+
+        meMoisture:null,
+
+        meProtein:null,
+
+        meFat:null,
+
+        meFibre:null, 
+
+        meAsh:null,
+
+        meNutritionistComment:null,
+
+        meSecondComment:null,
+
+        createdBy:null
+   
+
+       
+    },
+
+    scFeedSubmissionsForm: {
+        
+        scDateOfSampleCollected:null,
+    
+        scTimeOfReceipt:null,
+ 
+        scSubmissionNumber:null,
+
+        scSupplierName:null, 
+
+        scNRC:null,
+
+        scVehicleRegNumber:null,
+
+        scTelNumber:null, 
+
+        scEmail:null, 
+
+        scSampleID:null,
+
+        scTypeOfSample:null,
+
+        scSiteLocation:null, 
+
+        scNumberOfBagsPerTonnage:null,
+
+        scNumberOfBagsSampled:null,
+
+        scColor:null,
+
+        scSmell:null,
+
+        scTexture:null,
+
+        scForeignBodies:null,
+
+        scWeevilsOrInsects:null, 
+
+        scBranContent:null,
+
+        scGritContent:null,
+
+        scPowderContent:null,
+
+        scOther:null,
+
+        scMoisture:null,
+
+        scTechnician:null,
+
+        scQualitativeScore:null,
+
+        scFinalVerdict:null,
+
+        scReasonForVerdict:null,
+
+        scOtherReason:null, 
+
+        scNumberOfBagsOrTonnageSelected:null,
+
+        scNumberOfBagsOrTonnageRejected:null,
+
+        createdBy:null
+
+
+
+},
+
 
     sampleInfoFilterForm:{
         startDate:null,
@@ -272,6 +561,9 @@ export const getters = {
         return state.allFilteredSampleInformationRecords
     },
 
+
+   
+
     
         
   //----------------------------------------END OF SAMPLE INFO SECTION----------------------------------------//
@@ -310,6 +602,33 @@ export const getters = {
     allFilteredFeedSubmissionsRecords(state){
         return state.allFilteredFeedSubmissionsRecords
     },
+
+    //----------------------------NO. 3 MEAL GETTER------------------------------------------------------------------//
+    allNMRecords(state){
+        return state.allNMRecords
+    },
+
+     //----------------------------SOYA FF GETTER------------------------------------------------------------------//
+     allFFRecords(state){
+        return state.allFFRecords
+    },
+
+     //----------------------------SOYA SE GETTER------------------------------------------------------------------//
+     allSERecords(state){
+        return state.allSERecords
+    },
+
+
+     //----------------------------SOYA ME GETTER------------------------------------------------------------------//
+     allMERecords(state){
+        return state.allMERecords
+    },
+
+     //----------------------------SUNFLOWER CAKE SC GETTER------------------------------------------------------------------//
+     allSCRecords(state){
+        return state.allSCRecords
+    },
+
 
 
 
@@ -438,6 +757,69 @@ export const mutations = {
         state.allFilteredFeedSubmissionsRecords = payload
     },
 
+
+    //------------------------------------------------------------------------------------//
+
+    //------------------------------------No.3 MEAL MUTATIONS---------------------------------------------//
+
+    [ADD_NO_3_MEAL_RECORD](state, newNMRecord){
+        state.allNMRecords.push(newNMRecord)
+    },
+
+    [GET_ALL_NO_3_MEAL_RECORDS](state, payload){
+        state.allNMRecords = payload
+    },
+
+    //------------------------------------------------------------------------------------//
+
+     //------------------------------------SOYA FF MUTATIONS---------------------------------------------//
+
+     [ADD_FF_RECORD](state, newFFRecord){
+        state.allFFRecords.push(newFFRecord)
+    },
+
+    [GET_ALL_FF_RECORDS](state, payload){
+        state.allFFRecords = payload
+    },
+
+    //------------------------------------------------------------------------------------//
+
+     //------------------------------------SOYA SE MUTATIONS---------------------------------------------//
+
+     
+
+     [ADD_SE_RECORD](state, newSERecord){
+        state.allSERecords.push(newSERecord)
+    },
+
+    [GET_ALL_SE_RECORDS](state, payload){
+        state.allSERecords = payload
+    },
+
+    //------------------------------------------------------------------------------------//
+
+     //------------------------------------SOYA ME MUTATIONS---------------------------------------------//
+
+     [ADD_ME_RECORD](state, newMERecord){
+        state.allMERecords.push(newMERecord)
+    },
+
+    [GET_ALL_ME_RECORDS](state, payload){
+        state.allMERecords = payload
+    },
+
+    //------------------------------------------------------------------------------------//
+
+
+     //------------------------------------SUNFLOWER CAKE SC MUTATIONS---------------------------------------------//
+
+     [ADD_SUNFLOWER_CAKE_SC_RECORD](state, newSCRecord){
+        state.allSCRecords.push(newSCRecord)
+    },
+
+    [GET_ALL_SUNFLOWER_CAKE_SC_RECORDS](state, payload){
+        state.allSCRecords = payload
+    },
 
     //------------------------------------------------------------------------------------//
 
@@ -1046,11 +1428,412 @@ export const actions = {
 
     
 
+     //-------------------------------------ACTIONS FOR NO.3 MEAL-----------------------------------------------------------------------//
+     async addNewNMRecord({ state, commit}){
+        try {
+            commit(SET_LOADING, true);
+
+
+            const newNMRecord = cloneDeep(state.nmFeedSubmissionsForm);
+
+           newNMRecord.nmDateOfSampleCollected = state.nmFeedSubmissionsForm.nmDateOfSampleCollected.toLocaleDateString('en-US');
+           
+           newNMRecord.nmTimeOfReceipt = state.nmFeedSubmissionsForm.nmTimeOfReceipt.toLocaleTimeString();
+
+
+         newNMRecord.createdBy = this.$auth.user.email;
+
+        //    console.log(newNMRecord.date);
+           
+           console.log(newNMRecord);
+
+           
+            const response = await api.post(`/lab/feedData/addNewNM`, newNMRecord);
+
+            console.log(response.data);
+
+            commit(ADD_NO_3_MEAL_RECORD, response.data);
+            
+            commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.log.error(error.message);
+        }
+    },
     
-        
-      
+
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------//
+
+    async getAllNMRecords({ state,commit }){
+        try {
+            //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+            commit(SET_LOADING, true)
+
+            //API REQUEST IS MADE AND RESULT IS STORED IN CONST
+           const {data: response} = await api.get(`/lab/feedData/NM`)
+
+           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
+            const customeUserRecords = response.data.filter( cur=>
+                cur.createdBy === this.$auth.user.email
+                      )
+
+                      console.log(customeUserRecords);
+                      commit(GET_ALL_NO_3_MEAL_RECORDS, customeUserRecords);
+
+            }
+
+            else{
+
+                commit(GET_ALL_NO_3_MEAL_RECORDS, response.data);
+
+            }
+
+   
+           //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
+           
+
+       
+       
+           //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+           commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.$log.error(error.message)
+        }
+    },
+    
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------//
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------//    
+
+
+
+       //-------------------------------------ACTIONS FOR SOYA FF-----------------------------------------------------------------------//
+       async addNewFFRecord({ state, commit}){
+        try {
+            commit(SET_LOADING, true);
+
+
+            const newFFRecord = cloneDeep(state.ffFeedSubmissionsForm);
+
+           newFFRecord.ffDateReceived = state.ffFeedSubmissionsForm.ffDateReceived.toLocaleDateString('en-US');
+           newFFRecord.ffTimeOfReceipt = state.ffFeedSubmissionsForm.ffTimeOfReceipt.toLocaleTimeString();
+
+
+         newFFRecord.createdBy = this.$auth.user.email;
+
+        //    console.log(newFFRecord.date);
+           
+           console.log(newFFRecord);
+
+           
+            const response = await api.post(`/lab/feedData/addNewFF`, newFFRecord);
+
+            console.log(response.data);
+
+            commit(ADD_FF_RECORD, response.data);
+            
+            commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.log.error(error.message);
+        }
+    },
+    
+
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------//
+
+    async getAllFFRecords({ state,commit }){
+        try {
+            //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+            commit(SET_LOADING, true)
+
+            //API REQUEST IS MADE AND RESULT IS STORED IN CONST
+           const {data: response} = await api.get(`/lab/feedData/FF`)
+
+           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
+            const customeUserRecords = response.data.filter( cur=>
+                cur.createdBy === this.$auth.user.email
+                      )
+
+                      console.log(customeUserRecords);
+                      commit(GET_ALL_FF_RECORDS, customeUserRecords);
+
+            }
+
+            else{
+
+                commit(GET_ALL_FF_RECORDS, response.data);
+
+            }
+
+   
+           //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
+           
+
+       
+       
+           //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+           commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.$log.error(error.message)
+        }
+    },
+    
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------//
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------//   
 
   
+
+
+
+
+       //-------------------------------------ACTIONS FOR SOYA SE-----------------------------------------------------------------------//
+       async addNewSERecord({ state, commit}){
+        try {
+            commit(SET_LOADING, true);
+
+
+            const newSERecord = cloneDeep(state.seFeedSubmissionsForm);
+
+           newSERecord.seDateReceived = state.seFeedSubmissionsForm.seDateReceived.toLocaleDateString('en-US');
+           newSERecord.seTimeOfReceipt = state.seFeedSubmissionsForm.seTimeOfReceipt.toLocaleTimeString();
+
+
+         newSERecord.createdBy = this.$auth.user.email;
+
+        //    console.log(newSERecord.date);
+           
+           console.log(newSERecord);
+
+           
+            const response = await api.post(`/lab/feedData/addNewSE`, newSERecord);
+
+            console.log(response.data);
+
+            commit(ADD_SE_RECORD, response.data);
+            
+            commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.log.error(error.message);
+        }
+    },
+
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------//
+
+    async getAllSERecords({ state,commit }){
+        try {
+            //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+            commit(SET_LOADING, true)
+
+            //API REQUEST IS MADE AND RESULT IS STORED IN CONST
+           const {data: response} = await api.get(`/lab/feedData/SE`)
+
+           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
+            const customeUserRecords = response.data.filter( cur=>
+                cur.createdBy === this.$auth.user.email
+                      )
+
+                      console.log(customeUserRecords);
+                      commit(GET_ALL_SE_RECORDS, customeUserRecords);
+
+            }
+
+            else{
+
+                commit(GET_ALL_SE_RECORDS, response.data);
+
+            }
+
+   
+           //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES ESEECTIVE
+           
+
+       
+       
+           //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+           commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.$log.error(error.message)
+        }
+    },
+    
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------//
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------//   
+
+    
+
+    //-------------------------------------ACTIONS FOR SOYA ME-----------------------------------------------------------------------//
+    async addNewMERecord({ state, commit}){
+        try {
+            commit(SET_LOADING, true);
+
+
+            const newMERecord = cloneDeep(state.meFeedSubmissionsForm);
+
+           newMERecord.meDateReceived = state.meFeedSubmissionsForm.meDateReceived.toLocaleDateString('en-US');
+
+
+
+         newMERecord.createdBy = this.$auth.user.email;
+
+        //    console.log(newSERecord.date);
+           
+           console.log(newMERecord);
+
+           
+            const response = await api.post(`/lab/feedData/addNewME`, newMERecord);
+
+            console.log(response.data);
+
+            commit(ADD_ME_RECORD, response.data);
+            
+            commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.log.error(error.message);
+        }
+    },
+    
+
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------//
+
+    async getAllMERecords({ state,commit }){
+        try {
+            //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+            commit(SET_LOADING, true)
+
+            //API REQUEST IS MADE AND RESULT IS STORED IN CONST
+           const {data: response} = await api.get(`/lab/feedData/ME`)
+
+           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
+            const customeUserRecords = response.data.filter( cur=>
+                cur.createdBy === this.$auth.user.email
+                      )
+
+                      console.log(customeUserRecords);
+                      commit(GET_ALL_ME_RECORDS, customeUserRecords);
+
+            }
+
+            else{
+
+                commit(GET_ALL_ME_RECORDS, response.data);
+
+            }
+
+   
+           //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
+           
+
+       
+       
+           //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+           commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.$log.error(error.message)
+        }
+    },
+    
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------//
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------//   
+
+
+
+
+     //-------------------------------------ACTIONS FOR SOYA ME-----------------------------------------------------------------------//
+     async addNewSCRecord({ state, commit}){
+        try {
+            commit(SET_LOADING, true);
+
+
+            const newSCRecord = cloneDeep(state.scFeedSubmissionsForm);
+
+           newSCRecord.scDateOfSampleCollected = state.scFeedSubmissionsForm.scDateOfSampleCollected.toLocaleDateString('en-US');
+           
+           newSCRecord.scTimeOfReceipt = state.scFeedSubmissionsForm.scTimeOfReceipt.toLocaleTimeString();
+
+
+         newSCRecord.createdBy = this.$auth.user.email;
+
+        //    console.log(newSERecord.date);
+           
+           console.log(newSCRecord);
+
+           
+            const response = await api.post(`/lab/feedData/addNewSC`, newSCRecord);
+
+            console.log(response.data);
+
+            commit(ADD_SUNFLOWER_CAKE_SC_RECORD, response.data);
+            
+            commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.log.error(error.message);
+        }
+    },
+    
+
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------//
+
+    async getAllSCRecords({ state,commit }){
+        try {
+            //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+            commit(SET_LOADING, true)
+
+            //API REQUEST IS MADE AND RESULT IS STORED IN CONST
+           const {data: response} = await api.get(`/lab/feedData/SC`)
+
+           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
+            const customeUserRecords = response.data.filter( cur=>
+                cur.createdBy === this.$auth.user.email
+                      )
+
+                      console.log(customeUserRecords);
+                      commit(GET_ALL_SUNFLOWER_CAKE_SC_RECORDS, customeUserRecords);
+
+            }
+
+            else{
+
+                commit(GET_ALL_SUNFLOWER_CAKE_SC_RECORDS, response.data);
+
+            }
+
+   
+           //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EscECTIVE
+           
+
+       
+       
+           //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+           commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.$log.error(error.message)
+        }
+    },
+    
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------//
+    //-----------------------------------------------------------------------------------------------------------------------------------------------------//   
+
+
+
+
 
 }
 

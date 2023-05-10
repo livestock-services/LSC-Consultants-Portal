@@ -50,48 +50,48 @@
   
          <b-table-column
           v-slot="props"
-          field="ffDateReceived"
+          field="meDateReceived"
           label="Date Received"
           searchable
           
         >
-        <span class="tag tasks">  {{ props.row.ffDateReceived }} </span>
+        <span class="tag tasks">  {{ props.row.meDateReceived }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
   
         <b-table-column
           v-slot="props"
-          field="ffReceivedBy"
+          field="meReceivedBy"
           label="Received By"
           
           
         >
-        <span class="tag numbers">  {{ props.row.ffReceivedBy }} </span>
+        <span class="tag numbers">  {{ props.row.meReceivedBy }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
   
         <b-table-column
           v-slot="props"
-          field="ffTimeOfReceipt"
+          field="meTimeOfReceipt"
           label="Time"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffTimeOfReceipt }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meTimeOfReceipt }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
   
         <b-table-column
           v-slot="props"
-          field="ffSubmissionNumber"
+          field="meSubmissionNumber"
           label="Submission"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffSubmissionNumber }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meSubmissionNumber }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
@@ -100,69 +100,69 @@
   
        <b-table-column
           v-slot="props"
-          field="ffSupplierName"
+          field="meSupplierName"
           label="Supplier/Customer"
           searchable
         >
   
-        <span class="tag is-info is-light">  {{ props.row.ffSupplierName }} </span>
+        <span class="tag is-info is-light">  {{ props.row.meSupplierName }} </span>
          
         </b-table-column>
   
         <b-table-column
           v-slot="props"
-          field="ffNRC"
+          field="meNRC"
           label="NRC"
           searchable
         >
   
-        <span class="tag is-info is-light">  {{ props.row.ffNRC }} </span>
+        <span class="tag is-info is-light">  {{ props.row.meNRC }} </span>
          
         </b-table-column>
 
         <b-table-column
           v-slot="props"
-          field="ffTelNumber"
+          field="meTelNumber"
           label="Telephone No."
           searchable
         >
   
-        <span class="tag is-info is-light">  {{ props.row.ffTelNumber }} </span>
+        <span class="tag is-info is-light">  {{ props.row.meTelNumber }} </span>
          
         </b-table-column>
         
         <b-table-column
           v-slot="props"
-          field="ffDescription"
+          field="meDescription"
           label="Description"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffDescription }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meDescription }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
         <b-table-column
           v-slot="props"
-          field="ffSampleID"
+          field="meSampleID"
           label="Sample ID"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffSampleID }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meSampleID }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
         <b-table-column
           v-slot="props"
-          field="ffSiteLocation"
+          field="meSiteLocation"
           label="Site/Location"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffSiteLocation }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meSiteLocation }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
@@ -170,36 +170,36 @@
 
         <b-table-column
           v-slot="props"
-          field="ffSamplePackaging"
+          field="meSamplePackaging"
           label="Sample Packaging"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffSamplePackaging }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meSamplePackaging }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
         <b-table-column
           v-slot="props"
-          field="ffSampleLabelling"
+          field="meSampleLabelling"
           label="Sample Labelling"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffSampleLabelling }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meSampleLabelling }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
         <b-table-column
           v-slot="props"
-          field="ffSampleCondition"
+          field="meSampleCondition"
           label="Sample Condition"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffSampleCondition }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meSampleCondition }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
@@ -207,12 +207,12 @@
 
         <b-table-column
           v-slot="props"
-          field="ffColor"
-          label="ffColor"
+          field="meColor"
+          label="meColor"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffColor }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meColor }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
@@ -220,48 +220,48 @@
 
         <b-table-column
           v-slot="props"
-          field="ffTexture"
+          field="meTexture"
           label="Texture"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffTexture }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meTexture }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
         <b-table-column
           v-slot="props"
-          field="ffSmell"
+          field="meSmell"
           label="Smell"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffSmell }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meSmell }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
         <b-table-column
           v-slot="props"
-          field="ffForeignBodies"
+          field="meForeignBodies"
           label="Foreign Bodies"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffForeignBodies }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meForeignBodies }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
         <b-table-column
           v-slot="props"
-          field="ffOther"
+          field="meOther"
           label="Other"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffOther }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meOther }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
@@ -269,72 +269,72 @@
 
         <b-table-column
           v-slot="props"
-          field="ffQualitativeScore"
+          field="meQualitativeScore"
           label="Overall Qualitative Score"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffQualitativeScore }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meQualitativeScore }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
         <b-table-column
           v-slot="props"
-          field="ffAntiTrypsinTest"
+          field="meAntiTrypsinTest"
           label="AntiTrypsin Test"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffAntiTrypsinTest }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meAntiTrypsinTest }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
         <b-table-column
           v-slot="props"
-          field="ffMoisture"
+          field="meMoisture"
           label="Moisture"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffMoisture }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meMoisture }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
         <b-table-column
           v-slot="props"
-          field="ffProtein"
+          field="meProtein"
           label="Protein As is"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffProtein }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meProtein }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
         <b-table-column
           v-slot="props"
-          field="ffFat"
+          field="meFat"
           label="Fat As is"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffFat }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meFat }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
         <b-table-column
           v-slot="props"
-          field="ffFibre"
+          field="meFibre"
           label="Fibre As is"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffFibre }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meFibre }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
@@ -342,12 +342,12 @@
 
         <b-table-column
           v-slot="props"
-          field="ffAsh"
+          field="meAsh"
           label="Ash As is"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffAsh }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meAsh }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
@@ -355,12 +355,12 @@
 
         <b-table-column
           v-slot="props"
-          field="ffNutritionistComment"
+          field="meNutritionistComment"
           label="Nutritionist Comment"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffNutritionistComment }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meNutritionistComment }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
@@ -368,12 +368,12 @@
 
         <b-table-column
           v-slot="props"
-          field="ffSecondComment"
+          field="meSecondComment"
           label="Second Comment"
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.ffSecondComment }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.meSecondComment }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
@@ -440,7 +440,7 @@
   <script>
   import { mapActions, mapGetters } from 'vuex'
   
-  import FFModal from '@/components/modals/Lab Modal/Feed Data/soya-ff-modal.vue'
+  import MEModal from '@/components/modals/Lab Modal/Feed Data/soya-me-modal.vue'
   
   // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
   export default {
@@ -468,11 +468,11 @@
       
       ...mapGetters('labData', {
           loading: 'loading',
-          FF: 'allFFRecords',
+          ME: 'allMERecords',
         }),
       
        isEmpty() {
-      return this.FF.length === 0
+      return this.ME.length === 0
        },
   
       
@@ -482,7 +482,7 @@
       },
       
       tableData() {
-       return this.isEmpty ? [] : this.FF
+       return this.isEmpty ? [] : this.ME
       },
     },
   
@@ -496,7 +496,7 @@
     methods: {
      
   
-       ...mapActions('labData', ['addNewFFRecord','getAllFFRecords', 'load']),
+       ...mapActions('labData', ['addNewMERecord','getAllMERecords', 'load']),
   
        async refresh(){
   
@@ -504,7 +504,7 @@
         //   "Refreshed!"
         // )
       //  this.isLoading = true
-       await this.getAllFFRecords();
+       await this.getAllMERecords();
      //   this.isLoading = false
    
       },
@@ -538,7 +538,7 @@
         setTimeout(() => {
           this.$buefy.modal.open({
             parent: this,
-            component: FFModal,
+            component: MEModal,
             hasModalCard: true,
             trapFocus: true,
             canCancel: ['x'],
@@ -546,7 +546,7 @@
             customClass: '',
             onCancel: () => {
               this.$buefy.toast.open({
-                message: `Soya (FF) Snapshot closed!`,
+                message: `Soya (me) Snapshot closed!`,
                 duration: 5000,
                 position: 'is-top',
                 type: 'is-info',

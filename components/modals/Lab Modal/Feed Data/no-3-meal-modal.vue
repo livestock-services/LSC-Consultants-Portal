@@ -462,7 +462,7 @@
 import { mapActions, mapGetters } from 'vuex'
   import { mapFields } from 'vuex-map-fields'
   export default {
-    name: 'FenceModal',
+    name: 'NMModal',
   
      data() {
       return {
@@ -549,7 +549,7 @@ import { mapActions, mapGetters } from 'vuex'
 
                     "nmFeedSubmissionsForm.nmReasonForVerdict",
 
-                    "nmFeedSubmissionsForm.nmOtherReasomn", 
+                    "nmFeedSubmissionsForm.nmOtherReason", 
 
                     "nmFeedSubmissionsForm.nmNumberOfBagsOrTonnageSelected",
 
@@ -575,7 +575,7 @@ import { mapActions, mapGetters } from 'vuex'
     
   
     methods: {
-        ...mapActions('labData', ['addNewNMSubmissionsRecord','getAllNMSubmissionsRecords', 'load']),
+        ...mapActions('labData', ['addNewNMRecord', 'load']),
   
      loading() {
        // return this.nmLoading 
@@ -593,7 +593,7 @@ import { mapActions, mapGetters } from 'vuex'
           hasIcon: true,
           onConfirm: async () => {
             
-           await this.addNewNMSubmissionsRecord();
+           await this.addNewNMRecord();
   
             this.$buefy.toast.open({
               duration: 3000,
@@ -687,7 +687,7 @@ import { mapActions, mapGetters } from 'vuex'
 
                     nmReasonForVerdict:null,
 
-                    nmOtherReasomn:null, 
+                    nmOtherReason:null, 
 
                     nmNumberOfBagsOrTonnageSelected:null,
 

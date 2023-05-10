@@ -63,72 +63,35 @@
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
-  
-  
-       <b-table-column
+
+        <b-table-column
           v-slot="props"
-          field="selectPriority"
-          label="Payment Status"
+          field="role"
+          label="Role"
           sortable
+          
         >
-  
+
         <span
             :class="[
               'tag',
           
               {
-                'is-warning  ' : props.row.paymentStatus ===  'Pending',
+                'is-warning' : props.row.role ===  'user',
               },
   
               {
-                'is-success ': props.row.paymentStatus === 'Paid',
+                'is-success ': props.row.role === 'admin',
               },
             ]"
-            >  {{ props.row.paymentStatus }} </span
-          >
+            >
+         {{ props.row.role }} <i v-if="props.row.role=== 'admin'" class="mdi mdi-account"></i> </span>
          
+          <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
   
   
-   <b-table-column
-          v-slot="props"
-          field="selectPriority"
-          label="Billing Cycle"
-          sortable
-        >
-  
-        <span
-            :class="[
-              'tag',
-              {
-                'monthly': props.row.billingCycle ===  'Annual',
-              },
-  
-             
-            
-            ]"
-            >  {{ props.row.billingCycle }} </span
-          >
-         
-        </b-table-column>
-  
-  
-  
-         <b-table-column v-slot="props" field="date" label="Start Date" sortable>
-  
-            <span class="tag is-success is-light">{{ props.row.startDate}}</span>
-  
-        </b-table-column>  
-  
-         <b-table-column v-slot="props" field="date" label="End Date" sortable>
-  
-            <span class="tag is-danger is-light">{{ props.row.endDate}}</span>
-  
-        </b-table-column>  
-  
-        
-     
-  
+       
       
   
          <b-table-column v-slot="props" label="Options">
@@ -176,7 +139,7 @@
   <script>
   import { mapActions, mapGetters } from 'vuex'
   import CustomerModal from'~/components/modals/Customer Modal/customer-modal.vue'
-//   import CustomerSnapshotModal from '../modals/Customer Modal/customer-snapshot-modal.vue'
+  import CustomerSnapshotModal from '~/components/modals/Customer Modal/customer-snapshot-modal.vue'
   export default {
     name: 'CustomersTable',
   
@@ -239,28 +202,28 @@
       },
   
   
-    //   captureReceipt(user) {
-    //     this.selectUser(user)
-    //     setTimeout(() => {
-    //       this.$buefy.modal.open({
-    //         parent: this,
-    //         component: CustomerSnapshotModal,
-    //         hasModalCard: true,
-    //         trapFocus: true,
-    //         canCancel: ['x'],
-    //         destroyOnHide: true,
-    //         customClass: '',
-    //         onCancel: () => {
-    //           this.$buefy.toast.open({
-    //             message: `Snapshot closed`,
-    //             duration: 5000,
-    //             position: 'is-top',
-    //             type: 'is-info',
-    //           })
-    //         },
-    //       })
-    //     }, 300)
-    //   },
+       captureReceipt(user) {
+         this.selectUser(user)
+         setTimeout(() => {
+           this.$buefy.modal.open({
+             parent: this,
+             component: CustomerSnapshotModal,
+             hasModalCard: true,
+             trapFocus: true,
+             canCancel: ['x'],
+             destroyOnHide: true,
+             customClass: '',
+             onCancel: () => {
+               this.$buefy.toast.open({
+                 message: `Snapshot closed`,
+                 duration: 5000,
+                 position: 'is-top',
+                 type: 'is-info',
+               })
+             },
+           })
+         }, 300)
+       },
   
        addNewTask() {
         

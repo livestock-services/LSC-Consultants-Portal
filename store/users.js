@@ -36,6 +36,14 @@ export const state = () => ({
         name:null,
         email: null,
         password: null,
+        
+      },
+
+      userLoginForm: {
+        
+        email: null,
+        password: null,
+        
       },
 
     
@@ -99,7 +107,7 @@ export const mutations = {
 
     [ACTIVATE_SELECTED_USER](state, putResponse) {
         state.user = putResponse
-        state.user.paymentStatus = "Paid"
+        state.user.role = "admin"
         },
 
     //----------------------PAID USERS-------------------------------//
@@ -224,13 +232,43 @@ export const actions = {
     },
 
 
+     //ADD NEW TASK TO ALL TASKS
+     async loginUser({ state, commit}){
+        try {
+            commit(SET_LOADING, true);
+
+
+            const loginUser = cloneDeep(state.userLoginForm);
+
+           // newTask.createdBy = this.$auth.user.email;
+           
+           console.log (loginUser);
+
+           
+            const response = await api.post(`/auth/login`, loginUser);
+
+            console.log(response.data);
+
+            console.log(response.data.role);
+
+            // commit(LOGIN_USER, response.data);
+            
+            // commit(SET_LOADING, false);
+
+        } catch (error) {
+            commit(SET_LOADING, false);
+            this.log.error('Cannot Create New User. Check Your Details.');
+        }
+    },
+
+
      selectUser ({ commit }, selectedUser) {
          try {
             
              commit(SET_CURRENT_USER, selectedUser)
              console.log(selectedUser._id)
-             console.log(selectedUser.subscriptionPlan)
-             console.log(selectedUser.paymentStatus)
+             console.log(selectedUser.role)
+
          } catch (error) {
              console.log('Error')
          }
@@ -250,7 +288,7 @@ export const actions = {
 
        console.log(newUser)
 
-       const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, paymentStatus: "Paid", startDate:firstDay.toLocaleDateString(), endDate: lastDay.toLocaleDateString() } )
+       const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "admin", startDate:firstDay.toLocaleDateString(), endDate: lastDay.toLocaleDateString() } )
       
        commit(ACTIVATE_SELECTED_USER, putResponse)
 
@@ -263,5 +301,8 @@ export const actions = {
       }
        
       },
+
+
+     
     
 }

@@ -2,6 +2,25 @@ export const SET_LOADING = 'SET_LOADING'
 
 export const GET_ALL_USERS = 'GET_ALL_USERS'
 
+
+// -----------------------------------------USERS----------------------------------------------------------------------
+export const SET_USERS = 'SET_USERS'
+export const ADD_NEW_USER = 'ADD_NEW_USER'
+export const SET_CURRENT_USER = 'SET_CURRENT_USER'
+export const CACHE_USER = 'CACHE_USER'
+export const SET_SELECTED_USER = 'SET_SELECTED_USER'
+export const ACTIVATE_SELECTED_USER = 'ACTIVATE_SELECTED_USER'
+export const SET_ALL_PAID_USERS = 'SET_ALL_PAID_USERS'
+export const GET_ALL_PAID_USERS = 'GET_ALL_PAID_USERS'
+export const SET_SELECTED_PAID_USER = 'SET_SELECTED_PAID_USER'
+
+export const SET_ALL_PENDING_USERS = 'SET_ALL_PENDING_USERS'
+export const GET_ALL_PENDING_USERS = 'GET_ALL_PENDING_USERS'
+export const SET_SELECTED_PENDING_USER = 'SET_SELECTED_PENDING_USER'
+
+//----------------------------------------------------------------------------------------------------------------------
+
+
 //--------------------------------------- AGRO RECORDS------------------------------------------------------------------
 export const ADD_AGRO_RECORD = 'ADD_AGRO_RECORD'
 export const SET_SELECTED_AGRO_RECORD  = 'SET_SELECTED_AGRO_RECORD '
@@ -369,3 +388,23 @@ export const GET_ALL_FILTERED_FEED_SUBMISSIONS_RECORDS = 'GET_ALL_FILTERED_FEED_
 export const GET_FILTERED_FEED_SUBMISSIONS_START_TIME = 'GET_FILTERED_FEED_SUBMISSIONS_START_TIME'
 export const GET_FILTERED_FEED_SUBMISSIONS_END_TIME = 'GET_FILTERED_FEED_SUBMISSIONS_END_TIME'
 
+
+
+ export const  ADD_NO_3_MEAL_RECORD = 'ADD_NO_3_MEAL_RECORD'
+ export const  GET_ALL_NO_3_MEAL_RECORDS = 'GET_ALL_NO_3_MEAL_RECORDS'
+
+ export const  ADD_FF_RECORD = 'ADD_FF_RECORD'
+ export const  GET_ALL_FF_RECORDS = 'GET_ALL_FF_RECORDS'
+ 
+
+ export const  ADD_SE_RECORD = 'ADD_SE_RECORD'
+ export const  GET_ALL_SE_RECORDS = 'GET_ALL_SE_RECORDS'
+
+ export const  ADD_ME_RECORD = 'ADD_ME_RECORD'
+ export const  GET_ALL_ME_RECORDS = 'GET_ALL_ME_RECORDS'
+
+ export const  ADD_SUNFLOWER_CAKE_SC_RECORD = 'ADD_SUNFLOWER_CAKE_SC_RECORD'
+ export const  GET_ALL_SUNFLOWER_CAKE_SC_RECORDS = 'GET_ALL_SUNFLOWER_CAKE_SC_RECORDS'
+ 
+
+     

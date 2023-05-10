@@ -21,6 +21,7 @@
          <FormulateInput
             type="email"
             name="email"
+            v-model="email"
             class="email "
             label="Email"
             validation="bail|required|email"
@@ -40,6 +41,7 @@
           <FormulateInput
             type="password"
             name="password"
+            v-model="password"
             label="Password"
             validation="required"
             data-has-icons-left
@@ -84,6 +86,7 @@
   
   <script>
   import { mapActions, mapGetters } from 'vuex'
+  import { mapFields } from 'vuex-map-fields'
   export default {
   
     auth: 'guest',
@@ -101,6 +104,15 @@
     },
   
      computed: {
+
+      ...mapFields('users', [
+        'userLoginForm',
+        'userLoginForm.email',
+        'userLoginForm.password'  
+            
+        ]),
+
+
        ...mapGetters('users', {
           loading: 'loading',
            Users: 'allUsers',
@@ -110,7 +122,7 @@
     methods: {
      ...mapActions('user', ['getUser']),
   
-     ...mapActions('users', ['getAllUsers']),
+     ...mapActions('users', ['getAllUsers','loginUser']),
   
     async onRegister(){
        this.$buefy.toast.open({
@@ -127,6 +139,26 @@
          
     
     },
+
+    async onLogin(){
+
+      await this.loginUser();
+
+       this.$buefy.toast.open({
+            duration: 3000,
+            message: 'Welcome!',
+            position: 'is-top',
+            type: 'is-success',
+          })
+    
+       
+   
+       this.$router.push({ path: '/auth/register' })
+  
+         
+    
+    },
+
       async loginUser(user) {
   
         try {
@@ -134,8 +166,11 @@
               data: this.form 
             })
             //   const user = response.data
-            console.log(response.data)
+            console.log(response.data);
+            console.log(this.$auth.user.role);
             this.$auth.setUser(user)
+
+            console.log(this.$auth.user.email)
   
           
         

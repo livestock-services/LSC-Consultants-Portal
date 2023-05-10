@@ -2,7 +2,7 @@
   <section  class="section main-section">
 
     
-     <div v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'" class="buttons ml-5">
+     <div v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com' " class="buttons ml-5">
         
 
         <b-tooltip label="Filter Consultations by date range" type="is-dark">
@@ -536,8 +536,15 @@ export default {
         vet:'allFilteredTotalVetRecords',
         PMs:'allFilteredTotalPostMortemsRecords',
         startTime:'filteredTotalConsultsStartTime',
-        endTime:'filteredTotalConsultsEndTime'
+        endTime:'filteredTotalConsultsEndTime',
+        
       }),
+
+      ...mapGetters('users', {
+          loading: 'loading',
+          users: 'allUsers',
+          user:'currentUser'
+        }),
 
       
       isEmpty() {
@@ -656,7 +663,7 @@ export default {
 
 
 .total-consult-card{
-  width: 820px;
+  width: 945px;
   height:190px;
   
    background-color: rgb(244, 172, 72); 

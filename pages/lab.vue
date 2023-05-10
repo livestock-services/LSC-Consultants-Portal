@@ -24,15 +24,19 @@
                     </b-tab-item>
   
                     <b-tab-item label="Soya (FF)">
-                       <SoyaFfTable/>
+                       <SoyaFFTable/>
+                    </b-tab-item>
+
+                    <b-tab-item label="Soya (SE)" >
+                        <SoyaSETable/>
                     </b-tab-item>
 
                     <b-tab-item label="Soya (ME)" >
-                        <No3MealTable/>
+                        <SoyaMETable/>
                     </b-tab-item>
   
                     <b-tab-item label="Sunflower (SC)">
-                       <SoyaFfTable/>
+                       <SunflowerSCTable/>
                     </b-tab-item>
 
                     
@@ -66,12 +70,15 @@
 import SampleInfoTable from '~/components/tables/Lab/Biological Data/sample-info-table.vue';
 import SubmissionsTable from '~/components/tables/Lab/Biological Data/submissions-table.vue';
 import No3MealTable from '~/components/tables/Lab/Feed Data/no-3-meal-table.vue';
-import SoyaFfTable from '~/components/tables/Lab/Feed Data/soya-ff-table.vue';
+import SoyaFFTable from '~/components/tables/Lab/Feed Data/soya-ff-table.vue';
+import SoyaMETable from '~/components/tables/Lab/Feed Data/soya-me-table.vue';
+import SoyaSETable from '~/components/tables/Lab/Feed Data/soya-se-table.vue';
+import SunflowerSCTable from '~/components/tables/Lab/Feed Data/sunflower-sc-table.vue';
 import BioSubmissionsTable from '~/components/tables/Lab/Biological Data/bio-submissions-table.vue'
 import FeedSubmissionsTable from '~/components/tables/Lab/Feed Data/feed-submissions-table.vue'
   export default {
     components: { SampleInfoTable, SubmissionsTable, No3MealTable,
-                  SoyaFfTable, BioSubmissionsTable, FeedSubmissionsTable
+                  SoyaFFTable,SoyaMETable,SoyaSETable,SunflowerSCTable, BioSubmissionsTable, FeedSubmissionsTable
                  },
   
     data(){

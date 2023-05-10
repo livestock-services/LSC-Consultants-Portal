@@ -20,13 +20,13 @@
             </div>
             </div>
 
-            <h4> <span class="is-blue"> received By</span></h4>
+            <h4> <span class="is-blue"> Received By</span></h4>
   
             <div class="columns">
               
               <div  class="column is-three-quarters">
               
-              <b-input type="text" v-model="ffReceivedBy" placeholder="submission no..."></b-input>
+              <b-input type="text" v-model="ffReceivedBy" placeholder="received by..."></b-input>
               </div>
             </div>
 
@@ -287,6 +287,17 @@
   
             </div>
 
+            <h4> <span class="is-blue">Fibre As Is</span></h4>
+            <div class="columns">
+  
+              
+              <div  class="column is-three-quarters">
+              
+              <b-input type="text" v-model="ffFibre" placeholder="Fat..."></b-input>
+              </div>
+  
+            </div>
+
             <h4> <span class="is-blue">Ash As Is</span></h4>
             <div class="columns">
   
@@ -308,6 +319,18 @@
               </div>
   
             </div>
+
+            <h4> <span class="is-blue">Second Comment</span></h4>
+            <div class="columns">
+  
+              
+              <div  class="column is-three-quarters">
+              
+              <b-input type="text" v-model="ffSecondComment" placeholder="Nutritionist Comment..."></b-input>
+              </div>
+  
+            </div>
+
 
 
            
@@ -340,7 +363,7 @@
 
                <p class="mx-4 cat">Tel No.:  {{ ffTelNumber }}</p>
   
-               <p class="mx-4 cat"> Desscription :  {{ ffDesscription }}</p>
+               <p class="mx-4 cat"> Description :  {{ ffDescription }}</p>
 
                <p class="mx-4 cat"> SampleID:  {{ ffSampleID }}</p>
     
@@ -383,6 +406,8 @@
 
                <p class="mx-4 cat"> Nutritionist Comments :  {{ ffNutritionistComment }}</p>
 
+               <p class="mx-4 cat"> Second Comment :  {{ ffSecondComment }}</p>
+
   
                           
              </div>
@@ -414,7 +439,7 @@
 import { mapActions, mapGetters } from 'vuex'
   import { mapFields } from 'vuex-map-fields'
   export default {
-    name: 'FenceModal',
+    name: 'FFModal',
   
      data() {
       return {
@@ -504,7 +529,9 @@ import { mapActions, mapGetters } from 'vuex'
 
                     "ffFeedSubmissionsForm.ffAsh",
 
-                    "ffFeedSubmissionsForm.ffNutritionistComment"
+                    "ffFeedSubmissionsForm.ffNutritionistComment",
+
+                    "ffFeedSubmissionsForm.ffSecondComment"
                             
       
         
@@ -526,7 +553,7 @@ import { mapActions, mapGetters } from 'vuex'
     
   
     methods: {
-        ...mapActions('labData', ['addNewffSubmissionsRecord','getAllffSubmissionsRecords', 'load']),
+        ...mapActions('labData', ['addNewFFRecord','getAllFFRecords', 'load']),
   
      loading() {
        // return this.ffLoading 
@@ -544,7 +571,7 @@ import { mapActions, mapGetters } from 'vuex'
           hasIcon: true,
           onConfirm: async () => {
             
-           await this.addNewffSubmissionsRecord();
+           await this.addNewFFRecord();
   
             this.$buefy.toast.open({
               duration: 3000,
@@ -572,7 +599,7 @@ import { mapActions, mapGetters } from 'vuex'
   
       close() {
         this.$buefy.toast.open({
-          message: 'No.3 Meal Submissions Snapshot closed.',
+          message: 'Soya FF Submissions Snapshot closed.',
           duration: 2000,
           position: 'is-bottom',
           type: 'is-warning ',
@@ -636,7 +663,9 @@ import { mapActions, mapGetters } from 'vuex'
 
             ffAsh:null,
 
-            ffNutritionistComment:null
+            ffNutritionistComment:null,
+
+            ffSecondComment:null
        
   
           
