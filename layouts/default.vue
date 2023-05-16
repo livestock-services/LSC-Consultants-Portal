@@ -137,7 +137,7 @@
 
                               <b-menu-item v-if="this.$auth.user.email==='kondwani1mwale@gmail.com'
                                          ||this.$auth.user.email==='isaacs@livestock.co.zm' "   
-                                         class="ml-2" icon="microscope"  label="Lab" 
+                                         class="ml-2" icon="microscope"  label="Laboratory" 
                                          @click="lab">
                                             
                                
@@ -152,7 +152,7 @@
 
                                 
                                
-                                <b-menu-item v-if="$auth.user.email === 'vet-technical@livestock.co.zm' || $auth.user.email === 'augustined@livestock.co.zm' || $auth.user.email === 'bornfacec@livestock.co.zm' ||  $auth.user.email === 'kondwani1mwale@gmail.com' || $auth.user.email === 'vet-sales@livestock.co.zm'" icon="doctor"   @click="vetTech" label="Vet">  </b-menu-item>
+                                <b-menu-item v-if="$auth.user.email === 'vet-technical@livestock.co.zm' || $auth.user.email === 'augustined@livestock.co.zm' || $auth.user.email === 'bornfacec@livestock.co.zm' ||  $auth.user.email === 'kondwani1mwale@gmail.com' || $auth.user.email === 'vet-sales@livestock.co.zm'" icon="doctor"   @click="vetTech" label="Veterinary">  </b-menu-item>
 
 
 

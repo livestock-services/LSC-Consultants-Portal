@@ -70,7 +70,7 @@
             'Invoice No.':'invoiceNumber'
 
             }"
-            :data="submissions" 
+            :data="submissions_data" 
             worksheet="Submissions Information Worksheet"
             type="xls"
             name = "Submissions Information.xls">
@@ -675,7 +675,7 @@
   
   <script>
   import { mapActions, mapGetters } from 'vuex'
-  
+  import { computed } from 'vue';
   import SubmissionsModal from '@/components/modals/Lab Modal/Biological Data/submissions-modal.vue'
   
   // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
@@ -684,7 +684,7 @@
   
     data() {  
     
-      
+      var allSubmissions = computed(()=>this.submissions)
       return {
   
         isPaginated: true,
@@ -696,6 +696,10 @@
         sortIcon: 'arrow-up',
         sortIconSize: 'is-small',
         stickyHeaders: true,
+
+        submissions_data:[
+              allSubmissions
+            ]
       }
     },
   
@@ -704,7 +708,7 @@
       
       ...mapGetters('labData', {
           loading: 'loading',
-          submissions: 'allSubmissionsRecords',
+          submissions:'allSubmissionsRecords',
         }),
       
        isEmpty() {
