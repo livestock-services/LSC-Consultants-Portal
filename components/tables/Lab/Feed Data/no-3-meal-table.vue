@@ -54,6 +54,7 @@
         label="Date Of Sample Collection"
         searchable
         
+        
       >
       <span class="tag tasks">  {{ props.row.nmDateOfSampleCollected }} </span>
        

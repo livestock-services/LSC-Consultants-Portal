@@ -10,15 +10,9 @@
         <div>
          <b-form v-model="bioSubmissionsForm" class="form">
   
-          <h4> <span class="is-blue"> Submission No.</span></h4>
+       
   
-            <div class="columns">
-              
-              <div  class="column is-three-quarters">
-              
-              <b-input type="text" v-model="bioSubmissionNumber" placeholder="submission no..."></b-input>
-              </div>
-            </div>
+            
   
             <h4> <span class="is-blue">Client Name</span></h4>
             <div class="columns">
@@ -32,7 +26,7 @@
             </div>
   
            
-            <h4> <span class="is-blue"> Date Submitted </span></h4>
+            <!-- <h4> <span class="is-blue"> Date Submitted </span></h4>
             
             <div class="columns">
       
@@ -55,7 +49,7 @@
                         :max-time="maxTime">
                     </b-timepicker>
                 </div>
-            </div>
+            </div> -->
 
 
 
@@ -67,13 +61,12 @@
                
               
           
-               <p class="mx-4 cat">Submission No:  {{bioSubmissionNumber}}</p>
-  
+            
                <p class="mx-4 cat"> Client Name :  {{ clientName }}</p>
   
-               <p class="mx-4 cat">Date Submitted :  {{ dateSubmitted}}</p> 
+               <!-- <p class="mx-4 cat">Date Submitted :  {{ dateSubmitted}}</p> 
   
-               <p class="mx-4 cat">Time Stamp :  {{ timeStamp }}</p>
+               <p class="mx-4 cat">Time Stamp :  {{ timeStamp }}</p> -->
   
                           
              </div>
@@ -137,10 +130,9 @@ import { mapActions, mapGetters } from 'vuex'
         ...mapFields('labData', [
 
         'bioSubmissionsForm',
-        'bioSubmissionsForm.bioSubmissionNumber',
+
         'bioSubmissionsForm.clientName',
-        'bioSubmissionsForm.dateSubmitted',
-        'bioSubmissionsForm.timeStamp',
+        
               
       
         

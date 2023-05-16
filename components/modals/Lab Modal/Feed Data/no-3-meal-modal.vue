@@ -30,7 +30,9 @@
                         v-model="nmTimeOfReceipt"
                         placeholder="--select a time--"
                         :min-time="minTime"
-                        :max-time="maxTime">
+                        :max-time="maxTime"
+                        disabled>
+                        
                     </b-timepicker>
                 </div>
             </div>

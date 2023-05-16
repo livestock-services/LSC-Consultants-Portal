@@ -73,19 +73,20 @@
         aria-current-label="Current Page"
       >
   
-    
-  
-         <b-table-column
+      <b-table-column
           v-slot="props"
-          field="submissionNumber"
-          label="Submission No."
+          field="dateReceived"
+          label="Date Received"
           searchable
           
         >
-        <span class="tag tasks">  {{ props.row.feedSubmissionNumber }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.dateSubmitted }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
+
+  
+       
   
         <b-table-column
           v-slot="props"
@@ -99,17 +100,7 @@
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
   
-        <b-table-column
-          v-slot="props"
-          field="dateReceived"
-          label="Date Received"
-          searchable
-          
-        >
-        <span class="tag is-primary is-light">  {{ props.row.dateSubmitted }} </span>
-         
-          <!-- {{ props.row.sumInsured }} -->
-        </b-table-column>
+       
 
 
        
@@ -134,6 +125,18 @@
           
         >
         <span class="tag is-primary is-light">  {{ props.row.typeOfSample }} </span>
+         
+          <!-- {{ props.row.sumInsured }} -->
+        </b-table-column>
+
+        <b-table-column
+          v-slot="props"
+          field="submissionNumber"
+          label="Submission No."
+          searchable
+          
+        >
+        <span class="tag tasks">  {{ props.row.feedSubmissionNumber }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
@@ -165,29 +168,6 @@
           </b-table-column>
   
   
-          
-        
-  
-  
-        
-        <b-table-column v-slot="props" label="Options">
-          <span class="buttons">
-            <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
-            <b-button
-              type="is-secondary-outline"
-              icon-left="eye-check"
-              @click="captureReceipt(props.row)"
-              class="preview"
-              ></b-button>
-  
-            </b-tooltip>
-          </span>
-        </b-table-column>
-  
-        
-                   
-  
-        
   
   
         <template #empty>

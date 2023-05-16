@@ -73,19 +73,18 @@
         aria-current-label="Current Page"
       >
   
-    
-  
-         <b-table-column
+      <b-table-column
           v-slot="props"
-          field="bioSubmissionNumber"
-          label="Submission No."
+          field="dateSubmitted"
+          label="Date "
           searchable
           
         >
-        <span class="tag tasks">  {{ props.row.bioSubmissionNumber }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.dateSubmitted }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
+  
   
         <b-table-column
           v-slot="props"
@@ -99,18 +98,19 @@
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
   
+ 
+        
         <b-table-column
           v-slot="props"
-          field="dateSubmitted"
-          label="Date "
+          field="bioSubmissionNumber"
+          label="Submission No."
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.dateSubmitted }} </span>
+        <span class="tag tasks">  {{ props.row.bioSubmissionNumber }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
-
        
 
        
@@ -145,7 +145,7 @@
   
   
         
-        <b-table-column v-slot="props" label="Options">
+        <!-- <b-table-column v-slot="props" label="Options">
           <span class="buttons">
             <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
             <b-button
@@ -157,7 +157,7 @@
   
             </b-tooltip>
           </span>
-        </b-table-column>
+        </b-table-column> -->
   
         
                    

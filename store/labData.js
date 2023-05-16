@@ -3,6 +3,8 @@ import {_, cloneDeep } from 'lodash'
 import { getField, updateField } from 'vuex-map-fields'
 
 import { 
+        ADD_ID_TO_USED_IDS,
+        REMOVE_ID_FROM_AVAILABLE_IDS,
         ADD_SAMPLE_INFORMATION_RECORD,
         
         GET_ALL_SAMPLE_INFORMATION_RECORDS,
@@ -96,6 +98,10 @@ export const state = () => ({
     allMERecords:[],
     allSCRecords:[],
 
+    availableIds: [],
+
+    usedIds:[],
+
 
     // allSAMPLE_INFORMATIONConsultsRecords:[],
     // allSAMPLE_INFORMATIONSalesRecords:[],
@@ -107,6 +113,8 @@ export const state = () => ({
         sampleID:null,
         sampleType:null,
         animalType:null,
+        otherSampleType:null,
+        otherAnimalType:null,
         breed:null,
         age:null,
         sex:null,
@@ -165,22 +173,22 @@ export const state = () => ({
     },
 
     bioSubmissionsForm:{
-        bioSubmissionNumber:null,
+      
         clientName:null,
-        dateSubmitted:null,
-        timeStamp:null,
+        // dateSubmitted:null,
+        // timeStamp:null,
         createdBy:null
     },
 
 
     
     feedSubmissionsForm:{
-        feedSubmissionNumber:null,
+        
         feedClientName:null,
         feedDescription:null,
         typeOfSample:null,
-        dateSubmitted:null,
-        timeStamp:null,
+        // dateSubmitted:null,
+        // timeStamp:null,
         createdBy:null
     },
 
@@ -528,6 +536,14 @@ export const state = () => ({
 export const getters = {
     getField,
 
+    allAvailableIDs(state){
+        return state.availableIds
+    },
+
+    allUsedIDs(state){
+        return state.usedIds
+    },
+
     loading(state) {
         return state.loading
     },
@@ -638,6 +654,14 @@ export const getters = {
 export const mutations = {
 
     updateField,
+
+    [ADD_ID_TO_USED_IDS](state,loading){
+        state.usedIds.push(newID)
+    },
+
+    [REMOVE_ID_FROM_AVAILABLE_IDS](state,loading){
+        state.availableIds.shift(usedID)
+    },
 
     [SET_LOADING](state, loading) {
         state.loading = loading
@@ -982,6 +1006,8 @@ export const actions = {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
 
+          
+
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/lab/submissions/allSubmissionsRecords`)
 
@@ -1131,6 +1157,8 @@ export const actions = {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
 
+      
+
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/lab/bioSubmissions/allBioSubmissions`)
 
@@ -1243,12 +1271,16 @@ export const actions = {
         try {
             commit(SET_LOADING, true);
 
+            var nextId = 1
+
+            
 
             const newBioSubmissionsRecord = cloneDeep(state.bioSubmissionsForm);
 
-           newBioSubmissionsRecord.dateSubmitted = state.bioSubmissionsForm.dateSubmitted.toLocaleDateString('en-US');
+           
+        //    newBioSubmissionsRecord.dateSubmitted = state.bioSubmissionsForm.dateSubmitted.toLocaleDateString('en-US');
 
-           newBioSubmissionsRecord.timeStamp = state.bioSubmissionsForm.timeStamp.toLocaleTimeString();
+        //    newBioSubmissionsRecord.timeStamp = state.bioSubmissionsForm.timeStamp.toLocaleTimeString();
 
 
 
@@ -1398,9 +1430,9 @@ export const actions = {
 
             const newFeedSubmissionsRecord = cloneDeep(state.feedSubmissionsForm);
 
-            newFeedSubmissionsRecord.dateSubmitted = state.feedSubmissionsForm.dateSubmitted.toLocaleDateString('en-US');
+            // newFeedSubmissionsRecord.dateSubmitted = state.feedSubmissionsForm.dateSubmitted.toLocaleDateString('en-US');
 
-            newFeedSubmissionsRecord.timeStamp = state.feedSubmissionsForm.timeStamp.toLocaleTimeString();
+            // newFeedSubmissionsRecord.timeStamp = state.feedSubmissionsForm.timeStamp.toLocaleTimeString();
  
  
 
@@ -1469,6 +1501,24 @@ export const actions = {
         try {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
+
+            var BioSubmissionIDs =20;
+
+            var BSIDs = [];
+
+            for (let i = 0; i < BioSubmissionIDs; i++) {
+
+                BSIDs += i;
+
+                 
+                
+            }
+
+           console.log(BSIDs);
+
+
+           
+            
 
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/lab/feedData/NM`)
@@ -1761,7 +1811,7 @@ export const actions = {
             const newSCRecord = cloneDeep(state.scFeedSubmissionsForm);
 
            newSCRecord.scDateOfSampleCollected = state.scFeedSubmissionsForm.scDateOfSampleCollected.toLocaleDateString('en-US');
-           
+
            newSCRecord.scTimeOfReceipt = state.scFeedSubmissionsForm.scTimeOfReceipt.toLocaleTimeString();
 
 
@@ -1831,7 +1881,15 @@ export const actions = {
     //-----------------------------------------------------------------------------------------------------------------------------------------------------//
     //-----------------------------------------------------------------------------------------------------------------------------------------------------//   
 
-
+    findNextAvailableId(usedIds) {
+        for (var i = 1; i <= 10; i++) {
+          if (usedIds.indexOf(i) === -1) {
+            return i;
+          }
+        }
+        // Return null if all IDs are used
+        return null;
+      }
 
 
 

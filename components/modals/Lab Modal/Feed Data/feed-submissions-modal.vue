@@ -8,17 +8,9 @@
       <section class="modal-card-body has-background-white">
         <!-- Modal Content -->
         <div>
-         <b-form v-model="feedSubmissionsForm" class="form">
+         <b-form id="myForm" v-model="feedSubmissionsForm" class="form">
   
-          <h4> <span class="is-blue"> Submission No.</span></h4>
-  
-            <div class="columns">
-              
-              <div  class="column is-three-quarters">
-              
-              <b-input type="text" v-model="feedSubmissionNumber" placeholder="submission no..."></b-input>
-              </div>
-            </div>
+          
   
             <h4> <span class="is-blue">Client Name</span></h4>
             <div class="columns">
@@ -56,7 +48,7 @@
             </div>
   
            
-            <h4> <span class="is-blue"> Date Submitted </span></h4>
+            <!-- <h4> <span class="is-blue"> Date Submitted </span></h4>
             
             <div class="columns">
       
@@ -79,7 +71,7 @@
                         :max-time="maxTime">
                     </b-timepicker>
                 </div>
-            </div>
+            </div> -->
 
 
 
@@ -91,18 +83,14 @@
                
               
           
-               <p class="mx-4 cat">Submission No:  {{feedSubmissionNumber}}</p>
+              
   
                <p class="mx-4 cat"> Client Name :  {{ feedClientName }}</p>
 
-               <p class="mx-4 cat"> Client Name :  {{ feedDescription }}</p>
+               <p class="mx-4 cat"> Description :  {{ feedDescription }}</p>
 
-               <p class="mx-4 cat"> Client Name :  {{ typeOfSample }}</p>
+               <p class="mx-4 cat"> Type Of Sample :  {{ typeOfSample }}</p>
 
-               <p class="mx-4 cat">Date Submitted :  {{ dateSubmitted}}</p> 
-  
-               <p class="mx-4 cat">Time Stamp :  {{ timeStamp }}</p>
-  
                           
              </div>
            </div>
@@ -136,7 +124,33 @@ import { mapActions, mapGetters } from 'vuex'
     name: 'FenceModal',
   
      data() {
+
+     function getID(){
+        // Initialize the ID counter to 1
+            var idCounter = 1;
+
+            // Get a reference to the form element
+            var form = document.getElementById("myForm");
+
+            // Add an event listener to the form's submit event
+            form.addEventListener("submit", function(event) {
+              // Prevent the form from actually submitting
+              event.preventDefault();
+
+              // Get a reference to the input field where you want to display the ID number
+              var idField = document.getElementById("idField");
+
+              // Set the value of the ID field to the current ID counter value
+              idField.value = idCounter;
+
+              // Increment the ID counter for the next submission
+              idCounter++;
+            });
+
+      }
       return {
+
+        getID,
   
         data:[
               
@@ -165,13 +179,10 @@ import { mapActions, mapGetters } from 'vuex'
         ...mapFields('labData', [
 
         'feedSubmissionsForm',
-        'feedSubmissionsForm.feedSubmissionNumber',
         'feedSubmissionsForm.feedClientName',
         'feedSubmissionsForm.feedDescription',
         'feedSubmissionsForm.typeOfSample',
-        'feedSubmissionsForm.dateSubmitted',
-        'feedSubmissionsForm.timeStamp',
-              
+       
       
         
     ]),
@@ -196,6 +207,30 @@ import { mapActions, mapGetters } from 'vuex'
   
      loading() {
         return this.sampleInfoLoading 
+      },
+
+      getID(){
+        // Initialize the ID counter to 1
+            var idCounter = 1;
+
+            // Get a reference to the form element
+            var form = document.getElementById("myForm");
+
+            // Add an event listener to the form's submit event
+            form.addEventListener("submit", function(event) {
+              // Prevent the form from actually submitting
+              event.preventDefault();
+
+              // Get a reference to the input field where you want to display the ID number
+              var idField = document.getElementById("idField");
+
+              // Set the value of the ID field to the current ID counter value
+              idField.value = idCounter;
+
+              // Increment the ID counter for the next submission
+              idCounter++;
+            });
+
       },
   
   

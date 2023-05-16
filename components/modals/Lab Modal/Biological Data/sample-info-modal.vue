@@ -37,9 +37,47 @@
               
               
   
-              <div  class="column is-three-quarters">
+              <div  class="column is-three-quarters my-2">
               
-              <b-input type="text" v-model="sampleType" placeholder="sample type..."></b-input>
+             
+             
+              <b-select
+                v-model="sampleType"
+                  placeholder="-- Select an option --"
+                >
+                  <option value="BLOOD">BLOOD</option>
+                  <option value="FECAL">FECAL</option>
+                  <option value="SERUM">SERUM</option>
+                  <option value="SEMEN">SEMEN</option>
+                  <option value="LIVER">LIVER</option>
+                  <option value="SWABS">SWABS</option>
+                  <option value="SKIN SCRAPINGS">SKIN SCRAPINGS</option>
+                  <option value="EAR SWABS">EAR SWABS</option>
+                  <option value="MILK">MILK</option>
+                  <option value="SMEAR">SMEAR</option>
+                  <option value="ORGAN">ORGAN</option>
+                  <option value="BIOPSY">BIOPSY</option>
+                  <option value="PUS">PUS</option>
+
+                  
+                </b-select>
+
+                
+              </div>
+            </div>
+
+
+            <h7> <span class="is-blue mt-2">Other(If sample type is not on list)</span></h7>
+  
+            <div class="columns">
+              
+              
+  
+              <div  class="column is-three-quarters">
+
+                
+                <b-input type="text" v-model="otherSampleType" placeholder="sample type..."></b-input>
+
               </div>
             </div>
   
@@ -52,12 +90,41 @@
   
               <div  class="column is-three-quarters">
               
-              <b-input type="text" v-model="animalType" placeholder="animal type..."></b-input>
+                <b-select
+                v-model="animalType"
+                  placeholder="-- Select an option --"
+                >
+                  <option value="CATTLE">CATTLE</option>
+                  <option value="HORSE">HORSE</option>
+                  <option value="ELEPHANT">ELEPHANT</option>
+                  <option value="CANNINE">CANNINE</option>
+                  <option value="CAT">CAT</option>
+                  <option value="GOAT">GOAT</option>
+                  <option value="SHEEP">SHEEP</option>
+                  <option value="AVIAN">AVIAN</option>
+                  <option value="POULTRY">POULTRY</option>
+                 
+
+                  
+                </b-select>
+
               </div>
             </div>
   
   
-           
+            <h7> <span class="is-blue mt-2">Other(If Animal type is not on list)</span></h7>
+  
+            <div class="columns">
+              
+              
+  
+              <div  class="column is-three-quarters">
+
+                
+                <b-input type="text" v-model="otherAnimalType" placeholder="sample type..."></b-input>
+
+              </div>
+            </div>
             
           
   
@@ -183,8 +250,14 @@
                <p class="mx-4 cat">Submission No:  {{submissionNumber}}</p>
   
                <p class="mx-4 cat"> Sample ID :  {{sampleID}}</p>
+
+               <p class="mx-4 cat">Sample Type :  {{sampleType}}</p> 
   
                <p class="mx-4 cat">Sample Type :  {{animalType}}</p> 
+
+               <p class="mx-4 cat">Other(Sample Type) :  {{otherSampleType}}</p> 
+  
+               <p class="mx-4 cat">Other(Animal Type):  {{otherAnimalType}}</p> 
   
                <p class="mx-4 cat">breed :  {{breed}}</p>
   
@@ -266,6 +339,8 @@
         'sampleInfoForm.sampleID',
         'sampleInfoForm.sampleType',
         'sampleInfoForm.animalType',
+        'sampleInfoForm.otherSampleType',
+        'sampleInfoForm.otherAnimalType',
         'sampleInfoForm.breed',
         'sampleInfoForm.age',
         'sampleInfoForm.sex',
@@ -357,6 +432,8 @@
         sampleID:null,
         sampleType:null,
         animalType:null,
+        otherSampleType:null,
+        otherAnimalType:null,
         breed:null,
         age:null,
         sex:null,
