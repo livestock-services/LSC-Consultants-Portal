@@ -50,7 +50,7 @@
         </template>
 
 
-        <b-dropdown-item  aria-role="listitem"  >
+        <b-dropdown-item  aria-role="listitem">
             <div class="media">
                 <b-icon class="media-left" icon="account"></b-icon>
                 <div class="media-content">
@@ -135,7 +135,7 @@
 
                             <b-menu-list class="ml-2" icon="account"  label="Consultations">
 
-                              <b-menu-item v-if="SignedInUser.role === 'admin'"   
+                              <b-menu-item v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Lab Consultant'"   
                                          class="ml-2" icon="microscope"  label="Laboratory" 
                                          @click="lab">
                                             
@@ -143,7 +143,7 @@
                                 
                             </b-menu-item>
 
-                                 <b-menu-item  v-if="SignedInUser.role ==='admin' || SignedInUser.role === 'user'" icon="food" @click="nutrition" label="Nutrition"></b-menu-item>
+                                 <b-menu-item v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Nutrition Consultant'" icon="food" @click="nutrition" label="Nutrition"></b-menu-item>
 
                              
                                
@@ -151,24 +151,24 @@
 
                                 
                                
-                                <b-menu-item v-if="$auth.user.email === 'vet-technical@livestock.co.zm' || $auth.user.email === 'augustined@livestock.co.zm' || $auth.user.email === 'bornfacec@livestock.co.zm' ||  $auth.user.email === 'kondwani1mwale@gmail.com' || $auth.user.email === 'vet-sales@livestock.co.zm'" icon="doctor"   @click="vetTech" label="Veterinary">  </b-menu-item>
+                                <b-menu-item v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Vet Consultant'" icon="doctor"   @click="vetTech" label="Veterinary">  </b-menu-item>
 
 
 
-                                <b-menu-item  v-if="$auth.user.email === 'beef-ai@livestock.co.zm' || $auth.user.email === 'pig-ai@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="needle"   @click="AI" label="Artificial Insemination ">  </b-menu-item>
+                                <b-menu-item  v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'AI Consultant'" icon="needle"   @click="AI" label="Artificial Insemination ">  </b-menu-item>
 
 
 
-                                <b-menu-item  v-if="$auth.user.email === 'agro@livestock.co.zm' || $auth.user.email === 'omegad@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="flower"   @click="agro" label="Agronomy">  </b-menu-item>
+                                <b-menu-item  v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Agro Consultant'" icon="flower"   @click="agro" label="Agronomy">  </b-menu-item>
 
-                                <b-menu-item  v-if="$auth.user.email === 'fence@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="wall"   @click="fence" label="Fencing">  </b-menu-item>
+                                <b-menu-item  v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Fence Consultant'" icon="wall"   @click="fence" label="Fencing">  </b-menu-item>
 
-                                <b-menu-item  v-if="$auth.user.email === 'fish@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="fish"   @click="fish" label="Fish">  </b-menu-item>
+                                <b-menu-item  v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Fish Consultant'" icon="fish"   @click="fish" label="Fish">  </b-menu-item>
 
-                                <b-menu-item  v-if="$auth.user.email === 'irrigation@livestock.co.zm' || $auth.user.email === 'pumps@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="water"   @click="irrgiate" label="Irrigation & Water Pumps">  </b-menu-item>
+                                <b-menu-item  v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Irrigation Consultant'" icon="water"   @click="irrgiate" label="Irrigation">  </b-menu-item>
 
                                
-                                <b-menu-item v-if="$auth.user.email === 'kondwani1mwale@gmail.com'" icon="account-multiple-outline" @click="customers" label="Users"></b-menu-item>
+                                <b-menu-item v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'" icon="account-multiple-outline" @click="customers" label="Users"></b-menu-item>
                               
                               
                                

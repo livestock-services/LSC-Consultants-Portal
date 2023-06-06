@@ -2,7 +2,7 @@
   <section  class="section main-section">
 
     
-     <div v-if="SignedInUser.role === 'admin'"  class="buttons ml-5">
+     <div v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'"  class="buttons ml-5">
         
 
         <b-tooltip label="Filter Consultations by date range" type="is-dark">
@@ -26,7 +26,7 @@
      </div> 
 
 
-    <div  v-if="SignedInUser.role  === 'admin'"  class="managers">
+    <div  v-if="SignedInUser.role  === 'Admin' || SignedInUser.role === 'Manager'"  class="managers">
       <div class="columns is-mobile">
      <div class="card total-consult-card  card-body">
       
@@ -84,7 +84,7 @@
             </b-icon>
         </a>
 
-        {{ user.name}}
+      
 
      <span><span class="text-bulls-count mb-2"> <countTo :startVal='startVal' :endVal='vet' :duration='7000'></countTo></span> <br/><span class=" mx-4 text-bulls">Vet Consultations</span> </span> <br>
       <!-- <span class="text-bull"> <countTo :startVal='startVal' :endVal='Bulls' :duration='3000'></countTo> Bulls</span><br>
@@ -165,7 +165,7 @@
             </b-icon>
         </a>
 
-     <span><span class="text-yearlings-count mb-2"> <countTo :startVal='startVal' :endVal='irrigation + pumps' :duration='5000'></countTo></span> <br/><span class=" mx-4 text-yearlings"> Irrigation & Pump Consultations</span></span> <br>
+     <span><span class="text-yearlings-count mb-2"> <countTo :startVal='startVal' :endVal='irrigation + pumps' :duration='5000'></countTo></span> <br/><span class=" mx-4 text-yearlings"> Irrigation Consultations</span></span> <br>
       <!-- <span class="text-bull"> <countTo :startVal='startVal' :endVal='Bulls' :duration='3000'></countTo> Bulls</span><br>
       <span class="text-cow"> <countTo :startVal='startVal' :endVal='Cows' :duration='3000'></countTo> Cows</span><br>
       <span class="text-heifer"> <countTo :startVal='startVal' :endVal='Heifers' :duration='3000'></countTo> Heifers</span><br>
@@ -312,7 +312,7 @@
    
 
 
-<div v-if="SignedInUser.role === 'user'" class="columns is-mobile">
+<div v-if="SignedInUser.role !== 'Admin'" class="columns is-mobile">
 
        <div class="card total-cow-card  card-body">
         
@@ -326,21 +326,16 @@
                   size="is-large"
                   type="is-dark">
               </b-icon>
+
+              <Greeting/> <span class="mx-1" style="font-size: 20px;color: #333;">{{ SignedInUser.name }}</span>
   
-        <!-- v-if="this.$auth.user.email === 'detroncattle@gmail.com'" -->
-          name:{{ SignedInUser.name}} <br/>
-          role: {{ SignedInUser.role }}
+       
+         
   
           </a>
   
-       <!-- <span><span class="text-cattle-count mb-2"> <countTo :startVal='startVal' :endVal='totalConsults' :duration='10000'></countTo></span> <br/> <br/></span>
-       <span class="mx-5 totalConsults-text">Total Consultations between {{ startTime }} and {{ endTime }} </span>
-        <br> -->
-      
-        <!-- <span class="text-bull"> <countTo :startVal='startVal' :endVal='Bulls' :duration='3000'></countTo> Bulls</span><br>
-        <span class="text-cow"> <countTo :startVal='startVal' :endVal='Cows' :duration='3000'></countTo> Cows</span><br>
-        <span class="text-heifer"> <countTo :startVal='startVal' :endVal='Heifers' :duration='3000'></countTo> Heifers</span><br>
-        <span class="text-calves"> <countTo :startVal='startVal' :endVal='Calves' :duration='3000'></countTo> Calves</span> -->
+          
+
         </div>
        </div>
   
@@ -360,7 +355,7 @@
               </b-icon>
           </a>
           <h2 class="ml-4">Welcome to your dashboard. <br/> Time is:</h2>
-       <span><span class="text-under-treatment-count mb-2"> <digital-clock :blink="true" :displaySeconds="true"/> </span> <br/><span class="tag is-info is-light mx-4 text-under-treatment">Logged in as: {{ this.$auth.user.email }}</span></span> <br>
+       <span><span class="text-under-treatment-count mb-2"> <digital-clock :blink="true" :displaySeconds="true"/> </span> <br/><span class="tag is-info is-light mx-4 text-under-treatment">Logged in as: {{ this.$auth.user.email }}  </span></span> <br>
       
         <!-- <span class="text-bull"> <countTo :startVal='startVal' :endVal='Bulls' :duration='3000'></countTo> Bulls</span><br>
         <span class="text-cow"> <countTo :startVal='startVal' :endVal='Cows' :duration='3000'></countTo> Cows</span><br>
@@ -388,12 +383,13 @@
 
 <script>
 import DigitalClock from "vue-digital-clock";
-
+import Greeting from "~/components/Tools/Other/Greeting.vue"
 import Card from '~/components/Tools/Other/Card.vue'
 import TotalConsultsFilterModal from '~/components/modals/Filter/total-consults-filter-modal.vue'
  import countTo from 'vue-count-to';
 import {mapActions, mapGetters} from 'vuex'
 import { computed } from 'vue';
+
 
 export default {
   name: 'IndexPage',
@@ -401,6 +397,7 @@ export default {
    countTo ,
     Card,
     DigitalClock,
+    Greeting
    
    
   },

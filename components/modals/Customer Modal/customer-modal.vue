@@ -57,7 +57,7 @@
             
              <div  class="column is-three-quarters">
                 
-              <b-input v-if="role" rounded icon="key" type="password" v-model="password" placeholder="password"></b-input>
+              <b-input v-if="email" rounded icon="key" type="password" v-model="password" placeholder="password"></b-input>
              </div>
            </div>
 

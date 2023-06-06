@@ -81,7 +81,7 @@
               },
   
               {
-                'is-info ': props.row.role === 'Manager',
+                'is-primary ': props.row.role === 'Manager',
               },
 
               {
@@ -105,7 +105,7 @@
               },
   
               {
-                'roto ': props.row.role === 'Irrigation/Waterpump Consultant',
+                'roto ': props.row.role === 'Irrigation Consultant',
               },
 
               {
@@ -115,9 +115,15 @@
               {
                 'fish': props.row.role === 'Fish Consultant',
               },
+
+              {
+                'is-warning': props.row.role === 'user',
+              },
             ]"
             >
-         {{ props.row.role }} <i v-if="props.row.role=== 'Admin'" class="mdi mdi-account"></i> <i v-if="props.row.role=== 'Admin'" class="mdi mdi-star"></i></span>
+         {{ props.row.role }} <i v-if="props.row.role=== 'Admin'" class="mdi mdi-account"></i> <i v-if="props.row.role=== 'Admin'" class="mdi mdi-star"></i>
+          <i v-if="props.row.role=== 'Manager'" class="mdi mdi-star"></i>
+        </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>

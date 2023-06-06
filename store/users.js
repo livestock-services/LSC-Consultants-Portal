@@ -130,54 +130,54 @@ export const mutations = {
 
 
     //-----------------------------------------------------MUTATIONS FOR ROLE CHANGES----------------------------------//
-        [MAKE_ADMIN_USER](state, payload) {
-        state.user = payload
-        state.user.role = "Admin"
+        [MAKE_ADMIN_USER](state, putResponse) {
+        state.selectedUser = putResponse
+        state.selectedUser.role = "Admin"
         },
 
-        [MAKE_MANAGER_USER](state, payload) {
-        state.user = payload
-        state.user.role = "Manager"
+        [MAKE_MANAGER_USER](state, putResponse) {
+        state.selectedUser = putResponse
+        state.selectedUser.role = "Manager"
         },
 
-        [MAKE_VET_USER](state, payload) {
-        state.user = payload
-        state.user.role = "Vet Consultant"
+        [MAKE_VET_USER](state, putResponse) {
+        state.selectedUser = putResponse
+        state.selectedUser.role = "Vet Consultant"
         },
 
-        [MAKE_AGRO_USER](state, payload) {
-        state.user = payload
-        state.user.role = "Agro Consultant"
+        [MAKE_AGRO_USER](state, putResponse) {
+        state.selectedUser = putResponse
+        state.selectedUser.role = "Agro Consultant"
         },
 
-        [MAKE_LAB_USER](state, payload) {
-        state.user = payload
-        state.user.role = "Lab Consultant"
+        [MAKE_LAB_USER](state, putResponse) {
+        state.selectedUser = putResponse
+        state.selectedUser.role = "Lab Consultant"
         },
 
-        [MAKE_NUTRITION_USER](state, payload) {
-        state.user = payload
-        state.user.role = "Nutrition Consultant"
+        [MAKE_NUTRITION_USER](state, putResponse) {
+        state.selectedUser = putResponse
+        state.selectedUser.role = "Nutrition Consultant"
         },
 
-        [MAKE_AI_USER](state, payload) {
-        state.user = payload
-        state.user.role = "AI Consultant"
+        [MAKE_AI_USER](state, putResponse) {
+        state.selectedUser = putResponse
+        state.selectedUser.role = "AI Consultant"
         },
 
-        [MAKE_ROTO_USER](state, payload) {
-        state.user = payload
-        state.user.role = "Irrigation/Waterpump Consultant"
+        [MAKE_ROTO_USER](state, putResponse) {
+        state.selectedUser = putResponse
+        state.selectedUser.role = "Irrigation Consultant"
         },
 
-        [MAKE_FENCE_USER](state, payload) {
-        state.user = payload
-        state.user.role = "Fence Consultant"
+        [MAKE_FENCE_USER](state, putResponse) {
+        state.selectedUser = putResponse
+        state.selectedUser.role = "Fence Consultant"
         },
 
-        [MAKE_FISH_USER](state, payload) {
-        state.user = payload
-        state.user.role = "Fish Consultant"
+        [MAKE_FISH_USER](state, putResponse) {
+        state.selectedUser = putResponse
+        state.selectedUser.role = "Fish Consultant"
         },
     
 
@@ -233,7 +233,7 @@ export const actions = {
                 let userEmail = fetchUsers.data[i].email;
                 let loggedInPerson = {}
 
-                if ((this.$auth.user.email == userEmail && fetchUsers.data[i].role === "Admin") || (this.$auth.user.email == userEmail && fetchUsers.data[i].role === "user")) {
+                if ((this.$auth.user.email == userEmail && fetchUsers.data[i].role === "Admin") || (this.$auth.user.email == userEmail && fetchUsers.data[i].role !== "Admin")) {
                   //  console.log(fetchUsers.data[i].name + "is" +"" +"an" +""+ "admin");
                    loggedInPerson = fetchUsers.data[i];
 
@@ -381,12 +381,12 @@ export const actions = {
         var date = new Date();
        
 
-    const newUser = state.selectedUser
+    const newUser = state.user
         
 
        console.log(newUser)
 
-      // const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "Admin" } )
+      const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "Admin" } )
       
        commit(MAKE_ADMIN_USER, putResponse)
 
@@ -400,20 +400,44 @@ export const actions = {
        
       },
 
-      async makeVetUser({ state, commit }) {
+      async makeManagerUser({ state, commit }) {
         try {
             commit(SET_LOADING, true) 
             var date = new Date();
            
     
-        const newUser = state.selectUser
+        const newUser = state.user
             
     
            console.log(newUser)
     
-          // const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "admin" } )
+          const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "Manager" } )
           
-           commit(MAKE_VET_USER, newUser)
+           commit(MAKE_MANAGER_USER, putResponse)
+    
+            console.log(newUser.data);
+           
+            commit(SET_LOADING, false)
+          } catch (error) {
+            commit(SET_LOADING, false)
+            throw error
+          }
+           
+          },
+
+      async makeVetUser({ state, commit }) {
+        try {
+            commit(SET_LOADING, true) 
+            var date = new Date();
+           
+            const newUser = state.user
+        
+
+            console.log(newUser)
+     
+           const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "Vet Consultant" } )
+          
+           commit(MAKE_VET_USER, putResponse)
     
             console.log(newUser.data);
            
@@ -436,9 +460,9 @@ export const actions = {
         
                console.log(newUser)
         
-              // const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "admin" } )
+             const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "Agro Consultant" } )
               
-               commit(MAKE_AGRO_USER, newUser)
+               commit(MAKE_AGRO_USER, putResponse)
         
                 console.log(newUser.data);
                
@@ -461,9 +485,9 @@ export const actions = {
             
                    console.log(newUser)
             
-                  // const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "admin" } )
+                   const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "Lab Consultant" } )
                   
-                   commit(MAKE_LAB_USER, newUser)
+                   commit(MAKE_LAB_USER, putResponse)
             
                     console.log(newUser.data);
                    
@@ -486,9 +510,9 @@ export const actions = {
                 
                        console.log(newUser)
                 
-                      // const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "admin" } )
+                       const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "Nutrition Consultant" } )
                       
-                       commit(MAKE_NUTRITION_USER, newUser)
+                       commit(MAKE_NUTRITION_USER, putResponse)
                 
                         console.log(newUser.data);
                        
@@ -511,9 +535,9 @@ export const actions = {
                     
                            console.log(newUser)
                     
-                          // const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "admin" } )
+                           const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "AI Consultant" } )
                           
-                           commit(MAKE_AI_USER, newUser)
+                           commit(MAKE_AI_USER, putResponse)
                     
                             console.log(newUser.data);
                            
@@ -536,9 +560,9 @@ export const actions = {
                         
                                console.log(newUser)
                         
-                              // const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "admin" } )
+                              const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "Irrigation Consultant" } )
                               
-                               commit(MAKE_ROTO_USER, newUser)
+                               commit(MAKE_ROTO_USER, putResponse)
                         
                                 console.log(newUser.data);
                                
@@ -561,9 +585,9 @@ export const actions = {
                             
                                    console.log(newUser)
                             
-                                  // const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "admin" } )
+                                   const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "Fence Consultant" } )
                                   
-                                   commit(MAKE_FENCE_USER, newUser)
+                                   commit(MAKE_FENCE_USER, putResponse)
                             
                                     console.log(newUser.data);
                                    
@@ -586,9 +610,9 @@ export const actions = {
                                 
                                        console.log(newUser)
                                 
-                                      // const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "admin" } )
+                                       const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "Fish Consultant" } )
                                       
-                                       commit(MAKE_FISH_USER, newUser)
+                                       commit(MAKE_FISH_USER, putResponse)
                                 
                                         console.log(newUser.data);
                                        
