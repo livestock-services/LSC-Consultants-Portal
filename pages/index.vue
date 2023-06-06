@@ -2,7 +2,7 @@
   <section  class="section main-section">
 
     
-     <div v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com' " class="buttons ml-5">
+     <div v-if="SignedInUser.role === 'admin'"  class="buttons ml-5">
         
 
         <b-tooltip label="Filter Consultations by date range" type="is-dark">
@@ -26,7 +26,7 @@
      </div> 
 
 
-    <div v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"  class="managers">
+    <div  v-if="SignedInUser.role  === 'admin'"  class="managers">
       <div class="columns is-mobile">
      <div class="card total-consult-card  card-body">
       
@@ -42,7 +42,8 @@
             </b-icon>
 
       <!-- v-if="this.$auth.user.email === 'detroncattle@gmail.com'" -->
-        
+         name:{{ SignedInUser.name}} <br/>
+          role: {{ SignedInUser.role }}
 
         </a>
 
@@ -83,7 +84,9 @@
             </b-icon>
         </a>
 
-     <span><span class="text-bulls-count mb-2"> <countTo :startVal='startVal' :endVal='vet' :duration='7000'></countTo></span> <br/><span class=" mx-4 text-bulls">Vet Consultations</span></span> <br>
+        {{ user.name}}
+
+     <span><span class="text-bulls-count mb-2"> <countTo :startVal='startVal' :endVal='vet' :duration='7000'></countTo></span> <br/><span class=" mx-4 text-bulls">Vet Consultations</span> </span> <br>
       <!-- <span class="text-bull"> <countTo :startVal='startVal' :endVal='Bulls' :duration='3000'></countTo> Bulls</span><br>
       <span class="text-cow"> <countTo :startVal='startVal' :endVal='Cows' :duration='3000'></countTo> Cows</span><br>
       <span class="text-heifer"> <countTo :startVal='startVal' :endVal='Heifers' :duration='3000'></countTo> Heifers</span><br>
@@ -309,7 +312,7 @@
    
 
 
-<div v-if="this.$auth.user.email !== 'kondwani1mwale@gmail.com'" class="columns is-mobile">
+<div v-if="SignedInUser.role === 'user'" class="columns is-mobile">
 
        <div class="card total-cow-card  card-body">
         
@@ -325,7 +328,8 @@
               </b-icon>
   
         <!-- v-if="this.$auth.user.email === 'detroncattle@gmail.com'" -->
-          
+          name:{{ SignedInUser.name}} <br/>
+          role: {{ SignedInUser.role }}
   
           </a>
   
@@ -404,7 +408,7 @@ export default {
   data(){
 
 
-
+    var SignedInUser = computed(()=>this.user)
 
     var startDate = computed(()=>this.startTime)
 
@@ -454,6 +458,8 @@ export default {
                 "Start Date":"start_date",
                 "End Date":"end_date"
             },
+
+            SignedInUser,
 
             
 
@@ -543,18 +549,19 @@ export default {
       ...mapGetters('users', {
           loading: 'loading',
           users: 'allUsers',
-          user:'currentUser'
+          user:'loggedInUser',
+
+          
         }),
 
       
-      isEmpty() {
- //  return this.calves === 0
-     },
-
+        
+        
 
 
   },
 
+  
 
 // COMPONENT THAT GETS ALL THE FILTERED DATA. THIS IS WHERE WE GET ALL DASHBOARD DATA FROM
   async created() {
@@ -569,7 +576,8 @@ export default {
   let pumps = await this.getAllWaterPumpRecords();
   let vet = await this.getAllVetRecords();
   
-
+  let users = await this.getAllUsers();
+  console.log(users)
 
   },
 

@@ -7,6 +7,7 @@ export const GET_ALL_USERS = 'GET_ALL_USERS'
 export const SET_USERS = 'SET_USERS'
 export const ADD_NEW_USER = 'ADD_NEW_USER'
 export const SET_CURRENT_USER = 'SET_CURRENT_USER'
+export const SET_LOGGED_IN_USER = 'SET_LOGGED_IN_USER'
 export const CACHE_USER = 'CACHE_USER'
 export const SET_SELECTED_USER = 'SET_SELECTED_USER'
 export const ACTIVATE_SELECTED_USER = 'ACTIVATE_SELECTED_USER'
@@ -17,6 +18,21 @@ export const SET_SELECTED_PAID_USER = 'SET_SELECTED_PAID_USER'
 export const SET_ALL_PENDING_USERS = 'SET_ALL_PENDING_USERS'
 export const GET_ALL_PENDING_USERS = 'GET_ALL_PENDING_USERS'
 export const SET_SELECTED_PENDING_USER = 'SET_SELECTED_PENDING_USER'
+
+
+//--------------------------ROLES--------------------------------//
+
+export const MAKE_ADMIN_USER ='MAKE_ADMIN_USER'
+export const MAKE_MANAGER_USER =' MAKE_MANAGER_USER'
+export const MAKE_VET_USER ='MAKE_VET_USER'
+export const MAKE_AGRO_USER = 'MAKE_AGRO_USER'
+export const MAKE_LAB_USER = 'MAKE_LAB_USER'
+export const MAKE_NUTRITION_USER ='MAKE_NUTRITION_USER'
+export const MAKE_AI_USER = 'MAKE_AI_USER'
+export const MAKE_ROTO_USER = 'MAKE_ROTO_USER'
+export const MAKE_FENCE_USER = 'MAKE_FENCE_USER'
+export const MAKE_FISH_USER = 'MAKE_FISH_USER'
+//===============================================================//
 
 //----------------------------------------------------------------------------------------------------------------------
 

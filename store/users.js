@@ -7,9 +7,21 @@ import {    SET_LOADING,
             ADD_NEW_USER,
             GET_ALL_USERS, 
             SET_CURRENT_USER,
+            SET_LOGGED_IN_USER,
             SET_SELECTED_USER, 
-            ACTIVATE_SELECTED_USER ,
 
+            //------ROLES-------//
+            MAKE_ADMIN_USER,
+            MAKE_MANAGER_USER,
+            MAKE_VET_USER,
+            MAKE_AGRO_USER,
+            MAKE_LAB_USER,
+            MAKE_NUTRITION_USER,
+            MAKE_AI_USER,
+            MAKE_ROTO_USER,
+            MAKE_FENCE_USER,
+            MAKE_FISH_USER,
+            //================//
             SET_ALL_PAID_USERS, 
             GET_ALL_PAID_USERS, 
             SET_SELECTED_PAID_USER,
@@ -30,6 +42,7 @@ export const state = () => ({
     paidUsers:[],
     pendingUsers:[],
     user:null,
+    loggedInUser:null,
     selectedUser:null,
 
     userForm: {
@@ -72,6 +85,10 @@ export const getters = {
      currentUser(state) {
         return state.user
     },
+
+    loggedInUser(state) {
+        return state.loggedInUser
+    },
     selectedUser(state) {
         return state.selectedUser
       },
@@ -92,6 +109,12 @@ export const mutations = {
         state.user = selectedUser
     },
 
+    [SET_LOGGED_IN_USER](state, newLoggedInUser) {
+        state.loggedInUser = newLoggedInUser
+        
+    },
+    
+
     
     [SET_SELECTED_USER](state, registeredUser) {
         state.selectedUser = registeredUser
@@ -105,10 +128,58 @@ export const mutations = {
         state.users.push (registeredUser)
     },
 
-    [ACTIVATE_SELECTED_USER](state, putResponse) {
-        state.user = putResponse
-        state.user.role = "admin"
+
+    //-----------------------------------------------------MUTATIONS FOR ROLE CHANGES----------------------------------//
+        [MAKE_ADMIN_USER](state, payload) {
+        state.user = payload
+        state.user.role = "Admin"
         },
+
+        [MAKE_MANAGER_USER](state, payload) {
+        state.user = payload
+        state.user.role = "Manager"
+        },
+
+        [MAKE_VET_USER](state, payload) {
+        state.user = payload
+        state.user.role = "Vet Consultant"
+        },
+
+        [MAKE_AGRO_USER](state, payload) {
+        state.user = payload
+        state.user.role = "Agro Consultant"
+        },
+
+        [MAKE_LAB_USER](state, payload) {
+        state.user = payload
+        state.user.role = "Lab Consultant"
+        },
+
+        [MAKE_NUTRITION_USER](state, payload) {
+        state.user = payload
+        state.user.role = "Nutrition Consultant"
+        },
+
+        [MAKE_AI_USER](state, payload) {
+        state.user = payload
+        state.user.role = "AI Consultant"
+        },
+
+        [MAKE_ROTO_USER](state, payload) {
+        state.user = payload
+        state.user.role = "Irrigation/Waterpump Consultant"
+        },
+
+        [MAKE_FENCE_USER](state, payload) {
+        state.user = payload
+        state.user.role = "Fence Consultant"
+        },
+
+        [MAKE_FISH_USER](state, payload) {
+        state.user = payload
+        state.user.role = "Fish Consultant"
+        },
+    
 
     //----------------------PAID USERS-------------------------------//
     [SET_SELECTED_PAID_USER](state, payload) {
@@ -150,6 +221,34 @@ export const actions = {
             const { data:fetchUsers } = await api.get(`/auth/allUsers`)
 
             console.log(fetchUsers.data)
+
+            commit(GET_ALL_USERS, fetchUsers.data);
+
+            console.log(this.$auth.user.email);
+
+           
+
+            for (let i = 0; i <= fetchUsers.data.length; i++) {
+                
+                let userEmail = fetchUsers.data[i].email;
+                let loggedInPerson = {}
+
+                if ((this.$auth.user.email == userEmail && fetchUsers.data[i].role === "Admin") || (this.$auth.user.email == userEmail && fetchUsers.data[i].role === "user")) {
+                  //  console.log(fetchUsers.data[i].name + "is" +"" +"an" +""+ "admin");
+                   loggedInPerson = fetchUsers.data[i];
+
+                    var newLoggedInUser = loggedInPerson;
+                    console.log(newLoggedInUser)
+                    commit(SET_LOGGED_IN_USER, newLoggedInUser )
+
+                    console.log(newLoggedInUser);
+                } else {
+                   console.log("Well that didn't work!")
+                }
+                
+            }
+
+
          //  console.log(fetchUsers.data.role.billingCycle)
             
             // const specialfilteredUSERS = fetchUsers.data.filter( usr => 
@@ -171,7 +270,7 @@ export const actions = {
 
           //  commit(SET_USERS, fetchUsers.data);
 
-            commit(GET_ALL_USERS, fetchUsers.data);
+            
 
             // commit(GET_ALL_PAID_USERS, paidUsers);
 
@@ -179,7 +278,7 @@ export const actions = {
    
         } catch (error) {
             commit(SET_LOADING, false)
-            throw error
+          //  throw error
         }
     },
 
@@ -276,23 +375,22 @@ export const actions = {
        },
 
        
-   async activateUser({ state, commit }) {
+   async makeAdminUser({ state, commit }) {
     try {
         commit(SET_LOADING, true) 
         var date = new Date();
-        const firstDay = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
-        const lastDay = new Date(date.getUTCFullYear() + 1, date.getUTCMonth(), date.getUTCDate());
+       
 
-    const newUser = state.user
+    const newUser = state.selectedUser
         
 
        console.log(newUser)
 
-       const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "admin", startDate:firstDay.toLocaleDateString(), endDate: lastDay.toLocaleDateString() } )
+      // const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "Admin" } )
       
-       commit(ACTIVATE_SELECTED_USER, putResponse)
+       commit(MAKE_ADMIN_USER, putResponse)
 
-        console.log(putResponse.data);
+        console.log(newUser.data);
        
         commit(SET_LOADING, false)
       } catch (error) {
@@ -302,6 +400,207 @@ export const actions = {
        
       },
 
+      async makeVetUser({ state, commit }) {
+        try {
+            commit(SET_LOADING, true) 
+            var date = new Date();
+           
+    
+        const newUser = state.selectUser
+            
+    
+           console.log(newUser)
+    
+          // const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "admin" } )
+          
+           commit(MAKE_VET_USER, newUser)
+    
+            console.log(newUser.data);
+           
+            commit(SET_LOADING, false)
+          } catch (error) {
+            commit(SET_LOADING, false)
+            throw error
+          }
+           
+          },
+
+          async makeAgroUser({ state, commit }) {
+            try {
+                commit(SET_LOADING, true) 
+                var date = new Date();
+               
+        
+            const newUser = state.user
+                
+        
+               console.log(newUser)
+        
+              // const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "admin" } )
+              
+               commit(MAKE_AGRO_USER, newUser)
+        
+                console.log(newUser.data);
+               
+                commit(SET_LOADING, false)
+              } catch (error) {
+                commit(SET_LOADING, false)
+                throw error
+              }
+               
+              },
+
+              async makeLabUser({ state, commit }) {
+                try {
+                    commit(SET_LOADING, true) 
+                    var date = new Date();
+                   
+            
+                const newUser = state.user
+                    
+            
+                   console.log(newUser)
+            
+                  // const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "admin" } )
+                  
+                   commit(MAKE_LAB_USER, newUser)
+            
+                    console.log(newUser.data);
+                   
+                    commit(SET_LOADING, false)
+                  } catch (error) {
+                    commit(SET_LOADING, false)
+                    throw error
+                  }
+                   
+                  },
+
+                  async makeNutritionUser({ state, commit }) {
+                    try {
+                        commit(SET_LOADING, true) 
+                        var date = new Date();
+                       
+                
+                    const newUser = state.user
+                        
+                
+                       console.log(newUser)
+                
+                      // const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "admin" } )
+                      
+                       commit(MAKE_NUTRITION_USER, newUser)
+                
+                        console.log(newUser.data);
+                       
+                        commit(SET_LOADING, false)
+                      } catch (error) {
+                        commit(SET_LOADING, false)
+                        throw error
+                      }
+                       
+                      },
+
+                      async makeAIUser({ state, commit }) {
+                        try {
+                            commit(SET_LOADING, true) 
+                            var date = new Date();
+                           
+                    
+                        const newUser = state.user
+                            
+                    
+                           console.log(newUser)
+                    
+                          // const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "admin" } )
+                          
+                           commit(MAKE_AI_USER, newUser)
+                    
+                            console.log(newUser.data);
+                           
+                            commit(SET_LOADING, false)
+                          } catch (error) {
+                            commit(SET_LOADING, false)
+                            throw error
+                          }
+                           
+                          },
+
+                          async makeRotoUser({ state, commit }) {
+                            try {
+                                commit(SET_LOADING, true) 
+                                var date = new Date();
+                               
+                        
+                            const newUser = state.user
+                                
+                        
+                               console.log(newUser)
+                        
+                              // const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "admin" } )
+                              
+                               commit(MAKE_ROTO_USER, newUser)
+                        
+                                console.log(newUser.data);
+                               
+                                commit(SET_LOADING, false)
+                              } catch (error) {
+                                commit(SET_LOADING, false)
+                                throw error
+                              }
+                               
+                              },
+
+                              async makeFenceUser({ state, commit }) {
+                                try {
+                                    commit(SET_LOADING, true) 
+                                    var date = new Date();
+                                   
+                            
+                                const newUser = state.user
+                                    
+                            
+                                   console.log(newUser)
+                            
+                                  // const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "admin" } )
+                                  
+                                   commit(MAKE_FENCE_USER, newUser)
+                            
+                                    console.log(newUser.data);
+                                   
+                                    commit(SET_LOADING, false)
+                                  } catch (error) {
+                                    commit(SET_LOADING, false)
+                                    throw error
+                                  }
+                                   
+                                  },
+
+                                  async makeFishUser({ state, commit }) {
+                                    try {
+                                        commit(SET_LOADING, true) 
+                                        var date = new Date();
+                                       
+                                
+                                    const newUser = state.user
+                                        
+                                
+                                       console.log(newUser)
+                                
+                                      // const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "admin" } )
+                                      
+                                       commit(MAKE_FISH_USER, newUser)
+                                
+                                        console.log(newUser.data);
+                                       
+                                        commit(SET_LOADING, false)
+                                      } catch (error) {
+                                        commit(SET_LOADING, false)
+                                        throw error
+                                      }
+                                       
+                                      },
+
+                                     
 
      
     

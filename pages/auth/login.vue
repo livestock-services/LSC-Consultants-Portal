@@ -116,6 +116,7 @@
        ...mapGetters('users', {
           loading: 'loading',
            Users: 'allUsers',
+           
       }),
     },
   
@@ -162,17 +163,20 @@
       async loginUser(user) {
   
         try {
+
+          await this.getAllUsers();
+
           const { data: response } = await this.$auth.loginWith('local', {
               data: this.form 
             })
             //   const user = response.data
             console.log(response.data);
-            console.log(this.$auth.user.role);
+            console.log(user.role);
             this.$auth.setUser(user)
 
             console.log(this.$auth.user.email)
   
-          
+            
         
   
               

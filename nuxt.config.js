@@ -37,7 +37,9 @@ export default {
   plugins: [
     { src: '~/plugins/persistedState.client.js' },
     { src: '~/plugins/vue-json-excel.js' },
-    {src: '~/plugins/vue-formulate'}
+    {src: '~/plugins/vue-formulate'},
+    { src: '~/plugins/globalStore.js', mode: 'client' },
+    {src: '~/store/users.js'}
   ],
 
   formulate: {

@@ -15,7 +15,7 @@
   
        <div class="buttons">
           <b-tooltip label="Add details of new customers here" type="is-dark">
-          <b-button class="mx-2" icon-left="plus" type="is-success" @click="addNewTask">Add New Customer</b-button>
+          <b-button class="mx-2" icon-left="plus" type="is-success" @click="addNewTask">Add New User</b-button>
           </b-tooltip>
   
            <b-tooltip label="Refresh" type="is-dark">
@@ -77,15 +77,47 @@
               'tag',
           
               {
-                'is-warning' : props.row.role ===  'user',
+                'is-success' : props.row.role ===  'Admin',
               },
   
               {
-                'is-success ': props.row.role === 'admin',
+                'is-info ': props.row.role === 'Manager',
+              },
+
+              {
+                'vet' : props.row.role ===  'Vet Consultant',
+              },
+  
+              {
+                'agro': props.row.role === 'Agro Consultant',
+              },
+
+              {
+                'lab' : props.row.role ===  'Lab Consultant',
+              },
+  
+              {
+                'nutrition ': props.row.role === 'Nutrition Consultant',
+              },
+
+              {
+                'ai' : props.row.role ===  'AI Consultant',
+              },
+  
+              {
+                'roto ': props.row.role === 'Irrigation/Waterpump Consultant',
+              },
+
+              {
+                'fence' : props.row.role ===  'Fence Consultant',
+              },
+  
+              {
+                'fish': props.row.role === 'Fish Consultant',
               },
             ]"
             >
-         {{ props.row.role }} <i v-if="props.row.role=== 'admin'" class="mdi mdi-account"></i> </span>
+         {{ props.row.role }} <i v-if="props.row.role=== 'Admin'" class="mdi mdi-account"></i> <i v-if="props.row.role=== 'Admin'" class="mdi mdi-star"></i></span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
@@ -122,7 +154,7 @@
         <template #empty>
   
           <b-tooltip  label="Once freshed, your details will appear here" type="is-dark">
-          <h4 class="is-size-4 text-center has-text-centered">No Customer Data yet. &#x1F4DA;.Click the <span class="tag is-info"> refresh button</span> right above</h4>
+          <h4 class="is-size-4 text-center has-text-centered">No User Data yet. &#x1F4DA;.Click the <span class="tag is-info"> refresh button</span> right above</h4>
           </b-tooltip>
   
   
@@ -164,7 +196,7 @@
       
       ...mapGetters('users', {
           loading: 'loading',
-          users: 'allUsers',
+         users: 'allUsers',
         }),
       
        isEmpty() {
@@ -295,6 +327,48 @@
   .text-center{
     margin-left: 100px;
     font-size: 10px;
+  }
+
+  
+  .vet{
+    color:white;
+    background-color: rgb(122, 163, 201);
+  }
+
+  .agro{
+    color:white;
+    background-color: rgb(185, 187, 61);
+  }
+
+  .lab{
+    color:white;
+    background-color: rgb(152, 176, 255);
+  }
+
+  .nutrition{
+    color:white;
+    background-color: rgb(197, 157, 25);
+  }
+
+  .roto{
+    color:white;
+    background-color: rgb(19, 179, 152);
+  }
+
+
+  .ai{
+    color:white;
+    background-color: rgb(142, 40, 238);
+  }
+
+  .fence{
+    color:white;
+    background-color: rgb(119, 60, 11);
+  }
+
+  .fish{
+    color:white;
+    background-color: rgb(41, 175, 228);
   }
   </style>
   

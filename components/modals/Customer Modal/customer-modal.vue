@@ -29,15 +29,40 @@
               <b-input v-if="name" rounded icon="mail" type="email" required="true" v-model="email" placeholder="email address"></b-input>
              </div>
            </div>
-  
+
+           <!-- <h4> <span class="is-blue"> Role </span></h4>
+          <div class="columns">
+            
+             <div  class="column is-three-quarters">
+                
+            
+              
+            <b-select v-if="email"  v-model="role" placeholder="Select a Role" rounded>
+                <option value="admin">Admin</option>
+                <option value="manager">Manager</option>
+                <option value="vet consultant">Vet Consultant</option>
+                <option value="agro consultant">Agro Consultant</option>
+                <option value="fence consultant">Fence Consultant</option>
+                <option value="fish consultant">Fish Consultant</option>
+                <option value="nutrition consultant">Nutrition Conultant</option>
+                <option value="ai consultant">AI Consultant</option>
+                <option value="irrigation & water pumps consultant">Irrigation & Water Pumps Consultant</option>
+            </b-select>
+            
+             </div>
+           </div>
+   -->
             <h4> <span class="is-blue"> Password </span></h4>
           <div class="columns">
             
              <div  class="column is-three-quarters">
                 
-              <b-input v-if="email" rounded icon="key" type="password" v-model="password" placeholder="password"></b-input>
+              <b-input v-if="role" rounded icon="key" type="password" v-model="password" placeholder="password"></b-input>
              </div>
            </div>
+
+
+          
   
   
          <b-button v-if="password" @click="onSubmit" type="is-info">Add </b-button>
@@ -73,7 +98,8 @@
         
                 name:null,
                 email:null,
-                password:null        
+                password:null,
+                role:null        
           
         },
        
@@ -86,7 +112,8 @@
         'userForm',
         'userForm.name',
         'userForm.email',
-        'userForm.password'  
+        'userForm.password',
+        'userForm.role'  
         
         
         ]),
@@ -146,6 +173,7 @@
         
                 name:null,
                 email:null,
+                role:null,
                 password:null        
           
         }

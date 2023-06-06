@@ -135,8 +135,7 @@
 
                             <b-menu-list class="ml-2" icon="account"  label="Consultations">
 
-                              <b-menu-item v-if="this.$auth.user.email==='kondwani1mwale@gmail.com'
-                                         ||this.$auth.user.email==='isaacs@livestock.co.zm' "   
+                              <b-menu-item v-if="SignedInUser.role === 'admin'"   
                                          class="ml-2" icon="microscope"  label="Laboratory" 
                                          @click="lab">
                                             
@@ -144,7 +143,7 @@
                                 
                             </b-menu-item>
 
-                                 <b-menu-item  v-if="$auth.user.email === 'nutrition@livestock.co.zm' ||  $auth.user.email === 'mataas@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" icon="food" @click="nutrition" label="Nutrition"></b-menu-item>
+                                 <b-menu-item  v-if="SignedInUser.role ==='admin' || SignedInUser.role === 'user'" icon="food" @click="nutrition" label="Nutrition"></b-menu-item>
 
                              
                                
@@ -206,10 +205,16 @@
 </template>
 
 <script>
+import {mapActions, mapGetters} from 'vuex'
+import { computed } from 'vue';
+
 export default {
   name: 'DefaultLayout',
   data () {
+    var SignedInUser = computed(()=>this.user)
+
     return {
+      SignedInUser,
 
      isPublic: false,
       isLoading: false,
@@ -288,7 +293,19 @@ export default {
     }
   },
 
+  computed:{
+    ...mapGetters('users', {
+          loading: 'loading',
+          users: 'allUsers',
+          user:'loggedInUser',
+
+          
+        }),
+  },
+
   methods:{
+    ...mapActions('users', ['getAllUsers']),
+
      index(){
       this.$router.push("/")
     },

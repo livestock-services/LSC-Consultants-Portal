@@ -1,7 +1,7 @@
 <template>
     <div class="modal-card ">
       <header class="modal-card-head">
-        <h3 class="modal-card-title">Customer Snapshot</h3>
+        <h3 class="modal-card-title">Staff Snapshot</h3>
        
         <button type="button" class="delete" @click="close"></button>
       </header>
@@ -37,7 +37,23 @@
              <div  class="column is-half">
                 <h4> <span class="is-blue">Role</span></h4>
               <p  placeholder="Date">
-                 <span class="tag is-info is-light">{{ user.role}}</span>
+                <span
+            :class="[
+              'tag',
+          
+              {
+                'is-warning' :user.role ===  'user',
+              },
+  
+              {
+                'is-success ':user.role === 'admin',
+              },
+            ]"
+            >
+                  
+                  
+                  
+                  {{ user.role}}</span>
               </p>
              </div>
            </div>
@@ -52,12 +68,99 @@
         <b-button label="Close" @click="close" />
 
 
-         <b-button
-          label="Make Administrator"
-          type="is-info"
+        <b-tooltip type="is-success" label="Make Administrator">
+          <b-button   
+          class="mx-1"
+          type="is-success"
           icon-left="account"
-          @click="onSubmit"
+          icon-right="star"
+          @click="onAdmin"
         /> 
+        </b-tooltip>
+
+        <b-tooltip label="Make Manager">
+          <b-button   
+          class="mx-1"
+          type="is-primary"
+          icon-right="star"
+          @click="onManager"
+        /> 
+        </b-tooltip>
+
+        <b-tooltip label="Make Vet Consultant">
+          <b-button   
+          class="mx-1 vet"
+         
+          icon-left="doctor"
+          @click="onVet"
+        /> 
+        </b-tooltip>
+
+        <b-tooltip label="Make Agro Consultant">
+          <b-button   
+          class="mx-1 agro"
+         
+          icon-left="flower"
+          @click="onAgro"
+        /> 
+        </b-tooltip>
+
+        <b-tooltip label="Make Lab Consultant">
+          <b-button   
+          class="mx-1 lab"
+          
+          icon-left="microscope"
+          @click="onLab"
+        /> 
+        </b-tooltip>
+
+        <b-tooltip label="Make Nutrition Consultant">
+          <b-button   
+          class="mx-1 nutrition"
+         
+          icon-left="food"
+          @click="onNutrition"
+        /> 
+        </b-tooltip>
+
+        <b-tooltip label="Make AI Consultant">
+          <b-button   
+          class="mx-1 ai"
+         
+          icon-left="needle"
+          @click="onAI"
+        /> 
+        </b-tooltip>
+
+        <b-tooltip label="Make Irrigation/Waterpumps Consultant">
+          <b-button   
+          class="mx-1 roto"
+          
+          icon-left="water"
+          @click="onRoto"
+        /> 
+        </b-tooltip>
+
+        <b-tooltip label="Make Fence Consultant">
+          <b-button   
+          class="mx-1 fence"
+          
+          icon-left="wall"
+          @click="onFence"
+        /> 
+        </b-tooltip>
+
+        <b-tooltip label="Make Fish Consultant">
+          <b-button   
+          class="mx-1 fish"
+          
+          icon-left="fish"
+          @click="onFish"
+        /> 
+        </b-tooltip>
+
+       
+        
       </footer>
     </div>
   </template>
@@ -93,11 +196,13 @@
     
   
     methods: {
-      ...mapActions('users', ['load', 'selectUser', 'activateUser']),
+      ...mapActions('users', ['load', 'selectUser', 'makeAdminUser','makeManagerUser',
+                    'makeVetUser','makeAgroUser','makeLabUser','makeNutritionUser',
+                    'makeAIUser','makeRotoUser','makeFenceUser','makeFishUser']),
   
-      async onSubmit() {
+      async onAdmin() {
 
-        await this.activateUser();
+        await this.makeAdminUser();
 
         const msg = await Promise.resolve('Operation successfull')
         this.$buefy.toast.open({
@@ -108,18 +213,145 @@
         })
         this.$parent.close()
       },
-  
-      close() {
-        this.$buefy.toast.open({
-          message: 'User Snapshot closed.',
-          duration: 2000,
-          position: 'is-top',
-          type: 'is-warning ',
-        })
-        this.$parent.close()
+
+      async onManager() {
+
+      await this.makeManagerUser();
+
+      const msg = await Promise.resolve('Operation successfull')
+      this.$buefy.toast.open({
+        message: msg, // 'Operation successful',
+        duration: 5000,
+        position: 'is-top',
+        type: 'is-info',
+      })
+      this.$parent.close()
       },
-    },
-  }
+
+      async onVet() {
+
+      await this.makeVetUser();
+
+      const msg = await Promise.resolve('Operation successfull')
+      this.$buefy.toast.open({
+        message: msg, // 'Operation successful',
+        duration: 5000,
+        position: 'is-top',
+        type: 'is-info',
+      })
+      this.$parent.close()
+      },
+
+      async onAgro() {
+
+      await this.makeAgroUser();
+
+      const msg = await Promise.resolve('Operation successfull')
+      this.$buefy.toast.open({
+        message: msg, // 'Operation successful',
+        duration: 5000,
+        position: 'is-top',
+        type: 'is-info',
+      })
+      this.$parent.close()
+      },
+
+      async onLab() {
+
+      await this.makeLabUser();
+
+      const msg = await Promise.resolve('Operation successfull')
+      this.$buefy.toast.open({
+        message: msg, // 'Operation successful',
+        duration: 5000,
+        position: 'is-top',
+        type: 'is-info',
+      })
+      this.$parent.close()
+      },
+
+      async onNutrition() {
+
+      await this.makeNutritionUser();
+
+      const msg = await Promise.resolve('Operation successfull')
+      this.$buefy.toast.open({
+        message: msg, // 'Operation successful',
+        duration: 5000,
+        position: 'is-top',
+        type: 'is-info',
+      })
+      this.$parent.close()
+      },
+
+      async onAI() {
+
+      await this.makeAIUser();
+
+      const msg = await Promise.resolve('Operation successfull')
+      this.$buefy.toast.open({
+        message: msg, // 'Operation successful',
+        duration: 5000,
+        position: 'is-top',
+        type: 'is-info',
+      })
+      this.$parent.close()
+      },
+
+      async onRoto() {
+
+      await this.makeRotoUser();
+
+      const msg = await Promise.resolve('Operation successfull')
+      this.$buefy.toast.open({
+        message: msg, // 'Operation successful',
+        duration: 5000,
+        position: 'is-top',
+        type: 'is-info',
+      })
+      this.$parent.close()
+      },
+
+      async onFence() {
+
+      await this.makeFenceUser();
+
+      const msg = await Promise.resolve('Operation successfull')
+      this.$buefy.toast.open({
+        message: msg, // 'Operation successful',
+        duration: 5000,
+        position: 'is-top',
+        type: 'is-info',
+      })
+      this.$parent.close()
+      },
+
+      async onFish() {
+
+      await this.makeFishUser();
+
+      const msg = await Promise.resolve('Operation successfull')
+      this.$buefy.toast.open({
+        message: msg, // 'Operation successful',
+        duration: 5000,
+        position: 'is-top',
+        type: 'is-info',
+      })
+      this.$parent.close()
+      },
+
+        
+            close() {
+              this.$buefy.toast.open({
+                message: 'User Snapshot closed.',
+                duration: 2000,
+                position: 'is-top',
+                type: 'is-warning ',
+              })
+              this.$parent.close()
+            },
+          },
+        }
   </script>
   
   <style scoped>
@@ -141,6 +373,47 @@
   p{
     font-size: 1.5rem;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+
+  .vet{
+    color:white;
+    background-color: rgb(122, 163, 201);
+  }
+
+  .agro{
+    color:white;
+    background-color: rgb(185, 187, 61);
+  }
+
+  .lab{
+    color:white;
+    background-color: rgb(152, 176, 255);
+  }
+
+  .nutrition{
+    color:white;
+    background-color: rgb(197, 157, 25);
+  }
+
+  .roto{
+    color:white;
+    background-color: rgb(19, 179, 152);
+  }
+
+
+  .ai{
+    color:white;
+    background-color: rgb(142, 40, 238);
+  }
+
+  .fence{
+    color:white;
+    background-color: rgb(119, 60, 11);
+  }
+
+  .fish{
+    color:white;
+    background-color: rgb(41, 175, 228);
   }
   </style>
   
