@@ -427,7 +427,7 @@
        
              
       <b-table-column
-        v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"
+      v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'"
           v-slot="props"
           field="createdBy"
           label="Created By"
@@ -444,7 +444,7 @@
 
 
       
-      <b-table-column v-slot="props" label="Options">
+      <!-- <b-table-column v-slot="props" label="Options">
         <span class="buttons">
           <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
           <b-button
@@ -456,7 +456,7 @@
 
           </b-tooltip>
         </span>
-      </b-table-column>
+      </b-table-column> -->
 
       
                  
@@ -484,7 +484,7 @@
 import { mapActions, mapGetters } from 'vuex'
 
 import NMModal from '@/components/modals/Lab Modal/Feed Data/no-3-meal-modal.vue'
-
+import { computed } from 'vue';
 // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
 export default {
   name: 'SampleInfoTable',
@@ -492,8 +492,9 @@ export default {
   data() {  
   
     
-    return {
-
+    var SignedInUser = computed(()=>this.user)
+      return {
+        SignedInUser,
       isPaginated: true,
       currentPage: 1,
       perPage: 10,
@@ -513,6 +514,14 @@ export default {
         loading: 'loading',
         NM: 'allNMRecords',
       }),
+
+      ...mapGetters('users', {
+          loading: 'loading',
+          users: 'allUsers',
+          user:'loggedInUser',
+
+          
+        }),
     
      isEmpty() {
     return this.NM.length === 0

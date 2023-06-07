@@ -140,13 +140,13 @@
           sortable
         >
   
-        <span class="is-info is-light">  {{ props.row.vetPMComments }} </span>
+        <span class="">  {{ props.row.vetPMComments }} </span>
          
         </b-table-column>
 
         
         <b-table-column
-        v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"
+        v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'"
           v-slot="props"
           field="createdBy"
           label="Created By"
@@ -204,7 +204,7 @@
   
   <script>
   import { mapActions, mapGetters } from 'vuex'
-  
+  import { computed } from 'vue';
   import PostMortemModal from '@/components/modals/Post Mortems/post-mortem-modal.vue'
   
   // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
@@ -214,8 +214,9 @@
     data() {  
     
       
+      var SignedInUser = computed(()=>this.user)
       return {
-  
+        SignedInUser,
         isPaginated: true,
         currentPage: 1,
         perPage: 10,
@@ -233,6 +234,14 @@
       ...mapGetters('vetData', {
           loading: 'loading',
           PMs: 'allPostMortemRecords',
+        }),
+
+        ...mapGetters('users', {
+          loading: 'loading',
+          users: 'allUsers',
+          user:'loggedInUser',
+
+          
         }),
       
        isEmpty() {

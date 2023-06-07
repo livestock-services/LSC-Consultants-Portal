@@ -128,7 +128,7 @@
   
         
         <b-table-column
-          v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"
+        v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'"
             v-slot="props"
             field="createdBy"
             label="Created By"
@@ -199,7 +199,10 @@
             max.setHours(18)
             max.setMinutes(0)
       var allSamples = computed(()=>this.samples)
+
+      var SignedInUser = computed(()=>this.user)
       return {
+        SignedInUser,
         minTime: min,
         maxTime: max,
         isPaginated: true,
@@ -233,6 +236,14 @@
       ...mapGetters('labData', {
           loading: 'loading',
           samples: 'allBioSubmissionsRecords',
+        }),
+
+        ...mapGetters('users', {
+          loading: 'loading',
+          users: 'allUsers',
+          user:'loggedInUser',
+
+          
         }),
       
        isEmpty() {

@@ -114,13 +114,13 @@
          searchable 
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.pigAIClientComments }} </span>
+        <span class="">  {{ props.row.pigAIClientComments }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
       
       <b-table-column
-        v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"
+      v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'"
           v-slot="props"
           field="createdBy"
           label="Created By"
@@ -175,8 +175,8 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-
-import PigAIModal from '@/components/modals/pig AI Modal/pig-ai-modal.vue'
+import { computed } from 'vue';
+import PigAIModal from '~/components/modals/Pig AI Modal/pig-ai-modal.vue'
 
 // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
 export default {
@@ -185,7 +185,9 @@ export default {
   data() {  
   
     
-    return {
+    var SignedInUser = computed(()=>this.user)
+      return {
+        SignedInUser,
 
       isPaginated: true,
       currentPage: 1,
@@ -205,6 +207,14 @@ export default {
         loading: 'loading',
         pigs: 'allPigAIRecords',
       }),
+
+      ...mapGetters('users', {
+          loading: 'loading',
+          users: 'allUsers',
+          user:'loggedInUser',
+
+          
+        }),
     
      isEmpty() {
      return this.pigs.length === 0

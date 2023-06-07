@@ -54,7 +54,7 @@
         searchable
         
       >
-      <span class="tag tasks">  {{ props.row.clientName }} </span>
+      <span class="">  {{ props.row.clientName }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
@@ -104,7 +104,7 @@
         searchable
       >
 
-      <span class="tag is-info is-light">  {{ props.row.agroCategory }} </span>
+      <span class="">  {{ props.row.agroCategory }} </span>
        
       </b-table-column>
 
@@ -126,14 +126,14 @@
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.clientComments }} </span>
+      <span class="">  {{ props.row.clientComments }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
       
       <b-table-column
-        v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"
+        v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'"
           v-slot="props"
           field="createdBy"
           label="Created By"
@@ -188,7 +188,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-
+import { computed } from 'vue';
 import AgroModal from '@/components/modals/Agro Modal/agro-modal.vue'
 
 // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
@@ -198,8 +198,9 @@ export default {
   data() {  
   
     
+    var SignedInUser = computed(()=>this.user)
     return {
-
+      SignedInUser,
       isPaginated: true,
       currentPage: 1,
       perPage: 10,
@@ -218,6 +219,14 @@ export default {
         loading: 'loading',
         agros: 'allAgroRecords',
       }),
+
+      ...mapGetters('users', {
+          loading: 'loading',
+          users: 'allUsers',
+          user:'loggedInUser',
+
+          
+        }),
     
      isEmpty() {
      return this.agros.length === 0

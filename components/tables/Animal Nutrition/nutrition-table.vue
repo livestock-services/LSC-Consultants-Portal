@@ -54,7 +54,7 @@
           searchable
           
         >
-        <span class="tag tasks">  {{ props.row.nutritionClientName }} </span>
+        <span class="">  {{ props.row.nutritionClientName }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
@@ -127,7 +127,7 @@
          searchable 
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.nutritionClientComments }} </span>
+        <span class="">  {{ props.row.nutritionClientComments }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
@@ -135,7 +135,7 @@
 
           
         <b-table-column
-        v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"
+        v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'"
           v-slot="props"
           field="createdBy"
           label="Created By"
@@ -193,7 +193,7 @@
   
   <script>
   import { mapActions, mapGetters } from 'vuex'
-  
+  import { computed } from 'vue';
   import NutritionModal from '@/components/modals/Animal Nutrition/animal-nutritrion-modal.vue'
   
   // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
@@ -202,9 +202,9 @@
   
     data() {  
     
-      
+      var SignedInUser = computed(()=>this.user)
       return {
-  
+        SignedInUser,
         isPaginated: true,
         currentPage: 1,
         perPage: 10,
@@ -222,6 +222,14 @@
       ...mapGetters('nutritionData', {
           loading: 'loading',
           nutritions: 'allNutritionRecords',
+        }),
+
+        ...mapGetters('users', {
+          loading: 'loading',
+          users: 'allUsers',
+          user:'loggedInUser',
+
+          
         }),
       
        isEmpty() {

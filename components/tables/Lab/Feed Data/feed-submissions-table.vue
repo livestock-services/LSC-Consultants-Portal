@@ -156,7 +156,7 @@
   
         
         <b-table-column
-          v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"
+        v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'"
             v-slot="props"
             field="createdBy"
             label="Created By"
@@ -199,8 +199,9 @@
     data() {  
     
       var allSamples = computed(()=>this.samples)
+      var SignedInUser = computed(()=>this.user)
       return {
-  
+        SignedInUser,
         isPaginated: true,
         currentPage: 1,
         perPage: 10,
@@ -232,6 +233,14 @@
       ...mapGetters('labData', {
           loading: 'loading',
           samples: 'allFeedSubmissionsRecords',
+        }),
+
+        ...mapGetters('users', {
+          loading: 'loading',
+          users: 'allUsers',
+          user:'loggedInUser',
+
+          
         }),
       
        isEmpty() {

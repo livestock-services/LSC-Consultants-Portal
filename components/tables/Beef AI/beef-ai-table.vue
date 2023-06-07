@@ -130,7 +130,7 @@
         </b-table-column>
 
         <b-table-column
-        v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"
+        v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'"
           v-slot="props"
           field="createdBy"
           label="Created By"
@@ -185,7 +185,7 @@
   
   <script>
   import { mapActions, mapGetters } from 'vuex'
-  
+  import { computed } from 'vue';
   import BeefAIModal from '@/components/modals/Beef AI Modal/beef-ai-modal.vue'
   
   // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
@@ -195,8 +195,9 @@
     data() {  
     
       
+      var SignedInUser = computed(()=>this.user)
       return {
-  
+        SignedInUser,
         isPaginated: true,
         currentPage: 1,
         perPage: 10,
@@ -214,6 +215,14 @@
       ...mapGetters('beefAIData', {
           loading: 'loading',
           beefs: 'allBeefAIRecords',
+        }),
+
+        ...mapGetters('users', {
+          loading: 'loading',
+          users: 'allUsers',
+          user:'loggedInUser',
+
+          
         }),
       
        isEmpty() {

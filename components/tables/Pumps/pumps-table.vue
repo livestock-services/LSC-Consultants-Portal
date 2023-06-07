@@ -122,7 +122,7 @@
 
 
       <b-table-column
-        v-if="this.$auth.user.email === 'kondwani1mwale@gmail.com'"
+      v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'"
           v-slot="props"
           field="createdBy"
           label="Created By"
@@ -177,7 +177,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-
+import { computed } from 'vue';
 import WaterPumpModal from '@/components/modals/Pumps Modal/pumps-modal.vue'
 
 // import FishSnapshotModal from '@/components/modals/Fish Modal/Fish-snapshot-modal.vue'
@@ -186,8 +186,9 @@ export default {
 
   data() {  
   
-    
-    return {
+    var SignedInUser = computed(()=>this.user)
+      return {
+        SignedInUser,
 
       isPaginated: true,
       currentPage: 1,
@@ -207,6 +208,14 @@ export default {
         loading: 'loading',
         waterPump: 'allWaterPumpRecords',
       }),
+
+      ...mapGetters('users', {
+          loading: 'loading',
+          users: 'allUsers',
+          user:'loggedInUser',
+
+          
+        }),
     
      isEmpty() {
    return this.waterPump.length === 0
