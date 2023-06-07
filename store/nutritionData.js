@@ -247,7 +247,7 @@ import {
     
                 const newNutritionRecord = cloneDeep(state.nutritionForm);
     
-             //   newNutritionRecord.createdBy = this.$auth.user.email;
+                newNutritionRecord.createdBy = this.$auth.user.email;
                
                
                console.log(newNutritionRecord);

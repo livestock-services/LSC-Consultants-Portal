@@ -298,11 +298,11 @@ export const actions = {
 
         //    if (newLoad.data.createdBy === this.$auth.user.email){
 
-        //     console.log(newLoad);
+            //// console.log(newLoad);
         //   }
 
            // await dispatch('getInactivePolicies')
-        console.log(newLoad.data)
+       // console.log(newLoad.data)
              commit(SET_ALL_AGRO_RECORDS, newLoad.data);
             //   ...getters.allPolicies,
             //   ...getters.inactivePolicies,
@@ -314,25 +314,36 @@ export const actions = {
         }
     },
  //GET ALL AgroRecordS
-    async getAllAgroRecords({ state,commit }){
+    async getAllAgroRecords({ state,commit,rootState,rootGetters }){
         try {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
 
+          const users =  rootGetters['users/allUsers']
+
+          const loggedInUser = rootGetters['users/loggedInUser']
+
+         // console.log(users);
+         // console.log(loggedInUser)
+
+           let userEmail = loggedInUser.email;
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/agro/allAgroRecords`)
 
-           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
+               if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
+                if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
             const customeUserRecords = response.data.filter( cur=>
                 cur.createdBy === this.$auth.user.email
                       )
-                      console.log(customeUserRecords);
+                    // // console.log(customeUserRecords);
                       commit(GET_ALL_AGRO_RECORDS, customeUserRecords);
            }
 
+        }
+
 
            else{
-            console.log(response.data);
+           // console.log(response.data);
        
 
             //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
@@ -350,10 +361,19 @@ export const actions = {
         }
     },
 
-    async getFilteredAgroRecords({ state,commit }){
+    async getFilteredAgroRecords({ state,commit,rootState,rootGetters }){
         try {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
+
+          const users =  rootGetters['users/allUsers']
+
+          const loggedInUser = rootGetters['users/loggedInUser']
+
+         // console.log(users);
+         // console.log(loggedInUser)
+
+           let userEmail = loggedInUser.email;
 
              const newFilterRecord = cloneDeep(state.agroFilterForm);
 
@@ -361,14 +381,15 @@ export const actions = {
 
              newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString();
 
-             console.log(newFilterRecord.startDate);
-             console.log(newFilterRecord.endDate);
+            // console.log(newFilterRecord.startDate);
+            // console.log(newFilterRecord.endDate);
             
            
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/agro/allAgroRecords`)
 
-           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
+           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
+            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
             const customeUserRecords = response.data.filter( cur=>
                 cur.createdBy === this.$auth.user.email
                       )
@@ -468,32 +489,32 @@ export const actions = {
                         kt.date >= newFilterRecord.startDate && kt.date <= newFilterRecord.endDate
                         );
                         
-                        console.log(filteredLandscapingRecords.length);
+                       // console.log(filteredLandscapingRecords.length);
                 
                         var landscapingCount = filteredLandscapingRecords.length;
                 
-                        console.log(landscapingCount);
+                       // console.log(landscapingCount);
                         
                 
-                        console.log(filteredPestControlVegRecords.length);
+                       // console.log(filteredPestControlVegRecords.length);
                 
-                        console.log(filteredHouseholdTermitesRecords.length);
+                       // console.log(filteredHouseholdTermitesRecords.length);
                 
-                        console.log(filteredAgricFieldTermitesRecords.length);
+                       // console.log(filteredAgricFieldTermitesRecords.length);
                 
-                        console.log(filteredGrainProtectionRecords.length);
+                       // console.log(filteredGrainProtectionRecords.length);
                 
-                        console.log(filteredWeedControlRecords.length);
+                       // console.log(filteredWeedControlRecords.length);
                 
-                        console.log(filteredPestControlFieldRecords.length);
+                       // console.log(filteredPestControlFieldRecords.length);
                 
-                        console.log(filteredPublicHealthRecords.length);
+                       // console.log(filteredPublicHealthRecords.length);
                 
-                        console.log(filteredVegEnterpriseBudgetRecords.length);
+                       // console.log(filteredVegEnterpriseBudgetRecords.length);
                 
-                        console.log(filteredPestControlOrchardsRecords.length);
+                       // console.log(filteredPestControlOrchardsRecords.length);
                 
-                        console.log(filteredSoilAnalysisRecords.length);
+                       // console.log(filteredSoilAnalysisRecords.length);
                 
                         
                        //----------------------------END OF GRAIN PROTECTION---------------------------------//
@@ -502,14 +523,14 @@ export const actions = {
                         //  t.date >= newFilterRecord.startDate && t.date <= newFilterRecord.endDate
                         //  );
                 
-                        // console.log(filteredTAR.length);
+                        //// console.log(filteredTAR.length);
                 
                 
                        
                            
                 
-                           console.log(response.data);
-                        //   console.log(fetchUsers.data)
+                          // console.log(response.data);
+                        //  // console.log(fetchUsers.data)
                          
                 
                         //    //--------FILTER TO GET DATA BASED ON LOGGED IN USER -----------------//
@@ -518,7 +539,7 @@ export const actions = {
                         //   );
                 
                 
-                        //   console.log(filteredAgroRecords);
+                        //  // console.log(filteredAgroRecords);
                 
                 
                 
@@ -553,6 +574,8 @@ export const actions = {
                            commit(GET_ALL_SOIL_ANALYSIS_RECORDS, filteredSoilAnalysisRecords.length);
                 
            }
+
+        }
 
 
            else{
@@ -653,32 +676,32 @@ export const actions = {
                 kt.date >= newFilterRecord.startDate && kt.date <= newFilterRecord.endDate
                 );
                 
-                console.log(filteredLandscapingRecords.length);
+               // console.log(filteredLandscapingRecords.length);
         
                 var landscapingCount = filteredLandscapingRecords.length;
         
-                console.log(landscapingCount);
+               // console.log(landscapingCount);
                 
         
-                console.log(filteredPestControlVegRecords.length);
+               // console.log(filteredPestControlVegRecords.length);
         
-                console.log(filteredHouseholdTermitesRecords.length);
+               // console.log(filteredHouseholdTermitesRecords.length);
         
-                console.log(filteredAgricFieldTermitesRecords.length);
+               // console.log(filteredAgricFieldTermitesRecords.length);
         
-                console.log(filteredGrainProtectionRecords.length);
+               // console.log(filteredGrainProtectionRecords.length);
         
-                console.log(filteredWeedControlRecords.length);
+               // console.log(filteredWeedControlRecords.length);
         
-                console.log(filteredPestControlFieldRecords.length);
+               // console.log(filteredPestControlFieldRecords.length);
         
-                console.log(filteredPublicHealthRecords.length);
+               // console.log(filteredPublicHealthRecords.length);
         
-                console.log(filteredVegEnterpriseBudgetRecords.length);
+               // console.log(filteredVegEnterpriseBudgetRecords.length);
         
-                console.log(filteredPestControlOrchardsRecords.length);
+               // console.log(filteredPestControlOrchardsRecords.length);
         
-                console.log(filteredSoilAnalysisRecords.length);
+               // console.log(filteredSoilAnalysisRecords.length);
         
                 
                //----------------------------END OF GRAIN PROTECTION---------------------------------//
@@ -687,14 +710,14 @@ export const actions = {
                 //  t.date >= newFilterRecord.startDate && t.date <= newFilterRecord.endDate
                 //  );
         
-                // console.log(filteredTAR.length);
+                //// console.log(filteredTAR.length);
         
         
                
                    
         
-                   console.log(response.data);
-                //   console.log(fetchUsers.data)
+                  // console.log(response.data);
+                //  // console.log(fetchUsers.data)
                  
         
                 //    //--------FILTER TO GET DATA BASED ON LOGGED IN USER -----------------//
@@ -703,7 +726,7 @@ export const actions = {
                 //   );
         
         
-                //   console.log(filteredAgroRecords);
+                //  // console.log(filteredAgroRecords);
         
         
         
@@ -767,14 +790,14 @@ export const actions = {
 
 
         newAgroRecord.createdBy = this.$auth.user.email;
-        //    console.log(newAgroRecord.date);
+        //   // console.log(newAgroRecord.date);
            
-           console.log(newAgroRecord);
+          // console.log(newAgroRecord);
 
            
             const response = await api.post(`/agro/addNewAgroRecord`, newAgroRecord);
 
-            console.log(response.data);
+           // console.log(response.data);
 
             commit(ADD_AGRO_RECORD, response.data);
             
@@ -791,9 +814,9 @@ export const actions = {
     selectAgroRecord({ commit }, newAgroRecord) {
         try {
             commit(SET_SELECTED_AGRO_RECORD, newAgroRecord)
-            console.log(newAgroRecord._id)
+           // console.log(newAgroRecord._id)
         } catch (error) {
-            console.log('Error')
+           // console.log('Error')
         }
         
       },

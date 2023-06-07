@@ -312,7 +312,7 @@
    
 
 
-<div v-if="SignedInUser.role !== 'Admin'" class="columns is-mobile">
+<div v-if="SignedInUser.role !== 'Admin' & SignedInUser.role !== 'Manager'" class="columns is-mobile">
 
        <div class="card total-cow-card  card-body">
         

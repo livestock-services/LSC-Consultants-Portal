@@ -145,19 +145,39 @@ export const actions = {
 
     
  //GET ALL AgroRecordS
-    async getAllFenceRecords({ state,commit }){
+    async getAllFenceRecords({ state,commit,rootState,rootGetters }){
         try {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
 
+          const users =  rootGetters['users/allUsers']
+
+          const loggedInUser = rootGetters['users/loggedInUser']
+
+         // console.log(users);
+         // console.log(loggedInUser)
+
+           let userEmail = loggedInUser.email;
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/fence/allFenceRecords`)
 
-        //const { data:fetchUsers } = await api.get(`/auth/allUsers`)
+           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
+            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
 
+                const customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
+                          commit(GET_ALL_FENCE_RECORDS, customeUserRecords);
+
+            }
+        }
+
+        else{
+
+            commit(GET_ALL_FENCE_RECORDS, response.data);
+        }
    
-           //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
-           commit(GET_ALL_FENCE_RECORDS, response.data);
+          
 
        
        
@@ -170,10 +190,19 @@ export const actions = {
         }
     },
 
-     async getFilteredFenceRecords({ state,commit }){
-         try {
-           //---  ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
-             commit(SET_LOADING, true)
+     async getFilteredFenceRecords({ state,commit,rootState,rootGetters }){
+        try {
+            //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+            commit(SET_LOADING, true)
+
+          const users =  rootGetters['users/allUsers']
+
+          const loggedInUser = rootGetters['users/loggedInUser']
+
+         // console.log(users);
+         // console.log(loggedInUser)
+
+           let userEmail = loggedInUser.email;
 
               const newFilterRecord = cloneDeep(state.fenceFilterForm);
 
@@ -181,62 +210,78 @@ export const actions = {
 
               newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString();
 
-              console.log(newFilterRecord.startDate);
-              console.log(newFilterRecord.endDate);
+             // console.log(newFilterRecord.startDate);
+             // console.log(newFilterRecord.endDate);
             
            
           //---   API REQUEST IS MADE AND RESULT IS STORED IN CONST
             const {data: response} = await api.get(`/fence/allFenceRecords`)
 
-         //   const { data:fetchUsers } = await api.get(`/auth/allUsers`)
-        
-       //  --------------------ALL Fence RECORDS FILTERED BY CATEGORY -------------------------------- //
-        // const FenceConsultsRecords = response.data.filter( a=>
-        //  a.FenceCategory ==='Consultation'
-        // )
+            
+           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
+            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
+            const customeUserRecords = response.data.filter( cur=>
+                cur.createdBy === this.$auth.user.email
+                      )
 
-        // const FenceSalesRecords = response.data.filter( b=>
-        //  b.FenceCategory ==='Sales'
-        // )
-
-   // -------------------------------END OF FILTERING BY CATEGORY----------------------//
-
-
-
-
- //   --------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
-          const filteredFenceConsultsRecords = response.data.filter( at => 
-         at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
-         );
-
-        //  const filteredFenceSalesRecordsRecords = FenceSalesRecords.filter( bt => 
-        //      bt.date >= newFilterRecord.startDate && bt.date <= newFilterRecord.endDate
-        //      );
-
+                      const filteredFenceConsultsRecords = customeUserRecords.filter( at => 
+                        at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                        );
+               
+                       //  const filteredFenceSalesRecordsRecords = FenceSalesRecords.filter( bt => 
+                       //      bt.date >= newFilterRecord.startDate && bt.date <= newFilterRecord.endDate
+                       //      );
+               
+                      
+                       
+                       // console.log(filteredFenceConsultsRecords.length);
+               
+                     //  // console.log(filteredFenceSalesRecordsRecords.length);
+               
+               
+                          // console.log(customeUserRecords);
+               
+                         //  RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
+                         //  commit(GET_ALL_FENCE_RECORDS, response.data);
+               
+                           commit(GET_FILTERED_FENCE_START_TIME, newFilterRecord.startDate);
+               
+                           commit(GET_FILTERED_FENCE_END_TIME, newFilterRecord.endDate);
+               
+                           commit(GET_ALL_FILTERED_FENCE_RECORDS, filteredFenceConsultsRecords.length);
+               
+            }
+        }
+    
+        else{
+            const filteredFenceConsultsRecords = response.data.filter( at => 
+                at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                );
        
-        
-         console.log(filteredFenceConsultsRecords.length);
-
-      //   console.log(filteredFenceSalesRecordsRecords.length);
-
-
-            console.log(response.data);
-
-          //  RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
-          //  commit(GET_ALL_FENCE_RECORDS, response.data);
-
-            commit(GET_FILTERED_FENCE_START_TIME, newFilterRecord.startDate);
-
-            commit(GET_FILTERED_FENCE_END_TIME, newFilterRecord.endDate);
-
-            commit(GET_ALL_FILTERED_FENCE_RECORDS, filteredFenceConsultsRecords.length);
-
-         //   commit(GET_ALL_FENCE_SALES_RECORDS, filteredFenceSalesRecordsRecords.length);
-
+               //  const filteredFenceSalesRecordsRecords = FenceSalesRecords.filter( bt => 
+               //      bt.date >= newFilterRecord.startDate && bt.date <= newFilterRecord.endDate
+               //      );
        
-//            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
-//            commit(SET_LOADING, false);
-
+              
+               
+               // console.log(filteredFenceConsultsRecords.length);
+       
+             //  // console.log(filteredFenceSalesRecordsRecords.length);
+       
+       
+                  // console.log(response.data);
+       
+                 //  RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
+                 //  commit(GET_ALL_FENCE_RECORDS, response.data);
+       
+                   commit(GET_FILTERED_FENCE_START_TIME, newFilterRecord.startDate);
+       
+                   commit(GET_FILTERED_FENCE_END_TIME, newFilterRecord.endDate);
+       
+                   commit(GET_ALL_FILTERED_FENCE_RECORDS, filteredFenceConsultsRecords.length);
+       
+        }
+        
         } catch (error) {
             commit(SET_LOADING, false);
             this.$log.error(error.message)
@@ -255,15 +300,15 @@ export const actions = {
 
 
 
-        //    // newFenceRecord.createdBy = 'kondwanim@livestock.co.zm'
-        //    console.log(newFenceRecord.date);
+         newFenceRecord.createdBy = this.$auth.user.email;
+        // console.log(newFenceRecord.date);
            
-           console.log(newFenceRecord);
+          // console.log(newFenceRecord);
 
            
             const response = await api.post(`/fence/addNewFenceRecord`, newFenceRecord);
 
-            console.log(response.data);
+           // console.log(response.data);
 
             commit(ADD_FENCE_RECORD, response.data);
             

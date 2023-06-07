@@ -1261,11 +1261,11 @@ export const actions = {
 
         //    if (newLoad.data.createdBy === this.$auth.user.email){
 
-        //    // console.log(newLoad);
+        //     console.log(newLoad);
         //   }
 
         //    // await dispatch('getInactivePolicies')
-        //// console.log(newLoad.data)
+        // console.log(newLoad.data)
              commit(SET_ALL_VET_RECORDS, newLoad.data);
             //   ...getters.allPolicies,
             //   ...getters.inactivePolicies,
@@ -1286,8 +1286,8 @@ export const actions = {
 
           const loggedInUser = rootGetters['users/loggedInUser']
 
-         // console.log(users);
-         // console.log(loggedInUser)
+          console.log(users);
+          console.log(loggedInUser)
 
            let userEmail = loggedInUser.email;
            
@@ -1301,7 +1301,7 @@ export const actions = {
             const customeUserRecords = response.data.filter( cur=>
                 cur.createdBy === this.$auth.user.email
                       )
-                     // console.log(customeUserRecords);
+                      console.log(customeUserRecords);
                       commit(GET_ALL_VET_RECORDS, customeUserRecords);
            }
 
@@ -1312,7 +1312,7 @@ export const actions = {
 
 
            else{
-           // console.log(response.data);
+            console.log(response.data);
        
 
             //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
@@ -1387,20 +1387,20 @@ export const actions = {
             //Join all the elements of the array back into a string 
             //using a blankspace as a separator 
             const str2 = arr.join(" ");
-           // console.log(str2);
+            console.log(str2);
 
             const location2 = location1Arr.join(" ");
-           // console.log(location2);
+            console.log(location2);
 
             const town2 = town1Arr.join(" ");
-           // console.log(town2);
+            console.log(town2);
 
             const comments2 = comments1Arr.join(" ");
-           // console.log(comments2);
+            console.log(comments2);
 
             
 
-           // console.log(newVetRecord.vetClientName)
+            console.log(newVetRecord.vetClientName)
 
             //----------------------New Formatted entries---------------------------//
             newVetRecord.vetClientName = str2;
@@ -1410,12 +1410,12 @@ export const actions = {
             
            
            
-          // console.log(newVetRecord);
+           console.log(newVetRecord);
 
            
             const response = await api.post(`/vet/addNewVetRecord`, newVetRecord);
 
-           // console.log(response.data);
+            console.log(response.data);
 
             commit(ADD_VET_RECORD, response.data);
             
@@ -1436,8 +1436,8 @@ export const actions = {
 
           const loggedInUser = rootGetters['users/loggedInUser']
 
-         // console.log(users);
-         // console.log(loggedInUser)
+          console.log(users);
+          console.log(loggedInUser)
 
            let userEmail = loggedInUser.email;
 
@@ -1447,12 +1447,12 @@ export const actions = {
 
              newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString('en-US');
 
-           // console.log(newFilterRecord.startDate);
-           // console.log(newFilterRecord.endDate);
+            console.log(newFilterRecord.startDate);
+            console.log(newFilterRecord.endDate);
 
             let newDate =  new Date().toLocaleDateString();
 
-           // console.log(newDate)
+            console.log(newDate)
           
 
 
@@ -1461,11 +1461,11 @@ export const actions = {
                 let date2 = new Date(d2).getTime();
               
                 if (date1 < date2) {
-                 // console.log(`${d1} is less than ${d2}`);
+                  console.log(`${d1} is less than ${d2}`);
                 } else if (date1 > date2) {
-                 // console.log(`${d1} is greater than ${d2}`);
+                  console.log(`${d1} is greater than ${d2}`);
                 } else {
-                 // console.log(`Both dates are equal`);
+                  console.log(`Both dates are equal`);
                 }
               };
 
@@ -1480,26 +1480,26 @@ export const actions = {
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/vet/allVetRecords`)
 
-          // console.log(response.data)
+           console.log(response.data)
 
            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
             if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
             const customeUserRecords = response.data.filter( cur=>
                 cur.createdBy == this.$auth.user.email
                       )
-                     // console.log(customeUserRecords);
+                      console.log(customeUserRecords);
                      
                       const cattleRecords = customeUserRecords.filter( a=>
                         a.vetCategory =='Cattle'
                        )
                 
-                      // console.log(cattleRecords.length)
+                       console.log(cattleRecords.length)
                 
                         const goatRecords = customeUserRecords.filter( b=>
                          b.vetCategory =='Goats'
                         )
                 
-                       // console.log(goatRecords.length)
+                        console.log(goatRecords.length)
                 
                         const sheepRecords = customeUserRecords.filter( c=>
                          c.vetCategory =='Sheep'
@@ -1546,7 +1546,7 @@ export const actions = {
                          );
 
 
-                           // console.log(filteredCattleRecords);
+                            console.log(filteredCattleRecords);
 
                 
                          const filteredGoatRecords = goatRecords.filter( bt => 
@@ -1584,31 +1584,31 @@ export const actions = {
                        
                         
                         
-                       // console.log(filteredCattleRecords.length);
+                        console.log(filteredCattleRecords.length);
                 
                         
                         
                 
-                       // console.log(filteredGoatRecords.length);
+                        console.log(filteredGoatRecords.length);
                 
-                       // console.log(filteredSheepRecords.length);
+                        console.log(filteredSheepRecords.length);
                 
-                        // console.log(filteredPigRecords.length);
+                         console.log(filteredPigRecords.length);
                 
-                      // console.log(filteredPoultryRecords.length);
+                       console.log(filteredPoultryRecords.length);
                 
-                        // console.log(filteredDogsAndCatsRecords.length);
+                         console.log(filteredDogsAndCatsRecords.length);
                 
-                        // console.log(filteredRabbitRecords.length);
+                         console.log(filteredRabbitRecords.length);
                 
-                        // console.log(filteredWildlifeOrExoticsRecords.length);
+                         console.log(filteredWildlifeOrExoticsRecords.length);
                 
-                        // console.log(filteredHorseRecords.length);
+                         console.log(filteredHorseRecords.length);
                 
                         
                         
                 
-                //           // console.log(response.data);
+                //            console.log(response.data);
                         
                 
                 
@@ -1649,19 +1649,19 @@ export const actions = {
 
 
            else{
-           // console.log(response.data);
+            console.log(response.data);
        
             const cattleRecords = response.data.filter( va=>
                va.vetCategory ==='Cattle'
                )
         
-              // console.log(cattleRecords.length)
+               console.log(cattleRecords.length)
         
                 const goatRecords = response.data.filter( vb=>
                  vb.vetCategory ==='Goats'
                 )
         
-               // console.log(goatRecords.length)
+                console.log(goatRecords.length)
         
                 const sheepRecords = response.data.filter( vc=>
                  vc.vetCategory ==='Sheep'
@@ -1742,31 +1742,31 @@ export const actions = {
                
                 
                 
-               // console.log(filteredCattleRecords.length);
+                console.log(filteredCattleRecords.length);
         
                 
                 
         
-               // console.log(filteredGoatRecords.length);
+                console.log(filteredGoatRecords.length);
         
-               // console.log(filteredSheepRecords.length);
+                console.log(filteredSheepRecords.length);
         
-                // console.log(filteredPigRecords.length);
+                 console.log(filteredPigRecords.length);
         
-              // console.log(filteredPoultryRecords.length);
+               console.log(filteredPoultryRecords.length);
         
-                // console.log(filteredDogsAndCatsRecords.length);
+                 console.log(filteredDogsAndCatsRecords.length);
         
-                // console.log(filteredRabbitRecords.length);
+                 console.log(filteredRabbitRecords.length);
         
-                // console.log(filteredWildlifeOrExoticsRecords.length);
+                 console.log(filteredWildlifeOrExoticsRecords.length);
         
-                // console.log(filteredHorseRecords.length);
+                 console.log(filteredHorseRecords.length);
         
                 
                 
         
-        //           // console.log(response.data);
+        //            console.log(response.data);
                 
         
         
@@ -1815,9 +1815,9 @@ export const actions = {
     selectVetRecord({ commit }, newVetRecord) {
         try {
             commit(SET_SELECTED_VET_RECORD, newVetRecord)
-           // console.log(newVetRecord._id)
+            console.log(newVetRecord._id)
         } catch (error) {
-           // console.log('Error')
+            console.log('Error')
         }
         
       },
@@ -1835,8 +1835,8 @@ export const actions = {
 
           const loggedInUser = rootGetters['users/loggedInUser']
 
-         // console.log(users);
-         // console.log(loggedInUser)
+          console.log(users);
+          console.log(loggedInUser)
 
            let userEmail = loggedInUser.email;
 
@@ -1850,7 +1850,7 @@ export const actions = {
             const customeUserPMRecords = response.data.filter( cur=>
                 cur.createdBy === this.$auth.user.email
                       )
-                     // console.log(customeUserPMRecords);
+                      console.log(customeUserPMRecords);
                       commit(GET_ALL_POST_MORTEM_RECORDS, customeUserPMRecords);
            }
 
@@ -1858,7 +1858,7 @@ export const actions = {
 
 
            else{
-           // console.log(response.data);
+            console.log(response.data);
        
 
             //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
@@ -1868,7 +1868,7 @@ export const actions = {
           
            
 
-          // console.log(response.data);
+           console.log(response.data);
        
 
            //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
@@ -1938,20 +1938,20 @@ export const actions = {
             //Join all the elements of the array back into a string 
             //using a blankspace as a separator 
             const str2 = arr.join(" ");
-           // console.log(str2);
+            console.log(str2);
 
             const location2 = location1Arr.join(" ");
-           // console.log(location2);
+            console.log(location2);
 
             const town2 = town1Arr.join(" ");
-           // console.log(town2);
+            console.log(town2);
 
             const comments2 = comments1Arr.join(" ");
-           // console.log(comments2);
+            console.log(comments2);
 
             
 
-           // console.log(newVetRecord.vetPostMortemClientName)
+            console.log(newVetRecord.vetPostMortemClientName)
 
             //----------------------New Formatted entries---------------------------//
             newVetRecord.vetPostMortemClientName = str2;
@@ -1963,7 +1963,7 @@ export const actions = {
            
             const response = await api.post(`/vet/addNewPostMortem`, newVetRecord);
 
-           // console.log(response.data);
+            console.log(response.data);
 
             commit(ADD_NEW_POST_MORTEM_RECORD, response.data);
             
@@ -1985,8 +1985,8 @@ export const actions = {
 
           const loggedInUser = rootGetters['users/loggedInUser']
 
-         // console.log(users);
-         // console.log(loggedInUser)
+          console.log(users);
+          console.log(loggedInUser)
 
            let userEmail = loggedInUser.email;
 
@@ -1996,33 +1996,33 @@ export const actions = {
 
              newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
 
-            // console.log(newPostMortemFilterRecord.startDate);
-            // console.log(newPostMortemFilterRecord.endDate);
+             console.log(newPostMortemFilterRecord.startDate);
+             console.log(newPostMortemFilterRecord.endDate);
             
            
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/vet/allPostMortems`)
 
-          // console.log(response.data)
+           console.log(response.data)
 
            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
             if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
             const customeUserPMRecords = response.data.filter( cur=>
                 cur.createdBy === this.$auth.user.email
                       )
-                     // console.log(customeUserPMRecords);
+                      console.log(customeUserPMRecords);
                      
                       const villageChickenPostMortemRecords = customeUserPMRecords.filter( a=>
                         a.vetPostMortemCategory ==='Village Chicken'
                        )
                 
-                      // console.log(villageChickenPostMortemRecords.length);
+                       console.log(villageChickenPostMortemRecords.length);
                 
                        const infectiousLaryRecords = villageChickenPostMortemRecords.filter( a=>
                         a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Infectious Laryngotracheitis'
                        )
                 
-                      // console.log(infectiousLaryRecords.length)
+                       console.log(infectiousLaryRecords.length)
                 
                        const newCastleRecords = villageChickenPostMortemRecords.filter( a=>
                         a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Newcastle'
@@ -2072,7 +2072,7 @@ export const actions = {
                          ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
                          );
                 
-                        // console.log(filteredILRecords.length)
+                         console.log(filteredILRecords.length)
                 
                          const filteredNewcastleRecords = newCastleRecords.filter( ct => 
                          ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
@@ -2164,13 +2164,13 @@ export const actions = {
                 a.vetPostMortemCategory ==='Village Chicken'
                )
         
-              // console.log(villageChickenPostMortemRecords.length);
+               console.log(villageChickenPostMortemRecords.length);
         
                const infectiousLaryRecords = villageChickenPostMortemRecords.filter( a=>
                 a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Infectious Laryngotracheitis'
                )
         
-              // console.log(infectiousLaryRecords.length)
+               console.log(infectiousLaryRecords.length)
         
                const newCastleRecords = villageChickenPostMortemRecords.filter( a=>
                 a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Newcastle'
@@ -2220,7 +2220,7 @@ export const actions = {
                  ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
                  );
         
-                // console.log(filteredILRecords.length)
+                 console.log(filteredILRecords.length)
         
                  const filteredNewcastleRecords = newCastleRecords.filter( ct => 
                  ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
@@ -2329,8 +2329,8 @@ export const actions = {
 
           const loggedInUser = rootGetters['users/loggedInUser']
 
-         // console.log(users);
-         // console.log(loggedInUser)
+          console.log(users);
+          console.log(loggedInUser)
 
            let userEmail = loggedInUser.email;
 
@@ -2340,8 +2340,8 @@ export const actions = {
 
              newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
 
-            // console.log(newPostMortemFilterRecord.startDate);
-            // console.log(newPostMortemFilterRecord.endDate);
+             console.log(newPostMortemFilterRecord.startDate);
+             console.log(newPostMortemFilterRecord.endDate);
             
            
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
@@ -2357,19 +2357,19 @@ export const actions = {
                         a.vetPostMortemCategory ==='Broilers'
                       )
                
-                     // console.log(broilerChickenPostMortemRecords.length);
+                      console.log(broilerChickenPostMortemRecords.length);
                
                       const heatStressRecords = broilerChickenPostMortemRecords.filter( af=>
                        af.vetPostMortemDiseases === 'Heat Stress'
                       )
                
-                     // console.log(heatStressRecords.length)
+                      console.log(heatStressRecords.length)
                
                       const broilerNewCastleRecords = broilerChickenPostMortemRecords.filter( bf=>
                         bf.vetPostMortemDiseases === 'Newcastle'
                       )
                
-                     // console.log(broilerNewCastleRecords.length)
+                      console.log(broilerNewCastleRecords.length)
                
                        const broilerCoccidiosisRecords = broilerChickenPostMortemRecords.filter( c=>
                          c.vetPostMortemDiseases === 'Coccidiosis'
@@ -2405,13 +2405,13 @@ export const actions = {
                           atf.date >= newPostMortemFilterRecord.startDate && atf.date <= newPostMortemFilterRecord.endDate
                           );
                
-                         // console.log(filteredHeatStressRecords.length)
+                          console.log(filteredHeatStressRecords.length)
                
                             const filteredNewCastleRecords = broilerNewCastleRecords.filter( btf => 
                             btf.date >= newPostMortemFilterRecord.startDate && btf.date <= newPostMortemFilterRecord.endDate
                             );
                
-                           // console.log(filteredNewCastleRecords)
+                            console.log(filteredNewCastleRecords)
                
                             const filteredGumboroRecords = broilerGumboroRecords.filter( ct => 
                             ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
@@ -2483,19 +2483,19 @@ export const actions = {
                 a.vetPostMortemCategory ==='Broilers'
               )
        
-             // console.log(broilerChickenPostMortemRecords.length);
+              console.log(broilerChickenPostMortemRecords.length);
        
               const heatStressRecords = broilerChickenPostMortemRecords.filter( af=>
                af.vetPostMortemDiseases === 'Heat Stress'
               )
        
-             // console.log(heatStressRecords.length)
+              console.log(heatStressRecords.length)
        
               const broilerNewCastleRecords = broilerChickenPostMortemRecords.filter( bf=>
                 bf.vetPostMortemDiseases === 'Newcastle'
               )
        
-             // console.log(broilerNewCastleRecords.length)
+              console.log(broilerNewCastleRecords.length)
        
                const broilerCoccidiosisRecords = broilerChickenPostMortemRecords.filter( c=>
                  c.vetPostMortemDiseases === 'Coccidiosis'
@@ -2531,13 +2531,13 @@ export const actions = {
                   atf.date >= newPostMortemFilterRecord.startDate && atf.date <= newPostMortemFilterRecord.endDate
                   );
        
-                 // console.log(filteredHeatStressRecords.length)
+                  console.log(filteredHeatStressRecords.length)
        
                     const filteredNewCastleRecords = broilerNewCastleRecords.filter( btf => 
                     btf.date >= newPostMortemFilterRecord.startDate && btf.date <= newPostMortemFilterRecord.endDate
                     );
        
-                   // console.log(filteredNewCastleRecords)
+                    console.log(filteredNewCastleRecords)
        
                     const filteredGumboroRecords = broilerGumboroRecords.filter( ct => 
                     ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
@@ -2624,8 +2624,8 @@ export const actions = {
 
           const loggedInUser = rootGetters['users/loggedInUser']
 
-         // console.log(users);
-         // console.log(loggedInUser)
+          console.log(users);
+          console.log(loggedInUser)
 
            let userEmail = loggedInUser.email;
 
@@ -2635,8 +2635,8 @@ export const actions = {
 
              newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
 
-            // console.log(newPostMortemFilterRecord.startDate);
-            // console.log(newPostMortemFilterRecord.endDate);
+             console.log(newPostMortemFilterRecord.startDate);
+             console.log(newPostMortemFilterRecord.endDate);
             
            
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
@@ -2652,19 +2652,19 @@ export const actions = {
                         a.vetPostMortemCategory ==='Layers'
                       )
                
-                     // console.log(layerChickenPostMortemRecords.length);
+                      console.log(layerChickenPostMortemRecords.length);
                
                       const fattyLiveHSRecords = layerChickenPostMortemRecords.filter( af=>
                        af.vetPostMortemDiseases === 'Fatty Liver HS'
                       )
                
-                     // console.log(fattyLiveHSRecords.length)
+                      console.log(fattyLiveHSRecords.length)
                
                       const layerNewCastleRecords = layerChickenPostMortemRecords.filter( bf=>
                         bf.vetPostMortemDiseases === 'Newcastle'
                       )
                
-                     // console.log(layerNewCastleRecords.length)
+                      console.log(layerNewCastleRecords.length)
                
                        const layerCoccidiosisRecords = layerChickenPostMortemRecords.filter( c=>
                          c.vetPostMortemDiseases === 'Coccidiosis'
@@ -2700,13 +2700,13 @@ export const actions = {
                           atf.date >= newPostMortemFilterRecord.startDate && atf.date <= newPostMortemFilterRecord.endDate
                           );
                
-                         // console.log(filteredFattyLiverHSRecords.length)
+                          console.log(filteredFattyLiverHSRecords.length)
                
                              const filteredNewCastleRecords = layerNewCastleRecords.filter( btf => 
                              btf.date >= newPostMortemFilterRecord.startDate && btf.date <= newPostMortemFilterRecord.endDate
                              );
                
-                           // // console.log(filteredNewCastleRecords)
+                           //  console.log(filteredNewCastleRecords)
                
                              const filteredGumboroRecords = layerGumboroRecords.filter( ctf => 
                              ctf.date >= newPostMortemFilterRecord.startDate && ctf.date <= newPostMortemFilterRecord.endDate
@@ -2778,19 +2778,19 @@ export const actions = {
                 a.vetPostMortemCategory ==='Layers'
               )
        
-             // console.log(layerChickenPostMortemRecords.length);
+              console.log(layerChickenPostMortemRecords.length);
        
               const fattyLiveHSRecords = layerChickenPostMortemRecords.filter( af=>
                af.vetPostMortemDiseases === 'Fatty Liver HS'
               )
        
-             // console.log(fattyLiveHSRecords.length)
+              console.log(fattyLiveHSRecords.length)
        
               const layerNewCastleRecords = layerChickenPostMortemRecords.filter( bf=>
                 bf.vetPostMortemDiseases === 'Newcastle'
               )
        
-             // console.log(layerNewCastleRecords.length)
+              console.log(layerNewCastleRecords.length)
        
                const layerCoccidiosisRecords = layerChickenPostMortemRecords.filter( c=>
                  c.vetPostMortemDiseases === 'Coccidiosis'
@@ -2826,13 +2826,13 @@ export const actions = {
                   atf.date >= newPostMortemFilterRecord.startDate && atf.date <= newPostMortemFilterRecord.endDate
                   );
        
-                 // console.log(filteredFattyLiverHSRecords.length)
+                  console.log(filteredFattyLiverHSRecords.length)
        
                      const filteredNewCastleRecords = layerNewCastleRecords.filter( btf => 
                      btf.date >= newPostMortemFilterRecord.startDate && btf.date <= newPostMortemFilterRecord.endDate
                      );
        
-                   // // console.log(filteredNewCastleRecords)
+                   //  console.log(filteredNewCastleRecords)
        
                      const filteredGumboroRecords = layerGumboroRecords.filter( ctf => 
                      ctf.date >= newPostMortemFilterRecord.startDate && ctf.date <= newPostMortemFilterRecord.endDate
@@ -2922,8 +2922,8 @@ export const actions = {
 
           const loggedInUser = rootGetters['users/loggedInUser']
 
-         // console.log(users);
-         // console.log(loggedInUser)
+          console.log(users);
+          console.log(loggedInUser)
 
            let userEmail = loggedInUser.email;
 
@@ -2933,8 +2933,8 @@ export const actions = {
 
              newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
 
-            // console.log(newPostMortemFilterRecord.startDate);
-            // console.log(newPostMortemFilterRecord.endDate);
+             console.log(newPostMortemFilterRecord.startDate);
+             console.log(newPostMortemFilterRecord.endDate);
             
            
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
@@ -2949,19 +2949,19 @@ export const actions = {
                         a.vetPostMortemCategory ==='Pigs'
                       )
                
-                     // console.log(pigPostMortemRecords.length);
+                      console.log(pigPostMortemRecords.length);
                
                       const mycoPlasmosisRecords = pigPostMortemRecords.filter( ap=>
                        ap.vetPostMortemDiseases === 'Mycoplasmosis'
                       )
                
-                     // console.log(mycoPlasmosisRecords.length)
+                      console.log(mycoPlasmosisRecords.length)
                
                       const pneumoniaRecords = pigPostMortemRecords.filter( bp=>
                         bp.vetPostMortemDiseases === 'Pneumonia'
                       )
                
-                     // console.log(pneumoniaRecords.length)
+                      console.log(pneumoniaRecords.length)
                
                        const clostridialInfectionRecords = pigPostMortemRecords.filter( cp=>
                          cp.vetPostMortemDiseases === 'Clostridial Infection'
@@ -2977,13 +2977,13 @@ export const actions = {
                           atp.date >= newPostMortemFilterRecord.startDate && atp.date <= newPostMortemFilterRecord.endDate
                           );
                
-                         // console.log(filteredMycoPlasmosisRecords.length)
+                          console.log(filteredMycoPlasmosisRecords.length)
                
                              const filteredPneumoniaRecords = pneumoniaRecords.filter( btp => 
                              btp.date >= newPostMortemFilterRecord.startDate && btp.date <= newPostMortemFilterRecord.endDate
                              );
                
-                           // console.log(filteredPneumoniaRecords.length)
+                            console.log(filteredPneumoniaRecords.length)
                
                              const filteredClostridialInfectionRecords = clostridialInfectionRecords.filter( ctp => 
                              ctp.date >= newPostMortemFilterRecord.startDate && ctp.date <= newPostMortemFilterRecord.endDate
@@ -3021,19 +3021,19 @@ export const actions = {
                 a.vetPostMortemCategory ==='Pigs'
               )
        
-             // console.log(pigPostMortemRecords.length);
+              console.log(pigPostMortemRecords.length);
        
               const mycoPlasmosisRecords = pigPostMortemRecords.filter( ap=>
                ap.vetPostMortemDiseases === 'Mycoplasmosis'
               )
        
-             // console.log(mycoPlasmosisRecords.length)
+              console.log(mycoPlasmosisRecords.length)
        
               const pneumoniaRecords = pigPostMortemRecords.filter( bp=>
                 bp.vetPostMortemDiseases === 'Pneumonia'
               )
        
-             // console.log(pneumoniaRecords.length)
+              console.log(pneumoniaRecords.length)
        
                const clostridialInfectionRecords = pigPostMortemRecords.filter( cp=>
                  cp.vetPostMortemDiseases === 'Clostridial Infection'
@@ -3049,13 +3049,13 @@ export const actions = {
                   atp.date >= newPostMortemFilterRecord.startDate && atp.date <= newPostMortemFilterRecord.endDate
                   );
        
-                 // console.log(filteredMycoPlasmosisRecords.length)
+                  console.log(filteredMycoPlasmosisRecords.length)
        
                      const filteredPneumoniaRecords = pneumoniaRecords.filter( btp => 
                      btp.date >= newPostMortemFilterRecord.startDate && btp.date <= newPostMortemFilterRecord.endDate
                      );
        
-                   // console.log(filteredPneumoniaRecords.length)
+                    console.log(filteredPneumoniaRecords.length)
        
                      const filteredClostridialInfectionRecords = clostridialInfectionRecords.filter( ctp => 
                      ctp.date >= newPostMortemFilterRecord.startDate && ctp.date <= newPostMortemFilterRecord.endDate
@@ -3107,8 +3107,8 @@ export const actions = {
 
           const loggedInUser = rootGetters['users/loggedInUser']
 
-         // console.log(users);
-         // console.log(loggedInUser)
+          console.log(users);
+          console.log(loggedInUser)
 
            let userEmail = loggedInUser.email;
 
@@ -3118,8 +3118,8 @@ export const actions = {
 
              newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
 
-            // console.log(newPostMortemFilterRecord.startDate);
-            // console.log(newPostMortemFilterRecord.endDate);
+             console.log(newPostMortemFilterRecord.startDate);
+             console.log(newPostMortemFilterRecord.endDate);
             
            
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
@@ -3133,13 +3133,13 @@ export const actions = {
                         g.vetPostMortemCategory ==='Goats'
                       )
                
-                     // console.log(goatPostMortemRecords.length);
+                      console.log(goatPostMortemRecords.length);
                
                       const helminthiasisRecords = goatPostMortemRecords.filter( ag=>
                        ag.vetPostMortemDiseases === 'Helminthiasis'
                       )
                
-                     // console.log(helminthiasisRecords.length)
+                      console.log(helminthiasisRecords.length)
                
                       const heartWaterRecords = goatPostMortemRecords.filter( bg=>
                         bg.vetPostMortemDiseases === 'Heartwater'
@@ -3161,13 +3161,13 @@ export const actions = {
                           atg.date >= newPostMortemFilterRecord.startDate && atg.date <= newPostMortemFilterRecord.endDate
                           );
                
-                         // console.log(filteredHelminthiasisRecords.length)
+                          console.log(filteredHelminthiasisRecords.length)
                
                              const filteredHeartWaterRecords = heartWaterRecords.filter( btg => 
                              btg.date >= newPostMortemFilterRecord.startDate && btg.date <= newPostMortemFilterRecord.endDate
                              );
                
-                           // console.log(filteredHeartWaterRecords.length)
+                            console.log(filteredHeartWaterRecords.length)
                
                              const filteredTraumaRecords = traumaRecords.filter( ctg => 
                              ctg.date >= newPostMortemFilterRecord.startDate && ctg.date <= newPostMortemFilterRecord.endDate
@@ -3205,13 +3205,13 @@ export const actions = {
                 g.vetPostMortemCategory ==='Goats'
               )
        
-             // console.log(goatPostMortemRecords.length);
+              console.log(goatPostMortemRecords.length);
        
               const helminthiasisRecords = goatPostMortemRecords.filter( ag=>
                ag.vetPostMortemDiseases === 'Helminthiasis'
               )
        
-             // console.log(helminthiasisRecords.length)
+              console.log(helminthiasisRecords.length)
        
               const heartWaterRecords = goatPostMortemRecords.filter( bg=>
                 bg.vetPostMortemDiseases === 'Heartwater'
@@ -3233,13 +3233,13 @@ export const actions = {
                   atg.date >= newPostMortemFilterRecord.startDate && atg.date <= newPostMortemFilterRecord.endDate
                   );
        
-                 // console.log(filteredHelminthiasisRecords.length)
+                  console.log(filteredHelminthiasisRecords.length)
        
                      const filteredHeartWaterRecords = heartWaterRecords.filter( btg => 
                      btg.date >= newPostMortemFilterRecord.startDate && btg.date <= newPostMortemFilterRecord.endDate
                      );
        
-                   // console.log(filteredHeartWaterRecords.length)
+                    console.log(filteredHeartWaterRecords.length)
        
                      const filteredTraumaRecords = traumaRecords.filter( ctg => 
                      ctg.date >= newPostMortemFilterRecord.startDate && ctg.date <= newPostMortemFilterRecord.endDate
@@ -3291,8 +3291,8 @@ export const actions = {
 
           const loggedInUser = rootGetters['users/loggedInUser']
 
-         // console.log(users);
-         // console.log(loggedInUser)
+          console.log(users);
+          console.log(loggedInUser)
 
            let userEmail = loggedInUser.email;
 
@@ -3302,8 +3302,8 @@ export const actions = {
 
              newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
 
-            // console.log(newPostMortemFilterRecord.startDate);
-            // console.log(newPostMortemFilterRecord.endDate);
+             console.log(newPostMortemFilterRecord.startDate);
+             console.log(newPostMortemFilterRecord.endDate);
             
            
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
@@ -3318,13 +3318,13 @@ export const actions = {
                         q.vetPostMortemCategory ==='Quails'
                       )
                
-                     // console.log(quailPostMortemRecords.length);
+                      console.log(quailPostMortemRecords.length);
                
                       const colibacillosisRecords = quailPostMortemRecords.filter( aq=>
                        aq.vetPostMortemDiseases === 'Colibacillosis'
                       )
                
-                     // console.log(colibacillosisRecords.length)
+                      console.log(colibacillosisRecords.length)
                
                       const salmonellosisRecords = quailPostMortemRecords.filter( bq=>
                         bq.vetPostMortemDiseases === 'Salmonellosis'
@@ -3336,13 +3336,13 @@ export const actions = {
                           atq.date >= newPostMortemFilterRecord.startDate && atq.date <= newPostMortemFilterRecord.endDate
                           );
                
-                         // console.log(filteredColibacillosisRecords.length)
+                          console.log(filteredColibacillosisRecords.length)
                
                              const filteredSalmonellosisRecords = salmonellosisRecords.filter( btq => 
                              btq.date >= newPostMortemFilterRecord.startDate && btq.date <= newPostMortemFilterRecord.endDate
                              );
                
-                           // console.log(filteredSalmonellosisRecords.length)
+                            console.log(filteredSalmonellosisRecords.length)
                
                         
                       
@@ -3365,13 +3365,13 @@ export const actions = {
                 q.vetPostMortemCategory ==='Quails'
               )
        
-             // console.log(quailPostMortemRecords.length);
+              console.log(quailPostMortemRecords.length);
        
               const colibacillosisRecords = quailPostMortemRecords.filter( aq=>
                aq.vetPostMortemDiseases === 'Colibacillosis'
               )
        
-             // console.log(colibacillosisRecords.length)
+              console.log(colibacillosisRecords.length)
        
               const salmonellosisRecords = quailPostMortemRecords.filter( bq=>
                 bq.vetPostMortemDiseases === 'Salmonellosis'
@@ -3383,13 +3383,13 @@ export const actions = {
                   atq.date >= newPostMortemFilterRecord.startDate && atq.date <= newPostMortemFilterRecord.endDate
                   );
        
-                 // console.log(filteredColibacillosisRecords.length)
+                  console.log(filteredColibacillosisRecords.length)
        
                      const filteredSalmonellosisRecords = salmonellosisRecords.filter( btq => 
                      btq.date >= newPostMortemFilterRecord.startDate && btq.date <= newPostMortemFilterRecord.endDate
                      );
        
-                   // console.log(filteredSalmonellosisRecords.length)
+                    console.log(filteredSalmonellosisRecords.length)
        
                 
               
@@ -3428,8 +3428,8 @@ export const actions = {
 
           const loggedInUser = rootGetters['users/loggedInUser']
 
-         // console.log(users);
-         // console.log(loggedInUser)
+          console.log(users);
+          console.log(loggedInUser)
 
            let userEmail = loggedInUser.email;
              const newPostMortemFilterRecord = cloneDeep(state.rabbitPostMortemFilterForm);
@@ -3438,8 +3438,8 @@ export const actions = {
 
              newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
 
-            // console.log(newPostMortemFilterRecord.startDate);
-            // console.log(newPostMortemFilterRecord.endDate);
+             console.log(newPostMortemFilterRecord.startDate);
+             console.log(newPostMortemFilterRecord.endDate);
             
            
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
@@ -3454,13 +3454,13 @@ export const actions = {
                         r.vetPostMortemCategory ==='Rabbits'
                       )
                
-                     // console.log(rabbitPostMortemRecords.length);
+                      console.log(rabbitPostMortemRecords.length);
                
                       const coccidiosisRecords = rabbitPostMortemRecords.filter( aq=>
                        aq.vetPostMortemDiseases === 'Coccidiosis'
                       )
                
-                     // console.log(coccidiosisRecords.length)
+                      console.log(coccidiosisRecords.length)
                
                       const bacterialInfectionRecords = rabbitPostMortemRecords.filter( bq=>
                         bq.vetPostMortemDiseases === 'Bacterial Infection'
@@ -3472,13 +3472,13 @@ export const actions = {
                           atq.date >= newPostMortemFilterRecord.startDate && atq.date <= newPostMortemFilterRecord.endDate
                           );
                
-                      //   // console.log(filteredCoccidiosisRecords.length)
+                          console.log(filteredCoccidiosisRecords.length)
                
                              const filteredBacterialInfectionRecords = bacterialInfectionRecords.filter( btq => 
                              btq.date >= newPostMortemFilterRecord.startDate && btq.date <= newPostMortemFilterRecord.endDate
                              );
                
-                    //       // console.log(filteredBacterialInfectionRecords.length)
+                            console.log(filteredBacterialInfectionRecords.length)
                
                         
                       
@@ -3502,13 +3502,13 @@ export const actions = {
                 r.vetPostMortemCategory ==='Rabbits'
               )
        
-          //   // console.log(rabbitPostMortemRecords.length);
+              console.log(rabbitPostMortemRecords.length);
        
               const coccidiosisRecords = rabbitPostMortemRecords.filter( aq=>
                aq.vetPostMortemDiseases === 'Coccidiosis'
               )
-       //
-             // console.log(coccidiosisRecords.length)
+       
+              console.log(coccidiosisRecords.length)
        
               const bacterialInfectionRecords = rabbitPostMortemRecords.filter( bq=>
                 bq.vetPostMortemDiseases === 'Bacterial Infection'
@@ -3520,13 +3520,13 @@ export const actions = {
                   atq.date >= newPostMortemFilterRecord.startDate && atq.date <= newPostMortemFilterRecord.endDate
                   );
        
-            //     // console.log(filteredCoccidiosisRecords.length)
+                  console.log(filteredCoccidiosisRecords.length)
        
                      const filteredBacterialInfectionRecords = bacterialInfectionRecords.filter( btq => 
                      btq.date >= newPostMortemFilterRecord.startDate && btq.date <= newPostMortemFilterRecord.endDate
                      );
        
-                //   // console.log(filteredBacterialInfectionRecords.length)
+                    console.log(filteredBacterialInfectionRecords.length)
        
                 
               
@@ -3565,8 +3565,8 @@ export const actions = {
 
           const loggedInUser = rootGetters['users/loggedInUser']
 
-         // console.log(users);
-         // console.log(loggedInUser)
+          console.log(users);
+          console.log(loggedInUser)
 
            let userEmail = loggedInUser.email;
 
@@ -3576,8 +3576,8 @@ export const actions = {
 
              newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
 
-            // // console.log(newPostMortemFilterRecord.startDate);
-            // // console.log(newPostMortemFilterRecord.endDate);
+             console.log(newPostMortemFilterRecord.startDate);
+             console.log(newPostMortemFilterRecord.endDate);
             
            
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
@@ -3592,13 +3592,13 @@ export const actions = {
                         c.vetPostMortemCategory ==='Cattle'
                       )
                
-                   //  // console.log(cattlePostMortemRecords.length);
+                      console.log(cattlePostMortemRecords.length);
                
                       const anaPlasmosisRecords = cattlePostMortemRecords.filter( ac=>
                        ac.vetPostMortemDiseases === 'Anaplasmosis'
                       )
                
-                 //    // console.log(anaPlasmosisRecords.length)
+                      console.log(anaPlasmosisRecords.length)
                
                  
                       
@@ -3607,7 +3607,7 @@ export const actions = {
                           atq.date >= newPostMortemFilterRecord.startDate && atq.date <= newPostMortemFilterRecord.endDate
                           );
                
-                       //  // console.log(filteredAnaPlasmosisRecords.length)
+                          console.log(filteredAnaPlasmosisRecords.length)
                
                       
                            commit(GET_FILTERED_CATTLE_PM_START_TIME, newPostMortemFilterRecord.startDate);
@@ -3629,13 +3629,13 @@ export const actions = {
                 c.vetPostMortemCategory ==='Cattle'
               )
        
-             //// console.log(cattlePostMortemRecords.length);
+              console.log(cattlePostMortemRecords.length);
        
               const anaPlasmosisRecords = cattlePostMortemRecords.filter( ac=>
                ac.vetPostMortemDiseases === 'Anaplasmosis'
               )
        
-             // console.log(anaPlasmosisRecords.length)
+              console.log(anaPlasmosisRecords.length)
        
          
               
@@ -3644,7 +3644,7 @@ export const actions = {
                   atq.date >= newPostMortemFilterRecord.startDate && atq.date <= newPostMortemFilterRecord.endDate
                   );
        
-                // // console.log(filteredAnaPlasmosisRecords.length)
+                  console.log(filteredAnaPlasmosisRecords.length)
        
               
                    commit(GET_FILTERED_CATTLE_PM_START_TIME, newPostMortemFilterRecord.startDate);
