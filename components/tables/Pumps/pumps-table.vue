@@ -114,7 +114,7 @@
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.waterPumpClientComments }} </span>
+      <span class="">  {{ props.row.waterPumpClientComments }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>

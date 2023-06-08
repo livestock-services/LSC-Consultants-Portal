@@ -20,9 +20,9 @@
         <download-excel
          :data="waterPump_data" 
          :fields="waterPump_fields"
-         worksheet="waterPump Worksheet"
+         worksheet="Water Pump Worksheet"
          type="xls"
-         name = "waterPump Consultations.xls">
+         name = "Water Pump Consultations.xls">
         
         <b-button class="mx-2" icon-left="export" type="is-success ">Excel</b-button>
         <img src="download_icon.png" />

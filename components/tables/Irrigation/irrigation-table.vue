@@ -114,7 +114,7 @@
         searchable
         
       >
-      <span class="tag is-primary is-light">  {{ props.row.irrigationClientComments }} </span>
+      <span class="">  {{ props.row.irrigationClientComments }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
