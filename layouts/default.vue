@@ -303,9 +303,14 @@ export default {
         }),
   },
 
+  created(){
+   var allUsers = this.getAllUsers();
+    console.log(allUsers)
+  },
+
   methods:{
     ...mapActions('users', ['getAllUsers']),
-
+    
      index(){
       this.$router.push("/")
     },

@@ -493,56 +493,7 @@ export const actions = {
                 
                         var landscapingCount = filteredLandscapingRecords.length;
                 
-                       // console.log(landscapingCount);
-                        
-                
-                       // console.log(filteredPestControlVegRecords.length);
-                
-                       // console.log(filteredHouseholdTermitesRecords.length);
-                
-                       // console.log(filteredAgricFieldTermitesRecords.length);
-                
-                       // console.log(filteredGrainProtectionRecords.length);
-                
-                       // console.log(filteredWeedControlRecords.length);
-                
-                       // console.log(filteredPestControlFieldRecords.length);
-                
-                       // console.log(filteredPublicHealthRecords.length);
-                
-                       // console.log(filteredVegEnterpriseBudgetRecords.length);
-                
-                       // console.log(filteredPestControlOrchardsRecords.length);
-                
-                       // console.log(filteredSoilAnalysisRecords.length);
-                
-                        
-                       //----------------------------END OF GRAIN PROTECTION---------------------------------//
-                
-                        // const filteredTAR = response.data.filter( t => 
-                        //  t.date >= newFilterRecord.startDate && t.date <= newFilterRecord.endDate
-                        //  );
-                
-                        //// console.log(filteredTAR.length);
-                
-                
-                       
-                           
-                
-                          // console.log(response.data);
-                        //  // console.log(fetchUsers.data)
-                         
-                
-                        //    //--------FILTER TO GET DATA BASED ON LOGGED IN USER -----------------//
-                        //    const filteredAgroRecords = allAgroRecords.data.filter( t => 
-                        //    t.createdBy === this.$auth.user.email
-                        //   );
-                
-                
-                        //  // console.log(filteredAgroRecords);
-                
-                
-                
+               
                 
                            //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
                            commit(GET_ALL_AGRO_RECORDS, response.data);
@@ -680,54 +631,8 @@ export const actions = {
         
                 var landscapingCount = filteredLandscapingRecords.length;
         
-               // console.log(landscapingCount);
+                console.log(landscapingCount);
                 
-        
-               // console.log(filteredPestControlVegRecords.length);
-        
-               // console.log(filteredHouseholdTermitesRecords.length);
-        
-               // console.log(filteredAgricFieldTermitesRecords.length);
-        
-               // console.log(filteredGrainProtectionRecords.length);
-        
-               // console.log(filteredWeedControlRecords.length);
-        
-               // console.log(filteredPestControlFieldRecords.length);
-        
-               // console.log(filteredPublicHealthRecords.length);
-        
-               // console.log(filteredVegEnterpriseBudgetRecords.length);
-        
-               // console.log(filteredPestControlOrchardsRecords.length);
-        
-               // console.log(filteredSoilAnalysisRecords.length);
-        
-                
-               //----------------------------END OF GRAIN PROTECTION---------------------------------//
-        
-                // const filteredTAR = response.data.filter( t => 
-                //  t.date >= newFilterRecord.startDate && t.date <= newFilterRecord.endDate
-                //  );
-        
-                //// console.log(filteredTAR.length);
-        
-        
-               
-                   
-        
-                  // console.log(response.data);
-                //  // console.log(fetchUsers.data)
-                 
-        
-                //    //--------FILTER TO GET DATA BASED ON LOGGED IN USER -----------------//
-                //    const filteredAgroRecords = allAgroRecords.data.filter( t => 
-                //    t.createdBy === this.$auth.user.email
-                //   );
-        
-        
-                //  // console.log(filteredAgroRecords);
-        
         
         
         
