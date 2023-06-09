@@ -92,6 +92,7 @@
     auth: 'guest',
     data() {
       return {
+        isPageReloaded: false,
         form: {
           
           email: '',
@@ -102,6 +103,11 @@
         isFullPage: true,
       }
     },
+
+    created(){
+   var allUsers = this.getAllUsers();
+    console.log(allUsers)
+  },
   
      computed: {
 
@@ -113,17 +119,22 @@
         ]),
 
 
-       ...mapGetters('users', {
+        ...mapGetters('users', {
           loading: 'loading',
-           Users: 'allUsers',
-           
-      }),
+          users: 'allUsers',
+          user:'loggedInUser',
+      
+          
+        }),
     },
   
     methods: {
      ...mapActions('user', ['getUser']),
   
      ...mapActions('users', ['getAllUsers','loginUser']),
+
+
+     
   
     async onRegister(){
        this.$buefy.toast.open({
@@ -141,24 +152,7 @@
     
     },
 
-    async onLogin(){
 
-      await this.loginUser();
-
-       this.$buefy.toast.open({
-            duration: 3000,
-            message: 'Welcome!',
-            position: 'is-top',
-            type: 'is-success',
-          })
-    
-       
-   
-       this.$router.push({ path: '/auth/register' })
-  
-         
-    
-    },
 
       async loginUser(user) {
   
@@ -190,9 +184,12 @@
   
           this.$router.push({ path: '/' })
   
-         // await this.getAllUsers();
-          //   await this.getUser(form);
-  
+          
+            if (!this.isPageReloaded) {
+              this.isPageReloaded = true;
+              window.location.reload();
+            }
+          
         } catch (error) {
           this.form.password = null
           const message = error.response

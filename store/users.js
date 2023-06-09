@@ -278,7 +278,7 @@ export const actions = {
    
         } catch (error) {
             commit(SET_LOADING, false)
-          //  throw error
+          //  //throw error
         }
     },
 
@@ -299,7 +299,7 @@ export const actions = {
 
         } catch (error) {
             commit(SET_LOADING, false)
-            throw error
+          //  //throw error
         }
     },
 
@@ -395,7 +395,7 @@ export const actions = {
         commit(SET_LOADING, false)
       } catch (error) {
         commit(SET_LOADING, false)
-        throw error
+        //throw error
       }
        
       },
@@ -420,7 +420,7 @@ export const actions = {
             commit(SET_LOADING, false)
           } catch (error) {
             commit(SET_LOADING, false)
-            throw error
+            //throw error
           }
            
           },
@@ -444,7 +444,7 @@ export const actions = {
             commit(SET_LOADING, false)
           } catch (error) {
             commit(SET_LOADING, false)
-            throw error
+            //throw error
           }
            
           },
@@ -469,7 +469,7 @@ export const actions = {
                 commit(SET_LOADING, false)
               } catch (error) {
                 commit(SET_LOADING, false)
-                throw error
+                //throw error
               }
                
               },
@@ -494,7 +494,7 @@ export const actions = {
                     commit(SET_LOADING, false)
                   } catch (error) {
                     commit(SET_LOADING, false)
-                    throw error
+                    //throw error
                   }
                    
                   },
@@ -519,7 +519,7 @@ export const actions = {
                         commit(SET_LOADING, false)
                       } catch (error) {
                         commit(SET_LOADING, false)
-                        throw error
+                        //throw error
                       }
                        
                       },
@@ -544,7 +544,7 @@ export const actions = {
                             commit(SET_LOADING, false)
                           } catch (error) {
                             commit(SET_LOADING, false)
-                            throw error
+                            //throw error
                           }
                            
                           },
@@ -569,7 +569,7 @@ export const actions = {
                                 commit(SET_LOADING, false)
                               } catch (error) {
                                 commit(SET_LOADING, false)
-                                throw error
+                                //throw error
                               }
                                
                               },
@@ -594,7 +594,7 @@ export const actions = {
                                     commit(SET_LOADING, false)
                                   } catch (error) {
                                     commit(SET_LOADING, false)
-                                    throw error
+                                    //throw error
                                   }
                                    
                                   },
@@ -619,7 +619,7 @@ export const actions = {
                                         commit(SET_LOADING, false)
                                       } catch (error) {
                                         commit(SET_LOADING, false)
-                                        throw error
+                                        //throw error
                                       }
                                        
                                       },

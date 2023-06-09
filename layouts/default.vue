@@ -1,4 +1,5 @@
 <template>
+
   <div class="nav-padding">
     <nav
       v-if="$auth.loggedIn"
@@ -55,7 +56,7 @@
                 <b-icon class="media-left" icon="account"></b-icon>
                 <div class="media-content">
                     <h3>Logged in as</h3>
-                    <small> <span class="blue"> {{ this.$auth.user.email}} </span></small>
+                    <small> <span class="blue"> {{ SignedInUser.name }} </span></small>
                 </div>
             </div>
         </b-dropdown-item>
@@ -192,7 +193,7 @@
                     </b-menu>
                 </div>
             </b-sidebar>
-      <b-loading :active="isLoading" is-full-page></b-loading>
+      <b-loading :active="isLoading" is-full-page style="background-color: bisque;"></b-loading>
             
         </section>
       
@@ -210,8 +211,19 @@ import { computed } from 'vue';
 
 export default {
   name: 'DefaultLayout',
+
   data () {
-    var SignedInUser = computed(()=>this.user)
+
+    var SignedInUser = computed(()=>this.user) ;  
+    if (SignedInUser.role = null) {
+      console.log('no role found yet')
+    }
+
+    else{
+      console.log(SignedInUser)
+    }
+
+
 
     return {
       SignedInUser,
@@ -222,6 +234,7 @@ export default {
       expandWithDelay: false,
       mobile: "reduce",
       reduce: false,
+      isPageReloaded: false,
 
       items: [
 
@@ -293,25 +306,47 @@ export default {
     }
   },
 
+
+
+  created(){
+
+    var SignedInUser = computed(()=>this.user) ;  
+
+    return SignedInUser;
+
+
+
+  },
+
+  mounted(){
+    var allUsers = this.getAllUsers();
+    console.log(allUsers)
+
+        
+    
+  },
+
   computed:{
     ...mapGetters('users', {
           loading: 'loading',
           users: 'allUsers',
           user:'loggedInUser',
-
+        
           
         }),
   },
 
-  created(){
-   var allUsers = this.getAllUsers();
-    console.log(allUsers)
-  },
+
 
   methods:{
     ...mapActions('users', ['getAllUsers']),
     
      index(){
+      // if (!this.isPageReloaded) {
+      //         this.isPageReloaded = true;
+      //         window.location.reload();
+      //         this.isPageReloaded = false;
+      //       }
       this.$router.push("/")
     },
 
@@ -480,18 +515,18 @@ export default {
   
 }
 
-.height{
+/* .height{
  
   height:100vh;
   position:fixed;
   overflow-x: hidden;
   overflow-y: auto;
-}
+} */
 
 }
 
 .height{
-  height:100vh;
+  height:80vh;
   position:fixed;
   overflow-x: hidden;
   overflow-y: auto;

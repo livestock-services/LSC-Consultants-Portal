@@ -145,23 +145,42 @@ export const actions = {
 
     
  //GET ALL AgroRecordS
-    async getAllPigAIRecords({ state,commit }){
+    async getAllPigAIRecords({ state,commit,rootState,rootGetters }){
         try {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
 
+          const users =  rootGetters['users/allUsers']
+
+          const loggedInUser = rootGetters['users/loggedInUser']
+
+         // console.log(users);
+         // console.log(loggedInUser)
+
+           let userEmail = loggedInUser.email;
+
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/ai/pigs/allPigAIRecords`)
 
-        //const { data:fetchUsers } = await api.get(`/auth/allUsers`)
+           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
+            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
 
-   
-           //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
+                const customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
+
+                          commit(GET_ALL_PIG_AI_RECORDS, customeUserRecords);
+
+            }
+        }
+
+        else{
+
+             //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
            commit(GET_ALL_PIG_AI_RECORDS, response.data);
 
-       
-       
-           //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+        }
+
            commit(SET_LOADING, false);
 
         } catch (error) {
@@ -170,10 +189,18 @@ export const actions = {
         }
     },
 
-     async getFilteredPigAIRecords({ state,commit }){
-         try {
-           //---  ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
-             commit(SET_LOADING, true)
+     async getFilteredPigAIRecords({ state,commit,rootState,rootGetters }){
+        try {
+            //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+            commit(SET_LOADING, true)
+
+          const users =  rootGetters['users/allUsers']
+
+          const loggedInUser = rootGetters['users/loggedInUser']
+
+        
+
+           let userEmail = loggedInUser.email;
 
               const newFilterRecord = cloneDeep(state.pigAIFilterForm);
 
@@ -188,55 +215,65 @@ export const actions = {
           //---   API REQUEST IS MADE AND RESULT IS STORED IN CONST
             const {data: response} = await api.get(`/ai/pigs/allPigAIRecords`)
 
-         //   const { data:fetchUsers } = await api.get(`/auth/allUsers`)
+            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
+                if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
+                const customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
+
+                          const filteredPigAIConsultsRecords = customeUserRecords.filter( at => 
+                            at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                            );
+                   
+                         
+                          
+                           
+                            console.log(filteredPigAIConsultsRecords.length);
+                   
+                         
+                   
+                   
+                               console.log(customeUserRecords);
+                                         
+                   
+                               commit(GET_FILTERED_PIG_AI_START_TIME, newFilterRecord.startDate);
+                   
+                               commit(GET_FILTERED_PIG_AI_END_TIME, newFilterRecord.endDate);
+                   
+                               commit(GET_ALL_FILTERED_PIG_AI_RECORDS, filteredPigAIConsultsRecords.length);
+                   
+                }
+            }
         
-       //  --------------------ALL PIGAI RECORDS FILTERED BY CATEGORY -------------------------------- //
-        // const pigAIConsultsRecords = response.data.filter( a=>
-        //  a.pigAICategory ==='Consultation'
-        // )
+            else{
 
-        // const PIGAISalesRecords = response.data.filter( b=>
-        //  b.PIGAICategory ==='Sales'
-        // )
-
-   // -------------------------------END OF FILTERING BY CATEGORY----------------------//
-
-
-
-
- //   --------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
-          const filteredPigAIConsultsRecords = response.data.filter( at => 
-         at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
-         );
-
-        //  const filteredPIGAISalesRecordsRecords = PIGAISalesRecords.filter( bt => 
-        //      bt.date >= newFilterRecord.startDate && bt.date <= newFilterRecord.endDate
-        //      );
-
-       
-        
-         console.log(filteredPigAIConsultsRecords.length);
-
-      //   console.log(filteredPIGAISalesRecordsRecords.length);
+                const filteredPigAIConsultsRecords = response.data.filter( at => 
+                    at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                    );
+           
+                 
+           
+                  
+                   
+                    console.log(filteredPigAIConsultsRecords.length);
+           
+               
+           
+           
+                       console.log(response.data);
+           
+                    
+           
+                       commit(GET_FILTERED_PIG_AI_START_TIME, newFilterRecord.startDate);
+           
+                       commit(GET_FILTERED_PIG_AI_END_TIME, newFilterRecord.endDate);
+           
+                       commit(GET_ALL_FILTERED_PIG_AI_RECORDS, filteredPigAIConsultsRecords.length);
+           
+            }
 
 
-            console.log(response.data);
-
-          //  RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
-          //  commit(GET_ALL_PIG_AI_RECORDS, response.data);
-
-            commit(GET_FILTERED_PIG_AI_START_TIME, newFilterRecord.startDate);
-
-            commit(GET_FILTERED_PIG_AI_END_TIME, newFilterRecord.endDate);
-
-            commit(GET_ALL_FILTERED_PIG_AI_RECORDS, filteredPigAIConsultsRecords.length);
-
-         //   commit(GET_ALL_PIG_AI_SALES_RECORDS, filteredPIGAISalesRecordsRecords.length);
-
-       
-//            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
-//            commit(SET_LOADING, false);
-
+   
         } catch (error) {
             commit(SET_LOADING, false);
             this.$log.error(error.message)
