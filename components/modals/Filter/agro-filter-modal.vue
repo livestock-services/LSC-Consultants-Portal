@@ -85,15 +85,7 @@
      data() {
       return {
   
-        agroFilterForm: {
-        
-        startDate:null,
-       
-        endDate:null,
 
-                   
-  
-},
   
   
         isFullPage: true,
@@ -199,7 +191,7 @@
   
       clearForm() {
   
-       this.agroForm = {
+       this.agroFilterForm = {
         
                 startDate:null,
                 endDate:null,

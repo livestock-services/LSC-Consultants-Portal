@@ -85,13 +85,7 @@
      data() {
       return {
   
-        waterPumpFilterForm: {
-        
-        startDate:null,
-       
-        endDate:null,                  
-  
-        },
+
   
   
         isFullPage: true,

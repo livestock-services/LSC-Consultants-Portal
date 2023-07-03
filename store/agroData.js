@@ -719,9 +719,9 @@ export const actions = {
     selectAgroRecord({ commit }, newAgroRecord) {
         try {
             commit(SET_SELECTED_AGRO_RECORD, newAgroRecord)
-           // console.log(newAgroRecord._id)
+            console.log(newAgroRecord._id)
         } catch (error) {
-           // console.log('Error')
+            console.log('Error')
         }
         
       },

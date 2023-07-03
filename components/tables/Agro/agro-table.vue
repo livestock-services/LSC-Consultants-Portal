@@ -68,7 +68,7 @@
       >
       <span class="tag numbers">  {{ props.row.clientPhoneNumber }} </span>
        
-        <!-- {{ props.row.sumInsured }} -->
+        
       </b-table-column>
 
       <b-table-column
@@ -80,7 +80,7 @@
       >
       <span class="tag is-primary is-light">  {{ props.row.clientLocation }} </span>
        
-        <!-- {{ props.row.sumInsured }} -->
+        
       </b-table-column>
 
       <b-table-column
@@ -92,12 +92,11 @@
       >
       <span class="tag is-primary is-light">  {{ props.row.clientTown }} </span>
        
-        <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
 
 
 
-     <b-table-column
+     <!-- <b-table-column
         v-slot="props"
         field="agroCategory"
         label="Category"
@@ -106,9 +105,9 @@
 
       <span class="">  {{ props.row.agroCategory }} </span>
        
-      </b-table-column>
+      </b-table-column> -->
 
-      <b-table-column
+      <!-- <b-table-column
         v-slot="props"
         field="date"
         label="Date"
@@ -117,9 +116,9 @@
 
       <span class="tag is-info is-light">  {{ props.row.date }} </span>
        
-      </b-table-column>
+      </b-table-column> -->
       
-      <b-table-column
+      <!-- <b-table-column
         v-slot="props"
         field="clientComments"
         label="Comments/Remarks"
@@ -128,8 +127,8 @@
       >
       <span class="">  {{ props.row.clientComments }} </span>
        
-        <!-- {{ props.row.sumInsured }} -->
-      </b-table-column>
+        
+      </b-table-column> -->
 
       
       <b-table-column
@@ -150,9 +149,9 @@
 
 
       
-     <!-- <b-table-column v-slot="props" label="Options">
+      <b-table-column v-slot="props" label="Options">
         <span class="buttons">
-          <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
+          <b-tooltip label="View more details about this consultation" type="is-dark" position="is-left">
           <b-button
             type="is-secondary-outline"
             icon-left="eye-check"
@@ -165,7 +164,7 @@
       </b-table-column>
 
       
-                 -->
+                 
 
       
 
@@ -191,7 +190,7 @@ import { mapActions, mapGetters } from 'vuex'
 import { computed } from 'vue';
 import AgroModal from '@/components/modals/Agro Modal/agro-modal.vue'
 
-// import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
+import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
 export default {
   name: 'AgronomyTable',
 
@@ -253,7 +252,7 @@ export default {
   methods: {
    
 
-     ...mapActions('agroData', ['addNewAgroRecord','getAllAgroRecords', 'load']),
+     ...mapActions('agroData', ['addNewAgroRecord','getAllAgroRecords', 'selectAgroRecord', 'load']),
 
      async refresh(){
 
@@ -267,28 +266,28 @@ export default {
     },
 
 
-    // captureReceipt(agro) {
-    //   this.selectAgroRecord(agro)
-    //   setTimeout(() => {
-    //     this.$buefy.modal.open({
-    //       parent: this,
-    //       component: AgroSnapshotModal,
-    //       hasModalCard: true,
-    //       trapFocus: true,
-    //       canCancel: ['x'],
-    //       destroyOnHide: true,
-    //       customClass: '',
-    //       onCancel: () => {
-    //         this.$buefy.toast.open({
-    //           message: `Snapshot closed`,
-    //           duration: 5000,
-    //           position: 'is-top',
-    //           type: 'is-info',
-    //         })
-    //       },
-    //     })
-    //   }, 300)
-    // },
+     captureReceipt(agro) {
+       this.selectAgroRecord(agro)
+       setTimeout(() => {
+         this.$buefy.modal.open({
+           parent: this,
+           component: AgroSnapshotModal,
+           hasModalCard: true,
+           trapFocus: true,
+           canCancel: ['x'],
+           destroyOnHide: true,
+           customClass: '',
+           onCancel: () => {
+             this.$buefy.toast.open({
+               message: `Snapshot closed`,
+               duration: 5000,
+               position: 'is-top',
+               type: 'is-info',
+             })
+           },
+         })
+       }, 300)
+     },
 
      addNewTask() {
       

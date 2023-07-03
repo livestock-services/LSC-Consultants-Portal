@@ -85,13 +85,7 @@
      data() {
       return {
   
-        irrigationFilterForm: {
-        
-        startDate:null,
        
-        endDate:null,                  
-  
-        },
   
   
         isFullPage: true,

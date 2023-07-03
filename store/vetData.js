@@ -3098,7 +3098,7 @@ export const actions = {
         }
     },
 
-    async getFilteredGoatPMRecords({ sstate,commit,rootState,rootGetters }){
+    async getFilteredGoatPMRecords({ state,commit,rootState,rootGetters }){
         try {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
@@ -3282,7 +3282,7 @@ export const actions = {
         }
     },
 
-    async getFilteredQuailPMRecords({ sstate,commit,rootState,rootGetters }){
+    async getFilteredQuailPMRecords({ state,commit,rootState,rootGetters }){
         try {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
@@ -3374,7 +3374,7 @@ export const actions = {
              // console.log(colibacillosisRecords.length)
        
               const salmonellosisRecords = quailPostMortemRecords.filter( bq=>
-                bq.vetPostMortemDiseases === 'Salmonellosis'
+                bq.vetPostMortemDiseases === 'Salmonellosis' 
               )
        
               

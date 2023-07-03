@@ -85,13 +85,6 @@
      data() {
       return {
   
-        broilerChickenPostMortemFilterForm: {
-        
-        startDate:null,
-       
-        endDate:null,                  
-  
-        },
   
   
         isFullPage: true,
@@ -190,7 +183,7 @@
   
       clearForm() {
   
-       this.broilerChickenPostMortemForm = {
+       this.broilerChickenPostMortemFilterForm = {
         
                 startDate:null,
                 endDate:null,

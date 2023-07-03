@@ -85,15 +85,7 @@
      data() {
       return {
   
-        totalConsultsFilterForm: {
-        
-        startDate:null,
-       
-        endDate:null,
 
-                   
-  
-},
   
   
         isFullPage: true,
@@ -188,7 +180,7 @@
   
       close() {
         this.$buefy.toast.open({
-          message: 'totalConsults Snapshot closed.',
+          message: 'Total Consults Snapshot closed.',
           duration: 2000,
           position: 'is-bottom',
           type: 'is-warning ',
@@ -198,7 +190,7 @@
   
       clearForm() {
   
-       this.agroForm = {
+       this.totalConsultsFilterForm = {
         
                 startDate:null,
                 endDate:null,

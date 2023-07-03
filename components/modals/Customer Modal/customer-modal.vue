@@ -94,14 +94,7 @@
       return {
         isFullPage: true,
   
-        userForm: {
-        
-                name:null,
-                email:null,
-                password:null,
-                role:null        
-          
-        },
+     
        
       }
     },
@@ -173,7 +166,6 @@
         
                 name:null,
                 email:null,
-                role:null,
                 password:null        
           
         }

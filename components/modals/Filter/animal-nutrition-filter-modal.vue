@@ -85,15 +85,7 @@
      data() {
       return {
   
-        nutritionFilterForm: {
         
-        startDate:null,
-       
-        endDate:null,
-
-                   
-  
-},
   
   
         isFullPage: true,
@@ -198,7 +190,7 @@
   
       clearForm() {
   
-       this.nutritionForm = {
+       this.nutritionFilterForm = {
         
                 startDate:null,
                 endDate:null,

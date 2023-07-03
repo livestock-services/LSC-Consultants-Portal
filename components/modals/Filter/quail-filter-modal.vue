@@ -85,14 +85,7 @@
      data() {
       return {
   
-        quailPostMortemFilterForm: {
-        
-        startDate:null,
-       
-        endDate:null,                  
-  
-        },
-  
+   
   
         isFullPage: true,
         // agroForm: {
@@ -190,7 +183,7 @@
   
       clearForm() {
   
-       this.goatPostMortemForm = {
+       this.quailPostMortemFilterForm = {
         
                 startDate:null,
                 endDate:null,

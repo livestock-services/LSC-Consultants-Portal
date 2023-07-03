@@ -85,13 +85,7 @@
      data() {
       return {
   
-        beefAIFilterForm: {
-        
-        startDate:null,
-       
-        endDate:null,                  
-  
-        },
+      
   
   
         isFullPage: true,
@@ -190,7 +184,7 @@
   
       clearForm() {
   
-       this.goatPostMortemForm = {
+       this.beefAIFilterForm = {
         
                 startDate:null,
                 endDate:null,
