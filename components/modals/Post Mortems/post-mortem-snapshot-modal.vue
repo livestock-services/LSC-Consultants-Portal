@@ -72,12 +72,32 @@
            </div>
          </div>
 
+         <div class="columns">
+           <div  class="column is-half">
+             <h4> <span class="is-blue"> Category(Other than listed)</span></h4>
+            <p >
+            <span class="tag is-info is-light" > {{vetPostMortem.vetPostMortemOtherCategory}} </span>
+              
+            </p>
+           </div>
+         </div>
+
+         <div class="columns">
+           <div  class="column is-half">
+             <h4> <span class="is-blue"> Disease(Other than listed)</span></h4>
+            <p >
+            <span class="tag is-info is-light" > {{vetPostMortem.vetPostMortemOtherDiseases}} </span>
+              
+            </p>
+           </div>
+         </div>
+
 
          <div class="columns">
            <div  class="column is-half">
              <h4> <span class="is-blue"> Comments/Remarks</span></h4>
             <p >
-             <span style="font-size: small;" aria-multiline="true"> {{vetPostMortem.vetPostMortemComments}} </span>
+             <span style="font-size: small;" aria-multiline="true"> {{vetPostMortem.vetPMComments}} </span>
               
             </p>
            </div>

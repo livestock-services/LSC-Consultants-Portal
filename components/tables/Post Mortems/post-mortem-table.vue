@@ -97,7 +97,7 @@
         </b-table-column>
 
   
-       <b-table-column
+       <!-- <b-table-column
           v-slot="props"
           field="vetPostMortemCategory"
           label="Category"
@@ -142,7 +142,7 @@
         <span class="is-info is-light">  {{ props.row.vetPostMortemOtherDiseases }} </span>
          
         </b-table-column>
-  
+   -->
   
         <b-table-column
           v-slot="props"
@@ -190,7 +190,7 @@
         
         <b-table-column v-slot="props" label="Options">
           <span class="buttons">
-            <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
+            <b-tooltip label="View more details about this consult" type="is-dark" position="is-left">
             <b-button
               type="is-secondary-outline"
               icon-left="eye-check"

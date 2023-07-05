@@ -141,7 +141,7 @@
       
       <b-table-column v-slot="props" label="Options">
         <span class="buttons">
-          <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
+          <b-tooltip label="View more details about this consult" type="is-dark" position="is-left">
           <b-button
             type="is-secondary-outline"
             icon-left="eye-check"

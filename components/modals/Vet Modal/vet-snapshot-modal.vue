@@ -62,6 +62,26 @@
            </div>
          </div>
 
+         <div class="columns">
+           <div  class="column is-half">
+             <h4> <span class="is-blue"> Category (Other than listed)</span></h4>
+            <p >
+            <span class="tag is-info is-light" > {{vet.vetOther}} </span>
+              
+            </p>
+           </div>
+         </div>
+
+         <div class="columns">
+           <div  class="column is-half">
+             <h4> <span class="is-blue"> Date</span></h4>
+            <p >
+            <span class="tag is-info is-light" > {{vet.date}} </span>
+              
+            </p>
+           </div>
+         </div>
+
 
          <div class="columns">
            <div  class="column is-half">
