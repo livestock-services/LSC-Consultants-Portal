@@ -23,6 +23,7 @@ import {
         GET_ALL_NUTRITION_RABBITS_RECORDS,
         GET_ALL_NUTRITION_WILDLIFE_OR_EXOTICS_RECORDS,
         GET_ALL_NUTRITION_HORSES_RECORDS,
+        GET_ALL_OTHER_NUTRITION_RECORDS
 
     } from '@/helpers/mutation-types'
 
@@ -44,6 +45,8 @@ import {
         allNutritionRabbitRecords:[],
         allNutritionWildlifeOrExoticsRecords:[],
         allNutritionHorseRecords:[],
+        allNutritionOtherRecords:[],    
+
        
         
 
@@ -54,6 +57,7 @@ import {
         nutritionClientLocation:null,
         nutritionClientTown:null,
         nutritionCategory:null,
+        nutritionOtherCategory:null,
         nutritionClientComments:null,
        
         
@@ -126,6 +130,10 @@ import {
     
         allNutritionHorseRecords(state){
             return state.allNutritionHorseRecords
+        },
+
+        allNutritionOtherRecords(state){
+            return state.allNutritionOtherRecords
         },
     }
     
@@ -201,6 +209,12 @@ import {
         [GET_ALL_NUTRITION_HORSES_RECORDS](state, payload){
             state.allNutritionHorseRecords = payload
         },
+
+            
+        [GET_ALL_OTHER_NUTRITION_RECORDS](state, payload){
+            state.allOtherNutritionRecords = payload
+        },
+  
     
     }
 
@@ -352,7 +366,9 @@ import {
                              h.nutritionCategory ==='Horses'
                             )
                     
-                           
+                            const otherRecords = customeUserRecords.filter(j=>
+                                j.vetCategory =='Other'
+                               )
                     
                     //   // -------------------------------END OF FILTERING BY CATEGORY----------------------//
                     
@@ -398,7 +414,9 @@ import {
                              it.date >= newFilterRecord.startDate && it.date <= newFilterRecord.endDate
                              );
                     
-                           
+                             const filteredOtherRecords = otherRecords.filter( jt => 
+                                jt.date >= newFilterRecord.startDate || jt.date <= newFilterRecord.endDate
+                                );
                             
                             
                             console.log(filteredCattleRecords.length);
@@ -453,6 +471,8 @@ import {
                                commit(GET_ALL_NUTRITION_WILDLIFE_OR_EXOTICS_RECORDS, filteredWildlifeOrExoticsRecords.length);
                     
                                commit(GET_ALL_NUTRITION_HORSES_RECORDS, filteredHorseRecords.length);
+
+                               commit(GET_ALL_OTHER_NUTRITION_RECORDS, filteredOtherRecords.length);
                     
                 }
             }

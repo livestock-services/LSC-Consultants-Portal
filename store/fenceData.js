@@ -231,9 +231,16 @@ export const actions = {
                 cur.createdBy === this.$auth.user.email
                       )
 
+                    for (let i = 0; i < customeUserRecords.length; i++) {
+                        console.log(customeUserRecords[i].date)
+                        
+                    }
+
                       const filteredFenceConsultsRecords = customeUserRecords.filter( at => 
                         at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                        
                         );
+
                
                        
                            commit(GET_FILTERED_FENCE_START_TIME, newFilterRecord.startDate);
@@ -247,7 +254,7 @@ export const actions = {
     
         else{
             const filteredFenceConsultsRecords = response.data.filter( at => 
-                at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                (at.date >= newFilterRecord.startDate) && (at.date <= newFilterRecord.endDate)
                 );
        
               

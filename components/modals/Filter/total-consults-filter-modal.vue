@@ -85,7 +85,19 @@
      data() {
       return {
   
+<<<<<<< HEAD
 
+=======
+//         totalConsultsFilterForm: {
+        
+//         startDate:null,
+       
+//         endDate:null,
+
+                   
+  
+// },
+>>>>>>> 63821e9a05e8546f42e9f145a46cbd43d923a221
   
   
         isFullPage: true,
@@ -153,14 +165,14 @@
           onConfirm: async () => {
             
            await this.getFilteredTotalConsultsRecords();
-  
+           this.clearForm();
             this.$buefy.toast.open({
               duration: 3000,
               message: 'Results Successfully Found',
               position: 'is-top',
               type: 'is-success',
             })
-             this.clearForm();
+           
             showNotifications();
             this.$parent.close()
           },

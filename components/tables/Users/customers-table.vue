@@ -39,10 +39,11 @@
         aria-previous-label="Previous Page"
         aria-page-label="Page"
         aria-current-label="Current Page"
+        debounce-search="1200"
       >
          <b-table-column
           v-slot="props"
-          field="taskDescription"
+          field="name"
           label="Name"
           searchable
           
@@ -54,9 +55,9 @@
   
         <b-table-column
           v-slot="props"
-          field="taskDescription"
+          field="email"
           label="Email"
-          sortable
+          searchable
           
         >
          {{ props.row.email }}
@@ -68,7 +69,7 @@
           v-slot="props"
           field="role"
           label="Role"
-          sortable
+          searchable
           
         >
 

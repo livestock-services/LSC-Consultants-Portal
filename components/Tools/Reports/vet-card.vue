@@ -262,12 +262,36 @@
             </div>
             </div>
             
+
+          
             
         
 
 
 
             
+            </div>
+
+            <div class="card cow-card mr-10 card-body">
+            
+            <div class="card-body my-4 mx-4">
+                <a
+                class="navbar-item"
+                href="/"
+                >
+                <b-icon
+                        icon="dog"
+                        size="is-medium"
+                        type="is-dark">
+                    </b-icon>
+                </a>
+
+            <span><span class=" mb-2"></span>
+            <span class="">Other</span></span> <br>
+                    <div class="mt-4">
+                        <h3>Total:<countTo :startVal='startVal' :endVal='others' :duration='20000'></countTo></h3>
+                    </div>
+            </div>
             </div>
 
         </div>
@@ -284,7 +308,8 @@
                          dogsAndCats+
                          rabbits+
                          wildlifeOrExotics+
-                        horses'
+                        horses+
+                        others'
                  :duration='7000'
                  ></countTo>
                 </span>
@@ -337,6 +362,7 @@ import { computed } from 'vue';
       var rabbits = computed(()=> this.rabbits)
       var wildlifeOrExotics = computed(()=> this.wildlifeOrExotics)
       var horses = computed(()=> this.horses)
+      var other = computed(()=> this.others)
      
       var totalConsults =  computed(
                             ()=> this.cattle +
@@ -347,7 +373,8 @@ import { computed } from 'vue';
                                  this.dogsAndCats +
                                  this.rabbits +
                                  this.wildlifeOrExotics +
-                                 this.horses
+                                 this.horses+
+                                 this.other
                                  
                                  
                                  )
@@ -412,6 +439,10 @@ import { computed } from 'vue';
                     "number":horses
                   },
 
+                  { "consultation":"Others",
+                    "number":other
+                  },
+
                   
 
                 
@@ -446,6 +477,7 @@ import { computed } from 'vue';
          rabbits:'allRabbitRecords',
          wildlifeOrExotics:'allWildlifeOrExoticsRecords',
          horses:'allHorseRecords',
+         others:'allOtherVetRecords',
          startTime:'filteredStartTime',
          endTime:'filteredEndTime',
         

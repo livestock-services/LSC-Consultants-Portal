@@ -854,23 +854,37 @@ export const actions = {
 
     
  //GET ALL AgroRecordS
-    async getAllSampleInformationRecords({ state,commit }){
+    async getAllSampleInformationRecords({ state,commit,rootState,rootGetters }){
         try {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
 
+          const users =  rootGetters['users/allUsers']
+
+          const loggedInUser = rootGetters['users/loggedInUser']
+
+         // console.log(users);
+         // console.log(loggedInUser)
+
+           let userEmail = loggedInUser.email;
+
+
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/lab/sampleInfo/allSampleInformationRecords`)
 
-           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
+           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
+            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
+
+                const customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
+
 
                       console.log(customeUserRecords);
                       commit(GET_ALL_SAMPLE_INFORMATION_RECORDS, customeUserRecords);
 
             }
+        }
 
             else{
 
@@ -1001,25 +1015,37 @@ export const actions = {
 
     //-------------------------------------------------------------SUBMISSIONS RECORDS----------------------------------------------------------------------------------------//
 
-    async getAllSubmissionsRecords({ state,commit }){
+    async getAllSubmissionsRecords({ state,commit,rootState,rootGetters }){
         try {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
+
+          const users =  rootGetters['users/allUsers']
+
+          const loggedInUser = rootGetters['users/loggedInUser']
+
+         // console.log(users);
+         // console.log(loggedInUser)
+
+           let userEmail = loggedInUser.email;
 
           
 
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/lab/submissions/allSubmissionsRecords`)
 
-           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
+           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
+            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
+
+                const customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
 
                       console.log(customeUserRecords);
                       commit(GET_ALL_SUBMISSIONS_RECORDS, customeUserRecords);
 
             }
+        }
 
             else{
 
@@ -1152,25 +1178,35 @@ export const actions = {
 
      //-------------------------------------------------------------SUBMISSIONS RECORDS----------------------------------------------------------------------------------------//
 
-     async getAllBioSubmissionsRecords({ state,commit }){
+     async getAllBioSubmissionsRecords({ state,commit,rootState,rootGetters }){
         try {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
 
-      
+          const users =  rootGetters['users/allUsers']
+
+          const loggedInUser = rootGetters['users/loggedInUser']
+
+         // console.log(users);
+         // console.log(loggedInUser)
+
+           let userEmail = loggedInUser.email;
 
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/lab/bioSubmissions/allBioSubmissions`)
 
-           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
+           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
+            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
+
+                const customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
 
                       console.log(customeUserRecords);
                       commit(GET_ALL_BIO_SUBMISSIONS_RECORDS, customeUserRecords);
 
             }
+        }
 
             else{
 
@@ -1193,10 +1229,19 @@ export const actions = {
         }
     },
 
-     async getFilteredBioSubmissionsRecords({ state,commit }){
-         try {
-           //---  ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
-             commit(SET_LOADING, true)
+     async getFilteredBioSubmissionsRecords({ state,commit,rootState,rootGetters }){
+        try {
+            //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+            commit(SET_LOADING, true)
+
+          const users =  rootGetters['users/allUsers']
+
+          const loggedInUser = rootGetters['users/loggedInUser']
+
+        
+
+           let userEmail = loggedInUser.email;
+
 
               const newFilterRecord = cloneDeep(state.BiosubmissionsFilterForm);
 
@@ -1210,55 +1255,63 @@ export const actions = {
            
           //---   API REQUEST IS MADE AND RESULT IS STORED IN CONST
             const {data: response} = await api.get(`/lab/bioSubmissions/allBioSubmissionsRecords`)
-
-         //   const { data:fetchUsers } = await api.get(`/auth/allUsers`)
-        
-       //  --------------------ALL BioSUBMISSIONS RECORDS FILTERED BY CATEGORY -------------------------------- //
-        // const BioSUBMISSIONSConsultsRecords = response.data.filter( a=>
-        //  a.BioSUBMISSIONSCategory ==='Consultation'
-        // )
-
-        // const BioSUBMISSIONSSalesRecords = response.data.filter( b=>
-        //  b.BioSUBMISSIONSCategory ==='Sales'
-        // )
-
-   // -------------------------------END OF FILTERING BY CATEGORY----------------------//
+            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
+                if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
+                const customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
 
 
+                          const filteredBioSubmissionsRecords = customeUserRecords.filter( at => 
+                            at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                            );
+                   
+                          
+                           
+                            console.log(filteredBioSubmissionsRecords.length);
+                   
+                       
+                   
+                   
+                               console.log(customeUserRecords);
+                   
+                           
+                   
+                               commit(GET_FILTERED_BIO_SUBMISSIONS_START_TIME, newFilterRecord.startDate);
+                   
+                               commit(GET_FILTERED_BIO_SUBMISSIONS_END_TIME, newFilterRecord.endDate);
+                   
+                               commit(GET_ALL_FILTERED_BIO_SUBMISSIONS_RECORDS, filteredBioSubmissionsRecords.length);
+                   
+                }
+            }
 
 
- //   --------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
-          const filteredBioSubmissionsRecords = response.data.filter( at => 
-         at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
-         );
+         else{
 
-        //  const filteredBioSubmissionsSalesRecordsRecords = BioSUBMISSIONSSalesRecords.filter( bt => 
-        //      bt.date >= newFilterRecord.startDate && bt.date <= newFilterRecord.endDate
-        //      );
-
+            const filteredBioSubmissionsRecords = response.data.filter( at => 
+                at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                );
        
-        
-         console.log(filteredBioSubmissionsRecords.length);
-
-      //   console.log(filteredBioSubmissionsSalesRecordsRecords.length);
-
-
-            console.log(response.data);
-
-          //  RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
-          //  commit(GET_ALL_BioSUBMISSIONS_RECORDS, response.data);
-
-            commit(GET_FILTERED_BIO_SUBMISSIONS_START_TIME, newFilterRecord.startDate);
-
-            commit(GET_FILTERED_BIO_SUBMISSIONS_END_TIME, newFilterRecord.endDate);
-
-            commit(GET_ALL_FILTERED_BIO_SUBMISSIONS_RECORDS, filteredBioSubmissionsRecords.length);
-
-         //   commit(GET_ALL_BioSUBMISSIONS_SALES_RECORDS, filteredBioSUBMISSIONSSalesRecordsRecords.length);
-
+              
+               
+                console.log(filteredBioSubmissionsRecords.length);
        
-//            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
-//            commit(SET_LOADING, false);
+           
+       
+       
+                   console.log(response.data);
+       
+               
+       
+                   commit(GET_FILTERED_BIO_SUBMISSIONS_START_TIME, newFilterRecord.startDate);
+       
+                   commit(GET_FILTERED_BIO_SUBMISSIONS_END_TIME, newFilterRecord.endDate);
+       
+                   commit(GET_ALL_FILTERED_BIO_SUBMISSIONS_RECORDS, filteredBioSubmissionsRecords.length);
+       
+         }
+      
 
         } catch (error) {
             commit(SET_LOADING, false);
@@ -1277,16 +1330,12 @@ export const actions = {
 
             const newBioSubmissionsRecord = cloneDeep(state.bioSubmissionsForm);
 
-           
-        //    newBioSubmissionsRecord.dateSubmitted = state.bioSubmissionsForm.dateSubmitted.toLocaleDateString('en-US');
-
-        //    newBioSubmissionsRecord.timeStamp = state.bioSubmissionsForm.timeStamp.toLocaleTimeString();
-
+      
 
 
          newBioSubmissionsRecord.createdBy = this.$auth.user.email;
 
-        //    console.log(newBioSubmissionsRecord.date);
+        
            
            console.log(newBioSubmissionsRecord);
 
@@ -1310,23 +1359,35 @@ export const actions = {
 
      //------------------------------------------------------------- FEED SUBMISSIONS RECORDS----------------------------------------------------------------------------------------//
 
-     async getAllFeedSubmissionsRecords({ state,commit }){
+     async getAllFeedSubmissionsRecords({state,commit,rootState,rootGetters }){
         try {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
 
+          const users =  rootGetters['users/allUsers']
+
+          const loggedInUser = rootGetters['users/loggedInUser']
+
+         // console.log(users);
+         // console.log(loggedInUser)
+
+           let userEmail = loggedInUser.email;
+
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/lab/feedSubmissions/allFeedSubmissions`)
 
-           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
+           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
+            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
+
+                const customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
 
                       console.log(customeUserRecords);
                       commit(GET_ALL_FEED_SUBMISSIONS_RECORDS, customeUserRecords);
 
             }
+        }
 
             else{
 
@@ -1349,10 +1410,19 @@ export const actions = {
         }
     },
 
-     async getFilteredFeedSubmissionsRecords({ state,commit }){
-         try {
-           //---  ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
-             commit(SET_LOADING, true)
+     async getFilteredFeedSubmissionsRecords({ state,commit,rootState,rootGetters }){
+        try {
+            //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
+            commit(SET_LOADING, true)
+
+          const users =  rootGetters['users/allUsers']
+
+          const loggedInUser = rootGetters['users/loggedInUser']
+
+         // console.log(users);
+         // console.log(loggedInUser)
+
+           let userEmail = loggedInUser.email;
 
               const newFilterRecord = cloneDeep(state.feedSubmissionsFilterForm);
 
@@ -1367,54 +1437,62 @@ export const actions = {
           //---   API REQUEST IS MADE AND RESULT IS STORED IN CONST
             const {data: response} = await api.get(`/lab/feedSubmissions/allFeedSubmissionsRecords`)
 
-         //   const { data:fetchUsers } = await api.get(`/auth/allUsers`)
+            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
+                if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
+    
+                    const customeUserRecords = response.data.filter( cur=>
+                        cur.createdBy === this.$auth.user.email
+                              )
+
+                              //   --------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
+          const filteredFeedSubmissionsRecords = customeUserRecords.filter( at => 
+            at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+            );
+   
         
-       //  --------------------ALL FeedSUBMISSIONS RECORDS FILTERED BY CATEGORY -------------------------------- //
-        // const FeedSUBMISSIONSConsultsRecords = response.data.filter( a=>
-        //  a.FeedSUBMISSIONSCategory ==='Consultation'
-        // )
+           
+            console.log(filteredFeedSubmissionsRecords.length);
+   
+   
+   
+               console.log(customeUserRecords);
+   
+          
+               commit(GET_FILTERED_FEED_SUBMISSIONS_START_TIME, newFilterRecord.startDate);
+   
+               commit(GET_FILTERED_FEED_SUBMISSIONS_END_TIME, newFilterRecord.endDate);
+   
+               commit(GET_ALL_FILTERED_FEED_SUBMISSIONS_RECORDS, filteredFeedSubmissionsRecords.length);
+   
 
-        // const FeedSUBMISSIONSSalesRecords = response.data.filter( b=>
-        //  b.FeedSUBMISSIONSCategory ==='Sales'
-        // )
-
-   // -------------------------------END OF FILTERING BY CATEGORY----------------------//
+                }
+            }
 
 
+            else{
 
-
- //   --------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
+                 //   --------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
           const filteredFeedSubmissionsRecords = response.data.filter( at => 
-         at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
-         );
-
-        //  const filteredFeedSubmissionsSalesRecordsRecords = FeedSUBMISSIONSSalesRecords.filter( bt => 
-        //      bt.date >= newFilterRecord.startDate && bt.date <= newFilterRecord.endDate
-        //      );
-
-       
+            at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+            );
+   
         
-         console.log(filteredFeedSubmissionsRecords.length);
-
-      //   console.log(filteredFeedSubmissionsSalesRecordsRecords.length);
-
-
-            console.log(response.data);
-
-          //  RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
-          //  commit(GET_ALL_FeedSUBMISSIONS_RECORDS, response.data);
-
-            commit(GET_FILTERED_FEED_SUBMISSIONS_START_TIME, newFilterRecord.startDate);
-
-            commit(GET_FILTERED_FEED_SUBMISSIONS_END_TIME, newFilterRecord.endDate);
-
-            commit(GET_ALL_FILTERED_FEED_SUBMISSIONS_RECORDS, filteredFeedSubmissionsRecords.length);
-
-         //   commit(GET_ALL_FeedSUBMISSIONS_SALES_RECORDS, filteredFeedSUBMISSIONSSalesRecordsRecords.length);
-
-       
-//            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
-//            commit(SET_LOADING, false);
+           
+            console.log(filteredFeedSubmissionsRecords.length);
+   
+   
+   
+               console.log(response.data);
+   
+          
+               commit(GET_FILTERED_FEED_SUBMISSIONS_START_TIME, newFilterRecord.startDate);
+   
+               commit(GET_FILTERED_FEED_SUBMISSIONS_END_TIME, newFilterRecord.endDate);
+   
+               commit(GET_ALL_FILTERED_FEED_SUBMISSIONS_RECORDS, filteredFeedSubmissionsRecords.length);
+   
+            }
+        
 
         } catch (error) {
             commit(SET_LOADING, false);
@@ -1595,23 +1673,38 @@ export const actions = {
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------//
 
-    async getAllFFRecords({ state,commit }){
+    async getAllFFRecords({ state,commit,rootState,rootGetters }){
         try {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
 
+          const users =  rootGetters['users/allUsers']
+
+          const loggedInUser = rootGetters['users/loggedInUser']
+
+         // console.log(users);
+         // console.log(loggedInUser)
+
+           let userEmail = loggedInUser.email;
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/lab/feedData/FF`)
 
-           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
+           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
+            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
 
-                      console.log(customeUserRecords);
-                      commit(GET_ALL_FF_RECORDS, customeUserRecords);
+                const customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
 
+                          console.log(customeUserRecords);
+                          commit(GET_ALL_FF_RECORDS, customeUserRecords);
+                
+                }
             }
+
+                    
+
+            
 
             else{
 
@@ -1620,12 +1713,7 @@ export const actions = {
             }
 
    
-           //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
-           
-
-       
-       
-           //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+         
            commit(SET_LOADING, false);
 
         } catch (error) {
@@ -1677,23 +1765,37 @@ export const actions = {
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------//
 
-    async getAllSERecords({ state,commit }){
+    async getAllSERecords({ state,commit,rootState,rootGetters }){
         try {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
 
+          const users =  rootGetters['users/allUsers']
+
+          const loggedInUser = rootGetters['users/loggedInUser']
+
+         // console.log(users);
+         // console.log(loggedInUser)
+
+           let userEmail = loggedInUser.email;
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
-           const {data: response} = await api.get(`/lab/feedData/SE`)
+           const {data: response} = await api.get(`/lab/feedData/FF`)
 
-           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
+           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
+            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
 
-                      console.log(customeUserRecords);
-                      commit(GET_ALL_SE_RECORDS, customeUserRecords);
+                const customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
 
+                          console.log(customeUserRecords);
+                          commit(GET_ALL_SE_RECORDS, customeUserRecords);
+                
+                }
             }
+
+                    
+
 
             else{
 
@@ -1757,23 +1859,36 @@ export const actions = {
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------//
 
-    async getAllMERecords({ state,commit }){
+    async getAllMERecords({ state,commit,rootState,rootGetters }){
         try {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
 
+          const users =  rootGetters['users/allUsers']
+
+          const loggedInUser = rootGetters['users/loggedInUser']
+
+         // console.log(users);
+         // console.log(loggedInUser)
+
+           let userEmail = loggedInUser.email;
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
-           const {data: response} = await api.get(`/lab/feedData/ME`)
+           const {data: response} = await api.get(`/lab/feedData/FF`)
 
-           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
+           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
+            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
 
-                      console.log(customeUserRecords);
-                      commit(GET_ALL_ME_RECORDS, customeUserRecords);
+                const customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
 
+                          console.log(customeUserRecords);
+                          commit(GET_ALL_ME_RECORDS, customeUserRecords);
+                
+                }
             }
+
+                    
 
             else{
 
@@ -1839,23 +1954,37 @@ export const actions = {
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------//
 
-    async getAllSCRecords({ state,commit }){
+    async getAllSCRecords({ state,commit,rootState,rootGetters }){
         try {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
 
+          const users =  rootGetters['users/allUsers']
+
+          const loggedInUser = rootGetters['users/loggedInUser']
+
+         // console.log(users);
+         // console.log(loggedInUser)
+
+           let userEmail = loggedInUser.email;
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
-           const {data: response} = await api.get(`/lab/feedData/SC`)
+           const {data: response} = await api.get(`/lab/feedData/FF`)
 
-           if(this.$auth.user.email !== 'kondwani1mwale@gmail.com' ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
+           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
+            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
 
-                      console.log(customeUserRecords);
-                      commit(GET_ALL_SUNFLOWER_CAKE_SC_RECORDS, customeUserRecords);
+                const customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
 
+                          console.log(customeUserRecords);
+                          commit(GET_ALL_SUNFLOWER_CAKE_SC_RECORDS, customeUserRecords);
+                
+                }
             }
+
+                    
+
 
             else{
 

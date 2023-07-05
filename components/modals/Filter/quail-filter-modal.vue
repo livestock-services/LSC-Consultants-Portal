@@ -85,7 +85,18 @@
      data() {
       return {
   
+<<<<<<< HEAD
    
+=======
+        // quailPostMortemFilterForm: {
+        
+        // startDate:null,
+       
+        // endDate:null,                  
+  
+        // },
+  
+>>>>>>> 63821e9a05e8546f42e9f145a46cbd43d923a221
   
         isFullPage: true,
         // agroForm: {
@@ -183,7 +194,11 @@
   
       clearForm() {
   
+<<<<<<< HEAD
        this.quailPostMortemFilterForm = {
+=======
+       this.pigPostMortemFilterForm = {
+>>>>>>> 63821e9a05e8546f42e9f145a46cbd43d923a221
         
                 startDate:null,
                 endDate:null,

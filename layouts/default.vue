@@ -211,7 +211,7 @@ import { computed } from 'vue';
 
 export default {
   name: 'DefaultLayout',
-
+  
   data () {
 
     var SignedInUser = computed(()=>this.user) ;  
@@ -276,11 +276,11 @@ export default {
           to: { name: 'vetPost' }
         },
 
-        {
-          title: 'Agronomy Consultation',
-          icon: 'plant',
-          to: { name: 'agro' }
-        },
+        // {
+        //   title: 'Agronomy Consultation',
+        //   icon: 'plant',
+        //   to: { name: 'agro' }
+        // },
 
          {
           title: 'Fence Consultation',

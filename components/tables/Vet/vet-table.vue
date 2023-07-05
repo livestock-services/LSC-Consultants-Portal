@@ -109,6 +109,18 @@
        
       </b-table-column>
 
+
+      <b-table-column
+        v-slot="props"
+        field="vetOther"
+        label="Other Category"
+        searchable
+      >
+
+      <span class="tag is-info is-light">  {{ props.row.vetOther }} </span>
+       
+      </b-table-column>
+
       
      
 
