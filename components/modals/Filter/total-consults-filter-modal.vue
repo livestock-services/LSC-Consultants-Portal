@@ -85,19 +85,6 @@
      data() {
       return {
   
-<<<<<<< HEAD
-
-=======
-//         totalConsultsFilterForm: {
-        
-//         startDate:null,
-       
-//         endDate:null,
-
-                   
-  
-// },
->>>>>>> 63821e9a05e8546f42e9f145a46cbd43d923a221
   
   
         isFullPage: true,

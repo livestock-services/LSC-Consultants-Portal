@@ -14,7 +14,7 @@
             <span class="is-blueish">L</span>
             <span class="is-blueish">S</span> 
             <span class="is-blueish">C</span>
-             <br> <span class="is-greenish" style="font-style: italic; font-family: cursive; color: rgb(29, 26, 52);">Beraten</span> <span class="tag is-warning">BETA</span>
+             <br> <span class="is-greenish" style="font-style: italic; font-family: cursive; color: rgb(29, 28, 52);">Beraten.</span> <span class="tag is-warning">BETA</span>
           </h1>
          
         <div>
