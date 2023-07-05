@@ -228,7 +228,7 @@ export default {
 
     close() {
       this.$buefy.toast.open({
-        message: 'pig Snapshot closed.',
+        message: 'Fish Snapshot closed.',
         duration: 2000,
         position: 'is-bottom',
         type: 'is-warning ',

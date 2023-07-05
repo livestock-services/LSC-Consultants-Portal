@@ -123,7 +123,7 @@
        
       </b-table-column>
 
-      <b-table-column
+      <!-- <b-table-column
         v-slot="props"
         field="selectPriority"
         label="Comments/Remarks"
@@ -132,7 +132,7 @@
 
       <span class=" is-info is-light">  {{ props.row.vetComments }} </span>
        
-      </b-table-column>
+      </b-table-column> -->
 
       <b-table-column
       v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'"
@@ -155,7 +155,7 @@
 
 
       
-     <!-- <b-table-column v-slot="props" label="Options">
+     <b-table-column v-slot="props" label="Options">
         <span class="buttons">
           <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
           <b-button
@@ -170,7 +170,7 @@
       </b-table-column>
 
       
-                 -->
+                 
 
       
 
@@ -196,7 +196,7 @@ import { mapActions, mapGetters } from 'vuex'
 import { computed } from 'vue';
 import VetModal from '@/components/modals/Vet Modal/vet-modal.vue'
 
-// import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
+import VetSnapshotModal from '@/components/modals/Vet Modal/vet-snapshot-modal'
 export default {
   name: 'VetTable',
 
@@ -251,7 +251,7 @@ export default {
 
   async created() {
   // await this.load()
-  // this.selectAgroRecord(this.agros[0])
+  // this.selectvetRecord(this.vets[0])
   },
 
   
@@ -259,7 +259,7 @@ export default {
   methods: {
    
 
-     ...mapActions('vetData', ['addNewVetRecord','getAllVetRecords', 'load']),
+     ...mapActions('vetData', ['addNewVetRecord','getAllVetRecords','selectVetRecord', 'load']),
 
      async refresh(){
 
@@ -273,28 +273,28 @@ export default {
     },
 
 
-    // captureReceipt(agro) {
-    //   this.selectAgroRecord(agro)
-    //   setTimeout(() => {
-    //     this.$buefy.modal.open({
-    //       parent: this,
-    //       component: AgroSnapshotModal,
-    //       hasModalCard: true,
-    //       trapFocus: true,
-    //       canCancel: ['x'],
-    //       destroyOnHide: true,
-    //       customClass: '',
-    //       onCancel: () => {
-    //         this.$buefy.toast.open({
-    //           message: `Snapshot closed`,
-    //           duration: 5000,
-    //           position: 'is-top',
-    //           type: 'is-info',
-    //         })
-    //       },
-    //     })
-    //   }, 300)
-    // },
+ captureReceipt(vet) {
+   this.selectVetRecord(vet)
+   setTimeout(() => {
+     this.$buefy.modal.open({
+       parent: this,
+       component: VetSnapshotModal,
+       hasModalCard: true,
+       trapFocus: true,
+       canCancel: ['x'],
+       destroyOnHide: true,
+       customClass: '',
+       onCancel: () => {
+         this.$buefy.toast.open({
+           message: `Snapshot closed`,
+           duration: 5000,
+           position: 'is-top',
+           type: 'is-info',
+         })
+       },
+     })
+   }, 300)
+ },
 
      addNewTask() {
       

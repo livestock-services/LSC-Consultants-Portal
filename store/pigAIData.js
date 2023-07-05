@@ -7,7 +7,7 @@ import {
         
         GET_ALL_PIG_AI_RECORDS,
         GET_ALL_FILTERED_PIG_AI_RECORDS,
-
+        SET_SELECTED_PIG_AI_RECORD,
         GET_FILTERED_PIG_AI_START_TIME,
         GET_FILTERED_PIG_AI_END_TIME,
         
@@ -25,7 +25,7 @@ export const state = () => ({
     loading: false,
     filteredPigAIStartTime:[],
     filteredPigAIEndTime:[],
-
+    selectedPigAIRecord:null,
     allPigAIRecords:[],
     allFilteredPigAIRecords:[],
 
@@ -40,8 +40,8 @@ export const state = () => ({
         pigAIClientTown:null,
         pigAIClientComments:null,
         // pigAICategory:null,
-        date:new Date()
-       // createdBy:null
+        date:new Date(),
+        createdBy:null
         
     },
 
@@ -62,7 +62,9 @@ export const getters = {
         return state.loading
     },
     
-
+    selectedPigAIRecord(state) {
+        return state.selectedPigAIRecord
+      },
       filteredPigAIStartTime(state){
         return state.filteredPigAIStartTime
       },
@@ -101,6 +103,9 @@ export const mutations = {
     },
 
    
+    [SET_SELECTED_PIG_AI_RECORD](state, newPigAIRecord) {
+        state.selectedPigAIRecord = newPigAIRecord
+      },
   
 
     [GET_FILTERED_PIG_AI_START_TIME](state, payload){
@@ -290,7 +295,7 @@ export const actions = {
 
         //     newPIGAIRecord.date = state.PIGAIForm.date.toLocaleDateString();
 
-
+        newPigAIRecord.createdBy = this.$auth.user.email;
 
         //    // newPIGAIRecord.createdBy = 'kondwanim@livestock.co.zm'
         //    console.log(newPIGAIRecord.date);
@@ -314,7 +319,15 @@ export const actions = {
 
     
 
-    
+    selectPigAIRecord({ commit }, newPigAIRecord) {
+        try {
+            commit(SET_SELECTED_PIG_AI_RECORD, newPigAIRecord)
+            console.log(newPigAIRecord._id)
+        } catch (error) {
+            console.log('Error')
+        }
+        
+      },
         
       
 

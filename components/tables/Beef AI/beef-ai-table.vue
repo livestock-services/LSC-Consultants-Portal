@@ -117,7 +117,7 @@
          
         </b-table-column>
         
-        <b-table-column
+        <!-- <b-table-column
           v-slot="props"
           field="beefAIClientComments"
           label="Comments/Remarks"
@@ -126,8 +126,8 @@
         >
         <span class="tag is-primary is-light">  {{ props.row.beefAIClientComments }} </span>
          
-          <!-- {{ props.row.sumInsured }} -->
-        </b-table-column>
+          
+        </b-table-column> -->
 
         <b-table-column
         v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'"
@@ -147,7 +147,7 @@
   
   
         
-       <!-- <b-table-column v-slot="props" label="Options">
+       <b-table-column v-slot="props" label="Options">
           <span class="buttons">
             <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
             <b-button
@@ -162,7 +162,7 @@
         </b-table-column>
   
         
-                   -->
+                   
   
         
   
@@ -187,6 +187,7 @@
   import { mapActions, mapGetters } from 'vuex'
   import { computed } from 'vue';
   import BeefAIModal from '@/components/modals/Beef AI Modal/beef-ai-modal.vue'
+  import BeefAISnapshotModal from '~/components/modals/Beef AI Modal/beef-ai-snapshot-modal.vue';
   
   // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
   export default {
@@ -250,7 +251,7 @@
     methods: {
      
   
-       ...mapActions('beefAIData', ['addNewBeefAIRecord','getAllBeefAIRecords', 'load']),
+       ...mapActions('beefAIData', ['addNewBeefAIRecord','getAllBeefAIRecords','selectBeefAIRecord', 'load']),
   
        async refresh(){
   
@@ -264,28 +265,28 @@
       },
   
   
-      // captureReceipt(agro) {
-      //   this.selectAgroRecord(agro)
-      //   setTimeout(() => {
-      //     this.$buefy.modal.open({
-      //       parent: this,
-      //       component: AgroSnapshotModal,
-      //       hasModalCard: true,
-      //       trapFocus: true,
-      //       canCancel: ['x'],
-      //       destroyOnHide: true,
-      //       customClass: '',
-      //       onCancel: () => {
-      //         this.$buefy.toast.open({
-      //           message: `Snapshot closed`,
-      //           duration: 5000,
-      //           position: 'is-top',
-      //           type: 'is-info',
-      //         })
-      //       },
-      //     })
-      //   }, 300)
-      // },
+       captureReceipt(beef) {
+         this.selectBeefAIRecord(beef)
+         setTimeout(() => {
+           this.$buefy.modal.open({
+             parent: this,
+             component: BeefAISnapshotModal,
+             hasModalCard: true,
+             trapFocus: true,
+             canCancel: ['x'],
+             destroyOnHide: true,
+             customClass: '',
+             onCancel: () => {
+               this.$buefy.toast.open({
+                 message: `Snapshot closed`,
+                 duration: 5000,
+                 position: 'is-top',
+                 type: 'is-info',
+               })
+             },
+           })
+         }, 300)
+       },
   
        addNewTask() {
         
@@ -300,7 +301,7 @@
             customClass: '',
             onCancel: () => {
               this.$buefy.toast.open({
-                message: `Task Snapshot closed!`,
+                message: `Beef AI Snapshot closed!`,
                 duration: 5000,
                 position: 'is-top',
                 type: 'is-info',

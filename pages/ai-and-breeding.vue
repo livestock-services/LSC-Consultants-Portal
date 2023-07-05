@@ -1,7 +1,7 @@
 <template>
     <div>
       <b-tabs class="table" v-model="activeTab">
-               <b-tab-item v-if="$auth.user.email === 'pig-ai@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" label="Pig AI & Breeding">
+               <b-tab-item label="Pig AI & Breeding">
                 <b-tabs>
                   <b-tab-item label="Consultation" >
                         <PigAiTable/>
@@ -13,7 +13,7 @@
                 </b-tabs>
                </b-tab-item>    
 
-               <b-tab-item v-if="$auth.user.email === 'beef-ai@livestock.co.zm' || $auth.user.email === 'kondwani1mwale@gmail.com'" label="Beef AI & Breeding">
+               <b-tab-item label="Beef AI & Breeding">
                 <b-tabs>
                   <b-tab-item label="Consultation" >
                         <BeefAiTable/>

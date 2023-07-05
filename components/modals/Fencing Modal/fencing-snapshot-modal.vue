@@ -1,7 +1,7 @@
 <template>
   <div class="modal-card ">
     <header class="modal-card-head">
-      <h3 class="modal-card-title">Calf Snapshot</h3>
+      <h3 class="modal-card-title">Fence Snapshot</h3>
      
       <button type="button" class="delete" @click="close"></button>
     </header>
@@ -12,9 +12,9 @@
 
           <div class="columns">
            <div  class="column is-half">
-             <h4> <span class="toggle is-blue"> Calf Ear Tag ID</span></h4>
+             <h4> <span class="toggle is-blue"> Client Name</span></h4>
             <p >
-             <span class="tag earTagID "> {{calf.earTagID}} </span>
+             <span class="tag earTagID "> {{fence.fenceClientName}} </span>
              
             </p>
 
@@ -24,9 +24,9 @@
 
          <div class="columns">
            <div  class="column is-half">
-             <h4> <span class="is-blue"> Calf Breed</span></h4>
+             <h4> <span class="is-blue"> Phone No.</span></h4>
             <p >
-             <span class="tag breed "> {{calf.calfBreed}} </span>
+             <span class="tag breed "> {{fence.fenceClientPhoneNumber}} </span>
               
             </p>
            </div>
@@ -34,9 +34,9 @@
 
          <div class="columns">
            <div  class="column is-half">
-             <h4> <span class="is-blue"> Date Of Birth</span></h4>
+             <h4> <span class="is-blue"> Location</span></h4>
             <p >
-             <span class="tag  is-light"> {{calf.calfDateOfBirth}} </span>
+             <span class="tag  is-light"> {{fence.fenceClientLocation}} </span>
               
             </p>
            </div>
@@ -44,9 +44,9 @@
 
            <div class="columns">
            <div  class="column is-half">
-             <h4> <span class="is-blue"> Age</span></h4>
+             <h4> <span class="is-blue"> Town</span></h4>
             <p >
-             <span class="tag age "> {{calf.age}} </span>
+             <span class="tag age "> {{fence.fenceClientTown}} </span>
               
             </p>
            </div>
@@ -54,31 +54,9 @@
 
            <div class="columns">
            <div  class="column is-half">
-             <h4> <span class="is-blue"> Production Stage</span></h4>
+             <h4> <span class="is-blue"> Category</span></h4>
             <p >
-            <span
-          :class="[
-            'tag',
-            {
-              'is-danger is-light ': calf.stage === 'Calf Stage' ||  calf.stage === 'Still a Calf'
-            },
-
-            {
-              'is-warning is-light ': calf.stage === 'Weaner Stage'
-            },
-
-            {
-              'is-info is-light ': calf.stage === 'Yearling Stage'
-            },
-
-       
-            {
-              'is-success is-light  ' : calf.stage === 'Bulling Heifer Stage' ||  calf.stage === 'Now a Bulling Heifer' ,
-            },
-
-           
-          ]"
-          > {{calf.stage}} </span>
+            <span class="tag is-info" > {{fence.fenceCategory}} </span>
               
             </p>
            </div>
@@ -87,130 +65,15 @@
 
          <div class="columns">
            <div  class="column is-half">
-             <h4> <span class="is-blue"> Sire</span></h4>
+             <h4> <span class="is-blue"> Comments/Remarks</span></h4>
             <p >
-             <span class="tag is-info is-light"> {{calf.sire}} </span>
-              
-            </p>
-           </div>
-         </div>
-
-          <div class="columns">
-           <div  class="column is-half">
-             <h4> <span class="is-blue"> Dam</span></h4>
-            <p >
-             <span class="tag is-primary is-light"> {{calf.dam}} </span>
-              
-            </p>
-           </div>
-         </div>
-
-         <div class="columns">
-           <div  class="column is-half">
-             <h4> <span class="is-blue"> Calf Sex</span></h4>
-            <p >
-            <span
-          :class="[
-            'tag',
-            {
-              'is-info ': calf.calfSex === 'Male'
-            },
-
-       
-            {
-              'is-primary  ' : calf.calfSex === 'Female' ,
-            },
-
-           
-          ]"
-          > {{calf.calfSex}} </span>
-              
-            </p>
-           </div>
-         </div>
-
-         <div class="columns">
-           <div  class="column is-half">
-             <h4> <span class="is-blue"> Calf Weight</span></h4>
-            <p >
-              <span
-          :class="[
-            'tag',
-            {
-              'is-danger ': calf.calfWeight < 35.5
-            },
-
-       
-            {
-              'is-success  ' : calf.calfWeight > 35.5 ,
-            },
-
-           
-          ]"
-          > {{calf.calfWeight}} kg </span>
-              
-            </p>
-           </div>
-         </div>
-
-         <div class="columns">
-           <div  class="column is-half">
-             <h4> <span class="is-blue"> Ear Tag color</span></h4>
-            <p >
-             <span
-          :class="[
-            'tag',
-            {
-              'is-danger ': calf.earTagColor === 'Red' || calf.earTagColor === 'red'
-            },
-
-             {
-              'is-info ': calf.earTagColor === 'Blue' || calf.earTagColor === 'blue'
-            },
-
-            {
-              'is-warning  ' : calf.earTagColor === 'Yellow' || calf.earTagColor === 'yellow' ,
-            },
-
-            {
-              'is-success  ' : calf.earTagColor === 'Green' ,
-            },
-
-           
-          ]"
-          >  {{calf.earTagColor}} </span>
+             <span style="font-size: small;" aria-multiline="true"> {{fence.fenceClientComments}} </span>
               
             </p>
            </div>
          </div>
 
          
-
-        <div class="columns">
-           <div  class="column is-half">
-              <h4> <span class="is-blue"> Status</span></h4>
-            <p  placeholder="Status">
-             <span
-          :class="[
-            'tag',
-            {
-              'is-danger ': calf.calfStatus === 'Still Birth' || calf.calfStatus === 'Still birth' || calf.calfStatus === 'still birth',
-            },
-
-            {
-              'is-warning  ' : calf.calfStatus === 'sick' || calf.calfStatus === 'under treatment' ,
-            },
-
-            {
-              'is-success  ' : calf.calfStatus === 'Alive' || calf.calfStatus === 'alive' || calf.calfStatus === 'Healthy' || calf.calfStatus === 'healthy' || calf.calfStatus === 'breastfeeding' ,
-            },
-
-           
-          ]"
-          > {{calf.calfStatus}} </span>
-            </p>
-           </div>
-         </div>
 
        
 
@@ -221,43 +84,8 @@
     <footer class="modal-card-foot">
        <b-button label="Close" @click="close" />
 
-      <b-tooltip type="is-warning is-light"  label="Put in Treatment">
-       <b-button
-        
-        type="is-warning"
-        icon-left="alert"
-        @click="onSubmit"
-      />
-      </b-tooltip>
 
-      <b-tooltip type="is-success is-light" label="Mark as Treated">
-       <b-button
-        class="mx-2"
-        type="is-success"
-        icon-left="check"
-        @click="onTreated"
-      />
-      </b-tooltip>
-
-      <b-tooltip type="pink"  label="Mark as In-calf">
-      <b-button
-        v-if="calf.calfSex === 'Female'"
-      
-        type="pink"
-        icon-left="cow"
-        @click="inCalf"
-      />
-      </b-tooltip>
-
-      <b-tooltip type="is-danger is-light"  label="Mark as Mortaliity">
-      <b-button
-              
-        type="is-danger"
-        icon-left="cow"
-        @click="onMortality"
-      />
-      </b-tooltip>
-
+     
     </footer>
   </div>
 </template>
@@ -266,36 +94,25 @@
 
 import { mapActions, mapGetters } from 'vuex'
 export default {
-  name: 'CalfSnapshotModal',
+  name: 'FenceSnapshotModal',
 
    data() {
     return {
       isFullPage: true,
 
-      calfForm:{
-        
-      calfBreed:null,
-      calfDateOfBirth:null,
-      sire:null,
-      dam:null,
-      calfSex:null,
-      calfWeight:null,
-      earTagColor:null,
-      calfStatus:null
-        
-    },
+      
      
     }
   },
 
   computed: {
-     ...mapGetters('cattleData', {
-      calf: 'selectedCalf',
-      calfLoading: 'loading',
+     ...mapGetters('fenceData', {
+      fence: 'selectedFenceRecord',
+      fenceLoading: 'loading',
     }),
 
     loading() {
-      return this.calfLoading 
+      return this.fenceLoading 
     },
 
   },
@@ -305,10 +122,10 @@ export default {
 
 
   methods: {
-    ...mapActions('cattleData', ['load', 'selectCalf', 'putCalfInTreatment', 'markCalfAsTreated']),
+    ...mapActions('fenceData', ['load', 'selectFenceRecord']),
 
     async onSubmit() {
-       await this.putCalfInTreatment();
+       await this.putfenceInTreatment();
       const msg = await Promise.resolve('Operation successful')
       this.$buefy.toast.open({
         message: msg, // 'Operation successful',
@@ -321,7 +138,7 @@ export default {
 
      async onTreated() {
       
-      await this.markCalfAsTreated();
+      await this.markfenceAsTreated();
        const msg = await Promise.resolve('Operation successful')
      
       this.$buefy.toast.open({
@@ -334,7 +151,7 @@ export default {
     },
 
 
- inCalf(){
+ infence(){
   console.log("Preggo!")
 },
 
@@ -344,7 +161,7 @@ export default {
 
     close() {
       this.$buefy.toast.open({
-        message: 'Calf Snapshot closed.',
+        message: 'fence Snapshot closed.',
         duration: 2000,
         position: 'is-top',
         type: 'is-warning ',

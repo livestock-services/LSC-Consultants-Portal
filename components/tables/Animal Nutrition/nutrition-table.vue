@@ -120,7 +120,7 @@
          
         </b-table-column>
 
-        <b-table-column
+        <!-- <b-table-column
           v-slot="props"
           field="nutritionClientComments"
           label="Comments/Remarks"
@@ -129,8 +129,8 @@
         >
         <span class="">  {{ props.row.nutritionClientComments }} </span>
          
-          <!-- {{ props.row.sumInsured }} -->
-        </b-table-column>
+
+        </b-table-column> -->
 
 
           
@@ -155,7 +155,7 @@
   
   
         
-       <!-- <b-table-column v-slot="props" label="Options">
+        <b-table-column v-slot="props" label="Options">
           <span class="buttons">
             <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
             <b-button
@@ -170,7 +170,7 @@
         </b-table-column>
   
         
-                   -->
+                   
   
         
   
@@ -196,7 +196,7 @@
   import { computed } from 'vue';
   import NutritionModal from '@/components/modals/Animal Nutrition/animal-nutritrion-modal.vue'
   
-  // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
+ import NutritionSnapshotModal from '@/components/modals/Animal Nutrition/animal-nutrition-snapshot-modal.vue'
   export default {
     name: 'nutritionTable',
   
@@ -257,7 +257,7 @@
     methods: {
      
   
-       ...mapActions('nutritionData', ['addNewNutritionRecord','getAllNutritionRecords', 'load']),
+       ...mapActions('nutritionData', ['addNewNutritionRecord','getAllNutritionRecords','selectNutritionRecord', 'load']),
   
        async refresh(){
   
@@ -271,28 +271,28 @@
       },
   
   
-      // captureReceipt(agro) {
-      //   this.selectAgroRecord(agro)
-      //   setTimeout(() => {
-      //     this.$buefy.modal.open({
-      //       parent: this,
-      //       component: AgroSnapshotModal,
-      //       hasModalCard: true,
-      //       trapFocus: true,
-      //       canCancel: ['x'],
-      //       destroyOnHide: true,
-      //       customClass: '',
-      //       onCancel: () => {
-      //         this.$buefy.toast.open({
-      //           message: `Snapshot closed`,
-      //           duration: 5000,
-      //           position: 'is-top',
-      //           type: 'is-info',
-      //         })
-      //       },
-      //     })
-      //   }, 300)
-      // },
+       captureReceipt(nutrition) {
+         this.selectNutritionRecord(nutrition)
+         setTimeout(() => {
+           this.$buefy.modal.open({
+             parent: this,
+             component: NutritionSnapshotModal,
+             hasModalCard: true,
+             trapFocus: true,
+             canCancel: ['x'],
+             destroyOnHide: true,
+             customClass: '',
+             onCancel: () => {
+               this.$buefy.toast.open({
+                 message: `Snapshot closed`,
+                 duration: 5000,
+                 position: 'is-top',
+                 type: 'is-info',
+               })
+             },
+           })
+         }, 300)
+       },
   
        addNewTask() {
         

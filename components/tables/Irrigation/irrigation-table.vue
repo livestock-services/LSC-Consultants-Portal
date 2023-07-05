@@ -107,7 +107,7 @@
        
       </b-table-column>
       
-      <b-table-column
+      <!-- <b-table-column
         v-slot="props"
         field="irrigationClientComments"
         label="Comments/Remarks"
@@ -116,8 +116,8 @@
       >
       <span class="">  {{ props.row.irrigationClientComments }} </span>
        
-        <!-- {{ props.row.sumInsured }} -->
-      </b-table-column>
+        
+      </b-table-column> -->
 
 
       
@@ -139,7 +139,7 @@
 
 
       
-     <!-- <b-table-column v-slot="props" label="Options">
+      <b-table-column v-slot="props" label="Options">
         <span class="buttons">
           <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
           <b-button
@@ -154,7 +154,7 @@
       </b-table-column>
 
       
-                 -->
+                 
 
       
 
@@ -180,7 +180,7 @@ import { mapActions, mapGetters } from 'vuex'
 import { computed } from 'vue';
 import IrrigationModal from '@/components/modals/Irrigation Modal/irrigation-modal.vue'
 
-// import FishSnapshotModal from '@/components/modals/Fish Modal/Fish-snapshot-modal.vue'
+import IrrigationSnapshotModal from '@/components/modals/Irrigation Modal/irrigation-snapshot-modal.vue'
 export default {
   name: 'IrrigationTable',
 
@@ -205,7 +205,7 @@ export default {
     
     ...mapGetters('irrigationData', {
         loading: 'loading',
-        irrigation: 'allIrrigationRecords',
+        irrigations: 'allIrrigationRecords',
       }),
 
       ...mapGetters('users', {
@@ -217,7 +217,7 @@ export default {
         }),
     
      isEmpty() {
-   return this.irrigation.length === 0
+   return this.irrigations.length === 0
      },
 
     
@@ -227,7 +227,7 @@ export default {
     },
     
     tableData() {
-     return this.isEmpty ? [] : this.irrigation
+     return this.isEmpty ? [] : this.irrigations
     },
   },
 
@@ -241,7 +241,7 @@ export default {
   methods: {
    
 
-     ...mapActions('irrigationData', ['addNewIrrigationRecord','getAllIrrigationRecords', 'load']),
+     ...mapActions('irrigationData', ['addNewIrrigationRecord','getAllIrrigationRecords','selectIrrigationRecord', 'load']),
 
      async refresh(){
 
@@ -255,28 +255,28 @@ export default {
     },
 
 
-    // captureReceipt(Fish) {
-    //   this.selectFishRecord(Fish)
-    //   setTimeout(() => {
-    //     this.$buefy.modal.open({
-    //       parent: this,
-    //       component: FishSnapshotModal,
-    //       hasModalCard: true,
-    //       trapFocus: true,
-    //       canCancel: ['x'],
-    //       destroyOnHide: true,
-    //       customClass: '',
-    //       onCancel: () => {
-    //         this.$buefy.toast.open({
-    //           message: `Snapshot closed`,
-    //           duration: 5000,
-    //           position: 'is-top',
-    //           type: 'is-info',
-    //         })
-    //       },
-    //     })
-    //   }, 300)
-    // },
+     captureReceipt(irrigation) {
+       this.selectIrrigationRecord(irrigation)
+       setTimeout(() => {
+         this.$buefy.modal.open({
+           parent: this,
+           component: IrrigationSnapshotModal,
+           hasModalCard: true,
+           trapFocus: true,
+           canCancel: ['x'],
+           destroyOnHide: true,
+           customClass: '',
+           onCancel: () => {
+             this.$buefy.toast.open({
+               message: `Snapshot closed`,
+               duration: 5000,
+               position: 'is-top',
+               type: 'is-info',
+             })
+           },
+         })
+       }, 300)
+     },
 
      addNewTask() {
       
@@ -291,7 +291,7 @@ export default {
           customClass: '',
           onCancel: () => {
             this.$buefy.toast.open({
-              message: `Task Snapshot closed!`,
+              message: `Irrigation Snapshot closed!`,
               duration: 5000,
               position: 'is-top',
               type: 'is-info',

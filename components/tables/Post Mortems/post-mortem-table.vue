@@ -133,7 +133,7 @@
          
         </b-table-column>
 
-        <b-table-column
+        <!-- <b-table-column
           v-slot="props"
           field="selectPriority"
           label="Comments"
@@ -142,7 +142,7 @@
   
         <span class="">  {{ props.row.vetPMComments }} </span>
          
-        </b-table-column>
+        </b-table-column> -->
 
         
         <b-table-column
@@ -166,7 +166,7 @@
   
   
         
-       <!-- <b-table-column v-slot="props" label="Options">
+        <b-table-column v-slot="props" label="Options">
           <span class="buttons">
             <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
             <b-button
@@ -181,7 +181,7 @@
         </b-table-column>
   
         
-                   -->
+                   
   
         
   
@@ -207,7 +207,7 @@
   import { computed } from 'vue';
   import PostMortemModal from '@/components/modals/Post Mortems/post-mortem-modal.vue'
   
-  // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
+  import PostMortemSnapshotModal from '@/components/modals/Post Mortems/post-mortem-snapshot-modal.vue'
   export default {
     name: 'VetTable',
   
@@ -269,7 +269,7 @@
     methods: {
      
   
-       ...mapActions('vetData', ['addNewPostMortemRecord','getAllPostMortemRecords', 'load']),
+       ...mapActions('vetData', ['addNewPostMortemRecord','getAllPostMortemRecords','selectPostMortemRecord', 'load']),
   
        async refresh(){
   
@@ -283,28 +283,28 @@
       },
   
   
-      // captureReceipt(agro) {
-      //   this.selectAgroRecord(agro)
-      //   setTimeout(() => {
-      //     this.$buefy.modal.open({
-      //       parent: this,
-      //       component: AgroSnapshotModal,
-      //       hasModalCard: true,
-      //       trapFocus: true,
-      //       canCancel: ['x'],
-      //       destroyOnHide: true,
-      //       customClass: '',
-      //       onCancel: () => {
-      //         this.$buefy.toast.open({
-      //           message: `Snapshot closed`,
-      //           duration: 5000,
-      //           position: 'is-top',
-      //           type: 'is-info',
-      //         })
-      //       },
-      //     })
-      //   }, 300)
-      // },
+       captureReceipt(PM) {
+         this.selectPostMortemRecord(PM)
+         setTimeout(() => {
+           this.$buefy.modal.open({
+             parent: this,
+             component: PostMortemSnapshotModal,
+             hasModalCard: true,
+             trapFocus: true,
+             canCancel: ['x'],
+             destroyOnHide: true,
+             customClass: '',
+             onCancel: () => {
+               this.$buefy.toast.open({
+                 message: `Snapshot closed`,
+                 duration: 5000,
+                 position: 'is-top',
+                 type: 'is-info',
+               })
+             },
+           })
+         }, 300)
+       },
   
        addNewTask() {
         

@@ -1,7 +1,7 @@
 <template>
   <div class="modal-card ">
     <header class="modal-card-head">
-      <h3 class="modal-card-title">Fish Snapshot</h3>
+      <h3 class="modal-card-title">Nutrition Snapshot</h3>
      
       <button type="button" class="delete" @click="close"></button>
     </header>
@@ -14,7 +14,7 @@
            <div  class="column is-half">
              <h4> <span class="toggle is-blue"> Client Name</span></h4>
             <p >
-             <span class="tag earTagID "> {{fish.fishClientName}} </span>
+             <span class="tag earTagID "> {{nutrition.nutritionClientName}} </span>
              
             </p>
 
@@ -26,7 +26,7 @@
            <div  class="column is-half">
              <h4> <span class="is-blue"> Phone No.</span></h4>
             <p >
-             <span class="tag breed "> {{fish.fishClientPhoneNumber}} </span>
+             <span class="tag breed "> {{nutrition.nutritionClientPhoneNumber}} </span>
               
             </p>
            </div>
@@ -36,7 +36,7 @@
            <div  class="column is-half">
              <h4> <span class="is-blue"> Location</span></h4>
             <p >
-             <span class="tag  is-light"> {{fish.fishClientLocation}} </span>
+             <span class="tag  is-light"> {{nutrition.nutritionClientLocation}} </span>
               
             </p>
            </div>
@@ -46,7 +46,7 @@
            <div  class="column is-half">
              <h4> <span class="is-blue"> Town</span></h4>
             <p >
-             <span class="tag age "> {{fish.fishClientTown}} </span>
+             <span class="tag age "> {{nutrition.nutritionClientTown}} </span>
               
             </p>
            </div>
@@ -56,7 +56,7 @@
            <div  class="column is-half">
              <h4> <span class="is-blue"> Category</span></h4>
             <p >
-            <span class="tag is-info" > {{fish.fishCategory}} </span>
+            <span class="tag is-info" > {{nutrition.nutritionCategory}} </span>
               
             </p>
            </div>
@@ -67,7 +67,7 @@
            <div  class="column is-half">
              <h4> <span class="is-blue"> Comments/Remarks</span></h4>
             <p >
-             <span style="font-size: small;" aria-multiline="true"> {{fish.fishClientComments}} </span>
+             <span style="font-size: small;" aria-multiline="true"> {{nutrition.nutritionClientComments}} </span>
               
             </p>
            </div>
@@ -94,7 +94,7 @@
 
 import { mapActions, mapGetters } from 'vuex'
 export default {
-  name: 'FishSnapshotModal',
+  name: 'NutritionSnapshotModal',
 
    data() {
     return {
@@ -106,13 +106,13 @@ export default {
   },
 
   computed: {
-     ...mapGetters('fishData', {
-      fish: 'selectedFishRecord',
-      fishLoading: 'loading',
+     ...mapGetters('nutritionData', {
+      nutrition: 'selectedNutritionRecord',
+      nutritionLoading: 'loading',
     }),
 
     loading() {
-      return this.fishLoading 
+      return this.nutritionLoading 
     },
 
   },
@@ -122,10 +122,10 @@ export default {
 
 
   methods: {
-    ...mapActions('fishData', ['load', 'selectFishRecord']),
+    ...mapActions('nutritionData', ['load', 'selectNutritionRecord']),
 
     async onSubmit() {
-       await this.putfishInTreatment();
+       await this.putnutritionInTreatment();
       const msg = await Promise.resolve('Operation successful')
       this.$buefy.toast.open({
         message: msg, // 'Operation successful',
@@ -138,7 +138,7 @@ export default {
 
      async onTreated() {
       
-      await this.markfishAsTreated();
+      await this.marknutritionAsTreated();
        const msg = await Promise.resolve('Operation successful')
      
       this.$buefy.toast.open({
@@ -151,7 +151,7 @@ export default {
     },
 
 
- infish(){
+ innutrition(){
   console.log("Preggo!")
 },
 
@@ -161,7 +161,7 @@ export default {
 
     close() {
       this.$buefy.toast.open({
-        message: 'Fish Snapshot closed.',
+        message: 'Nutrition Snapshot closed.',
         duration: 2000,
         position: 'is-top',
         type: 'is-warning ',

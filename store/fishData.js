@@ -7,7 +7,7 @@ import {
         
         GET_ALL_FISH_RECORDS,
         GET_ALL_FILTERED_FISH_RECORDS,
-
+        SET_SELECTED_FISH_RECORD,
         GET_FILTERED_FISH_START_TIME,
         GET_FILTERED_FISH_END_TIME,
         
@@ -28,7 +28,7 @@ export const state = () => ({
 
     allFishRecords:[],
     allFilteredFishRecords:[],
-
+    selectedFishRecord:null,
     // allFishConsultsRecords:[],
     // allFishSalesRecords:[],
     
@@ -62,6 +62,10 @@ export const getters = {
         return state.loading
     },
     
+    selectedFishRecord(state) {
+        return state.selectedFishRecord
+      },
+
 
       filteredFishStartTime(state){
         return state.filteredFishStartTime
@@ -101,7 +105,9 @@ export const mutations = {
     },
 
    
-  
+    [SET_SELECTED_FISH_RECORD](state, newFishRecord) {
+        state.selectedFishRecord = newFishRecord
+      },
 
     [GET_FILTERED_FISH_START_TIME](state, payload){
         state.filteredFishStartTime= payload
@@ -302,7 +308,15 @@ export const actions = {
 
     
 
-    
+    selectFishRecord({ commit }, newFishRecord) {
+        try {
+            commit(SET_SELECTED_FISH_RECORD, newFishRecord)
+            console.log(newFishRecord._id)
+        } catch (error) {
+            console.log('Error')
+        }
+        
+      },
         
       
 

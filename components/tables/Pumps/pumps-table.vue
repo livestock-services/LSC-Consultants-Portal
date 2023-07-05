@@ -107,7 +107,7 @@
        
       </b-table-column>
       
-      <b-table-column
+      <!-- <b-table-column
         v-slot="props"
         field="waterPumpClientComments"
         label="Comments/Remarks"
@@ -116,8 +116,8 @@
       >
       <span class="">  {{ props.row.waterPumpClientComments }} </span>
        
-        <!-- {{ props.row.sumInsured }} -->
-      </b-table-column>
+       
+      </b-table-column> -->
       
 
 
@@ -139,7 +139,7 @@
 
 
       
-     <!-- <b-table-column v-slot="props" label="Options">
+      <b-table-column v-slot="props" label="Options">
         <span class="buttons">
           <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
           <b-button
@@ -154,7 +154,7 @@
       </b-table-column>
 
       
-                 -->
+                 
 
       
 
@@ -179,8 +179,7 @@
 import { mapActions, mapGetters } from 'vuex'
 import { computed } from 'vue';
 import WaterPumpModal from '@/components/modals/Pumps Modal/pumps-modal.vue'
-
-// import FishSnapshotModal from '@/components/modals/Fish Modal/Fish-snapshot-modal.vue'
+import WaterPumpSnapshotModal from '@/components/modals/Pumps Modal/pumps-snapshot-modal.vue'
 export default {
   name: 'WaterPumpTable',
 
@@ -206,7 +205,7 @@ export default {
     
     ...mapGetters('pumpData', {
         loading: 'loading',
-        waterPump: 'allWaterPumpRecords',
+        waterPumps: 'allWaterPumpRecords',
       }),
 
       ...mapGetters('users', {
@@ -218,7 +217,7 @@ export default {
         }),
     
      isEmpty() {
-   return this.waterPump.length === 0
+   return this.waterPumps.length === 0
      },
 
     
@@ -228,7 +227,7 @@ export default {
     },
     
     tableData() {
-     return this.isEmpty ? [] : this.waterPump
+     return this.isEmpty ? [] : this.waterPumps
     },
   },
 
@@ -242,7 +241,7 @@ export default {
   methods: {
    
 
-     ...mapActions('pumpData', ['addNewWaterPumpRecord','getAllWaterPumpRecords', 'load']),
+     ...mapActions('pumpData', ['addNewWaterPumpRecord','getAllWaterPumpRecords','selectWaterPumpRecord', 'load']),
 
      async refresh(){
 
@@ -256,28 +255,28 @@ export default {
     },
 
 
-    // captureReceipt(Fish) {
-    //   this.selectFishRecord(Fish)
-    //   setTimeout(() => {
-    //     this.$buefy.modal.open({
-    //       parent: this,
-    //       component: FishSnapshotModal,
-    //       hasModalCard: true,
-    //       trapFocus: true,
-    //       canCancel: ['x'],
-    //       destroyOnHide: true,
-    //       customClass: '',
-    //       onCancel: () => {
-    //         this.$buefy.toast.open({
-    //           message: `Snapshot closed`,
-    //           duration: 5000,
-    //           position: 'is-top',
-    //           type: 'is-info',
-    //         })
-    //       },
-    //     })
-    //   }, 300)
-    // },
+     captureReceipt(waterPump) {
+       this.selectWaterPumpRecord(waterPump)
+       setTimeout(() => {
+         this.$buefy.modal.open({
+           parent: this,
+           component: WaterPumpSnapshotModal,
+           hasModalCard: true,
+           trapFocus: true,
+           canCancel: ['x'],
+           destroyOnHide: true,
+           customClass: '',
+           onCancel: () => {
+             this.$buefy.toast.open({
+               message: `Snapshot closed`,
+               duration: 5000,
+               position: 'is-top',
+               type: 'is-info',
+             })
+           },
+         })
+       }, 300)
+     },
 
      addNewTask() {
       

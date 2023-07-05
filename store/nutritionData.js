@@ -33,7 +33,7 @@ import {
         loading: false,
         filteredStartTime:[],
         filteredEndTime:[],
-
+        selectedNutritionRecord: null,
         allNutritionRecords:[],
         allNutritionCattleRecords:[],
         allNutritionGoatRecords:[],

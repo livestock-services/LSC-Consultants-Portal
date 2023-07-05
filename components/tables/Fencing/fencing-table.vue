@@ -107,7 +107,7 @@
        
       </b-table-column>
       
-      <b-table-column
+      <!-- <b-table-column
         v-slot="props"
         field="fenceClientComments"
         label="Comments/Remarks"
@@ -116,8 +116,8 @@
       >
       <span class="tag is-primary is-light">  {{ props.row.fenceClientComments }} </span>
        
-        <!-- {{ props.row.sumInsured }} -->
-      </b-table-column>
+        
+      </b-table-column> -->
 
 
       <b-table-column
@@ -138,7 +138,7 @@
 
 
       
-     <!-- <b-table-column v-slot="props" label="Options">
+     <b-table-column v-slot="props" label="Options">
         <span class="buttons">
           <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
           <b-button
@@ -153,7 +153,7 @@
       </b-table-column>
 
       
-                 -->
+                 
 
       
 
@@ -179,7 +179,7 @@ import { mapActions, mapGetters } from 'vuex'
 import { computed } from 'vue';
 import FenceModal from '@/components/modals/Fencing Modal/fencing-modal.vue'
 
-// import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
+import FenceSnapshotModal from '@/components/modals/Fencing Modal/fencing-snapshot-modal.vue'
 export default {
   name: 'fenceTable',
 
@@ -240,7 +240,7 @@ export default {
   methods: {
    
 
-     ...mapActions('fenceData', ['addNewFenceRecord','getAllFenceRecords', 'load']),
+     ...mapActions('fenceData', ['addNewFenceRecord','getAllFenceRecords','selectFenceRecord', 'load']),
 
      async refresh(){
 
@@ -254,28 +254,28 @@ export default {
     },
 
 
-    // captureReceipt(agro) {
-    //   this.selectAgroRecord(agro)
-    //   setTimeout(() => {
-    //     this.$buefy.modal.open({
-    //       parent: this,
-    //       component: AgroSnapshotModal,
-    //       hasModalCard: true,
-    //       trapFocus: true,
-    //       canCancel: ['x'],
-    //       destroyOnHide: true,
-    //       customClass: '',
-    //       onCancel: () => {
-    //         this.$buefy.toast.open({
-    //           message: `Snapshot closed`,
-    //           duration: 5000,
-    //           position: 'is-top',
-    //           type: 'is-info',
-    //         })
-    //       },
-    //     })
-    //   }, 300)
-    // },
+     captureReceipt(fence) {
+       this.selectFenceRecord(fence)
+       setTimeout(() => {
+         this.$buefy.modal.open({
+           parent: this,
+           component: FenceSnapshotModal,
+           hasModalCard: true,
+           trapFocus: true,
+           canCancel: ['x'],
+           destroyOnHide: true,
+           customClass: '',
+           onCancel: () => {
+             this.$buefy.toast.open({
+               message: `Snapshot closed`,
+               duration: 5000,
+               position: 'is-top',
+               type: 'is-info',
+             })
+           },
+         })
+       }, 300)
+     },
 
      addNewTask() {
       

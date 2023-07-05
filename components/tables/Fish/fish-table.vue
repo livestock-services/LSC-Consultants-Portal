@@ -107,7 +107,7 @@
        
       </b-table-column>
       
-      <b-table-column
+      <!-- <b-table-column
         v-slot="props"
         field="fishClientComments"
         label="Comments/Remarks"
@@ -116,8 +116,8 @@
       >
       <span class="">  {{ props.row.fishClientComments }} </span>
        
-        <!-- {{ props.row.sumInsured }} -->
-      </b-table-column>
+        
+      </b-table-column> -->
 
       
       <b-table-column
@@ -139,7 +139,7 @@
 
 
       
-     <!-- <b-table-column v-slot="props" label="Options">
+      <b-table-column v-slot="props" label="Options">
         <span class="buttons">
           <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
           <b-button
@@ -154,7 +154,7 @@
       </b-table-column>
 
       
-                 -->
+                
 
       
 
@@ -179,8 +179,7 @@
 import { mapActions, mapGetters } from 'vuex'
 import { computed } from 'vue';
 import FishModal from '@/components/modals/Fish Modal/fish-modal.vue'
-
-// import FishSnapshotModal from '@/components/modals/Fish Modal/Fish-snapshot-modal.vue'
+import FishSnapshotModal from '@/components/modals/Fish Modal/Fish-snapshot-modal'
 export default {
   name: 'FishnomyTable',
 
@@ -205,7 +204,7 @@ export default {
     
     ...mapGetters('fishData', {
         loading: 'loading',
-        fish: 'allFishRecords',
+        fishs: 'allFishRecords',
       }),
 
       ...mapGetters('users', {
@@ -217,7 +216,7 @@ export default {
         }),
     
      isEmpty() {
-    return this.fish.length === 0
+    return this.fishs.length === 0
      },
 
     
@@ -227,7 +226,7 @@ export default {
     },
     
     tableData() {
-      return this.isEmpty ? [] : this.fish
+      return this.isEmpty ? [] : this.fishs
     },
   },
 
@@ -241,7 +240,7 @@ export default {
   methods: {
    
 
-     ...mapActions('fishData', ['addNewFishRecord','getAllFishRecords', 'load']),
+     ...mapActions('fishData', ['addNewFishRecord','getAllFishRecords','selectFishRecord', 'load']),
 
      async refresh(){
 
@@ -255,28 +254,28 @@ export default {
     },
 
 
-    // captureReceipt(Fish) {
-    //   this.selectFishRecord(Fish)
-    //   setTimeout(() => {
-    //     this.$buefy.modal.open({
-    //       parent: this,
-    //       component: FishSnapshotModal,
-    //       hasModalCard: true,
-    //       trapFocus: true,
-    //       canCancel: ['x'],
-    //       destroyOnHide: true,
-    //       customClass: '',
-    //       onCancel: () => {
-    //         this.$buefy.toast.open({
-    //           message: `Snapshot closed`,
-    //           duration: 5000,
-    //           position: 'is-top',
-    //           type: 'is-info',
-    //         })
-    //       },
-    //     })
-    //   }, 300)
-    // },
+     captureReceipt(fish) {
+       this.selectFishRecord(fish)
+       setTimeout(() => {
+         this.$buefy.modal.open({
+           parent: this,
+           component: FishSnapshotModal,
+           hasModalCard: true,
+           trapFocus: true,
+           canCancel: ['x'],
+           destroyOnHide: true,
+           customClass: '',
+           onCancel: () => {
+             this.$buefy.toast.open({
+               message: `Snapshot closed`,
+               duration: 5000,
+               position: 'is-top',
+               type: 'is-info',
+             })
+           },
+         })
+       }, 300)
+     },
 
      addNewTask() {
       

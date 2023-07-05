@@ -7,7 +7,7 @@ import {
         
         GET_ALL_IRRIGATION_RECORDS,
         GET_ALL_FILTERED_IRRIGATION_RECORDS,
-
+        SET_SELECTED_IRRIGATION_RECORD,
         GET_FILTERED_IRRIGATION_START_TIME,
         GET_FILTERED_IRRIGATION_END_TIME,
         
@@ -26,6 +26,7 @@ export const state = () => ({
     filteredIrrigationStartTime:[],
     filteredIrrigationEndTime:[],
 
+    selectedIrrigationRecord:null,
     allIrrigationRecords:[],
     allFilteredIrrigationRecords:[],
 
@@ -62,6 +63,10 @@ export const getters = {
         return state.loading
     },
     
+
+    selectedIrrigationRecord(state) {
+        return state.selectedIrrigationRecord
+      },
 
       filteredIrrigationStartTime(state){
         return state.filteredIrrigationStartTime
@@ -100,7 +105,9 @@ export const mutations = {
         state.allIrrigationRecords.push(newIrrigationRecord)
     },
 
-   
+    [SET_SELECTED_IRRIGATION_RECORD](state, newIrrigationRecord) {
+        state.selectedIrrigationRecord = newIrrigationRecord
+      },
   
 
     [GET_FILTERED_IRRIGATION_START_TIME](state, payload){
@@ -280,7 +287,15 @@ export const actions = {
 
     
 
-    
+    selectIrrigationRecord({ commit }, newIrrigationRecord) {
+        try {
+            commit(SET_SELECTED_IRRIGATION_RECORD, newIrrigationRecord)
+            console.log(newIrrigationRecord._id)
+        } catch (error) {
+            console.log('Error')
+        }
+        
+      },
         
       
 

@@ -7,7 +7,7 @@ import {
         
         GET_ALL_WATER_PUMP_RECORDS,
         GET_ALL_FILTERED_WATER_PUMP_RECORDS,
-
+        SET_SELECTED_WATER_PUMP_RECORD,
         GET_FILTERED_WATER_PUMP_START_TIME,
         GET_FILTERED_WATER_PUMP_END_TIME,
         
@@ -26,6 +26,7 @@ export const state = () => ({
     filteredWaterPumpStartTime:[],
     filteredWaterPumpEndTime:[],
 
+    selectedWaterPumpRecord:null,
     allWaterPumpRecords:[],
     allFilteredWaterPumpRecords:[],
 
@@ -40,8 +41,8 @@ export const state = () => ({
         waterPumpClientTown:null,
         waterPumpClientComments:null,
         // WaterPumpCategory:null,
-        date:new Date()
-       // createdBy:null
+        date:new Date(),
+        createdBy:null
         
     },
 
@@ -62,6 +63,9 @@ export const getters = {
         return state.loading
     },
     
+    selectedWaterPumpRecord(state) {
+        return state.selectedWaterPumpRecord
+      },
 
       filteredWaterPumpStartTime(state){
         return state.filteredWaterPumpStartTime
@@ -100,7 +104,9 @@ export const mutations = {
         state.allWaterPumpRecords.push(newWaterPumpRecord)
     },
 
-   
+    [SET_SELECTED_WATER_PUMP_RECORD](state, newWaterPumpRecord) {
+        state.selectedWaterPumpRecord = newWaterPumpRecord
+      },
   
 
     [GET_FILTERED_WATER_PUMP_START_TIME](state, payload){
@@ -253,7 +259,7 @@ export const actions = {
 
         //     newWaterPumpRecord.date = state.WaterPumpForm.date.toLocaleDateString();
 
-
+        newWaterPumpRecord.createdBy = this.$auth.user.email;
 
         //    // newWaterPumpRecord.createdBy = 'kondwanim@livestock.co.zm'
         //    console.log(newWaterPumpRecord.date);
@@ -277,8 +283,15 @@ export const actions = {
 
     
 
-    
+    selectWaterPumpRecord({ commit }, newWaterPumpRecord) {
+        try {
+            commit(SET_SELECTED_WATER_PUMP_RECORD, newWaterPumpRecord)
+            console.log(newWaterPumpRecord._id)
+        } catch (error) {
+            console.log('Error')
+        }
         
+      },  
       
 
   

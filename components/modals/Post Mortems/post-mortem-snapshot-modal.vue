@@ -1,7 +1,7 @@
 <template>
   <div class="modal-card ">
     <header class="modal-card-head">
-      <h3 class="modal-card-title">Fish Snapshot</h3>
+      <h3 class="modal-card-title">Vet Post Mortem Snapshot</h3>
      
       <button type="button" class="delete" @click="close"></button>
     </header>
@@ -14,7 +14,7 @@
            <div  class="column is-half">
              <h4> <span class="toggle is-blue"> Client Name</span></h4>
             <p >
-             <span class="tag earTagID "> {{fish.fishClientName}} </span>
+             <span class="tag earTagID "> {{vetPostMortem.vetPostMortemClientName}} </span>
              
             </p>
 
@@ -26,7 +26,7 @@
            <div  class="column is-half">
              <h4> <span class="is-blue"> Phone No.</span></h4>
             <p >
-             <span class="tag breed "> {{fish.fishClientPhoneNumber}} </span>
+             <span class="tag breed "> {{vetPostMortem.vetPostMortemClientPhoneNumber}} </span>
               
             </p>
            </div>
@@ -36,7 +36,7 @@
            <div  class="column is-half">
              <h4> <span class="is-blue"> Location</span></h4>
             <p >
-             <span class="tag  is-light"> {{fish.fishClientLocation}} </span>
+             <span class="tag  is-light"> {{vetPostMortem.vetPostMortemClientLocation}} </span>
               
             </p>
            </div>
@@ -46,7 +46,7 @@
            <div  class="column is-half">
              <h4> <span class="is-blue"> Town</span></h4>
             <p >
-             <span class="tag age "> {{fish.fishClientTown}} </span>
+             <span class="tag age "> {{vetPostMortem.vetPostMortemClientTown}} </span>
               
             </p>
            </div>
@@ -56,7 +56,17 @@
            <div  class="column is-half">
              <h4> <span class="is-blue"> Category</span></h4>
             <p >
-            <span class="tag is-info" > {{fish.fishCategory}} </span>
+            <span class="tag is-info" > {{vetPostMortem.vetPostMortemCategory}} </span>
+              
+            </p>
+           </div>
+         </div>
+
+         <div class="columns">
+           <div  class="column is-half">
+             <h4> <span class="is-blue"> Disease</span></h4>
+            <p >
+            <span class="tag is-info" > {{vetPostMortem.vetPostMortemDiseases}} </span>
               
             </p>
            </div>
@@ -67,7 +77,7 @@
            <div  class="column is-half">
              <h4> <span class="is-blue"> Comments/Remarks</span></h4>
             <p >
-             <span style="font-size: small;" aria-multiline="true"> {{fish.fishClientComments}} </span>
+             <span style="font-size: small;" aria-multiline="true"> {{vetPostMortem.vetPostMortemComments}} </span>
               
             </p>
            </div>
@@ -94,7 +104,7 @@
 
 import { mapActions, mapGetters } from 'vuex'
 export default {
-  name: 'FishSnapshotModal',
+  name: 'VetPostMortemSnapshotModal',
 
    data() {
     return {
@@ -106,13 +116,13 @@ export default {
   },
 
   computed: {
-     ...mapGetters('fishData', {
-      fish: 'selectedFishRecord',
-      fishLoading: 'loading',
+     ...mapGetters('vetData', {
+      vetPostMortem: 'selectedPostMortemRecord',
+      vetPostMortemLoading: 'loading',
     }),
 
     loading() {
-      return this.fishLoading 
+      return this.vetPostMortemLoading 
     },
 
   },
@@ -122,10 +132,10 @@ export default {
 
 
   methods: {
-    ...mapActions('fishData', ['load', 'selectFishRecord']),
+    ...mapActions('vetPostMortemData', ['load', 'selectVetPostMortemRecord']),
 
     async onSubmit() {
-       await this.putfishInTreatment();
+       await this.putvetPostMortemInTreatment();
       const msg = await Promise.resolve('Operation successful')
       this.$buefy.toast.open({
         message: msg, // 'Operation successful',
@@ -138,7 +148,7 @@ export default {
 
      async onTreated() {
       
-      await this.markfishAsTreated();
+      await this.markvetPostMortemAsTreated();
        const msg = await Promise.resolve('Operation successful')
      
       this.$buefy.toast.open({
@@ -151,7 +161,7 @@ export default {
     },
 
 
- infish(){
+ invetPostMortem(){
   console.log("Preggo!")
 },
 
@@ -161,7 +171,7 @@ export default {
 
     close() {
       this.$buefy.toast.open({
-        message: 'Fish Snapshot closed.',
+        message: 'Vet Post Mortem Snapshot closed.',
         duration: 2000,
         position: 'is-top',
         type: 'is-warning ',

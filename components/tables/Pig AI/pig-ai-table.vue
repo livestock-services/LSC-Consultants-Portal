@@ -107,7 +107,7 @@
        
       </b-table-column>
       
-      <b-table-column
+      <!-- <b-table-column
           v-slot="props"
           field="pigAIClientComments"
           label="Comments/Remarks"
@@ -116,8 +116,8 @@
         >
         <span class="">  {{ props.row.pigAIClientComments }} </span>
          
-          <!-- {{ props.row.sumInsured }} -->
-        </b-table-column>
+          
+        </b-table-column> -->
       
       <b-table-column
       v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'"
@@ -137,7 +137,7 @@
 
 
       
-     <!-- <b-table-column v-slot="props" label="Options">
+      <b-table-column v-slot="props" label="Options">
         <span class="buttons">
           <b-tooltip label="View more details about this task" type="is-dark" position="is-left">
           <b-button
@@ -152,7 +152,7 @@
       </b-table-column>
 
       
-                 -->
+                
 
       
 
@@ -178,7 +178,7 @@ import { mapActions, mapGetters } from 'vuex'
 import { computed } from 'vue';
 import PigAIModal from '~/components/modals/Pig AI Modal/pig-ai-modal.vue'
 
-// import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
+ import PigAISnapshotModal from '@/components/modals/Pig AI Modal/pig-ai-snapshot-modal.vue'
 export default {
   name: 'PigAITable',
 
@@ -241,7 +241,7 @@ export default {
   methods: {
    
 
-     ...mapActions('pigAIData', ['addNewPigAIRecord','getAllPigAIRecords', 'load']),
+     ...mapActions('pigAIData', ['addNewPigAIRecord','getAllPigAIRecords','selectPigAIRecord', 'load']),
 
      async refresh(){
 
@@ -255,28 +255,28 @@ export default {
     },
 
 
-    // captureReceipt(agro) {
-    //   this.selectAgroRecord(agro)
-    //   setTimeout(() => {
-    //     this.$buefy.modal.open({
-    //       parent: this,
-    //       component: AgroSnapshotModal,
-    //       hasModalCard: true,
-    //       trapFocus: true,
-    //       canCancel: ['x'],
-    //       destroyOnHide: true,
-    //       customClass: '',
-    //       onCancel: () => {
-    //         this.$buefy.toast.open({
-    //           message: `Snapshot closed`,
-    //           duration: 5000,
-    //           position: 'is-top',
-    //           type: 'is-info',
-    //         })
-    //       },
-    //     })
-    //   }, 300)
-    // },
+     captureReceipt(pig) {
+       this.selectPigAIRecord(pig)
+       setTimeout(() => {
+         this.$buefy.modal.open({
+           parent: this,
+           component: PigAISnapshotModal,
+           hasModalCard: true,
+           trapFocus: true,
+           canCancel: ['x'],
+           destroyOnHide: true,
+           customClass: '',
+           onCancel: () => {
+             this.$buefy.toast.open({
+               message: `Snapshot closed`,
+               duration: 5000,
+               position: 'is-top',
+               type: 'is-info',
+             })
+           },
+         })
+       }, 300)
+     },
 
      addNewTask() {
       

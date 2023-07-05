@@ -38,7 +38,7 @@ import {
 
 
         SET_ALL_POST_MORTEM_RECORDS,
-
+        SET_SELECTED_POST_MORTEM_RECORD,
 
     //----------VILLAGE CHICKEN DISEASES------------------------
         GET_FILTERED_VET_PM_START_TIME,
@@ -319,6 +319,7 @@ export const state = () => ({
 
 
     selectedVetRecord: null,
+    selectedPostMortemRecord: null,
 
     vetForm:{
         vetClientName:null,
@@ -471,6 +472,10 @@ export const getters = {
 
     allPostMortemRecords(state){
         return state.allPostMortemRecords
+    },
+
+    selectedPostMortemRecord(state) {
+      return state.selectedPostMortemRecord
     },
 
     //----------------------------VILLAGE CHICKENS DISEASES----------------//
@@ -896,6 +901,10 @@ export const mutations = {
        //-----------------------------POST MORTEMS---------------------------------//
     [SET_ALL_POST_MORTEM_RECORDS](state, payload){
         state.allPostMortemRecords = payload
+    },
+
+    [SET_SELECTED_POST_MORTEM_RECORD](state, newPostMortemRecord) {
+      state.selectedPostMortemRecord = newPostMortemRecord
     },
 
 
@@ -3675,7 +3684,15 @@ export const actions = {
 
 
 
-
+    selectPostMortemRecord({ commit }, newPostMortemRecord) {
+      try {
+          commit(SET_SELECTED_POST_MORTEM_RECORD, newPostMortemRecord)
+         // console.log(newVetRecord._id)
+      } catch (error) {
+         // console.log('Error')
+      }
+      
+    },
 
    
 

@@ -9,7 +9,7 @@ import {
         
         GET_FILTERED_BEEF_AI_START_TIME,
         GET_FILTERED_BEEF_AI_END_TIME,
-        
+        SET_SELECTED_BEEF_AI_RECORD,
         SET_LOADING,
         
         GET_ALL_BEEF_AI_CONSULTS_RECORDS,
@@ -26,7 +26,7 @@ export const state = () => ({
     filteredBeefAIStartTime:[],
     filteredBeefAIEndTime:[],
     allBeefAIRecords:[],
-
+    selectedBeefAIRecord:null,
     allBeefAIConsultationRecords:[],
     allBeefAISalesRecords:[],
     
@@ -38,8 +38,8 @@ export const state = () => ({
         beefAIClientTown:null,
         beefAIClientComments:null,
         beefAICategory:null,
-        date:new Date()
-       // createdBy:null
+        date:new Date(),
+        createdBy:null
         
     },
 
@@ -60,6 +60,9 @@ export const getters = {
         return state.loading
     },
     
+    selectedBeefAIRecord(state) {
+        return state.selectedBeefAIRecord
+      },
 
       filteredBeefAIStartTime(state){
         return state.filteredBeefAIStartTime
@@ -101,7 +104,9 @@ export const mutations = {
         state.allBeefAIRecords.push(newBeefAIRecord)
     },
 
-   
+    [SET_SELECTED_BEEF_AI_RECORD](state, newBeefAIRecord) {
+        state.selectedBeefAIRecord = newBeefAIRecord
+      },
   
 
     [GET_FILTERED_BEEF_AI_START_TIME](state, payload){
@@ -342,7 +347,7 @@ export const actions = {
 
         //     newBeefAIRecord.date = state.BeefAIForm.date.toLocaleDateString();
 
-
+        newBeefAIRecord.createdBy = this.$auth.user.email;
 
         //    // newBeefAIRecord.createdBy = 'kondwanim@livestock.co.zm'
         //   // console.log(newBeefAIRecord.date);
@@ -365,7 +370,15 @@ export const actions = {
     },
 
     
-
+    selectBeefAIRecord({ commit }, newBeefAIRecord) {
+        try {
+            commit(SET_SELECTED_BEEF_AI_RECORD, newBeefAIRecord)
+            console.log(newBeefAIRecord._id)
+        } catch (error) {
+            console.log('Error')
+        }
+        
+      },
     
         
       

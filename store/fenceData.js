@@ -10,7 +10,7 @@ import {
 
         GET_FILTERED_FENCE_START_TIME,
         GET_FILTERED_FENCE_END_TIME,
-        
+        SET_SELECTED_FENCE_RECORD,
         SET_LOADING,
         
         // GET_ALL_FENCE_CONSULTS_RECORDS,
@@ -28,7 +28,7 @@ export const state = () => ({
 
     allFenceRecords:[],
     allFilteredFenceRecords:[],
-
+    selectedFenceRecord:null,
     // allFenceConsultsRecords:[],
     // allFenceSalesRecords:[],
     
@@ -48,7 +48,9 @@ export const state = () => ({
     fenceFilterForm:{
         startDate:null,
         endDate:null
-    }
+    },
+
+    
 
 })
 
@@ -61,7 +63,10 @@ export const getters = {
     loading(state) {
         return state.loading
     },
-    
+    selectedFenceRecord(state) {
+        return state.selectedFenceRecord
+      },
+
 
       filteredFenceStartTime(state){
         return state.filteredFenceStartTime
@@ -70,7 +75,7 @@ export const getters = {
       filteredFenceEndTime(state){
         return state.filteredFenceEndTime
       },
-      //---------------------AGRO CONSULTS GETTERS--------------------------------------------//
+      //---------------------Fence CONSULTS GETTERS--------------------------------------------//
 
     allFenceRecords(state){
         return state.allFenceRecords
@@ -101,7 +106,9 @@ export const mutations = {
     },
 
    
-  
+    [SET_SELECTED_FENCE_RECORD](state, newFenceRecord) {
+        state.selectedFenceRecord = newFenceRecord
+      },
 
     [GET_FILTERED_FENCE_START_TIME](state, payload){
         state.filteredFenceStartTime= payload
@@ -287,6 +294,16 @@ export const actions = {
             this.log.error(error.message);
         }
     },
+
+    selectFenceRecord({ commit }, newFenceRecord) {
+        try {
+            commit(SET_SELECTED_FENCE_RECORD, newFenceRecord)
+            console.log(newFenceRecord._id)
+        } catch (error) {
+            console.log('Error')
+        }
+        
+      },
 
     
 
