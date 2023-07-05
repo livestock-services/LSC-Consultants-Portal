@@ -85,13 +85,13 @@
      data() {
       return {
   
-        fenceFilterForm: {
+        // fenceFilterForm: {
         
-        startDate:null,
+        // startDate:null,
        
-        endDate:null,                  
+        // endDate:null,                  
   
-        },
+        // },
   
   
         isFullPage: true,
@@ -190,7 +190,7 @@
   
       clearForm() {
   
-       this.fenceForm = {
+       this.fenceFilterForm = {
         
                 startDate:null,
                 endDate:null,

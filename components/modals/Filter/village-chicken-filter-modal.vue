@@ -85,13 +85,13 @@
      data() {
       return {
   
-        villageChickenPostMortemFilterForm: {
+        // villageChickenPostMortemFilterForm: {
         
-        startDate:null,
+        // startDate:null,
        
-        endDate:null,                  
+        // endDate:null,                  
   
-        },
+        // },
   
   
         isFullPage: true,
@@ -190,7 +190,7 @@
   
       clearForm() {
   
-       this.villageChickenPostMortemForm = {
+       this.villageChickenPostMortemFilterForm = {
         
                 startDate:null,
                 endDate:null,

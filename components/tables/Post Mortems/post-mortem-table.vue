@@ -108,6 +108,17 @@
          
         </b-table-column>
 
+        <b-table-column
+          v-slot="props"
+          field="vetPostMortemOtherCategory"
+          label="Category(Other)"
+          searchable
+        >
+  
+        <span class="tag is-info is-light">  {{ props.row.vetPostMortemOtherCategory }} </span>
+         
+        </b-table-column>
+
        
 
         <b-table-column
@@ -118,6 +129,17 @@
         >
   
         <span class="is-info is-light">  {{ props.row.vetPostMortemDiseases }} </span>
+         
+        </b-table-column>
+
+        <b-table-column
+          v-slot="props"
+          field="vetPostMortemOtherDiseases"
+          label="Disease(Other)"
+          searchable
+        >
+  
+        <span class="is-info is-light">  {{ props.row.vetPostMortemOtherDiseases }} </span>
          
         </b-table-column>
   

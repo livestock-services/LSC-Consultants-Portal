@@ -85,13 +85,13 @@
      data() {
       return {
   
-        cattlePostMortemFilterForm: {
+        // cattlePostMortemFilterForm: {
         
-        startDate:null,
+        // startDate:null,
        
-        endDate:null,                  
+        // endDate:null,                  
   
-        },
+        // },
   
   
         isFullPage: true,
@@ -190,7 +190,7 @@
   
       clearForm() {
   
-       this.goatPostMortemForm = {
+       this.cattlePostMortemFilterForm = {
         
                 startDate:null,
                 endDate:null,

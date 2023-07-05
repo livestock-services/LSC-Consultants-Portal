@@ -85,13 +85,13 @@
      data() {
       return {
   
-        pigPostMortemFilterForm: {
+        // pigPostMortemFilterForm: {
         
-        startDate:null,
+        // startDate:null,
        
-        endDate:null,                  
+        // endDate:null,                  
   
-        },
+        // },
   
   
         isFullPage: true,
@@ -190,7 +190,7 @@
   
       clearForm() {
   
-       this.pigPostMortemForm = {
+       this.pigPostMortemFilterForm = {
         
                 startDate:null,
                 endDate:null,

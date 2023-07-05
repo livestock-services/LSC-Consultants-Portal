@@ -210,12 +210,12 @@ export const actions = {
 
               const newFilterRecord = cloneDeep(state.fishFilterForm);
 
-              newFilterRecord.startDate = newFilterRecord.startDate.toLocaleDateString();
+            var  startDate = newFilterRecord.startDate.toLocaleDateString();
 
-              newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString();
+             var endDate = newFilterRecord.endDate.toLocaleDateString();
 
-              console.log(newFilterRecord.startDate);
-              console.log(newFilterRecord.endDate);
+              console.log(startDate);
+              console.log(endDate);
             
            
           //---   API REQUEST IS MADE AND RESULT IS STORED IN CONST
@@ -227,16 +227,20 @@ export const actions = {
             const customeUserRecords = response.data.filter( cur=>
                 cur.createdBy === this.$auth.user.email
                       )
-
+                    
 
                       const filteredFishConsultsRecords = customeUserRecords.filter( at => 
-                        at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                        at.date >= startDate && at.date <= endDate
                         );
+
+                     
+
+                        console.log(filteredFishConsultsRecords);
                
                
-                           commit(GET_FILTERED_FISH_START_TIME, newFilterRecord.startDate);
+                           commit(GET_FILTERED_FISH_START_TIME, startDate);
                
-                           commit(GET_FILTERED_FISH_END_TIME, newFilterRecord.endDate);
+                           commit(GET_FILTERED_FISH_END_TIME, endDate);
                
                            commit(GET_ALL_FILTERED_FISH_RECORDS, filteredFishConsultsRecords.length);
                
@@ -245,8 +249,8 @@ export const actions = {
 
         else{
 
-            const filteredFishConsultsRecords = response.data.filter( bt => 
-                bt.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+            const filteredFishConsultsRecords = response.data.filter( at => 
+                at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
                 );
        
        

@@ -85,15 +85,15 @@
      data() {
       return {
   
-        vetFilterForm: {
+//         vetFilterForm: {
         
-        startDate:null,
+//         startDate:null,
        
-        endDate:null,
+//         endDate:null,
 
                    
   
-},
+// },
   
   
         isFullPage: true,
@@ -198,7 +198,7 @@
   
       clearForm() {
   
-       this.agroForm = {
+       this.vetFilterForm = {
         
                 startDate:null,
                 endDate:null,

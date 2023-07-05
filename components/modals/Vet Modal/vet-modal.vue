@@ -80,6 +80,18 @@
             </b-field>
           </div>
 
+          <h4><span class="is-blue">Other(if not among the options above)</span></h4>
+
+            <div class="columns">
+              <div class="column is-three-quarters">
+                <b-input
+                  type="text"
+                  v-model="vetOther"
+                  placeholder="Comments/Remarks"
+                ></b-input>
+              </div>
+            </div>
+
           <h4><span class="is-blue"> Comments/Remarks</span></h4>
 
           <div class="columns">
@@ -108,6 +120,9 @@
                 Category Selected : {{ vetCategory }}
               </p>
 
+              <p class="mx-4 cat">
+                Category Selected(Other) : {{ vetOther }}
+              </p>
               <p class="mx-4 cat">Comments/Remarks : {{ vetComments }}</p>
 
             </div>
@@ -160,6 +175,8 @@ export default {
 
         vetCategory: null,
 
+        vetOther:null,
+
         vetComments:null
       },
     };
@@ -173,6 +190,7 @@ export default {
       "vetForm.vetClientLocation",
       "vetForm.vetClientTown",
       "vetForm.vetCategory",
+      "vetForm.vetOther",
       "vetForm.vetComments",
     ]),
 
@@ -242,6 +260,7 @@ export default {
       vetClientLocation:null,
       vetClientTown:null,
       vetCategory:null,
+      vetOther:null,
       vetComments:null
 
       }

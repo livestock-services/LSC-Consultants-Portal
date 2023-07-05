@@ -80,6 +80,18 @@
 
             </div>
 
+            <h4><span class="is-blue"> Other (if not among the options above)</span></h4>
+  
+            <div class="columns">
+              <div class="column is-three-quarters">
+                <b-input
+                  type="text"
+                  v-model="vetPostMortemOtherCategory" 
+                  placeholder="Other"
+                ></b-input>
+              </div>
+            </div>
+
             <h4><span class="is-blue"> Select a disease</span></h4>
             <div class="columns">
                 <b-field class="column is-full">
@@ -168,6 +180,19 @@
 
             </div>
 
+            
+            <h4><span class="is-blue"> Other Disease(if not among the options above)</span></h4>
+  
+            <div class="columns">
+              <div class="column is-three-quarters">
+                <b-input
+                  type="text"
+                  v-model="vetPostMortemOtherDiseases" 
+                  placeholder="Other"
+                ></b-input>
+              </div>
+            </div>
+
 
             <h4><span class="is-blue"> Comments/Remarks</span></h4>
   
@@ -198,7 +223,15 @@
                 </p>
 
                 <p class="mx-4 cat">
+                  Category Selected (Other) : {{ vetPostMortemOtherCategory }}
+                </p>
+
+                <p class="mx-4 cat">
                   Associated Disease Selected :  {{ vetPostMortemDiseases }}
+                </p>
+
+                <p class="mx-4 cat">
+                  Associated Disease Selected (other) :  {{ vetPostMortemOtherDiseases }}
                 </p>
                 
                 <p class="mx-4 cat">Comments/Remarks : {{ vetPMComments }}</p>
@@ -256,7 +289,11 @@
   
           vetPostMortemCategory: null,
 
+          vetPostMortemOtherCategory: null,
+
           vetPostMortemDiseases: null,
+
+          vetPostMortemOtherDiseases: null,
 
           vetPMComments: null,
         },
@@ -271,7 +308,9 @@
         "vetPostMortemForm.vetPostMortemClientLocation",
         "vetPostMortemForm.vetPostMortemClientTown",
         "vetPostMortemForm.vetPostMortemCategory",
+        "vetPostMortemForm.vetPostMortemOtherCategory",
         "vetPostMortemForm.vetPostMortemDiseases",
+        "vetPostMortemForm.vetPostMortemOtherDiseases",
         "vetPostMortemForm.vetPMComments",
       ]),
   

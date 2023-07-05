@@ -85,13 +85,13 @@
      data() {
       return {
   
-        layerChickenPostMortemFilterForm: {
+        // layerChickenPostMortemFilterForm: {
         
-        startDate:null,
+        // startDate:null,
        
-        endDate:null,                  
+        // endDate:null,                  
   
-        },
+        // },
   
   
         isFullPage: true,
@@ -190,7 +190,7 @@
   
       clearForm() {
   
-       this.layerChickenPostMortemForm = {
+       this.layerChickenPostMortemFilterForm = {
         
                 startDate:null,
                 endDate:null,

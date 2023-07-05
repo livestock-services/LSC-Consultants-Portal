@@ -85,13 +85,13 @@
      data() {
       return {
   
-        pigAIFilterForm: {
+        // pigAIFilterForm: {
         
-        startDate:null,
+        // startDate:null,
        
-        endDate:null,                  
+        // endDate:null,                  
   
-        },
+        // },
   
   
         isFullPage: true,
@@ -190,7 +190,7 @@
   
       clearForm() {
   
-       this.pigAIForm = {
+       this.pigAIFilterForm = {
         
                 startDate:null,
                 endDate:null,

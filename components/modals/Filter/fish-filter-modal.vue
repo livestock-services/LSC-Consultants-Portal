@@ -85,13 +85,13 @@
      data() {
       return {
   
-        fishFilterForm: {
+        // fishFilterForm: {
         
-        startDate:null,
+        // startDate:null,
        
-        endDate:null,                  
+        // endDate:null,                  
   
-        },
+        // },
   
   
         isFullPage: true,
@@ -190,7 +190,7 @@
   
       clearForm() {
   
-       this.fishForm = {
+       this.fishFilterForm = {
         
                 startDate:null,
                 endDate:null,

@@ -85,15 +85,15 @@
      data() {
       return {
   
-        totalConsultsFilterForm: {
+//         totalConsultsFilterForm: {
         
-        startDate:null,
+//         startDate:null,
        
-        endDate:null,
+//         endDate:null,
 
                    
   
-},
+// },
   
   
         isFullPage: true,
@@ -161,14 +161,14 @@
           onConfirm: async () => {
             
            await this.getFilteredTotalConsultsRecords();
-  
+           this.clearForm();
             this.$buefy.toast.open({
               duration: 3000,
               message: 'Results Successfully Found',
               position: 'is-top',
               type: 'is-success',
             })
-             this.clearForm();
+           
             showNotifications();
             this.$parent.close()
           },
@@ -198,7 +198,7 @@
   
       clearForm() {
   
-       this.agroForm = {
+       this.totalConsultsFilterForm = {
         
                 startDate:null,
                 endDate:null,

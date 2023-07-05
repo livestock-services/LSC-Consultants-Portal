@@ -131,6 +131,7 @@
               <b-input
                 type="text"
                 v-model="address"
+                
                 placeholder="enter address here..."
               >
               </b-input>
