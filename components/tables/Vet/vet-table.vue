@@ -122,7 +122,7 @@
       </b-table-column>
 
       
-     
+     -->
 
       <b-table-column
         v-slot="props"
@@ -133,7 +133,7 @@
 
       <span class="tag is-info is-light">  {{ props.row.date }} </span>
        
-      </b-table-column> -->
+      </b-table-column> 
 
       <!-- <b-table-column
         v-slot="props"

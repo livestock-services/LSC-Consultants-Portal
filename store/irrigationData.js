@@ -218,7 +218,7 @@ export const actions = {
                           )
 
                           const filteredIrrigationConsultsRecords = customeUserRecords.filter( at => 
-                            at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                            new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
                             );
                    
                           
@@ -234,7 +234,7 @@ export const actions = {
 
             else{
                 const filteredIrrigationConsultsRecords = response.data.filter( at => 
-                    at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                    new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
                     );
            
                   

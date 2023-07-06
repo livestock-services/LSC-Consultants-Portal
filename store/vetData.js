@@ -172,6 +172,7 @@ import {
     
 
     } from '@/helpers/mutation-types'
+import { Date } from 'core-js'
 
 
 export const state = () => ({
@@ -1581,7 +1582,7 @@ export const actions = {
                 
                 //    //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
                           const filteredCattleRecords = cattleRecords.filter(at =>
-                            (at.date >= newFilterRecord.startDate) && (at.date <= newFilterRecord.endDate)
+                            new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
                           );
                           
 
@@ -1590,39 +1591,39 @@ export const actions = {
 
                 
                          const filteredGoatRecords = goatRecords.filter( bt => 
-                            ( bt.date >= newFilterRecord.startDate) && (bt.date <= newFilterRecord.endDate)
+                            new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
                              );
                 
                          const filteredSheepRecords = sheepRecords.filter( ct => 
-                         (ct.date >= newFilterRecord.startDate) && (ct.date <= newFilterRecord.endDate)
+                         new Date(ct.date) >= new Date(newFilterRecord.startDate) && new Date(ct.date) <= new Date(newFilterRecord.endDate)
                          );
                 
                          const filteredPigRecords = pigRecords.filter( dt => 
-                         (dt.date >= newFilterRecord.startDate) && (dt.date <= newFilterRecord.endDate)
+                         new Date(dt.date) >= new Date(newFilterRecord.startDate) && new Date(dt.date) <= new Date(newFilterRecord.endDate)
                          );
                 
                          const filteredPoultryRecords = poultryRecords.filter( et => 
-                         (et.date >= newFilterRecord.startDate) && (et.date <= newFilterRecord.endDate)
+                         new Date(et.date) >= new Date(newFilterRecord.startDate) && new Date(et.date) <= new Date(newFilterRecord.endDate)
                          );
                 
                          const filteredDogsAndCatsRecords= dogsAndCatsRecords.filter( ft => 
-                         (ft.date >= newFilterRecord.startDate) && (ft.date <= newFilterRecord.endDate)
+                         new Date(ft.date) >= new Date(newFilterRecord.startDate) && new Date(ft.date) <= new Date(newFilterRecord.endDate)
                          );
                 
                          const filteredRabbitRecords = rabbitRecords.filter( gt => 
-                         (gt.date >= newFilterRecord.startDate) && (gt.date <= newFilterRecord.endDate)
+                         new Date(gt.date) >= new Date(newFilterRecord.startDate) && new Date(gt.date) <= new Date(newFilterRecord.endDate)
                          );
                 
                          const filteredWildlifeOrExoticsRecords = wildlifeOrExoticsRecords.filter( ht => 
-                             (ht.date >= newFilterRecord.startDate) && (ht.date <= newFilterRecord.endDate)
+                             new Date(ht.date) >= new Date(newFilterRecord.startDate) && new Date(ht.date) <= new Date(newFilterRecord.endDate)
                              );
                 
                          const filteredHorseRecords = horseRecords.filter( it => 
-                         (it.date >= newFilterRecord.startDate) && (it.date <= newFilterRecord.endDate)
+                         new Date(it.date) >= new Date(newFilterRecord.startDate) && new Date(it.date) <= new Date(newFilterRecord.endDate)
                          );
 
                          const filteredOtherRecords = otherRecords.filter( jt => 
-                          (jt.date >= newFilterRecord.startDate) && (jt.date <= newFilterRecord.endDate)
+                          new Date(jt.date) >= new Date(newFilterRecord.startDate) && new Date(jt.date) <= new Date(newFilterRecord.endDate)
                           );
                 
                        
@@ -1717,41 +1718,41 @@ export const actions = {
         
         //    //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
                   const filteredCattleRecords = cattleRecords.filter( vat => 
-                 vat.date >= newFilterRecord.startDate && vat.date <= newFilterRecord.endDate
+                 new Date(vat.date) >= new Date(newFilterRecord.startDate) && new Date(vat.date) <= new Date(newFilterRecord.endDate)
                  );
         
         
         
                  const filteredGoatRecords = goatRecords.filter(vbt => 
-                     vbt.date >= newFilterRecord.startDate && vbt.date <= newFilterRecord.endDate
+                     new Date(vbt.date) >= new Date(newFilterRecord.startDate) && new Date(vbt.date) <= new Date(newFilterRecord.endDate)
                      );
         
                  const filteredSheepRecords = sheepRecords.filter( vct => 
-                 vct.date >= newFilterRecord.startDate && vct.date <= newFilterRecord.endDate
+                 new Date(vct.date) >= new Date(newFilterRecord.startDate) && new Date(vct.date) <= new Date(newFilterRecord.endDate)
                  );
         
                  const filteredPigRecords = pigRecords.filter( vdt => 
-                 vdt.date >= newFilterRecord.startDate && vdt.date <= newFilterRecord.endDate
+                 new Date(vdt.date) >= new Date(newFilterRecord.startDate) && new Date(vdt.date) <= new Date(newFilterRecord.endDate)
                  );
         
                  const filteredPoultryRecords = poultryRecords.filter( vet => 
-                 vet.date >= newFilterRecord.startDate && vet.date <= newFilterRecord.endDate
+                 new Date(vet.date) >= new Date(newFilterRecord.startDate) && new Date(vet.date) <= new Date(newFilterRecord.endDate)
                  );
         
                  const filteredDogsAndCatsRecords= dogsAndCatsRecords.filter( vft => 
-                 vft.date >= newFilterRecord.startDate && vft.date <= newFilterRecord.endDate
+                 new Date(vft.date) >= new Date(newFilterRecord.startDate) && new Date(vft.date) <= new Date(newFilterRecord.endDate)
                  );
         
                  const filteredRabbitRecords = rabbitRecords.filter( vgt => 
-                 vgt.date >= newFilterRecord.startDate && vgt.date <= newFilterRecord.endDate
+                 new Date(vgt.date) >= new Date(newFilterRecord.startDate) && new Date(vgt.date) <= new Date(newFilterRecord.endDate)
                  );
         
                  const filteredWildlifeOrExoticsRecords = wildlifeOrExoticsRecords.filter( vht => 
-                     vht.date >= newFilterRecord.startDate && vht.date <= newFilterRecord.endDate
+                     new Date(vht.date) >= new Date(newFilterRecord.startDate) && new Date(vht.date) <= new Date(newFilterRecord.endDate)
                      );
         
                  const filteredHorseRecords = horseRecords.filter( vit => 
-                vit.date >= newFilterRecord.startDate && vit.date <= newFilterRecord.endDate
+                new Date(vit.date) >= new Date(newFilterRecord.startDate) && new Date(vit.date) <= new Date(newFilterRecord.endDate)
                  );
         
                
@@ -2090,47 +2091,47 @@ export const actions = {
                         // console.log(filteredILRecords.length)
                 
                          const filteredNewcastleRecords = newCastleRecords.filter( ct => 
-                         ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                          );
                 
                          const filteredGumboroRecords = gumboroRecords.filter( ct => 
-                         ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                          );
                 
                          const filteredCoccidiosisecords = coccidiosisRecords.filter( ct => 
-                         ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                          );
                 
                          const filteredFowlPoxRecords = fowlPoxRecords.filter( ct => 
-                         ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                          );
                 
                          const filteredEggPeritonitisRecords = eggPeritonitisRecords.filter( ct => 
-                         ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                          );
                 
                          const filteredEctoParasitesRecords = ectoParasitesRecords.filter( ct => 
-                             ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                             new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                              );
                     
                          const filteredHelminthiasisRecords = helminthiasisRecords.filter( ct => 
-                         ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                          );
                 
                          const filteredMycoplasmosisRecords = mycoPlasmosisRecords.filter( ct => 
-                         ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                          );
                 
                          const filteredSnakeBiteRecords = snakeBiteRecords.filter( ct => 
-                         ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                          );
                 
                          const filteredColibacillosisRecords = colibacillosisRecords.filter( ct => 
-                         ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                          );
                 
                          const filteredChronicInfectiousBronchyRecords = chronicInfectiousBronchyRecords.filter( ct => 
-                         ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                          );
                     
                 
@@ -2238,47 +2239,47 @@ export const actions = {
                 // console.log(filteredILRecords.length)
         
                  const filteredNewcastleRecords = newCastleRecords.filter( ct => 
-                 ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                  );
         
                  const filteredGumboroRecords = gumboroRecords.filter( ct => 
-                 ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                  );
         
                  const filteredCoccidiosisecords = coccidiosisRecords.filter( ct => 
-                 ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                  );
         
                  const filteredFowlPoxRecords = fowlPoxRecords.filter( ct => 
-                 ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                  );
         
                  const filteredEggPeritonitisRecords = eggPeritonitisRecords.filter( ct => 
-                 ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                  );
         
                  const filteredEctoParasitesRecords = ectoParasitesRecords.filter( ct => 
-                     ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                     new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
             
                  const filteredHelminthiasisRecords = helminthiasisRecords.filter( ct => 
-                 ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                  );
         
                  const filteredMycoplasmosisRecords = mycoPlasmosisRecords.filter( ct => 
-                 ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                  );
         
                  const filteredSnakeBiteRecords = snakeBiteRecords.filter( ct => 
-                 ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                  );
         
                  const filteredColibacillosisRecords = colibacillosisRecords.filter( ct => 
-                 ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                  );
         
                  const filteredChronicInfectiousBronchyRecords = chronicInfectiousBronchyRecords.filter( ct => 
-                 ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                  );
             
         
@@ -2417,45 +2418,45 @@ export const actions = {
                      
                       
                           const filteredHeatStressRecords = heatStressRecords.filter( atf => 
-                          atf.date >= newPostMortemFilterRecord.startDate && atf.date <= newPostMortemFilterRecord.endDate
+                          new Date(atf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atf.date) <= new Date(newPostMortemFilterRecord.endDate)
                           );
                
                          // console.log(filteredHeatStressRecords.length)
                
                             const filteredNewCastleRecords = broilerNewCastleRecords.filter( btf => 
-                            btf.date >= newPostMortemFilterRecord.startDate && btf.date <= newPostMortemFilterRecord.endDate
+                            new Date(btf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btf.date) <= new Date(newPostMortemFilterRecord.endDate)
                             );
                
                            // console.log(filteredNewCastleRecords)
                
                             const filteredGumboroRecords = broilerGumboroRecords.filter( ct => 
-                            ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                            new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                             );
                
                              const filteredCoccidiosisecords = broilerCoccidiosisRecords.filter( dt => 
-                             dt.date >= newPostMortemFilterRecord.startDate && dt.date <= newPostMortemFilterRecord.endDate
+                             new Date(dt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dt.date) <= new Date(newPostMortemFilterRecord.endDate)
                              );
                
                              const filteredInfectiousCoryzaRecords = infectiousCoryzaRecords.filter( et => 
-                             et.date >= newPostMortemFilterRecord.startDate && et.date <= newPostMortemFilterRecord.endDate
+                             new Date(et.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(et.date) <= new Date(newPostMortemFilterRecord.endDate)
                              );
                
                             const filteredChronicRespDiseaseRecords = chronicRespDiseaseRecords.filter( ft => 
-                            ft.date >= newPostMortemFilterRecord.startDate && ft.date <= newPostMortemFilterRecord.endDate
+                            new Date(ft.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ft.date) <= new Date(newPostMortemFilterRecord.endDate)
                             );
                
                             const filteredAscitesRecords = ascitesRecords.filter( gt => 
-                                gt.date >= newPostMortemFilterRecord.startDate && gt.date <= newPostMortemFilterRecord.endDate
+                                new Date(gt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(gt.date) <= new Date(newPostMortemFilterRecord.endDate)
                                 );
                    
                        
                
                              const filteredColibacillosisRecords = broilerColibacillosisRecords.filter( ht => 
-                             ht.date >= newPostMortemFilterRecord.startDate && ht.date <= newPostMortemFilterRecord.endDate
+                             new Date(ht.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ht.date) <= new Date(newPostMortemFilterRecord.endDate)
                              );
                
                             const filteredTraumaRecords = traumaRecords.filter( it => 
-                            it.date >= newPostMortemFilterRecord.startDate && it.date <= newPostMortemFilterRecord.endDate
+                            new Date(it.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(it.date) <= new Date(newPostMortemFilterRecord.endDate)
                             );
                    
                
@@ -2543,45 +2544,45 @@ export const actions = {
              
               
                   const filteredHeatStressRecords = heatStressRecords.filter( atf => 
-                  atf.date >= newPostMortemFilterRecord.startDate && atf.date <= newPostMortemFilterRecord.endDate
+                  new Date(atf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atf.date) <= new Date(newPostMortemFilterRecord.endDate)
                   );
        
                  // console.log(filteredHeatStressRecords.length)
        
                     const filteredNewCastleRecords = broilerNewCastleRecords.filter( btf => 
-                    btf.date >= newPostMortemFilterRecord.startDate && btf.date <= newPostMortemFilterRecord.endDate
+                    new Date(btf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btf.date) <= new Date(newPostMortemFilterRecord.endDate)
                     );
        
                    // console.log(filteredNewCastleRecords)
        
                     const filteredGumboroRecords = broilerGumboroRecords.filter( ct => 
-                    ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                    new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                     );
        
                      const filteredCoccidiosisecords = broilerCoccidiosisRecords.filter( dt => 
-                     dt.date >= newPostMortemFilterRecord.startDate && dt.date <= newPostMortemFilterRecord.endDate
+                     new Date(dt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dt.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
        
                      const filteredInfectiousCoryzaRecords = infectiousCoryzaRecords.filter( et => 
-                     et.date >= newPostMortemFilterRecord.startDate && et.date <= newPostMortemFilterRecord.endDate
+                     new Date(et.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(et.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
        
                     const filteredChronicRespDiseaseRecords = chronicRespDiseaseRecords.filter( ft => 
-                    ft.date >= newPostMortemFilterRecord.startDate && ft.date <= newPostMortemFilterRecord.endDate
+                    new Date(ft.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ft.date) <= new Date(newPostMortemFilterRecord.endDate)
                     );
        
                     const filteredAscitesRecords = ascitesRecords.filter( gt => 
-                        gt.date >= newPostMortemFilterRecord.startDate && gt.date <= newPostMortemFilterRecord.endDate
+                        new Date(gt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(gt.date) <= new Date(newPostMortemFilterRecord.endDate)
                         );
            
                
        
                      const filteredColibacillosisRecords = broilerColibacillosisRecords.filter( ht => 
-                     ht.date >= newPostMortemFilterRecord.startDate && ht.date <= newPostMortemFilterRecord.endDate
+                     new Date(ht.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ht.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
        
                     const filteredTraumaRecords = traumaRecords.filter( it => 
-                    it.date >= newPostMortemFilterRecord.startDate && it.date <= newPostMortemFilterRecord.endDate
+                    new Date(it.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(it.date) <= new Date(newPostMortemFilterRecord.endDate)
                     );
            
        
@@ -2712,45 +2713,45 @@ export const actions = {
                      
                       
                           const filteredFattyLiverHSRecords = fattyLiveHSRecords.filter( atf => 
-                          atf.date >= newPostMortemFilterRecord.startDate && atf.date <= newPostMortemFilterRecord.endDate
+                          new Date(atf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atf.date) <= new Date(newPostMortemFilterRecord.endDate)
                           );
                
                          // console.log(filteredFattyLiverHSRecords.length)
                
                              const filteredNewCastleRecords = layerNewCastleRecords.filter( btf => 
-                             btf.date >= newPostMortemFilterRecord.startDate && btf.date <= newPostMortemFilterRecord.endDate
+                             new Date(btf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btf.date) <= new Date(newPostMortemFilterRecord.endDate)
                              );
                
                            // // console.log(filteredNewCastleRecords)
                
                              const filteredGumboroRecords = layerGumboroRecords.filter( ctf => 
-                             ctf.date >= newPostMortemFilterRecord.startDate && ctf.date <= newPostMortemFilterRecord.endDate
+                             new Date(ctf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctf.date) <= new Date(newPostMortemFilterRecord.endDate)
                              );
                
                               const filteredLayerCoccidiosisRecords = layerCoccidiosisRecords.filter( dtf => 
-                              dtf.date >= newPostMortemFilterRecord.startDate && dtf.date <= newPostMortemFilterRecord.endDate
+                              new Date(dtf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtf.date) <= new Date(newPostMortemFilterRecord.endDate)
                               );
                
                               const filteredHelminthiasisRecords = layerHelminthiasisRecords.filter( etf => 
-                              etf.date >= newPostMortemFilterRecord.startDate && etf.date <= newPostMortemFilterRecord.endDate
+                              new Date(etf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etf.date) <= new Date(newPostMortemFilterRecord.endDate)
                               );
                
                             const filteredInfectiousBronchyRecords = layerInfectiousBronchyRecords.filter( ftf => 
-                            ftf.date >= newPostMortemFilterRecord.startDate && ftf.date <= newPostMortemFilterRecord.endDate
+                            new Date(ftf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ftf.date) <= new Date(newPostMortemFilterRecord.endDate)
                             );
                
                              const filteredEggPeritonitisRecords = layerEggPeritonitisRecords.filter( gtf => 
-                                 gtf.date >= newPostMortemFilterRecord.startDate && gtf.date <= newPostMortemFilterRecord.endDate
+                                 new Date(gtf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(gtf.date) <= new Date(newPostMortemFilterRecord.endDate)
                                  );
                    
                        
                
                               const filteredCalciumDeficiencyRecords = layerCalciumDeficiencyRecords.filter( ht => 
-                              ht.date >= newPostMortemFilterRecord.startDate && ht.date <= newPostMortemFilterRecord.endDate
+                              new Date(ht.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ht.date) <= new Date(newPostMortemFilterRecord.endDate)
                               );
                
                              const filteredLaryngotracheitisRecords = laryngotracheitisRecords.filter( it => 
-                             it.date >= newPostMortemFilterRecord.startDate && it.date <= newPostMortemFilterRecord.endDate
+                             new Date(it.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(it.date) <= new Date(newPostMortemFilterRecord.endDate)
                              );
                    
                
@@ -2838,45 +2839,45 @@ export const actions = {
              
               
                   const filteredFattyLiverHSRecords = fattyLiveHSRecords.filter( atf => 
-                  atf.date >= newPostMortemFilterRecord.startDate && atf.date <= newPostMortemFilterRecord.endDate
+                  new Date(atf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atf.date) <= new Date(newPostMortemFilterRecord.endDate)
                   );
        
                  // console.log(filteredFattyLiverHSRecords.length)
        
                      const filteredNewCastleRecords = layerNewCastleRecords.filter( btf => 
-                     btf.date >= newPostMortemFilterRecord.startDate && btf.date <= newPostMortemFilterRecord.endDate
+                     new Date(btf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btf.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
        
                    // // console.log(filteredNewCastleRecords)
        
                      const filteredGumboroRecords = layerGumboroRecords.filter( ctf => 
-                     ctf.date >= newPostMortemFilterRecord.startDate && ctf.date <= newPostMortemFilterRecord.endDate
+                     new Date(ctf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctf.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
        
                       const filteredLayerCoccidiosisRecords = layerCoccidiosisRecords.filter( dtf => 
-                      dtf.date >= newPostMortemFilterRecord.startDate && dtf.date <= newPostMortemFilterRecord.endDate
+                      new Date(dtf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtf.date) <= new Date(newPostMortemFilterRecord.endDate)
                       );
        
                       const filteredHelminthiasisRecords = layerHelminthiasisRecords.filter( etf => 
-                      etf.date >= newPostMortemFilterRecord.startDate && etf.date <= newPostMortemFilterRecord.endDate
+                      new Date(etf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etf.date) <= new Date(newPostMortemFilterRecord.endDate)
                       );
        
                     const filteredInfectiousBronchyRecords = layerInfectiousBronchyRecords.filter( ftf => 
-                    ftf.date >= newPostMortemFilterRecord.startDate && ftf.date <= newPostMortemFilterRecord.endDate
+                    new Date(ftf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ftf.date) <= new Date(newPostMortemFilterRecord.endDate)
                     );
        
                      const filteredEggPeritonitisRecords = layerEggPeritonitisRecords.filter( gtf => 
-                         gtf.date >= newPostMortemFilterRecord.startDate && gtf.date <= newPostMortemFilterRecord.endDate
+                         new Date(gtf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(gtf.date) <= new Date(newPostMortemFilterRecord.endDate)
                          );
            
                
        
                       const filteredCalciumDeficiencyRecords = layerCalciumDeficiencyRecords.filter( ht => 
-                      ht.date >= newPostMortemFilterRecord.startDate && ht.date <= newPostMortemFilterRecord.endDate
+                      new Date(ht.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ht.date) <= new Date(newPostMortemFilterRecord.endDate)
                       );
        
                      const filteredLaryngotracheitisRecords = laryngotracheitisRecords.filter( it => 
-                     it.date >= newPostMortemFilterRecord.startDate && it.date <= newPostMortemFilterRecord.endDate
+                     new Date(it.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(it.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
            
        
@@ -2989,23 +2990,23 @@ export const actions = {
                      
                       
                           const filteredMycoPlasmosisRecords = mycoPlasmosisRecords.filter( atp => 
-                          atp.date >= newPostMortemFilterRecord.startDate && atp.date <= newPostMortemFilterRecord.endDate
+                          new Date(atp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atp.date) <= new Date(newPostMortemFilterRecord.endDate)
                           );
                
                          // console.log(filteredMycoPlasmosisRecords.length)
                
                              const filteredPneumoniaRecords = pneumoniaRecords.filter( btp => 
-                             btp.date >= newPostMortemFilterRecord.startDate && btp.date <= newPostMortemFilterRecord.endDate
+                             new Date(btp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btp.date) <= new Date(newPostMortemFilterRecord.endDate)
                              );
                
                            // console.log(filteredPneumoniaRecords.length)
                
                              const filteredClostridialInfectionRecords = clostridialInfectionRecords.filter( ctp => 
-                             ctp.date >= newPostMortemFilterRecord.startDate && ctp.date <= newPostMortemFilterRecord.endDate
+                             new Date(ctp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctp.date) <= new Date(newPostMortemFilterRecord.endDate)
                              );
                
                               const filteredEnteritisRecords = enteritisRecords.filter( dtp => 
-                              dtp.date >= newPostMortemFilterRecord.startDate && dtp.date <= newPostMortemFilterRecord.endDate
+                              new Date(dtp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtp.date) <= new Date(newPostMortemFilterRecord.endDate)
                               );
                
                          
@@ -3061,23 +3062,23 @@ export const actions = {
              
               
                   const filteredMycoPlasmosisRecords = mycoPlasmosisRecords.filter( atp => 
-                  atp.date >= newPostMortemFilterRecord.startDate && atp.date <= newPostMortemFilterRecord.endDate
+                  new Date(atp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atp.date) <= new Date(newPostMortemFilterRecord.endDate)
                   );
        
                  // console.log(filteredMycoPlasmosisRecords.length)
        
                      const filteredPneumoniaRecords = pneumoniaRecords.filter( btp => 
-                     btp.date >= newPostMortemFilterRecord.startDate && btp.date <= newPostMortemFilterRecord.endDate
+                     new Date(btp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btp.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
        
                    // console.log(filteredPneumoniaRecords.length)
        
                      const filteredClostridialInfectionRecords = clostridialInfectionRecords.filter( ctp => 
-                     ctp.date >= newPostMortemFilterRecord.startDate && ctp.date <= newPostMortemFilterRecord.endDate
+                     new Date(ctp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctp.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
        
                       const filteredEnteritisRecords = enteritisRecords.filter( dtp => 
-                      dtp.date >= newPostMortemFilterRecord.startDate && dtp.date <= newPostMortemFilterRecord.endDate
+                      new Date(dtp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtp.date) <= new Date(newPostMortemFilterRecord.endDate)
                       );
        
                  
@@ -3173,23 +3174,23 @@ export const actions = {
                      
                       
                           const filteredHelminthiasisRecords = helminthiasisRecords.filter( atg => 
-                          atg.date >= newPostMortemFilterRecord.startDate && atg.date <= newPostMortemFilterRecord.endDate
+                          new Date(atg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atg.date) <= new Date(newPostMortemFilterRecord.endDate)
                           );
                
                          // console.log(filteredHelminthiasisRecords.length)
                
                              const filteredHeartWaterRecords = heartWaterRecords.filter( btg => 
-                             btg.date >= newPostMortemFilterRecord.startDate && btg.date <= newPostMortemFilterRecord.endDate
+                             new Date(btg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btg.date) <= new Date(newPostMortemFilterRecord.endDate)
                              );
                
                            // console.log(filteredHeartWaterRecords.length)
                
                              const filteredTraumaRecords = traumaRecords.filter( ctg => 
-                             ctg.date >= newPostMortemFilterRecord.startDate && ctg.date <= newPostMortemFilterRecord.endDate
+                             new Date(ctg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctg.date) <= new Date(newPostMortemFilterRecord.endDate)
                              );
                
                               const filteredHemonchosisRecords = hemonchosisRecords.filter( dtg => 
-                              dtg.date >= newPostMortemFilterRecord.startDate && dtg.date <= newPostMortemFilterRecord.endDate
+                              new Date(dtg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtg.date) <= new Date(newPostMortemFilterRecord.endDate)
                               );
                
                          
@@ -3245,23 +3246,23 @@ export const actions = {
              
               
                   const filteredHelminthiasisRecords = helminthiasisRecords.filter( atg => 
-                  atg.date >= newPostMortemFilterRecord.startDate && atg.date <= newPostMortemFilterRecord.endDate
+                  new Date(atg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atg.date) <= new Date(newPostMortemFilterRecord.endDate)
                   );
        
                  // console.log(filteredHelminthiasisRecords.length)
        
                      const filteredHeartWaterRecords = heartWaterRecords.filter( btg => 
-                     btg.date >= newPostMortemFilterRecord.startDate && btg.date <= newPostMortemFilterRecord.endDate
+                     new Date(btg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btg.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
        
                    // console.log(filteredHeartWaterRecords.length)
        
                      const filteredTraumaRecords = traumaRecords.filter( ctg => 
-                     ctg.date >= newPostMortemFilterRecord.startDate && ctg.date <= newPostMortemFilterRecord.endDate
+                     new Date(ctg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctg.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
        
                       const filteredHemonchosisRecords = hemonchosisRecords.filter( dtg => 
-                      dtg.date >= newPostMortemFilterRecord.startDate && dtg.date <= newPostMortemFilterRecord.endDate
+                      new Date(dtg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtg.date) <= new Date(newPostMortemFilterRecord.endDate)
                       );
        
                  
@@ -3348,13 +3349,13 @@ export const actions = {
                       
                       
                           const filteredColibacillosisRecords = colibacillosisRecords.filter( atq => 
-                          atq.date >= newPostMortemFilterRecord.startDate && atq.date <= newPostMortemFilterRecord.endDate
+                          new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
                           );
                
                          // console.log(filteredColibacillosisRecords.length)
                
                              const filteredSalmonellosisRecords = salmonellosisRecords.filter( btq => 
-                             btq.date >= newPostMortemFilterRecord.startDate && btq.date <= newPostMortemFilterRecord.endDate
+                             new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
                              );
                
                            // console.log(filteredSalmonellosisRecords.length)
@@ -3395,13 +3396,13 @@ export const actions = {
               
               
                   const filteredColibacillosisRecords = colibacillosisRecords.filter( atq => 
-                  atq.date >= newPostMortemFilterRecord.startDate && atq.date <= newPostMortemFilterRecord.endDate
+                  new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
                   );
        
                  // console.log(filteredColibacillosisRecords.length)
        
                      const filteredSalmonellosisRecords = salmonellosisRecords.filter( btq => 
-                     btq.date >= newPostMortemFilterRecord.startDate && btq.date <= newPostMortemFilterRecord.endDate
+                     new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
        
                    // console.log(filteredSalmonellosisRecords.length)
@@ -3484,13 +3485,13 @@ export const actions = {
                       
                       
                           const filteredCoccidiosisRecords =coccidiosisRecords.filter( atq => 
-                          atq.date >= newPostMortemFilterRecord.startDate && atq.date <= newPostMortemFilterRecord.endDate
+                          new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
                           );
                
                       //   // console.log(filteredCoccidiosisRecords.length)
                
                              const filteredBacterialInfectionRecords = bacterialInfectionRecords.filter( btq => 
-                             btq.date >= newPostMortemFilterRecord.startDate && btq.date <= newPostMortemFilterRecord.endDate
+                             new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
                              );
                
                     //       // console.log(filteredBacterialInfectionRecords.length)
@@ -3532,13 +3533,13 @@ export const actions = {
               
               
                   const filteredCoccidiosisRecords =coccidiosisRecords.filter( atq => 
-                  atq.date >= newPostMortemFilterRecord.startDate && atq.date <= newPostMortemFilterRecord.endDate
+                  new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
                   );
        
             //     // console.log(filteredCoccidiosisRecords.length)
        
                      const filteredBacterialInfectionRecords = bacterialInfectionRecords.filter( btq => 
-                     btq.date >= newPostMortemFilterRecord.startDate && btq.date <= newPostMortemFilterRecord.endDate
+                     new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
        
                 //   // console.log(filteredBacterialInfectionRecords.length)
@@ -3619,7 +3620,7 @@ export const actions = {
                       
                       
                           const filteredAnaPlasmosisRecords =anaPlasmosisRecords.filter( atq => 
-                          atq.date >= newPostMortemFilterRecord.startDate && atq.date <= newPostMortemFilterRecord.endDate
+                          new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
                           );
                
                        //  // console.log(filteredAnaPlasmosisRecords.length)
@@ -3656,7 +3657,7 @@ export const actions = {
               
               
                   const filteredAnaPlasmosisRecords =anaPlasmosisRecords.filter( atq => 
-                  atq.date >= newPostMortemFilterRecord.startDate && atq.date <= newPostMortemFilterRecord.endDate
+                  new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
                   );
        
                 // // console.log(filteredAnaPlasmosisRecords.length)

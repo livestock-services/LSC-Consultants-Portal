@@ -236,7 +236,7 @@ export const actions = {
                     
 
                       const filteredFishConsultsRecords = customeUserRecords.filter( at => 
-                        at.date >= startDate && at.date <= endDate
+                        new Date(at.date) >= new Date(startDate) && new Date(at.date) <= new Date(endDate)
                         );
 
                      
@@ -256,7 +256,7 @@ export const actions = {
         else{
 
             const filteredFishConsultsRecords = response.data.filter( at => 
-                at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
                 );
        
        

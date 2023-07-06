@@ -243,11 +243,11 @@ export const actions = {
                
                   //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
                         const filteredBeefAIConsultsRecords = beefAIConsultsRecords.filter( at => 
-                       at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                       new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
                        );
                
                        const filteredBeefAISalesRecords = beefAISalesRecords.filter( bt => 
-                           bt.date >= newFilterRecord.startDate && bt.date <= newFilterRecord.endDate
+                           new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
                            );
                
                       
@@ -293,11 +293,11 @@ export const actions = {
        
           //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
                 const filteredBeefAIConsultsRecords = beefAIConsultsRecords.filter( at => 
-               at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+               new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
                );
        
                const filteredBeefAISalesRecords = beefAISalesRecords.filter( bt => 
-                   bt.date >= newFilterRecord.startDate && bt.date <= newFilterRecord.endDate
+                   new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
                    );
        
               

@@ -446,47 +446,47 @@ export const actions = {
                 
                    //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
                          const filteredLandscapingRecords = landscapingRecords.filter( at => 
-                        at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                        new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
                         );
                 
                         const filteredPestControlVegRecords = pestControlVegRecords.filter( bt => 
-                            bt.date >= newFilterRecord.startDate && bt.date <= newFilterRecord.endDate
+                            new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
                             );
                 
                         const filteredHouseholdTermitesRecords = householdTermitesRecords.filter( ct => 
-                        ct.date >= newFilterRecord.startDate && ct.date <= newFilterRecord.endDate
+                        new Date(ct.date) >= new Date(newFilterRecord.startDate) && new Date(ct.date) <= new Date(newFilterRecord.endDate)
                         );
                 
                         const filteredAgricFieldTermitesRecords = agricFieldTermitesRecords.filter( dt => 
-                        dt.date >= newFilterRecord.startDate && dt.date <= newFilterRecord.endDate
+                        new Date(dt.date) >= new Date(newFilterRecord.startDate) && new Date(dt.date) <= new Date(newFilterRecord.endDate)
                         );
                 
                         const filteredGrainProtectionRecords = grainProtectionRecords.filter( et => 
-                        et.date >= newFilterRecord.startDate && et.date <= newFilterRecord.endDate
+                        new Date(et.date) >= new Date(newFilterRecord.startDate) && new Date(et.date) <= new Date(newFilterRecord.endDate)
                         );
                 
                         const filteredWeedControlRecords= weedControlRecords.filter( ft => 
-                        ft.date >= newFilterRecord.startDate && ft.date <= newFilterRecord.endDate
+                        new Date(ft.date) >= new Date(newFilterRecord.startDate) && new Date(ft.date) <= new Date(newFilterRecord.endDate)
                         );
                 
                         const filteredPestControlFieldRecords = pestControlFieldRecords.filter( gt => 
-                        gt.date >= newFilterRecord.startDate && gt.date <= newFilterRecord.endDate
+                        new Date(gt.date) >= new Date(newFilterRecord.startDate) && new Date(gt.date) <= new Date(newFilterRecord.endDate)
                         );
                 
                         const filteredPublicHealthRecords = publicHealthRecords.filter( ht => 
-                            ht.date >= newFilterRecord.startDate && ht.date <= newFilterRecord.endDate
+                            new Date(ht.date) >= new Date(newFilterRecord.startDate) && new Date(ht.date) <= new Date(newFilterRecord.endDate)
                             );
                 
                         const filteredVegEnterpriseBudgetRecords = vegEnterpriseBudgetRecords.filter( it => 
-                        it.date >= newFilterRecord.startDate && it.date <= newFilterRecord.endDate
+                        new Date(it.date) >= new Date(newFilterRecord.startDate) && new Date(it.date) <= new Date(newFilterRecord.endDate)
                         );
                 
                         const filteredPestControlOrchardsRecords = pestControlOrchardsRecords.filter( jt => 
-                        jt.date >= newFilterRecord.startDate && jt.date <= newFilterRecord.endDate
+                        new Date(jt.date) >= new Date(newFilterRecord.startDate) && new Date(jt.date) <= new Date(newFilterRecord.endDate)
                         );
                 
                         const filteredSoilAnalysisRecords = soilAnalysisRecords.filter( kt => 
-                        kt.date >= newFilterRecord.startDate && kt.date <= newFilterRecord.endDate
+                        new Date(kt.date) >= new Date(newFilterRecord.startDate) && new Date(kt.date) <= new Date(newFilterRecord.endDate)
                         );
                         
                        // console.log(filteredLandscapingRecords.length);
@@ -584,47 +584,47 @@ export const actions = {
         
            //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
                  const filteredLandscapingRecords = landscapingRecords.filter( at => 
-                at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
                 );
         
                 const filteredPestControlVegRecords = pestControlVegRecords.filter( bt => 
-                    bt.date >= newFilterRecord.startDate && bt.date <= newFilterRecord.endDate
+                    new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
                     );
         
                 const filteredHouseholdTermitesRecords = householdTermitesRecords.filter( ct => 
-                ct.date >= newFilterRecord.startDate && ct.date <= newFilterRecord.endDate
+                new Date(ct.date) >= new Date(newFilterRecord.startDate) && new Date(ct.date) <= new Date(newFilterRecord.endDate)
                 );
         
                 const filteredAgricFieldTermitesRecords = agricFieldTermitesRecords.filter( dt => 
-                dt.date >= newFilterRecord.startDate && dt.date <= newFilterRecord.endDate
+                new Date(dt.date) >= new Date(newFilterRecord.startDate) && new Date(dt.date) <= new Date(newFilterRecord.endDate)
                 );
         
                 const filteredGrainProtectionRecords = grainProtectionRecords.filter( et => 
-                et.date >= newFilterRecord.startDate && et.date <= newFilterRecord.endDate
+                new Date(et.date) >= new Date(newFilterRecord.startDate) && new Date(et.date) <= new Date(newFilterRecord.endDate)
                 );
         
                 const filteredWeedControlRecords= weedControlRecords.filter( ft => 
-                ft.date >= newFilterRecord.startDate && ft.date <= newFilterRecord.endDate
+                new Date(ft.date) >= new Date(newFilterRecord.startDate) && new Date(ft.date) <= new Date(newFilterRecord.endDate)
                 );
         
                 const filteredPestControlFieldRecords = pestControlFieldRecords.filter( gt => 
-                gt.date >= newFilterRecord.startDate && gt.date <= newFilterRecord.endDate
+                new Date(gt.date) >= new Date(newFilterRecord.startDate) && new Date(gt.date) <= new Date(newFilterRecord.endDate)
                 );
         
                 const filteredPublicHealthRecords = publicHealthRecords.filter( ht => 
-                    ht.date >= newFilterRecord.startDate && ht.date <= newFilterRecord.endDate
+                    new Date(ht.date) >= new Date(newFilterRecord.startDate) && new Date(ht.date) <= new Date(newFilterRecord.endDate)
                     );
         
                 const filteredVegEnterpriseBudgetRecords = vegEnterpriseBudgetRecords.filter( it => 
-                it.date >= newFilterRecord.startDate && it.date <= newFilterRecord.endDate
+                new Date(it.date) >= new Date(newFilterRecord.startDate) && new Date(it.date) <= new Date(newFilterRecord.endDate)
                 );
         
                 const filteredPestControlOrchardsRecords = pestControlOrchardsRecords.filter( jt => 
-                jt.date >= newFilterRecord.startDate && jt.date <= newFilterRecord.endDate
+                new Date(jt.date) >= new Date(newFilterRecord.startDate) && new Date(jt.date) <= new Date(newFilterRecord.endDate)
                 );
         
                 const filteredSoilAnalysisRecords = soilAnalysisRecords.filter( kt => 
-                kt.date >= newFilterRecord.startDate && kt.date <= newFilterRecord.endDate
+                new Date(kt.date) >= new Date(newFilterRecord.startDate) && new Date(kt.date) <= new Date(newFilterRecord.endDate)
                 );
                 
                // console.log(filteredLandscapingRecords.length);

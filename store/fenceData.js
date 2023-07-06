@@ -217,8 +217,11 @@ export const actions = {
 
               newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString();
 
-             // console.log(newFilterRecord.startDate);
-             // console.log(newFilterRecord.endDate);
+            //   console.log(newFilterRecord.startDate.toLocaleDateString('en-US'));
+            //  console.log(newFilterRecord.endDate.toLocaleDateString('en-US'));
+
+             console.log(newFilterRecord.startDate);
+             console.log(newFilterRecord.endDate);
             
            
           //---   API REQUEST IS MADE AND RESULT IS STORED IN CONST
@@ -236,12 +239,12 @@ export const actions = {
                         
                     }
 
-                      const filteredFenceConsultsRecords = customeUserRecords.filter( at => 
-                        at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
-                        
-                        );
+                    const filteredFenceConsultsRecords = customeUserRecords.filter(at => 
+                      new Date(at.date) >= new Date(newFilterRecord.startDate)  && new Date(at.date) <= new Date(newFilterRecord.endDate)
+                      );
+                      
 
-               
+                       
                        
                            commit(GET_FILTERED_FENCE_START_TIME, newFilterRecord.startDate);
                
@@ -254,7 +257,7 @@ export const actions = {
     
         else{
             const filteredFenceConsultsRecords = response.data.filter( at => 
-                (at.date >= newFilterRecord.startDate) && (at.date <= newFilterRecord.endDate)
+                new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
                 );
        
               

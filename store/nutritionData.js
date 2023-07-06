@@ -307,12 +307,12 @@ import {
     
                  const newFilterRecord = cloneDeep(state.nutritionFilterForm);
     
-                 newFilterRecord.startDate = newFilterRecord.startDate.toLocaleDateString();
+                 newFilterRecord.startDate = new Date(newFilterRecord.startDate).toLocaleDateString();
     
-                 newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString();
+                newFilterRecord.endDate = new Date(newFilterRecord.endDate).toLocaleDateString();
     
-                 console.log(newFilterRecord.startDate);
-                 console.log(newFilterRecord.endDate);
+                 console.log(new Date(newFilterRecord.startDate));
+                 console.log(new Date(newFilterRecord.endDate));
                 
                
                 //API REQUEST IS MADE AND RESULT IS STORED IN CONST
@@ -377,45 +377,45 @@ import {
                     
                     //    //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
                               const filteredCattleRecords = cattleRecords.filter( at => 
-                             at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                             new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
                              );
                     
                     
                     
                              const filteredGoatRecords = goatRecords.filter( bt => 
-                                 bt.date >= newFilterRecord.startDate && bt.date <= newFilterRecord.endDate
+                                 new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
                                  );
                     
                              const filteredSheepRecords = sheepRecords.filter( ct => 
-                             ct.date >= newFilterRecord.startDate && ct.date <= newFilterRecord.endDate
+                             new Date(ct.date) >= new Date(newFilterRecord.startDate) && new Date(ct.date) <= new Date(newFilterRecord.endDate)
                              );
                     
                              const filteredPigRecords = pigRecords.filter( dt => 
-                             dt.date >= newFilterRecord.startDate && dt.date <= newFilterRecord.endDate
+                             new Date(dt.date) >= new Date(newFilterRecord.startDate) && new Date(dt.date) <= new Date(newFilterRecord.endDate)
                              );
                     
                              const filteredPoultryRecords = poultryRecords.filter( et => 
-                             et.date >= newFilterRecord.startDate && et.date <= newFilterRecord.endDate
+                             new Date(et.date) >= new Date(newFilterRecord.startDate) && new Date(et.date) <= new Date(newFilterRecord.endDate)
                              );
                     
                              const filteredDogsAndCatsRecords= dogsAndCatsRecords.filter( ft => 
-                             ft.date >= newFilterRecord.startDate && ft.date <= newFilterRecord.endDate
+                             new Date(ft.date) >= new Date(newFilterRecord.startDate) && new Date(ft.date) <= new Date(newFilterRecord.endDate)
                              );
                     
                              const filteredRabbitRecords = rabbitRecords.filter( gt => 
-                             gt.date >= newFilterRecord.startDate && gt.date <= newFilterRecord.endDate
+                             new Date(gt.date) >= new Date(newFilterRecord.startDate) && new Date(gt.date) <= new Date(newFilterRecord.endDate)
                              );
                     
                              const filteredWildlifeOrExoticsRecords = wildlifeOrExoticsRecords.filter( ht => 
-                                 ht.date >= newFilterRecord.startDate && ht.date <= newFilterRecord.endDate
+                                 new Date(ht.date) >= new Date(newFilterRecord.startDate) && new Date(ht.date) <= new Date(newFilterRecord.endDate)
                                  );
                     
                              const filteredHorseRecords = horseRecords.filter( it => 
-                             it.date >= newFilterRecord.startDate && it.date <= newFilterRecord.endDate
+                             new Date(it.date) >= new Date(newFilterRecord.startDate) && new Date(it.date) <= new Date(newFilterRecord.endDate)
                              );
                     
                              const filteredOtherRecords = otherRecords.filter( jt => 
-                                jt.date >= newFilterRecord.startDate || jt.date <= newFilterRecord.endDate
+                                new Date(jt.date) >= new Date(newFilterRecord.startDate) || new Date(jt.date) <= new Date(newFilterRecord.endDate)
                                 );
                             
                             
@@ -450,9 +450,9 @@ import {
                                //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
                             //   commit(GET_ALL_Nutrition_RECORDS, response.data);
                     
-                               commit(GET_FILTERED_NUTRITION_START_TIME, newFilterRecord.startDate);
+                               commit(GET_FILTERED_NUTRITION_START_TIME, new Date(newFilterRecord.startDate));
                     
-                               commit(GET_FILTERED_NUTRITION_END_TIME, newFilterRecord.endDate);
+                               commit(GET_FILTERED_NUTRITION_END_TIME, new Date(newFilterRecord.endDate));
                     
                               commit(GET_ALL_NUTRITION_CATTLE_RECORDS, filteredCattleRecords.length);
                     
@@ -530,41 +530,41 @@ import {
             
             //    //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
                       const filteredCattleRecords = cattleRecords.filter( at => 
-                     at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                     new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
                      );
             
             
             
                      const filteredGoatRecords = goatRecords.filter( bt => 
-                         bt.date >= newFilterRecord.startDate && bt.date <= newFilterRecord.endDate
+                         new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
                          );
             
                      const filteredSheepRecords = sheepRecords.filter( ct => 
-                     ct.date >= newFilterRecord.startDate && ct.date <= newFilterRecord.endDate
+                     new Date(ct.date) >= new Date(newFilterRecord.startDate) && new Date(ct.date) <= new Date(newFilterRecord.endDate)
                      );
             
                      const filteredPigRecords = pigRecords.filter( dt => 
-                     dt.date >= newFilterRecord.startDate && dt.date <= newFilterRecord.endDate
+                     new Date(dt.date) >= new Date(newFilterRecord.startDate) && new Date(dt.date) <= new Date(newFilterRecord.endDate)
                      );
             
                      const filteredPoultryRecords = poultryRecords.filter( et => 
-                     et.date >= newFilterRecord.startDate && et.date <= newFilterRecord.endDate
+                     new Date(et.date) >= new Date(newFilterRecord.startDate) && new Date(et.date) <= new Date(newFilterRecord.endDate)
                      );
             
                      const filteredDogsAndCatsRecords= dogsAndCatsRecords.filter( ft => 
-                     ft.date >= newFilterRecord.startDate && ft.date <= newFilterRecord.endDate
+                     new Date(ft.date) >= new Date(newFilterRecord.startDate) && new Date(ft.date) <= new Date(newFilterRecord.endDate)
                      );
             
                      const filteredRabbitRecords = rabbitRecords.filter( gt => 
-                     gt.date >= newFilterRecord.startDate && gt.date <= newFilterRecord.endDate
+                     new Date(gt.date) >= new Date(newFilterRecord.startDate) && new Date(gt.date) <= new Date(newFilterRecord.endDate)
                      );
             
                      const filteredWildlifeOrExoticsRecords = wildlifeOrExoticsRecords.filter( ht => 
-                         ht.date >= newFilterRecord.startDate && ht.date <= newFilterRecord.endDate
+                         new Date(ht.date) >= new Date(newFilterRecord.startDate) && new Date(ht.date) <= new Date(newFilterRecord.endDate)
                          );
             
                      const filteredHorseRecords = horseRecords.filter( it => 
-                     it.date >= newFilterRecord.startDate && it.date <= newFilterRecord.endDate
+                     new Date(it.date) >= new Date(newFilterRecord.startDate) && new Date(it.date) <= new Date(newFilterRecord.endDate)
                      );
             
                    
@@ -601,9 +601,9 @@ import {
                        //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
                     //   commit(GET_ALL_Nutrition_RECORDS, response.data);
             
-                       commit(GET_FILTERED_NUTRITION_START_TIME, newFilterRecord.startDate);
+                       commit(GET_FILTERED_NUTRITION_START_TIME, new Date(newFilterRecord.startDate));
             
-                       commit(GET_FILTERED_NUTRITION_END_TIME, newFilterRecord.endDate);
+                       commit(GET_FILTERED_NUTRITION_END_TIME, new Date(newFilterRecord.endDate));
             
                       commit(GET_ALL_NUTRITION_CATTLE_RECORDS, filteredCattleRecords.length);
             

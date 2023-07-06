@@ -212,11 +212,11 @@ export const actions = {
 
  //   --------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
           const filteredWaterPumpConsultsRecords = response.data.filter( at => 
-         at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+         new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
          );
 
         //  const filteredWaterPumpSalesRecordsRecords = WaterPumpSalesRecords.filter( bt => 
-        //      bt.date >= newFilterRecord.startDate && bt.date <= newFilterRecord.endDate
+        //      bt.date >= new Date(newFilterRecord.startDate) && bt.date <= newFilterRecord.endDate
         //      );
 
        
