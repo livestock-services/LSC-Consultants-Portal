@@ -2,7 +2,7 @@
     <div>
       <b-tabs class="table" v-model="activeTab">
                    
-                   <b-tab-item label="Beef AI Consultation" >
+                   <b-tab-item label="Cattle AI Consultation" >
                        <BeefAiTable/>
                     </b-tab-item>
 

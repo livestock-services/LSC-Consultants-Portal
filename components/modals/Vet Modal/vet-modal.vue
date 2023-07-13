@@ -92,6 +92,46 @@
               </div>
             </div>
 
+            <h4><span class="is-blue"> Presenting Problem</span></h4>
+
+            <div class="columns">
+              <b-field class="column is-full">
+                <b-select
+                  v-model="vetCategory"
+                  placeholder="Select a Category"
+                >
+                  <option value="Cattle">Digestive</option>
+                  <option value="Goats">Respiratory</option>
+                  <option value="Sheep">Reproductive</option>
+                  <option value="Pigs">Cardiovascular</option>
+                  <option value="Poultry">Nervous</option>
+                  <option value="Dogs & Cats">Musculo-Skeletal</option>
+                  <option value="Rabbits">Integumentary</option>
+                  <option value="Wildlife Or Exotics">Urinary</option>
+                  <option value="Other">Lymphatic</option>
+                  <option value="Horses">Deworming</option>
+                  <option value="Other">Vaccination</option>
+                  <option value="Other">Mortalities</option>
+                  <option value="Other">Weakness</option>
+                  <option value="Other">Inappetence</option>
+                  <option value="Other">Mastitis</option>
+                  <option value="Other">Other</option>
+                </b-select>
+              </b-field>
+            </div>
+
+            <h4><span class="is-blue">Other(if not among the options above)</span></h4>
+
+              <div class="columns">
+                <div class="column is-three-quarters">
+                  <b-input
+                    type="text"
+                    v-model="vetOther"
+                    placeholder="Comments/Remarks"
+                  ></b-input>
+                </div>
+              </div>
+
           <h4><span class="is-blue"> Comments/Remarks</span></h4>
 
           <div class="columns">

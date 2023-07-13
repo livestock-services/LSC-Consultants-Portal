@@ -97,7 +97,7 @@
                 <b-field class="column is-full">
             <b-select v-model="vetPostMortemDiseases" placeholder="Select a disease" icon="book">
                 
-                <optgroup label="Village Chickens">
+                <optgroup v-if="vetPostMortemCategory ==='Village Chicken'" label="Village Chickens">
                     <option value="Infectious Laryngotracheitis">Infectious Laryngotracheitis</option>
                     <option value="Newcastle">Newcastle</option>
                     <option value="Gumboro">Gumboro</option>
@@ -113,7 +113,7 @@
                     
                 </optgroup>
 
-                <optgroup label="Broilers">
+                <optgroup v-if="vetPostMortemCategory ==='Broilers'" label="Broilers">
                     
                     <option value="Gumboro">Gumboro</option>
                     <option value="Newcastle">Newcastle</option>
@@ -127,7 +127,7 @@
                     
                 </optgroup>
 
-                <optgroup label="Layers">
+                <optgroup v-if="vetPostMortemCategory ==='Layers'" label="Layers">
                     <option value="Fatty Liver HS">Fatty Liver HS</option>  
                     <option value="Coccidiosis">Coccidiosis</option>
                     <option value="Egg Peritonitis">Egg Peritonitis</option>
@@ -140,7 +140,7 @@
                     
                 </optgroup>
 
-                <optgroup label="Pigs">
+                <optgroup v-if="vetPostMortemCategory ==='Pigs'" label="Pigs">
                     <option value="Mycoplasmosis">Mycoplasmosis</option>
                     <option value="Pneumonia">Pneumonia</option>
                     <option value="Clostridial Infection">Clostridial Infection</option>
@@ -149,7 +149,7 @@
                     
                 </optgroup>
 
-                <optgroup label="Goats">
+                <optgroup v-if="vetPostMortemCategory ==='Goats'" label="Goats">
                     <option value="Helminthiasis">Helminthiasis</option>
                     <option value="Heartwater">Heartwater</option>
                     <option value="Trauma">Trauma</option>
@@ -158,19 +158,19 @@
                     
                 </optgroup>
 
-                <optgroup label="Quails">
+                <optgroup v-if="vetPostMortemCategory ==='Quails'" label="Quails">
                     <option value="Colibacillosis">Colibacillosis</option>
                     <option value="Salmonellosis">Salmonellosis</option>
                      
                 </optgroup>
 
-                <optgroup label="Rabbits">
+                <optgroup v-if="vetPostMortemCategory ==='Rabbits'" label="Rabbits">
                     <option value="Coccidiosis">Coccidiosis</option>
                     <option value="Bacterial Infection">Bacterial Infection</option>
                     
                 </optgroup>
 
-                <optgroup label="Cattle">
+                <optgroup v-if="vetPostMortemCategory ==='Cattle'" label="Cattle">
                     
                     <option value="Anaplasmosis">Anaplasmosis</option>
                    

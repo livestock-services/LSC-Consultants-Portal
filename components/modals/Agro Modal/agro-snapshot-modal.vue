@@ -34,6 +34,16 @@
 
          <div class="columns">
            <div  class="column is-half">
+             <h4> <span class="is-blue"> Town</span></h4>
+            <p >
+             <span class="tag age "> {{agro.clientTown}} </span>
+              
+            </p>
+           </div>
+         </div>
+
+         <div class="columns">
+           <div  class="column is-half">
              <h4> <span class="is-blue"> Location</span></h4>
             <p >
              <span class="tag  is-light"> {{agro.clientLocation}} </span>
@@ -42,15 +52,7 @@
            </div>
          </div>
 
-           <div class="columns">
-           <div  class="column is-half">
-             <h4> <span class="is-blue"> Town</span></h4>
-            <p >
-             <span class="tag age "> {{agro.clientTown}} </span>
-              
-            </p>
-           </div>
-         </div>
+           
 
            <div class="columns">
            <div  class="column is-half">
@@ -61,6 +63,17 @@
             </p>
            </div>
          </div>
+
+         <div class="columns">
+           <div  class="column is-half">
+             <h4> <span class="is-blue"> Category(Other, if not on the list)</span></h4>
+            <p >
+            <span class="tag is-info" > {{agro.agroOther}} </span>
+              
+            </p>
+           </div>
+         </div>
+
 
 
          <div class="columns">
