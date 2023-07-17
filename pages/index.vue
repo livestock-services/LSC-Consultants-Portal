@@ -440,7 +440,7 @@ export default {
       
 
     return{
-      isLoading:false,
+    
       startVal: 0,
         endVal: 100,
         Bulls: 10,
