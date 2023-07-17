@@ -1,8 +1,18 @@
 <template>
+
+  
   <div class="">
     <div class="grid is-full-height pt-2">
       <div class="card form-card-2"></div>
-      
+
+
+      <div v-if="showPreloader" class="preloader">
+      <b-loading :is-full-page="true" :active.sync="showPreloader">
+       
+      </b-loading>
+     </div>
+
+
       <div class="card-1 form-card-1">
        <FormulateForm
           #default="{ isLoading }"
@@ -11,10 +21,10 @@
           @submit="loginUser"
         >
           <h1 class="header center my-4">
-            <span class="is-blueish">L</span>
-            <span class="is-blueish">S</span> 
-            <span class="is-blueish">C</span>
-             <br> <span class="is-greenish" style="font-style: italic; font-family: cursive; color: rgb(29, 28, 52);">Beraten.</span> <span class="tag is-warning">BETA</span>
+            <!-- <span class="is-blueish">Livestock</span>
+            <span class="is-blueish">Services</span>  -->
+           
+             <br> <span class="is-greenish" style="font-style: italic; font-family: cursive; color: rgb(29, 28, 52);">CLAIMS</span> <span class="tag is-warning">BETA</span>
           </h1>
          
         <div>
@@ -92,6 +102,7 @@
     auth: 'guest',
     data() {
       return {
+        showPreloader: false,
         isPageReloaded: false,
         form: {
           
@@ -127,6 +138,14 @@
           
         }),
     },
+
+    mounted() {
+    this.showPreloader = true; // Display preloader on component mount
+    // Simulate page reloading
+    setTimeout(() => {
+      this.showPreloader = false; // Hide preloader after a delay (e.g., when page content is loaded)
+    }, 2500);
+  },
   
     methods: {
      ...mapActions('user', ['getUser']),
@@ -175,7 +194,7 @@
   
               
           this.$buefy.toast.open({
-            duration: 3000,
+            duration: 4000,
             message: 'Welcome!',
             position: 'is-top',
             type: 'is-success',
@@ -185,10 +204,10 @@
           this.$router.push({ path: '/' })
   
           
-            if (!this.isPageReloaded) {
-              this.isPageReloaded = true;
-              window.location.reload();
-            }
+            // if (!this.isPageReloaded) {
+            //   this.isPageReloaded = true;
+            //   window.location.reload();
+            // }
           
         } catch (error) {
           this.form.password = null
@@ -208,6 +227,17 @@
   </script>
   
   <style scoped>
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #e0f7ec;
+  color: rgb(13, 51, 5);
+  z-index: 9999;
+}
   
   .formulate-input::v-deep .email {
     background-color: red;
@@ -267,7 +297,7 @@
   
   .form-card-1 {
 
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
      height: 92vh;  
     grid-row: 2/3;
     grid-column: 3/3;
@@ -277,7 +307,7 @@
   }
   
   .card-content {
-    padding-top: 7.5rem;
+    padding-top: 3.5rem;
     width: auto;
   }
   

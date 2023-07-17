@@ -1,7 +1,13 @@
 <template>
   <section  class="section main-section">
 
-    
+    <div v-if="showPreloader" class="preloader">
+      <b-loading :is-full-page="true" :active.sync="showPreloader">
+        
+      </b-loading>
+     </div>
+
+
      <div v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'"  class="buttons ml-5">
         
 
@@ -382,6 +388,7 @@
 </template>
 
 <script>
+import loader from "vue-ui-preloader";
 import DigitalClock from "vue-digital-clock";
 import Greeting from "~/components/Tools/Other/Greeting.vue"
 import Card from '~/components/Tools/Other/Card.vue'
@@ -394,6 +401,8 @@ import { computed } from 'vue';
 export default {
   name: 'IndexPage',
   components: {
+
+    loader,
    countTo ,
     Card,
     DigitalClock,
@@ -440,6 +449,8 @@ export default {
       
 
     return{
+
+      showPreloader: false,
       isLoading:false,
       startVal: 0,
         endVal: 100,
@@ -450,7 +461,7 @@ export default {
         
         totalConsults_fields:{
                 "Consultations By Category":"consultation",
-                "no. of Consultations":"consultations",
+                "No. of Consultations":"consultations",
               
                 "Start Date":"start_date",
                 "End Date":"end_date"
@@ -473,7 +484,7 @@ export default {
                   "consultations":agro
                 },
 
-                 { "consultation":"Beef AI & Breeding",
+                 { "consultation":"Cattle AI & Breeding",
                     "consultations":beefAIs
                 },
 
@@ -558,6 +569,15 @@ export default {
 
   },
 
+
+  mounted() {
+    this.showPreloader = true; // Display preloader on component mount
+    // Simulate page reloading
+    setTimeout(() => {
+      this.showPreloader = false; // Hide preloader after a delay (e.g., when page content is loaded)
+    }, 2500);
+  },
+
   
 
 // COMPONENT THAT GETS ALL THE FILTERED DATA. THIS IS WHERE WE GET ALL DASHBOARD DATA FROM
@@ -631,6 +651,17 @@ export default {
 </script>
 
 <style>
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #e0f0f7;
+  color: rgb(13, 51, 5);
+  z-index: 9999;
+}
 
 .section{
     margin-top: 4rem;

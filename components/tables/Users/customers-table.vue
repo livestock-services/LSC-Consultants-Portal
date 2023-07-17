@@ -133,10 +133,10 @@
        
       
   
-         <b-table-column v-slot="props" label="Options">
+         <b-table-column v-if="SignedInUser.role === 'Admin'" v-slot="props" label="Options">
           <span class="buttons">
             <!-- <b-button type="is-secondary-outline" icon-left="eye">View</b-button> -->
-            <b-tooltip label="Activate User" type="is-warning is-light">
+            <b-tooltip label="Assign Role" type="is-warning is-light">
             <b-button
               type=""
               icon-left="arrow-up "
@@ -176,6 +176,7 @@
   
   
   <script>
+  import { computed } from 'vue';
   import { mapActions, mapGetters } from 'vuex'
   import CustomerModal from'~/components/modals/Customer Modal/customer-modal.vue'
   import CustomerSnapshotModal from '~/components/modals/Customer Modal/customer-snapshot-modal.vue'
@@ -184,9 +185,9 @@
   
     data() {  
     
-      
+      var SignedInUser = computed(()=>this.user)
       return {
-  
+        SignedInUser,
         isPaginated: true,
         currentPage: 1,
         perPage: 10,
@@ -203,8 +204,12 @@
       
       ...mapGetters('users', {
           loading: 'loading',
-         users: 'allUsers',
+          users: 'allUsers',
+          user:'loggedInUser',
+
+          
         }),
+  
       
        isEmpty() {
        return this.users.length === 0

@@ -13,7 +13,7 @@
                 </b-tabs>
                </b-tab-item>    
 
-               <b-tab-item label="Beef AI & Breeding">
+               <b-tab-item label="Cattle AI & Breeding">
                 <b-tabs>
                   <b-tab-item label="Consultation" >
                         <BeefAiTable/>

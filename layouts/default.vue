@@ -19,7 +19,14 @@
             height="22"
           >
 
-          <span class=" tag is-success litmas"> Consultants </span>
+          <span class=" tag is-success litmas"> 
+          <div >
+              <p v-if="SignedInUser.role === 'Lab Consultant'">Lab</p>
+
+              <p v-else>Consultants</p>
+          </div>  
+          
+          </span>
 
           <span class="ml-2 tag is-success dairy">Portal</span>
 
@@ -61,7 +68,7 @@
             </div>
         </b-dropdown-item>
 
-        <b-dropdown-item  aria-role="listitem">
+        <!-- <b-dropdown-item @click="profile" aria-role="listitem">
             <div class="media">
                 <b-icon class="media-left" icon="account-multiple"></b-icon>
                 <div class="media-content">
@@ -69,7 +76,7 @@
                     <small> Profile</small>
                 </div>
             </div>
-        </b-dropdown-item>
+        </b-dropdown-item> -->
 
          <b-dropdown-item @click="logout" :value="true" aria-role="listitem">
             <div class="media">
@@ -413,6 +420,11 @@ export default {
     },
 
 
+    // profile(){
+    //   this.$router.push("profile")
+    // },
+
+
    
     // async logout(){
 
@@ -436,7 +448,7 @@ export default {
           await this.$auth.logout()
            
           this.$buefy.toast.open({
-            duration: 3000,
+            duration: 4000,
             message: 'Until next time!',
             position: 'is-top',
             type: 'is-info is-light',

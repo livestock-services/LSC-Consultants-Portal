@@ -73,6 +73,17 @@
 
       <b-table-column
         v-slot="props"
+        field="clientTown"
+        label="Town"
+        searchable
+        
+      >
+      <span class="tag is-primary is-light">  {{ props.row.clientTown }} </span>
+       
+      </b-table-column>
+
+      <b-table-column
+        v-slot="props"
         field="clientLocation"
         label="Location"
         searchable
@@ -83,16 +94,7 @@
         
       </b-table-column>
 
-      <b-table-column
-        v-slot="props"
-        field="clientTown"
-        label="Town"
-        searchable
-        
-      >
-      <span class="tag is-primary is-light">  {{ props.row.clientTown }} </span>
-       
-      </b-table-column>
+      
 
 
 

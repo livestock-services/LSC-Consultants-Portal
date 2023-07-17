@@ -31,6 +31,18 @@
 
           </div>
 
+          <h4> <span class="is-blue"> Town</span></h4>
+
+          <div class="columns">
+            
+            
+
+            <div  class="column is-three-quarters">
+            
+            <b-input type="text" v-model="clientTown" placeholder="Enter town here..."></b-input>
+            </div>
+          </div>
+
           <h4> <span class="is-blue"> Location</span></h4>
 
           <div class="columns">
@@ -43,17 +55,7 @@
             </div>
           </div>
 
-          <h4> <span class="is-blue"> Town</span></h4>
-
-          <div class="columns">
-            
-            
-
-            <div  class="column is-three-quarters">
-            
-            <b-input type="text" v-model="clientTown" placeholder="Enter town here..."></b-input>
-            </div>
-          </div>
+          
          
             <h4> <span class="is-blue"> Select Category</span></h4>
 
@@ -73,9 +75,23 @@
              <option value="Vegetable enterprise budgets">Vegetable enterprise budgets</option>
              <option value="Pest control, mgt & fertilization in orchards">Pest control, mgt & fertilization in orchards</option>
              <option value="Soil analysis(all crops)">Soil analysis(all crops)</option>
+             <option value="Other">Other</option>
            </b-select>
            </b-field>
          </div>
+
+
+         <h4> <span class="is-blue"> Other(if category is not available above)</span></h4>
+
+          <div class="columns">
+
+
+
+          <div  class="column is-three-quarters">
+
+          <b-input type="text" v-model="agroOther" placeholder="Other(if category is not available above)..."></b-input>
+          </div>
+          </div>
 
         
 
@@ -113,6 +129,8 @@
              <p class="mx-4 cat">Client Town Location :  {{clientTown}}</p>
 
             <p class="mx-4 cat">Category Selected :  {{agroCategory}}</p>
+
+            <p class="mx-4 cat">Other Category(If not on list) :  {{agroOther}}</p>
 
             <p class="mx-4 cat">Comments/Remarks :  {{clientComments}}</p>
           
@@ -190,6 +208,7 @@ export default {
       'agroForm.clientTown',
       'agroForm.clientPhoneNumber',
       'agroForm.agroCategory',
+      'agroForm.agroOther',
       'agroForm.clientComments',
       
       
@@ -274,6 +293,7 @@ export default {
               clientLocation:null,
               clientTown:null,
               agroCategory:null,
+              agroOther:null,
               clientComments:null
 
         

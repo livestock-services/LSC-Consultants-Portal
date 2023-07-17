@@ -170,7 +170,7 @@
         <template #empty>
   
           <b-tooltip  label="Once freshed, your details will appear here" type="is-dark">
-          <h4 class="is-size-4 text-center has-text-centered">No Beef AI Data yet. &#x1F4DA;. Click the <span class="tag is-info"> refresh button</span> right above</h4>
+          <h4 class="is-size-4 text-center has-text-centered">No Cattle AI Data yet. &#x1F4DA;. Click the <span class="tag is-info"> refresh button</span> right above</h4>
           </b-tooltip>
   
         </template>
