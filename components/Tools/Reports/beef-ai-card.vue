@@ -22,7 +22,7 @@
          :fields="beefAI_fields"
          worksheet="AI Worksheet"
          type="xls"
-         name = "Beef AI Consultations.xls">
+         name = "AI Consultations.xls">
         
         <b-button class="mx-2" icon-left="export" type="is-success ">Excel</b-button>
         <img src="download_icon.png" />
@@ -162,7 +162,7 @@
                                  this.beefAIBeefs+
                                  this.beefAIGoats+
                                  this.beefAIPigs+
-                                 this.beefAIOther
+                                 this.beefAIOthers
 
                                   
                                  )

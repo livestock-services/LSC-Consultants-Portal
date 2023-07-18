@@ -30,6 +30,18 @@
               </div>
   
             </div>
+
+            <h4> <span class="is-blue"> Town</span></h4>
+  
+              <div class="columns">
+                
+                
+
+                <div  class="column is-three-quarters">
+                
+                <b-input type="text" v-model="irrigationClientTown" placeholder="Enter town here..."></b-input>
+                </div>
+              </div>
   
             <h4> <span class="is-blue"> Location</span></h4>
   
@@ -43,17 +55,7 @@
               </div>
             </div>
 
-            <h4> <span class="is-blue"> Town</span></h4>
-  
-            <div class="columns">
-              
-              
-
-              <div  class="column is-three-quarters">
-              
-              <b-input type="text" v-model="irrigationClientTown" placeholder="Enter town here..."></b-input>
-              </div>
-            </div>
+           
            
              
   
