@@ -1,7 +1,7 @@
 <template>
     <div class="modal-card">
       <header class="modal-card-head">
-        <h3 class="modal-card-title">nutrition Snapshot</h3>
+        <h3 class="modal-card-title">Nutrition Snapshot</h3>
   
         <button type="button" class="delete" @click="close"></button>
       </header>
@@ -32,6 +32,18 @@
                 ></b-input>
               </div>
             </div>
+
+            <h4><span class="is-blue"> Town</span></h4>
+  
+            <div class="columns">
+              <div class="column is-three-quarters">
+                <b-input
+                  type="text"
+                  v-model="nutritionClientTown"
+                  placeholder="Enter town here..."
+                ></b-input>
+              </div>
+            </div>
   
             <h4><span class="is-blue"> Location</span></h4>
   
@@ -45,17 +57,7 @@
               </div>
             </div>
 
-            <h4><span class="is-blue"> Town</span></h4>
-  
-            <div class="columns">
-              <div class="column is-three-quarters">
-                <b-input
-                  type="text"
-                  v-model="nutritionClientTown"
-                  placeholder="Enter town here..."
-                ></b-input>
-              </div>
-            </div>
+           
 
 
             <h4><span class="is-blue"> Select Category</span></h4>
@@ -75,9 +77,25 @@
                   <option value="Rabbits">Rabbits</option>
                   <option value="Wildlife Or Exotics">Wildlife Or Exotics</option>
                   <option value="Horses">Horses</option>
+                  <option value="Other">Other</option>
                 </b-select>
               </b-field>
             </div>
+
+
+           <div v-if="nutritionCategory === 'Other'">
+            <h4><span class="is-blue"> Other (if not among the options above)</span></h4>
+              
+              <div class="columns">
+                <div class="column is-three-quarters">
+                  <b-input
+                    type="text"
+                    v-model="nutritionOtherCategory" 
+                    placeholder="Other"
+                  ></b-input>
+                </div>
+              </div>
+           </div>
 
 
               <h4><span class="is-blue"> Comments/Remarks</span></h4>
@@ -109,6 +127,11 @@
                 <p class="mx-4 cat">
                   Category Selected : {{ nutritionCategory }}
                 </p>
+
+                <p class="mx-4 cat">
+                  Category Selected (Other) : {{ nutritionOtherCategory }}
+                </p>
+
               </div>
             </div>
   
@@ -149,19 +172,7 @@
         ],
   
         isFullPage: true,
-        nutritionForm: {
-          nutritionClientName: null,
-  
-          nutritionClientPhoneNumber: null,
-  
-          nutritionClientLocation:null,
-
-          nutritionClientTown:null,
-  
-          nutritionCategory: null,
-
-          nutritionClientComments:null
-        },
+        
       };
     },
   
@@ -173,6 +184,7 @@
         "nutritionForm.nutritionClientLocation",
         "nutritionForm.nutritionClientTown",
         "nutritionForm.nutritionCategory",
+        "nutritionForm.nutritionOtherCategory",
         "nutritionForm.nutritionClientComments",
         
       ]),

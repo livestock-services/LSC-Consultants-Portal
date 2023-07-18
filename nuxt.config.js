@@ -117,7 +117,7 @@ export default {
       local: {
         token: {
           property: 'token',
-          maxAge: 300,
+          maxAge: 600,
           global: true,
          // required: true,
           type: ''

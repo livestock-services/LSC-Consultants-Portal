@@ -32,6 +32,18 @@
                 ></b-input>
               </div>
             </div>
+
+            <h4><span class="is-blue"> Town </span></h4>
+  
+            <div class="columns">
+              <div class="column is-three-quarters">
+                <b-input
+                  type="text"
+                  v-model="vetPostMortemClientTown"
+                  placeholder="Enter town here..."
+                ></b-input>
+              </div>
+            </div>
   
             <h4><span class="is-blue"> Location</span></h4>
   
@@ -45,17 +57,7 @@
               </div>
             </div>
 
-            <h4><span class="is-blue"> Town </span></h4>
-  
-            <div class="columns">
-              <div class="column is-three-quarters">
-                <b-input
-                  type="text"
-                  v-model="vetPostMortemClientTown"
-                  placeholder="Enter town here..."
-                ></b-input>
-              </div>
-            </div>
+           
 
 
             <h4><span class="is-blue"> Select Category</span></h4>
@@ -74,30 +76,21 @@
                   <option value="Quails">Quails</option>
                   <option value="Rabbits">Rabbits</option>
                   <option value="Cattle">Cattle</option>
-                 
+                  <option value="Other">Other</option>
                 </b-select>
               </b-field>
 
             </div>
 
-            <h4><span class="is-blue"> Other (if not among the options above)</span></h4>
-  
-            <div class="columns">
-              <div class="column is-three-quarters">
-                <b-input
-                  type="text"
-                  v-model="vetPostMortemOtherCategory" 
-                  placeholder="Other"
-                ></b-input>
-              </div>
-            </div>
+           
 
+           <div v-if="vetPostMortemCategory !=='Other'">
             <h4><span class="is-blue"> Select a disease</span></h4>
             <div class="columns">
                 <b-field class="column is-full">
-            <b-select v-model="vetPostMortemDiseases" placeholder="Select a disease" icon="book">
+            <b-select  v-model="vetPostMortemDiseases" placeholder="Select a disease" icon="book">
                 
-                <optgroup label="Village Chickens">
+                <optgroup v-if="vetPostMortemCategory=== 'Village Chicken'" label="Village Chickens">
                     <option value="Infectious Laryngotracheitis">Infectious Laryngotracheitis</option>
                     <option value="Newcastle">Newcastle</option>
                     <option value="Gumboro">Gumboro</option>
@@ -113,7 +106,7 @@
                     
                 </optgroup>
 
-                <optgroup label="Broilers">
+                <optgroup v-if="vetPostMortemCategory=== 'Broilers'" label="Broilers">
                     
                     <option value="Gumboro">Gumboro</option>
                     <option value="Newcastle">Newcastle</option>
@@ -127,7 +120,7 @@
                     
                 </optgroup>
 
-                <optgroup label="Layers">
+                <optgroup v-if="vetPostMortemCategory=== 'Layers'" label="Layers">
                     <option value="Fatty Liver HS">Fatty Liver HS</option>  
                     <option value="Coccidiosis">Coccidiosis</option>
                     <option value="Egg Peritonitis">Egg Peritonitis</option>
@@ -140,7 +133,7 @@
                     
                 </optgroup>
 
-                <optgroup label="Pigs">
+                <optgroup v-if="vetPostMortemCategory=== 'Pigs'" label="Pigs">
                     <option value="Mycoplasmosis">Mycoplasmosis</option>
                     <option value="Pneumonia">Pneumonia</option>
                     <option value="Clostridial Infection">Clostridial Infection</option>
@@ -149,7 +142,7 @@
                     
                 </optgroup>
 
-                <optgroup label="Goats">
+                <optgroup v-if="vetPostMortemCategory=== 'Goats'" label="Goats">
                     <option value="Helminthiasis">Helminthiasis</option>
                     <option value="Heartwater">Heartwater</option>
                     <option value="Trauma">Trauma</option>
@@ -158,40 +151,64 @@
                     
                 </optgroup>
 
-                <optgroup label="Quails">
+                <optgroup v-if="vetPostMortemCategory=== 'Quails'" label="Quails">
                     <option value="Colibacillosis">Colibacillosis</option>
                     <option value="Salmonellosis">Salmonellosis</option>
                      
                 </optgroup>
 
-                <optgroup label="Rabbits">
+                <optgroup v-if="vetPostMortemCategory=== 'Rabbits'" label="Rabbits">
                     <option value="Coccidiosis">Coccidiosis</option>
                     <option value="Bacterial Infection">Bacterial Infection</option>
                     
                 </optgroup>
 
-                <optgroup label="Cattle">
+                <optgroup v-if="vetPostMortemCategory=== 'Cattle'" label="Cattle">
                     
                     <option value="Anaplasmosis">Anaplasmosis</option>
                    
                 </optgroup>
+
+                <optgroup  label="Other">
+                    
+                    <option value="Other Disease">Other Disease</option>
+                   
+                </optgroup>
+
             </b-select>
         </b-field>
 
             </div>
+           </div>
 
-            
-            <h4><span class="is-blue"> Other Disease(if not among the options above)</span></h4>
+            <div  v-if="vetPostMortemCategory ==='Other'">
+              <h4><span class="is-blue"> Other (if not among the options above)</span></h4>
   
-            <div class="columns">
-              <div class="column is-three-quarters">
-                <b-input
-                  type="text"
-                  v-model="vetPostMortemOtherDiseases" 
-                  placeholder="Other"
-                ></b-input>
+              <div class="columns">
+                <div class="column is-three-quarters">
+                  <b-input
+                    type="text"
+                    v-model="vetPostMortemOtherCategory" 
+                    placeholder="Other"
+                  ></b-input>
+                </div>
               </div>
             </div>
+
+              <div v-if="vetPostMortemCategory ==='Other' || vetPostMortemDiseases === 'Other Disease'">
+                <h4><span class="is-blue"> Other Disease(if not among the options above)</span></h4>
+  
+                  <div  class="columns">
+                    <div class="column is-three-quarters">
+                      <b-input
+                        type="text"
+                        v-model="vetPostMortemOtherDiseases" 
+                        placeholder="Other"
+                      ></b-input>
+                    </div>
+                  </div>
+              </div>
+           
 
 
             <h4><span class="is-blue"> Comments/Remarks</span></h4>
@@ -223,12 +240,14 @@
                 </p>
 
                 <p class="mx-4 cat">
-                  Category Selected (Other) : {{ vetPostMortemOtherCategory }}
+                  Associated Disease Selected :  {{ vetPostMortemDiseases }}
                 </p>
 
                 <p class="mx-4 cat">
-                  Associated Disease Selected :  {{ vetPostMortemDiseases }}
+                  Category Selected (Other) : {{ vetPostMortemOtherCategory }}
                 </p>
+
+                
 
                 <p class="mx-4 cat">
                   Associated Disease Selected (other) :  {{ vetPostMortemOtherDiseases }}

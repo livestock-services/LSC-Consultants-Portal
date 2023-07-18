@@ -48,6 +48,7 @@ export const state = () => ({
         beefAIClientTown:null,
         beefAIClientComments:null,
         beefAICategory:null,
+        beefAIOtherCategory:null,
         date:new Date(),
         createdBy:null
         

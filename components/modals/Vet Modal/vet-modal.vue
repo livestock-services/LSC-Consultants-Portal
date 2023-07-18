@@ -86,7 +86,8 @@
             </b-field>
           </div>
 
-          <h4><span class="is-blue">Other(if not among the options above)</span></h4>
+          <div v-if="vetCategory === 'Other'">
+            <h4><span class="is-blue">Other(if not among the options above)</span></h4>
 
             <div class="columns">
               <div class="column is-three-quarters">
@@ -97,6 +98,7 @@
                 ></b-input>
               </div>
             </div>
+          </div>
 
           <h4><span class="is-blue"> Comments/Remarks</span></h4>
 

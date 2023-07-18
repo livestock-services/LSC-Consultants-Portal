@@ -79,6 +79,20 @@
              </b-field>
            </div>
 
+           <div v-if="beefAICategory === 'Other'">
+            <h4><span class="is-blue"> Other (if not among the options above)</span></h4>
+  
+            <div class="columns">
+              <div class="column is-three-quarters">
+                <b-input
+                  type="text"
+                  v-model="beefAIOtherCategory" 
+                  placeholder="Other"
+                ></b-input>
+              </div>
+            </div>
+
+           </div>
 
            <h4> <span class="is-blue"> Comments/Remarks</span></h4>
 
@@ -118,6 +132,8 @@
                <p class="mx-4 cat">Client Town Location :  {{beefAIClientTown}}</p>
   
               <p class="mx-4 cat">Category Selected :  {{beefAICategory}}</p>
+
+              <p class="mx-4 cat">Category Selected :  {{beefAIOtherCategory}}</p>
 
               <p class="mx-4 cat">Comments/Remarks :  {{beefAIClientComments}}</p>
             
@@ -182,6 +198,7 @@
         'beefAIForm.beefAIClientTown',
         'beefAIForm.beefAIClientPhoneNumber',
         'beefAIForm.beefAICategory',
+        'beefAIForm.beefAIOtherCategory',
         'beefAIForm.beefAIClientComments',
         
         

@@ -1,6 +1,22 @@
 <template>
     <div>
       <b-tabs class="table" v-model="activeTab">
+
+
+               <b-tab-item label="RECEIVING">
+                    <b-tabs label="Lab Submissions" >
+                          <b-tab-item label="Biological Submissions">
+                            <BioSubmissionsTable/>
+                          </b-tab-item>
+
+                          <b-tab-item label="Feed Submissions">
+                            <FeedSubmissionsTable/>
+                          </b-tab-item>
+
+                      </b-tabs>
+                  </b-tab-item>
+
+
                    
                   <b-tab-item label="DATA FILES">
                       <b-tabs>
@@ -45,18 +61,7 @@
                       </b-tabs>
                   </b-tab-item>
 
-                  <b-tab-item label="RECEIVING">
-                    <b-tabs label="Lab Submissions" >
-                          <b-tab-item label="Biological Submissions">
-                            <BioSubmissionsTable/>
-                          </b-tab-item>
-
-                          <b-tab-item label="Feed Submissions">
-                            <FeedSubmissionsTable/>
-                          </b-tab-item>
-
-                      </b-tabs>
-                  </b-tab-item>
+                 
       
             
   
