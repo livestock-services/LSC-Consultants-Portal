@@ -4,7 +4,7 @@
       <div class="card  my-4">
         <header class="card-header footy my-4">
           <h1 class="card-header-title  header-text">
-           Beef AI Consultations between <span class="tag is-info is-light"> {{ startTime }} </span> and <span class="tag is-info is-light"> {{ endTime }} </span>
+           AI Consultations between <span class="tag is-info is-light"> {{ startTime }} </span> and <span class="tag is-info is-light"> {{ endTime }} </span>
           </h1>
         </header>
   
@@ -20,7 +20,7 @@
         <download-excel
          :data="beefAI_data" 
          :fields="beefAI_fields"
-         worksheet="Beef AI Worksheet"
+         worksheet="AI Worksheet"
          type="xls"
          name = "Beef AI Consultations.xls">
         
@@ -36,14 +36,32 @@
             
             <div class="columns">
               <div class=" my-4 pl-4">
-            Consultations:
-                 <b-field  class=" tag is-primary mx-4"> {{ beefAIConsultations }}</b-field>
+            Dairy:
+                 <b-field  class=" tag is-primary mx-4"> {{ beefAIDairies }}</b-field>
              
             </div>
             
             <div class=" my-4 pl-4">
-            Sales:
-                 <b-field  class=" tag is-primary mx-4"> {{ beefAISales }}</b-field>
+            Beef:
+                 <b-field  class=" tag is-primary mx-4"> {{ beefAIBeefs }}</b-field>
+             
+            </div>
+
+            <div class=" my-4 pl-4">
+            Goat:
+                 <b-field  class=" tag is-primary mx-4"> {{ beefAIGoats }}</b-field>
+             
+            </div>
+            
+            <div class=" my-4 pl-4">
+            Pig:
+                 <b-field  class=" tag is-primary mx-4"> {{ beefAIPigs }}</b-field>
+             
+            </div>
+
+            <div class=" my-4 pl-4">
+            Other:
+                 <b-field  class=" tag is-primary mx-4"> {{ beefAIOthers }}</b-field>
              
             </div>
           
@@ -68,11 +86,14 @@
         <footer class="card-footer footy">
           <div class="card-footer-item">
             <div class="my-4 text ">
-              Total Consultations/Sales:<span class="is-success mx-4 "> 
+              Total Consultations:<span class="is-success mx-4 "> 
                 <countTo :startVal='startVal' 
                 :endVal='
-                 beefAIConsultations +
-                 beefAISales
+                 beefAIDairies +
+                 beefAIBeefs+
+                 beefAIGoats+
+                 beefAIPigs+
+                 beefAIOthers
                    
                  
                  ' 
@@ -121,17 +142,28 @@
   
       var endDate = computed(()=>this.endTime)
   
-      var beefAIConsults = computed(()=> this.beefAIConsultations)
+      var beefAIDairy = computed(()=> this.beefAIDairies)
 
-      var beefAISale = computed(()=> this.beefAISales)
-  
+      var beefAIBeef = computed(()=> this.beefAIBeefs)
+
+      var beefAIGoat = computed(()=> this.beefAIGoats)
+
+      var beefAIPig = computed(()=> this.beefAIPigs)
+
+      var beefAIOther = computed(()=> this.beefAIOthers)
+     
+        
      
       
       
   
       var totalConsults =  computed(
-                            ()=> this.beefAIConsults +
-                                 this.beefAISale
+                            ()=> this.beefAIDairies+
+                                 this.beefAIBeefs+
+                                 this.beefAIGoats+
+                                 this.beefAIPigs+
+                                 this.beefAIOther
+
                                   
                                  )
                          
@@ -160,13 +192,29 @@
               
                 
                 { 
-                  "consultation":"Consultations",
-                  "number":beefAIConsults
+                  "consultation":"Dairy",
+                  "number":beefAIDairy
                 },
                 
                 { 
-                  "consultation":"Sales",
-                  "number":beefAISale
+                  "consultation":"Beef",
+                  "number":beefAIBeef
+                },
+
+                
+                { 
+                  "consultation":"Goat",
+                  "number":beefAIGoat
+                },
+                
+                { 
+                  "consultation":"Pig",
+                  "number":beefAIPig
+                },
+                
+                { 
+                  "consultation":"Other",
+                  "number":beefAIOther
                 },
                
                 
@@ -194,8 +242,13 @@
          loading: 'loading',
          allBAIs: 'allBeefAIRecords',
   
-         beefAIConsultations:'allBeefAIConsultationRecords',
-         beefAISales:'allBeefAISalesRecords',
+         beefAIDairies:'allBeefAIDairyRecords',
+         beefAIBeefs:'allBeefAIBeefRecords',
+
+         beefAIGoats:'allBeefAIGoatRecords',
+         beefAIPigs:'allBeefAIPigRecords',
+
+         beefAIOthers:'allBeefAIOtherRecords',
          
          startTime:'filteredBeefAIStartTime',
          endTime:'filteredBeefAIEndTime',

@@ -1,19 +1,9 @@
 <template>
     <div>
       <b-tabs class="table" v-model="activeTab">
-               <b-tab-item label="Pig AI & Breeding">
-                <b-tabs>
-                  <b-tab-item label="Consultation" >
-                        <PigAiTable/>
-                    </b-tab-item>
+              
 
-                    <b-tab-item label="Records" >
-                       <PigAiCard/>
-                    </b-tab-item>
-                </b-tabs>
-               </b-tab-item>    
-
-               <b-tab-item label="Beef AI & Breeding">
+               <b-tab-item label="AI & Breeding">
                 <b-tabs>
                   <b-tab-item label="Consultation" >
                         <BeefAiTable/>

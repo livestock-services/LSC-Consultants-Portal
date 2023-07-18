@@ -31,8 +31,8 @@
 
      </div>
 
-        <div class="card-content">
-            <div class="columns is-mobile">
+    <div class="card-content">
+  <div class="columns is-mobile">
      <div class="card cow-card  card-body">
       
        <div  class="card-body my-4 mx-4">
@@ -52,14 +52,19 @@
         </a>
 
      <span><span class=" mb-2"></span>
-     <span class="text-cattle">Cattle</span></span> <br>
+     <span class="text-cattle">Cattle Dairy</span></span> <br>
             <div class="mt-4">
-                <h3>Total:<countTo :startVal='startVal' :endVal='cattle' :duration='20000'></countTo></h3>
+                <h3>Total:<countTo :startVal='startVal' :endVal='cattleDairy' :duration='20000'></countTo></h3>
             </div>
+            
+
+            
       </div>
+
+      
      </div>
 
-      <div class="card cow-card ml-5 card-body">
+      <div class="card cow-card ml-3 card-body">
       
        <div class="card-body  my-4 mx-4">
         <a
@@ -74,14 +79,14 @@
         </a>
 
      <span><span class="mb-2"></span>
-     <span class="">Goats</span></span> <br>
+     <span class="">Cattle Beef</span></span> <br>
             <div class="mt-4">
-                <h3>Total:<countTo :startVal='startVal' :endVal='goats' :duration='20000'></countTo></h3>
+                <h3>Total:<countTo :startVal='startVal' :endVal='cattleBeef' :duration='20000'></countTo></h3>
             </div>
       </div>
      </div>
 
-     <div class="card cow-card ml-5 card-body">
+     <div class="card cow-card ml-3 card-body">
       
        <div class="card-body my-4 mx-4">
         <a
@@ -95,13 +100,36 @@
             </b-icon>
         </a>
 
-     <span><span class=" mb-2"></span>
-     <span class="t">Sheep</span></span> <br>
+          <span><span class=" mb-2"></span>
+          <span class="t">Goats</span></span> <br>
             <div class="mt-4">
-                <h3>Total:<countTo :startVal='startVal' :endVal='sheep' :duration='20000'></countTo></h3>
+                <h3>Total:<countTo :startVal='startVal' :endVal='goats' :duration='20000'></countTo></h3>
             </div>
       </div>
      </div>
+
+
+     <div class="card cow-card ml-3 pl-2 card-body">
+      
+      <div class="card-body my-4 mx-4">
+       <a
+         class="navbar-item"
+         href="/"
+       >
+         <b-icon
+               icon="sheep"
+               size="is-medium"
+               type="is-dark">
+           </b-icon>
+       </a>
+
+         <span><span class=" mb-2"></span>
+         <span class="t">Sheep</span></span> <br>
+           <div class="mt-4">
+               <h3>Total:<countTo :startVal='startVal' :endVal='sheep' :duration='20000'></countTo></h3>
+           </div>
+     </div>
+    </div>
     
     
    
@@ -109,9 +137,9 @@
 
 
       
-             </div>
+</div>
 
-             <div class="columns my-4 is-mobile">
+  <div class="columns my-4 is-mobile">
      <div class="card cow-card  card-body">
       
        <div  class="card-body my-4 mx-4">
@@ -120,7 +148,7 @@
           href="/"
         >
           <b-icon
-                icon="pig"
+                icon="duck"
                 size="is-medium"
                 type="is-dark">
             </b-icon>
@@ -131,14 +159,14 @@
         </a>
 
      <span><span class="mb-2"></span>
-     <span class="">Pigs</span></span> <br>
+     <span class="">Poultry Broiler</span></span> <br>
             <div class="mt-4">
-                <h3>Total:<countTo :startVal='startVal' :endVal='pigs' :duration='20000'></countTo></h3>
+                <h3>Total:<countTo :startVal='startVal' :endVal='poultryBroiler' :duration='20000'></countTo></h3>
             </div>
       </div>
      </div>
 
-      <div class="card cow-card ml-5 card-body">
+      <div class="card cow-card ml-3 card-body">
       
        <div class="card-body my-4 mx-4">
         <a
@@ -152,15 +180,15 @@
             </b-icon>
         </a>
 
-     <span><span class=" mb-2"></span>
-     <span class="">Poultry</span></span> <br>
+     <span><span class="ml-3 mb-2"></span>
+     <span class="">Poultry Layer</span></span> <br>
             <div class="mt-4">
-                <h3>Total:<countTo :startVal='startVal' :endVal='poultry' :duration='20000'></countTo></h3>
+                <h3>Total:<countTo :startVal='startVal' :endVal='poultryLayer' :duration='20000'></countTo></h3>
             </div>
       </div>
      </div>
 
-     <div class="card cow-card ml-5 card-body">
+     <div class="card cow-card ml-3 card-body">
       
        <div class="card-body my-4 mx-4">
         <a
@@ -168,19 +196,41 @@
           href="/"
         >
           <b-icon
-                icon="cat"
+                icon="duck"
                 size="is-medium"
                 type="is-dark">
             </b-icon>
         </a>
 
      <span><span class=" mb-2"></span>
-     <span class="">Dogs & Cats</span></span> <br>
+     <span class="">Poultry Village</span></span> <br>
             <div class="mt-4">
-                <h3>Total:<countTo :startVal='startVal' :endVal='dogsAndCats' :duration='20000'></countTo></h3>
+                <h3>Total:<countTo :startVal='startVal' :endVal='poultryVillage' :duration='20000'></countTo></h3>
             </div>
       </div>
      </div>
+
+     <div class="card cow-card ml-3 card-body">
+      
+      <div class="card-body my-4 mx-4">
+       <a
+         class="navbar-item"
+         href="/"
+       >
+         <b-icon
+               icon="duck"
+               size="is-medium"
+               type="is-dark">
+           </b-icon>
+       </a>
+
+    <span><span class=" mb-2"></span>
+    <span class="">Poultry Quail</span></span> <br>
+           <div class="mt-4">
+               <h3>Total:<countTo :startVal='startVal' :endVal='poultryQuail' :duration='20000'></countTo></h3>
+           </div>
+     </div>
+    </div>
     
     
    
@@ -188,7 +238,7 @@
 
 
       
-            </div>
+</div>
 
 
             <div class="columns my-4 is-mobile">
@@ -218,7 +268,7 @@
             </div>
             </div>
 
-            <div class="card cow-card ml-5 card-body">
+            <div class="card cow-card ml-3 card-body">
             
             <div class="card-body my-4 mx-4">
                 <a
@@ -240,7 +290,7 @@
             </div>
             </div>
 
-            <div class="card cow-card ml-5 card-body">
+            <div class="card cow-card ml-3 card-body">
             
             <div class="card-body my-4 mx-4">
                 <a
@@ -261,6 +311,29 @@
                     </div>
             </div>
             </div>
+
+
+            <div class="card cow-card ml-3 card-body">
+            
+            <div class="card-body my-4 mx-4">
+                <a
+                class="navbar-item"
+                href="/"
+                >
+                <b-icon
+                        icon="pig"
+                        size="is-medium"
+                        type="is-dark">
+                    </b-icon>
+                </a>
+
+            <span><span class=" mb-2"></span>
+            <span class="">Pigs</span></span> <br>
+                    <div class="mt-4">
+                        <h3>Total:<countTo :startVal='startVal' :endVal='pigs' :duration='20000'></countTo></h3>
+                    </div>
+            </div>
+            </div>
             
 
           
@@ -272,27 +345,63 @@
             
             </div>
 
-            <div class="card cow-card mr-10 card-body">
-            
-            <div class="card-body my-4 mx-4">
-                <a
-                class="navbar-item"
-                href="/"
-                >
-                <b-icon
-                        icon="dog"
-                        size="is-medium"
-                        type="is-dark">
-                    </b-icon>
-                </a>
+            <div class="columns my-4 is-mobile">
+     <div class="card cow-card  card-body">
+      
+       <div  class="card-body my-4 mx-4">
+        <a
+          class="navbar-item"
+          href="/"
+        >
+          <b-icon
+                icon="dog"
+                size="is-medium"
+                type="is-dark">
+            </b-icon>
 
-            <span><span class=" mb-2"></span>
-            <span class="">Other</span></span> <br>
-                    <div class="mt-4">
-                        <h3>Total:<countTo :startVal='startVal' :endVal='others' :duration='20000'></countTo></h3>
-                    </div>
+      <!-- v-if="this.$auth.user.email === 'detroncattle@gmail.com'" -->
+        
+
+        </a>
+
+     <span><span class="mb-2"></span>
+     <span class="">Dogs & Cats</span></span> <br>
+            <div class="mt-4">
+                <h3>Total:<countTo :startVal='startVal' :endVal='dogsAndCats' :duration='20000'></countTo></h3>
             </div>
+      </div>
+     </div>
+
+      <div class="card cow-card ml-3 card-body">
+      
+       <div class="card-body my-4 mx-4">
+        <a
+          class="navbar-item"
+          href="/"
+        >
+          <b-icon
+                icon="egg"
+                size="is-medium"
+                type="is-dark">
+            </b-icon>
+        </a>
+
+     <span><span class="ml-3 mb-2"></span>
+     <span class="">Other</span></span> <br>
+            <div class="mt-4">
+                <h3>Total:<countTo :startVal='startVal' :endVal='others' :duration='20000'></countTo></h3>
             </div>
+      </div>
+     </div>
+
+   
+    
+   
+
+
+
+      
+</div>
 
         </div>
         <footer class="card-footer footy">
@@ -300,16 +409,20 @@
             <div class="my-4 text ">
               Total Consultations:<span class="is-success mx-4 "> 
                 <countTo :startVal='startVal'   
-                :endVal='cattle +
-                        goats+
+                :endVal='cattleDairy +
+                         cattleBeef+
+                         goats+
                          sheep+
+                         poultryBroiler+
+                         poultryLayer+
+                         poultryQuail+
+                         poultryVillage+
                          pigs+
-                         poultry+
                          dogsAndCats+
                          rabbits+
                          wildlifeOrExotics+
-                        horses+
-                        others'
+                         horses+
+                         others'
                  :duration='7000'
                  ></countTo>
                 </span>
@@ -353,11 +466,18 @@ import { computed } from 'vue';
 
       var endDate = computed(()=>this.endTime)
 
-      var cattles = computed(()=> this.cattle)
+      var cattleDairy = computed(()=> this.cattleDairy)
+      var cattleBeef = computed(()=> this.cattleBeef)
+
       var goats = computed(()=>this.goats)
       var sheep =computed(()=> this.sheep)
       var pigs = computed (()=> this.pigs)
-      var poultry = computed(()=> this.poultry)
+
+      var poultryBroiler = computed(()=> this.poultryBroiler)
+      var poultryLayer = computed(()=> this.poultryLayer)
+      var poultryQuail = computed(()=> this.poultryQuail)
+      var poultryVillage = computed(()=> this.poultryVillage)
+
       var dogsAndCats = computed(()=> this.dogsAndCats)
       var rabbits = computed(()=> this.rabbits)
       var wildlifeOrExotics = computed(()=> this.wildlifeOrExotics)
@@ -365,18 +485,20 @@ import { computed } from 'vue';
       var other = computed(()=> this.others)
      
       var totalConsults =  computed(
-                            ()=> this.cattle +
-                                 this.goats +
-                                 this.sheep +
-                                 this.pigs +
-                                 this.poultry +
-                                 this.dogsAndCats +
-                                 this.rabbits +
-                                 this.wildlifeOrExotics +
+                            ()=> this.cattleDairy+
+                                 this.cattleBeef+
+                                 this.goats+
+                                 this.sheep+
+                                 this.pigs+
+                                 this.poultryBroiler+
+                                 this.poultryLayer+
+                                 this.poultryQuail+
+                                 this.poultryVillage+
+                                 this.dogsAndCats+
+                                 this.rabbits+
+                                 this.wildlifeOrExotics+
                                  this.horses+
-                                 this.other
-                                 
-                                 
+                                 this.others                                                               
                                  )
                          
                           
@@ -403,8 +525,13 @@ import { computed } from 'vue';
               
                 
                 { 
-                  "consultation":"Cattle",
-                  "number":cattles
+                  "consultation":"Cattle Dairy",
+                  "number":cattleDairy
+                },
+
+                { 
+                  "consultation":"Cattle Beef",
+                  "number":cattleBeef
                 },
 
                  { "consultation":"Goats",
@@ -419,9 +546,23 @@ import { computed } from 'vue';
                     "number":pigs
                 },
 
-                 { "consultation":"Poultry",
-                    "number":poultry
+                 { "consultation":"Poultry Broiler",
+                    "number":poultryBroiler
                   },
+
+                  { "consultation":"Poultry Layer",
+                    "number":poultryLayer
+                  },
+
+                  { "consultation":"Poultry Quail",
+                    "number":poultryQuail
+                  },
+
+                  { "consultation":"Poultry Village",
+                    "number":poultryVillage
+                  },
+
+                 
 
                  { "consultation":"Dogs & Cats",
                     "number":dogsAndCats
@@ -468,11 +609,17 @@ import { computed } from 'vue';
         ...mapGetters('vetData', {
          loading: 'loading',
          vets: 'allVetRecords',
-         cattle:'allCattleRecords',
+         cattleDairy:'allCattleDairyRecords',
+         cattleBeef:'allCattleBeefRecords',
          goats:'allGoatRecords',
          sheep:'allSheepRecords',
          pigs:'allPigRecords',
-         poultry:'allPoultryRecords',
+
+         poultryBroiler:'allPoultryBroilerRecords',
+         poultryLayer:'allPoultryLayerRecords',
+         poultryQuail:'allPoultryQuailRecords',
+         poultryVillage:'allPoultryVillageRecords',
+
          dogsAndCats:'allDogsAndCatsRecords',
          rabbits:'allRabbitRecords',
          wildlifeOrExotics:'allWildlifeOrExoticsRecords',
@@ -582,7 +729,7 @@ import { computed } from 'vue';
   }
 
   .cow-card {
-  width: 220px;
+  width: 215px;
   height:150px;
   background-color: rgb(220, 249, 223);
 }

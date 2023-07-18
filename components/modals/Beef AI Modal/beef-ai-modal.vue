@@ -1,7 +1,7 @@
 <template>
     <div class="modal-card ">
       <header class="modal-card-head">
-        <h3 class="modal-card-title">Beef AI Snapshot</h3>
+        <h3 class="modal-card-title"> AI Snapshot</h3>
        
         <button type="button" class="delete" @click="close"></button>
       </header>
@@ -30,6 +30,18 @@
               </div>
   
             </div>
+
+            <h4> <span class="is-blue"> Town</span></h4>
+
+              <div class="columns">
+
+
+
+              <div  class="column is-three-quarters">
+
+              <b-input type="text" v-model="beefAIClientTown" placeholder="Enter town here..."></b-input>
+              </div>
+              </div>
   
             <h4> <span class="is-blue"> Location</span></h4>
   
@@ -43,17 +55,7 @@
               </div>
             </div>
 
-              <h4> <span class="is-blue"> Town</span></h4>
-
-              <div class="columns">
-
-
-
-              <div  class="column is-three-quarters">
-
-              <b-input type="text" v-model="beefAIClientTown" placeholder="Enter town here..."></b-input>
-              </div>
-              </div>
+              
 
 
 
@@ -65,8 +67,12 @@
              <b-field  class="column is-full">
                
              <b-select v-model="beefAICategory" placeholder="Select a Category">
-               <option value="Consultation">Consultation</option>
-               <option value="Sales">Sales</option>
+               <option value="Dairy">Dairy </option>
+               <option value="Beef">Beef</option>
+               <option value="Pig">Pig </option>
+               <option value="Goat">Goat</option>
+               <option value="Other">Other</option>
+
 
                </b-select>
               
@@ -145,16 +151,11 @@
   import { mapActions, mapGetters } from 'vuex'
   import { mapFields } from 'vuex-map-fields'
   export default {
-    name: 'BeefAIModal',
+    name: 'beefAIModal',
   
      data() {
       return {
   
-        data:[
-              
-               'Consultation',
-               'Sales'
-        ],
   
   
         isFullPage: true,
@@ -181,7 +182,7 @@
         'beefAIForm.beefAIClientTown',
         'beefAIForm.beefAIClientPhoneNumber',
         'beefAIForm.beefAICategory',
-        'beefAIForm.beefAIComments',
+        'beefAIForm.beefAIClientComments',
         
         
     ]),

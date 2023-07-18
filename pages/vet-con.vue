@@ -4,7 +4,7 @@
           
      
 
-          <b-tab-item label="Animal Consultations">
+          <b-tab-item label="Consultations">
             <b-tabs>
               <b-tab-item label="Consultations">
                 <VetTable/>

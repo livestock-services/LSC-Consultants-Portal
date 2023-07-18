@@ -33,18 +33,6 @@
             </div>
           </div>
 
-          <h4><span class="is-blue"> Location</span></h4>
-
-          <div class="columns">
-            <div class="column is-three-quarters">
-              <b-input
-                type="text"
-                v-model="vetClientLocation"
-                placeholder="Enter address here..."
-              ></b-input>
-            </div>
-          </div>
-
           <h4><span class="is-blue"> Town</span></h4>
 
           <div class="columns">
@@ -57,6 +45,20 @@
             </div>
           </div>
 
+          <h4><span class="is-blue"> Location</span></h4>
+
+          <div class="columns">
+            <div class="column is-three-quarters">
+              <b-input
+                type="text"
+                v-model="vetClientLocation"
+                placeholder="Enter address here..."
+              ></b-input>
+            </div>
+          </div>
+
+         
+
 
           <h4><span class="is-blue"> Select Category</span></h4>
 
@@ -66,11 +68,15 @@
                 v-model="vetCategory"
                 placeholder="Select a Category"
               >
-                <option value="Cattle">Cattle</option>
+                <option value="Cattle Dairy">Cattle Dairy</option>
+                <option value="Cattle Beef">Cattle Beef</option>
                 <option value="Goats">Goats</option>
                 <option value="Sheep">Sheep</option>
                 <option value="Pigs">Pigs</option>
-                <option value="Poultry">Poultry</option>
+                <option value="Poultry Broiler">Poultry Broiler</option>
+                <option value="Poultry Layer">Poultry Layer</option>
+                <option value="Poultry Village">Poultry Village</option>
+                <option value="Poultry Quail">Poultry Quail</option>
                 <option value="Dogs & Cats">Dogs & Cats</option>
                 <option value="Rabbits">Rabbits</option>
                 <option value="Wildlife Or Exotics">Wildlife Or Exotics</option>
@@ -166,19 +172,7 @@ export default {
       ],
 
       isFullPage: true,
-      vetForm: {
-        vetClientName: null,
-
-        vetClientPhoneNumber: null,
-
-        vetClientLocation:null,
-
-        vetCategory: null,
-
-        vetOther:null,
-
-        vetComments:null
-      },
+      
     };
   },
 

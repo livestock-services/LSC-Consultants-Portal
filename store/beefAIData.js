@@ -12,8 +12,13 @@ import {
         SET_SELECTED_BEEF_AI_RECORD,
         SET_LOADING,
         
-        GET_ALL_BEEF_AI_CONSULTS_RECORDS,
-        GET_ALL_BEEF_AI_SALES_RECORDS,
+        GET_ALL_BEEF_AI_DAIRY_RECORDS,
+        GET_ALL_BEEF_AI_BEEF_RECORDS,
+        GET_ALL_BEEF_AI_GOAT_RECORDS,
+        GET_ALL_BEEF_AI_PIG_RECORDS,
+        GET_ALL_BEEF_AI_OTHER_RECORDS,
+
+
         
        
        
@@ -26,9 +31,14 @@ export const state = () => ({
     filteredBeefAIStartTime:[],
     filteredBeefAIEndTime:[],
     allBeefAIRecords:[],
+
     selectedBeefAIRecord:null,
-    allBeefAIConsultationRecords:[],
-    allBeefAISalesRecords:[],
+    allBeefAIDairyRecords:[],
+    allBeefAIBeefRecords:[],
+    allBeefAIGoatRecords:[],
+    allBeefAIPigRecords:[],
+    allBeefAIOtherRecords:[],
+ 
     
 
     beefAIForm:{
@@ -77,13 +87,27 @@ export const getters = {
         return state.allBeefAIRecords
     },
 
-    allBeefAIConsultationRecords(state){
-        return state.allBeefAIConsultationRecords
+    allBeefAIDairyRecords(state){
+        return state.allBeefAIDairyRecords
     },
 
-    allBeefAISalesRecords(state){
-        return state.allBeefAISalesRecords
+    allBeefAIBeefRecords(state){
+        return state.allBeefAIBeefRecords
     },
+
+    allBeefAIGoatRecords(state){
+        return state.allBeefAIGoatRecords
+    },
+
+    allBeefAIPigRecords(state){
+        return state.allBeefAIPigRecords
+    },
+
+    allBeefAIOtherRecords(state){
+        return state.allBeefAIOtherRecords
+    },
+
+   
 
         
   //----------------------------------------END OF AGRO SECTION----------------------------------------//
@@ -125,14 +149,29 @@ export const mutations = {
 
     
 
-    [GET_ALL_BEEF_AI_CONSULTS_RECORDS](state, payload){
-        state.allBeefAIConsultationRecords = payload
+    [GET_ALL_BEEF_AI_DAIRY_RECORDS](state, payload){
+        state.allBeefAIDairyRecords = payload
     },
 
-    [GET_ALL_BEEF_AI_SALES_RECORDS](state, payload){
-        state.allBeefAISalesRecords = payload
+    [GET_ALL_BEEF_AI_BEEF_RECORDS](state, payload){
+        state.allBeefAIBeefRecords = payload
     },
 
+    
+    [GET_ALL_BEEF_AI_GOAT_RECORDS](state, payload){
+        state.allBeefAIGoatRecords = payload
+    },
+
+    [GET_ALL_BEEF_AI_PIG_RECORDS](state, payload){
+        state.allBeefAIPigRecords = payload
+    },
+
+    
+    [GET_ALL_BEEF_AI_OTHER_RECORDS](state, payload){
+        state.allBeefAIOtherRecords = payload
+    },
+
+  
 
    
 
@@ -228,13 +267,26 @@ export const actions = {
                      // console.log(customeUserRecords);
                      
 
-                      const beefAIConsultsRecords =customeUserRecords.filter( a=>
-                        a.beefAICategory ==='Consultation'
+                      const beefAIDairyRecords =customeUserRecords.filter( a=>
+                        a.beefAICategory ==='Dairy'
                        )
                
-                       const beefAISalesRecords =customeUserRecords.filter( b=>
-                        b.beefAICategory ==='Sales'
+                       const beefAIBeefRecords =customeUserRecords.filter( b=>
+                        b.beefAICategory ==='Beef'
                        )
+
+                       const beefAIGoatRecords =customeUserRecords.filter( a=>
+                        a.beefAICategory ==='Goat'
+                       )
+               
+                       const beefAIPigRecords =customeUserRecords.filter( b=>
+                        b.beefAICategory ==='Pig'
+                       )
+
+                       const beefAIOtherRecords =customeUserRecords.filter( a=>
+                        a.beefAICategory ==='Other'
+                       )
+               
                
                  // -------------------------------END OF FILTERING BY CATEGORY----------------------//
                
@@ -242,13 +294,29 @@ export const actions = {
                
                
                   //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
-                        const filteredBeefAIConsultsRecords = beefAIConsultsRecords.filter( at => 
+                        const filteredBeefAIDairyRecords = beefAIDairyRecords.filter( at => 
                        new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
                        );
                
-                       const filteredBeefAISalesRecords = beefAISalesRecords.filter( bt => 
+                       const filteredBeefAIBeefRecords = beefAIBeefRecords.filter( bt => 
                            new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
                            );
+
+
+                        const filteredBeefAIGoatRecords = beefAIGoatRecords.filter( at => 
+                            new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
+                            );
+                    
+                        const filteredBeefAIPigRecords = beefAIPigRecords.filter( bt => 
+                                new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
+                                );
+
+                        const filteredBeefAIOtherRecords = beefAIOtherRecords.filter( bt => 
+                                    new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
+                                );
+
+
+
                
                       
                        
@@ -266,9 +334,15 @@ export const actions = {
                
                           commit(GET_FILTERED_BEEF_AI_END_TIME, newFilterRecord.endDate);
                
-                          commit(GET_ALL_BEEF_AI_CONSULTS_RECORDS, filteredBeefAIConsultsRecords.length);
+                          commit(GET_ALL_BEEF_AI_DAIRY_RECORDS, filteredBeefAIDairyRecords.length);
                
-                          commit(GET_ALL_BEEF_AI_SALES_RECORDS, filteredBeefAISalesRecords.length);
+                          commit(GET_ALL_BEEF_AI_BEEF_RECORDS, filteredBeefAIBeefRecords.length);
+                          
+                          commit(GET_ALL_BEEF_AI_GOAT_RECORDS, filteredBeefAIGoatRecords.length);
+               
+                          commit(GET_ALL_BEEF_AI_PIG_RECORDS, filteredBeefAIPigRecords.length);
+
+                          commit(GET_ALL_BEEF_AI_OTHER_RECORDS, filteredBeefAIOtherRecords.length);
                
                
 
@@ -278,12 +352,24 @@ export const actions = {
 
         
         else{
-            const beefAIConsultsRecords = response.data.filter( a=>
-                a.beefAICategory ==='Consultation'
+            const beefAIDairyRecords =customeUserRecords.filter( a=>
+                a.beefAICategory ==='Dairy'
                )
        
-               const beefAISalesRecords = response.data.filter( b=>
-                b.beefAICategory ==='Sales'
+               const beefAIBeefRecords =customeUserRecords.filter( b=>
+                b.beefAICategory ==='Beef'
+               )
+
+               const beefAIGoatRecords =customeUserRecords.filter( a=>
+                a.beefAICategory ==='Goat'
+               )
+       
+               const beefAIPigRecords =customeUserRecords.filter( b=>
+                b.beefAICategory ==='Pig'
+               )
+
+               const beefAIOtherRecords =customeUserRecords.filter( a=>
+                a.beefAICategory ==='Other'
                )
        
          // -------------------------------END OF FILTERING BY CATEGORY----------------------//
@@ -291,15 +377,28 @@ export const actions = {
        
        
        
-          //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
-                const filteredBeefAIConsultsRecords = beefAIConsultsRecords.filter( at => 
-               new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
-               );
-       
-               const filteredBeefAISalesRecords = beefAISalesRecords.filter( bt => 
-                   new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
-                   );
-       
+        //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
+        const filteredBeefAIDairyRecords = beefAIDairyRecords.filter( at => 
+            new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
+            );
+    
+            const filteredBeefAIBeefRecords = beefAIBeefRecords.filter( bt => 
+                new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
+                );
+
+
+             const filteredBeefAIGoatRecords = beefAIGoatRecords.filter( at => 
+                 new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
+                 );
+         
+             const filteredBeefAIPigRecords = beefAIPigRecords.filter( bt => 
+                     new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
+                     );
+
+             const filteredBeefAIOtherRecords = beefAIOtherRecords.filter( bt => 
+                         new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
+                     );
+
               
                
              // console.log(filteredBeefAIConsultsRecords.length);
@@ -310,16 +409,21 @@ export const actions = {
                //  // console.log(response.data);
        
                   //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
-                  commit(GET_ALL_BEEF_AI_RECORDS, response.data);
-       
-                  commit(GET_FILTERED_BEEF_AI_START_TIME, newFilterRecord.startDate);
-       
-                  commit(GET_FILTERED_BEEF_AI_END_TIME, newFilterRecord.endDate);
-       
-                  commit(GET_ALL_BEEF_AI_CONSULTS_RECORDS, filteredBeefAIConsultsRecords.length);
-       
-                  commit(GET_ALL_BEEF_AI_SALES_RECORDS, filteredBeefAISalesRecords.length);
-       
+                    commit(GET_ALL_BEEF_AI_RECORDS, response.data);
+        
+                    commit(GET_FILTERED_BEEF_AI_START_TIME, newFilterRecord.startDate);
+               
+                    commit(GET_FILTERED_BEEF_AI_END_TIME, newFilterRecord.endDate);
+        
+                    commit(GET_ALL_BEEF_AI_DAIRY_RECORDS, filteredBeefAIDairyRecords.length);
+        
+                    commit(GET_ALL_BEEF_AI_BEEF_RECORDS, filteredBeefAIBeefRecords.length);
+                    
+                    commit(GET_ALL_BEEF_AI_GOAT_RECORDS, filteredBeefAIGoatRecords.length);
+        
+                    commit(GET_ALL_BEEF_AI_PIG_RECORDS, filteredBeefAIPigRecords.length);
+
+                    commit(GET_ALL_BEEF_AI_OTHER_RECORDS, filteredBeefAIOtherRecords.length);
               
                   //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
                   
