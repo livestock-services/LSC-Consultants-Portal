@@ -12,7 +12,7 @@
         >
           <h1 class="header center my-4">
            
-             <br> <span class="is-greenish" style="font-style: italic; font-family: cursive; color: rgb(29, 28, 52);">CLAIMS.</span> <span class="tag is-warning">BETA</span>
+             <br> <span class="is-greenish" style="font-style: italic; font-family:Alegreya Sans; font-size:4rem; color: rgb(29, 28, 52);">CLAIMS.</span> <span class="tag is-warning">BETA</span>
           </h1>
          
         <div>
