@@ -266,7 +266,7 @@
         </b-icon>
     </a>
 
- <span><span class="text-weaners-count mb-2"> <countTo :startVal='startVal' :endVal='pumps' :duration='5000'></countTo></span> <br/><span class=" mx-4 text-weaners">Lab Submissions</span></span> <br>
+ <span><span class="text-weaners-count mb-2"> <countTo :startVal='startVal' :endVal='labs' :duration='5000'></countTo></span> <br/><span class=" mx-4 text-weaners">Lab Submissions</span></span> <br>
   <!-- <span class="text-bull"> <countTo :startVal='startVal' :endVal='Bulls' :duration='3000'></countTo> Bulls</span><br>
   <span class="text-cow"> <countTo :startVal='startVal' :endVal='Cows' :duration='3000'></countTo> Cows</span><br>
   <span class="text-heifer"> <countTo :startVal='startVal' :endVal='Heifers' :duration='3000'></countTo> Heifers</span><br>
@@ -421,6 +421,7 @@ export default {
       var postMortems = computed(()=> this.PMs)
       var vets = computed(()=> this.vet)
       var waterPumps = computed(()=> this.pumps)
+      var lab = computed(()=> this.labs)
       
 
       var totalConsults =  computed(
@@ -433,7 +434,8 @@ export default {
                                  this.pigAI+
                                  this.PMs+
                                  this.vet+
-                                 this.pumps
+                                 this.pumps+
+                                 this.labs
                                 
                                  
                                  )
@@ -489,6 +491,11 @@ export default {
                     "consultations":irrigations
                   },
 
+                  { 
+                  "consultation":"Lab Submissions",
+                  "consultations":lab
+                },
+
                  { "consultation":"Nutrition",
                     "consultations":nutritions
                   },
@@ -528,6 +535,7 @@ export default {
       ...mapGetters('totalConsultsData', {
         loading: 'loading',
         totalConsults: 'allFilteredTotalConsultsRecords',
+        labs:'allFilteredTotalLabSubmissionsRecords',
         agros:'allFilteredTotalAgroRecords',
         beef:'allFilteredTotalBeefAIRecords',
         fences:'allFilteredTotalFenceRecords',

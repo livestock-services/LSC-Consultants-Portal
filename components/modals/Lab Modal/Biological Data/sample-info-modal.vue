@@ -58,6 +58,8 @@
                   <option value="ORGAN">ORGAN</option>
                   <option value="BIOPSY">BIOPSY</option>
                   <option value="PUS">PUS</option>
+                  <option value="OTHER">OTHER</option>
+
 
                   
                 </b-select>
@@ -67,19 +69,21 @@
             </div>
 
 
+           <div v-if="sampleType === 'OTHER'">
             <h7> <span class="is-blue mt-2">Other(If sample type is not on list)</span></h7>
   
-            <div class="columns">
-              
-              
-  
-              <div  class="column is-three-quarters">
-
+              <div class="columns">
                 
-                <b-input type="text" v-model="otherSampleType" placeholder="sample type..."></b-input>
+                
 
+                <div  class="column is-three-quarters">
+
+                  
+                  <b-input type="text" v-model="otherSampleType" placeholder="sample type..."></b-input>
+
+                </div>
               </div>
-            </div>
+           </div>
   
   
             <h4> <span class="is-blue"> Animal Type </span></h4>
@@ -103,6 +107,8 @@
                   <option value="SHEEP">SHEEP</option>
                   <option value="AVIAN">AVIAN</option>
                   <option value="POULTRY">POULTRY</option>
+                  <option value="OTHER">OTHER</option>
+                 
                  
 
                   
@@ -112,7 +118,8 @@
             </div>
   
   
-            <h7> <span class="is-blue mt-2">Other(If Animal type is not on list)</span></h7>
+            <div v-if="animalType === 'OTHER'">
+              <h7> <span class="is-blue mt-2">Other(If Animal type is not on list)</span></h7>
   
             <div class="columns">
               
@@ -124,6 +131,7 @@
                 <b-input type="text" v-model="otherAnimalType" placeholder="sample type..."></b-input>
 
               </div>
+            </div>
             </div>
             
           

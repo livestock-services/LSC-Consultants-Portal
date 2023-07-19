@@ -1149,7 +1149,7 @@ export const actions = {
 
             const newSubmissionsRecord = cloneDeep(state.submissionsForm);
 
-           //newSubmissionsRecord.dateTimeReceived = state.submissionsForm.dateTimeReceived.toLocaleDateString('en-US');
+           newSubmissionsRecord.dateTimeReceived = state.submissionsForm.dateTimeReceived.toLocaleDateString('en-US');
 
 
 
@@ -1203,14 +1203,16 @@ export const actions = {
                           )
 
                       console.log(customeUserRecords);
+                      console.log(customeUserRecords.length)
                       commit(GET_ALL_BIO_SUBMISSIONS_RECORDS, customeUserRecords);
 
             }
         }
 
             else{
-
+                console.log(response.data.length)
                 commit(GET_ALL_BIO_SUBMISSIONS_RECORDS, response.data);
+                
 
             }
 
@@ -1330,7 +1332,7 @@ export const actions = {
 
             const newBioSubmissionsRecord = cloneDeep(state.bioSubmissionsForm);
 
-      
+            
 
 
          newBioSubmissionsRecord.createdBy = this.$auth.user.email;

@@ -136,7 +136,7 @@
 
                             <b-menu-list class="ml-2" icon="account"  label="Consultations">
 
-                              <b-menu-item v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Lab Consultant'"   
+                              <b-menu-item v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Lab Manager' || SignedInUser.role === 'Lab Consultant'"   
                                          class="ml-2" icon="microscope"  label="Laboratory" 
                                          @click="lab">
                                             
@@ -144,7 +144,7 @@
                                 
                             </b-menu-item>
 
-                                 <b-menu-item v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Nutrition Consultant'" icon="food" @click="nutrition" label="Nutrition"></b-menu-item>
+                                 <b-menu-item v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Vet Manager' || SignedInUser.role === 'Nutrition Consultant'" icon="food" @click="nutrition" label="Nutrition"></b-menu-item>
 
                              
                                
@@ -152,7 +152,7 @@
 
                                 
                                
-                                <b-menu-item v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Vet Consultant'" icon="doctor"   @click="vetTech" label="Veterinary">  </b-menu-item>
+                                <b-menu-item v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Vet Manager' || SignedInUser.role === 'Vet Consultant'" icon="doctor"   @click="vetTech" label="Veterinary">  </b-menu-item>
 
 
 

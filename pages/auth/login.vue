@@ -270,7 +270,8 @@
     grid-row: 2/3;
     grid-column: 3/3;
     width: 100%;
-    background-color: rgba(243, 239, 195, 0.863);
+    background-color: rgba(245, 240, 188, 0.863);
+    
     
   }
   

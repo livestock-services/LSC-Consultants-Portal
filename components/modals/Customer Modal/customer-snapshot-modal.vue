@@ -87,6 +87,26 @@
         /> 
         </b-tooltip>
 
+        <b-tooltip label="Make Vet Manager">
+          <b-button   
+          class="mx-1 vet"
+          type="is-primary"
+          icon-left="star"
+          icon-right="doctor"
+          @click="onVetManager"
+        /> 
+        </b-tooltip>
+
+        <b-tooltip label="Make Lab Manager">
+          <b-button   
+          class="mx-1 lab"
+          type="is-primary"
+          icon-left="microscope"
+          icon-right="star"
+          @click="onLabManager"
+        /> 
+        </b-tooltip>
+
         <b-tooltip label="Make Vet Consultant">
           <b-button   
           class="mx-1 vet"
@@ -198,7 +218,7 @@
     methods: {
       ...mapActions('users', ['load', 'selectUser', 'makeAdminUser','makeManagerUser',
                     'makeVetUser','makeAgroUser','makeLabUser','makeNutritionUser',
-                    'makeAIUser','makeRotoUser','makeFenceUser','makeFishUser']),
+                    'makeAIUser','makeRotoUser','makeFenceUser','makeFishUser', 'makeVetManagerUser', 'makeLabManagerUser']),
   
       async onAdmin() {
 
@@ -227,6 +247,35 @@
       })
       this.$parent.close()
       },
+
+            async onVetManager() {
+
+      await this.makeVetManagerUser();
+
+      const msg = await Promise.resolve('Operation successfull')
+      this.$buefy.toast.open({
+        message: msg, // 'Operation successful',
+        duration: 5000,
+        position: 'is-top',
+        type: 'is-info',
+      })
+      this.$parent.close()
+      },
+
+
+          async onLabManager() {
+
+    await this.makeLabManagerUser();
+
+    const msg = await Promise.resolve('Operation successfull')
+    this.$buefy.toast.open({
+      message: msg, // 'Operation successful',
+      duration: 5000,
+      position: 'is-top',
+      type: 'is-info',
+    })
+    this.$parent.close()
+    },
 
       async onVet() {
 
@@ -357,6 +406,10 @@
   <style scoped>
   .modal-width-auto {
     width: auto;
+  }
+
+  .modal-card{
+    width: fit-content;
   }
   
   .feed{

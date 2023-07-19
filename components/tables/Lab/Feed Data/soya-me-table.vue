@@ -14,7 +14,7 @@
         </b-select>
   
        <div class="buttons">
-          <b-tooltip label="Add details of new records here" type="is-dark">
+          <b-tooltip v-if="SignedInUser.role !== 'Manager'" label="Add details of new records here" type="is-dark">
           <b-button class="mx-2" icon-left="plus" type="is-success" @click="addNewTask">Add New Record</b-button>
           </b-tooltip>
   

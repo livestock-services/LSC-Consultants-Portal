@@ -21,6 +21,7 @@ import {
         GET_ALL_FILTERED_TOTAL_PUMP_RECORDS,
         GET_ALL_FILTERED_TOTAL_VET_RECORDS,
         GET_ALL_FILTERED_TOTAL_POST_MORTEMS_RECORDS,
+        GET_ALL_FILTERED_SUBMISSIONS_RECORDS,
        
         
         
@@ -64,6 +65,8 @@ export const state = () => ({
     allFilteredTotalVetRecords:[],
 
     allFilteredTotalPostMortemsRecords:[],
+
+    allFilteredTotalLabSubmissionsRecords:[],
 
 
 
@@ -143,6 +146,10 @@ export const getters = {
         return state.allFilteredTotalVetRecords
     },
 
+    allFilteredTotalLabSubmissionsRecords(state){
+        return state.allFilteredTotalLabSubmissionsRecords
+    },
+
     
         
   //----------------------------------------END OF AGRO SECTION----------------------------------------//
@@ -218,6 +225,10 @@ export const mutations = {
         state.allFilteredTotalPostMortemsRecords = payload
     },
 
+    [GET_ALL_FILTERED_SUBMISSIONS_RECORDS](state, payload){
+        state.allFilteredTotalLabSubmissionsRecords = payload
+    },
+
 
 
  
@@ -269,6 +280,9 @@ export const actions = {
 
             const {data: vet } = await api.get(`/vet/allVetRecords`)
 
+            let {data: lbs} = await api.get(`/lab/bioSubmissions/allBioSubmissions`)
+
+            console.log(lbs.data.length)
         
 
    // -------------------------------END OF FILTERING BY CATEGORY----------------------//
@@ -323,6 +337,12 @@ export const actions = {
         new Date(jt.date) >= new Date(newFilterRecord.startDate) && new Date(jt.date) <= new Date(newFilterRecord.endDate)
         );
 
+        const filteredTotalLBSRecords = lbs.data.filter( jkt => 
+        new Date(jkt.date) >= new Date(newFilterRecord.startDate) && new Date(jkt.date) <= new Date(newFilterRecord.endDate)
+        );
+
+       console.log(filteredTotalLBSRecords);
+
        
         
          console.log(filteredTotalAgroConsultsRecords.length);
@@ -345,6 +365,8 @@ export const actions = {
 
          console.log(filteredTotalVetConsultsRecords.length);
 
+         console.log(filteredTotalLBSRecords.length);
+
 
          const finalTotalConsults = filteredTotalAgroConsultsRecords.length +
                                     filteredTotalBeefAIConsultsRecords.length+
@@ -355,7 +377,8 @@ export const actions = {
                                     filteredTotalPigAIConsultsRecords.length + 
                                     filteredTotalPostMortemsRecords.length +
                                     filteredTotalPumpConsultsRecords.length +
-                                    filteredTotalVetConsultsRecords.length
+                                    filteredTotalVetConsultsRecords.length+
+                                    filteredTotalLBSRecords.length
 
              console.log(finalTotalConsults)
 
@@ -402,7 +425,7 @@ export const actions = {
 
             commit(GET_ALL_FILTERED_TOTAL_VET_RECORDS, filteredTotalVetConsultsRecords.length);
 
-           
+            commit(GET_ALL_FILTERED_SUBMISSIONS_RECORDS,  filteredTotalLBSRecords.length)
 
        
 //            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED

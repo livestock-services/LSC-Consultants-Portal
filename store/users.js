@@ -13,6 +13,8 @@ import {    SET_LOADING,
             //------ROLES-------//
             MAKE_ADMIN_USER,
             MAKE_MANAGER_USER,
+            MAKE_VET_MANAGER_USER,
+            MAKE_LAB_MANAGER_USER,
             MAKE_VET_USER,
             MAKE_AGRO_USER,
             MAKE_LAB_USER,
@@ -138,6 +140,17 @@ export const mutations = {
         [MAKE_MANAGER_USER](state, putResponse) {
         state.selectedUser = putResponse
         state.selectedUser.role = "Manager"
+        },
+
+        [MAKE_VET_MANAGER_USER](state, putResponse) {
+          state.selectedUser = putResponse
+          state.selectedUser.role = "Vet Manager"
+        },
+
+
+        [MAKE_LAB_MANAGER_USER](state, putResponse) {
+        state.selectedUser = putResponse
+        state.selectedUser.role = "Lab Manager"
         },
 
         [MAKE_VET_USER](state, putResponse) {
@@ -424,6 +437,57 @@ export const actions = {
           }
            
           },
+
+
+          async makeVetManagerUser({ state, commit }) {
+            try {
+                commit(SET_LOADING, true) 
+                var date = new Date();
+               
+                const newUser = state.user
+            
+    
+                console.log(newUser)
+         
+               const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "Vet Manager" } )
+              
+               commit(MAKE_VET_MANAGER_USER, putResponse)
+        
+                console.log(newUser.data);
+               
+                commit(SET_LOADING, false)
+              } catch (error) {
+                commit(SET_LOADING, false)
+                //throw error
+              }
+               
+              },
+
+
+              
+          async makeLabManagerUser({ state, commit }) {
+            try {
+                commit(SET_LOADING, true) 
+                var date = new Date();
+               
+                const newUser = state.user
+            
+    
+                console.log(newUser)
+         
+               const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "Lab Manager" } )
+              
+               commit(MAKE_LAB_MANAGER_USER, putResponse)
+        
+                console.log(newUser.data);
+               
+                commit(SET_LOADING, false)
+              } catch (error) {
+                commit(SET_LOADING, false)
+                //throw error
+              }
+               
+              },
 
       async makeVetUser({ state, commit }) {
         try {

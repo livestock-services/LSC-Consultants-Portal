@@ -14,7 +14,7 @@
         </b-select>
   
        <div class="buttons">
-          <b-tooltip label="Add details of new customers here" type="is-dark">
+          <b-tooltip v-if="SignedInUser.role === 'Admin'" label="Add details of new customers here" type="is-dark">
           <b-button class="mx-2" icon-left="plus" type="is-success" @click="addNewTask">Add New User</b-button>
           </b-tooltip>
   
@@ -86,7 +86,7 @@
               },
 
               {
-                'vet' : props.row.role ===  'Vet Consultant',
+                'vet' : props.row.role ===  'Vet Consultant' || props.row.role ===  'Vet Manager',
               },
   
               {
@@ -94,9 +94,10 @@
               },
 
               {
-                'lab' : props.row.role ===  'Lab Consultant',
+                'lab' : props.row.role ===  'Lab Consultant' || props.row.role ===  'Lab Manager',
               },
-  
+
+           
               {
                 'nutrition ': props.row.role === 'Nutrition Consultant',
               },
@@ -124,6 +125,8 @@
             >
          {{ props.row.role }} <i v-if="props.row.role=== 'Admin'" class="mdi mdi-account"></i> <i v-if="props.row.role=== 'Admin'" class="mdi mdi-star"></i>
           <i v-if="props.row.role=== 'Manager'" class="mdi mdi-star"></i>
+          <i v-if="props.row.role=== 'Vet Manager'" class="mdi mdi-doctor"></i>
+          <i v-if="props.row.role=== 'Lab Manager'" class="mdi mdi-microscope"></i>
         </span>
          
           <!-- {{ props.row.sumInsured }} -->
@@ -133,7 +136,7 @@
        
       
   
-         <b-table-column v-slot="props" label="Options">
+         <b-table-column v-if="SignedInUser.role === 'Admin'" v-slot="props" label="Options">
           <span class="buttons">
             <!-- <b-button type="is-secondary-outline" icon-left="eye">View</b-button> -->
             <b-tooltip label="Activate User" type="is-warning is-light">
@@ -176,6 +179,7 @@
   
   
   <script>
+   import { computed } from 'vue';
   import { mapActions, mapGetters } from 'vuex'
   import CustomerModal from'~/components/modals/Customer Modal/customer-modal.vue'
   import CustomerSnapshotModal from '~/components/modals/Customer Modal/customer-snapshot-modal.vue'
@@ -184,9 +188,9 @@
   
     data() {  
     
-      
+      var SignedInUser = computed(()=>this.user)
       return {
-  
+        SignedInUser,
         isPaginated: true,
         currentPage: 1,
         perPage: 10,
@@ -203,7 +207,10 @@
       
       ...mapGetters('users', {
           loading: 'loading',
-         users: 'allUsers',
+          users: 'allUsers',
+          user:'loggedInUser',
+
+          
         }),
       
        isEmpty() {
