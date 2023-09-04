@@ -475,8 +475,8 @@ export default {
                   "consultations":agro
                 },
 
-                 { "consultation":"Beef AI & Breeding",
-                    "consultations":beefAIs
+                 { "consultation":" AI & Breeding",
+                    "consultations":(beefAIs + pigAIs)
                 },
 
                  { "consultation":"Fencing",
@@ -500,9 +500,7 @@ export default {
                     "consultations":nutritions
                   },
 
-                 { "consultation":"Pig AI & Breeding",
-                    "consultations":pigAIs
-                },
+              
 
                  { "consultation":"Post Mortems",
                     "consultations":postMortems

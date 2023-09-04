@@ -142,7 +142,7 @@
   
             </div>
 
-            <h4> <span class="is-blue">Tel No of bags/tonnage_Vehicle</span></h4>
+            <h4> <span class="is-blue"> No of bags/tonnage_Vehicle</span></h4>
             <div class="columns">
   
               
