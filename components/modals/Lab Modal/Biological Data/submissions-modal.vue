@@ -28,24 +28,11 @@
 
 
             </div>
+
+
           </div>
 
-          <h4><span class="is-blue">Client Name</span></h4>
-          <div class="columns">
-            <div class="column is-three-quarters">
-              <b-autocomplete
-                  rounded
-                  v-model="clientName"
-                  :data="bioSubClients"
-                  placeholder="Select the client from the list"
-                  icon="magnify"
-                  clearable
-                  @select="option => selected = option">
-  
-                  <template #empty>No results found</template>
-              </b-autocomplete>
-            </div>
-          </div>
+         
 
           <h4><span class="is-blue"> Consulting Veterinarian</span></h4>
 
@@ -697,7 +684,7 @@ export default {
       data: ["Consultations", "Sales"],
 
       data:[
-
+       
         computed(()=>this.bioSubs),
         computed(()=>this.bioSubClients),
 

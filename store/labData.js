@@ -1230,20 +1230,39 @@ export const actions = {
 
             let filteredBioSubmissionClientsList = ["Bio Submmission Clients:"];
 
-           let clientInfo = [];
  
             for(let i =0; i < allBioSubs.length; i++){
 
-            console.log(allBioSubs[i].bioSubmissionNumber);
+          //  console.log(allBioSubs[i].bioSubmissionNumber);
 
-            console.log(allBioSubs[i].clientName);
+          //  console.log(allBioSubs[i].clientName);
 
-             clientInfo = [{
-                name:allBioSubs[i].clientName,
-                SN:allBioSubs[i].bioSubmissionNumber,
-            }]
+            // Sample data
+                let allNewBioSubs = [
+                    { bioSubmissionNumber: allBioSubs[i].bioSubmissionNumber, clientName: allBioSubs[i].clientName },
+             
+                ];
 
-            console.log(clientInfo);
+                // Create a mapping from bioSubmissionNumber to clientName
+                const bioSubmissionMap = {};
+                allNewBioSubs.forEach((bioSub) => {
+                    bioSubmissionMap[bioSub.bioSubmissionNumber] = bioSub.clientName;
+                });
+
+                // Now you can access clientName by bioSubmissionNumber
+                const selectedBioSubmissionNumber = allBioSubs[i].bioSubmissionNumber; // Replace with the desired bioSubmissionNumber
+                const clientName = bioSubmissionMap[selectedBioSubmissionNumber];
+
+
+
+                // Check if the clientName exists for the selected bioSubmissionNumber
+                if (clientName !== undefined) {
+                    console.log(`Bio S/N ${selectedBioSubmissionNumber}: ${clientName}`);
+                } else {
+                    console.log(`Client Name not found for Bio Submission Number ${selectedBioSubmissionNumber}`);
+                }
+
+
 
 
 
@@ -1253,13 +1272,13 @@ export const actions = {
             commit(REMOVE_ALL_BIO_SUBMISSION_NUMBERS_FROM_LIST, filteredBioSubmissionsList);
 
 
-            commit(REMOVE_ALL_BIO_CLIENTS_FROM_LIST, filteredBioSubmissionClientsList);
+          //  commit(REMOVE_ALL_BIO_CLIENTS_FROM_LIST, filteredBioSubmissionClientsList);
          
 
             
-             commit(ADD_NEW_BIO_SUBMISSION_NUMBER_TO_LIST, allBioSubs[i].submissionNumber);
+             commit(ADD_NEW_BIO_SUBMISSION_NUMBER_TO_LIST, (`Bio S/N: ${selectedBioSubmissionNumber}, Client Name: ${clientName}`));
 
-            //  commit(ADD_NEW_BIO_CLIENT_TO_LIST, allBioSubs[i].clientName);
+             commit(ADD_NEW_BIO_CLIENT_TO_LIST, allBioSubs[i].clientName);
 
         //     console.log(allSupps[i]);
 
@@ -2159,5 +2178,4 @@ export const actions = {
 }
 
 
-  
     
