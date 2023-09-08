@@ -145,7 +145,7 @@
   
   
         
-        <!-- <b-table-column v-slot="props" label="Options">
+         <b-table-column v-slot="props" label="Options">
           <span class="buttons">
             <b-tooltip label="View more details about this consult" type="is-dark" position="is-left">
             <b-button
@@ -157,7 +157,7 @@
   
             </b-tooltip>
           </span>
-        </b-table-column> -->
+        </b-table-column> 
   
         
                    
@@ -186,8 +186,7 @@
   
   import BioSubmissionsModal from '@/components/modals/Lab Modal/Biological Data/bio-submissions-modal.vue'
   import { computed } from 'vue';
-  
-  // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
+  import BioSubmissionSnapshotModal from '@/components/modals/Lab Modal/Biological Data/bio-submission-snapshot-modal.vue'
   export default {
     name: 'SampleInfoTable',
   
@@ -271,7 +270,7 @@
     methods: {
      
   
-       ...mapActions('labData', ['addNewBioSubmissionRecord','getAllBioSubmissionsRecords', 'load']),
+       ...mapActions('labData', ['addNewBioSubmissionRecord','getAllBioSubmissionsRecords','selectBioSubmissionRecord', 'load']),
   
        async refresh(){
   
@@ -285,28 +284,28 @@
       },
   
   
-      // captureReceipt(agro) {
-      //   this.selectAgroRecord(agro)
-      //   setTimeout(() => {
-      //     this.$buefy.modal.open({
-      //       parent: this,
-      //       component: AgroSnapshotModal,
-      //       hasModalCard: true,
-      //       trapFocus: true,
-      //       canCancel: ['x'],
-      //       destroyOnHide: true,
-      //       customClass: '',
-      //       onCancel: () => {
-      //         this.$buefy.toast.open({
-      //           message: `Snapshot closed`,
-      //           duration: 5000,
-      //           position: 'is-top',
-      //           type: 'is-info',
-      //         })
-      //       },
-      //     })
-      //   }, 300)
-      // },
+       captureReceipt(sample) {
+         this.selectBioSubmissionRecord(sample)
+         setTimeout(() => {
+           this.$buefy.modal.open({
+             parent: this,
+             component: BioSubmissionSnapshotModal,
+             hasModalCard: true,
+             trapFocus: true,
+             canCancel: ['x'],
+             destroyOnHide: true,
+             customClass: '',
+             onCancel: () => {
+               this.$buefy.toast.open({
+                 message: `Snapshot closed`,
+                 duration: 5000,
+                 position: 'is-top',
+                 type: 'is-info',
+               })
+             },
+           })
+         }, 300)
+       },
   
        addNewTask() {
         

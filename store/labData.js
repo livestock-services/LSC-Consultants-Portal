@@ -63,7 +63,7 @@ import {
         REMOVE_ALL_BIO_CLIENTS_FROM_LIST,
         ADD_NEW_BIO_CLIENT_TO_LIST,
 
-        
+        SET_SELECTED_BIO_SUBMISSION_RECORD,
         SET_LOADING,
         
         // GET_ALL_SAMPLE_INFORMATION_CONSULTS_RECORDS,
@@ -77,6 +77,7 @@ import { options } from '@braid/vue-formulate'
 export const state = () => ({
 
     loading: false,
+    selectedBioSubmissionRecord: null,
     filteredSampleInformationStartTime:[],
     filteredSampleInformationEndTime:[],
 
@@ -660,7 +661,12 @@ export const getters = {
 
     allBioSubmissionClients(state){
         return state.allBioSubmissionClients
-    }
+    },
+
+    selectedBioSubmissionRecord(state) {
+        return state.selectedBioSubmissionRecord
+      },
+
 
 
 
@@ -879,6 +885,10 @@ export const mutations = {
     [REMOVE_ALL_BIO_CLIENTS_FROM_LIST](state, payload){
         state.allBioSubmissionClients = payload
     },
+
+    [SET_SELECTED_BIO_SUBMISSION_RECORD](state, newBioSubmissionRecord) {
+        state.selectedBioSubmissionRecord = newBioSubmissionRecord
+      },
 
     //------------------------------------------------------------------------------------//
 
@@ -2171,7 +2181,22 @@ export const actions = {
         }
         // Return null if all IDs are used
         return null;
-      }
+      },
+
+
+      selectBioSubmissionRecord({ commit },  newSubmissionsRecord) {
+        try {
+
+
+            commit(SET_SELECTED_BIO_SUBMISSION_RECORD,  newSubmissionsRecord)
+
+            console.log( newSubmissionsRecord._id)
+            console.log(newSubmissionsRecord.clientName)
+        } catch (error) {
+            console.log('Error')
+        }
+        
+      },
 
 
 
