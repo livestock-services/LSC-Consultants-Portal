@@ -3,6 +3,7 @@ export const SET_LOADING = 'SET_LOADING'
 export const GET_ALL_USERS = 'GET_ALL_USERS'
 
 
+export const SET_DATA_ARRAY = 'SET_DATA_ARRAY'
 // -----------------------------------------USERS----------------------------------------------------------------------
 export const SET_USERS = 'SET_USERS'
 export const ADD_NEW_USER = 'ADD_NEW_USER'

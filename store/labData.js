@@ -65,6 +65,7 @@ import {
 
         SET_SELECTED_BIO_SUBMISSION_RECORD,
         SET_LOADING,
+        SET_DATA_ARRAY,
         
         // GET_ALL_SAMPLE_INFORMATION_CONSULTS_RECORDS,
         // GET_ALL_SAMPLE_INFORMATION_SALES_RECORDS,
@@ -182,13 +183,42 @@ export const state = () => ({
 
     },
 
-    bioSubmissionsForm:{
-      
-        clientName:null,
-        // dateSubmitted:null,
-        // timeStamp:null,
-        createdBy:null
-    },
+    bioSubmissionsForm: {
+        clientName: null,
+        clientAddress: null,
+        clientEmail: null,
+        clientContactNumber: null,
+        examsRequested:[],
+        testCountHPE: null,
+        testCountFEC: null,
+        testCountHI: null,
+        testCountMI: null,
+        testCountET: null,
+        testCountRBT: null,
+        testCountBrucellosis: null,
+        testCountChlamydia: null,
+        testCountProFlok: null,
+        testCountFBC: null,
+        testCountPCV: null,
+        testCountCDP: null,
+        testCountUT: null,
+        testCountCulture: null,
+        testCountCS: null,
+        testCountBCC: null,
+        testCountBCS: null,
+        testCountIS: null,
+        testCountRVPT: null,
+        testCountST: null,
+        testCountFT: null,
+        testCountLayers: null,
+        testCountBovine: null,
+        testCountSmallStock: null,
+        testCountBroilers: null,
+        testCountPig: null,
+        testCountFreeRange: null,
+        testCountFarmSample: null,
+        testCountDisposables: null,
+      },
 
 
     
@@ -667,6 +697,9 @@ export const getters = {
         return state.selectedBioSubmissionRecord
       },
 
+      examsRequested(state) {
+        return state.bioSubmissionsForm.examsRequested
+      },
 
 
 
@@ -890,6 +923,10 @@ export const mutations = {
         state.selectedBioSubmissionRecord = newBioSubmissionRecord
       },
 
+      [SET_DATA_ARRAY](state, newDataArray) {
+        state.bioSubmissionsForm.examsRequested = newDataArray;
+      },
+
     //------------------------------------------------------------------------------------//
 
        
@@ -897,7 +934,9 @@ export const mutations = {
 
 export const actions = {
 
-    
+    updateDataArray({ commit }, newDataArray) {
+        commit('SET_DATA_ARRAY', newDataArray);
+      },
  //GET ALL AgroRecordS
     async getAllSampleInformationRecords({ state,commit,rootState,rootGetters }){
         try {
@@ -1473,7 +1512,7 @@ export const actions = {
 
             const newBioSubmissionsRecord = cloneDeep(state.bioSubmissionsForm);
 
-            
+            console.log(newBioSubmissionsRecord)
 
 
          newBioSubmissionsRecord.createdBy = this.$auth.user.email;
