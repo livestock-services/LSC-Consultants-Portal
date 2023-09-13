@@ -70,244 +70,213 @@
                 <h5 class="my-2">PARASITOLOGY</h5>
                 <ul>
                   <li>
-                    <b-checkbox v-model="checkboxGroup" type="is-success"  native-value="Haemoparasite Examination (HPE), Code 4740">Haemoparasite Examination (HPE), Code 4740</b-checkbox>
-                    <label v-if="checkboxGroup.includes('Haemoparasite Examination (HPE), Code 4740')">No. of Tests: <input type="number" v-model="testCountHPE"></label>
+                    <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Haemoparasite Examination (Code 4740)">Haemoparasite Examination (HPE), Code 4740</b-checkbox>
+                    <label v-if="checkboxGroup.includes('Haemoparasite Examination (Code 4740)')">No. of Tests: <input type="number" v-model="testCountHPE"></label>
                   </li>
                   <li>
-                    <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Fecal Egg Counts (FEC), Code 4745">Fecal Egg Counts (FEC), Code 4745</b-checkbox>
-                    <label v-if="checkboxGroup.includes('Fecal Egg Counts (FEC), Code 4745')">No. of Tests: <input type="number" v-model="testCountFEC"></label>
+                    <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Fecal Egg Counts (Code 4745)">Fecal Egg Counts (FEC), Code 4745</b-checkbox>
+                    <label v-if="checkboxGroup.includes('Fecal Egg Counts (Code 4745)')">No. of Tests: <input type="number" v-model="testCountFEC"></label>
                   </li>
                   <li>
-                    <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Helminth Identification (HI), Code 8000">Helminth Identification (HI), Code 8000</b-checkbox>
-                    <label v-if="checkboxGroup.includes('Helminth Identification (HI), Code 8000')">No. of Tests: <input type="number" v-model="testCountHI"></label>
+                    <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Helminth Identification (Code 8000)">Helminth Identification (HI), Code 8000</b-checkbox>
+                    <label v-if="checkboxGroup.includes('Helminth Identification (Code 8000)')">No. of Tests: <input type="number" v-model="testCountHI"></label>
                   </li>
                   <li>
-                    <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Mites Identification (MI), Code 8001">Mites Identification (MI), Code 8001</b-checkbox>
-                    <label  v-if="checkboxGroup.includes('Mites Identification (MI), Code 8001')" >No. of Tests: <input type="number" v-model="testCountMI"></label>
+                    <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Mites Identification (Code 8001)">Mites Identification (MI), Code 8001</b-checkbox>
+                    <label v-if="checkboxGroup.includes('Mites Identification (Code 8001)')">No. of Tests: <input type="number" v-model="testCountMI"></label>
                   </li>
                 </ul>
               </div>
             </div>
 
-            <div class="columns">
-              <div class="column">
-                <h5 class="my-2">SEROLOGY</h5>
-                <ul>
-                  <li>
-                    <b-checkbox v-model="checkboxGroup" type="is-success" native-value="ELISA Test (ET) IBV, MG, IBD, NDV, NDV-F (Code 4875)">ELISA Test (ET) IBV, MG, IBD, NDV, NDV-F (Code 4875)</b-checkbox>
-                    <label v-if="checkboxGroup.includes('ELISA Test (ET) IBV, MG, IBD, NDV, NDV-F (Code 4875)')">No. of Tests: <input type="number" v-model="testCountET"></label>
-                  </li>
-                  <li>
-                    <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Rose Bengal Test (RBT), Code 6783">Rose Bengal Test (RBT), Code 6783</b-checkbox>
-                    <label v-if="checkboxGroup.includes('Rose Bengal Test (RBT), Code 6783')">No. of Tests: <input type="number" v-model="testCountRBT"></label>
-                  </li>
-                  <li>
-                    <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Brucellosis (Confirmation), Code 8994">Brucellosis (Confirmation), Code 8994</b-checkbox>
-                    <label v-if="checkboxGroup.includes('Brucellosis (Confirmation), Code 8994')">No. of Tests: <input type="number" v-model="testCountBrucellosis"></label>
-                  </li>
-                  <li>
-                    <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Chlamydia, Code 8995">Chlamydia, Code 8995</b-checkbox>
-                    <label v-if="checkboxGroup.includes('Chlamydia, Code 8995')">No. of Tests: <input type="number" v-model="testCountChlamydia"></label>
-                  </li>
-                  <li>
-                    <b-checkbox v-model="checkboxGroup" type="is-success" native-value="ProFlok (ELISA), Code 8996">ProFlok (ELISA), Code 8996</b-checkbox>
-                    <label v-if="checkboxGroup.includes('ProFlok (ELISA), Code 8996')">No. of Tests: <input type="number" v-model="testCountProFlok"></label>
-                  </li>
-                </ul>
-              </div>
-            </div>
+<!-- Repeat the same pattern for other sections -->
 
+<!-- SEROLOGY -->
+<div class="columns">
+  <div class="column">
+    <h5 class="my-2">SEROLOGY</h5>
+    <ul>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="ELISA Test (Code 4875)">ELISA Test (ET) IBV, MG, IBD, NDV, NDV-F (Code 4875)</b-checkbox>
+        <label v-if="checkboxGroup.includes('ELISA Test (Code 4875)')">No. of Tests: <input type="number" v-model="testCountET"></label>
+      </li>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Rose Bengal Test (Code 6783)">Rose Bengal Test (RBT), Code 6783</b-checkbox>
+        <label v-if="checkboxGroup.includes('Rose Bengal Test (Code 6783)')">No. of Tests: <input type="number" v-model="testCountRBT"></label>
+      </li>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Brucellosis (Code 8994)">Brucellosis (Confirmation), Code 8994</b-checkbox>
+        <label v-if="checkboxGroup.includes('Brucellosis (Code 8994)')">No. of Tests: <input type="number" v-model="testCountBrucellosis"></label>
+      </li>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Chlamydia (Code 8995)">Chlamydia, Code 8995</b-checkbox>
+        <label v-if="checkboxGroup.includes('Chlamydia (Code 8995)')">No. of Tests: <input type="number" v-model="testCountChlamydia"></label>
+      </li>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="ProFlok (Code 8996)">ProFlok (ELISA), Code 8996</b-checkbox>
+        <label v-if="checkboxGroup.includes('ProFlok (Code 8996)')">No. of Tests: <input type="number" v-model="testCountProFlok"></label>
+      </li>
+    </ul>
+  </div>
+</div>
 
+<!-- HEMATOLOGY -->
+<div class="columns">
+  <div class="column">
+    <h5 class="my-2">HEMATOLOGY</h5>
+    <ul>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Full Blood Count (Code 4743)">Full Blood Count (FBC), Code 4743</b-checkbox>
+        <label v-if="checkboxGroup.includes('Full Blood Count (Code 4743)')">No. of Tests: <input type="number" v-model="testCountFBC"></label>
+      </li>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Packed Cell Volume (Code 4744)">Packed Cell Volume (PCV), Code 4744</b-checkbox>
+        <label v-if="checkboxGroup.includes('Packed Cell Volume (Code 4744)')">No. of Tests: <input type="number" v-model="testCountPCV"></label>
+      </li>
+      <!-- Add more items for the HEMATOLOGY section if needed -->
+    </ul>
+  </div>
+</div>
 
+<!-- CLINICAL BIOCHEMISTRY -->
+<div class="columns">
+  <div class="column">
+    <h5 class="my-2">CLINICAL BIOCHEMISTRY</h5>
+    <ul>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Comprehensive Diagnostic Profile (Code 7992)">Comprehensive Diagnostic Profile (CDP), Code 7992</b-checkbox>
+        <label v-if="checkboxGroup.includes('Comprehensive Diagnostic Profile (Code 7992)')">No. of Tests: <input type="number" v-model="testCountCDP"></label>
+      </li>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Urine Test (Code 7995)">Urine Test (UT), Code 7995</b-checkbox>
+        <label v-if="checkboxGroup.includes('Urine Test (Code 7995)')">No. of Tests: <input type="number" v-model="testCountUT"></label>
+      </li>
+     </ul>
+  </div>
+</div>
 
-              <div class="columns">
-                <div class="column">
-         
-                      <h5 class="my-2">HEMATOLOGY</h5>
-                      <ul>
-                        <li>
-                          <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Full Blood Count (FBC), Code 4743">Full Blood Count (FBC), Code 4743</b-checkbox>
-                          <label v-if="checkboxGroup.includes('Full Blood Count (FBC), Code 4743')">No. of Tests: <input type="number" v-model="testCountFBC"></label>
-                        </li>
-                        <li>
-                          <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Packed Cell Volume (PCV), Code 4744">Packed Cell Volume (PCV), Code 4744</b-checkbox>
-                          <label v-if="checkboxGroup.includes('Packed Cell Volume (PCV), Code 4744')">No. of Tests: <input type="number" v-model="testCountPCV"></label>
-                        </li>
-                        
-                      </ul>                
+<!-- MICROBIOLOGY -->
+<div class="columns">
+  <div class="column">
+    <h5 class="my-2">MICROBIOLOGY</h5>
+    <ul>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Culture (Code 4746)">Culture, Code 4746</b-checkbox>
+        <label v-if="checkboxGroup.includes('Culture (Code 4746)')">No. of Tests: <input type="number" v-model="testCountCulture"></label>
+      </li>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Culture & Sensitivity (Code 4748)">Culture & Sensitivity (CS), Code 4748</b-checkbox>
+        <label v-if="checkboxGroup.includes('Culture & Sensitivity (Code 4748)')">No. of Tests: <input type="number" v-model="testCountCS"></label>
+      </li>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Bacterial Colony Count (Code 8002)">Bacterial Colony Count (BCC), Code 8002</b-checkbox>
+        <label v-if="checkboxGroup.includes('Bacterial Colony Count (Code 8002)')">No. of Tests: <input type="number" v-model="testCountBCC"></label>
+      </li>
+      <!-- Add more items for the MICROBIOLOGY section if needed -->
+    </ul>
+  </div>
+</div>
 
-                 </div>
-               
-              </div>
+<!-- CYTOLOGY -->
+<div class="columns">
+  <div class="column">
+    <h5 class="my-2">CYTOLOGY</h5>
+    <ul>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Brain Crush Smear (Code 4741)">Brain Crush Smear (BCS), Code 4741</b-checkbox>
+        <label v-if="checkboxGroup.includes('Brain Crush Smear (Code 4741)')">No. of Tests: <input type="number" v-model="testCountBCS"></label>
+      </li>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Impression Smear (Code 4742)">Impression Smear (IS), Code 4742</b-checkbox>
+        <label v-if="checkboxGroup.includes('Impression Smear (Code 4742)')">No. of Tests: <input type="number" v-model="testCountIS"></label>
+      </li>
+      <!-- Add more items for the CYTOLOGY section if needed -->
+    </ul>
+  </div>
+</div>
 
+<!-- REPRODUCTION -->
+<div class="columns">
+  <div class="column">
+    <h5 class="my-2">REPRODUCTION</h5>
+    <ul>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Rapid Visual Pregnancy Test (Code 6367)">Rapid Visual Pregnancy Test (RVPT), Code 6367</b-checkbox>
+        <label v-if="checkboxGroup.includes('Rapid Visual Pregnancy Test (Code 6367)')">No. of Tests: <input type="number" v-model="testCountRVPT"></label>
+      </li>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Semen Testing (Code 7989)">Semen Testing (ST), Code 7989</b-checkbox>
+        <label v-if="checkboxGroup.includes('Semen Testing (Code 7989)')">No. of Tests: <input type="number" v-model="testCountST"></label>
+      </li>
+      <!-- Add more items for the REPRODUCTION section if needed -->
+    </ul>
+  </div>
+</div>
 
-              <div class="columns">
-                <div class="column">
-         
-                      <h5 class="my-2">CLINICAL BIOCHEMISTRY</h5>
-                      <ul>
-                        <li>
-                          <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Comprehensive Diagnostic Profile (CDP), Code 7992">Comprehensive Diagnostic Profile (CDP), Code 7992</b-checkbox>
-                          <label v-if="checkboxGroup.includes('Comprehensive Diagnostic Profile (CDP), Code 7992')">No. of Tests: <input type="number" v-model="testCountCDP"></label>
-                        </li>
-                        <li>
-                          <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Urine Test (UT), Code 7995">Urine Test (UT), Code 7995</b-checkbox>
-                          <label v-if="checkboxGroup.includes('Urine Test (UT), Code 7995')">No. of Tests: <input type="number" v-model="testCountUT"></label>
-                        </li>
-                        
-                      </ul>                
+<!-- ANIMAL FEED -->
+<div class="columns">
+  <div class="column">
+    <h5 class="my-2">ANIMAL FEED</h5>
+    <ul>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Feed Testing (Code 7988)">Feed Testing (FT) NIR Complete, Code 7988</b-checkbox>
+        <label v-if="checkboxGroup.includes('Feed Testing (Code 7988)')">No. of Tests: <input type="number" v-model="testCountFT"></label>
+      </li>
+      <!-- Add more items for the ANIMAL FEED section if needed -->
+    </ul>
+  </div>
+</div>
 
-                 </div>
-               
-              </div>
+<!-- POSTMORTEM (NECROPSY) -->
+<div class="columns">
+  <div class="column">
+    <h5 class="my-2">POSTMORTEM (NECROPSY)</h5>
+    <ul>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Layers (Code 7999)">Layers (Code 7999)</b-checkbox>
+        <label v-if="checkboxGroup.includes('Layers (Code 7999)')">No. of Tests: <input type="number" v-model="testCountLayers"></label>
+      </li>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Bovine (Code 4758)">Bovine (Code 4758)</b-checkbox>
+        <label v-if="checkboxGroup.includes('Bovine (Code 4758)')">No. of Tests: <input type="number" v-model="testCountBovine"></label>
+      </li>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Small stock (Code 4760)">Small stock (Code 4760)</b-checkbox>
+        <label v-if="checkboxGroup.includes('Small stock (Code 4760)')">No. of Tests: <input type="number" v-model="testCountSmallStock"></label>
+      </li>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Broilers (Code 4762)">Broilers (Code 4762)</b-checkbox>
+        <label v-if="checkboxGroup.includes('Broilers (Code 4762)')">No. of Tests: <input type="number" v-model="testCountBroilers"></label>
+      </li>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Pig (Code 4764)">Pig (Code 4764)</b-checkbox>
+        <label v-if="checkboxGroup.includes('Pig (Code 4764)')">No. of Tests: <input type="number" v-model="testCountPig"></label>
+      </li>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Free range (Code 6784)">Free range (Code 6784)</b-checkbox>
+        <label v-if="checkboxGroup.includes('Free range (Code 6784)')">No. of Tests: <input type="number" v-model="testCountFreeRange"></label>
+      </li>
+    </ul>
+  </div>
+</div>
 
-
-
-
-              <div class="columns">
-                <div class="column">
-         
-                      <h5 class="my-2">MICROBIOLOGY</h5>
-                      <ul>
-                        <li>
-                          <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Culture, Code 4746">Culture, Code 4746</b-checkbox>
-                          <label v-if="checkboxGroup.includes('Culture, Code 4746')">No. of Tests: <input type="number" v-model="testCountCulture"></label>
-                        </li>
-                        <li>
-                          <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Culture & Sensitivity (CS), Code 4748">Culture & Sensitivity (CS), Code 4748</b-checkbox>
-                          <label v-if="checkboxGroup.includes('Culture & Sensitivity (CS), Code 4748')">No. of Tests: <input type="number" v-model="testCountCS"></label>
-                        </li>
-                        <li>
-                          <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Bacterial Colony Count (BCC), Code 8002">Bacterial Colony Count (BCC), Code 8002</b-checkbox>
-                          <label v-if="checkboxGroup.includes('Bacterial Colony Count (BCC), Code 8002')">No. of Tests: <input type="number" v-model="testCountBCC"></label>
-                        </li>
-                       
-                      </ul>                
-
-                 </div>
-               
-              </div>
-
-
-              <div class="columns">
-                <div class="column">
-         
-                      <h5 class="my-2">CYTOLOGY</h5>
-                      <ul>
-                        <li>
-                          <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Brain Crush Smear (BCS), Code 4741">Brain Crush Smear (BCS), Code 4741</b-checkbox>
-                          <label v-if="checkboxGroup.includes('Brain Crush Smear (BCS), Code 4741')">No. of Tests: <input type="number" v-model="testCountBCS"></label>
-                        </li>
-                        <li>
-                          <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Impression Smear (IS), Code 4742">Impression Smear (IS), Code 4742</b-checkbox>
-                          <label v-if="checkboxGroup.includes('Impression Smear (IS), Code 4742')">No. of Tests: <input type="number" v-model="testCountIS"></label>
-                        </li>
-                        
-
-                      </ul>                
-
-                 </div>
-               
-              </div>
-
-
-              <div class="columns">
-                <div class="column">
-         
-                      <h5 class="my-2">REPRODUCTION</h5>
-                      <ul>
-                        <li>
-                          <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Rapid Visual Pregnancy Test (RVPT), Code 6367">Rapid Visual Pregnancy Test (RVPT), Code 6367</b-checkbox>
-                          <label v-if="checkboxGroup.includes('Rapid Visual Pregnancy Test (RVPT), Code 6367')">No. of Tests: <input type="number" v-model="testCountRVPT"></label>
-                        </li>
-                        <li>
-                          <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Semen Testing (ST), Code 7989">Semen Testing (ST), Code 7989</b-checkbox>
-                          <label v-if="checkboxGroup.includes('Semen Testing (ST), Code 7989')">No. of Tests: <input type="number" v-model="testCountST"></label>
-                        </li>
-                        
-
-                      </ul>                
-
-                 </div>
-               
-              </div>
-
-
-              <div class="columns">
-                <div class="column">
-         
-                      <h5 class="my-2">ANIMAL FEED</h5>
-                      <ul>
-                        <li>
-                          <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Feed Testing (FT) NIR Complete, Code 7988">Feed Testing (FT) NIR Complete, Code 7988</b-checkbox>
-                          <label v-if="checkboxGroup.includes('Feed Testing (FT) NIR Complete, Code 7988')">No. of Tests: <input type="number" v-model="testCountFT"></label>
-                        </li>
-                       
-                        
-
-                      </ul>                
-
-                 </div>
-               
-              </div>
-
-
-             
-              <div class="columns">
-                <div class="column">
-                  <h5 class="my-2">POSTMORTEM (NECROPSY)</h5>
-                  <ul>
-                    <li>
-                      <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Layers (Code 7999)">Layers (Code 7999)</b-checkbox>
-                      <label v-if="checkboxGroup.includes('Layers (Code 7999)')">No. of Tests: <input type="number" v-model="testCountLayers"></label>
-                    </li>
-                    <li>
-                      <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Bovine (Code 4758)">Bovine (Code 4758)</b-checkbox>
-                      <label v-if="checkboxGroup.includes('Bovine (Code 4758)')">No. of Tests: <input type="number" v-model="testCountBovine"></label>
-                    </li>
-                    <li>
-                      <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Small stock (Code 4760)">Small stock (Code 4760)</b-checkbox>
-                      <label v-if="checkboxGroup.includes('Small stock (Code 4760)')">No. of Tests: <input type="number" v-model="testCountSmallStock"></label>
-                    </li>
-                    <li>
-                      <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Broilers (Code 4762)">Broilers (Code 4762)</b-checkbox>
-                      <label v-if="checkboxGroup.includes('Broilers (Code 4762)')">No. of Tests: <input type="number" v-model="testCountBroilers"></label>
-                    </li>
-                    <li>
-                      <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Pig (Code 4764)">Pig (Code 4764)</b-checkbox>
-                      <label v-if="checkboxGroup.includes('Pig (Code 4764)')">No. of Tests: <input type="number" v-model="testCountPig"></label>
-                    </li>
-                    <li>
-                      <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Free range (Code 6784)">Free range (Code 6784)</b-checkbox>
-                      <label v-if="checkboxGroup.includes('Free range (Code 6784)')">No. of Tests: <input type="number" v-model="testCountFreeRange"></label>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-
-              <div class="columns">
-                <div class="column">
-         
-                      <h5 class="my-2">OTHER SERVICES</h5>
-                      <ul>
-                        <li>
-                          <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Farm Sample Collection, Code 4755">Farm Sample Collection, Code 4755</b-checkbox>
-                          <label v-if="checkboxGroup.includes('Farm Sample Collection, Code 4755')">No. of Tests: <input type="number" v-model="testCountFarmSample"></label>
-                        </li>
-                        <li>
-                          <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Disposables, Code 8873">Disposables, Code 8873 </b-checkbox>
-                          <label v-if="checkboxGroup.includes('Disposables, Code 8873')">No. of Tests: <input type="number" v-model="testCountDisposables"></label>
-                        </li>
-                        
-
-                      </ul>                
-
-                 </div>
-               
-              </div>
-
-
+<!-- OTHER SERVICES -->
+<div class="columns">
+  <div class="column">
+    <h5 class="my-2">OTHER SERVICES</h5>
+    <ul>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Farm Sample Collection (Code 4755)">Farm Sample Collection, Code 4755</b-checkbox>
+        <label v-if="checkboxGroup.includes('Farm Sample Collection (Code 4755)')">No. of Tests: <input type="number" v-model="testCountFarmSample"></label>
+      </li>
+      <li>
+        <b-checkbox v-model="checkboxGroup" type="is-success" native-value="Disposables (Code 8873)">Disposables, Code 8873 </b-checkbox>
+        <label v-if="checkboxGroup.includes('Disposables (Code 8873)')">No. of Tests: <input type="number" v-model="testCountDisposables"></label>
+      </li>
+      <!-- Add more items for the OTHER SERVICES section if needed -->
+    </ul>
+  </div>
+</div>
 
         
 
@@ -341,134 +310,135 @@
               
           <h4>Test Count</h4>
           <ul>
-            <li v-for="(checkboxValue, checkboxIndex) in checkboxGroup" :key="checkboxIndex">
-              <!-- Parasitology -->
-              <p v-if="checkboxValue.includes('Haemoparasite Examination (HPE), Code 4740')">
-                No. of Tests (HPE): {{ testCountHPE }}
-              </p>
+  <li v-for="(checkboxValue, checkboxIndex) in checkboxGroup" :key="checkboxIndex">
+    <!-- Parasitology -->
+    <p v-if="checkboxValue.includes('Haemoparasite Examination (Code 4740)')">
+      No. of Tests (HPE): {{ testCountHPE }}
+    </p>
 
-              <p v-if="checkboxValue.includes('Fecal Egg Counts (FEC), Code 4745')">
-                No. of Tests (FEC): {{ testCountFEC }}
-              </p>
+    <p v-if="checkboxValue.includes('Fecal Egg Counts (Code 4745)')">
+      No. of Tests (FEC): {{ testCountFEC }}
+    </p>
 
-              <p v-if="checkboxValue.includes('Helminth Identification (HI), Code 8000')">
-                No. of Tests (HI): {{ testCountHI }}
-              </p>
+    <p v-if="checkboxValue.includes('Helminth Identification (Code 8000)')">
+      No. of Tests (HI): {{ testCountHI }}
+    </p>
 
-              <p v-if="checkboxValue.includes('Mites Identification (MI), Code 8001')">
-                No. of Tests (MI): {{ testCountMI }}
-              </p>
+    <p v-if="checkboxValue.includes('Mites Identification (Code 8001)')">
+      No. of Tests (MI): {{ testCountMI }}
+    </p>
 
-              <!-- Serology -->
-              <p v-if="checkboxValue.includes('ELISA Test (ET) IBV, MG, IBD, NDV, NDV-F (Code 4875')">
-                No. of Tests (ET): {{ testCountET }}
-              </p>
+    <!-- Serology -->
+    <p v-if="checkboxValue.includes('ELISA Test (Code 4875)')">
+      No. of Tests (ET): {{ testCountET }}
+    </p>
 
-              <p v-if="checkboxValue.includes('Rose Bengal Test (RBT), Code 6783')">
-                No. of Tests (RBT): {{ testCountRBT }}
-              </p>
+    <p v-if="checkboxValue.includes('Rose Bengal Test (Code 6783)')">
+      No. of Tests (RBT): {{ testCountRBT }}
+    </p>
 
-              <p v-if="checkboxValue.includes('Brucellosis (Confirmation), Code 8994')">
-                No. of Tests (Brucellosis): {{ testCountBrucellosis }}
-              </p>
+    <p v-if="checkboxValue.includes('Brucellosis (Code 8994)')">
+      No. of Tests (Brucellosis): {{ testCountBrucellosis }}
+    </p>
 
-              <p v-if="checkboxValue.includes('Chlamydia, Code 8995')">
-                No. of Tests (Chlamydia): {{ testCountChlamydia }}
-              </p>
+    <p v-if="checkboxValue.includes('Chlamydia (Code 8995)')">
+      No. of Tests (Chlamydia): {{ testCountChlamydia }}
+    </p>
 
-              <p v-if="checkboxValue.includes('ProFlok (ELISA), Code 8996')">
-                No. of Tests (ProFlok): {{ testCountProFlok }}
-              </p>
+    <p v-if="checkboxValue.includes('ProFlok (Code 8996)')">
+      No. of Tests (ProFlok): {{ testCountProFlok }}
+    </p>
 
-              <!-- Hematology -->
-              <p v-if="checkboxValue.includes('Full Blood Count (FBC), Code 4743')">
-                No. of Tests (FBC): {{ testCountFBC }}
-              </p>
+    <!-- Hematology -->
+    <p v-if="checkboxValue.includes('Full Blood Count (Code 4743)')">
+      No. of Tests (FBC): {{ testCountFBC }}
+    </p>
 
-              <p v-if="checkboxValue.includes('Packed Cell Volume (PCV), Code 4744')">
-                No. of Tests (PCV): {{ testCountPCV }}
-              </p>
+    <p v-if="checkboxValue.includes('Packed Cell Volume (Code 4744)')">
+      No. of Tests (PCV): {{ testCountPCV }}
+    </p>
 
-              <!-- Clinical Biochemistry -->
-              <p v-if="checkboxValue.includes('Comprehensive Diagnostic Profile (CDP), Code 7992')">
-                No. of Tests (CDP): {{ testCountCDP }}
-              </p>
+    <!-- Clinical Biochemistry -->
+    <p v-if="checkboxValue.includes('Comprehensive Diagnostic Profile (Code 7992)')">
+      No. of Tests (CDP): {{ testCountCDP }}
+    </p>
 
-              <p v-if="checkboxValue.includes('Urine Test (UT), Code 7995')">
-                No. of Tests (UT): {{ testCountUT }}
-              </p>
+    <p v-if="checkboxValue.includes('Urine Test (Code 7995)')">
+      No. of Tests (UT): {{ testCountUT }}
+    </p>
 
-              <!-- Microbiology -->
-              <p v-if="checkboxValue.includes('Culture, Code 4746')">
-                No. of Tests (Culture): {{ testCountCulture }}
-              </p>
+    <!-- Microbiology -->
+    <p v-if="checkboxValue.includes('Culture (Code 4746)')">
+      No. of Tests (Culture): {{ testCountCulture }}
+    </p>
 
-              <p v-if="checkboxValue.includes('Culture & Sensitivity (CS), Code 4748')">
-                No. of Tests (CS): {{ testCountCS }}
-              </p>
+    <p v-if="checkboxValue.includes('Culture & Sensitivity (Code 4748)')">
+      No. of Tests (CS): {{ testCountCS }}
+    </p>
 
-              <p v-if="checkboxValue.includes('Bacterial Colony Count (BCC), Code 8002')">
-                No. of Tests (BCC): {{ testCountBCC }}
-              </p>
+    <p v-if="checkboxValue.includes('Bacterial Colony Count (Code 8002)')">
+      No. of Tests (BCC): {{ testCountBCC }}
+    </p>
 
-              <!-- Cytology -->
-              <p v-if="checkboxValue.includes('Brain Crush Smear (BCS), Code 4741')">
-                No. of Tests (BCS): {{ testCountBCS }}
-              </p>
+    <!-- Cytology -->
+    <p v-if="checkboxValue.includes('Brain Crush Smear (Code 4741)')">
+      No. of Tests (BCS): {{ testCountBCS }}
+    </p>
 
-              <p v-if="checkboxValue.includes('Impression Smear (IS), Code 4742')">
-                No. of Tests (IS): {{ testCountIS }}
-              </p>
+    <p v-if="checkboxValue.includes('Impression Smear (Code 4742)')">
+      No. of Tests (IS): {{ testCountIS }}
+    </p>
 
-              <!-- Reproduction -->
-              <p v-if="checkboxValue.includes('Rapid Visual Pregnancy Test (RVPT), Code 6367')">
-                No. of Tests (RVPT): {{ testCountRVPT }}
-              </p>
+    <!-- Reproduction -->
+    <p v-if="checkboxValue.includes('Rapid Visual Pregnancy Test (Code 6367)')">
+      No. of Tests (RVPT): {{ testCountRVPT }}
+    </p>
 
-              <p v-if="checkboxValue.includes('Semen Testing (ST), Code 7989')">
-                No. of Tests (ST): {{ testCountST }}
-              </p>
+    <p v-if="checkboxValue.includes('Semen Testing (Code 7989)')">
+      No. of Tests (ST): {{ testCountST }}
+    </p>
 
-              <!-- Animal Feed -->
-              <p v-if="checkboxValue.includes('Feed Testing (FT) NIR Complete, Code 7988')">
-                No. of Tests (FT): {{ testCountFT }}
-              </p>
+    <!-- Animal Feed -->
+    <p v-if="checkboxValue.includes('Feed Testing (Code 7988)')">
+      No. of Tests (FT): {{ testCountFT }}
+    </p>
 
-              <!-- Postmortem (Necropsy) -->
-              <p v-if="checkboxValue.includes('Layers (Code 7999)')">
-                No. of Tests (Layers): {{ testCountLayers }}
-              </p>
+    <!-- Postmortem (Necropsy) -->
+    <p v-if="checkboxValue.includes('Layers (Code 7999)')">
+      No. of Tests (Layers): {{ testCountLayers }}
+    </p>
 
-              <p v-if="checkboxValue.includes('Bovine (Code 4758)')">
-                No. of Tests (Bovine): {{ testCountBovine }}
-              </p>
+    <p v-if="checkboxValue.includes('Bovine (Code 4758)')">
+      No. of Tests (Bovine): {{ testCountBovine }}
+    </p>
 
-              <p v-if="checkboxValue.includes('Small stock (Code 4760)')">
-                No. of Tests (Small stock): {{ testCountSmallStock }}
-              </p>
+    <p v-if="checkboxValue.includes('Small stock (Code 4760)')">
+      No. of Tests (Small stock): {{ testCountSmallStock }}
+    </p>
 
-              <p v-if="checkboxValue.includes('Broilers (Code 4762)')">
-                No. of Tests (Broilers): {{ testCountBroilers }}
-              </p>
+    <p v-if="checkboxValue.includes('Broilers (Code 4762)')">
+      No. of Tests (Broilers): {{ testCountBroilers }}
+    </p>
 
-              <p v-if="checkboxValue.includes('Pig (Code 4764)')">
-                No. of Tests (Pig): {{ testCountPig }}
-              </p>
+    <p v-if="checkboxValue.includes('Pig (Code 4764)')">
+      No. of Tests (Pig): {{ testCountPig }}
+    </p>
 
-              <p v-if="checkboxValue.includes('Free range (Code 6784)')">
-                No. of Tests (Free range): {{ testCountFreeRange }}
-              </p>
+    <p v-if="checkboxValue.includes('Free range (Code 6784)')">
+      No. of Tests (Free range): {{ testCountFreeRange }}
+    </p>
 
-              <!-- Other Services -->
-              <p v-if="checkboxValue.includes('Farm Sample Collection, Code 4755')">
-                No. of Tests (Farm Sample Collection): {{ testCountFarmSample }}
-              </p>
+    <!-- Other Services -->
+    <p v-if="checkboxValue.includes('Farm Sample Collection (Code 4755)')">
+      No. of Tests (Farm Sample Collection): {{ testCountFarmSample }}
+    </p>
 
-              <p v-if="checkboxValue.includes('Disposables, Code 8873')">
-                No. of Tests (Disposables): {{ testCountDisposables }}
-              </p>
-            </li>
-          </ul>
+    <p v-if="checkboxValue.includes('Disposables (Code 8873)')">
+      No. of Tests (Disposables): {{ testCountDisposables }}
+    </p>
+  </li>
+</ul>
+
         </div>
 
     

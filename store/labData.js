@@ -2226,11 +2226,31 @@ export const actions = {
       selectBioSubmissionRecord({ commit },  newSubmissionsRecord) {
         try {
 
+            const newBioSubmissionsForm = newSubmissionsRecord;
+              
+              const filteredBioSubmissionsForm = Object.entries(newBioSubmissionsForm).reduce(
+                (acc, [key, value]) => {
+                  if (value !== null) {
+                    acc[key] = value;
+                  }
+                  return acc;
+                },
+                {}
+              );
+              
+              console.log(filteredBioSubmissionsForm);
+              
 
-            commit(SET_SELECTED_BIO_SUBMISSION_RECORD,  newSubmissionsRecord)
+
+
+
+
+            commit(SET_SELECTED_BIO_SUBMISSION_RECORD,  filteredBioSubmissionsForm)
 
             console.log( newSubmissionsRecord._id)
             console.log(newSubmissionsRecord.clientName)
+
+
         } catch (error) {
             console.log('Error')
         }

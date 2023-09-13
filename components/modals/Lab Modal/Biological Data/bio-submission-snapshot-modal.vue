@@ -14,26 +14,40 @@
              <div  class="column is-half">
               
               <p >
-               <span class="tag earTagID "> {{ bioSub.clientName}} </span>
+               <span class="tag earTagID "> Client Name: {{ bioSub.clientName}} </span>
                
                
               </p>
 
               <p >
-               <span class="tag earTagID "> {{ bioSub.bioSubmissionNumber}} </span>
+               <span class="tag earTagID "> Submission No: {{ bioSub.bioSubmissionNumber}} </span>
                
                
               </p>
 
               <p >
-               <span class="tag earTagID "> {{ bioSub.dateSubmitted}} </span>
+               <span class="tag earTagID "> Date Submitted: {{ bioSub.dateSubmitted}} </span>
                
+               
+              </p>
+
+              <h5>Examination(s) Requested:</h5>
+              <p >
+                <span >
+                  <ul>
+                  <li class="tag earTagID " v-for="(exam, index) in bioSub.examsRequested" :key="index">
+                    {{ exam }}
+                  </li>
+                </ul>
+                </span>
                
               </p>
   
                <!-- <b-input v-model="earTagID" class="toggle"></b-input> -->
              </div>
            </div>
+
+           
   
      
   
@@ -204,7 +218,7 @@ import bioSubmissionsTemplate from '~/components/PDF Templates/bio-submissions-t
   
       close() {
         this.$buefy.toast.open({
-          message: 'agro Snapshot closed.',
+          message: 'Lab Snapshot closed.',
           duration: 2000,
           position: 'is-top',
           type: 'is-warning ',
