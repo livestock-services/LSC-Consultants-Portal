@@ -26,6 +26,18 @@
               </p>
 
               <p >
+               <span class="tag earTagID "> Address: {{ bioSub.clientAddress}} </span>
+               
+               
+              </p>
+
+              <p >
+               <span class="tag earTagID "> Contact No: {{ bioSub.clientContactNumber}} </span>
+               
+               
+              </p>
+
+              <p >
                <span class="tag earTagID "> Date Submitted: {{ bioSub.dateSubmitted}} </span>
                
                
