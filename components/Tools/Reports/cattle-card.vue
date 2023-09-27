@@ -41,6 +41,13 @@
            
           </div>
 
+
+          <div class=" my-4 pl-4">
+           Other Diseases:
+               <b-field  class=" tag is-primary mx-4"> {{ other }}</b-field>
+           
+          </div>
+
           
 
         
@@ -68,7 +75,8 @@
             Total Post Mortems:<span class="is-success mx-4 "> 
               <countTo :startVal='startVal' 
               :endVal='
-               cattleAnaplasmosis
+               cattleAnaplasmosis+
+               other
                  
                
                ' 
@@ -119,12 +127,15 @@ export default {
 
     var cattleAna = computed(()=> this.cattleAnaplasmosis)
 
+    var otherD = computed(()=> this.other)
+
    
     
     
 
     var totalConsults =  computed(
-                          ()=> this.cattleAnaplasmosis
+                          ()=> this.cattleAnaplasmosis+
+                                this.other
                                
                                
                                
@@ -161,7 +172,11 @@ export default {
                 "number":cattleAna
               },
 
-             
+              { 
+                "consultation":"Other Diseases",
+                "number":otherD
+              },
+
               
                 { "consultation":"",
                   "number":""
@@ -188,7 +203,7 @@ export default {
        allPMs: 'allPostMortemRecords',
 
        cattleAnaplasmosis:'allCattleAnaplasmosisRecords',
-       
+       other:'allOtherCattleDiseaseRecords',
        startTime:'filteredCattlePMStartTime',
        endTime:'filteredCattlePMEndTime',
 

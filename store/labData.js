@@ -188,6 +188,8 @@ export const state = () => ({
         clientAddress: null,
         clientEmail: null,
         clientContactNumber: null,
+        testUrgency:null,
+        submittedBy: null,
         examsRequested:[],
         testCountHPE: null,
         testCountFEC: null,
@@ -218,6 +220,8 @@ export const state = () => ({
         testCountFreeRange: null,
         testCountFarmSample: null,
         testCountDisposables: null,
+        createdBy:null,
+        receivedBy:null
       },
 
 
@@ -1502,13 +1506,17 @@ export const actions = {
     },
 
     //ADD NEW BioSUBMISSIONSRecord TO ALL BioSUBMISSIONSRecordS
-    async addNewBioSubmissionsRecord({ state, commit}){
+    async addNewBioSubmissionsRecord({ state, commit,rootState,rootGetters }){
         try {
             commit(SET_LOADING, true);
 
             var nextId = 1
 
-            
+            const users =  rootGetters['users/allUsers']
+
+            const loggedInUser = rootGetters['users/loggedInUser'] 
+
+            const name = loggedInUser.name
 
             const newBioSubmissionsRecord = cloneDeep(state.bioSubmissionsForm);
 
@@ -1516,6 +1524,9 @@ export const actions = {
 
 
          newBioSubmissionsRecord.createdBy = this.$auth.user.email;
+         newBioSubmissionsRecord.receivedBy = name;
+
+         console.log(newBioSubmissionsRecord.receivedBy);
 
         
            
@@ -2249,6 +2260,7 @@ export const actions = {
 
             console.log( newSubmissionsRecord._id)
             console.log(newSubmissionsRecord.clientName)
+            console.log(newSubmissionsRecord.receivedBy)
 
 
         } catch (error) {

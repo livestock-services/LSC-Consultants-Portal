@@ -90,7 +90,7 @@
           v-slot="props"
           field="clientName"
           label="Client Name"
-          sortable
+          searchable
           
         >
         <span class="tag numbers">  {{ props.row.clientName }} </span>
@@ -154,9 +154,16 @@
               @click="captureReceipt(props.row)"
               class="preview"
               ></b-button>
+
+              
+         
   
             </b-tooltip>
           </span>
+
+         
+         
+        
         </b-table-column> 
   
         
@@ -187,7 +194,9 @@
   import BioSubmissionsModal from '@/components/modals/Lab Modal/Biological Data/bio-submissions-modal.vue'
   import { computed } from 'vue';
   import BioSubmissionSnapshotModal from '@/components/modals/Lab Modal/Biological Data/bio-submission-snapshot-modal.vue'
+import bioSubmissionsTemplate from '~/components/PDF Templates/bio-submissions-template.vue';
   export default {
+  components: { bioSubmissionsTemplate },
     name: 'SampleInfoTable',
   
     data() {  
@@ -261,8 +270,7 @@
     },
   
     async created() {
-    // await this.load()
-    // this.selectAgroRecord(this.agros[0])
+      await this.getAllBioSubmissionsRecords();
     },
   
     

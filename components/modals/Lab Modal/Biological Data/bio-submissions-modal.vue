@@ -60,6 +60,36 @@
   
             </div>
 
+
+            <h4><span class="is-blue"> Test Urgency </span></h4>
+
+              <div class="columns">
+              <b-field class="column is-three-quarters">
+                  <b-select
+                  
+                  v-model="testUrgency"
+                  placeholder="--select option--"
+                  >
+                  <option value="Urgent">Urgent</option>
+                  <option value="Routine">Routine</option>
+
+                  </b-select>
+              </b-field>
+              </div>
+
+              <h4><span class="is-blue"> Submitted By </span></h4>
+
+                <div class="columns">
+                  <b-field class="column is-three-quarters">
+                    <b-input
+                      type="text"
+                      v-model="submittedBy"
+                      placeholder="enter name here..."
+                    >
+                    </b-input>
+                  </b-field>
+                </div>
+
             
 
 
@@ -291,6 +321,10 @@
 
           <p>Contact No: {{ clientContactNumber }}</p>
 
+          <p> Submitted By : {{ submittedBy }} </p>
+
+          <p>Test Urgency: {{ testUrgency }}</p>
+
           <p>Examination(s) Requested:
              <ul>
             <li v-for="(checkboxValue, checkboxIndex) in checkboxGroup" :key="checkboxIndex">
@@ -450,8 +484,7 @@
   
          <b-button @click="onSubmit" type="is-info">Add </b-button>
 
-         <b-button @click="addItemsToList" type="is-warning">Add Items to List </b-button>
-
+        
 
        
   
@@ -526,7 +559,8 @@ import { mapActions, mapGetters } from 'vuex'
     'bioSubmissionsForm.clientAddress',
     'bioSubmissionsForm.clientEmail',
     'bioSubmissionsForm.clientContactNumber',
-  
+    'bioSubmissionsForm.testUrgency',
+    'bioSubmissionsForm.submittedBy',
     'bioSubmissionsForm.testCountHPE',
     'bioSubmissionsForm.testCountFEC',
     'bioSubmissionsForm.testCountHI',

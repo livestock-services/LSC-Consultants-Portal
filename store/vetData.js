@@ -66,20 +66,7 @@ import {
         GET_ALL_SNAKE_BITE_RECORDS,
         GET_ALL_COLIBACILLOSIS_RECORDS,
         GET_ALL_CHRONIC_INFECTIOUS_BRONCHY_RECORDS,
-
-
-        SET_ALL_IL_RECORDS,
-        SET_ALL_NEWCASTLE_RECORDS,
-        SET_ALL_GUMBORO_RECORDS,
-        SET_ALL_COCCIDIOSIS_RECORDS,
-        SET_ALL_FOWL_POX_RECORDS, 
-        SET_ALL_EGG_PERITONITIS_RECORDS ,
-        SET_ALL_ECTOPARASITES_RECORDS,
-        SET_ALL_HELMINTHIASIS_RECORDS,
-        SET_ALL_MYCOPLASMOSIS_RECORDS,
-        SET_ALL_SNAKE_BITE_RECORDS,
-        SET_ALL_COLIBACILLOSIS_RECORDS,
-        SET_ALL_CHRONIC_INFECTIOUS_BRONCHY_RECORDS,
+        GET_ALL_OTHER_VILLAGE_CHICKEN_DISEASE_RECORDS,
 
 
         //==============================================================================//
@@ -100,6 +87,7 @@ import {
          GET_ALL_BROILER_CHRONIC_RESP_DISEASE_RECORDS,
          GET_ALL_BROILER_ASCITES_RECORDS,
          GET_ALL_BROILER_TRAUMA_RECORDS,
+         GET_ALL_BROILER_OTHER_RECORDS,
 
         
          //----------LAYER CHICKEN DISEASES------------------------
@@ -117,6 +105,7 @@ import {
         GET_ALL_LAYER_HELMINTHIASIS_RECORDS,
         GET_ALL_LAYER_LARYNGOTRACHEITIS_RECORDS,
         GET_ALL_LAYER_CALCIUM_DEFICIENCY_RECORDS,
+        GET_ALL_LAYER_OTHER_RECORDS,
 
        //==============================================================================//
 
@@ -129,6 +118,7 @@ import {
         GET_ALL_PIG_PNEUMONIA_RECORDS,
         GET_ALL_PIG_CLOSTRIDIAL_INFECTION_RECORDS,
         GET_ALL_PIG_ENTERITIS_RECORDS,
+        GET_ALL_PIG_OTHER_RECORDS,
   
        //==============================================================================//
         
@@ -140,6 +130,7 @@ import {
          GET_ALL_GOAT_HEARTWATER_RECORDS,
          GET_ALL_GOAT_TRAUMA_RECORDS,
          GET_ALL_GOAT_HEMONCHOSIS_RECORDS,
+         GET_ALL_GOAT_OTHER_RECORDS,
 
          //==============================================================================//
 
@@ -150,6 +141,7 @@ import {
 
         GET_ALL_QUAIL_COLIBACILLOSIS_RECORDS,
         GET_ALL_QUAIL_SALMONELLOSIS_RECORDS,
+        GET_ALL_QUAIL_OTHER_RECORDS,
      
 
         //==============================================================================//
@@ -160,6 +152,7 @@ import {
 
         GET_ALL_RABBIT_COCCIDIOSIS_RECORDS,
         GET_ALL_RABBIT_BACTERIAL_INFECTION_RECORDS,
+        GET_ALL_RABBIT_OTHER_RECORDS,
        
 
         //==============================================================================//
@@ -170,6 +163,7 @@ import {
         GET_FILTERED_CATTLE_PM_END_TIME,
 
         GET_ALL_CATTLE_ANAPLASMOSIS_RECORDS ,
+        GET_ALL_CATTLE_OTHER_RECORDS,
       
 
         //==============================================================================//
@@ -225,6 +219,7 @@ export const state = () => ({
     allSnakeBiteRecords:[],
     allColibacillosisRecords:[],
     allChronicInfectiousBronchyRecords:[],
+    allOtherVillageChickenDiseaseRecords:[],
 
     //-----------------------------------------------------------------------------//
 
@@ -242,6 +237,7 @@ export const state = () => ({
     allBroilerChronicRespDiseaseRecords:[],
     allBroilerAscitesRecords:[],
     allBroilerTraumaRecords:[],
+    allOtherBroilerDiseaseRecords:[],
     //=---------------------------------------------------------------------------//
 
 
@@ -258,6 +254,7 @@ export const state = () => ({
         allLayerLaryngotracheitisRecords:[],
         allLayerCalciumDeficiencyRecords:[],
         allLayerHelminthiasisRecords:[],
+        allOtherLayerDiseaseRecords:[],
         //=---------------------------------------------------------------------------//
 
 
@@ -270,6 +267,7 @@ export const state = () => ({
         allPigPneumoniaRecords:[],
         allPigClostridialInfectionRecords:[],
         allPigEnteritisRecords:[],
+        allOtherPigDiseaseRecords:[],
 
 
         //---------------------------------------------------------------------------//
@@ -283,6 +281,7 @@ export const state = () => ({
         allGoatHeartWaterRecords:[],
         allGoatTraumaRecords:[],
         allGoatHemonchosisRecords:[],
+        allOtherGoatDiseaseRecords:[],
 
 
         //---------------------------------------------------------------------------//
@@ -309,6 +308,7 @@ export const state = () => ({
 
         allQuailColibacillosisRecords:[],
         allQuailSalmonellosisRecords:[],
+        allOtherQuailDiseaseRecords:[],
      
 
         //---------------------------------------------------------------------------//
@@ -321,6 +321,7 @@ export const state = () => ({
 
             allRabbitCoccidiosisRecords:[],
             allRabbitBacterialInfectionRecords:[],
+            allOtherRabbitDiseaseRecords:[],
        
 
             //---------------------------------------------------------------------------//
@@ -331,6 +332,7 @@ export const state = () => ({
             filteredCattlePMEndTime:[],
 
             allCattleAnaplasmosisRecords:[],
+            allOtherCattleDiseaseRecords:[],
            
 
             //---------------------------------------------------------------------------//
@@ -581,6 +583,10 @@ export const getters = {
         return state.allChronicInfectiousBronchyRecords
     },
 
+    allOtherVillageChickenDiseaseRecords(state){
+      return state.allOtherVillageChickenDiseaseRecords
+  },
+
     //--------------------------------END OF VILLAGE CHICKEN SECTION -----------------------------//
 
 
@@ -637,11 +643,15 @@ export const getters = {
         return state.allBroilerTraumaRecords
     },
 
+    allOtherBroilerDiseaseRecords(state){
+      return state.allOtherBroilerDiseaseRecords
+  },
+
 
     //------------------------------END OF BROILER SECTION----------------------------//
 
 
-    //-------------------------------BROILER CHICKEN GETTERS--------------------------------------//
+    //-------------------------------LAYER CHICKEN GETTERS--------------------------------------//
     filteredLayerPMStartTime(state){
         return state.filteredLayerPMStartTime
       },
@@ -688,6 +698,10 @@ export const getters = {
         return state.allLayerLaryngotracheitisRecords
     },
 
+    allOtherLayerDiseaseRecords(state){
+      return state.allOtherLayerDiseaseRecords
+  },
+
     //-----------------------END OF LAYER SECTION---------------------------------//
 
     //-------------------------PIG DISEASES SECTION---------------------------------------//
@@ -716,6 +730,10 @@ export const getters = {
     allPigEnteritisRecords(state){
         return state.allPigEnteritisRecords
     },
+
+    allOtherPigDiseaseRecords(state){
+      return state.allOtherPigDiseaseRecords
+  },
     //----------------------------END OF PIG SECTION-------------------------------------//
 
 
@@ -745,6 +763,11 @@ export const getters = {
     allGoatHemonchosisRecords(state){
         return state.allGoatHemonchosisRecords
     },
+
+    allOtherGoatDiseaseRecords(state){
+      return state.allOtherGoatDiseaseRecords
+  },
+
     //----------------------------END OF GOAT SECTION-------------------------------------//
 
 
@@ -766,6 +789,10 @@ export const getters = {
         allQuailSalmonellosisRecords(state){
             return state.allQuailSalmonellosisRecords
         },
+
+        allOtherQuailDiseaseRecords(state){
+          return state.allOtherQuailDiseaseRecords
+      },
     
         //----------------------------END OF QUAIL SECTION-------------------------------------//
 
@@ -790,6 +817,10 @@ export const getters = {
             return state.allRabbitBacterialInfectionRecords
         },
 
+        allOtherRabbitDiseaseRecords(state){
+          return state.allOtherRabbitDiseaseRecords
+      },
+
       
         //----------------------------END OF RABBIT SECTION-------------------------------------//
 
@@ -809,6 +840,10 @@ export const getters = {
         allCattleAnaplasmosisRecords(state){
             return state.allCattleAnaplasmosisRecords
         },
+
+        allOtherCattleDiseaseRecords(state){
+          return state.allOtherCattleDiseaseRecords
+      },
     
         
         //----------------------------END OF Cattle SECTION-------------------------------------//
@@ -1031,56 +1066,64 @@ export const mutations = {
         state.allChronicInfectiousBronchyRecords = payload
     },
 
+    [GET_ALL_OTHER_VILLAGE_CHICKEN_DISEASE_RECORDS](state, payload){
+      state.allOtherVillageChickenDiseaseRecords = payload
+     },
 
-    //=---------------------------VILLAGE CHICKEN SETTERS---------------------------//
+
+    // //=---------------------------VILLAGE CHICKEN SETTERS---------------------------//
     
-    [SET_ALL_IL_RECORDS](state, payload){
-        state.allILRecords = payload
-    },
+    // [SET_ALL_IL_RECORDS](state, payload){
+    //     state.allILRecords = payload
+    // },
 
-    [SET_ALL_NEWCASTLE_RECORDS](state, payload){
-        state.allNewcastleRecords = payload
-    },
+    // [SET_ALL_NEWCASTLE_RECORDS](state, payload){
+    //     state.allNewcastleRecords = payload
+    // },
 
-    [SET_ALL_GUMBORO_RECORDS](state, payload){
-        state.allGumboroRecords = payload
-    },
+    // [SET_ALL_GUMBORO_RECORDS](state, payload){
+    //     state.allGumboroRecords = payload
+    // },
 
-    [SET_ALL_COCCIDIOSIS_RECORDS](state, payload){
-        state.allCoccidiosisRecords = payload
-    },
+    // [SET_ALL_COCCIDIOSIS_RECORDS](state, payload){
+    //     state.allCoccidiosisRecords = payload
+    // },
 
-    [SET_ALL_FOWL_POX_RECORDS](state, payload){
-        state.allFowlPoxRecords = payload
-    },
+    // [SET_ALL_FOWL_POX_RECORDS](state, payload){
+    //     state.allFowlPoxRecords = payload
+    // },
 
-    [SET_ALL_EGG_PERITONITIS_RECORDS](state, payload){
-        state.allEggPeritonitisRecords = payload
-    },
+    // [SET_ALL_EGG_PERITONITIS_RECORDS](state, payload){
+    //     state.allEggPeritonitisRecords = payload
+    // },
 
-    [SET_ALL_ECTOPARASITES_RECORDS](state, payload){
-        state.allEctoParasitesRecords = payload
-    },
+    // [SET_ALL_ECTOPARASITES_RECORDS](state, payload){
+    //     state.allEctoParasitesRecords = payload
+    // },
 
-    [SET_ALL_HELMINTHIASIS_RECORDS](state, payload){
-        state.allHelminthiasisRecords = payload
-    },
+    // [SET_ALL_HELMINTHIASIS_RECORDS](state, payload){
+    //     state.allHelminthiasisRecords = payload
+    // },
 
-    [SET_ALL_MYCOPLASMOSIS_RECORDS](state, payload){
-        state.allMycoPlasmosisRecords = payload
-    },
+    // [SET_ALL_MYCOPLASMOSIS_RECORDS](state, payload){
+    //     state.allMycoPlasmosisRecords = payload
+    // },
 
-    [SET_ALL_SNAKE_BITE_RECORDS](state, payload){
-        state.allSnakeBiteRecords = payload
-    },
+    // [SET_ALL_SNAKE_BITE_RECORDS](state, payload){
+    //     state.allSnakeBiteRecords = payload
+    // },
 
-    [SET_ALL_COLIBACILLOSIS_RECORDS](state, payload){
-        state.allColibacillosisRecords = payload
-    },
+    // [SET_ALL_COLIBACILLOSIS_RECORDS](state, payload){
+    //     state.allColibacillosisRecords = payload
+    // },
 
-    [SET_ALL_CHRONIC_INFECTIOUS_BRONCHY_RECORDS](state, payload){
-        state.allChronicInfectiousBronchyRecords = payload
-    },
+    // [SET_ALL_CHRONIC_INFECTIOUS_BRONCHY_RECORDS](state, payload){
+    //     state.allChronicInfectiousBronchyRecords = payload
+    // },
+
+    // [SET_ALL_OTHER_VILLAGE_CHICKEN_DISEASE_RECORDS](state, payload){
+    //   state.allOtherVillageChickenDiseaseRecords = payload
+    //  },
 
 
 
@@ -1136,6 +1179,10 @@ export const mutations = {
     [GET_ALL_BROILER_TRAUMA_RECORDS](state, payload){
         state.allBroilerTraumaRecords = payload
     },
+
+    [GET_ALL_BROILER_OTHER_RECORDS](state, payload){
+      state.allOtherBroilerDiseaseRecords = payload
+  },
   
 
     //--------------------------END OF BROILER SECTION-------------------------------//
@@ -1194,6 +1241,10 @@ export const mutations = {
         state.allLayerCalciumDeficiencyRecords = payload
     },
 
+    [GET_ALL_LAYER_OTHER_RECORDS](state, payload){
+      state.allOtherLayerDiseaseRecords = payload
+  },
+
     //---------------------------END OF LAYERS SECTION------------------------//
 
 
@@ -1223,6 +1274,10 @@ export const mutations = {
     [GET_ALL_PIG_ENTERITIS_RECORDS](state, payload){
         state.allPigEnteritisRecords = payload
     },
+
+    [GET_ALL_PIG_OTHER_RECORDS](state, payload){
+      state.allOtherPigDiseaseRecords = payload
+  },
 
     //-------------------------END OF PIG SECTION-----------------------------===//
 
@@ -1254,6 +1309,10 @@ export const mutations = {
         state.allGoatHemonchosisRecords = payload
     },
 
+    [GET_ALL_GOAT_OTHER_RECORDS](state, payload){
+      state.allOtherGoatDiseaseRecords = payload
+  },
+
     //-------------------------END OF GOAT SECTION--------------------------------//
 
 
@@ -1275,6 +1334,10 @@ export const mutations = {
     [GET_ALL_QUAIL_SALMONELLOSIS_RECORDS](state, payload){
         state.allQuailSalmonellosisRecords = payload
     },
+
+    [GET_ALL_QUAIL_OTHER_RECORDS](state, payload){
+      state.allOtherQuailDiseaseRecords = payload
+  },
 
     //-------------------------END OF QUAIL SECTION--------------------------------//
 
@@ -1299,6 +1362,10 @@ export const mutations = {
         state.allRabbitBacterialInfectionRecords = payload
     },
 
+    [GET_ALL_RABBIT_OTHER_RECORDS](state, payload){
+      state.allOtherRabbitDiseaseRecords = payload
+  },
+
 
     //-------------------------END OF RABBIT SECTION--------------------------------//
 
@@ -1318,6 +1385,10 @@ export const mutations = {
     [GET_ALL_CATTLE_ANAPLASMOSIS_RECORDS](state, payload){
         state.allCattleAnaplasmosisRecords= payload
     },
+
+    [GET_ALL_CATTLE_OTHER_RECORDS](state, payload){
+      state.allOtherCattleDiseaseRecords = payload
+  },
 
    
 
@@ -2208,12 +2279,20 @@ export const actions = {
                        const chronicInfectiousBronchyRecords = villageChickenPostMortemRecords.filter( a=>
                         a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Chronic Infectious Bronchitis'
                        )
+
+                       const otherVillageChickenRecords = villageChickenPostMortemRecords.filter( a=>
+                        a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Other Disease'
+                       )
+
+                       console.log(otherVillageChickenRecords)
+
+
                        
                          const filteredILRecords = infectiousLaryRecords.filter( ct => 
                          ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
                          );
                 
-                        // console.log(filteredILRecords.length)
+                        
                 
                          const filteredNewcastleRecords = newCastleRecords.filter( ct => 
                          new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
@@ -2259,7 +2338,10 @@ export const actions = {
                          new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                          );
                     
-                
+                          
+                         const filteredOtherVillageChickenDiseaseRecords = otherVillageChickenRecords.filter( ct => 
+                          new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                          );
                        
                             
                 
@@ -2291,6 +2373,9 @@ export const actions = {
                             commit(GET_ALL_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length);
                 
                             commit(GET_ALL_CHRONIC_INFECTIOUS_BRONCHY_RECORDS, filteredChronicInfectiousBronchyRecords.length);
+
+
+                            commit(GET_ALL_OTHER_VILLAGE_CHICKEN_DISEASE_RECORDS, filteredOtherVillageChickenDiseaseRecords.length);
                 
                 
            }
@@ -2356,6 +2441,12 @@ export const actions = {
                const chronicInfectiousBronchyRecords = villageChickenPostMortemRecords.filter( a=>
                 a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Chronic Infectious Bronchitis'
                )
+
+               const otherVillageChickenRecords = villageChickenPostMortemRecords.filter( a=>
+                a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Other Disease'
+               )
+
+               console.log(otherVillageChickenRecords);
                
                  const filteredILRecords = infectiousLaryRecords.filter( ct => 
                  ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
@@ -2406,6 +2497,10 @@ export const actions = {
                  const filteredChronicInfectiousBronchyRecords = chronicInfectiousBronchyRecords.filter( ct => 
                  new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                  );
+
+                 const filteredOtherVillageChickenDiseaseRecords = otherVillageChickenRecords.filter( ct => 
+                  new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                  );
             
         
                
@@ -2439,6 +2534,9 @@ export const actions = {
                     commit(GET_ALL_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length);
         
                     commit(GET_ALL_CHRONIC_INFECTIOUS_BRONCHY_RECORDS, filteredChronicInfectiousBronchyRecords.length);
+
+                    
+                    commit(GET_ALL_OTHER_VILLAGE_CHICKEN_DISEASE_RECORDS, filteredOtherVillageChickenDiseaseRecords.length);
         
         
 
@@ -2539,6 +2637,10 @@ export const actions = {
                        const broilerGumboroRecords = broilerChickenPostMortemRecords.filter( i=>
                          i.vetPostMortemDiseases === 'Gumboro'
                        )
+
+                       const broilerOtherDiseaseRecords = broilerChickenPostMortemRecords.filter( j=>
+                        j.vetPostMortemDiseases === 'Other Disease'
+                      )
                
                      
                       
@@ -2583,6 +2685,11 @@ export const actions = {
                             const filteredTraumaRecords = traumaRecords.filter( it => 
                             new Date(it.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(it.date) <= new Date(newPostMortemFilterRecord.endDate)
                             );
+
+
+                            const filteredOtherBroilerRecords = broilerOtherDiseaseRecords.filter( jt => 
+                              new Date(jt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(jt.date) <= new Date(newPostMortemFilterRecord.endDate)
+                              );
                    
                
                       
@@ -2610,6 +2717,8 @@ export const actions = {
                            commit(GET_ALL_BROILER_TRAUMA_RECORDS, filteredTraumaRecords.length);
                
                            commit(GET_ALL_BROILER_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length);
+
+                           commit(GET_ALL_BROILER_OTHER_RECORDS, filteredOtherBroilerRecords.length);
                
                          
                          
@@ -2665,6 +2774,10 @@ export const actions = {
                const broilerGumboroRecords = broilerChickenPostMortemRecords.filter( i=>
                  i.vetPostMortemDiseases === 'Gumboro'
                )
+
+               const broilerOtherDiseaseRecords = broilerChickenPostMortemRecords.filter( j=>
+                j.vetPostMortemDiseases === 'Other Disease'
+              )
        
              
               
@@ -2709,6 +2822,10 @@ export const actions = {
                     const filteredTraumaRecords = traumaRecords.filter( it => 
                     new Date(it.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(it.date) <= new Date(newPostMortemFilterRecord.endDate)
                     );
+
+                    const filteredOtherBroilerRecords = broilerOtherDiseaseRecords.filter( jt => 
+                      new Date(jt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(jt.date) <= new Date(newPostMortemFilterRecord.endDate)
+                      );
            
        
               
@@ -2736,6 +2853,8 @@ export const actions = {
                    commit(GET_ALL_BROILER_TRAUMA_RECORDS, filteredTraumaRecords.length);
        
                    commit(GET_ALL_BROILER_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length);
+
+                   commit(GET_ALL_BROILER_OTHER_RECORDS, filteredOtherBroilerRecords.length);
        
                  
                  
@@ -2834,6 +2953,10 @@ export const actions = {
                        const layerGumboroRecords = layerChickenPostMortemRecords.filter( i=>
                          i.vetPostMortemDiseases === 'Gumboro'
                        )
+
+                       const layerOtherRecords = layerChickenPostMortemRecords.filter( i=>
+                        i.vetPostMortemDiseases === 'Other Disease'
+                      )
                
                      
                       
@@ -2878,6 +3001,10 @@ export const actions = {
                              const filteredLaryngotracheitisRecords = laryngotracheitisRecords.filter( it => 
                              new Date(it.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(it.date) <= new Date(newPostMortemFilterRecord.endDate)
                              );
+
+                             const filteredOtherLayerDiseaseRecords = layerOtherRecords.filter( Jt => 
+                              new Date(Jt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(Jt.date) <= new Date(newPostMortemFilterRecord.endDate)
+                              );
                    
                
                       
@@ -2906,6 +3033,8 @@ export const actions = {
                             commit(GET_ALL_LAYER_INFECTIOUS_BRONCHITIS_RECORDS, filteredInfectiousBronchyRecords.length);
                
                             commit(GET_ALL_LAYER_CALCIUM_DEFICIENCY_RECORDS, filteredCalciumDeficiencyRecords.length);
+
+                            commit(GET_ALL_LAYER_OTHER_RECORDS, filteredOtherLayerDiseaseRecords.length);
                
                        
            }
@@ -2960,6 +3089,10 @@ export const actions = {
                const layerGumboroRecords = layerChickenPostMortemRecords.filter( i=>
                  i.vetPostMortemDiseases === 'Gumboro'
                )
+
+               const layerOtherRecords = layerChickenPostMortemRecords.filter( i=>
+                i.vetPostMortemDiseases === 'Other Disease'
+              )
        
              
               
@@ -3004,6 +3137,10 @@ export const actions = {
                      const filteredLaryngotracheitisRecords = laryngotracheitisRecords.filter( it => 
                      new Date(it.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(it.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
+
+                     const filteredOtherLayerDiseaseRecords = layerOtherRecords.filter( Jt => 
+                      new Date(Jt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(Jt.date) <= new Date(newPostMortemFilterRecord.endDate)
+                      );
            
        
               
@@ -3032,6 +3169,9 @@ export const actions = {
                     commit(GET_ALL_LAYER_INFECTIOUS_BRONCHITIS_RECORDS, filteredInfectiousBronchyRecords.length);
        
                     commit(GET_ALL_LAYER_CALCIUM_DEFICIENCY_RECORDS, filteredCalciumDeficiencyRecords.length);
+
+                    
+                    commit(GET_ALL_LAYER_OTHER_RECORDS, filteredOtherLayerDiseaseRecords.length);
        
                
            }
@@ -3111,6 +3251,10 @@ export const actions = {
                        const enteritisRecords = pigPostMortemRecords.filter( dp=>
                          dp.vetPostMortemDiseases === 'Enteritis'
                        )
+
+                       const otherPigRecords = pigPostMortemRecords.filter( ep=>
+                        ep.vetPostMortemDiseases === 'Other Disease'
+                      )
                
                      
                       
@@ -3133,6 +3277,10 @@ export const actions = {
                               const filteredEnteritisRecords = enteritisRecords.filter( dtp => 
                               new Date(dtp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtp.date) <= new Date(newPostMortemFilterRecord.endDate)
                               );
+
+                              const filteredOtherPigRecords = otherPigRecords.filter( etp => 
+                                new Date(etp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etp.date) <= new Date(newPostMortemFilterRecord.endDate)
+                                );
                
                          
                       
@@ -3151,6 +3299,8 @@ export const actions = {
                             commit(GET_ALL_PIG_CLOSTRIDIAL_INFECTION_RECORDS, filteredClostridialInfectionRecords.length);
                
                            commit(GET_ALL_PIG_ENTERITIS_RECORDS, filteredEnteritisRecords.length);
+
+                           commit(GET_ALL_PIG_OTHER_RECORDS, filteredOtherPigRecords.length)
                
            }
 
@@ -3183,6 +3333,11 @@ export const actions = {
                const enteritisRecords = pigPostMortemRecords.filter( dp=>
                  dp.vetPostMortemDiseases === 'Enteritis'
                )
+
+               
+               const otherPigRecords = pigPostMortemRecords.filter( ep=>
+                ep.vetPostMortemDiseases === 'Other Disease'
+              )
        
              
               
@@ -3205,7 +3360,10 @@ export const actions = {
                       const filteredEnteritisRecords = enteritisRecords.filter( dtp => 
                       new Date(dtp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtp.date) <= new Date(newPostMortemFilterRecord.endDate)
                       );
-       
+                      
+                      const filteredOtherPigRecords = otherPigRecords.filter( etp => 
+                        new Date(etp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etp.date) <= new Date(newPostMortemFilterRecord.endDate)
+                        );
                  
               
                    
@@ -3223,6 +3381,9 @@ export const actions = {
                     commit(GET_ALL_PIG_CLOSTRIDIAL_INFECTION_RECORDS, filteredClostridialInfectionRecords.length);
        
                    commit(GET_ALL_PIG_ENTERITIS_RECORDS, filteredEnteritisRecords.length);
+
+                   
+                   commit(GET_ALL_PIG_OTHER_RECORDS, filteredOtherPigRecords.length)
        
            }
        
@@ -3295,6 +3456,10 @@ export const actions = {
                        const hemonchosisRecords = goatPostMortemRecords.filter( dg=>
                          dg.vetPostMortemDiseases === 'Hemonchosis'
                        )
+
+                       const otherGoatDiseaseRecords = goatPostMortemRecords.filter( eg=>
+                        eg.vetPostMortemDiseases === 'Other Disease'
+                      )
                
                      
                       
@@ -3319,7 +3484,10 @@ export const actions = {
                               );
                
                          
-                      
+                            const filteredOtherGoatDiseaseRecords = otherGoatDiseaseRecords.filter( etg => 
+                              new Date(etg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etg.date) <= new Date(newPostMortemFilterRecord.endDate)
+                              );
+                 
                            
                
                       
@@ -3335,6 +3503,8 @@ export const actions = {
                             commit(GET_ALL_GOAT_TRAUMA_RECORDS, filteredTraumaRecords.length);
                
                            commit(GET_ALL_GOAT_HEMONCHOSIS_RECORDS, filteredHemonchosisRecords.length);
+
+                           commit(GET_ALL_GOAT_OTHER_RECORDS, filteredOtherGoatDiseaseRecords.length)
                
            }
 
@@ -3367,6 +3537,10 @@ export const actions = {
                const hemonchosisRecords = goatPostMortemRecords.filter( dg=>
                  dg.vetPostMortemDiseases === 'Hemonchosis'
                )
+
+               const otherGoatDiseaseRecords = goatPostMortemRecords.filter( eg=>
+                eg.vetPostMortemDiseases === 'Other Disease'
+              )
        
              
               
@@ -3389,6 +3563,10 @@ export const actions = {
                       const filteredHemonchosisRecords = hemonchosisRecords.filter( dtg => 
                       new Date(dtg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtg.date) <= new Date(newPostMortemFilterRecord.endDate)
                       );
+
+                      const filteredOtherGoatDiseaseRecords = otherGoatDiseaseRecords.filter( etg => 
+                        new Date(etg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etg.date) <= new Date(newPostMortemFilterRecord.endDate)
+                        );
        
                  
               
@@ -3407,6 +3585,9 @@ export const actions = {
                     commit(GET_ALL_GOAT_TRAUMA_RECORDS, filteredTraumaRecords.length);
        
                    commit(GET_ALL_GOAT_HEMONCHOSIS_RECORDS, filteredHemonchosisRecords.length);
+
+                   commit(GET_ALL_GOAT_OTHER_RECORDS, filteredOtherGoatDiseaseRecords.length);
+
        
            }
        
@@ -3470,6 +3651,10 @@ export const actions = {
                       const salmonellosisRecords = quailPostMortemRecords.filter( bq=>
                         bq.vetPostMortemDiseases === 'Salmonellosis'
                       )
+
+                      const otherQuailDiseaseRecords = quailPostMortemRecords.filter( cq=>
+                        cq.vetPostMortemDiseases === 'Other Disease'
+                      )
                
                       
                       
@@ -3482,6 +3667,11 @@ export const actions = {
                              const filteredSalmonellosisRecords = salmonellosisRecords.filter( btq => 
                              new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
                              );
+
+
+                             const filteredOtherQuailDiseaseRecords = otherQuailDiseaseRecords.filter( ctq => 
+                              new Date(ctq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                              );
                
                            // console.log(filteredSalmonellosisRecords.length)
                
@@ -3495,6 +3685,8 @@ export const actions = {
                             commit(GET_ALL_QUAIL_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length); 
                
                             commit(GET_ALL_QUAIL_SALMONELLOSIS_RECORDS, filteredSalmonellosisRecords.length);
+
+                            commit(GET_ALL_QUAIL_OTHER_RECORDS, filteredOtherQuailDiseaseRecords.length)
                
            }
 
@@ -3517,6 +3709,10 @@ export const actions = {
               const salmonellosisRecords = quailPostMortemRecords.filter( bq=>
                 bq.vetPostMortemDiseases === 'Salmonellosis' 
               )
+
+              const otherQuailDiseaseRecords = quailPostMortemRecords.filter( cq=>
+                cq.vetPostMortemDiseases === 'Other Disease'
+              )
        
               
               
@@ -3529,6 +3725,10 @@ export const actions = {
                      const filteredSalmonellosisRecords = salmonellosisRecords.filter( btq => 
                      new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
+
+                     const filteredOtherQuailDiseaseRecords = otherQuailDiseaseRecords.filter( ctq => 
+                      new Date(ctq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                      );
        
                    // console.log(filteredSalmonellosisRecords.length)
        
@@ -3542,6 +3742,8 @@ export const actions = {
                     commit(GET_ALL_QUAIL_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length); 
        
                     commit(GET_ALL_QUAIL_SALMONELLOSIS_RECORDS, filteredSalmonellosisRecords.length);
+
+                    commit(GET_ALL_QUAIL_OTHER_RECORDS, filteredOtherQuailDiseaseRecords.length);
        
            }
        
@@ -3606,6 +3808,11 @@ export const actions = {
                       const bacterialInfectionRecords = rabbitPostMortemRecords.filter( bq=>
                         bq.vetPostMortemDiseases === 'Bacterial Infection'
                       )
+
+
+                      const otherRabbitDiseaseRecords = rabbitPostMortemRecords.filter( cq=>
+                        cq.vetPostMortemDiseases === 'Other Disease'
+                      )
                
                       
                       
@@ -3618,6 +3825,10 @@ export const actions = {
                              const filteredBacterialInfectionRecords = bacterialInfectionRecords.filter( btq => 
                              new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
                              );
+
+                             const filteredOtherRabbitDiseaseRecords = otherRabbitDiseaseRecords.filter( ctq => 
+                              new Date(ctq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                              );
                
                     //       // console.log(filteredBacterialInfectionRecords.length)
                
@@ -3631,6 +3842,8 @@ export const actions = {
                             commit(GET_ALL_RABBIT_COCCIDIOSIS_RECORDS, filteredCoccidiosisRecords.length); 
                
                             commit(GET_ALL_RABBIT_BACTERIAL_INFECTION_RECORDS, filteredBacterialInfectionRecords.length);
+
+                            commit(GET_ALL_RABBIT_OTHER_RECORDS, filteredOtherRabbitDiseaseRecords.length);
                
                
            }
@@ -3654,6 +3867,10 @@ export const actions = {
               const bacterialInfectionRecords = rabbitPostMortemRecords.filter( bq=>
                 bq.vetPostMortemDiseases === 'Bacterial Infection'
               )
+
+              const otherRabbitDiseaseRecords = rabbitPostMortemRecords.filter( cq=>
+                cq.vetPostMortemDiseases === 'Other Disease'
+              )
        
               
               
@@ -3666,6 +3883,10 @@ export const actions = {
                      const filteredBacterialInfectionRecords = bacterialInfectionRecords.filter( btq => 
                      new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
+
+                     const filteredOtherRabbitDiseaseRecords = otherRabbitDiseaseRecords.filter( ctq => 
+                      new Date(ctq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                      );
        
                 //   // console.log(filteredBacterialInfectionRecords.length)
        
@@ -3679,6 +3900,8 @@ export const actions = {
                     commit(GET_ALL_RABBIT_COCCIDIOSIS_RECORDS, filteredCoccidiosisRecords.length); 
        
                     commit(GET_ALL_RABBIT_BACTERIAL_INFECTION_RECORDS, filteredBacterialInfectionRecords.length);
+
+                    commit(GET_ALL_RABBIT_OTHER_RECORDS, filteredOtherRabbitDiseaseRecords.length);
        
        
            }
@@ -3738,6 +3961,10 @@ export const actions = {
                       const anaPlasmosisRecords = cattlePostMortemRecords.filter( ac=>
                        ac.vetPostMortemDiseases === 'Anaplasmosis'
                       )
+
+                      const otherCattleDiseaseRecords = cattlePostMortemRecords.filter( bc=>
+                        bc.vetPostMortemDiseases === 'Other Disease'
+                       )
                
                  //    // console.log(anaPlasmosisRecords.length)
                
@@ -3747,6 +3974,10 @@ export const actions = {
                           const filteredAnaPlasmosisRecords =anaPlasmosisRecords.filter( atq => 
                           new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
                           );
+
+                          const filteredOtherCattleDiseaseRecords =otherCattleDiseaseRecords.filter( btq => 
+                            new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                            );
                
                        //  // console.log(filteredAnaPlasmosisRecords.length)
                
@@ -3757,6 +3988,8 @@ export const actions = {
                
                
                             commit(GET_ALL_CATTLE_ANAPLASMOSIS_RECORDS, filteredAnaPlasmosisRecords.length); 
+
+                            commit(GET_ALL_CATTLE_OTHER_RECORDS, filteredOtherCattleDiseaseRecords.length);
                
                        
                        

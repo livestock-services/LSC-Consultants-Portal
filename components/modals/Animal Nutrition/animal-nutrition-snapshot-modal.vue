@@ -52,11 +52,22 @@
            </div>
          </div>
 
-           <div class="columns">
+          <div class="columns">
            <div  class="column is-half">
              <h4> <span class="is-blue"> Category</span></h4>
             <p >
             <span class="tag is-info" > {{nutrition.nutritionCategory}} </span>
+              
+            </p>
+           </div>
+         </div>
+
+
+         <div class="columns">
+           <div  class="column is-half">
+             <h4> <span class="is-blue"> Category(Other)</span></h4>
+            <p >
+            <span class="tag is-info" > {{nutrition.nutritionOtherCategory}} </span>
               
             </p>
            </div>

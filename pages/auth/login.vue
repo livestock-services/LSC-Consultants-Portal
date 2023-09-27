@@ -85,8 +85,12 @@
   <script>
   import { mapActions, mapGetters } from 'vuex'
   import { mapFields } from 'vuex-map-fields'
+import PageLoadingVue from '~/components/Tools/Other/page-loading.vue'
   export default {
-  
+
+    components:{
+      PageLoadingVue
+    },
     auth: 'guest',
     data() {
       return {
@@ -184,8 +188,12 @@
   
           
             if (!this.isPageReloaded) {
+             
               this.isPageReloaded = true;
+             
               window.location.reload();
+
+              
             }
           
         } catch (error) {

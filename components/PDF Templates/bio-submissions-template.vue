@@ -1,8 +1,8 @@
 <template>
     <div>
-      <h1>Data from Database</h1>
-      <pre>{{ bioSub }}</pre>
-      <button @click="generatePDF">Generate PDF</button>
+     
+      <b-button class="mx-4" icon-left="adobe" icon-right="export"  type="is-danger " @click="generatePDF">PDF</b-button>
+
     </div>
   </template>
   
@@ -46,12 +46,15 @@
         const pageWidth = doc.internal.pageSize.getWidth();
         const pageHeight = doc.internal.pageSize.getHeight();
         const margin = 5; // Adjust margin as needed
-
+      
         // Draw a border around the page
         doc.rect(margin, margin, pageWidth - 2 * margin, pageHeight - 2 * margin);
 
         doc.setFont("times");
         const examsRequestedString = this.bioSub.examsRequested; // Convert array to a comma-separated string
+        const labPerson = this.bioSub.receivedBy;
+
+        console.log(labPerson)
          
 
         const listItems = [
@@ -123,10 +126,12 @@
 
           const currentDate = new Date();  
           const year = currentDate.getFullYear();
+          
           var startY = 138;
           var startZ = 205;
           var fontSize = 11;
           var font = doc.getFont("times"); // Times New Roman
+          
           
 
         doc.addImage(logoImage, 'PNG', 10,10,35,35);
@@ -146,20 +151,20 @@
         doc.text('Submission/Request Form', 65,35);
        
         
-        doc.text('Client Name:', 10, 60);  doc.text((this.bioSub.clientName), 35, 60);
+        doc.text(`Client Name:${this.bioSub.clientName}`, 10, 60);  doc.text(`Sample(s) Received By:${labPerson}`, 100, 60);
 
-         doc.text('Bio Submission No:', 10, 70);  doc.text('B/'+`${year}`+'/'+ (this.bioSub.bioSubmissionNumber), 45, 70);
+         doc.text(`Bio Submission No:B/${year}/${this.bioSub.bioSubmissionNumber}`, 10, 70);  doc.text(`Sample(s) Submitted By:${this.bioSub.submittedBy}`, 100, 70);
 
-         doc.text('Address:', 10, 80);  doc.text((this.bioSub.clientAddress), 27, 80);
+         doc.text(`Address:${this.bioSub.clientAddress}`, 10, 80);  doc.text(`Test Urgency:${ this.bioSub.testUrgency}`, 100, 80);
 
-         doc.text('Contact No:', 10, 90);  doc.text((this.bioSub.clientContactNumber), 32, 90);
 
-         
-         doc.text('Email:', 10, 100);  doc.text((this.bioSub.clientEmail), 22, 100);
+         doc.text(`Contact No:${this.bioSub.clientContactNumber}`, 10, 90);   doc.text(`Total No. Samples Received:${examsRequestedString.length}`, 100, 90);
 
-         doc.text('Date Received:', 10, 110);  doc.text((this.bioSub.dateSubmitted), 38, 110);
+         doc.text(`Email:${this.bioSub.clientEmail}`, 10, 100);  
 
-         doc.text('Time Received:', 10, 120);  doc.text((this.bioSub.timeStamp), 38, 120);
+         doc.text(`Date Received:${this.bioSub.dateSubmitted}`, 10, 110); 
+
+         doc.text(`Time Received:${this.bioSub.timeStamp}`, 10, 120);  
 
          doc.setFont('times','italics','bold')
 
@@ -179,15 +184,21 @@
        //  const testCountString = this.bioSub.examsRequested.join(', '); // Convert array to a comma-separated string
        if (examsRequestedString !== null) {
           for (var i = 0; i < listItems.length; i++) {
-            var listItem = (i + 1) + ". " + examsRequestedString[i];
-           
+
+            var total = (i + 1)
+            var listItem = total + ". " + examsRequestedString[i];
+            var totalItems =[]
 
             for (let j = 0; j < listItems.length; j++) {
               var element = listItems[j];
               var listItemCount =  testCounts[j];
 
+               
+
               if (listItem.includes(element)) {
 
+               
+                totalItems.push(total);
                console.log(`${listItem}, No. Of Tests: ${listItemCount} is equal at position ${j}`);
                 doc.setFontSize(fontSize);
             doc.text(`${listItem}, No. Of Tests: ${listItemCount}`, 10, startY + (i * 7)); // Adjust the y-coordinate to control the spacing between items
@@ -197,15 +208,11 @@
               
             }
 
-            console.log(listItem)
+            
+            console.log(examsRequestedString.length)
             console.log(testCounts[i])
 
-            if ((listItemCount !== null && listItemCount !== undefined) ) {
-              
-             
-              
-            }
-
+            
            
            
           }
@@ -230,6 +237,19 @@
         doc.text('Total Amount Paid (ZMK):___________________________', 10, 265);
 
         doc.text('Payment Verified By:___________________________', 10, 270);
+
+       
+
+        doc.setFontSize(7);
+        doc.text('Printed from the Consultants & Laboratory Assistive Information Management System (CLAIMS)', 10, 285);
+
+        doc.setFontSize(7);
+        doc.text(`Date printed: ${currentDate}`, 10, 290);
+        
+
+      
+        // Define the watermark content and styling
+         
 
    
 

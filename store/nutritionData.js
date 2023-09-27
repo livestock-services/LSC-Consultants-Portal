@@ -212,7 +212,7 @@ import {
 
             
         [GET_ALL_OTHER_NUTRITION_RECORDS](state, payload){
-            state.allOtherNutritionRecords = payload
+            state.allNutritionOtherRecords = payload
         },
   
     
@@ -307,12 +307,12 @@ import {
     
                  const newFilterRecord = cloneDeep(state.nutritionFilterForm);
     
-                 newFilterRecord.startDate = new Date(newFilterRecord.startDate).toLocaleDateString();
+                 newFilterRecord.startDate = newFilterRecord.startDate.toLocaleDateString('en-US');
     
-                newFilterRecord.endDate = new Date(newFilterRecord.endDate).toLocaleDateString();
+                 newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString('en-US');
     
-                 console.log(new Date(newFilterRecord.startDate));
-                 console.log(new Date(newFilterRecord.endDate));
+                 console.log(newFilterRecord.startDate);
+                 console.log(newFilterRecord.endDate);
                 
                
                 //API REQUEST IS MADE AND RESULT IS STORED IN CONST
@@ -367,7 +367,7 @@ import {
                             )
                     
                             const otherRecords = customeUserRecords.filter(j=>
-                                j.vetCategory =='Other'
+                                j.nutritionCategory ==='Other'
                                )
                     
                     //   // -------------------------------END OF FILTERING BY CATEGORY----------------------//
@@ -415,7 +415,7 @@ import {
                              );
                     
                              const filteredOtherRecords = otherRecords.filter( jt => 
-                                new Date(jt.date) >= new Date(newFilterRecord.startDate) || new Date(jt.date) <= new Date(newFilterRecord.endDate)
+                                new Date(jt.date) >= new Date(newFilterRecord.startDate) && new Date(jt.date) <= new Date(newFilterRecord.endDate)
                                 );
                             
                             
@@ -439,6 +439,8 @@ import {
                              console.log(filteredWildlifeOrExoticsRecords.length);
                     
                              console.log(filteredHorseRecords.length);
+
+                             console.log(filteredOtherRecords.length);
                     
                             
                             
@@ -450,9 +452,9 @@ import {
                                //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
                             //   commit(GET_ALL_Nutrition_RECORDS, response.data);
                     
-                               commit(GET_FILTERED_NUTRITION_START_TIME, new Date(newFilterRecord.startDate));
+                               commit(GET_FILTERED_NUTRITION_START_TIME, newFilterRecord.startDate);
                     
-                               commit(GET_FILTERED_NUTRITION_END_TIME, new Date(newFilterRecord.endDate));
+                               commit(GET_FILTERED_NUTRITION_END_TIME, newFilterRecord.endDate);
                     
                               commit(GET_ALL_NUTRITION_CATTLE_RECORDS, filteredCattleRecords.length);
                     
@@ -520,6 +522,11 @@ import {
                     const horseRecords = response.data.filter( h=>
                      h.nutritionCategory ==='Horses'
                     )
+
+
+                    const otherNutritionRecords = response.data.filter( i=>
+                        i.nutritionCategory ==='Other'
+                       )
             
                    
             
@@ -566,6 +573,11 @@ import {
                      const filteredHorseRecords = horseRecords.filter( it => 
                      new Date(it.date) >= new Date(newFilterRecord.startDate) && new Date(it.date) <= new Date(newFilterRecord.endDate)
                      );
+
+
+                     const filteredOtherRecords = otherNutritionRecords.filter( it => 
+                        new Date(it.date) >= new Date(newFilterRecord.startDate) && new Date(it.date) <= new Date(newFilterRecord.endDate)
+                        );
             
                    
                     
@@ -590,6 +602,8 @@ import {
                      console.log(filteredWildlifeOrExoticsRecords.length);
             
                      console.log(filteredHorseRecords.length);
+
+                     console.log(filteredOtherRecords.length);
             
                     
                     
@@ -622,6 +636,8 @@ import {
                        commit(GET_ALL_NUTRITION_WILDLIFE_OR_EXOTICS_RECORDS, filteredWildlifeOrExoticsRecords.length);
             
                        commit(GET_ALL_NUTRITION_HORSES_RECORDS, filteredHorseRecords.length);
+
+                       commit(GET_ALL_OTHER_NUTRITION_RECORDS, filteredOtherRecords.length);
             }
                commit(SET_LOADING, false);
     

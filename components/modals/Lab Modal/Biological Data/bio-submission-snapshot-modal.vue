@@ -43,6 +43,18 @@
                
               </p>
 
+              <p >
+               <span class="tag earTagID "> Received By: {{ bioSub.receivedBy}} </span>
+               
+               
+              </p>
+
+              <p >
+               <span class="tag earTagID "> Submitted By: {{ bioSub.submittedBy}} </span>
+               
+               
+              </p>
+
               <h5>Examination(s) Requested:</h5>
               <p >
                 <span >
@@ -58,17 +70,8 @@
                <!-- <b-input v-model="earTagID" class="toggle"></b-input> -->
              </div>
            </div>
-
            
-  
-     
-  
-         <bio-submissions-template/>
-          
            
-  
-         
-  
          </b-form>
 
 
@@ -79,7 +82,9 @@
       <footer class="modal-card-foot">
          <b-button label="Close" @click="close" />
   
-  
+        <b-tooltip label="Export to PDF" type="is-dark" position="is-top">
+          <bio-submissions-template/>
+        </b-tooltip>
        
       </footer>
     </div>
@@ -91,6 +96,7 @@
    import { mapActions, mapGetters } from 'vuex'
   import { computed } from 'vue';
 import bioSubmissionsTemplate from '~/components/PDF Templates/bio-submissions-template.vue';
+
   
   export default {
   components: { bioSubmissionsTemplate },
@@ -98,9 +104,9 @@ import bioSubmissionsTemplate from '~/components/PDF Templates/bio-submissions-t
 
 
      data() {
-        
+      var SignedInUser = computed(()=>this.user)
       return {
-       
+        SignedInUser,
         isFullPage: true,
   
         
@@ -113,6 +119,14 @@ import bioSubmissionsTemplate from '~/components/PDF Templates/bio-submissions-t
         bioSub: 'selectedBioSubmissionRecord',
         agroLoading: 'loading',
       }),
+
+      ...mapGetters('users', {
+          loading: 'loading',
+          users: 'allUsers',
+          user:'loggedInUser',
+
+          
+        }),
   
       loading() {
         return this.agroLoading 

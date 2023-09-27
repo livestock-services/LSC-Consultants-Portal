@@ -172,6 +172,12 @@
                   size="is-medium"
                   type="is-dark">
               </b-icon>
+
+              <b-icon
+                  icon="dog"
+                  size="is-medium"
+                  type="is-dark">
+              </b-icon>
           </a>
   
        <span><span class=" mb-2"></span>
@@ -261,6 +267,9 @@
                       </div>
               </div>
               </div>
+
+
+               
               
               
           
@@ -269,6 +278,51 @@
   
               
               </div>
+
+
+              <div class="columns my-4 is-mobile">
+              <div class="card cow-card  card-body">
+              
+              <div  class="card-body my-4 mx-4">
+                  <a
+                  class="navbar-item"
+                  href="/"
+                  >
+                      <b-icon
+                          icon="fish"  
+                          size="is-medium"
+                          type="is-dark">
+                      </b-icon>
+
+                      <b-icon
+                          icon="snake"
+                          size="is-medium"
+                          type="is-dark">
+                      </b-icon>
+
+                      <b-icon
+                          icon="bird"
+                          size="is-medium"
+                          type="is-dark">
+                      </b-icon>
+  
+              <!-- v-if="this.$auth.user.email === 'detroncattle@gmail.com'" -->
+                  
+  
+                  </a>
+  
+              <span><span class=" mb-2"></span>
+              <span class="text-cattle">Others</span></span> <br>
+                      <div class="mt-4">
+                          <h3>Total:<countTo :startVal='startVal' :endVal='other' :duration='20000'></countTo></h3>
+                      </div>
+              </div>
+              </div>
+  
+              
+              </div>
+
+
   
           </div>
           <footer class="card-footer footy">
@@ -284,7 +338,8 @@
                            dogsAndCats+
                            rabbits+
                            wildlifeOrExotics+
-                          horses'
+                          horses +
+                          other'
                    :duration='7000'
                    ></countTo>
                   </span>
@@ -337,6 +392,7 @@
         var rabbits = computed(()=> this.rabbits)
         var wildlifeOrExotics = computed(()=> this.wildlifeOrExotics)
         var horses = computed(()=> this.horses)
+        var others = computed(() => this.other)
        
         var totalConsults =  computed(
                               ()=> this.cattle +
@@ -347,7 +403,8 @@
                                    this.dogsAndCats +
                                    this.rabbits +
                                    this.wildlifeOrExotics +
-                                   this.horses
+                                   this.horses+
+                                   this.other
                                    
                                    
                                    )
@@ -412,6 +469,10 @@
                    { "consultation":"Horses",
                       "number":horses
                     },
+
+                    { "consultation":"Horses",
+                      "number":others
+                    },
   
                     
   
@@ -447,6 +508,7 @@
            rabbits:'allNutritionRabbitRecords',
            wildlifeOrExotics:'allNutritionWildlifeOrExoticsRecords',
            horses:'allNutritionHorseRecords',
+           other:'allNutritionOtherRecords',
            startTime:'filteredStartTime',
            endTime:'filteredEndTime',
           

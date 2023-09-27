@@ -47,6 +47,12 @@
            
           </div>
 
+          <div class=" my-4 pl-4">
+              Other Diseases:
+              <span class="tag is-primary mx-4 "> {{ other }}</span>
+           
+          </div>
+
         
           
           </div>
@@ -73,7 +79,8 @@
               <countTo :startVal='startVal' 
               :endVal='
                rabbitCoccidiosis +
-               rabbitBacterialInfection  
+               rabbitBacterialInfection+
+               other  
                
                ' 
                :duration='7000'
@@ -123,13 +130,15 @@ export default {
 
     var rabbitCocci = computed(()=> this.rabbitCoccidiosis)
     var rabbitBactInf = computed(()=>this.rabbitBacterialInfection)
+    var otherD = computed(()=>this.other)
    
     
     
 
     var totalConsults =  computed(
                           ()=> this.rabbitCoccidiosis +
-                               this.rabbitBacterialInfection
+                               this.rabbitBacterialInfection+
+                               this.other
                                
                                
                                
@@ -169,6 +178,10 @@ export default {
                   "number":rabbitBactInf
               },
 
+              { "consultation":"Other Diseases",
+                  "number":otherD
+              },
+
                
 
               
@@ -198,7 +211,7 @@ export default {
 
        rabbitCoccidiosis:'allRabbitCoccidiosisRecords',
        rabbitBacterialInfection:'allRabbitBacterialInfectionRecords',    
-       
+       other:'allOtherRabbitDiseaseRecords',
        startTime:'filteredRabbitPMStartTime',
        endTime:'filteredRabbitPMEndTime',
 

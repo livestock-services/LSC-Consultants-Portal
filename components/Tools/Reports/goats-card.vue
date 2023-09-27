@@ -60,6 +60,12 @@
            
           </div>
 
+          <div class=" my-4 pl-4">
+            Other Diseases:
+               <span class="tag is-primary mx-4 "> {{ other }}</span>
+           
+          </div>
+
           </div>
             
          
@@ -87,7 +93,8 @@
                goatHelminthiasis + 
                goatHeartwater +
                goatTrauma + 
-               goatHemonchosis 
+               goatHemonchosis+
+               other
                ' 
                :duration='7000'
                ></countTo>
@@ -138,6 +145,7 @@ export default {
     var goatHeart = computed(()=>this.goatHeartwater)
     var goatTrau =computed(()=> this.goatTrauma)
     var goatHemo = computed (()=> this.goatHemonchosis)
+    var otherD = computed (()=> this.other)
     
     
 
@@ -145,7 +153,8 @@ export default {
                           ()=> this.goatHelminthiasis +
                                this.goatHeartwater+
                                this.goatTrauma+
-                               this.goatHemonchosis
+                               this.goatHemonchosis+
+                               this.other
                                
                                
                                
@@ -192,6 +201,10 @@ export default {
                   "number":goatHemo
               },
 
+              { "consultation":"Other Diseases",
+                  "number":otherD
+              },
+
               
                 { "consultation":"",
                   "number":""
@@ -221,6 +234,7 @@ export default {
        goatHeartwater:'allGoatHeartWaterRecords',    
        goatTrauma:'allGoatTraumaRecords',
        goatHemonchosis:'allGoatHemonchosisRecords',
+       other:'allOtherGoatDiseaseRecords',
 
        startTime:'filteredGoatPMStartTime',
        endTime:'filteredGoatPMEndTime',

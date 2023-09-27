@@ -25,6 +25,7 @@ import {
         GET_ALL_SOIL_ANALYSIS_RECORDS,
         GET_ALL_VEG_ENTERPRISE_BUDGET_RECORDS,
         GET_ALL_WEED_CONTROL_RECORDS,
+        GET_ALL_OTHER_AGRO_RECORDS,
 
 
         SET_ALL_LANDSCAPING_RECORDS,
@@ -57,6 +58,7 @@ export const state = () => ({
     allVegEnterpriseBudgetRecords:[],
     allPestControlOrchardRecords:[],
     allSoilAnalysisRecords:[],
+    allOtherAgroRecords:[],
    
     selectedAgroRecord: null,
 
@@ -149,6 +151,10 @@ export const getters = {
     allSoilAnalysisRecords(state){
         return state.allSoilAnalysisRecords
     },
+
+    allOtherAgroRecords(state){
+        return state.allOtherAgroRecords
+    }
     
   //----------------------------------------END OF AGRO SECTION----------------------------------------//
 
@@ -239,6 +245,10 @@ export const mutations = {
 
     [GET_ALL_SOIL_ANALYSIS_RECORDS](state, payload){
         state.allSoilAnalysisRecords = payload
+    },
+
+    [GET_ALL_OTHER_AGRO_RECORDS](state, payload){
+        state.allOtherAgroRecords = payload
     },
 
 
@@ -439,6 +449,10 @@ export const actions = {
                        const soilAnalysisRecords = customeUserRecords.filter( k=>
                         k.agroCategory ==='Soil analysis(all crops)'
                        )
+
+                       const otherAgroRecords = customeUserRecords.filter( l=>
+                        l.agroCategory ==='Other'
+                       )
                 
                   // -------------------------------END OF FILTERING BY CATEGORY----------------------//
                 
@@ -489,6 +503,10 @@ export const actions = {
                         const filteredSoilAnalysisRecords = soilAnalysisRecords.filter( kt => 
                         new Date(kt.date) >= new Date(newFilterRecord.startDate) && new Date(kt.date) <= new Date(newFilterRecord.endDate)
                         );
+
+                        const filteredOtherAgroRecords = otherAgroRecords.filter( lt => 
+                        new Date(lt.date) >= new Date(newFilterRecord.startDate) && new Date(lt.date) <= new Date(newFilterRecord.endDate)
+                        );
                         
                        // console.log(filteredLandscapingRecords.length);
                 
@@ -524,6 +542,8 @@ export const actions = {
                            commit(GET_ALL_PEST_CONTROL_ORCHARDS_RECORDS, filteredPestControlOrchardsRecords.length);
                 
                            commit(GET_ALL_SOIL_ANALYSIS_RECORDS, filteredSoilAnalysisRecords.length);
+
+                           commit(GET_ALL_OTHER_AGRO_RECORDS, filteredOtherAgroRecords.length);
                 
            }
 
@@ -577,6 +597,10 @@ export const actions = {
                const soilAnalysisRecords = response.data.filter( k=>
                 k.agroCategory ==='Soil analysis(all crops)'
                )
+
+               const otherAgroRecords = customeUserRecords.filter( l=>
+                l.agroCategory ==='Other'
+               )
         
           // -------------------------------END OF FILTERING BY CATEGORY----------------------//
         
@@ -627,6 +651,10 @@ export const actions = {
                 const filteredSoilAnalysisRecords = soilAnalysisRecords.filter( kt => 
                 new Date(kt.date) >= new Date(newFilterRecord.startDate) && new Date(kt.date) <= new Date(newFilterRecord.endDate)
                 );
+
+                const filteredOtherAgroRecords = otherAgroRecords.filter( lt => 
+                    new Date(lt.date) >= new Date(newFilterRecord.startDate) && new Date(lt.date) <= new Date(newFilterRecord.endDate)
+                    );
                 
                // console.log(filteredLandscapingRecords.length);
         
@@ -665,6 +693,8 @@ export const actions = {
                    commit(GET_ALL_PEST_CONTROL_ORCHARDS_RECORDS, filteredPestControlOrchardsRecords.length);
         
                    commit(GET_ALL_SOIL_ANALYSIS_RECORDS, filteredSoilAnalysisRecords.length);
+
+                   commit(GET_ALL_OTHER_AGRO_RECORDS, filteredOtherAgroRecords.length);
         
            }
            
