@@ -115,7 +115,7 @@
 
             <div class=" my-4 pl-4">
                 
-                Other Diseases: 
+                Other: 
                 <span class="tag is-primary mx-4 "> {{ other }}</span>
                </div> 
 
