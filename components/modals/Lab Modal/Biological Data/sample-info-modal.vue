@@ -6,6 +6,8 @@
         <button type="button" class="delete" @click="close"></button>
       </header>
       <section class="modal-card-body has-background-white">
+
+        
         <!-- Modal Content -->
         <div>
          <b-form v-model="sampleInfoForm" class="form">
@@ -255,7 +257,7 @@
                
               
           
-               <p class="mx-4 cat">Submission No:  {{submissionNumber}}</p>
+               <p class="mx-4 cat">Submission No:  {{submissionNumber}} </p>
   
                <p class="mx-4 cat"> Sample ID :  {{sampleID}}</p>
 
@@ -285,6 +287,7 @@
               
            
              </div>
+             
            </div>
   
   

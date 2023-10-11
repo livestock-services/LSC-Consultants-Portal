@@ -492,7 +492,7 @@ export default {
   data() {  
   
     
-    var SignedInUser = computed(()=>this.user)
+    var SignedInUser = computed(()=>this.user);
       return {
         SignedInUser,
       isPaginated: true,

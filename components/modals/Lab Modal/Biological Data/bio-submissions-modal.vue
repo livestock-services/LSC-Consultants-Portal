@@ -11,7 +11,9 @@
          <b-form v-model="bioSubmissionsForm" class="form">
   
        
-  
+          <div class="logo-container">
+        <img class="logo" src="@/assets/images/LSC.jpg" style="height: auto; width: 5rem;" alt="Company Logo" />
+      </div>
             
   
             <h4> <span class="is-blue">Client Name</span></h4>
