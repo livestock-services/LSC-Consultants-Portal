@@ -51,7 +51,8 @@
         doc.rect(margin, margin, pageWidth - 2 * margin, pageHeight - 2 * margin);
 
         doc.setFont("times");
-        const examsRequestedString = this.bioSub.examsRequested; // Convert array to a comma-separated string
+        const examsRequestedString = this.bioSub.examsRequested;
+        const samplesRequestedString = this.bioSub.samplesRequested; // Convert array to a comma-separated string
         const labPerson = this.bioSub.receivedBy;
 
         console.log(labPerson)
@@ -88,6 +89,37 @@
           "Farm Sample Collection (Code 4755)",
           "Disposables (Code 8873)"
         ];
+
+       const sampleItems= [
+         'FECAL', 'SERUM', 'SEMEN', 'LIVER', 'SWABS', 'SKIN SCRAPINGS','URINE',
+        'EAR SWABS', 'MILK', 'IMPRESSION SMEAR','LYMPHNODE SMEAR','BRAIN CRUSH SMEAR',
+        'WHOLE BLOOD','PLASMA','BLOOD SMEAR', 'BIOPSY','CARCASS',
+        'ABORTED/FETAL','TISSUE/ORGAN','FEED(SPECIFY)', 'OTHER'
+      ];
+
+      var sampleCounts = [
+      this.bioSub.fecalInput,
+      this.bioSub.serumInput,
+      this.bioSub.semenInput,
+      this.bioSub.liverInput,
+      this.bioSub.swabsInput,
+      this.bioSub.skinScrapingsInput,
+      this.bioSub.urineInput,
+      this.bioSub.earSwabsInput,
+      this.bioSub.milkInput,
+      this.bioSub.impressionSmearInput,
+      this.bioSub.lymphnodeSmearInput,
+      this.bioSub.brainCrushSmearInput,
+      this.bioSub.wholeBloodInput,
+      this.bioSub.plasmaInput,
+      this.bioSub.bloodSmearInput,
+      this.bioSub.biopsyInput,
+      this.bioSub.carcassInput,
+      this.bioSub.abortedFetalInput,
+      this.bioSub.tissueOrganInput,
+      this.bioSub.feedSpecifyInput,
+      this.bioSub.otherInput
+      ];
 
 
 
@@ -127,9 +159,9 @@
           const currentDate = new Date();  
           const year = currentDate.getFullYear();
           
-          var startY = 138;
+          var startY = 104;
           var startZ = 205;
-          var fontSize = 11;
+          var fontSize = 9;
           var font = doc.getFont("times"); // Times New Roman
           
           
@@ -150,36 +182,44 @@
       
         doc.text('Submission/Request Form', 65,35);
        
-        
-        doc.text(`Client Name:${this.bioSub.clientName}`, 10, 60);  doc.text(`Sample(s) Received By:${labPerson}`, 100, 60);
+        doc.setFontSize(10)
+        doc.text(`Client Name:${this.bioSub.clientName}`, 10, 45);  doc.text(`Sample(s) Received By:${labPerson}`, 110, 45);
 
-         doc.text(`Bio Submission No:B/${year}/${this.bioSub.bioSubmissionNumber}`, 10, 70);  doc.text(`Sample(s) Submitted By:${this.bioSub.submittedBy}`, 100, 70);
+         doc.text(`Bio Submission No:B/${year}/${this.bioSub.bioSubmissionNumber}`, 10, 50);  doc.text(`Sample(s) Submitted By:${this.bioSub.submittedBy}`, 110, 50);
 
-         doc.text(`Address:${this.bioSub.clientAddress}`, 10, 80);  doc.text(`Test Urgency:${ this.bioSub.testUrgency}`, 100, 80);
+         doc.text(`Address:${this.bioSub.clientAddress}`, 10, 55);  doc.text(`Test Urgency:${ this.bioSub.testUrgency}`, 110, 55);
 
 
-         doc.text(`Contact No:${this.bioSub.clientContactNumber}`, 10, 90);   doc.text(`Total No. Samples Received:${examsRequestedString.length}`, 100, 90);
+         doc.text(`Contact No:${this.bioSub.clientContactNumber}`, 10, 60);   doc.text(`Total No. Examinations Requested:${examsRequestedString.length}`, 110, 60);
 
-         doc.text(`Email:${this.bioSub.clientEmail}`, 10, 100);  
+         doc.text(`Email:${this.bioSub.clientEmail}`, 10, 65);  doc.text(`Total No. Samples:${samplesRequestedString.length}`, 110, 65);
 
-         doc.text(`Date Received:${this.bioSub.dateSubmitted}`, 10, 110); 
+         doc.text(`Date Received:${this.bioSub.dateSubmitted}`, 10, 70); doc.text(`Total No. Samples Submitted:${this.bioSub.totalNumberOfSamplesSubmitted}`, 110, 70);
 
-         doc.text(`Time Received:${this.bioSub.timeStamp}`, 10, 120);  
+         doc.text(`Time Received:${this.bioSub.timeStamp}`, 10, 75);  doc.text(`Total No. Samples Rejected:${this.bioSub.totalNumberOfSamplesRejected}`, 110, 75);
+
+         doc.text(`Results via:${this.bioSub.reportSentVia}`, 10, 80);
+
+         doc.text(`Consulting Veterinarian:${this.bioSub.consultingVet}`, 10, 85);
+
+         doc.text(`Presenting Problems:${this.bioSub.presentingProblems}`, 10, 90);
 
          doc.setFont('times','italics','bold')
 
       
          doc.setFont("bold");
          let x = 10;
-         let y = 130;
+         let y = 95;
 
-         doc.text('TEST(S) REQUESTED',10, 130); 
-         const textWidth = doc.getStringUnitWidth("Examination(s) Requested:") * fontSize / doc.internal.scaleFactor;
+         doc.setFontSize(10); 
+         doc.text('EXAMINATIONS(S) REQUESTED',10, 98); 
+         doc.text('SAMPLE(S) SUBMITTED',110, 98); 
+       //  const textWidth = doc.getStringUnitWidth("Examination(s) Requested:") * fontSize / doc.internal.scaleFactor;
          
          // Set the line width for the underline
-         doc.setLineWidth(0.5);
+         //doc.setLineWidth(0.5);
          // Draw an underline below the text
-        doc.line(x, y + 2, x + textWidth, y + 2);
+        //doc.line(x, y + 2, x + textWidth, y + 2);
 
        //  const testCountString = this.bioSub.examsRequested.join(', '); // Convert array to a comma-separated string
        if (examsRequestedString !== null) {
@@ -201,7 +241,7 @@
                 totalItems.push(total);
                console.log(`${listItem}, No. Of Tests: ${listItemCount} is equal at position ${j}`);
                 doc.setFontSize(fontSize);
-            doc.text(`${listItem}, No. Of Tests: ${listItemCount}`, 10, startY + (i * 7)); // Adjust the y-coordinate to control the spacing between items
+            doc.text(`${listItem}, No. Of Tests: ${listItemCount}`, 10, startY + (i * 5)); // Adjust the y-coordinate to control the spacing between items
               }else{
                 console.log("Value are not equal")
               }
@@ -211,6 +251,47 @@
             
             console.log(examsRequestedString.length)
             console.log(testCounts[i])
+
+            
+           
+           
+          }
+
+          
+        } else {
+         // doc.text('Test(s) Requested:', 10, 105);
+        }
+
+
+        if (samplesRequestedString !== null) {
+          for (var i = 0; i < sampleItems.length; i++) {
+
+            var total = (i + 1)
+            var sampleItem = total + ". " + samplesRequestedString[i];
+            var totalSampleItems =[]
+
+            for (let j = 0; j < sampleItems.length; j++) {
+              var sampleElement = sampleItems[j];
+              var sampleItemCount =  sampleCounts[j];
+
+               
+
+              if (sampleItem.includes(sampleElement)) {
+
+               
+                totalSampleItems.push(total);
+               console.log(`${sampleItem}, No. Of Samples: ${sampleItemCount} is equal at position ${j}`);
+                doc.setFontSize(fontSize);
+            doc.text(`${sampleItem}, No. Of Samples: ${sampleItemCount}`, 110, startY + (i * 5)); // Adjust the y-coordinate to control the spacing between items
+              }else{
+                console.log("Value are not equal")
+              }
+              
+            }
+
+            
+            console.log(samplesRequestedString.length)
+            console.log(sampleCounts[i])
 
             
            

@@ -61,6 +61,61 @@
             </div>
 
 
+            <h4><span class="is-blue"> Report to be sent via </span></h4>
+
+              <div class="columns">
+                <div class="column is-three-quarters">
+                  <b-select
+                    type="text"
+                    v-model="reportSentVia"
+                    placeholder="--select option--"
+                  >
+                    <option value="Email">Email</option>
+                    <option value="Posting">Posting</option>
+                    <option value="Client to pick up">Client to pick up</option>
+                  </b-select>
+                </div>
+              </div>
+
+              <h4><span class="is-blue"> Consulting Veterinarian</span></h4>
+
+                <div class="columns">
+                  <div class="column is-three-quarters">
+                    <b-input
+                      type="text"
+                      v-model="consultingVet"
+                      placeholder="consulting veterinarian..."
+                    ></b-input>
+                  </div>
+                </div>
+
+                <h4><span class="is-blue"> Tel No. (For The Vet) </span></h4>
+
+                <div class="columns">
+                  <div class="column is-three-quarters">
+                    <b-input
+                      type="number"
+                      v-model="vetPhoneNumber"
+                      placeholder="Phone No..."
+                    ></b-input>
+                  </div>
+                </div>
+
+              <h4><span class="is-blue"> Animal Location </span></h4>
+
+                <div class="columns">
+                <b-field class="column is-three-quarters">
+                    <b-input
+                    type="text"
+                    v-model="animalLocation"
+                    placeholder="enter location here..."
+                    >
+                    </b-input>
+                </b-field>
+                </div>
+
+
+
             <h4><span class="is-blue"> Test Urgency </span></h4>
 
               <div class="columns">
@@ -90,6 +145,363 @@
                   </b-field>
                 </div>
 
+                <h4> <span class="is-blue"> Animal Type </span></h4>
+  
+  <div class="columns">
+    
+    
+
+    <div  class="column is-three-quarters">
+    
+      <b-select
+      v-model="animalType"
+        placeholder="-- Select an option --"
+      >
+        <option value="CATTLE">CATTLE</option>
+        <option value="HORSE">HORSE</option>
+        <option value="ELEPHANT">ELEPHANT</option>
+        <option value="CANNINE">CANNINE</option>
+        <option value="CAT">CAT</option>
+        <option value="GOAT">GOAT</option>
+        <option value="SHEEP">SHEEP</option>
+        <option value="AVIAN">AVIAN</option>
+        <option value="POULTRY">POULTRY</option>
+        <option value="OTHER">OTHER</option>
+       
+       
+
+        
+      </b-select>
+
+    </div>
+  </div>
+
+
+  <div v-if="animalType === 'OTHER'">
+    <h7> <span class="is-blue mt-2">Other(If Animal type is not on list)</span></h7>
+
+  <div class="columns">
+    
+    
+
+    <div  class="column is-three-quarters">
+
+      
+      <b-input type="text" v-model="otherAnimalType" placeholder="sample type..."></b-input>
+
+    </div>
+  </div>
+  </div>
+  
+
+
+ <h4> <span class="is-blue"> Breed </span></h4>
+
+  <div class="columns">
+    
+    
+
+    <div  class="column is-three-quarters">
+    
+    <b-input type="text" v-model="breed" placeholder="Breed..."></b-input>
+    </div>
+  </div>
+
+  <h4> <span class="is-blue"> Age </span></h4>
+
+  <div class="columns">
+      
+      
+
+      <div  class="column is-three-quarters">
+      
+      <b-input type="text" v-model="age" placeholder="enter age here..."></b-input>
+      </div>
+  </div>
+
+
+  <h4> <span class="is-blue"> Sex </span></h4>
+  
+  <div class="columns">
+    <b-field class="column is-full">
+      <b-select
+        v-model="sex"
+        placeholder="-- Select an option --"
+      >
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        
+      </b-select>
+    </b-field>
+  </div>
+
+
+  <h4> <span class="is-blue"> Sample Condition on Receipt </span></h4>
+  
+  <div class="columns">
+    <b-field class="column is-full">
+      <b-select
+        v-model="sampleGoodOnReceipt"
+        placeholder="-- Select an option --"
+      >
+        <option value="Good">Good</option>
+        <option value="Satisfactory">Satisfactory</option>
+        <option value="Bad">Bad</option>
+        
+      </b-select>
+    </b-field>
+  </div>
+  
+
+  <h4> <span class="is-blue"> Date Sample Collected </span></h4>
+  
+  <div class="columns">
+
+  <div  class="column is-three-quarters">
+  
+  <b-datepicker v-model="dateSampleCollected" placeholder="--select date--"></b-datepicker>
+  </div>
+  </div>
+
+
+  <h4><span class="is-blue"> Total number of samples submitted </span></h4>
+
+            <div class="columns">
+            <b-field class="column is-three-quarters">
+                <b-input
+                type="text"
+                v-model="totalNumberOfSamplesSubmitted"
+                placeholder="enter here..."
+                >
+                </b-input>
+            </b-field>
+            </div>
+
+
+            <h4><span class="is-blue"> Total number of samples rejected </span></h4>
+
+            <div class="columns">
+            <b-field class="column is-three-quarters">
+                <b-input
+                type="text"
+                v-model="totalNumberOfSamplesRejected"
+                placeholder="enter here..."
+                >
+                </b-input>
+            </b-field>
+            </div>
+
+
+            <h4><span class="is-blue"> Presenting Problem(s) </span></h4>
+
+            <div class="columns">
+            <b-field class="column is-three-quarters">
+                <b-input
+                type="text"
+                v-model="presentingProblems"
+                placeholder="enter here..."
+                >
+                </b-input>
+            </b-field>
+            </div>
+
+
+
+  <h4> <span class="is-blue"> Test Requested </span></h4>
+  
+  <div class="columns">
+    <b-field class="column is-three-quarters">
+      <b-input type="text" v-model="testRequested" placeholder="test requested..."></b-input>
+    </b-field>
+  </div>
+
+
+
+  <h4> <span class="is-blue"> Comments </span></h4>
+  
+  <div class="columns">
+      
+      
+
+      <div  class="column is-three-quarters">
+      
+      <b-input type="text" v-model="comments" placeholder="Comments/Remarks..."></b-input>
+      </div>
+  </div>
+
+
+  <h4> <span class="is-blue"> Lab Findings </span></h4>
+  
+  <div class="columns">
+      
+      
+
+      <div  class="column is-three-quarters">
+      
+      <b-input type="text" v-model="labFindings" placeholder="Lab findings..."></b-input>
+      </div>
+  </div>
+
+
+
+              <div class="columns">
+                <div class="column">
+                  <h5 class="my-2">Sample Type</h5>
+                  
+                  <ul>
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="FECAL">FECAL</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('FECAL')">
+                   No. of samples: <input v-model="fecalInput" type="number" placeholder="Enter FECAL value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="SERUM">SERUM</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('SERUM')">
+                   No. of samples: <input v-model="serumInput" type="number" placeholder="Enter SERUM value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="SEMEN">SEMEN</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('SEMEN')">
+                   No. of samples: <input v-model="semenInput" type="number" placeholder="Enter SEMEN value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="LIVER">LIVER</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('LIVER')">
+                   No. of samples: <input v-model="liverInput" type="number" placeholder="Enter LIVER value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="SWABS">SWABS</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('SWABS')">
+                   No. of samples: <input v-model="swabsInput" type="number" placeholder="Enter SWABS value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="SKIN SCRAPINGS">SKIN SCRAPINGS</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('SKIN SCRAPINGS')">
+                   No. of samples: <input v-model="skinScrapingsInput" type="number" placeholder="Enter SKIN SCRAPINGS value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="URINE">URINE</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('URINE')">
+                   No. of samples: <input v-model="urineInput" type="number" placeholder="Enter URINE value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="EAR SWABS">EAR SWABS</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('EAR SWABS')">
+                   No. of samples: <input v-model="earSwabsInput" type="number" placeholder="Enter EAR SWABS value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="MILK">MILK</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('MILK')">
+                   No. of samples: <input v-model="milkInput" type="number" placeholder="Enter MILK value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="IMPRESSION SMEAR">IMPRESSION SMEAR</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('IMPRESSION SMEAR')">
+                   No. of samples: <input v-model="impressionSmearInput" type="number" placeholder="Enter IMPRESSION SMEAR value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="LYMPHNODE SMEAR">LYMPHNODE SMEAR</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('LYMPHNODE SMEAR')">
+                   No. of samples: <input v-model="lymphnodeSmearInput" type="number" placeholder="Enter LYMPHNODE SMEAR value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="BRAIN CRUSH SMEAR">BRAIN CRUSH SMEAR</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('BRAIN CRUSH SMEAR')">
+                   No. of samples: <input v-model="brainCrushSmearInput" type="number" placeholder="Enter BRAIN CRUSH SMEAR value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="WHOLE BLOOD">WHOLE BLOOD</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('WHOLE BLOOD')">
+                   No. of samples: <input v-model="wholeBloodInput" type="number" placeholder="Enter WHOLE BLOOD value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="PLASMA">PLASMA</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('PLASMA')">
+                   No. of samples: <input v-model="plasmaInput" type="number" placeholder="Enter PLASMA value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="BLOOD SMEAR">BLOOD SMEAR</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('BLOOD SMEAR')">
+                   No. of samples: <input v-model="bloodSmearInput" type="number" placeholder="Enter BLOOD SMEAR value">
+                    </label>
+                    </li>
+
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="BIOPSY">BIOPSY</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('BIOPSY')">
+                   No. of samples: <input v-model="biopsyInput" type="number" placeholder="Enter BIOPSY value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="CARCASS">CARCASS</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('CARCASS')">
+                   No. of samples: <input v-model="carcassInput" type="number" placeholder="Enter CARCASS value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="ABORTED/FETAL">ABORTED/FETAL</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('ABORTED/FETAL')">
+                   No. of samples: <input v-model="abortedFetalInput" type="number" placeholder="Enter ABORTED/FETAL value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="TISSUE/ORGAN">TISSUE/ORGAN</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('TISSUE/ORGAN')">
+                   No. of samples: <input v-model="tissueOrganInput" type="number" placeholder="Enter TISSUE/ORGAN value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="FEED (SPECIFY)">FEED (SPECIFY)</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('FEED (SPECIFY)')">
+                   No. of samples: <input v-model="feedSpecifyInput" type="number" placeholder="Enter FEED (SPECIFY) value">
+                    </label>
+                    </li>
+
+                    <li>
+                    <b-checkbox v-model="checkboxGroup2" type="is-success" native-value="OTHER">OTHER</b-checkbox>
+                    <label v-if="checkboxGroup2.includes('OTHER')">
+                   No. of samples: <input v-model="otherInput" type="number" placeholder="Enter OTHER value">
+                    </label>
+                    </li>
+                  </ul>
+
+
+
+                </div>
+              </div>
             
 
 
@@ -308,6 +720,9 @@
   </div>
 </div>
 
+
+
+
         
 
               <div class="content">
@@ -325,6 +740,55 @@
 
           <p>Test Urgency: {{ testUrgency }}</p>
 
+          <p>Report Sent Via: {{ reportSentVia }}</p>
+
+          <p>Animal Location : {{ animalLocation }}</p>
+
+          <p>Consulting Veterinarian : {{ consultingVet }}</p>
+
+          <p>Sample Type :  {{animalType}}</p> 
+ 
+          <p v-if="animalType === 'OTHER'">Other(Sample Type) :  {{otherSampleType}}</p> 
+
+          <p v-if="animalType === 'OTHER'">Other(Animal Type):  {{otherAnimalType}}</p> 
+
+          <p>breed :  {{breed}}</p>
+
+          <p>Age :  {{age}}</p>
+          
+          <p>Sex:  {{sex}}</p>
+
+          <p> Sample Good on Receipt :  {{sampleGoodOnReceipt}}</p>
+
+          <p>Date Sample Collected :  {{dateSampleCollected}}</p> 
+
+          <p>Total no. samples submitted: {{ totalNumberOfSamplesSubmitted }}</p>
+
+          <p>Total no. samples rejected: {{ totalNumberOfSamplesRejected }}</p>
+
+          <p>Presenting Problems : {{ presentingProblems }}</p>
+
+          <p>Test Requested :  {{testRequested}}</p>
+
+          <p>Comments :  {{comments}}</p>
+
+          <p>Lab Findings :  {{labFindings}}</p>
+
+
+          <p>Sample Type: 
+            <ul>
+            <li v-for="(checkboxValue2, checkboxIndex2) in checkboxGroup2" :key="checkboxIndex2">
+             
+              
+            {{ checkboxValue2 }}
+
+
+            
+             
+            </li>
+          </ul>
+          </p>
+
           <p>Examination(s) Requested:
              <ul>
             <li v-for="(checkboxValue, checkboxIndex) in checkboxGroup" :key="checkboxIndex">
@@ -341,7 +805,102 @@
        
           
           </p>
+
+
+          <h4>No. of Samples</h4>
+          <ul>
+              <li v-for="(checkboxValue2, checkboxIndex2) in checkboxGroup2" :key="checkboxIndex2">
+            
+            <p v-if="checkboxValue2.includes('FECAL')">
+              No. of Samples(FECAL): {{ fecalInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('SERUM')">
+              No. of Samples(SERUM): {{ serumInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('SEMEN')">
+              No. of Samples(SEMEN): {{ semenInput }} 
+            </p>
+
+            <p v-if="checkboxValue2.includes('LIVER')">
+              No. of Samples(LIVER): {{ liverInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('SWABS')">
+              No. of Samples(SWABS): {{ swabsInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('SKIN SCRAPINGS')">
+              No. of Samples(SKIN SCRAPINGS): {{ skinScrapingsInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('URINE')">
+              No. of Samples(URINE): {{ urineInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('EAR SWABS')">
+              No. of Samples(EAR SWABS): {{ earSwabsInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('MILK')">
+              No. of Samples(MILK): {{ milkInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('IMPRESSION SMEAR')">
+              No. of Samples(IMPRESSION SMEAR): {{ impressionSmearInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('LYMPHNODE SMEAR')">
+              No. of Samples(LYMPHNODE SMEAR): {{ lymphnodeSmearInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('BRAIN CRUSH SMEAR')">
+              No. of Samples(BRAIN CRUSH SMEAR): {{ brainCrushSmearInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('WHOLE BLOOD')">
+              No. of Samples(WHOLE BLOOD): {{ wholeBloodInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('PLASMA')">
+              No. of Samples(PLASMA): {{ plasmaInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('BLOOD SMEAR')">
+              No. of Samples(BLOOD SMEAR): {{ bloodSmearInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('BIOPSY')">
+              No. of Samples(BIOPSY): {{ biopsyInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('CARCASS')">
+              No. of Samples(CARCASS): {{ carcassInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('ABORTED/FETAL')">
+              No. of Samples(ABORTED/FETAL): {{ abortedFetalInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('TISSUE/ORGAN')">
+              No. of Samples(TISSUE/ORGAN): {{ tissueOrganInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('FEED(SPECIFY)')">
+              No. of Samples(FEED(SPECIFY)): {{ feedSpecifyInput }}
+            </p>
+
+            <p v-if="checkboxValue2.includes('OTHER')">
+              No. of Samples(OTHER): {{ otherInput }}
+            </p>
+          </li>
+          </ul>
               
+
+
+
+          
           <h4>Test Count</h4>
           <ul>
   <li v-for="(checkboxValue, checkboxIndex) in checkboxGroup" :key="checkboxIndex">
@@ -530,20 +1089,20 @@ import { mapActions, mapGetters } from 'vuex'
                'Sales'
         ],
 
-       
-  
-  
         isFullPage: true,
-        // fenceForm: {
+
+        sampleType: '',
         
-        //         clientName:null,
-               
-        //         clientPhoneNumber:null,
-  
-        //         fenceCategory:null,
-           
-          
-        // },
+      checkboxGroup2: [], // Selected checkboxes
+      sampleOptions: [
+         'FECAL', 'SERUM', 'SEMEN', 'LIVER', 'SWABS', 'SKIN SCRAPINGS','URINE',
+        'EAR SWABS', 'MILK', 'IMPRESSION SMEAR','LYMPHNODE SMEAR','BRAIN CRUSH SMEAR',
+        'WHOLE BLOOD','PLASMA','BLOOD SMEAR', 'BIOPSY','CARCASS',
+        'ABORTED/FETAL','TISSUE/ORGAN','FEED(SPECIFY)', 'OTHER'
+      ],
+      testCounts: {} // Store test counts for each sample typefor each sample type
+
+      
        
       }
     },
@@ -561,6 +1120,45 @@ import { mapActions, mapGetters } from 'vuex'
     'bioSubmissionsForm.clientContactNumber',
     'bioSubmissionsForm.testUrgency',
     'bioSubmissionsForm.submittedBy',
+    'bioSubmissionsForm.reportSentVia',
+    'bioSubmissionsForm.consultingVet',
+    'bioSubmissionsForm.vetPhoneNumber',
+    'bioSubmissionsForm.animalLocation',
+    'bioSubmissionsForm.animalType',
+    'bioSubmissionsForm.otherSampleType',
+    'bioSubmissionsForm.otherAnimalType',
+    'bioSubmissionsForm.breed',
+    'bioSubmissionsForm.age',
+    'bioSubmissionsForm.sex',
+    'bioSubmissionsForm.sampleGoodOnReceipt',
+    'bioSubmissionsForm.dateSampleCollected',
+    'bioSubmissionsForm.totalNumberOfSamplesSubmitted',
+    'bioSubmissionsForm.totalNumberOfSamplesRejected',
+    'bioSubmissionsForm.presentingProblems',
+    'bioSubmissionsForm.testRequested',
+    'bioSubmissionsForm.comments',
+    'bioSubmissionsForm.labFindings',
+    'bioSubmissionsForm.fecalInput',
+    'bioSubmissionsForm.serumInput',
+    'bioSubmissionsForm.semenInput',
+    'bioSubmissionsForm.liverInput',
+    'bioSubmissionsForm.swabsInput',
+    'bioSubmissionsForm.skinScrapingsInput',
+    'bioSubmissionsForm.urineInput',
+    'bioSubmissionsForm.earSwabsInput',
+    'bioSubmissionsForm.milkInput',
+    'bioSubmissionsForm.impressionSmearInput',
+    'bioSubmissionsForm.lymphnodeSmearInput',
+    'bioSubmissionsForm.brainCrushSmearInput',
+    'bioSubmissionsForm.wholeBloodInput',
+    'bioSubmissionsForm.plasmaInput',
+    'bioSubmissionsForm.bloodSmearInput',
+    'bioSubmissionsForm.biopsyInput',
+    'bioSubmissionsForm.carcassInput',
+    'bioSubmissionsForm.abortedFetalInput',
+    'bioSubmissionsForm.tissueOrganInput',
+    'bioSubmissionsForm.feedSpecifyInput',
+    'bioSubmissionsForm.otherInput',
     'bioSubmissionsForm.testCountHPE',
     'bioSubmissionsForm.testCountFEC',
     'bioSubmissionsForm.testCountHI',
@@ -602,6 +1200,7 @@ import { mapActions, mapGetters } from 'vuex'
       ...mapFields('labData',{
     
            examsRequested:'bioSubmissionsForm.checkboxGroup',
+           samplesRequested:'bioSubmissionsForm.checkboxGroup2',
        
       }),
   
@@ -621,6 +1220,18 @@ import { mapActions, mapGetters } from 'vuex'
       console.log(value)
     },
   },
+
+  bioSubmissionsCheckboxGroup2: {
+    get() {
+      // Return the value of bioSubmissionsForm.checkboxGroup
+      return this.bioSubmissionsForm.checkboxGroup2;
+    },
+    set(value) {
+      // Set the value of bioSubmissionsForm.checkboxGroup
+      this.bioSubmissionsForm.checkboxGroup2 = value;
+      console.log(value)
+    },
+  },
       }),
   
      },
@@ -632,6 +1243,9 @@ import { mapActions, mapGetters } from 'vuex'
     mounted() {
       let checkboxGroup = this.checkboxGroup;
         console.log(checkboxGroup);
+
+        let checkboxGroup2 = this.checkboxGroup2;
+        console.log(checkboxGroup2);
     },
 
   
@@ -641,23 +1255,39 @@ import { mapActions, mapGetters } from 'vuex'
   
     methods: {
       
-        ...mapActions('labData', ['addNewBioSubmissionsRecord','getAllBioSubmissionsRecords', 'updateDataArray', 'load']),
+        ...mapActions('labData', ['addNewBioSubmissionsRecord','getAllBioSubmissionsRecords', 'updateDataArray','updateSamplesDataArray', 'load']),
   
      loading() {
         return this.sampleInfoLoading 
 
       },
 
+      getTestCount(sampleType) {
+      // Get the test count for a specific sample type
+      return this.testCounts[sampleType] || '';
+    },
+
 
       async addItemsToList(){
         let checkboxGroup = this.checkboxGroup;
+        let checkboxGroup2 = this.checkboxGroup2;
         console.log(checkboxGroup);
+        console.log(checkboxGroup2);
 
         for (let i = 0; i < checkboxGroup.length; i++) {
           const element = checkboxGroup[i];
           const checkboxValue =[];
 
           checkboxValue.push(element)
+          console.log(element);
+          
+        }
+
+        for (let i = 0; i < checkboxGroup2.length; i++) {
+          const element = checkboxGroup2[i];
+          const checkboxValue2 =[];
+
+          checkboxValue2.push(element)
           console.log(element);
           
         }
@@ -701,6 +1331,9 @@ import { mapActions, mapGetters } from 'vuex'
 
             const newDataArray = this.checkboxGroup;
             await this.updateDataArray(newDataArray);
+
+            const newSamplesDataArray = this.checkboxGroup2;
+            await this.updateSamplesDataArray(newSamplesDataArray);
 
            await this.addNewBioSubmissionsRecord();
   
@@ -746,7 +1379,48 @@ import { mapActions, mapGetters } from 'vuex'
         clientAddress: null,
         clientEmail: null,
         clientContactNumber: null,
-        checkboxValue: null,
+        testUrgency:null,
+        submittedBy: null,
+        vetPhoneNumber: null,
+        reportSentVia: null,
+        animalLocation:null,
+        testUrgency:null,
+        animalType:null,
+        otherSampleType:null,
+        otherAnimalType:null,
+        breed:null,
+        age:null,
+        sex:null,
+        sampleGoodOnReceipt:null,
+        dateSampleCollected:null,
+        totalNumberOfSamplesSubmitted:null,
+        totalNumberOfSamplesRejected:null,
+        presentingProblems:null,
+        testRequested:null,
+        comments:null,
+        labFindings:null,
+        fecalInput: null,
+        serumInput: null,
+        semenInput: null,
+        liverInput: null,
+        swabsInput: null,
+        skinScrapingsInput: null,
+        urineInput: null,
+        earSwabsInput: null,
+        milkInput: null,
+        impressionSmearInput: null,
+        lymphnodeSmearInput: null,
+        brainCrushSmearInput: null,
+        wholeBloodInput: null,
+        plasmaInput: null,
+        bloodSmearInput: null,
+        biopsyInput: null,
+        carcassInput: null,
+        abortedFetalInput: null,
+        tissueOrganInput: null,
+        feedSpecifyInput: null,
+        otherInput: null,
+        examsRequested:[],
         testCountHPE: null,
         testCountFEC: null,
         testCountHI: null,
@@ -776,8 +1450,8 @@ import { mapActions, mapGetters } from 'vuex'
         testCountFreeRange: null,
         testCountFarmSample: null,
         testCountDisposables: null,
-       
-  
+        createdBy:null,
+        receivedBy:null
           
         }
         

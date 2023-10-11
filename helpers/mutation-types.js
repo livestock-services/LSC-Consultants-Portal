@@ -4,6 +4,8 @@ export const GET_ALL_USERS = 'GET_ALL_USERS'
 
 
 export const SET_DATA_ARRAY = 'SET_DATA_ARRAY'
+
+export const SET_SAMPLES_DATA_ARRAY = 'SET_SAMPLES_DATA_ARRAY'
 // -----------------------------------------USERS----------------------------------------------------------------------
 export const SET_USERS = 'SET_USERS'
 export const ADD_NEW_USER = 'ADD_NEW_USER'

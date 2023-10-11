@@ -66,6 +66,7 @@ import {
         SET_SELECTED_BIO_SUBMISSION_RECORD,
         SET_LOADING,
         SET_DATA_ARRAY,
+        SET_SAMPLES_DATA_ARRAY
         
         // GET_ALL_SAMPLE_INFORMATION_CONSULTS_RECORDS,
         // GET_ALL_SAMPLE_INFORMATION_SALES_RECORDS,
@@ -188,8 +189,48 @@ export const state = () => ({
         clientAddress: null,
         clientEmail: null,
         clientContactNumber: null,
+        consultingVet: null,
+        vetPhoneNumber: null,
+        reportSentVia: null,
+        animalLocation:null,
         testUrgency:null,
         submittedBy: null,
+        animalType:null,
+        otherSampleType:null,
+        otherAnimalType:null,
+        breed:null,
+        age:null,
+        sex:null,
+        sampleGoodOnReceipt:null,
+        dateSampleCollected:null,
+        totalNumberOfSamplesSubmitted:null,
+        totalNumberOfSamplesRejected:null,
+        presentingProblems:null,
+        testRequested:null,
+        comments:null,
+        labFindings:null,
+        fecalInput: null,
+        serumInput: null,
+        semenInput: null,
+        liverInput: null,
+        swabsInput: null,
+        skinScrapingsInput: null,
+        urineInput: null,
+        earSwabsInput: null,
+        milkInput: null,
+        impressionSmearInput: null,
+        lymphnodeSmearInput: null,
+        brainCrushSmearInput: null,
+        wholeBloodInput: null,
+        plasmaInput: null,
+        bloodSmearInput: null,
+        biopsyInput: null,
+        carcassInput: null,
+        abortedFetalInput: null,
+        tissueOrganInput: null,
+        feedSpecifyInput: null,
+        otherInput: null,
+        samplesRequested:[],
         examsRequested:[],
         testCountHPE: null,
         testCountFEC: null,
@@ -705,6 +746,10 @@ export const getters = {
         return state.bioSubmissionsForm.examsRequested
       },
 
+      samplesRequested(state) {
+        return state.bioSubmissionsForm.samplesRequested
+      },
+
 
 
 
@@ -931,6 +976,10 @@ export const mutations = {
         state.bioSubmissionsForm.examsRequested = newDataArray;
       },
 
+      [SET_SAMPLES_DATA_ARRAY](state, newSamplesDataArray) {
+        state.bioSubmissionsForm.samplesRequested = newSamplesDataArray;
+      },
+
     //------------------------------------------------------------------------------------//
 
        
@@ -940,6 +989,10 @@ export const actions = {
 
     updateDataArray({ commit }, newDataArray) {
         commit('SET_DATA_ARRAY', newDataArray);
+      },
+
+      updateSamplesDataArray({ commit }, newSamplesDataArray) {
+        commit('SET_SAMPLES_DATA_ARRAY', newSamplesDataArray);
       },
  //GET ALL AgroRecordS
     async getAllSampleInformationRecords({ state,commit,rootState,rootGetters }){

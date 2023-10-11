@@ -154,7 +154,7 @@
 
 
 
-                                <b-menu-item  v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'AI Consultant'" icon="needle"   @click="AI" label="Artificial Insemination ">  </b-menu-item>
+                                <b-menu-item  v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'AI Consultant' || SignedInUser.role === 'Vet Consultant '" icon="needle"   @click="AI" label="Artificial Insemination ">  </b-menu-item>
 
 
 
