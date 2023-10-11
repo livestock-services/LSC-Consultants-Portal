@@ -13,24 +13,26 @@
 
           <div class="columns">
             <div class="column is-three-quarters">
-              <b-input
-                type="text"
-                v-model="submissionsNumber"
-                placeholder="submission no..."
-              ></b-input>
+              
+              <b-autocomplete
+                  rounded
+                  v-model="submissionsNumber"
+                  :data="bioSubs"
+                  placeholder="Select a Bio Submission No. from the list"
+                  icon="magnify"
+                  clearable
+                  @select="option => selected = option">
+  
+                  <template #empty>No results found</template>
+              </b-autocomplete>
+
+
             </div>
+
+
           </div>
 
-          <h4><span class="is-blue">Client Name</span></h4>
-          <div class="columns">
-            <div class="column is-three-quarters">
-              <b-input
-                type="text"
-                v-model="clientName"
-                placeholder="client name..."
-              ></b-input>
-            </div>
-          </div>
+         
 
           <h4><span class="is-blue"> Consulting Veterinarian</span></h4>
 
@@ -670,6 +672,7 @@
 </template>
 
 <script>
+  import { computed } from "vue";
 import { mapActions, mapGetters } from "vuex";
 import { mapFields } from "vuex-map-fields";
 export default {
@@ -679,6 +682,13 @@ export default {
     return {
 
       data: ["Consultations", "Sales"],
+
+      data:[
+       
+        computed(()=>this.bioSubs),
+        computed(()=>this.bioSubClients),
+
+        ],
 
       isFullPage: true,
       // fenceForm: {
@@ -748,8 +758,12 @@ export default {
     ...mapGetters("labData", {
       submission: "selectedSubmissionsRecord",
       submissionLoading: "loading",
+      bioSubs:'allBioSubmissionNumbers',
+      bioSubClients:'allBioSubmissionClients'
     }),
   },
+
+    
 
   // },
 
@@ -799,7 +813,7 @@ export default {
 
     close() {
       this.$buefy.toast.open({
-        message: "pig Snapshot closed.",
+        message: "Lab Snapshot closed.",
         duration: 2000,
         position: "is-bottom",
         type: "is-warning ",
@@ -853,6 +867,10 @@ export default {
       };
     },
   },
+
+  created() {
+        this.getAllSubmissionsRecords(); // Fetch the Bio Subbmissions from the database on component creation
+      },
 };
 </script>
 

@@ -109,6 +109,12 @@
              
             </div>
 
+            <div class=" my-4 pl-4">
+                Other Diseases:
+                 <span class="tag is-primary mx-4 "> {{ other }}</span>
+             
+            </div>
+
             </div>
            
            
@@ -137,7 +143,8 @@
                           layerHelminthiasis + 
                           infectiousBronchitis + 
                           layerGumboro + 
-                          calciumDeficiency' 
+                          calciumDeficiency+
+                          other' 
                  :duration='7000'
                  ></countTo>
                 </span>
@@ -190,6 +197,7 @@ import { computed } from 'vue';
       var infectBronchy = computed(()=> this.infectiousBronchitis)
       var layerGumbo = computed(()=> this.layerGumboro)
       var calciumDef = computed(()=> this.calciumDeficiency)
+      var otherD = computed(()=> this.other)
       
       var totalConsults =  computed(
                             ()=> this.layerFattyLiverHS +
@@ -200,7 +208,8 @@ import { computed } from 'vue';
                                  this.layerHelminthiasis+
                                  this.infectiousBronchitis+
                                  this.layerGumboro+
-                                 this.calciumDeficiency
+                                 this.calciumDeficiency+
+                                 this.otherD
                                  
                                  
                                  )
@@ -266,6 +275,10 @@ import { computed } from 'vue';
                     "number":calciumDef
                   },
 
+                  { "consultation":" Other Diseases",
+                    "number":otherD
+                  },
+
 
                 
                   { "consultation":"",
@@ -302,6 +315,7 @@ import { computed } from 'vue';
          infectiousBronchitis:'allLayerInfectiousBronchitisRecords',
          layerGumboro:'allLayerGumboroRecords',       
          calciumDeficiency:'allLayerCalciumDeficiencyRecords', 
+         other:'allOtherLayerDiseaseRecords',
 
          startTime:'filteredLayerPMStartTime',
          endTime:'filteredLayerPMEndTime',

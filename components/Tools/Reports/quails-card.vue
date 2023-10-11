@@ -47,6 +47,13 @@
            
           </div>
 
+
+          <div class=" my-4 pl-4">
+              Other Diseases:
+              <span class="tag is-primary mx-4 "> {{ other }}</span>
+           
+          </div>
+
         
           
           </div>
@@ -73,7 +80,8 @@
               <countTo :startVal='startVal' 
               :endVal='
                quailColibac +
-               quailSalmon 
+               quailSalmon+
+               other 
                
                ' 
                :duration='7000'
@@ -123,13 +131,15 @@ export default {
 
     var quailColi = computed(()=> this.quailColibac)
     var quailSalm = computed(()=>this.quailSalmon)
+    var otherD = computed(()=>this.other)
    
     
     
 
     var totalConsults =  computed(
                           ()=> this.quailColibac +
-                               this.quailSalmon
+                               this.quailSalmon +
+                               this.other
                                
                                
                                
@@ -169,6 +179,11 @@ export default {
                   "number":quailSalm
               },
 
+
+              { "consultation":"Other Diseases",
+                  "number":otherD
+              },
+
                
 
               
@@ -198,7 +213,7 @@ export default {
 
        quailColibac:'allQuailColibacillosisRecords',
        quailSalmon:'allQuailSalmonellosisRecords',    
-       
+       other:'allOtherQuailDiseaseRecords',
        startTime:'filteredQuailPMStartTime',
        endTime:'filteredQuailPMEndTime',
 

@@ -12,18 +12,16 @@
           class="navbar-item"
           href="/"
         >
-         <span class="litmas tag is-success mr-4">LSC </span>
+        
           <img
             src="~assets/images/LSC.jpg"
             alt="Litmas"
             height="22"
           >
 
-          <span class=" tag is-success litmas"> Consultants </span>
+          <span class=" tag is-success litmas"> CLAIMS </span>
 
-          <span class="ml-2 tag is-success dairy">Portal</span>
-
-          <span class="ml-2 tag is-warning dairy">BETA</span>
+          
 
         </a>
 

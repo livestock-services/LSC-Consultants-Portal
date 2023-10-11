@@ -107,6 +107,12 @@
              
             </div>
 
+            <div class=" my-4 pl-4">
+               Other Diseases:
+                 <span class="tag is-primary mx-4 "> {{ other }}</span>
+             
+            </div>
+
            </div>
            
             
@@ -135,7 +141,8 @@
                  infectiousCoryza + 
                  chronicRespDisease + 
                  ascites + 
-                 trauma' 
+                 trauma+
+                 other' 
                  :duration='7000'
                  ></countTo>
                 </span>
@@ -190,6 +197,7 @@ import { computed } from 'vue';
       var chronicRespDiseaseD = computed(()=> this.chronicRespDisease)
       var ascitesD = computed(()=> this.ascites)
       var traumaD = computed(()=> this.trauma)
+      var otherD = computed(()=> this.other)
       
 
       var totalConsults =  computed(
@@ -201,7 +209,8 @@ import { computed } from 'vue';
                                  this.infectiousCoryza+
                                  this.chronicRespDisease+
                                  this.ascites+
-                                 this.trauma
+                                 this.trauma+
+                                 this.other
                                  
                                  
                                  )
@@ -267,6 +276,11 @@ import { computed } from 'vue';
                     "number":traumaD
                   },
 
+                  { "consultation":" Other Diseases",
+                    "number":otherD
+                  },
+
+
                  
 
                
@@ -302,6 +316,7 @@ import { computed } from 'vue';
          chronicRespDisease:'allBroilerChronicRespDiseaseRecords',
          ascites:'allBroilerAscitesRecords',
          trauma:'allBroilerTraumaRecords', 
+         other:'allOtherBroilerDiseaseRecords',
          startTime:'filteredBroilerPMStartTime',
          endTime:'filteredBroilerPMEndTime',
 

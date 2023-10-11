@@ -72,6 +72,8 @@
   
   <script>
 
+import { mapActions, mapGetters } from 'vuex'
+  
 import SampleInfoTable from '~/components/tables/Lab/Biological Data/sample-info-table.vue';
 import SubmissionsTable from '~/components/tables/Lab/Biological Data/submissions-table.vue';
 import No3MealTable from '~/components/tables/Lab/Feed Data/no-3-meal-table.vue';
@@ -92,8 +94,16 @@ import FeedSubmissionsTable from '~/components/tables/Lab/Feed Data/feed-submiss
         showBooks: false
       }
     },
+
+    methods: {
+        ...mapActions('labData', ['addNewBioSubmissionsRecord','getAllBioSubmissionsRecords', 'load']),
+  
+    },
   
       async created() {
+
+        await this.getAllBioSubmissionsRecords();
+       
   
   //     function showNotifications(){
   //    const notification = new Notification("Your Herd Section", {

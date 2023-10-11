@@ -112,6 +112,13 @@
              <span class="tag is-primary mx-4 "> {{ soilAnalysis }}</span>
             </div> 
 
+
+            <div class=" my-4 pl-4">
+                
+                Other Diseases: 
+                <span class="tag is-primary mx-4 "> {{ other }}</span>
+               </div> 
+
              
            
           </div>
@@ -139,7 +146,8 @@
                  publicHealthPestControl + 
                  vegEnterpriseBudget + 
                  pestControlOrchard + 
-                 soilAnalysis' 
+                 soilAnalysis+
+                 other' 
                  :duration='7000'
                  ></countTo>
                 </span>
@@ -196,6 +204,7 @@ import { computed } from 'vue';
       var vegEntBudget = computed(()=> this.vegEnterpriseBudget)
       var pestCtrlOrchard = computed(()=> this.pestControlOrchard)
       var soilAna = computed(()=> this.soilAnalysis)
+      var otherD = computed(()=> this.other)
 
       var totalConsults =  computed(
                             ()=> this.landscaping +
@@ -208,7 +217,8 @@ import { computed } from 'vue';
                                  this.publicHealthPestControl+
                                  this.vegEnterpriseBudget+
                                  this.pestControlOrchard+
-                                 this.soilAnalysis
+                                 this.soilAnalysis+
+                                 this.other
                                  
                                  )
                          
@@ -281,6 +291,10 @@ import { computed } from 'vue';
                     "number":soilAna
                   },
 
+                  { "consultation":"Other Diseases",
+                    "number":otherD
+                  },
+
                
                   { "consultation":"",
                     "number":""
@@ -315,6 +329,7 @@ import { computed } from 'vue';
          vegEnterpriseBudget:'allVegEnterpriseBudgetRecords',
          pestControlOrchard:'allPestControlOrchardRecords',
          soilAnalysis:'allSoilAnalysisRecords',
+         other:'allOtherAgroRecords',
          startTime:'filteredStartTime',
          endTime:'filteredEndTime',
 

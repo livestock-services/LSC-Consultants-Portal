@@ -57,9 +57,15 @@ import {
         GET_ALL_SUNFLOWER_CAKE_SC_RECORDS,
 
 
+        ADD_NEW_BIO_SUBMISSION_NUMBER_TO_LIST,
+        REMOVE_ALL_BIO_SUBMISSION_NUMBERS_FROM_LIST,
 
-        
+        REMOVE_ALL_BIO_CLIENTS_FROM_LIST,
+        ADD_NEW_BIO_CLIENT_TO_LIST,
+
+        SET_SELECTED_BIO_SUBMISSION_RECORD,
         SET_LOADING,
+        SET_DATA_ARRAY,
         
         // GET_ALL_SAMPLE_INFORMATION_CONSULTS_RECORDS,
         // GET_ALL_SAMPLE_INFORMATION_SALES_RECORDS,
@@ -68,10 +74,12 @@ import {
        
     } from '@/helpers/mutation-types'
 import { options } from '@braid/vue-formulate'
+import { options } from '@braid/vue-formulate'
 
 export const state = () => ({
 
     loading: false,
+    selectedBioSubmissionRecord: null,
     filteredSampleInformationStartTime:[],
     filteredSampleInformationEndTime:[],
 
@@ -102,6 +110,9 @@ export const state = () => ({
     availableIds: [],
 
     usedIds:[],
+
+    allBioSubmissionNumbers:[],
+    allBioSubmissionClients:[],
 
 
     // allSAMPLE_INFORMATIONConsultsRecords:[],
@@ -173,13 +184,46 @@ export const state = () => ({
 
     },
 
-    bioSubmissionsForm:{
-      
-        clientName:null,
-        // dateSubmitted:null,
-        // timeStamp:null,
-        createdBy:null
-    },
+    bioSubmissionsForm: {
+        clientName: null,
+        clientAddress: null,
+        clientEmail: null,
+        clientContactNumber: null,
+        testUrgency:null,
+        submittedBy: null,
+        examsRequested:[],
+        testCountHPE: null,
+        testCountFEC: null,
+        testCountHI: null,
+        testCountMI: null,
+        testCountET: null,
+        testCountRBT: null,
+        testCountBrucellosis: null,
+        testCountChlamydia: null,
+        testCountProFlok: null,
+        testCountFBC: null,
+        testCountPCV: null,
+        testCountCDP: null,
+        testCountUT: null,
+        testCountCulture: null,
+        testCountCS: null,
+        testCountBCC: null,
+        testCountBCS: null,
+        testCountIS: null,
+        testCountRVPT: null,
+        testCountST: null,
+        testCountFT: null,
+        testCountLayers: null,
+        testCountBovine: null,
+        testCountSmallStock: null,
+        testCountBroilers: null,
+        testCountPig: null,
+        testCountFreeRange: null,
+        testCountFarmSample: null,
+        testCountDisposables: null,
+        createdBy:null,
+        receivedBy:null
+      },
 
 
     
@@ -646,6 +690,22 @@ export const getters = {
         return state.allSCRecords
     },
 
+    allBioSubmissionNumbers(state){
+        return state.allBioSubmissionNumbers
+    },
+
+    allBioSubmissionClients(state){
+        return state.allBioSubmissionClients
+    },
+
+    selectedBioSubmissionRecord(state) {
+        return state.selectedBioSubmissionRecord
+      },
+
+      examsRequested(state) {
+        return state.bioSubmissionsForm.examsRequested
+      },
+
 
 
 
@@ -846,6 +906,32 @@ export const mutations = {
         state.allSCRecords = payload
     },
 
+
+    [ADD_NEW_BIO_SUBMISSION_NUMBER_TO_LIST](state, payload){
+        state.allBioSubmissionNumbers.push(payload)
+    },
+
+    [REMOVE_ALL_BIO_SUBMISSION_NUMBERS_FROM_LIST](state, payload){
+        state.allBioSubmissionNumbers = payload
+    },
+
+
+    [ADD_NEW_BIO_CLIENT_TO_LIST](state, payload){
+        state.allBioSubmissionClients.push(payload)
+    },
+
+    [REMOVE_ALL_BIO_CLIENTS_FROM_LIST](state, payload){
+        state.allBioSubmissionClients = payload
+    },
+
+    [SET_SELECTED_BIO_SUBMISSION_RECORD](state, newBioSubmissionRecord) {
+        state.selectedBioSubmissionRecord = newBioSubmissionRecord
+      },
+
+      [SET_DATA_ARRAY](state, newDataArray) {
+        state.bioSubmissionsForm.examsRequested = newDataArray;
+      },
+
     //------------------------------------------------------------------------------------//
 
        
@@ -853,7 +939,9 @@ export const mutations = {
 
 export const actions = {
 
-    
+    updateDataArray({ commit }, newDataArray) {
+        commit('SET_DATA_ARRAY', newDataArray);
+      },
  //GET ALL AgroRecordS
     async getAllSampleInformationRecords({ state,commit,rootState,rootGetters }){
         try {
@@ -885,7 +973,22 @@ export const actions = {
             break;
            
             default:
+           const option = loggedInUser.role;
 
+           switch (option) {
+            case 'Admin':
+                commit(GET_ALL_SAMPLE_INFORMATION_RECORDS, response.data);
+                break;
+
+            case 'Manager':
+                commit(GET_ALL_SAMPLE_INFORMATION_RECORDS, response.data);
+            break;
+           
+            default:
+
+            const customeUserRecords = response.data.filter( cur=>
+                cur.createdBy === this.$auth.user.email
+                      )
             const customeUserRecords = response.data.filter( cur=>
                 cur.createdBy === this.$auth.user.email
                       )
@@ -893,8 +996,15 @@ export const actions = {
 
                   console.log(customeUserRecords);
                   commit(GET_ALL_SAMPLE_INFORMATION_RECORDS, customeUserRecords);
+                  console.log(customeUserRecords);
+                  commit(GET_ALL_SAMPLE_INFORMATION_RECORDS, customeUserRecords);
 
 
+                break;
+           }
+           
+
+          
                 break;
            }
            
@@ -1026,7 +1136,22 @@ export const actions = {
            const {data: response} = await api.get(`/lab/submissions/allSubmissionsRecords`)
 
            const option = loggedInUser.role;
+           const option = loggedInUser.role;
 
+           switch (option) {
+            case 'Admin':
+                commit(GET_ALL_SUBMISSIONS_RECORDS, response.data);
+                break;
+
+            case 'Manager':
+                commit(GET_ALL_SUBMISSIONS_RECORDS, response.data);
+            break;
+           
+            default:
+
+            const customeUserRecords = response.data.filter( curr=>
+                curr.createdBy === this.$auth.user.email
+                      )
            switch (option) {
             case 'Admin':
                 commit(GET_ALL_SUBMISSIONS_RECORDS, response.data);
@@ -1044,10 +1169,15 @@ export const actions = {
 
                   console.log(customeUserRecords);
                   commit(GET_ALL_SUBMISSIONS_RECORDS, customeUserRecords);
+                  console.log(customeUserRecords);
+                  commit(GET_ALL_SUBMISSIONS_RECORDS, customeUserRecords);
 
                 break;
            }
+                break;
+           }
 
+           
            
 
            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
@@ -1186,6 +1316,95 @@ export const actions = {
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/lab/bioSubmissions/allBioSubmissions`)
 
+           
+
+           let allBioSubs = response.data;
+          
+           console.log(allBioSubs)
+
+            let filteredBioSubmissionsList = ["Bio Submmission Numbers:"];
+
+            let filteredBioSubmissionClientsList = ["Bio Submmission Clients:"];
+
+ 
+            for(let i =0; i < allBioSubs.length; i++){
+
+          //  console.log(allBioSubs[i].bioSubmissionNumber);
+
+          //  console.log(allBioSubs[i].clientName);
+
+            // Sample data
+                let allNewBioSubs = [
+                    { bioSubmissionNumber: allBioSubs[i].bioSubmissionNumber, clientName: allBioSubs[i].clientName },
+             
+                ];
+
+                // Create a mapping from bioSubmissionNumber to clientName
+                const bioSubmissionMap = {};
+                allNewBioSubs.forEach((bioSub) => {
+                    bioSubmissionMap[bioSub.bioSubmissionNumber] = bioSub.clientName;
+                });
+
+                // Now you can access clientName by bioSubmissionNumber
+                const selectedBioSubmissionNumber = allBioSubs[i].bioSubmissionNumber; // Replace with the desired bioSubmissionNumber
+                const clientName = bioSubmissionMap[selectedBioSubmissionNumber];
+
+
+
+                // Check if the clientName exists for the selected bioSubmissionNumber
+                if (clientName !== undefined) {
+                    console.log(`Bio S/N ${selectedBioSubmissionNumber}: ${clientName}`);
+                } else {
+                    console.log(`Client Name not found for Bio Submission Number ${selectedBioSubmissionNumber}`);
+                }
+
+
+
+
+
+            // let bioSubmissions =  rootGetters['labData/allBioSubmissionsRecords']
+            // console.log(bioSubmissions[i]);
+            
+            commit(REMOVE_ALL_BIO_SUBMISSION_NUMBERS_FROM_LIST, filteredBioSubmissionsList);
+
+
+          //  commit(REMOVE_ALL_BIO_CLIENTS_FROM_LIST, filteredBioSubmissionClientsList);
+         
+
+            
+             commit(ADD_NEW_BIO_SUBMISSION_NUMBER_TO_LIST, (`Bio S/N: ${selectedBioSubmissionNumber}, Client Name: ${clientName}`));
+
+             commit(ADD_NEW_BIO_CLIENT_TO_LIST, allBioSubs[i].clientName);
+
+        //     console.log(allSupps[i]);
+
+
+            }
+           
+
+          
+          
+
+           // await dispatch('getInactivePolicies')
+      //  console.log(allSupps.data)
+       //      commit(GET_ALL_SUPPLIERS, filteredSuppliersList);
+            //   ...getters.allPolicies,
+            //   ...getters.inactivePolicies,
+            commit(SET_LOADING, false);
+ 
+
+            const option = loggedInUser.role;
+
+           switch (option) {
+            case 'Admin':
+                commit(GET_ALL_BIO_SUBMISSIONS_RECORDS, response.data);
+                break;
+
+            case 'Manager':
+                commit(GET_ALL_BIO_SUBMISSIONS_RECORDS, response.data);
+            break;
+           
+            default:
             const option = loggedInUser.role;
 
            switch (option) {
@@ -1205,9 +1424,13 @@ export const actions = {
                       console.log(customeUserRecords);
                       console.log(customeUserRecords.length)
                 commit(GET_ALL_BIO_SUBMISSIONS_RECORDS, customeUserRecords);
+                commit(GET_ALL_BIO_SUBMISSIONS_RECORDS, customeUserRecords);
 
                 break;
            }
+                break;
+           }
+
 
 
    
@@ -1253,7 +1476,85 @@ export const actions = {
             const {data: response} = await api.get(`/lab/bioSubmissions/allBioSubmissionsRecords`)
 
             const option = loggedInUser.role;
+            const option = loggedInUser.role;
 
+            switch (option) {
+             case 'Admin':
+                  const filteredBioSubmissionsRecords = response.data.filter( at => 
+                at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                );
+       
+              
+               
+                console.log(filteredBioSubmissionsRecords.length);
+       
+           
+       
+       
+                   console.log(response.data);
+       
+               
+       
+                   commit(GET_FILTERED_BIO_SUBMISSIONS_START_TIME, newFilterRecord.startDate);
+       
+                   commit(GET_FILTERED_BIO_SUBMISSIONS_END_TIME, newFilterRecord.endDate);
+       
+                   commit(GET_ALL_FILTERED_BIO_SUBMISSIONS_RECORDS, filteredBioSubmissionsRecords.length);
+                 break;
+ 
+             case 'Manager':
+                   filteredBioSubmissionsRecords = response.data.filter( at => 
+                at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                );
+       
+              
+               
+                console.log(filteredBioSubmissionsRecords.length);
+       
+           
+       
+       
+                   console.log(response.data);
+       
+               
+       
+                   commit(GET_FILTERED_BIO_SUBMISSIONS_START_TIME, newFilterRecord.startDate);
+       
+                   commit(GET_FILTERED_BIO_SUBMISSIONS_END_TIME, newFilterRecord.endDate);
+       
+                   commit(GET_ALL_FILTERED_BIO_SUBMISSIONS_RECORDS, filteredBioSubmissionsRecords.length);
+             break;
+            
+             default:
+                const customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
+
+
+                           filteredBioSubmissionsRecords = customeUserRecords.filter( at => 
+                            at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                            );
+                   
+                          
+                           
+                            console.log(filteredBioSubmissionsRecords.length);
+                   
+                       
+                   
+                   
+                               console.log(customeUserRecords);
+                   
+                           
+                   
+                               commit(GET_FILTERED_BIO_SUBMISSIONS_START_TIME, newFilterRecord.startDate);
+                   
+                               commit(GET_FILTERED_BIO_SUBMISSIONS_END_TIME, newFilterRecord.endDate);
+                   
+                               commit(GET_ALL_FILTERED_BIO_SUBMISSIONS_RECORDS, filteredBioSubmissionsRecords.length);
+ 
+                 break;
+            }
+ 
             switch (option) {
              case 'Admin':
                   const filteredBioSubmissionsRecords = response.data.filter( at => 
@@ -1335,6 +1636,9 @@ export const actions = {
 
       
 
+
+      
+
         } catch (error) {
             commit(SET_LOADING, false);
             this.$log.error(error.message)
@@ -1342,20 +1646,27 @@ export const actions = {
     },
 
     //ADD NEW BioSUBMISSIONSRecord TO ALL BioSUBMISSIONSRecordS
-    async addNewBioSubmissionsRecord({ state, commit}){
+    async addNewBioSubmissionsRecord({ state, commit,rootState,rootGetters }){
         try {
             commit(SET_LOADING, true);
 
             var nextId = 1
 
-            
+            const users =  rootGetters['users/allUsers']
+
+            const loggedInUser = rootGetters['users/loggedInUser'] 
+
+            const name = loggedInUser.name
 
             const newBioSubmissionsRecord = cloneDeep(state.bioSubmissionsForm);
 
-            
+            console.log(newBioSubmissionsRecord)
 
 
          newBioSubmissionsRecord.createdBy = this.$auth.user.email;
+         newBioSubmissionsRecord.receivedBy = name;
+
+         console.log(newBioSubmissionsRecord.receivedBy);
 
         
            
@@ -1399,7 +1710,22 @@ export const actions = {
            const {data: response} = await api.get(`/lab/feedSubmissions/allFeedSubmissions`)
 
            const option = loggedInUser.role;
+           const option = loggedInUser.role;
 
+           switch (option) {
+            case 'Admin':
+                commit(GET_ALL_FEED_SUBMISSIONS_RECORDS, response.data);
+                break;
+
+            case 'Manager':
+                commit(GET_ALL_FEED_SUBMISSIONS_RECORDS, response.data);
+            break;
+           
+            default:
+
+            const customeUserRecords = response.data.filter( curr=>
+                curr.createdBy === this.$auth.user.email
+                      )
            switch (option) {
             case 'Admin':
                 commit(GET_ALL_FEED_SUBMISSIONS_RECORDS, response.data);
@@ -1417,13 +1743,21 @@ export const actions = {
 
                   console.log(customeUserRecords);
                   commit(GET_ALL_FEED_SUBMISSIONS_RECORDS, customeUserRecords);
+                  console.log(customeUserRecords);
+                  commit(GET_ALL_FEED_SUBMISSIONS_RECORDS, customeUserRecords);
 
+                break;
+           }
                 break;
            }
 
            
           
+           
+          
 
+       
+       
        
        
            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
@@ -1466,7 +1800,31 @@ export const actions = {
 
            switch (option) {
             case 'Admin':
+            const option = loggedInUser.role;
 
+           switch (option) {
+            case 'Admin':
+
+            const filteredFeedSubmissionsRecords = response.data.filter( at => 
+                at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                );
+       
+            
+               
+                console.log(filteredFeedSubmissionsRecords.length);
+       
+       
+       
+                   console.log(response.data);
+       
+              
+                   commit(GET_FILTERED_FEED_SUBMISSIONS_START_TIME, newFilterRecord.startDate);
+       
+                   commit(GET_FILTERED_FEED_SUBMISSIONS_END_TIME, newFilterRecord.endDate);
+       
+                   commit(GET_ALL_FILTERED_FEED_SUBMISSIONS_RECORDS, filteredFeedSubmissionsRecords.length);
+                
+                break;
             const filteredFeedSubmissionsRecords = response.data.filter( at => 
                 at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
                 );
@@ -1489,7 +1847,34 @@ export const actions = {
                 break;
 
             case 'Manager':
+            case 'Manager':
 
+             filteredFeedSubmissionsRecords = response.data.filter( at => 
+                at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                );
+       
+            
+               
+                console.log(filteredFeedSubmissionsRecords.length);
+       
+       
+       
+                   console.log(response.data);
+       
+              
+                   commit(GET_FILTERED_FEED_SUBMISSIONS_START_TIME, newFilterRecord.startDate);
+       
+                   commit(GET_FILTERED_FEED_SUBMISSIONS_END_TIME, newFilterRecord.endDate);
+       
+                   commit(GET_ALL_FILTERED_FEED_SUBMISSIONS_RECORDS, filteredFeedSubmissionsRecords.length);
+            
+            break;
+           
+            default:
+
+            const customeUserRecords = response.data.filter( cur=>
+                cur.createdBy === this.$auth.user.email
+                      )
              filteredFeedSubmissionsRecords = response.data.filter( at => 
                 at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
                 );
@@ -1543,6 +1928,33 @@ export const actions = {
 
 
             
+                      //   --------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
+                 filteredFeedSubmissionsRecords = customeUserRecords.filter( at => 
+                    at.date >= newFilterRecord.startDate && at.date <= newFilterRecord.endDate
+                    );
+
+
+                
+                    console.log(filteredFeedSubmissionsRecords.length);
+
+
+
+                    console.log(customeUserRecords);
+
+                
+                    commit(GET_FILTERED_FEED_SUBMISSIONS_START_TIME, newFilterRecord.startDate);
+
+                    commit(GET_FILTERED_FEED_SUBMISSIONS_END_TIME, newFilterRecord.endDate);
+
+                    commit(GET_ALL_FILTERED_FEED_SUBMISSIONS_RECORDS, filteredFeedSubmissionsRecords.length);
+
+                break;
+           }
+
+
+
+            
+
         } catch (error) {
             commit(SET_LOADING, false);
             this.$log.error(error.message)
@@ -1594,10 +2006,12 @@ export const actions = {
 
 
             const newNMRecord = cloneDeep(state.nmFeedSubmissionsForm);
-
             newNMRecord.nmDateOfSampleCollected = state.nmFeedSubmissionsForm.nmDateOfSampleCollected.toLocaleDateString('en-US');
-           
+            newNMRecord.nmDateOfSampleCollected = state.nmFeedSubmissionsForm.nmDateOfSampleCollected.toLocaleDateString('en-US');
+           newNMRecord.nmDateOfSampleCollected = state.nmFeedSubmissionsForm.nmDateOfSampleCollected.toLocaleDateString('en-US');
         //   newNMRecord.nmTimeOfReceipt = state.nmFeedSubmissionsForm.nmTimeOfReceipt.toLocaleTimeString();
+        //   newNMRecord.nmTimeOfReceipt = state.nmFeedSubmissionsForm.nmTimeOfReceipt.toLocaleTimeString();
+           newNMRecord.nmTimeOfReceipt = state.nmFeedSubmissionsForm.nmTimeOfReceipt.toLocaleTimeString();
 
 
          newNMRecord.createdBy = this.$auth.user.email;
@@ -1623,14 +2037,15 @@ export const actions = {
     
 
     //-----------------------------------------------------------------------------------------------------------------------------------------------------//
-
     async getAllNMRecords({ state,commit,rootState,rootGetters }){
+    async getAllNMRecords({ state,commit,rootState,rootGetters }){
+    async getAllNMRecords({ state,commit }){
         try {
             //ENABLE LOADING FEATURE WHILE API REQUEST IS BEING MADE
             commit(SET_LOADING, true)
-
             const users =  rootGetters['users/allUsers']
-
+            const users =  rootGetters['users/allUsers']
+            var BioSubmissionIDs =20;
             const loggedInUser = rootGetters['users/loggedInUser']
   
              let userEmail = loggedInUser.email;
@@ -1641,7 +2056,19 @@ export const actions = {
            const {data: response} = await api.get(`/lab/feedData/NM`);
 
            console.log(response.data);
+            const loggedInUser = rootGetters['users/loggedInUser']
+  
+             let userEmail = loggedInUser.email;
+  
+            
 
+            //API REQUEST IS MADE AND RESULT IS STORED IN CONST
+           const {data: response} = await api.get(`/lab/feedData/NM`);
+
+           console.log(response.data);
+            }
+           
+           const option = loggedInUser.role;
            
            const option = loggedInUser.role;
 
@@ -1664,11 +2091,33 @@ export const actions = {
     
                 break;
            };
+           switch (option) {
+            case 'Admin':
+                commit(GET_ALL_NO_3_MEAL_RECORDS, response.data);
+                break;
 
-
-
+            case 'Manager':
+                commit(GET_ALL_NO_3_MEAL_RECORDS, response.data);
+            break;
+           
+            default:
+                const customeUserRecords = response.data.filter( currr=>
+                    currr.createdBy === this.$auth.user.email
+                          )
+    
+                          console.log(customeUserRecords);
+                          commit(GET_ALL_NO_3_MEAL_RECORDS, customeUserRecords);
+    
+                break;
+           };
+            }
+            else{
+                commit(GET_ALL_NO_3_MEAL_RECORDS, response.data);
        
          // AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+       
+         // AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
+           //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
            commit(SET_LOADING, false);
 
         } catch (error) {
@@ -1731,9 +2180,9 @@ export const actions = {
          // console.log(loggedInUser)
 
            let userEmail = loggedInUser.email;
-            //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/lab/feedData/FF`);
-
+           const {data: response} = await api.get(`/lab/feedData/FF`);
+           const {data: response} = await api.get(`/lab/feedData/FF`)
            
            const option = loggedInUser.role;
 
@@ -1747,16 +2196,33 @@ export const actions = {
             break;
            
             default:
+           
+           const option = loggedInUser.role;
+
+           switch (option) {
+            case 'Admin':
+                commit(GET_ALL_FF_RECORDS, response.data);
+                break;
+
+            case 'Manager':
+                commit(GET_ALL_FF_RECORDS, response.data);
+            break;
+           
+            default:
+
                 const customeUserRecords = response.data.filter( cur=>
                     cur.createdBy === this.$auth.user.email
                           )
 
                           console.log(customeUserRecords);
-                          commit(GET_ALL_FF_RECORDS, customeUserRecords);
                 break;
            }
-
+                break;
+           }
+            }
           
+          
+
    
          
            commit(SET_LOADING, false);
@@ -1823,9 +2289,9 @@ export const actions = {
          // console.log(loggedInUser)
 
            let userEmail = loggedInUser.email;
-            //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/lab/feedData/SE`)
-
+           const {data: response} = await api.get(`/lab/feedData/SE`)
+           const {data: response} = await api.get(`/lab/feedData/FF`)
            
            const option = loggedInUser.role;
 
@@ -1839,18 +2305,42 @@ export const actions = {
             break;
            
             default:
-                const customeUserRecords = response.data.filter( cur=>
+           
+           const option = loggedInUser.role;
+
+           switch (option) {
+            case 'Admin':
+                commit(GET_ALL_SE_RECORDS, response.data);
+                break;
+
+            case 'Manager':
+                commit(GET_ALL_SE_RECORDS, response.data);
+            break;
+           
+            default:
+
                 cur.createdBy === this.$auth.user.email
                 )
-
+                cur.createdBy === this.$auth.user.email
+                )
+                          )
                 console.log(customeUserRecords);
                 commit(GET_ALL_SE_RECORDS, customeUserRecords);
                 break;
            }
-
+                console.log(customeUserRecords);
+                commit(GET_ALL_SE_RECORDS, customeUserRecords);
+                break;
+           }
+            }
 
    
           
+       
+
+   
+          
+       
        
            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
            commit(SET_LOADING, false);
@@ -1915,9 +2405,9 @@ export const actions = {
          // console.log(loggedInUser)
 
            let userEmail = loggedInUser.email;
-            //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/lab/feedData/ME`)
-
+           const {data: response} = await api.get(`/lab/feedData/ME`)
+           const {data: response} = await api.get(`/lab/feedData/FF`)
            
            const option = loggedInUser.role;
 
@@ -1931,19 +2421,44 @@ export const actions = {
             break;
            
             default:
+           
+           const option = loggedInUser.role;
 
+           switch (option) {
+            case 'Admin':
+                commit(GET_ALL_ME_RECORDS, response.data);
+                break;
+
+            case 'Manager':
+                commit(GET_ALL_ME_RECORDS, response.data);
+            break;
+           
+            default:
+            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
             const customeUserRecords = response.data.filter( cur=>
                 cur.createdBy === this.$auth.user.email
                       )
-
+            const customeUserRecords = response.data.filter( cur=>
+                cur.createdBy === this.$auth.user.email
+                      )
+                          )
                 console.log(customeUserRecords);
                 commit(GET_ALL_ME_RECORDS, customeUserRecords);
 
                 break;
            }
+                console.log(customeUserRecords);
+                commit(GET_ALL_ME_RECORDS, customeUserRecords);
 
+                break;
+           }
+            }
            
-
+           
+                    
+       
+       
+       
        
        
            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
@@ -2011,9 +2526,9 @@ export const actions = {
          // console.log(loggedInUser)
 
            let userEmail = loggedInUser.email;
-            //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/lab/feedData/SC`)
-
+           const {data: response} = await api.get(`/lab/feedData/SC`)
+           const {data: response} = await api.get(`/lab/feedData/FF`)
            
            const option = loggedInUser.role;
 
@@ -2029,16 +2544,36 @@ export const actions = {
             break;
            
             default:
+           
+           const option = loggedInUser.role;
+
+           switch (option) {
+            case 'Admin':
+                commit(GET_ALL_SUNFLOWER_CAKE_SC_RECORDS, response.data);
+
+                break;
+
+            case 'Manager':
+                commit(GET_ALL_SUNFLOWER_CAKE_SC_RECORDS, response.data);
+
+            break;
+           
+            default:
+
                 const customeUserRecords = response.data.filter( cur=>
                     cur.createdBy === this.$auth.user.email
                           )
 
                           console.log(customeUserRecords);
-                          commit(GET_ALL_SUNFLOWER_CAKE_SC_RECORDS, customeUserRecords);
                 break;
            }
-
+                break;
+           }
+            }
           
+       
+          
+       
        
            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
            commit(SET_LOADING, false);
@@ -2059,8 +2594,43 @@ export const actions = {
           }
         }
         // Return null if all IDs are used
-        return null;
-      }
+      },
+
+
+      selectBioSubmissionRecord({ commit },  newSubmissionsRecord) {
+        try {
+
+            const newBioSubmissionsForm = newSubmissionsRecord;
+              
+              const filteredBioSubmissionsForm = Object.entries(newBioSubmissionsForm).reduce(
+                (acc, [key, value]) => {
+                  if (value !== null) {
+                    acc[key] = value;
+                  }
+                  return acc;
+                },
+                {}
+              );
+              
+              console.log(filteredBioSubmissionsForm);
+              
+
+
+
+
+
+            commit(SET_SELECTED_BIO_SUBMISSION_RECORD,  filteredBioSubmissionsForm)
+
+            console.log( newSubmissionsRecord._id)
+            console.log(newSubmissionsRecord.clientName)
+            console.log(newSubmissionsRecord.receivedBy)
+
+
+        } catch (error) {
+            console.log('Error')
+        }
+        
+      },
 
 
 

@@ -130,6 +130,12 @@
                Chronic Infectious Bronchitis:
                  <span class="tag is-primary mx-4 "> {{ chronicInfectiousBronchy }}</span>
             </div> 
+
+            
+            <div class=" my-4 pl-4">
+                Other Diseases:
+                  <span class="tag is-primary mx-4 "> {{ otherDiseases }}</span>
+             </div> 
     
           </div>
              
@@ -160,7 +166,8 @@
                  mycoPlasmosis + 
                  snakeBite + 
                  colibacillosis+
-                 chronicInfectiousBronchy' 
+                 chronicInfectiousBronchy+
+                 otherDiseases' 
                  :duration='7000'
                  ></countTo>
                 </span>
@@ -219,6 +226,8 @@ import { computed } from 'vue';
       var colibacillosisD = computed(()=> this.colibacillosis)
       var chronicInfectiousBronchyD = computed(()=> this.chronicInfectiousBronchy)
 
+      var otherDiseasesD = computed(()=> this.otherDiseases)
+
       var totalConsults =  computed(
                             ()=> this.infectiousLary +
                                  this.newcastle+
@@ -231,7 +240,8 @@ import { computed } from 'vue';
                                  this.mycoPlasmosis+
                                  this.snakeBite+
                                  this.colibacillosis+
-                                 this.chronicInfectiousBronchy
+                                 this.chronicInfectiousBronchy+
+                                 this.otherDiseases
                                  
                                  )
                          
@@ -308,6 +318,10 @@ import { computed } from 'vue';
                     "number":chronicInfectiousBronchyD
                   },
 
+                  { "disease":"Other Diseases",
+                    "number":otherDiseasesD
+                  },
+
 
                  { "disease":"",
                     "number":""
@@ -343,6 +357,7 @@ import { computed } from 'vue';
          snakeBite:'allSnakeBiteRecords',
          colibacillosis:'allColibacillosisRecords',
          chronicInfectiousBronchy:'allChronicInfectiousBronchyRecords',
+         otherDiseases:'allOtherVillageChickenDiseaseRecords',
          startTime:'filteredPMStartTime',
          endTime:'filteredPMEndTime',
 

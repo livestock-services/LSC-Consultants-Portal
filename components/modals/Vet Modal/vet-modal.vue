@@ -68,15 +68,15 @@
                 v-model="vetCategory"
                 placeholder="Select a Category"
               >
-                <option value="Cattle Dairy">Cattle Dairy</option>
-                <option value="Cattle Beef">Cattle Beef</option>
+                <option value=" Dairy"> Dairy</option>
+                <option value=" Beef"> Beef</option>
                 <option value="Goats">Goats</option>
                 <option value="Sheep">Sheep</option>
                 <option value="Pigs">Pigs</option>
-                <option value="Poultry Broiler">Poultry Broiler</option>
-                <option value="Poultry Layer">Poultry Layer</option>
-                <option value="Poultry Village">Poultry Village</option>
-                <option value="Poultry Quail">Poultry Quail</option>
+                <option value=" Broiler"> Broiler</option>
+                <option value=" Layer"> Layer</option>
+                <option value=" Village Chicken"> Village Chicken</option>
+                <option value=" Quail"> Quail</option>
                 <option value="Dogs & Cats">Dogs & Cats</option>
                 <option value="Rabbits">Rabbits</option>
                 <option value="Wildlife Or Exotics">Wildlife Or Exotics</option>
@@ -160,18 +160,7 @@ export default {
 
   data() {
     return {
-      data: [
-        "Cattle",
-        "Goats",
-        "Sheep",
-        "Pigs",
-        "Poultry",
-        "Dogs & Cats",
-        "Rabbits",
-        "Wildlife Or Exotics",
-        "Horses",
-        "Other"
-      ],
+    
 
       isFullPage: true,
       

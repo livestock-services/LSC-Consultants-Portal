@@ -82,7 +82,7 @@
            </b-field>
          </div>
 
-        <div v-if="agroOtherCategory === 'Other'">
+        <div v-if="agroCategory === 'Other'">
           <h4><span class="is-blue"> Other (if not among the options above)</span></h4>
   
         <div class="columns">

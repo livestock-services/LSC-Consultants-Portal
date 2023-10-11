@@ -60,6 +60,12 @@
            
           </div>
 
+          <div class=" my-4 pl-4">
+            Other Diseases:
+               <span class="tag is-primary mx-4 "> {{ other }}</span>
+           
+          </div>
+
           </div>
             
          
@@ -86,7 +92,8 @@
                pigPneumonia +
                pigMycoPlasmosis + 
                pigClostridialInfection + 
-               pigEnteritis 
+               pigEnteritis+
+               other 
                ' 
                :duration='7000'
                ></countTo>
@@ -137,6 +144,7 @@ export default {
     var pigPneumo = computed(()=>this.pigPneumonia)
     var pigClost =computed(()=> this.pigClostridialInfection)
     var pigEnter = computed (()=> this.pigEnteritis)
+    var otherD = computed (()=> this.other)
     
     
 
@@ -144,7 +152,8 @@ export default {
                           ()=> this.pigMycoplasmosis +
                                this.pigPneumonia+
                                this.pigClostridialInfection+
-                               this.pigEnteritis
+                               this.pigEnteritis+
+                               this.other
                                
                                
                                
@@ -191,6 +200,10 @@ export default {
                   "number":pigEnter
               },
 
+              { "consultation":"Other Diseases",
+                  "number":otherD
+              },
+
               
                 { "consultation":"",
                   "number":""
@@ -220,7 +233,7 @@ export default {
        pigPneumonia:'allPigPneumoniaRecords',    
        pigClostridialInfection:'allPigClostridialInfectionRecords',
        pigEnteritis:'allPigEnteritisRecords',
-
+       other:'allOtherPigDiseaseRecords',
        startTime:'filteredPigPMStartTime',
        endTime:'filteredPigPMEndTime',
 

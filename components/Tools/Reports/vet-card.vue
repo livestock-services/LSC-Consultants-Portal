@@ -52,7 +52,7 @@
         </a>
 
      <span><span class=" mb-2"></span>
-     <span class="text-cattle">Cattle Dairy</span></span> <br>
+     <span class="text-cattle">Dairy</span></span> <br>
             <div class="mt-4">
                 <h3>Total:<countTo :startVal='startVal' :endVal='cattleDairy' :duration='20000'></countTo></h3>
             </div>
@@ -79,7 +79,7 @@
         </a>
 
      <span><span class="mb-2"></span>
-     <span class="">Cattle Beef</span></span> <br>
+     <span class="">Beef</span></span> <br>
             <div class="mt-4">
                 <h3>Total:<countTo :startVal='startVal' :endVal='cattleBeef' :duration='20000'></countTo></h3>
             </div>
@@ -159,7 +159,7 @@
         </a>
 
      <span><span class="mb-2"></span>
-     <span class="">Poultry Broiler</span></span> <br>
+     <span class="">Broiler</span></span> <br>
             <div class="mt-4">
                 <h3>Total:<countTo :startVal='startVal' :endVal='poultryBroiler' :duration='20000'></countTo></h3>
             </div>
@@ -181,7 +181,7 @@
         </a>
 
      <span><span class="ml-3 mb-2"></span>
-     <span class="">Poultry Layer</span></span> <br>
+     <span class="">Layer</span></span> <br>
             <div class="mt-4">
                 <h3>Total:<countTo :startVal='startVal' :endVal='poultryLayer' :duration='20000'></countTo></h3>
             </div>
@@ -203,7 +203,7 @@
         </a>
 
      <span><span class=" mb-2"></span>
-     <span class="">Poultry Village</span></span> <br>
+     <span class="">Village</span></span> <br>
             <div class="mt-4">
                 <h3>Total:<countTo :startVal='startVal' :endVal='poultryVillage' :duration='20000'></countTo></h3>
             </div>
@@ -225,7 +225,7 @@
        </a>
 
     <span><span class=" mb-2"></span>
-    <span class="">Poultry Quail</span></span> <br>
+    <span class="">Quail</span></span> <br>
            <div class="mt-4">
                <h3>Total:<countTo :startVal='startVal' :endVal='poultryQuail' :duration='20000'></countTo></h3>
            </div>
@@ -359,6 +359,12 @@
                 type="is-dark">
             </b-icon>
 
+            <b-icon
+                icon="cat"
+                size="is-medium"
+                type="is-dark">
+            </b-icon>
+
       <!-- v-if="this.$auth.user.email === 'detroncattle@gmail.com'" -->
         
 
@@ -380,10 +386,23 @@
           href="/"
         >
           <b-icon
-                icon="egg"
+                icon="bird"
                 size="is-medium"
                 type="is-dark">
             </b-icon>
+
+            <b-icon
+                icon="snake"
+                size="is-medium"
+                type="is-dark">
+            </b-icon>
+
+            <b-icon
+                icon="turtle"
+                size="is-medium"
+                type="is-dark">
+            </b-icon>
+
         </a>
 
      <span><span class="ml-3 mb-2"></span>
@@ -525,12 +544,12 @@ import { computed } from 'vue';
               
                 
                 { 
-                  "consultation":"Cattle Dairy",
+                  "consultation":"Dairy",
                   "number":cattleDairy
                 },
 
                 { 
-                  "consultation":"Cattle Beef",
+                  "consultation":"Beef",
                   "number":cattleBeef
                 },
 
@@ -546,19 +565,19 @@ import { computed } from 'vue';
                     "number":pigs
                 },
 
-                 { "consultation":"Poultry Broiler",
+                 { "consultation":"Broiler",
                     "number":poultryBroiler
                   },
 
-                  { "consultation":"Poultry Layer",
+                  { "consultation":"Layer",
                     "number":poultryLayer
                   },
 
-                  { "consultation":"Poultry Quail",
+                  { "consultation":"Quail",
                     "number":poultryQuail
                   },
 
-                  { "consultation":"Poultry Village",
+                  { "consultation":"Village",
                     "number":poultryVillage
                   },
 
