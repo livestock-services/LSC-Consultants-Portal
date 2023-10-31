@@ -63,6 +63,7 @@
         v-slot="props"
         field="waterPumpClientPhoneNumber"
         label="Client Phone No."
+        searchable
         
         
       >

@@ -61,9 +61,9 @@
   
         <b-table-column
           v-slot="props"
-          field="taskDescription"
+          field="beefAIClientPhoneNumber"
           label="Client Phone No."
-          
+          searchable
           
         >
         <span class="tag numbers">  {{ props.row.beefAIClientPhoneNumber }} </span>

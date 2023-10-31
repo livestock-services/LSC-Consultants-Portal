@@ -35,6 +35,8 @@ export const state = () => ({
     
 
     irrigationForm:{
+        irrigationConsultingPerson:null,
+        irrigationOtherConsultingPerson:null,
         irrigationClientName:null,
         irrigationClientPhoneNumber:null,
         irrigationClientLocation:null,

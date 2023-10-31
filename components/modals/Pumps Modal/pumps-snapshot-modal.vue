@@ -9,7 +9,30 @@
         <!-- Modal Content -->
         <div>
          <b-form class="form">
-  
+
+          <div v-if="waterPump.waterPumpConsultingPerson !== 'Other'" class="columns">
+           <div  class="column is-half">
+             <h4> <span class="toggle is-blue"> Consulting Person</span></h4>
+            <p >
+             <span class="tag earTagID "> {{waterPump.waterPumpConsultingPerson}} </span>
+             
+            </p>
+
+             <!-- <b-input v-model="earTagID" class="toggle"></b-input> -->
+           </div>
+         </div>
+
+         <div v-if="waterPump.waterPumpConsultingPerson === 'Other'" class="columns">
+           <div  class="column is-half">
+             <h4> <span class="toggle is-blue"> Consulting Person</span></h4>
+            <p >
+             <span class="tag earTagID "> {{waterPump.waterPumpOtherConsultingPerson}} </span>
+             
+            </p>
+
+             <!-- <b-input v-model="earTagID" class="toggle"></b-input> -->
+           </div>
+         </div>
             <div class="columns">
              <div  class="column is-half">
                <h4> <span class="toggle is-blue"> Client Name</span></h4>

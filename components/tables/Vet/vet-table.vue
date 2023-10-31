@@ -60,9 +60,9 @@
 
       <b-table-column
         v-slot="props"
-        field="taskDescription"
+        field="vetClientPhoneNumber"
         label="Client Phone No."
-        
+        searchable
         
       >
       <span class="tag numbers">  {{ props.row.vetClientPhoneNumber }} </span>

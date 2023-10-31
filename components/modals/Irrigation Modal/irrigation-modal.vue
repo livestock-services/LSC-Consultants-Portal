@@ -9,6 +9,62 @@
         <!-- Modal Content -->
         <div>
          <b-form v-model="irrigationForm" class="form">
+
+          <div v-if="SignedInUser.role !== 'Irrigation Consultant'">
+
+<h4> <b-tooltip 
+  label="This is the designated consultant who may not be 
+  physically available for a consultation, but can do
+  so via phone call, WhatsApp, email etc " 
+  multilined 
+  type="is-dark"
+  position="is-right mt-4">
+    <span class="is-blue"> Consulting Person</span>
+  
+  </b-tooltip> </h4>
+
+    <div class="columns">
+      <div class="column is-three-quarters">
+        <b-select
+          type="text"
+          v-model="irrigationConsultingPerson"
+          placeholder="Client name"
+        >
+      <option value=" ROTO "> ROTO</option>
+    
+    
+      <option value="Other">Other</option>
+      
+      </b-select>
+      </div>
+
+    </div>
+
+    <div v-if="irrigationConsultingPerson === 'Other'" >
+      <h4> <b-tooltip 
+          label="This is the designated consultant who may not be 
+          physically available for a consultation, but can do
+          so via phone call, WhatsApp, email etc " 
+          multilined 
+          type="is-dark"
+          position="is-right mt-4">
+            <span class="is-blue"> Consulting Person(if not on list)</span>
+          
+          </b-tooltip> </h4>
+    <div class="columns">
+      <div class="column is-three-quarters">
+        <b-input
+          type="text"
+          v-model="irrigationOtherConsultingPerson"
+          placeholder="Consulting Person"
+        />
+      
+      
+      </div>
+    </div>
+    </div>
+
+  </div>
   
           <h4> <span class="is-blue"> Client Name</span></h4>
   
@@ -86,7 +142,11 @@
              <div class=" summary-content">
                <h2 class="tag is-info is-light mx-4 mb-4 summary">Summary</h2>
                
-              
+               <div>
+              <p v-if="SignedInUser !== 'Irrigation Consultant' && irrigationConsultingPerson !== 'Other'" class="mx-4 cat">Consulting Person : {{ irrigationConsultingPerson }}</p>
+
+              <p v-if="SignedInUser !== 'Irrigation Consultant' && irrigationConsultingPerson === 'Other'" class="mx-4 cat">Consulting Person(If not on list) : {{ irrigationOtherConsultingPerson }}</p>
+             </div>
           
                <p class="mx-4 cat">Client Name :  {{ irrigationClientName }}</p>
   
@@ -129,11 +189,16 @@
   
   import { mapActions, mapGetters } from 'vuex'
   import { mapFields } from 'vuex-map-fields'
+  import { computed } from 'vue';
+
   export default {
     name: 'IrrigationModal',
-  
-     data() {
-      return {
+   
+    data() {
+    var SignedInUser = computed(()=>this.user)
+    return {
+      
+        SignedInUser,
   
         data:[
               
@@ -161,6 +226,8 @@
   
         ...mapFields('irrigationData', [
         'irrigationForm',
+        'irrigationForm.irrigationConsultingPerson',
+        'irrigationForm.irrigationOtherConsultingPerson',
         'irrigationForm.irrigationClientName',
         'irrigationForm.irrigationClientLocation',
         'irrigationForm.irrigationClientTown',
@@ -174,6 +241,14 @@
          irrigation: 'selectedirrigationRecord',
         irrigationLoading: 'loading',
       }),
+
+      ...mapGetters('users', {
+          loading: 'loading',
+          users: 'allUsers',
+          user:'loggedInUser',
+
+          
+        }),
   
      },
   
@@ -243,7 +318,8 @@
       clearForm() {
   
        this.irrigationForm = {
-        
+                irrigationConsultingPerson:null,
+                irrigationOtherConsultingPerson:null,
                 irrigationClientName:null,
                 irrigationClientPhoneNumber:null,
                 irrigationClientLocation:null,

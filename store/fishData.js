@@ -34,6 +34,8 @@ export const state = () => ({
     
 
     fishForm:{
+        fishConsultingPerson:null,
+        fishOtherConsultingPerson:null,
         fishClientName:null,
         fishClientPhoneNumber:null,
         fishClientLocation:null,

@@ -9,6 +9,62 @@
         <!-- Modal Content -->
         <div>
          <b-form v-model="beefAIForm" class="form">
+
+          <div v-if="SignedInUser.role !== 'AI Consultant'">
+
+          <h4> <b-tooltip 
+                label="This is the designated consultant who may not be 
+                physically available for a consultation, but can do
+                so via phone call, WhatsApp, email etc " 
+                multilined 
+                type="is-dark"
+                position="is-right mt-4">
+                  <span class="is-blue"> Consulting Person</span>
+                
+                </b-tooltip> </h4>
+
+            <div class="columns">
+              <div class="column is-three-quarters">
+                <b-select
+                  type="text"
+                  v-model="beefAIConsultingPerson"
+                  placeholder="Client name"
+                >
+                <option value="Ethel Lubinda ">Ethel Lubinda</option>
+                 <option value="Pius Sosala ">Pius Sosala</option>
+                 <option value="Other"> Other</option>
+              
+              
+              </b-select>
+              </div>
+            </div>
+
+            <div v-if="beefAIConsultingPerson === 'Other'" >
+              <h4> <b-tooltip 
+                  label="This is the designated consultant who may not be 
+                  physically available for a consultation, but can do
+                  so via phone call, WhatsApp, email etc " 
+                  multilined 
+                  type="is-dark"
+                  position="is-right mt-4">
+                    <span class="is-blue"> Consulting Person(if not on list)</span>
+                  
+                  </b-tooltip> </h4>
+               <div class="columns">
+                <div class="column is-three-quarters">
+                  <b-input
+                    type="text"
+                    v-model="beefAIOtherConsultingPerson"
+                    placeholder="Consulting Person"
+                  />
+                
+                
+                </div>
+               </div>
+              </div>
+
+          </div>
+
   
           <h4> <span class="is-blue"> Client Name</span></h4>
   
@@ -121,7 +177,9 @@
              <div class=" summary-content">
                <h2 class="tag is-info is-light mx-4 mb-4 summary">Summary</h2>
                
-              
+               <p v-if="SignedInUser !== 'AI Consultant' && beefAIConsultingPerson !== 'Other'"  class="mx-4 cat">Consulting Person : {{ beefAIConsultingPerson }}</p>
+
+               <p v-if="SignedInUser !== 'AI Consultant' && beefAIConsultingPerson === 'Other'" class="mx-4 cat">Consulting Person : {{ beefAIOtherConsultingPerson }}</p>
           
                <p class="mx-4 cat">Client Name :  {{beefAIClientName}}</p>
   
@@ -165,14 +223,16 @@
   <script>
   
   import { mapActions, mapGetters } from 'vuex'
+  import { computed } from 'vue';
   import { mapFields } from 'vuex-map-fields'
   export default {
     name: 'beefAIModal',
   
      data() {
+      var SignedInUser = computed(()=>this.user)
       return {
   
-  
+        SignedInUser,
   
         isFullPage: true,
         // beefAIForm: {
@@ -208,6 +268,14 @@
          beefAI: 'selectedbeefAIRecord',
         beefAILoading: 'loading',
       }),
+
+      ...mapGetters('users', {
+          loading: 'loading',
+          users: 'allUsers',
+          user:'loggedInUser',
+
+          
+        }),
   
      },
   
@@ -277,7 +345,8 @@
       clearForm() {
   
        this.beefAIForm = {
-        
+              
+                beefAIOtherConsultingPerson:null,
                 beefAIClientName:null,
                 beefAIClientPhoneNumber:null,
                 beefAIClientLocation:null,

@@ -34,6 +34,8 @@ export const state = () => ({
     
 
     fenceForm:{
+        fenceConsultingPerson:null,
+        fenceOtherConsultingPerson:null,
         fenceClientName:null,
         fenceClientPhoneNumber:null,
         fenceClientLocation:null,

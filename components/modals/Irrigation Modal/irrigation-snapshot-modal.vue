@@ -1,7 +1,7 @@
 <template>
     <div class="modal-card ">
       <header class="modal-card-head">
-        <h3 class="modal-card-title">Water Pump Snapshot</h3>
+        <h3 class="modal-card-title">Irrigation Snapshot</h3>
        
         <button type="button" class="delete" @click="close"></button>
       </header>
@@ -9,6 +9,30 @@
         <!-- Modal Content -->
         <div>
          <b-form class="form">
+
+          <div v-if="irrigation.irrigationConsultingPerson !== 'Other'" class="columns">
+           <div  class="column is-half">
+             <h4> <span class="toggle is-blue"> Consulting Person</span></h4>
+            <p >
+             <span class="tag earTagID "> {{irrigation.irrigationConsultingPerson}} </span>
+             
+            </p>
+
+             <!-- <b-input v-model="earTagID" class="toggle"></b-input> -->
+           </div>
+         </div>
+
+         <div v-if="irrigation.irrigationConsultingPerson === 'Other'" class="columns">
+           <div  class="column is-half">
+             <h4> <span class="toggle is-blue"> Consulting Person</span></h4>
+            <p >
+             <span class="tag earTagID "> {{irrigation.irrigationOtherConsultingPerson}} </span>
+             
+            </p>
+
+             <!-- <b-input v-model="earTagID" class="toggle"></b-input> -->
+           </div>
+         </div>
   
             <div class="columns">
              <div  class="column is-half">

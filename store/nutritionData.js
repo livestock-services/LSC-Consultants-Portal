@@ -52,6 +52,8 @@ import {
 
         
     nutritionForm:{
+        nutritionConsultingPerson:null,
+        nutritionOtherConsultingPerson:null,
         nutritionClientName:null,
         nutritionClientPhoneNumber:null,
         nutritionClientLocation:null,

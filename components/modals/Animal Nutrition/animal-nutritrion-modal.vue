@@ -9,6 +9,63 @@
         <!-- Modal Content -->
         <div>
           <b-form v-model="nutritionForm" class="form">
+
+           <div v-if="SignedInUser.role !== 'Nutrition Consultant'">
+
+            <h4> <b-tooltip 
+                  label="This is the designated consultant who may not be 
+                  physically available for a consultation, but can do
+                  so via phone call, WhatsApp, email etc " 
+                  multilined 
+                  type="is-dark"
+                  position="is-right mt-4">
+                    <span class="is-blue"> Consulting Person</span>
+                  
+                  </b-tooltip> </h4>
+  
+              <div class="columns">
+                <div class="column is-three-quarters">
+                  <b-select
+                    type="text"
+                    v-model="nutritionConsultingPerson"
+                    placeholder="Client name"
+                  >
+                <option value="Mataa Sitwala ">Mataa Sitwala</option>
+                <option value="Other">Other</option>
+                
+                </b-select>
+                </div>
+
+              </div>
+
+              <div v-if="nutritionConsultingPerson === 'Other'" >
+                <h4> <b-tooltip 
+                  label="This is the designated consultant who may not be 
+                  physically available for a consultation, but can do
+                  so via phone call, WhatsApp, email etc " 
+                  multilined 
+                  type="is-dark"
+                  position="is-right mt-4">
+                    <span class="is-blue"> Consulting Person(if not on list)</span>
+                  
+                  </b-tooltip> </h4>
+                  
+                <div class="columns">
+                  <div class="column is-three-quarters">
+                  <b-input
+                    type="text"
+                    v-model="nutritionOtherConsultingPerson"
+                    placeholder="Consulting Person"
+                  />
+                
+                
+                </div>
+                </div>
+              </div>
+
+           </div>
+
+
             <h4><span class="is-blue"> Client Name</span></h4>
   
             <div class="columns">
@@ -113,6 +170,12 @@
             <div class="card my-4">
               <div class="summary-content">
                 <h2 class="tag is-info is-light mx-4 mb-4 summary">Summary</h2>
+
+                <div>
+              <p v-if="SignedInUser !== 'Nutrition Consultant' && nutritionConsultingPerson !== 'Other'" class="mx-4 cat">Consulting Person : {{ nutritionConsultingPerson }}</p>
+
+              <p v-if="SignedInUser !== 'Nutrition Consultant' && nutritionConsultingPerson === 'Other'" class="mx-4 cat">Consulting Person(If not on list) : {{ nutritionOtherConsultingPerson }}</p>
+             </div>
   
                 <p class="mx-4 cat">Client Name : {{ nutritionClientName }}</p>
   
@@ -124,11 +187,11 @@
 
                 <p class="mx-4 cat">Comments/Remarks : {{ nutritionClientComments }}</p>
   
-                <p class="mx-4 cat">
+                <p v-if="nutritionCategory !== 'Other'" class="mx-4 cat">
                   Category Selected : {{ nutritionCategory }}
                 </p>
 
-                <p class="mx-4 cat">
+                <p v-if="nutritionCategory === 'Other'" class="mx-4 cat">
                   Category Selected (Other) : {{ nutritionOtherCategory }}
                 </p>
 
@@ -153,12 +216,15 @@
   
   <script>
   import { mapActions, mapGetters } from "vuex";
+  import { computed } from 'vue';
   import { mapFields } from "vuex-map-fields";
   export default {
     name: "NutritionModal",
   
     data() {
+      var SignedInUser = computed(()=>this.user)
       return {
+        SignedInUser,
         data: [
           "Cattle",
           "Goats",
@@ -179,6 +245,8 @@
     computed: {
       ...mapFields("nutritionData", [
         "nutritionForm",
+        "nutritionForm.nutritionConsultingPerson",
+        "nutritionForm.nutritionOtherConsultingPerson",
         "nutritionForm.nutritionClientName",
         "nutritionForm.nutritionClientPhoneNumber",
         "nutritionForm.nutritionClientLocation",
@@ -193,6 +261,14 @@
         task: "selectednutritionRecord",
         taskLoading: "loading",
       }),
+
+      ...mapGetters('users', {
+          loading: 'loading',
+          users: 'allUsers',
+          user:'loggedInUser',
+
+          
+        }),
     },
   
     // },
@@ -250,6 +326,8 @@
       clearForm() {
         this.nutritionForm = {
         
+        nutritionConsultingPerson:null,
+        nutritionOtherConsultingPerson:null,
         nutritionClientName:null,
         nutritionClientPhoneNumber:null,
         nutritionClientLocation:null,

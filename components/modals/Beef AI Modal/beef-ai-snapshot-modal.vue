@@ -9,6 +9,30 @@
         <!-- Modal Content -->
         <div>
          <b-form class="form">
+
+          <div v-if="beefAI.beefAIConsultingPerson !== 'Other'" class="columns">
+           <div  class="column is-half">
+             <h4> <span class="toggle is-blue"> Consulting Person</span></h4>
+            <p >
+             <span class="tag earTagID "> {{beefAI.beefAIConsultingPerson}} </span>
+             
+            </p>
+
+             <!-- <b-input v-model="earTagID" class="toggle"></b-input> -->
+           </div>
+         </div>
+
+         <div v-if="beefAI.beefAIConsultingPerson === 'Other'" class="columns">
+           <div  class="column is-half">
+             <h4> <span class="toggle is-blue"> Consulting Person</span></h4>
+            <p >
+             <span class="tag earTagID "> {{beefAI.beefAIOtherConsultingPerson}} </span>
+             
+            </p>
+
+             <!-- <b-input v-model="earTagID" class="toggle"></b-input> -->
+           </div>
+         </div>
   
             <div class="columns">
              <div  class="column is-half">

@@ -10,6 +10,30 @@
       <div>
        <b-form class="form">
 
+        <div class="columns">
+           <div  class="column is-half">
+             <h4> <span class="toggle is-blue"> Consulting Person</span></h4>
+            <p >
+             <span class="tag earTagID "> {{agro.agroConsultingPerson}} </span>
+             
+            </p>
+
+             <!-- <b-input v-model="earTagID" class="toggle"></b-input> -->
+           </div>
+         </div>
+
+         <div v-if="agro.agroConsultantPerson === 'Other'" class="columns">
+           <div  class="column is-half">
+             <h4> <span class="toggle is-blue"> Consulting Person(If not on the list)</span></h4>
+            <p >
+             <span class="tag earTagID "> {{agro.agroOtherConsultingPerson}} </span>
+             
+            </p>
+
+             <!-- <b-input v-model="earTagID" class="toggle"></b-input> -->
+           </div>
+         </div>
+
           <div class="columns">
            <div  class="column is-half">
              <h4> <span class="toggle is-blue"> Client Name</span></h4>

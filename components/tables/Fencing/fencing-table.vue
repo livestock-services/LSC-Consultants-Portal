@@ -61,8 +61,9 @@
 
       <b-table-column
         v-slot="props"
-        field="taskDescription"
+        field="fenceClientPhoneNumber"
         label="Client Phone No."
+        searchable
         
         
       >

@@ -63,6 +63,8 @@ export const state = () => ({
     selectedAgroRecord: null,
 
     agroForm:{
+        agroConsultingPerson:null,
+        agroOtherConsultingPerson:null,
         clientName:null,
         clientPhoneNumber:null,
         clientLocation:null,

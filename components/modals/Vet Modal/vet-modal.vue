@@ -9,6 +9,74 @@
       <!-- Modal Content -->
       <div>
         <b-form v-model="vetForm" class="form">
+
+          <div v-if="SignedInUser.role !== 'Vet Consultant'">
+
+        <h4> <b-tooltip 
+          label="This is the designated consultant who may not be 
+          physically available for a consultation, but can do
+          so via phone call, WhatsApp, email etc " 
+          multilined 
+          type="is-dark"
+          position="is-right mt-4">
+            <span class="is-blue"> Consulting Person</span>
+          
+          </b-tooltip> </h4>
+
+            <div class="columns">
+              <div class="column is-three-quarters">
+                <b-select
+                  type="text"
+                  v-model="vetConsultingPerson"
+                  placeholder="Client name"
+                >
+              <option value=" Moonde Mapepula "> Moonde Mapepula</option>
+              <option value=" David Chanda "> David Chanda</option>
+              <option value=" Lonica Moya "> Lonica Moya</option>
+              <option value=" Nchimunya Siamulonga "> Nchimunya Siamulonga</option>
+              <option value=" Vigirio Mutemwa "> Vigirio Mutemwa</option>
+              <option value=" Yenesha Namenda "> Yenesha Namenda</option>
+              <option value="Augustine Nkhata ">Augustine Nkhata</option>
+              <option value="James Chanda">James Chanda</option>
+              <option value="Christabel Chanda">Christabel Chanda</option>
+              <option value="Edna Malawo">Edna Malawo</option>
+              <option value="Mbao Limande">Mbao Limande</option>
+              <option value="Mwaka M. Chilanga">Mwaka M. Chilanga</option>
+              <option value="Other">Other</option>
+              
+              </b-select>
+              </div>
+
+            </div>
+
+            <div v-if="vetConsultingPerson === 'Other'" >
+              <h4> <b-tooltip 
+                  label="This is the designated consultant who may not be 
+                  physically available for a consultation, but can do
+                  so via phone call, WhatsApp, email etc " 
+                  multilined 
+                  type="is-dark"
+                  position="is-right mt-4">
+                    <span class="is-blue"> Consulting Person(if not on list)</span>
+                  
+                  </b-tooltip> </h4>
+             <div class="columns">
+              <div class="column is-three-quarters">
+                <b-input
+                  type="text"
+                  v-model="vetOtherConsultingPerson"
+                  placeholder="Consulting Person"
+                />
+              
+              
+              </div>
+             </div>
+            </div>
+
+          </div>
+
+
+
           <h4><span class="is-blue"> Client Name</span></h4>
 
           <div class="columns">
@@ -116,6 +184,12 @@
             <div class="summary-content">
               <h2 class="tag is-info is-light mx-4 mb-4 summary">Summary</h2>
 
+             <div>
+              <p v-if="SignedInUser !== 'Vet Consultant' && vetConsultingPerson !== 'Other'" class="mx-4 cat">Consulting Person : {{ vetConsultingPerson }}</p>
+
+              <p v-if="SignedInUser !== 'Vet Consultant' && vetConsultingPerson === 'Other'" class="mx-4 cat">Consulting Person(If not on list) : {{ vetOtherConsultingPerson }}</p>
+             </div>
+
               <p class="mx-4 cat">Client Name : {{ vetClientName }}</p>
 
               <p class="mx-4 cat">Client Number : {{ vetClientPhoneNumber }}</p>
@@ -155,13 +229,15 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import { mapFields } from "vuex-map-fields";
+import { computed } from 'vue';
 export default {
   name: "VetModal",
 
   data() {
-    return {
-    
-
+    var SignedInUser = computed(()=>this.user)
+      return {
+  
+        SignedInUser,
       isFullPage: true,
       
     };
@@ -170,6 +246,8 @@ export default {
   computed: {
     ...mapFields("vetData", [
       "vetForm",
+      "vetForm.vetConsultingPerson",
+      "vetForm.vetOtherConsultingPerson",
       "vetForm.vetClientName",
       "vetForm.vetClientPhoneNumber",
       "vetForm.vetClientLocation",
@@ -183,6 +261,15 @@ export default {
       task: "selectedVetRecord",
       taskLoading: "loading",
     }),
+
+    
+    ...mapGetters('users', {
+          loading: 'loading',
+          users: 'allUsers',
+          user:'loggedInUser',
+
+          
+        }),
   },
 
   // },
@@ -239,7 +326,8 @@ export default {
 
     clearForm() {
       this.vetForm = {
-      
+      vetConsultingPerson:null,
+      vetOtherConsultingPerson:null,
       vetClientName:null,
       vetClientPhoneNumber:null,
       vetClientLocation:null,

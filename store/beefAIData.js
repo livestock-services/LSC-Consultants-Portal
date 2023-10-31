@@ -42,6 +42,8 @@ export const state = () => ({
     
 
     beefAIForm:{
+        beefAIConsultingPerson:null,
+        beefAIOtherConsultingPerson:null,
         beefAIClientName:null,
         beefAIClientPhoneNumber:null,
         beefAIClientLocation:null,

@@ -61,8 +61,9 @@
   
         <b-table-column
           v-slot="props"
-          field="taskDescription"
+          field="vetPostMortemClientPhoneNumber"
           label="Client Phone No."
+          searchable
           
           
         >

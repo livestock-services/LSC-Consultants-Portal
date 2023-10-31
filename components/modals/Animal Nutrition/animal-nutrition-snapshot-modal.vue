@@ -9,6 +9,29 @@
       <!-- Modal Content -->
       <div>
        <b-form class="form">
+        <div v-if="nutrition.nutritionConsultingPerson !== 'Other'" class="columns">
+           <div  class="column is-half">
+             <h4> <span class="toggle is-blue"> Consulting Person</span></h4>
+            <p >
+             <span class="tag earTagID "> {{nutrition.nutritionConsultingPerson}} </span>
+             
+            </p>
+
+             <!-- <b-input v-model="earTagID" class="toggle"></b-input> -->
+           </div>
+         </div>
+
+         <div v-if="nutrition.nutritionConsultingPerson === 'Other'" class="columns">
+           <div  class="column is-half">
+             <h4> <span class="toggle is-blue"> Consulting Person</span></h4>
+            <p >
+             <span class="tag earTagID "> {{nutrition.nutritionOtherConsultingPerson}} </span>
+             
+            </p>
+
+             <!-- <b-input v-model="earTagID" class="toggle"></b-input> -->
+           </div>
+         </div>
 
           <div class="columns">
            <div  class="column is-half">
@@ -52,7 +75,7 @@
            </div>
          </div>
 
-          <div class="columns">
+          <div v-if="nutritionCategory !== 'Other'" class="columns">
            <div  class="column is-half">
              <h4> <span class="is-blue"> Category</span></h4>
             <p >
@@ -63,7 +86,7 @@
          </div>
 
 
-         <div class="columns">
+         <div v-if="nutritionCategory === 'Other'" class="columns">
            <div  class="column is-half">
              <h4> <span class="is-blue"> Category(Other)</span></h4>
             <p >

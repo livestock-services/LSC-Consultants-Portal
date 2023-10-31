@@ -9,7 +9,61 @@
         <!-- Modal Content -->
         <div>
          <b-form v-model="waterPumpForm" class="form">
+          <div v-if="SignedInUser.role !== 'WaterPump Consultant'">
+
+<h4> <b-tooltip 
+  label="This is the designated consultant who may not be 
+  physically available for a consultation, but can do
+  so via phone call, WhatsApp, email etc " 
+  multilined 
+  type="is-dark"
+  position="is-right mt-4">
+    <span class="is-blue"> Consulting Person</span>
   
+  </b-tooltip> </h4>
+
+    <div class="columns">
+      <div class="column is-three-quarters">
+        <b-select
+          type="text"
+          v-model="waterPumpConsultingPerson"
+          placeholder="Client name"
+        >
+      <option value=" ROTO "> ROTO</option>
+    
+    
+      <option value="Other">Other</option>
+      
+      </b-select>
+      </div>
+
+    </div>
+
+    <div v-if="waterPumpConsultingPerson === 'Other'" >
+      <h4> <b-tooltip 
+          label="This is the designated consultant who may not be 
+          physically available for a consultation, but can do
+          so via phone call, WhatsApp, email etc " 
+          multilined 
+          type="is-dark"
+          position="is-right mt-4">
+            <span class="is-blue"> Consulting Person(if not on list)</span>
+          
+          </b-tooltip> </h4>
+    <div class="columns">
+      <div class="column is-three-quarters">
+        <b-input
+          type="text"
+          v-model="waterPumpOtherConsultingPerson"
+          placeholder="Consulting Person"
+        />
+      
+      
+      </div>
+    </div>
+    </div>
+
+  </div>
           <h4> <span class="is-blue"> Client Name</span></h4>
   
             <div class="columns">
@@ -76,7 +130,11 @@
              <div class=" summary-content">
                <h2 class="tag is-info is-light mx-4 mb-4 summary">Summary</h2>
                
-              
+               <div>
+              <p v-if="SignedInUser !== 'WaterPump Consultant' && waterPumpConsultingPerson !== 'Other'" class="mx-4 cat">Consulting Person : {{ waterPumpConsultingPerson }}</p>
+
+              <p v-if="SignedInUser !== 'WaterPump Consultant' && waterPumpConsultingPerson === 'Other'" class="mx-4 cat">Consulting Person(If not on list) : {{ waterPumpOtherConsultingPerson }}</p>
+             </div>
           
                <p class="mx-4 cat">Client Name :  {{ waterPumpClientName }}</p>
   
@@ -119,11 +177,16 @@
   
   import { mapActions, mapGetters } from 'vuex'
   import { mapFields } from 'vuex-map-fields'
-  export default {
-    name: 'WaterPumpModal',
-  
-     data() {
-      return {
+  import { computed } from 'vue';
+
+export default {
+  name: 'WaterPumpModal',
+ 
+  data() {
+  var SignedInUser = computed(()=>this.user)
+  return {
+    
+      SignedInUser,
   
         data:[
               
@@ -151,6 +214,8 @@
   
         ...mapFields('pumpData', [
         'waterPumpForm',
+        'waterPumpForm.waterPumpConsultingPerson',
+        'waterPumpForm.waterPumpOtherConsultingPerson',
         'waterPumpForm.waterPumpClientName',
         'waterPumpForm.waterPumpClientLocation',
         'waterPumpForm.waterPumpClientTown',
@@ -165,6 +230,14 @@
          waterPump: 'selectedwaterPumpRecord',
         waterPumpLoading: 'loading',
       }),
+
+      ...mapGetters('users', {
+          loading: 'loading',
+          users: 'allUsers',
+          user:'loggedInUser',
+
+          
+        }),
   
      },
   
@@ -234,7 +307,9 @@
       clearForm() {
   
        this.waterPumpForm = {
-        
+
+                waterPumpConsultingPerson:null,
+                waterPumpOtherConsultingPerson:null,
                 waterPumpClientName:null,
                 waterPumpClientPhoneNumber:null,
                 waterPumpClientLocation:null,

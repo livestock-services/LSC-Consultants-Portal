@@ -35,6 +35,8 @@ export const state = () => ({
     
 
     waterPumpForm:{
+        waterPumpConsultingPerson:null,
+        waterPumpOtherConsultingPerson:null,
         waterPumpClientName:null,
         waterPumpClientPhoneNumber:null,
         waterPumpClientLocation:null,

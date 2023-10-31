@@ -63,7 +63,7 @@
         v-slot="props"
         field="irrigationClientPhoneNumber"
         label="Client Phone No."
-        
+        searchable
         
       >
       <span class="tag numbers">  {{ props.row.irrigationClientPhoneNumber }} </span>

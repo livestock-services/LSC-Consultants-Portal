@@ -343,6 +343,8 @@ export const state = () => ({
     selectedPostMortemRecord: null,
 
     vetForm:{
+        vetConsultingPerson:null,
+        vetOtherConsultingPerson:null,
         vetClientName:null,
         vetClientPhoneNumber:null,
         vetClientLocation:null,
@@ -355,7 +357,8 @@ export const state = () => ({
     },
 
     vetPostMortemForm:{
-
+        vetPostMortemConsultingPerson:null,
+        vetPostMortemOtherConsultingPerson:null,
         vetPostMortemClientName:null,
         vetPostMortemClientPhoneNumber:null,
         vetPostMortemClientLocation:null,

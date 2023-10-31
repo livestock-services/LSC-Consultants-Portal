@@ -10,6 +10,31 @@
       <div>
        <b-form class="form">
 
+
+        <div v-if="vetPostMortem.vetPostMortemConsultingPerson !== 'Other'" class="columns">
+           <div  class="column is-half">
+             <h4> <span class="toggle is-blue"> Consulting Person</span></h4>
+            <p >
+             <span class="tag earTagID "> {{vetPostMortem.vetPostMortemConsultingPerson}} </span>
+             
+            </p>
+
+             <!-- <b-input v-model="earTagID" class="toggle"></b-input> -->
+           </div>
+         </div>
+
+         <div v-if="vetPostMortem.vetPostMortemConsultingPerson === 'Other'" class="columns">
+           <div  class="column is-half">
+             <h4> <span class="toggle is-blue"> Consulting Person</span></h4>
+            <p >
+             <span class="tag earTagID "> {{vetPostMortem.vetPostMortemOtherConsultingPerson}} </span>
+             
+            </p>
+
+             <!-- <b-input v-model="earTagID" class="toggle"></b-input> -->
+           </div>
+         </div>
+
           <div class="columns">
            <div  class="column is-half">
              <h4> <span class="toggle is-blue"> Client Name</span></h4>
