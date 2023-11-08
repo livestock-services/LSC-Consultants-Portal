@@ -136,15 +136,15 @@
                 v-model="vetCategory"
                 placeholder="Select a Category"
               >
-                <option value=" Dairy"> Dairy</option>
-                <option value=" Beef"> Beef</option>
+                <option value="Dairy"> Dairy</option>
+                <option value="Beef"> Beef</option>
                 <option value="Goats">Goats</option>
                 <option value="Sheep">Sheep</option>
                 <option value="Pigs">Pigs</option>
-                <option value=" Broiler"> Broiler</option>
-                <option value=" Layer"> Layer</option>
-                <option value=" Village Chicken"> Village Chicken</option>
-                <option value=" Quail"> Quail</option>
+                <option value="Broiler"> Broiler</option>
+                <option value="Layer"> Layer</option>
+                <option value="Village Chicken"> Village Chicken</option>
+                <option value="Quail"> Quail</option>
                 <option value="Dogs & Cats">Dogs & Cats</option>
                 <option value="Rabbits">Rabbits</option>
                 <option value="Wildlife Or Exotics">Wildlife Or Exotics</option>

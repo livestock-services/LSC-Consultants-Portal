@@ -1640,11 +1640,11 @@ export const actions = {
                      
                      
                       const cattleDairyRecords = customeUserRecords.filter( a=>
-                        a.vetCategory ==='Cattle Dairy'
+                        a.vetCategory ==='Dairy'
                        )
 
                        const cattleBeefRecords = customeUserRecords.filter( xab=>
-                        xab.vetCategory ==='Cattle Beef'
+                        xab.vetCategory ==='Beef'
                        )
                 
                       // console.log(cattleRecords.length)
@@ -1664,19 +1664,19 @@ export const actions = {
                         )
                 
                         const poultryBroilerRecords = customeUserRecords.filter( eb=>
-                        eb.vetCategory ==='Poultry Broiler'
+                        eb.vetCategory ==='Broiler'
                         )
 
                         const poultryLayerRecords = customeUserRecords.filter( el=>
-                        el.vetCategory ==='Poultry Layer'
+                        el.vetCategory ==='Layer'
                         )
 
                         const poultryQuailRecords = customeUserRecords.filter( eq=>
-                          eq.vetCategory ==='Poultry Quail'
+                          eq.vetCategory ==='Quail'
                           )
   
                           const poultryVillageRecords = customeUserRecords.filter( ev=>
-                          ev.vetCategory ==='Poultry Village'
+                          ev.vetCategory ==='Village Chicken'
                           )
                 
                         const dogsAndCatsRecords = customeUserRecords.filter( f=>
@@ -1703,22 +1703,7 @@ export const actions = {
                 
                        
                 
-                //   // -------------------------------END OF FILTERING BY CATEGORY----------------------//
                 
-                
-                        //   for (let i = 0; i < cattleRecords.length; i++) {
-                        //     console.log(cattleRecords[i].date)
-
-                        //     if (cattleRecords[i].date <= newFilterRecord.startDate && cattleRecords[i].date >= newFilterRecord.endDate ) {
-                            
-                        //       console.log(cattleRecords[i]);
-                        //     } else {
-                        //       console.log("No Dates found.")
-                        //     }
-
-                        //     console.log(cattleRecords.length);
-                            
-                        // } 
                 
                 //    //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
                           const filteredCattleDairyRecords = cattleDairyRecords.filter(at =>
@@ -1839,11 +1824,11 @@ export const actions = {
            // console.log(response.data);
        
            const cattleDairyRecords = response.data.filter( va=>
-            va.vetCategory ==='Cattle Dairy'
+            va.vetCategory ==='Dairy'
            )
 
            const cattleBeefRecords = response.data.filter( vab=>
-            vab.vetCategory ==='Cattle Beef'
+            vab.vetCategory ==='Beef'
            )
     
           // console.log(cattleRecords.length)
@@ -1863,19 +1848,19 @@ export const actions = {
             )
     
             const poultryBroilerRecords = response.data.filter( veb=>
-            veb.vetCategory ==='Poultry Broiler'
+            veb.vetCategory ==='Broiler'
             )
 
             const poultryLayerRecords = response.data.filter(vel=>
-            vel.vetCategory ==='Poultry Layer'
+            vel.vetCategory ==='Layer'
             )
 
             const poultryQuailRecords = response.data.filter( veq=>
-              veq.vetCategory ==='Poultry Quail'
+              veq.vetCategory ==='Quail'
               )
 
               const poultryVillageRecords = response.data.filter( vev=>
-              vev.vetCategory ==='Poultry Village'
+              vev.vetCategory ==='Village Chicken'
               )
     
             const dogsAndCatsRecords = response.data.filter( vf=>

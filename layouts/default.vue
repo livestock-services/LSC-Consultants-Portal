@@ -142,7 +142,7 @@
                                 
                             </b-menu-item>
 
-                                 <b-menu-item v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Vet Manager' || SignedInUser.role === 'Nutrition Consultant'" icon="food" @click="nutrition" label="Nutrition"></b-menu-item>
+                                 <b-menu-item  icon="food" @click="nutrition" label="Nutrition"></b-menu-item>
 
                              
                                
@@ -150,21 +150,21 @@
 
                                 
                                
-                                <b-menu-item v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Vet Manager' || SignedInUser.role === 'Vet Consultant'" icon="doctor"   @click="vetTech" label="Veterinary">  </b-menu-item>
+                                <b-menu-item  icon="doctor"   @click="vetTech" label="Veterinary">  </b-menu-item>
 
 
 
-                                <b-menu-item  v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'AI Consultant' || SignedInUser.role === 'Vet Consultant '" icon="needle"   @click="AI" label="Artificial Insemination ">  </b-menu-item>
+                                <b-menu-item   icon="needle"   @click="AI" label="Artificial Insemination ">  </b-menu-item>
 
 
 
-                                <b-menu-item  v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Agro Consultant'" icon="flower"   @click="agro" label="Agronomy">  </b-menu-item>
+                                <b-menu-item   icon="flower"   @click="agro" label="Agronomy">  </b-menu-item>
 
-                                <b-menu-item  v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Fence Consultant'" icon="wall"   @click="fence" label="Fencing">  </b-menu-item>
+                                <b-menu-item   icon="wall"   @click="fence" label="Fencing">  </b-menu-item>
 
-                                <b-menu-item  v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Fish Consultant'" icon="fish"   @click="fish" label="Fish">  </b-menu-item>
+                                <b-menu-item   icon="fish"   @click="fish" label="Fish">  </b-menu-item>
 
-                                <b-menu-item  v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Irrigation Consultant'" icon="water"   @click="irrgiate" label="Irrigation">  </b-menu-item>
+                                <b-menu-item   icon="water"   @click="irrgiate" label="Irrigation">  </b-menu-item>
 
                                
                                 <b-menu-item v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'" icon="account-multiple-outline" @click="customers" label="Users"></b-menu-item>

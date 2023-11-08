@@ -253,6 +253,8 @@
   
         ...mapFields('beefAIData', [
         'beefAIForm',
+        'beefAIForm.beefAIConsultingPerson',
+        'beefAIForm.beefAIOtherConsultingPerson',
         'beefAIForm.beefAIClientName',
         'beefAIForm.beefAIClientLocation',
         'beefAIForm.beefAIClientTown',
@@ -345,7 +347,7 @@
       clearForm() {
   
        this.beefAIForm = {
-              
+                beefAIConsultingPerson:null,
                 beefAIOtherConsultingPerson:null,
                 beefAIClientName:null,
                 beefAIClientPhoneNumber:null,
