@@ -1444,30 +1444,31 @@ export const actions = {
 
            
 
-           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
-                     // console.log(customeUserRecords);
+          
+           
+           
+           
+           const option = loggedInUser.role;
+
+           switch (option) {
+            case 'Admin':
+              commit(GET_ALL_VET_RECORDS, response.data);
+                break;
+
+            case 'Manager':
+              commit(GET_ALL_VET_RECORDS, response.data);
+            break;
+           
+            default:
+                const customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
+
+                      console.log(customeUserRecords);
+                      console.log(customeUserRecords.length)
                       commit(GET_ALL_VET_RECORDS, customeUserRecords);
+                break;
            }
-
-        }
-
-           
-
-
-
-           else{
-           // console.log(response.data);
-       
-
-            //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
-            commit(GET_ALL_VET_RECORDS, response.data);
-           }
-           
-           
            
 
            
@@ -1598,7 +1599,7 @@ export const actions = {
            // console.log(newFilterRecord.startDate);
            // console.log(newFilterRecord.endDate);
 
-            let newDate =  new Date().toLocaleDateString();
+           // let newDate =  new Date().toLocaleDateString();
 
            // console.log(newDate)
           
@@ -1628,76 +1629,73 @@ export const actions = {
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/vet/allVetRecords`)
 
+
           // console.log(response.data)
 
-           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy == this.$auth.user.email
-                      )
+          const option = loggedInUser.role;
 
-
-                     
-                     
-                      const cattleDairyRecords = customeUserRecords.filter( a=>
+          switch (option) {
+            case 'Admin':
+                            
+                     let cattleDairyRecords = response.data.filter( a=>
                         a.vetCategory ==='Dairy'
                        )
 
-                       const cattleBeefRecords = customeUserRecords.filter( xab=>
+                      let cattleBeefRecords = response.data.filter( xab=>
                         xab.vetCategory ==='Beef'
                        )
                 
                       // console.log(cattleRecords.length)
                 
-                        const goatRecords = customeUserRecords.filter( b=>
+                       let goatRecords = response.data.filter( b=>
                          b.vetCategory ==='Goats'
                         )
                 
                        // console.log(goatRecords.length)
                 
-                        const sheepRecords = customeUserRecords.filter( c=>
+                       let sheepRecords = response.data.filter( c=>
                          c.vetCategory ==='Sheep'
                         )
                 
-                        const pigRecords = customeUserRecords.filter( d=>
+                       let pigRecords = response.data.filter( d=>
                          d.vetCategory ==='Pigs'
                         )
                 
-                        const poultryBroilerRecords = customeUserRecords.filter( eb=>
+                       let poultryBroilerRecords = response.data.filter( eb=>
                         eb.vetCategory ==='Broiler'
                         )
 
-                        const poultryLayerRecords = customeUserRecords.filter( el=>
+                       let poultryLayerRecords = response.data.filter( el=>
                         el.vetCategory ==='Layer'
                         )
 
-                        const poultryQuailRecords = customeUserRecords.filter( eq=>
+                       let poultryQuailRecords = response.data.filter( eq=>
                           eq.vetCategory ==='Quail'
                           )
   
-                          const poultryVillageRecords = customeUserRecords.filter( ev=>
+                         let poultryVillageRecords = response.data.filter( ev=>
                           ev.vetCategory ==='Village Chicken'
                           )
                 
-                        const dogsAndCatsRecords = customeUserRecords.filter( f=>
+                       let dogsAndCatsRecords = response.data.filter( f=>
                          f.vetCategory ==='Dogs & Cats'
                         )
                 
                 
-                        const rabbitRecords = customeUserRecords.filter( g=>
+                       let rabbitRecords = response.data.filter( g=>
                          g.vetCategory ==='Rabbits'
                         )
                 
-                        const wildlifeOrExoticsRecords = customeUserRecords.filter( h=>
+                       let wildlifeOrExoticsRecords = response.data.filter( h=>
                          h.vetCategory ==='Wildlife Or Exotics'
                         )
                 
                        
-                        const horseRecords = customeUserRecords.filter(i=>
+                       let horseRecords = response.data.filter(i=>
                          i.vetCategory ==='Horses'
                         )
 
-                        const otherRecords = customeUserRecords.filter(j=>
+                       let otherRecords = response.data.filter(j=>
                           j.vetCategory ==='Other'
                          )
                 
@@ -1706,11 +1704,11 @@ export const actions = {
                 
                 
                 //    //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
-                          const filteredCattleDairyRecords = cattleDairyRecords.filter(at =>
+                         let filteredCattleDairyRecords = cattleDairyRecords.filter(at =>
                             new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
                           );
 
-                          const filteredCattleBeefRecords = cattleBeefRecords.filter(atb =>
+                         let filteredCattleBeefRecords = cattleBeefRecords.filter(atb =>
                             new Date(atb.date) >= new Date(newFilterRecord.startDate) && new Date(atb.date) <= new Date(newFilterRecord.endDate)
                           );
                           
@@ -1719,51 +1717,51 @@ export const actions = {
                             console.log(filteredCattleDairyRecords.length);
 
                 
-                         const filteredGoatRecords = goatRecords.filter( bt => 
+                        let filteredGoatRecords = goatRecords.filter( bt => 
                             new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
                              );
                 
-                         const filteredSheepRecords = sheepRecords.filter( ct => 
+                        let filteredSheepRecords = sheepRecords.filter( ct => 
                          new Date(ct.date) >= new Date(newFilterRecord.startDate) && new Date(ct.date) <= new Date(newFilterRecord.endDate)
                          );
                 
-                         const filteredPigRecords = pigRecords.filter( dt => 
+                        let filteredPigRecords = pigRecords.filter( dt => 
                          new Date(dt.date) >= new Date(newFilterRecord.startDate) && new Date(dt.date) <= new Date(newFilterRecord.endDate)
                          );
                 
-                         const filteredPoultryBroilerRecords = poultryBroilerRecords.filter( etb => 
+                        let filteredPoultryBroilerRecords = poultryBroilerRecords.filter( etb => 
                          new Date(etb.date) >= new Date(newFilterRecord.startDate) && new Date(etb.date) <= new Date(newFilterRecord.endDate)
                          );
 
-                         const filteredPoultryLayerRecords = poultryLayerRecords.filter( etl => 
+                        let filteredPoultryLayerRecords = poultryLayerRecords.filter( etl => 
                           new Date(etl.date) >= new Date(newFilterRecord.startDate) && new Date(etl.date) <= new Date(newFilterRecord.endDate)
                           );
 
-                          const filteredPoultryQuailRecords = poultryQuailRecords.filter( etq => 
+                         let filteredPoultryQuailRecords = poultryQuailRecords.filter( etq => 
                             new Date(etq.date) >= new Date(newFilterRecord.startDate) && new Date(etq.date) <= new Date(newFilterRecord.endDate)
                           );
 
-                          const filteredPoultryVillageRecords = poultryVillageRecords.filter( etv => 
+                         let filteredPoultryVillageRecords = poultryVillageRecords.filter( etv => 
                             new Date(etv.date) >= new Date(newFilterRecord.startDate) && new Date(etv.date) <= new Date(newFilterRecord.endDate)
                             );
                 
-                         const filteredDogsAndCatsRecords= dogsAndCatsRecords.filter( ft => 
+                        let filteredDogsAndCatsRecords= dogsAndCatsRecords.filter( ft => 
                          new Date(ft.date) >= new Date(newFilterRecord.startDate) && new Date(ft.date) <= new Date(newFilterRecord.endDate)
                          );
                 
-                         const filteredRabbitRecords = rabbitRecords.filter( gt => 
+                        let filteredRabbitRecords = rabbitRecords.filter( gt => 
                          new Date(gt.date) >= new Date(newFilterRecord.startDate) && new Date(gt.date) <= new Date(newFilterRecord.endDate)
                          );
                 
-                         const filteredWildlifeOrExoticsRecords = wildlifeOrExoticsRecords.filter( ht => 
+                        let filteredWildlifeOrExoticsRecords = wildlifeOrExoticsRecords.filter( ht => 
                              new Date(ht.date) >= new Date(newFilterRecord.startDate) && new Date(ht.date) <= new Date(newFilterRecord.endDate)
                              );
                 
-                         const filteredHorseRecords = horseRecords.filter( it => 
+                        let filteredHorseRecords = horseRecords.filter( it => 
                          new Date(it.date) >= new Date(newFilterRecord.startDate) && new Date(it.date) <= new Date(newFilterRecord.endDate)
                          );
 
-                         const filteredOtherRecords = otherRecords.filter( jt => 
+                        let filteredOtherRecords = otherRecords.filter( jt => 
                           new Date(jt.date) >= new Date(newFilterRecord.startDate) && new Date(jt.date) <= new Date(newFilterRecord.endDate)
                           );
                 
@@ -1809,97 +1807,85 @@ export const actions = {
 
                            commit(GET_ALL_OTHER_RECORDS, filteredOtherRecords.length);
                 
-                           
-                
-                       
-                       
+                break;
 
+            case 'Manager':
 
+               cattleDairyRecords = response.data.filter( am=>
+                am.vetCategory ==='Dairy'
+               )
 
-           }
-        }
+               console.log(cattleDairyRecords);
 
+                cattleBeefRecords = response.data.filter( xabm=>
+                xabm.vetCategory ==='Beef'
+               )
+        
+              // console.log(cattleRecords.length)
+        
+                 goatRecords = response.data.filter( bm=>
+                 bm.vetCategory ==='Goats'
+                )
+        
+               // console.log(goatRecords.length)
+        
+                 sheepRecords = response.data.filter( cm=>
+                 cm.vetCategory ==='Sheep'
+                )
+        
+                 pigRecords = response.data.filter( dm=>
+                 dm.vetCategory ==='Pigs'
+                )
+        
+                 poultryBroilerRecords = response.data.filter( ebm=>
+                ebm.vetCategory ==='Broiler'
+                )
 
-           else{
-           // console.log(response.data);
-       
-           const cattleDairyRecords = response.data.filter( va=>
-            va.vetCategory ==='Dairy'
-           )
+                 poultryLayerRecords = response.data.filter( elm=>
+                elm.vetCategory ==='Layer'
+                )
 
-           const cattleBeefRecords = response.data.filter( vab=>
-            vab.vetCategory ==='Beef'
-           )
-    
-          // console.log(cattleRecords.length)
-    
-            const goatRecords = response.data.filter( vb=>
-             vb.vetCategory ==='Goats'
-            )
-    
-           // console.log(goatRecords.length)
-    
-            const sheepRecords = response.data.filter( vc=>
-             vc.vetCategory ==='Sheep'
-            )
-    
-            const pigRecords = response.data.filter(vd=>
-             vd.vetCategory ==='Pigs'
-            )
-    
-            const poultryBroilerRecords = response.data.filter( veb=>
-            veb.vetCategory ==='Broiler'
-            )
+                 poultryQuailRecords = response.data.filter( eqm=>
+                  eqm.vetCategory ==='Quail'
+                  )
 
-            const poultryLayerRecords = response.data.filter(vel=>
-            vel.vetCategory ==='Layer'
-            )
-
-            const poultryQuailRecords = response.data.filter( veq=>
-              veq.vetCategory ==='Quail'
-              )
-
-              const poultryVillageRecords = response.data.filter( vev=>
-              vev.vetCategory ==='Village Chicken'
-              )
-    
-            const dogsAndCatsRecords = response.data.filter( vf=>
-             vf.vetCategory ==='Dogs & Cats'
-            )
-    
-    
-            const rabbitRecords = response.data.filter( vg=>
-            vg.vetCategory ==='Rabbits'
-            )
-    
-            const wildlifeOrExoticsRecords = response.data.filter(vh=>
-             vh.vetCategory ==='Wildlife Or Exotics'
-            )
-    
-           
-            const horseRecords = response.data.filter(vi=>
-             vi.vetCategory ==='Horses'
-            )
-
-            const otherRecords = response.data.filter(vj=>
-              vj.vetCategory ==='Other'
-             )
+                   poultryVillageRecords = response.data.filter( evm=>
+                  evm.vetCategory ==='Village Chicken'
+                  )
+        
+                 dogsAndCatsRecords = response.data.filter( fm=>
+                 fm.vetCategory ==='Dogs & Cats'
+                )
+        
+        
+                 rabbitRecords = response.data.filter( gm=>
+                 gm.vetCategory ==='Rabbits'
+                )
+        
+                 wildlifeOrExoticsRecords = response.data.filter( hm=>
+                 hm.vetCategory ==='Wildlife Or Exotics'
+                )
         
                
+                 horseRecords = response.data.filter(im=>
+                 im.vetCategory ==='Horses'
+                )
+
+                 otherRecords = response.data.filter(jm=>
+                  jm.vetCategory ==='Other'
+                 )
         
-        //   // -------------------------------END OF FILTERING BY CATEGORY----------------------//
-        
+               
         
         
         
         //    //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
-                   //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
-                   const filteredCattleDairyRecords = cattleDairyRecords.filter(vat =>
-                    new Date(vat.date) >= new Date(newFilterRecord.startDate) && new Date(vat.date) <= new Date(newFilterRecord.endDate)
+                   filteredCattleDairyRecords = cattleDairyRecords.filter(at =>
+                    new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
                   );
 
-                  const filteredCattleBeefRecords = cattleBeefRecords.filter(vatb =>
-                    new Date(vatb.date) >= new Date(newFilterRecord.startDate) && new Date(vatb.date) <= new Date(newFilterRecord.endDate)
+                   filteredCattleBeefRecords = cattleBeefRecords.filter(atb =>
+                    new Date(atb.date) >= new Date(newFilterRecord.startDate) && new Date(atb.date) <= new Date(newFilterRecord.endDate)
                   );
                   
 
@@ -1907,52 +1893,52 @@ export const actions = {
                     console.log(filteredCattleDairyRecords.length);
 
         
-                 const filteredGoatRecords = goatRecords.filter(vbt => 
-                    new Date(vbt.date) >= new Date(newFilterRecord.startDate) && new Date(vbt.date) <= new Date(newFilterRecord.endDate)
+                  filteredGoatRecords = goatRecords.filter( bt => 
+                    new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
                      );
         
-                 const filteredSheepRecords = sheepRecords.filter(vct => 
-                 new Date(vct.date) >= new Date(newFilterRecord.startDate) && new Date(vct.date) <= new Date(newFilterRecord.endDate)
+                  filteredSheepRecords = sheepRecords.filter( ct => 
+                 new Date(ct.date) >= new Date(newFilterRecord.startDate) && new Date(ct.date) <= new Date(newFilterRecord.endDate)
                  );
         
-                 const filteredPigRecords = pigRecords.filter(vdt => 
-                 new Date(vdt.date) >= new Date(newFilterRecord.startDate) && new Date(vdt.date) <= new Date(newFilterRecord.endDate)
+                  filteredPigRecords = pigRecords.filter( dt => 
+                 new Date(dt.date) >= new Date(newFilterRecord.startDate) && new Date(dt.date) <= new Date(newFilterRecord.endDate)
                  );
         
-                 const filteredPoultryBroilerRecords = poultryBroilerRecords.filter(vetb => 
-                 new Date(vetb.date) >= new Date(newFilterRecord.startDate) && new Date(vetb.date) <= new Date(newFilterRecord.endDate)
+                  filteredPoultryBroilerRecords = poultryBroilerRecords.filter( etb => 
+                 new Date(etb.date) >= new Date(newFilterRecord.startDate) && new Date(etb.date) <= new Date(newFilterRecord.endDate)
                  );
 
-                 const filteredPoultryLayerRecords = poultryLayerRecords.filter(vetl => 
-                  new Date(vetl.date) >= new Date(newFilterRecord.startDate) && new Date(vetl.date) <= new Date(newFilterRecord.endDate)
+                  filteredPoultryLayerRecords = poultryLayerRecords.filter( etl => 
+                  new Date(etl.date) >= new Date(newFilterRecord.startDate) && new Date(etl.date) <= new Date(newFilterRecord.endDate)
                   );
 
-                  const filteredPoultryQuailRecords = poultryQuailRecords.filter(vetq => 
-                    new Date(vetq.date) >= new Date(newFilterRecord.startDate) && new Date(vetq.date) <= new Date(newFilterRecord.endDate)
+                   filteredPoultryQuailRecords = poultryQuailRecords.filter( etq => 
+                    new Date(etq.date) >= new Date(newFilterRecord.startDate) && new Date(etq.date) <= new Date(newFilterRecord.endDate)
                   );
 
-                  const filteredPoultryVillageRecords = poultryVillageRecords.filter(vetv => 
-                    new Date(vetv.date) >= new Date(newFilterRecord.startDate) && new Date(vetv.date) <= new Date(newFilterRecord.endDate)
+                   filteredPoultryVillageRecords = poultryVillageRecords.filter( etv => 
+                    new Date(etv.date) >= new Date(newFilterRecord.startDate) && new Date(etv.date) <= new Date(newFilterRecord.endDate)
                     );
         
-                 const filteredDogsAndCatsRecords= dogsAndCatsRecords.filter(vft => 
-                 new Date(vft.date) >= new Date(newFilterRecord.startDate) && new Date(vft.date) <= new Date(newFilterRecord.endDate)
+                  filteredDogsAndCatsRecords= dogsAndCatsRecords.filter( ft => 
+                 new Date(ft.date) >= new Date(newFilterRecord.startDate) && new Date(ft.date) <= new Date(newFilterRecord.endDate)
                  );
         
-                 const filteredRabbitRecords = rabbitRecords.filter(vgt => 
-                 new Date(vgt.date) >= new Date(newFilterRecord.startDate) && new Date(vgt.date) <= new Date(newFilterRecord.endDate)
+                  filteredRabbitRecords = rabbitRecords.filter( gt => 
+                 new Date(gt.date) >= new Date(newFilterRecord.startDate) && new Date(gt.date) <= new Date(newFilterRecord.endDate)
                  );
         
-                 const filteredWildlifeOrExoticsRecords = wildlifeOrExoticsRecords.filter(vht => 
-                     new Date(vht.date) >= new Date(newFilterRecord.startDate) && new Date(vht.date) <= new Date(newFilterRecord.endDate)
+                  filteredWildlifeOrExoticsRecords = wildlifeOrExoticsRecords.filter( ht => 
+                     new Date(ht.date) >= new Date(newFilterRecord.startDate) && new Date(ht.date) <= new Date(newFilterRecord.endDate)
                      );
         
-                 const filteredHorseRecords = horseRecords.filter(vit => 
-                 new Date(vit.date) >= new Date(newFilterRecord.startDate) && new Date(vit.date) <= new Date(newFilterRecord.endDate)
+                  filteredHorseRecords = horseRecords.filter( it => 
+                 new Date(it.date) >= new Date(newFilterRecord.startDate) && new Date(it.date) <= new Date(newFilterRecord.endDate)
                  );
 
-                 const filteredOtherRecords = otherRecords.filter(vjt => 
-                  new Date(vjt.date) >= new Date(newFilterRecord.startDate) && new Date(vjt.date) <= new Date(newFilterRecord.endDate)
+                  filteredOtherRecords = otherRecords.filter( jt => 
+                  new Date(jt.date) >= new Date(newFilterRecord.startDate) && new Date(jt.date) <= new Date(newFilterRecord.endDate)
                   );
         
                
@@ -1996,10 +1982,192 @@ export const actions = {
                    commit(GET_ALL_HORSES_RECORDS, filteredHorseRecords.length);
 
                    commit(GET_ALL_OTHER_RECORDS, filteredOtherRecords.length);
+            break;
+           
+            default:
+
+           let customeUserRecords = response.data.filter( cur=>
+                cur.createdBy === this.$auth.user.email
+                      )
+
+
+                      cattleDairyRecords = customeUserRecords.filter( a=>
+                        a.vetCategory ==='Dairy'
+                       )
         
-               
-               
+                        cattleBeefRecords = customeUserRecords.filter( xab=>
+                        xab.vetCategory ==='Beef'
+                       )
+                
+                      // console.log(cattleRecords.length)
+                
+                         goatRecords = customeUserRecords.filter( b=>
+                         b.vetCategory ==='Goats'
+                        )
+                
+                       // console.log(goatRecords.length)
+                
+                         sheepRecords = customeUserRecords.filter( c=>
+                         c.vetCategory ==='Sheep'
+                        )
+                
+                         pigRecords = customeUserRecords.filter( d=>
+                         d.vetCategory ==='Pigs'
+                        )
+                
+                         poultryBroilerRecords = customeUserRecords.filter( eb=>
+                        eb.vetCategory ==='Broiler'
+                        )
+        
+                         poultryLayerRecords = customeUserRecords.filter( el=>
+                        el.vetCategory ==='Layer'
+                        )
+        
+                         poultryQuailRecords = customeUserRecords.filter( eq=>
+                          eq.vetCategory ==='Quail'
+                          )
+        
+                           poultryVillageRecords = customeUserRecords.filter( ev=>
+                          ev.vetCategory ==='Village Chicken'
+                          )
+                
+                         dogsAndCatsRecords = customeUserRecords.filter( f=>
+                         f.vetCategory ==='Dogs & Cats'
+                        )
+                
+                
+                         rabbitRecords = customeUserRecords.filter( g=>
+                         g.vetCategory ==='Rabbits'
+                        )
+                
+                         wildlifeOrExoticsRecords = customeUserRecords.filter( h=>
+                         h.vetCategory ==='Wildlife Or Exotics'
+                        )
+                
+                       
+                         horseRecords = customeUserRecords.filter(i=>
+                         i.vetCategory ==='Horses'
+                        )
+        
+                         otherRecords = customeUserRecords.filter(j=>
+                          j.vetCategory ==='Other'
+                         )
+                
+                       
+                
+                
+                
+                //    //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
+                           filteredCattleDairyRecords = cattleDairyRecords.filter(at =>
+                            new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
+                          );
+        
+                           filteredCattleBeefRecords = cattleBeefRecords.filter(atb =>
+                            new Date(atb.date) >= new Date(newFilterRecord.startDate) && new Date(atb.date) <= new Date(newFilterRecord.endDate)
+                          );
+                          
+        
+        
+                            console.log(filteredCattleDairyRecords.length);
+        
+                
+                          filteredGoatRecords = goatRecords.filter( bt => 
+                            new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
+                             );
+                
+                          filteredSheepRecords = sheepRecords.filter( ct => 
+                         new Date(ct.date) >= new Date(newFilterRecord.startDate) && new Date(ct.date) <= new Date(newFilterRecord.endDate)
+                         );
+                
+                          filteredPigRecords = pigRecords.filter( dt => 
+                         new Date(dt.date) >= new Date(newFilterRecord.startDate) && new Date(dt.date) <= new Date(newFilterRecord.endDate)
+                         );
+                
+                          filteredPoultryBroilerRecords = poultryBroilerRecords.filter( etb => 
+                         new Date(etb.date) >= new Date(newFilterRecord.startDate) && new Date(etb.date) <= new Date(newFilterRecord.endDate)
+                         );
+        
+                          filteredPoultryLayerRecords = poultryLayerRecords.filter( etl => 
+                          new Date(etl.date) >= new Date(newFilterRecord.startDate) && new Date(etl.date) <= new Date(newFilterRecord.endDate)
+                          );
+        
+                           filteredPoultryQuailRecords = poultryQuailRecords.filter( etq => 
+                            new Date(etq.date) >= new Date(newFilterRecord.startDate) && new Date(etq.date) <= new Date(newFilterRecord.endDate)
+                          );
+        
+                           filteredPoultryVillageRecords = poultryVillageRecords.filter( etv => 
+                            new Date(etv.date) >= new Date(newFilterRecord.startDate) && new Date(etv.date) <= new Date(newFilterRecord.endDate)
+                            );
+                
+                          filteredDogsAndCatsRecords= dogsAndCatsRecords.filter( ft => 
+                         new Date(ft.date) >= new Date(newFilterRecord.startDate) && new Date(ft.date) <= new Date(newFilterRecord.endDate)
+                         );
+                
+                          filteredRabbitRecords = rabbitRecords.filter( gt => 
+                         new Date(gt.date) >= new Date(newFilterRecord.startDate) && new Date(gt.date) <= new Date(newFilterRecord.endDate)
+                         );
+                
+                          filteredWildlifeOrExoticsRecords = wildlifeOrExoticsRecords.filter( ht => 
+                             new Date(ht.date) >= new Date(newFilterRecord.startDate) && new Date(ht.date) <= new Date(newFilterRecord.endDate)
+                             );
+                
+                          filteredHorseRecords = horseRecords.filter( it => 
+                         new Date(it.date) >= new Date(newFilterRecord.startDate) && new Date(it.date) <= new Date(newFilterRecord.endDate)
+                         );
+        
+                          filteredOtherRecords = otherRecords.filter( jt => 
+                          new Date(jt.date) >= new Date(newFilterRecord.startDate) && new Date(jt.date) <= new Date(newFilterRecord.endDate)
+                          );
+                
+                       
+                        
+                       
+                           commit(GET_FILTERED_VET_START_TIME, newFilterRecord.startDate);
+                
+                           commit(GET_FILTERED_VET_END_TIME, newFilterRecord.endDate);
+                           
+                
+                          commit(GET_ALL_CATTLE_DAIRY_RECORDS, filteredCattleDairyRecords.length);
+        
+                          commit(GET_ALL_CATTLE_BEEF_RECORDS, filteredCattleBeefRecords.length);
+        
+                
+                           commit(GET_ALL_GOATS_RECORDS, filteredGoatRecords.length);
+                
+                            commit(GET_ALL_SHEEP_RECORDS, filteredSheepRecords.length);
+                
+                           commit(GET_ALL_PIGS_RECORDS, filteredPigRecords.length);
+        
+                
+                          commit(GET_ALL_POULTRY_BROILER_RECORDS, filteredPoultryBroilerRecords.length);
+        
+                          commit(GET_ALL_POULTRY_LAYER_RECORDS, filteredPoultryLayerRecords.length);
+        
+                          commit(GET_ALL_POULTRY_QUAIL_RECORDS, filteredPoultryQuailRecords.length);
+        
+                          commit(GET_ALL_POULTRY_VILLAGE_RECORDS, filteredPoultryVillageRecords.length);
+        
+                         
+        
+        
+                
+                           commit(GET_ALL_DOGS_AND_CATS_RECORDS, filteredDogsAndCatsRecords.length);
+                
+                           commit(GET_ALL_RABBITS_RECORDS, filteredRabbitRecords.length);
+                
+                           commit(GET_ALL_WILDLIFE_OR_EXOTICS_RECORDS, filteredWildlifeOrExoticsRecords.length);
+                
+                           commit(GET_ALL_HORSES_RECORDS, filteredHorseRecords.length);
+        
+                           commit(GET_ALL_OTHER_RECORDS, filteredOtherRecords.length);
+
+
+                break;
            }
+
+        
+
+
 
         
     //    //--------------------ALL AGRO RECORDS FILTERED BY CATEGORY --------------------------------// 
@@ -2192,9 +2360,9 @@ export const actions = {
 
              const newPostMortemFilterRecord = cloneDeep(state.villageChickenPostMortemFilterForm);
 
-             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString();
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-US');
 
-             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-US');
 
             // console.log(newPostMortemFilterRecord.startDate);
             // console.log(newPostMortemFilterRecord.endDate);
@@ -2563,9 +2731,9 @@ export const actions = {
 
              const newPostMortemFilterRecord = cloneDeep(state.broilerChickenPostMortemFilterForm);
 
-             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString();
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-US');
 
-             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-US');
 
             // console.log(newPostMortemFilterRecord.startDate);
             // console.log(newPostMortemFilterRecord.endDate);
@@ -2879,9 +3047,9 @@ export const actions = {
 
              const newPostMortemFilterRecord = cloneDeep(state.layerChickenPostMortemFilterForm);
 
-             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString();
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-US');
 
-             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-US');
 
             // console.log(newPostMortemFilterRecord.startDate);
             // console.log(newPostMortemFilterRecord.endDate);
@@ -3198,9 +3366,9 @@ export const actions = {
 
              const newPostMortemFilterRecord = cloneDeep(state.pigPostMortemFilterForm);
 
-             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString();
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-US');
 
-             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-US');
 
             // console.log(newPostMortemFilterRecord.startDate);
             // console.log(newPostMortemFilterRecord.endDate);
@@ -3404,9 +3572,9 @@ export const actions = {
 
              const newPostMortemFilterRecord = cloneDeep(state.goatPostMortemFilterForm);
 
-             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString();
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-US');
 
-             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-US');
 
             // console.log(newPostMortemFilterRecord.startDate);
             // console.log(newPostMortemFilterRecord.endDate);
@@ -3608,9 +3776,9 @@ export const actions = {
 
              const newPostMortemFilterRecord = cloneDeep(state.quailPostMortemFilterForm);
 
-             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString();
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-US');
 
-             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-US');
 
             // console.log(newPostMortemFilterRecord.startDate);
             // console.log(newPostMortemFilterRecord.endDate);
@@ -3765,9 +3933,9 @@ export const actions = {
            let userEmail = loggedInUser.email;
              const newPostMortemFilterRecord = cloneDeep(state.rabbitPostMortemFilterForm);
 
-             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString();
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-US');
 
-             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-US');
 
             // console.log(newPostMortemFilterRecord.startDate);
             // console.log(newPostMortemFilterRecord.endDate);
@@ -3924,9 +4092,9 @@ export const actions = {
 
              const newPostMortemFilterRecord = cloneDeep(state.cattlePostMortemFilterForm);
 
-             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString();
+             newPostMortemFilterRecord.startDate = newPostMortemFilterRecord.startDate.toLocaleDateString('en-US');
 
-             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString();
+             newPostMortemFilterRecord.endDate = newPostMortemFilterRecord.endDate.toLocaleDateString('en-US');
 
             // // console.log(newPostMortemFilterRecord.startDate);
             // // console.log(newPostMortemFilterRecord.endDate);

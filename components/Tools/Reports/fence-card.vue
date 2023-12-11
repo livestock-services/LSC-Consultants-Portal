@@ -134,7 +134,7 @@
         return {
             startVal:0,
            
-           FenceAI_fields:{
+           fence_fields:{
                 "Consultations By Category":"consultation",
                 "Number":"number",
               
@@ -144,7 +144,7 @@
   
             
   
-           FenceAI_data:[
+           fence_data:[
                 
                 {"start_date": startDate,
                  "end_date":endDate

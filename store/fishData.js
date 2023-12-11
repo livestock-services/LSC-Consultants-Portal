@@ -218,9 +218,9 @@ export const actions = {
 
               const newFilterRecord = cloneDeep(state.fishFilterForm);
 
-            var  startDate = newFilterRecord.startDate.toLocaleDateString();
+            var  startDate = newFilterRecord.startDate.toLocaleDateString('en-US');
 
-             var endDate = newFilterRecord.endDate.toLocaleDateString();
+             var endDate = newFilterRecord.endDate.toLocaleDateString('en-US');
 
               console.log(startDate);
               console.log(endDate);

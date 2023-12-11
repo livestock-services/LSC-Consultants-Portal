@@ -53,8 +53,9 @@
         label="Client Name"
         searchable
         
+        
       >
-      <span class="tag tasks">  {{ props.row.fishClientName }} </span>
+      <span class="wrap-text">  {{ props.row.fishClientName }} </span>
        
         <!-- {{ props.row.sumInsured }} -->
       </b-table-column>
@@ -345,5 +346,9 @@ export default {
 
 .text-center{
   margin-left: 100px;
+}
+
+.wrap-text{
+  word-break: break-all;
 }
 </style>

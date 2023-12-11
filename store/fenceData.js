@@ -215,9 +215,9 @@ export const actions = {
 
               const newFilterRecord = cloneDeep(state.fenceFilterForm);
 
-              newFilterRecord.startDate = newFilterRecord.startDate.toLocaleDateString();
+              newFilterRecord.startDate = newFilterRecord.startDate.toLocaleDateString('en-US');
 
-              newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString();
+              newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString('en-US');
 
             //   console.log(newFilterRecord.startDate.toLocaleDateString('en-US'));
             //  console.log(newFilterRecord.endDate.toLocaleDateString('en-US'));

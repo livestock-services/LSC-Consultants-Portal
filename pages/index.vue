@@ -72,17 +72,17 @@
     
         <div class="card bulls-card  card-body">
       
-       <div class="card-body">
-        <a
+       <div class="card-body" @click="vetTech">
+        <p
           class="navbar-item mx-4 mt-2"
-          href="/"
+          
         >
           <b-icon
                 icon="doctor"
                 size="is-medium"
                 type="is-light">
             </b-icon>
-        </a>
+          </p>
 
       
 
@@ -607,6 +607,11 @@ export default {
       ...mapActions('pumpData', ['getAllWaterPumpRecords']),
 
       ...mapActions('vetData', ['getAllVetRecords', ' getAllPostMortemRecords']),
+
+
+       vetTech(){
+      this.$router.push("vet-con")
+    },
 
       filter() {
         

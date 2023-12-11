@@ -250,9 +250,9 @@ export const actions = {
            let userEmail = loggedInUser.email;
              const newFilterRecord = cloneDeep(state.beefAIFilterForm);
 
-             newFilterRecord.startDate = newFilterRecord.startDate.toLocaleDateString();
+             newFilterRecord.startDate = newFilterRecord.startDate.toLocaleDateString('en-US');
 
-             newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString();
+             newFilterRecord.endDate = newFilterRecord.endDate.toLocaleDateString('en-US');
 
             // console.log(newFilterRecord.startDate);
             // console.log(newFilterRecord.endDate);

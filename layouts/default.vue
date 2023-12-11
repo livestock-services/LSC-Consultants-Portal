@@ -10,7 +10,7 @@
       <div class="navbar-brand">
         <a
           class="navbar-item"
-          href="/"
+          href="#"
         >
         
           <img
@@ -23,7 +23,7 @@
 
           
 
-        </a>
+      </a>
 
        
 
@@ -338,6 +338,8 @@ export default {
 
   methods:{
     ...mapActions('users', ['getAllUsers']),
+
+
     
      index(){
       // if (!this.isPageReloaded) {
