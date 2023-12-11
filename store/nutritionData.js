@@ -240,23 +240,33 @@ import {
                
                 //API REQUEST IS MADE AND RESULT IS STORED IN CONST
                const {data: response} = await api.get(`/nutrition/allNutritionRecords`)
-    
-               if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-                if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
-                const customeUserRecords = response.data.filter( cur=>
-                    cur.createdBy === this.$auth.user.email
-                          )
-                          commit(GET_ALL_NUTRITION_RECORDS, customeUserRecords);
-                }
-            }
-                
-             else{
 
-                commit(GET_ALL_NUTRITION_RECORDS, response.data);
-             } 
+
                
+            const option = loggedInUser.role;
+
+            switch (option) {
+             case 'Admin':
+                 commit(GET_ALL_NUTRITION_RECORDS, response.data);
+                 break;
+ 
+             case 'Manager':
+                 commit(GET_ALL_NUTRITION_RECORDS, response.data);
+             break;
+            
+             default:
+                 const customeUserRecords = response.data.filter( cur=>
+                     cur.createdBy === this.$auth.user.email
+                           )
+ 
+                       console.log(customeUserRecords);
+                       console.log(customeUserRecords.length)
+                       commit(GET_ALL_NUTRITION_RECORDS, customeUserRecords);
+ 
+                 break;
+            }
     
-              
+             
     
                commit(SET_LOADING, false);
     
@@ -319,214 +329,220 @@ import {
                
                 //API REQUEST IS MADE AND RESULT IS STORED IN CONST
                const {data: response} = await api.get(`/nutrition/allNutritionRecords`)
-    
-               if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-                if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
-                const customeUserRecords = response.data.filter( cur=>
-                    cur.createdBy === this.$auth.user.email
-                          )
 
-                          const cattleRecords = customeUserRecords.filter( a=>
-                            a.nutritionCategory ==='Cattle'
+
+               
+            const option = loggedInUser.role;
+
+            switch (option) {
+             case 'Admin':
+                
+
+                       let cattleRecords = response.data.filter( a=>
+                        a.nutritionCategory ==='Cattle'
+                       )
+                
+                       console.log(cattleRecords.length)
+                
+                        let goatRecords = response.data.filter( b=>
+                         b.nutritionCategory ==='Goats'
+                        )
+                
+                        console.log(goatRecords.length)
+                
+                        let sheepRecords = response.data.filter( c=>
+                         c.nutritionCategory ==='Sheep'
+                        )
+                
+                        let pigRecords = response.data.filter( d=>
+                         d.nutritionCategory ==='Pigs'
+                        )
+                
+                        let poultryRecords = response.data.filter( d=>
+                            d.nutritionCategory ==='Poultry'
                            )
-                    
-                           console.log(cattleRecords.length)
-                    
-                            const goatRecords = customeUserRecords.filter( b=>
-                             b.nutritionCategory ==='Goats'
-                            )
-                    
-                            console.log(goatRecords.length)
-                    
-                            const sheepRecords = customeUserRecords.filter( c=>
-                             c.nutritionCategory ==='Sheep'
-                            )
-                    
-                            const pigRecords = customeUserRecords.filter( d=>
-                             d.nutritionCategory ==='Pigs'
-                            )
-                    
-                            const poultryRecords = customeUserRecords.filter( d=>
-                                d.nutritionCategory ==='Poultry'
-                               )
-                    
-                            const dogsAndCatsRecords = customeUserRecords.filter( e=>
-                             e.nutritionCategory ==='Dogs & Cats'
-                            )
-                    
-                    
-                            const rabbitRecords = customeUserRecords.filter( f=>
-                             f.nutritionCategory ==='Rabbits'
-                            )
-                    
-                            const wildlifeOrExoticsRecords = customeUserRecords.filter( g=>
-                             g.nutritionCategory ==='Wildlife Or Exotics'
-                            )
-                    
-                           
-                            const horseRecords = customeUserRecords.filter( h=>
-                             h.nutritionCategory ==='Horses'
-                            )
-                    
-                            const otherRecords = customeUserRecords.filter(j=>
-                                j.nutritionCategory ==='Other'
-                               )
-                    
-                    //   // -------------------------------END OF FILTERING BY CATEGORY----------------------//
-                    
-                    
-                    
-                    
-                    //    //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
-                              const filteredCattleRecords = cattleRecords.filter( at => 
-                             new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
+                
+                        let dogsAndCatsRecords = response.data.filter( e=>
+                         e.nutritionCategory ==='Dogs & Cats'
+                        )
+                
+                
+                        let rabbitRecords = response.data.filter( f=>
+                         f.nutritionCategory ==='Rabbits'
+                        )
+                
+                        let wildlifeOrExoticsRecords = response.data.filter( g=>
+                         g.nutritionCategory ==='Wildlife Or Exotics'
+                        )
+                
+                       
+                        let horseRecords = response.data.filter( h=>
+                         h.nutritionCategory ==='Horses'
+                        )
+    
+    
+                        let otherNutritionRecords = response.data.filter( i=>
+                            i.nutritionCategory ==='Other'
+                           )
+                
+                       
+                
+                //   // -------------------------------END OF FILTERING BY CATEGORY----------------------//
+                
+                
+                
+                
+                //    //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
+                          let filteredCattleRecords = cattleRecords.filter( at => 
+                         new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
+                         );
+                
+                
+                
+                         let filteredGoatRecords = goatRecords.filter( bt => 
+                             new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
                              );
-                    
-                    
-                    
-                             const filteredGoatRecords = goatRecords.filter( bt => 
-                                 new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
-                                 );
-                    
-                             const filteredSheepRecords = sheepRecords.filter( ct => 
-                             new Date(ct.date) >= new Date(newFilterRecord.startDate) && new Date(ct.date) <= new Date(newFilterRecord.endDate)
+                
+                         let filteredSheepRecords = sheepRecords.filter( ct => 
+                         new Date(ct.date) >= new Date(newFilterRecord.startDate) && new Date(ct.date) <= new Date(newFilterRecord.endDate)
+                         );
+                
+                         let filteredPigRecords = pigRecords.filter( dt => 
+                         new Date(dt.date) >= new Date(newFilterRecord.startDate) && new Date(dt.date) <= new Date(newFilterRecord.endDate)
+                         );
+                
+                         let filteredPoultryRecords = poultryRecords.filter( et => 
+                         new Date(et.date) >= new Date(newFilterRecord.startDate) && new Date(et.date) <= new Date(newFilterRecord.endDate)
+                         );
+                
+                         let filteredDogsAndCatsRecords= dogsAndCatsRecords.filter( ft => 
+                         new Date(ft.date) >= new Date(newFilterRecord.startDate) && new Date(ft.date) <= new Date(newFilterRecord.endDate)
+                         );
+                
+                         let filteredRabbitRecords = rabbitRecords.filter( gt => 
+                         new Date(gt.date) >= new Date(newFilterRecord.startDate) && new Date(gt.date) <= new Date(newFilterRecord.endDate)
+                         );
+                
+                         let filteredWildlifeOrExoticsRecords = wildlifeOrExoticsRecords.filter( ht => 
+                             new Date(ht.date) >= new Date(newFilterRecord.startDate) && new Date(ht.date) <= new Date(newFilterRecord.endDate)
                              );
-                    
-                             const filteredPigRecords = pigRecords.filter( dt => 
-                             new Date(dt.date) >= new Date(newFilterRecord.startDate) && new Date(dt.date) <= new Date(newFilterRecord.endDate)
-                             );
-                    
-                             const filteredPoultryRecords = poultryRecords.filter( et => 
-                             new Date(et.date) >= new Date(newFilterRecord.startDate) && new Date(et.date) <= new Date(newFilterRecord.endDate)
-                             );
-                    
-                             const filteredDogsAndCatsRecords= dogsAndCatsRecords.filter( ft => 
-                             new Date(ft.date) >= new Date(newFilterRecord.startDate) && new Date(ft.date) <= new Date(newFilterRecord.endDate)
-                             );
-                    
-                             const filteredRabbitRecords = rabbitRecords.filter( gt => 
-                             new Date(gt.date) >= new Date(newFilterRecord.startDate) && new Date(gt.date) <= new Date(newFilterRecord.endDate)
-                             );
-                    
-                             const filteredWildlifeOrExoticsRecords = wildlifeOrExoticsRecords.filter( ht => 
-                                 new Date(ht.date) >= new Date(newFilterRecord.startDate) && new Date(ht.date) <= new Date(newFilterRecord.endDate)
-                                 );
-                    
-                             const filteredHorseRecords = horseRecords.filter( it => 
-                             new Date(it.date) >= new Date(newFilterRecord.startDate) && new Date(it.date) <= new Date(newFilterRecord.endDate)
-                             );
-                    
-                             const filteredOtherRecords = otherRecords.filter( jt => 
-                                new Date(jt.date) >= new Date(newFilterRecord.startDate) && new Date(jt.date) <= new Date(newFilterRecord.endDate)
-                                );
-                            
-                            
-                            console.log(filteredCattleRecords.length);
-                    
-                            
-                            
-                    
-                            console.log(filteredGoatRecords.length);
-                    
-                            console.log(filteredSheepRecords.length);
-                    
-                             console.log(filteredPigRecords.length);
-                    
-                           console.log(filteredPoultryRecords.length);
-                    
-                             console.log(filteredDogsAndCatsRecords.length);
-                    
-                             console.log(filteredRabbitRecords.length);
-                    
-                             console.log(filteredWildlifeOrExoticsRecords.length);
-                    
-                             console.log(filteredHorseRecords.length);
-
-                             console.log(filteredOtherRecords.length);
-                    
-                            
-                            
-                    
-                    //            console.log(response.data);
-                            
-                    
-                    
-                               //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
-                            //   commit(GET_ALL_Nutrition_RECORDS, response.data);
-                    
-                               commit(GET_FILTERED_NUTRITION_START_TIME, newFilterRecord.startDate);
-                    
-                               commit(GET_FILTERED_NUTRITION_END_TIME, newFilterRecord.endDate);
-                    
-                              commit(GET_ALL_NUTRITION_CATTLE_RECORDS, filteredCattleRecords.length);
-                    
-                               commit(GET_ALL_NUTRITION_GOATS_RECORDS, filteredGoatRecords.length);
-                    
-                                commit(GET_ALL_NUTRITION_SHEEP_RECORDS, filteredSheepRecords.length);
-                    
-                               commit(GET_ALL_NUTRITION_PIGS_RECORDS, filteredPigRecords.length);
-                    
-                               commit(GET_ALL_NUTRITION_POULTRY_RECORDS, filteredPoultryRecords.length);
-                    
-                               commit(GET_ALL_NUTRITION_DOGS_AND_CATS_RECORDS, filteredDogsAndCatsRecords.length);
-                    
-                               commit(GET_ALL_NUTRITION_RABBITS_RECORDS, filteredRabbitRecords.length);
-                    
-                               commit(GET_ALL_NUTRITION_WILDLIFE_OR_EXOTICS_RECORDS, filteredWildlifeOrExoticsRecords.length);
-                    
-                               commit(GET_ALL_NUTRITION_HORSES_RECORDS, filteredHorseRecords.length);
-
-                               commit(GET_ALL_OTHER_NUTRITION_RECORDS, filteredOtherRecords.length);
-                    
-                }
-            }
-
-            else{
-
-                const cattleRecords = response.data.filter( a=>
+                
+                         let filteredHorseRecords = horseRecords.filter( it => 
+                         new Date(it.date) >= new Date(newFilterRecord.startDate) && new Date(it.date) <= new Date(newFilterRecord.endDate)
+                         );
+    
+    
+                         let filteredOtherRecords = otherNutritionRecords.filter( it => 
+                            new Date(it.date) >= new Date(newFilterRecord.startDate) && new Date(it.date) <= new Date(newFilterRecord.endDate)
+                            );
+                
+                       
+                        
+                        
+                        console.log(filteredCattleRecords.length);
+                
+                        
+                        
+                
+                        console.log(filteredGoatRecords.length);
+                
+                        console.log(filteredSheepRecords.length);
+                
+                         console.log(filteredPigRecords.length);
+                
+                       console.log(filteredPoultryRecords.length);
+                
+                         console.log(filteredDogsAndCatsRecords.length);
+                
+                         console.log(filteredRabbitRecords.length);
+                
+                         console.log(filteredWildlifeOrExoticsRecords.length);
+                
+                         console.log(filteredHorseRecords.length);
+    
+                         console.log(filteredOtherRecords.length);
+                
+                        
+                        
+                
+                //            console.log(response.data);
+                        
+                
+                
+                           //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
+                        //   commit(GET_ALL_Nutrition_RECORDS, response.data);
+                
+                           commit(GET_FILTERED_NUTRITION_START_TIME, new Date(newFilterRecord.startDate));
+                
+                           commit(GET_FILTERED_NUTRITION_END_TIME, new Date(newFilterRecord.endDate));
+                
+                          commit(GET_ALL_NUTRITION_CATTLE_RECORDS, filteredCattleRecords.length);
+                
+                           commit(GET_ALL_NUTRITION_GOATS_RECORDS, filteredGoatRecords.length);
+                
+                            commit(GET_ALL_NUTRITION_SHEEP_RECORDS, filteredSheepRecords.length);
+                
+                           commit(GET_ALL_NUTRITION_PIGS_RECORDS, filteredPigRecords.length);
+                
+                           commit(GET_ALL_NUTRITION_POULTRY_RECORDS, filteredPoultryRecords.length);
+                
+                           commit(GET_ALL_NUTRITION_DOGS_AND_CATS_RECORDS, filteredDogsAndCatsRecords.length);
+                
+                           commit(GET_ALL_NUTRITION_RABBITS_RECORDS, filteredRabbitRecords.length);
+                
+                           commit(GET_ALL_NUTRITION_WILDLIFE_OR_EXOTICS_RECORDS, filteredWildlifeOrExoticsRecords.length);
+                
+                           commit(GET_ALL_NUTRITION_HORSES_RECORDS, filteredHorseRecords.length);
+    
+                           commit(GET_ALL_OTHER_NUTRITION_RECORDS, filteredOtherRecords.length);
+                
+                 break;
+ 
+             case 'Manager':
+                 cattleRecords = response.data.filter( a=>
                     a.nutritionCategory ==='Cattle'
                    )
             
                    console.log(cattleRecords.length)
             
-                    const goatRecords = response.data.filter( b=>
+                     goatRecords = response.data.filter( b=>
                      b.nutritionCategory ==='Goats'
                     )
             
                     console.log(goatRecords.length)
             
-                    const sheepRecords = response.data.filter( c=>
+                     sheepRecords = response.data.filter( c=>
                      c.nutritionCategory ==='Sheep'
                     )
             
-                    const pigRecords = response.data.filter( d=>
+                     pigRecords = response.data.filter( d=>
                      d.nutritionCategory ==='Pigs'
                     )
             
-                    const poultryRecords = response.data.filter( d=>
+                     poultryRecords = response.data.filter( d=>
                         d.nutritionCategory ==='Poultry'
                        )
             
-                    const dogsAndCatsRecords = response.data.filter( e=>
+                     dogsAndCatsRecords = response.data.filter( e=>
                      e.nutritionCategory ==='Dogs & Cats'
                     )
             
             
-                    const rabbitRecords = response.data.filter( f=>
+                     rabbitRecords = response.data.filter( f=>
                      f.nutritionCategory ==='Rabbits'
                     )
             
-                    const wildlifeOrExoticsRecords = response.data.filter( g=>
+                     wildlifeOrExoticsRecords = response.data.filter( g=>
                      g.nutritionCategory ==='Wildlife Or Exotics'
                     )
             
                    
-                    const horseRecords = response.data.filter( h=>
+                     horseRecords = response.data.filter( h=>
                      h.nutritionCategory ==='Horses'
                     )
 
 
-                    const otherNutritionRecords = response.data.filter( i=>
+                     otherNutritionRecords = response.data.filter( i=>
                         i.nutritionCategory ==='Other'
                        )
             
@@ -538,46 +554,46 @@ import {
             
             
             //    //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
-                      const filteredCattleRecords = cattleRecords.filter( at => 
+                       filteredCattleRecords = cattleRecords.filter( at => 
                      new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
                      );
             
             
             
-                     const filteredGoatRecords = goatRecords.filter( bt => 
+                      filteredGoatRecords = goatRecords.filter( bt => 
                          new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
                          );
             
-                     const filteredSheepRecords = sheepRecords.filter( ct => 
+                      filteredSheepRecords = sheepRecords.filter( ct => 
                      new Date(ct.date) >= new Date(newFilterRecord.startDate) && new Date(ct.date) <= new Date(newFilterRecord.endDate)
                      );
             
-                     const filteredPigRecords = pigRecords.filter( dt => 
+                      filteredPigRecords = pigRecords.filter( dt => 
                      new Date(dt.date) >= new Date(newFilterRecord.startDate) && new Date(dt.date) <= new Date(newFilterRecord.endDate)
                      );
             
-                     const filteredPoultryRecords = poultryRecords.filter( et => 
+                      filteredPoultryRecords = poultryRecords.filter( et => 
                      new Date(et.date) >= new Date(newFilterRecord.startDate) && new Date(et.date) <= new Date(newFilterRecord.endDate)
                      );
             
-                     const filteredDogsAndCatsRecords= dogsAndCatsRecords.filter( ft => 
+                      filteredDogsAndCatsRecords= dogsAndCatsRecords.filter( ft => 
                      new Date(ft.date) >= new Date(newFilterRecord.startDate) && new Date(ft.date) <= new Date(newFilterRecord.endDate)
                      );
             
-                     const filteredRabbitRecords = rabbitRecords.filter( gt => 
+                      filteredRabbitRecords = rabbitRecords.filter( gt => 
                      new Date(gt.date) >= new Date(newFilterRecord.startDate) && new Date(gt.date) <= new Date(newFilterRecord.endDate)
                      );
             
-                     const filteredWildlifeOrExoticsRecords = wildlifeOrExoticsRecords.filter( ht => 
+                      filteredWildlifeOrExoticsRecords = wildlifeOrExoticsRecords.filter( ht => 
                          new Date(ht.date) >= new Date(newFilterRecord.startDate) && new Date(ht.date) <= new Date(newFilterRecord.endDate)
                          );
             
-                     const filteredHorseRecords = horseRecords.filter( it => 
+                      filteredHorseRecords = horseRecords.filter( it => 
                      new Date(it.date) >= new Date(newFilterRecord.startDate) && new Date(it.date) <= new Date(newFilterRecord.endDate)
                      );
 
 
-                     const filteredOtherRecords = otherNutritionRecords.filter( it => 
+                      filteredOtherRecords = otherNutritionRecords.filter( it => 
                         new Date(it.date) >= new Date(newFilterRecord.startDate) && new Date(it.date) <= new Date(newFilterRecord.endDate)
                         );
             
@@ -640,7 +656,182 @@ import {
                        commit(GET_ALL_NUTRITION_HORSES_RECORDS, filteredHorseRecords.length);
 
                        commit(GET_ALL_OTHER_NUTRITION_RECORDS, filteredOtherRecords.length);
+           
+             break;
+            
+             default:
+                 let customeUserRecords = response.data.filter( cur=>
+                     cur.createdBy === this.$auth.user.email
+                           )
+ 
+                       console.log(customeUserRecords);
+                       console.log(customeUserRecords.length)
+                
+                        cattleRecords = customeUserRecords.filter( a=>
+                        a.nutritionCategory ==='Cattle'
+                       )
+                
+                       console.log(cattleRecords.length)
+                
+                         goatRecords = customeUserRecords.filter( b=>
+                         b.nutritionCategory ==='Goats'
+                        )
+                
+                        console.log(goatRecords.length)
+                
+                         sheepRecords = customeUserRecords.filter( c=>
+                         c.nutritionCategory ==='Sheep'
+                        )
+                
+                         pigRecords = customeUserRecords.filter( d=>
+                         d.nutritionCategory ==='Pigs'
+                        )
+                
+                         poultryRecords = customeUserRecords.filter( d=>
+                            d.nutritionCategory ==='Poultry'
+                           )
+                
+                         dogsAndCatsRecords = customeUserRecords.filter( e=>
+                         e.nutritionCategory ==='Dogs & Cats'
+                        )
+                
+                
+                         rabbitRecords = customeUserRecords.filter( f=>
+                         f.nutritionCategory ==='Rabbits'
+                        )
+                
+                         wildlifeOrExoticsRecords = customeUserRecords.filter( g=>
+                         g.nutritionCategory ==='Wildlife Or Exotics'
+                        )
+                
+                       
+                         horseRecords = customeUserRecords.filter( h=>
+                         h.nutritionCategory ==='Horses'
+                        )
+    
+    
+                         otherNutritionRecords = customeUserRecords.filter( i=>
+                            i.nutritionCategory ==='Other'
+                           )
+                
+                       
+                
+                //   // -------------------------------END OF FILTERING BY CATEGORY----------------------//
+                
+                
+                
+                
+                //    //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
+                           filteredCattleRecords = cattleRecords.filter( at => 
+                         new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
+                         );
+                
+                
+                
+                          filteredGoatRecords = goatRecords.filter( bt => 
+                             new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
+                             );
+                
+                          filteredSheepRecords = sheepRecords.filter( ct => 
+                         new Date(ct.date) >= new Date(newFilterRecord.startDate) && new Date(ct.date) <= new Date(newFilterRecord.endDate)
+                         );
+                
+                          filteredPigRecords = pigRecords.filter( dt => 
+                         new Date(dt.date) >= new Date(newFilterRecord.startDate) && new Date(dt.date) <= new Date(newFilterRecord.endDate)
+                         );
+                
+                          filteredPoultryRecords = poultryRecords.filter( et => 
+                         new Date(et.date) >= new Date(newFilterRecord.startDate) && new Date(et.date) <= new Date(newFilterRecord.endDate)
+                         );
+                
+                          filteredDogsAndCatsRecords= dogsAndCatsRecords.filter( ft => 
+                         new Date(ft.date) >= new Date(newFilterRecord.startDate) && new Date(ft.date) <= new Date(newFilterRecord.endDate)
+                         );
+                
+                          filteredRabbitRecords = rabbitRecords.filter( gt => 
+                         new Date(gt.date) >= new Date(newFilterRecord.startDate) && new Date(gt.date) <= new Date(newFilterRecord.endDate)
+                         );
+                
+                          filteredWildlifeOrExoticsRecords = wildlifeOrExoticsRecords.filter( ht => 
+                             new Date(ht.date) >= new Date(newFilterRecord.startDate) && new Date(ht.date) <= new Date(newFilterRecord.endDate)
+                             );
+                
+                          filteredHorseRecords = horseRecords.filter( it => 
+                         new Date(it.date) >= new Date(newFilterRecord.startDate) && new Date(it.date) <= new Date(newFilterRecord.endDate)
+                         );
+    
+    
+                          filteredOtherRecords = otherNutritionRecords.filter( it => 
+                            new Date(it.date) >= new Date(newFilterRecord.startDate) && new Date(it.date) <= new Date(newFilterRecord.endDate)
+                            );
+                
+                       
+                        
+                        
+                        console.log(filteredCattleRecords.length);
+                
+                        
+                        
+                
+                        console.log(filteredGoatRecords.length);
+                
+                        console.log(filteredSheepRecords.length);
+                
+                         console.log(filteredPigRecords.length);
+                
+                       console.log(filteredPoultryRecords.length);
+                
+                         console.log(filteredDogsAndCatsRecords.length);
+                
+                         console.log(filteredRabbitRecords.length);
+                
+                         console.log(filteredWildlifeOrExoticsRecords.length);
+                
+                         console.log(filteredHorseRecords.length);
+    
+                         console.log(filteredOtherRecords.length);
+                
+                        
+                        
+                
+                //            console.log(response.data);
+                        
+                
+                
+                           //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
+                        //   commit(GET_ALL_Nutrition_RECORDS, response.data);
+                
+                           commit(GET_FILTERED_NUTRITION_START_TIME, new Date(newFilterRecord.startDate));
+                
+                           commit(GET_FILTERED_NUTRITION_END_TIME, new Date(newFilterRecord.endDate));
+                
+                          commit(GET_ALL_NUTRITION_CATTLE_RECORDS, filteredCattleRecords.length);
+                
+                           commit(GET_ALL_NUTRITION_GOATS_RECORDS, filteredGoatRecords.length);
+                
+                            commit(GET_ALL_NUTRITION_SHEEP_RECORDS, filteredSheepRecords.length);
+                
+                           commit(GET_ALL_NUTRITION_PIGS_RECORDS, filteredPigRecords.length);
+                
+                           commit(GET_ALL_NUTRITION_POULTRY_RECORDS, filteredPoultryRecords.length);
+                
+                           commit(GET_ALL_NUTRITION_DOGS_AND_CATS_RECORDS, filteredDogsAndCatsRecords.length);
+                
+                           commit(GET_ALL_NUTRITION_RABBITS_RECORDS, filteredRabbitRecords.length);
+                
+                           commit(GET_ALL_NUTRITION_WILDLIFE_OR_EXOTICS_RECORDS, filteredWildlifeOrExoticsRecords.length);
+                
+                           commit(GET_ALL_NUTRITION_HORSES_RECORDS, filteredHorseRecords.length);
+    
+                           commit(GET_ALL_OTHER_NUTRITION_RECORDS, filteredOtherRecords.length);
+               
+ 
+                 break;
             }
+
+            
+    
+       
                commit(SET_LOADING, false);
     
             } catch (error) {

@@ -2212,26 +2212,31 @@ export const actions = {
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/vet/allPostMortems`)
 
-           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
+           
+           const option = loggedInUser.role;
 
-            const customeUserPMRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
-                     // console.log(customeUserPMRecords);
-                      commit(GET_ALL_POST_MORTEM_RECORDS, customeUserPMRecords);
+           switch (option) {
+            case 'Admin':
+              commit(GET_ALL_POST_MORTEM_RECORDS, response.data);
+                break;
+
+            case 'Manager':
+              commit(GET_ALL_POST_MORTEM_RECORDS, response.data);
+            break;
+           
+            default:
+                const customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
+
+                      console.log(customeUserRecords);
+                      console.log(customeUserRecords.length)
+                commit(GET_ALL_POST_MORTEM_RECORDS, customeUserRecords);
+
+                break;
            }
 
-        }
-
-
-           else{
-           // console.log(response.data);
-       
-
-            //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
-            commit(GET_ALL_POST_MORTEM_RECORDS, response.data);
-           }
+          
        
           
            
@@ -2373,336 +2378,490 @@ export const actions = {
 
           // console.log(response.data)
 
-           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
-            const customeUserPMRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
-                     // console.log(customeUserPMRecords);
-                     
-                      const villageChickenPostMortemRecords = customeUserPMRecords.filter( a=>
-                        a.vetPostMortemCategory ==='Village Chicken'
-                       )
-                
-                      // console.log(villageChickenPostMortemRecords.length);
-                
-                       const infectiousLaryRecords = villageChickenPostMortemRecords.filter( a=>
-                        a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Infectious Laryngotracheitis'
-                       )
-                
-                      // console.log(infectiousLaryRecords.length)
-                
-                       const newCastleRecords = villageChickenPostMortemRecords.filter( a=>
-                        a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Newcastle'
-                       )
-                
-                       const gumboroRecords = villageChickenPostMortemRecords.filter( a=>
-                        a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Gumboro'
-                       )
-                
-                       const coccidiosisRecords = villageChickenPostMortemRecords.filter( a=>
-                        a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Coccidiosis'
-                       )
-                
-                       const fowlPoxRecords = villageChickenPostMortemRecords.filter( a=>
-                        a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Fowl Pox'
-                       )
-                
-                       const eggPeritonitisRecords = villageChickenPostMortemRecords.filter( a=>
-                        a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Egg Peritonitis'
-                       )
-                
-                       const ectoParasitesRecords = villageChickenPostMortemRecords.filter( a=>
-                        a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Ectoparasites'
-                       )
-                
-                       const helminthiasisRecords = villageChickenPostMortemRecords.filter( a=>
-                        a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Helminthiasis'
-                       )
-                
-                       const mycoPlasmosisRecords = villageChickenPostMortemRecords.filter( a=>
-                        a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Mycoplasmosis'
-                       )
-                
-                       const snakeBiteRecords = villageChickenPostMortemRecords.filter( a=>
-                        a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Snake Bites'
-                       )
-                
-                       const colibacillosisRecords = villageChickenPostMortemRecords.filter( a=>
-                        a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Colibacillosis'
-                       )
-                
-                       const chronicInfectiousBronchyRecords = villageChickenPostMortemRecords.filter( a=>
-                        a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Chronic Infectious Bronchitis'
-                       )
+          
+          const option = loggedInUser.role;
 
-                       const otherVillageChickenRecords = villageChickenPostMortemRecords.filter( a=>
-                        a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Other Disease'
-                       )
-
-                       console.log(otherVillageChickenRecords)
-
-
-                       
-                         const filteredILRecords = infectiousLaryRecords.filter( ct => 
-                         ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
-                         );
-                
-                        
-                
-                         const filteredNewcastleRecords = newCastleRecords.filter( ct => 
-                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                         );
-                
-                         const filteredGumboroRecords = gumboroRecords.filter( ct => 
-                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                         );
-                
-                         const filteredCoccidiosisecords = coccidiosisRecords.filter( ct => 
-                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                         );
-                
-                         const filteredFowlPoxRecords = fowlPoxRecords.filter( ct => 
-                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                         );
-                
-                         const filteredEggPeritonitisRecords = eggPeritonitisRecords.filter( ct => 
-                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                         );
-                
-                         const filteredEctoParasitesRecords = ectoParasitesRecords.filter( ct => 
-                             new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                             );
-                    
-                         const filteredHelminthiasisRecords = helminthiasisRecords.filter( ct => 
-                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                         );
-                
-                         const filteredMycoplasmosisRecords = mycoPlasmosisRecords.filter( ct => 
-                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                         );
-                
-                         const filteredSnakeBiteRecords = snakeBiteRecords.filter( ct => 
-                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                         );
-                
-                         const filteredColibacillosisRecords = colibacillosisRecords.filter( ct => 
-                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                         );
-                
-                         const filteredChronicInfectiousBronchyRecords = chronicInfectiousBronchyRecords.filter( ct => 
-                         new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                         );
-                    
-                          
-                         const filteredOtherVillageChickenDiseaseRecords = otherVillageChickenRecords.filter( ct => 
-                          new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                          );
-                       
-                            
-                
-                       
-                           commit(GET_FILTERED_VET_PM_START_TIME, newPostMortemFilterRecord.startDate);
-                
-                           commit(GET_FILTERED_VET_PM_END_TIME, newPostMortemFilterRecord.endDate);
-                
-                          commit(GET_ALL_IL_RECORDS, filteredILRecords.length);
-                
-                            commit(GET_ALL_NEWCASTLE_RECORDS, filteredNewcastleRecords.length);
-                
-                            commit(GET_ALL_GUMBORO_RECORDS, filteredGumboroRecords.length);
-                
-                            commit(GET_ALL_COCCIDIOSIS_RECORDS, filteredCoccidiosisecords.length);
-                
-                            commit(GET_ALL_FOWL_POX_RECORDS, filteredFowlPoxRecords.length);
-                
-                            commit(GET_ALL_EGG_PERITONITIS_RECORDS, filteredEggPeritonitisRecords.length);
-                
-                            commit(GET_ALL_ECTOPARASITES_RECORDS, filteredEctoParasitesRecords.length);
-                
-                            commit(GET_ALL_HELMINTHIASIS_RECORDS, filteredHelminthiasisRecords.length);
-                
-                            commit(GET_ALL_MYCOPLASMOSIS_RECORDS, filteredMycoplasmosisRecords.length);
-                
-                            commit(GET_ALL_SNAKE_BITE_RECORDS, filteredSnakeBiteRecords.length);
-                
-                            commit(GET_ALL_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length);
-                
-                            commit(GET_ALL_CHRONIC_INFECTIOUS_BRONCHY_RECORDS, filteredChronicInfectiousBronchyRecords.length);
-
-
-                            commit(GET_ALL_OTHER_VILLAGE_CHICKEN_DISEASE_RECORDS, filteredOtherVillageChickenDiseaseRecords.length);
-                
-                
-           }
-
-        }
-
-
-           else{
+          switch (option) {
+           case 'Admin':
            
+                   
+                    let villageChickenPostMortemRecords = response.data.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken'
+                     )
+              
+                    // console.log(villageChickenPostMortemRecords.length);
+              
+                     let infectiousLaryRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Infectious Laryngotracheitis'
+                     )
+              
+                    // console.log(infectiousLaryRecords.length)
+              
+                     let newCastleRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Newcastle'
+                     )
+              
+                     let gumboroRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Gumboro'
+                     )
+              
+                     let coccidiosisRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Coccidiosis'
+                     )
+              
+                     let fowlPoxRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Fowl Pox'
+                     )
+              
+                     let eggPeritonitisRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Egg Peritonitis'
+                     )
+              
+                     let ectoParasitesRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Ectoparasites'
+                     )
+              
+                     let helminthiasisRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Helminthiasis'
+                     )
+              
+                     let mycoPlasmosisRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Mycoplasmosis'
+                     )
+              
+                     let snakeBiteRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Snake Bites'
+                     )
+              
+                     let colibacillosisRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Colibacillosis'
+                     )
+              
+                     let chronicInfectiousBronchyRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Chronic Infectious Bronchitis'
+                     )
+
+                     let otherVillageChickenRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Other Disease'
+                     )
+
+                     console.log(otherVillageChickenRecords)
+
+
+                     
+                       let filteredILRecords = infectiousLaryRecords.filter( ct => 
+                       ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                       );
+              
+                      
+              
+                       let filteredNewcastleRecords = newCastleRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                       let filteredGumboroRecords = gumboroRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                       let filteredCoccidiosisecords = coccidiosisRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                       let filteredFowlPoxRecords = fowlPoxRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                       let filteredEggPeritonitisRecords = eggPeritonitisRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                       let filteredEctoParasitesRecords = ectoParasitesRecords.filter( ct => 
+                           new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                           );
+                  
+                       let filteredHelminthiasisRecords = helminthiasisRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                       let filteredMycoplasmosisRecords = mycoPlasmosisRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                       let filteredSnakeBiteRecords = snakeBiteRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                       let filteredColibacillosisRecords = colibacillosisRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                       let filteredChronicInfectiousBronchyRecords = chronicInfectiousBronchyRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+                  
+                        
+                       let filteredOtherVillageChickenDiseaseRecords = otherVillageChickenRecords.filter( ct => 
+                        new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                        );
+                     
+                          
+              
+                     
+                         commit(GET_FILTERED_VET_PM_START_TIME, newPostMortemFilterRecord.startDate);
+              
+                         commit(GET_FILTERED_VET_PM_END_TIME, newPostMortemFilterRecord.endDate);
+              
+                        commit(GET_ALL_IL_RECORDS, filteredILRecords.length);
+              
+                          commit(GET_ALL_NEWCASTLE_RECORDS, filteredNewcastleRecords.length);
+              
+                          commit(GET_ALL_GUMBORO_RECORDS, filteredGumboroRecords.length);
+              
+                          commit(GET_ALL_COCCIDIOSIS_RECORDS, filteredCoccidiosisecords.length);
+              
+                          commit(GET_ALL_FOWL_POX_RECORDS, filteredFowlPoxRecords.length);
+              
+                          commit(GET_ALL_EGG_PERITONITIS_RECORDS, filteredEggPeritonitisRecords.length);
+              
+                          commit(GET_ALL_ECTOPARASITES_RECORDS, filteredEctoParasitesRecords.length);
+              
+                          commit(GET_ALL_HELMINTHIASIS_RECORDS, filteredHelminthiasisRecords.length);
+              
+                          commit(GET_ALL_MYCOPLASMOSIS_RECORDS, filteredMycoplasmosisRecords.length);
+              
+                          commit(GET_ALL_SNAKE_BITE_RECORDS, filteredSnakeBiteRecords.length);
+              
+                          commit(GET_ALL_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length);
+              
+                          commit(GET_ALL_CHRONIC_INFECTIOUS_BRONCHY_RECORDS, filteredChronicInfectiousBronchyRecords.length);
+
+
+                          commit(GET_ALL_OTHER_VILLAGE_CHICKEN_DISEASE_RECORDS, filteredOtherVillageChickenDiseaseRecords.length);
+              
+               break;
+
+           case 'Manager':
             
-            const villageChickenPostMortemRecords = response.data.filter( a=>
-                a.vetPostMortemCategory ==='Village Chicken'
-               )
-        
-              // console.log(villageChickenPostMortemRecords.length);
-        
-               const infectiousLaryRecords = villageChickenPostMortemRecords.filter( a=>
-                a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Infectious Laryngotracheitis'
-               )
-        
-              // console.log(infectiousLaryRecords.length)
-        
-               const newCastleRecords = villageChickenPostMortemRecords.filter( a=>
-                a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Newcastle'
-               )
-        
-               const gumboroRecords = villageChickenPostMortemRecords.filter( a=>
-                a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Gumboro'
-               )
-        
-               const coccidiosisRecords = villageChickenPostMortemRecords.filter( a=>
-                a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Coccidiosis'
-               )
-        
-               const fowlPoxRecords = villageChickenPostMortemRecords.filter( a=>
-                a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Fowl Pox'
-               )
-        
-               const eggPeritonitisRecords = villageChickenPostMortemRecords.filter( a=>
-                a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Egg Peritonitis'
-               )
-        
-               const ectoParasitesRecords = villageChickenPostMortemRecords.filter( a=>
-                a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Ectoparasites'
-               )
-        
-               const helminthiasisRecords = villageChickenPostMortemRecords.filter( a=>
-                a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Helminthiasis'
-               )
-        
-               const mycoPlasmosisRecords = villageChickenPostMortemRecords.filter( a=>
-                a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Mycoplasmosis'
-               )
-        
-               const snakeBiteRecords = villageChickenPostMortemRecords.filter( a=>
-                a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Snake Bites'
-               )
-        
-               const colibacillosisRecords = villageChickenPostMortemRecords.filter( a=>
-                a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Colibacillosis'
-               )
-        
-               const chronicInfectiousBronchyRecords = villageChickenPostMortemRecords.filter( a=>
-                a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Chronic Infectious Bronchitis'
-               )
+                   // console.log(response.data);
+                   
+                    villageChickenPostMortemRecords = response.data.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken'
+                     )
+              
+                    // console.log(villageChickenPostMortemRecords.length);
+              
+                     infectiousLaryRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Infectious Laryngotracheitis'
+                     )
+              
+                    // console.log(infectiousLaryRecords.length)
+              
+                     newCastleRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Newcastle'
+                     )
+              
+                     gumboroRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Gumboro'
+                     )
+              
+                     coccidiosisRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Coccidiosis'
+                     )
+              
+                     fowlPoxRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Fowl Pox'
+                     )
+              
+                     eggPeritonitisRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Egg Peritonitis'
+                     )
+              
+                     ectoParasitesRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Ectoparasites'
+                     )
+              
+                     helminthiasisRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Helminthiasis'
+                     )
+              
+                     mycoPlasmosisRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Mycoplasmosis'
+                     )
+              
+                     snakeBiteRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Snake Bites'
+                     )
+              
+                     colibacillosisRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Colibacillosis'
+                     )
+              
+                     chronicInfectiousBronchyRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Chronic Infectious Bronchitis'
+                     )
 
-               const otherVillageChickenRecords = villageChickenPostMortemRecords.filter( a=>
-                a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Other Disease'
-               )
+                     otherVillageChickenRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Other Disease'
+                     )
 
-               console.log(otherVillageChickenRecords);
-               
-                 const filteredILRecords = infectiousLaryRecords.filter( ct => 
-                 ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
-                 );
-        
-                // console.log(filteredILRecords.length)
-        
-                 const filteredNewcastleRecords = newCastleRecords.filter( ct => 
-                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                 );
-        
-                 const filteredGumboroRecords = gumboroRecords.filter( ct => 
-                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                 );
-        
-                 const filteredCoccidiosisecords = coccidiosisRecords.filter( ct => 
-                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                 );
-        
-                 const filteredFowlPoxRecords = fowlPoxRecords.filter( ct => 
-                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                 );
-        
-                 const filteredEggPeritonitisRecords = eggPeritonitisRecords.filter( ct => 
-                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                 );
-        
-                 const filteredEctoParasitesRecords = ectoParasitesRecords.filter( ct => 
-                     new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                     );
-            
-                 const filteredHelminthiasisRecords = helminthiasisRecords.filter( ct => 
-                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                 );
-        
-                 const filteredMycoplasmosisRecords = mycoPlasmosisRecords.filter( ct => 
-                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                 );
-        
-                 const filteredSnakeBiteRecords = snakeBiteRecords.filter( ct => 
-                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                 );
-        
-                 const filteredColibacillosisRecords = colibacillosisRecords.filter( ct => 
-                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                 );
-        
-                 const filteredChronicInfectiousBronchyRecords = chronicInfectiousBronchyRecords.filter( ct => 
-                 new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                 );
-
-                 const filteredOtherVillageChickenDiseaseRecords = otherVillageChickenRecords.filter( ct => 
-                  new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                  );
-            
-        
-               
-                    
-        
-               
-                   commit(GET_FILTERED_VET_PM_START_TIME, newPostMortemFilterRecord.startDate);
-        
-                   commit(GET_FILTERED_VET_PM_END_TIME, newPostMortemFilterRecord.endDate);
-        
-                  commit(GET_ALL_IL_RECORDS, filteredILRecords.length);
-        
-                    commit(GET_ALL_NEWCASTLE_RECORDS, filteredNewcastleRecords.length);
-        
-                    commit(GET_ALL_GUMBORO_RECORDS, filteredGumboroRecords.length);
-        
-                    commit(GET_ALL_COCCIDIOSIS_RECORDS, filteredCoccidiosisecords.length);
-        
-                    commit(GET_ALL_FOWL_POX_RECORDS, filteredFowlPoxRecords.length);
-        
-                    commit(GET_ALL_EGG_PERITONITIS_RECORDS, filteredEggPeritonitisRecords.length);
-        
-                    commit(GET_ALL_ECTOPARASITES_RECORDS, filteredEctoParasitesRecords.length);
-        
-                    commit(GET_ALL_HELMINTHIASIS_RECORDS, filteredHelminthiasisRecords.length);
-        
-                    commit(GET_ALL_MYCOPLASMOSIS_RECORDS, filteredMycoplasmosisRecords.length);
-        
-                    commit(GET_ALL_SNAKE_BITE_RECORDS, filteredSnakeBiteRecords.length);
-        
-                    commit(GET_ALL_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length);
-        
-                    commit(GET_ALL_CHRONIC_INFECTIOUS_BRONCHY_RECORDS, filteredChronicInfectiousBronchyRecords.length);
-
-                    
-                    commit(GET_ALL_OTHER_VILLAGE_CHICKEN_DISEASE_RECORDS, filteredOtherVillageChickenDiseaseRecords.length);
-        
-        
-
-           }
+                     console.log(otherVillageChickenRecords)
 
 
-       //    const { data:fetchUsers } = await api.get(`/auth/allUsers`)
-        
-    //    //--------------------ALL AGRO RECORDS FILTERED BY CATEGORY --------------------------------// 
-                
+                     
+                       filteredILRecords = infectiousLaryRecords.filter( ct => 
+                       ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                       );
+              
+                      
+              
+                       filteredNewcastleRecords = newCastleRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                       filteredGumboroRecords = gumboroRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                       filteredCoccidiosisecords = coccidiosisRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                       filteredFowlPoxRecords = fowlPoxRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                       filteredEggPeritonitisRecords = eggPeritonitisRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                       filteredEctoParasitesRecords = ectoParasitesRecords.filter( ct => 
+                           new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                           );
+                  
+                       filteredHelminthiasisRecords = helminthiasisRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                       filteredMycoplasmosisRecords = mycoPlasmosisRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                       filteredSnakeBiteRecords = snakeBiteRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                       filteredColibacillosisRecords = colibacillosisRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                       filteredChronicInfectiousBronchyRecords = chronicInfectiousBronchyRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+                  
+                        
+                       filteredOtherVillageChickenDiseaseRecords = otherVillageChickenRecords.filter( ct => 
+                        new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                        );
+                     
+                          
+              
+                     
+                         commit(GET_FILTERED_VET_PM_START_TIME, newPostMortemFilterRecord.startDate);
+              
+                         commit(GET_FILTERED_VET_PM_END_TIME, newPostMortemFilterRecord.endDate);
+              
+                        commit(GET_ALL_IL_RECORDS, filteredILRecords.length);
+              
+                          commit(GET_ALL_NEWCASTLE_RECORDS, filteredNewcastleRecords.length);
+              
+                          commit(GET_ALL_GUMBORO_RECORDS, filteredGumboroRecords.length);
+              
+                          commit(GET_ALL_COCCIDIOSIS_RECORDS, filteredCoccidiosisecords.length);
+              
+                          commit(GET_ALL_FOWL_POX_RECORDS, filteredFowlPoxRecords.length);
+              
+                          commit(GET_ALL_EGG_PERITONITIS_RECORDS, filteredEggPeritonitisRecords.length);
+              
+                          commit(GET_ALL_ECTOPARASITES_RECORDS, filteredEctoParasitesRecords.length);
+              
+                          commit(GET_ALL_HELMINTHIASIS_RECORDS, filteredHelminthiasisRecords.length);
+              
+                          commit(GET_ALL_MYCOPLASMOSIS_RECORDS, filteredMycoplasmosisRecords.length);
+              
+                          commit(GET_ALL_SNAKE_BITE_RECORDS, filteredSnakeBiteRecords.length);
+              
+                          commit(GET_ALL_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length);
+              
+                          commit(GET_ALL_CHRONIC_INFECTIOUS_BRONCHY_RECORDS, filteredChronicInfectiousBronchyRecords.length);
+
+
+                          commit(GET_ALL_OTHER_VILLAGE_CHICKEN_DISEASE_RECORDS, filteredOtherVillageChickenDiseaseRecords.length);
+              
+           break;
+          
+           default:
+            let customeUserPMRecords = response.data.filter( cur=>
+              cur.createdBy === this.$auth.user.email
+                    )
+                   // console.log(customeUserPMRecords);
+                   
+                     villageChickenPostMortemRecords = customeUserPMRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken'
+                     )
+              
+                    // console.log(villageChickenPostMortemRecords.length);
+              
+                      infectiousLaryRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Infectious Laryngotracheitis'
+                     )
+              
+                    // console.log(infectiousLaryRecords.length)
+              
+                      newCastleRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Newcastle'
+                     )
+              
+                      gumboroRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Gumboro'
+                     )
+              
+                      coccidiosisRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Coccidiosis'
+                     )
+              
+                      fowlPoxRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Fowl Pox'
+                     )
+              
+                      eggPeritonitisRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Egg Peritonitis'
+                     )
+              
+                      ectoParasitesRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Ectoparasites'
+                     )
+              
+                      helminthiasisRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Helminthiasis'
+                     )
+              
+                      mycoPlasmosisRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Mycoplasmosis'
+                     )
+              
+                      snakeBiteRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Snake Bites'
+                     )
+              
+                      colibacillosisRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Colibacillosis'
+                     )
+              
+                      chronicInfectiousBronchyRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Chronic Infectious Bronchitis'
+                     )
+
+                      otherVillageChickenRecords = villageChickenPostMortemRecords.filter( a=>
+                      a.vetPostMortemCategory ==='Village Chicken' && a.vetPostMortemDiseases === 'Other Disease'
+                     )
+
+                     console.log(otherVillageChickenRecords)
+
+
+                     
+                        filteredILRecords = infectiousLaryRecords.filter( ct => 
+                       ct.date >= newPostMortemFilterRecord.startDate && ct.date <= newPostMortemFilterRecord.endDate
+                       );
+              
+                      
+              
+                        filteredNewcastleRecords = newCastleRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                        filteredGumboroRecords = gumboroRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                        filteredCoccidiosisecords = coccidiosisRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                        filteredFowlPoxRecords = fowlPoxRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                        filteredEggPeritonitisRecords = eggPeritonitisRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                        filteredEctoParasitesRecords = ectoParasitesRecords.filter( ct => 
+                           new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                           );
+                  
+                        filteredHelminthiasisRecords = helminthiasisRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                        filteredMycoplasmosisRecords = mycoPlasmosisRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                        filteredSnakeBiteRecords = snakeBiteRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                        filteredColibacillosisRecords = colibacillosisRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+              
+                        filteredChronicInfectiousBronchyRecords = chronicInfectiousBronchyRecords.filter( ct => 
+                       new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                       );
+                  
+                        
+                        filteredOtherVillageChickenDiseaseRecords = otherVillageChickenRecords.filter( ct => 
+                        new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                        );
+                     
+                          
+              
+                     
+                         commit(GET_FILTERED_VET_PM_START_TIME, newPostMortemFilterRecord.startDate);
+              
+                         commit(GET_FILTERED_VET_PM_END_TIME, newPostMortemFilterRecord.endDate);
+              
+                        commit(GET_ALL_IL_RECORDS, filteredILRecords.length);
+              
+                          commit(GET_ALL_NEWCASTLE_RECORDS, filteredNewcastleRecords.length);
+              
+                          commit(GET_ALL_GUMBORO_RECORDS, filteredGumboroRecords.length);
+              
+                          commit(GET_ALL_COCCIDIOSIS_RECORDS, filteredCoccidiosisecords.length);
+              
+                          commit(GET_ALL_FOWL_POX_RECORDS, filteredFowlPoxRecords.length);
+              
+                          commit(GET_ALL_EGG_PERITONITIS_RECORDS, filteredEggPeritonitisRecords.length);
+              
+                          commit(GET_ALL_ECTOPARASITES_RECORDS, filteredEctoParasitesRecords.length);
+              
+                          commit(GET_ALL_HELMINTHIASIS_RECORDS, filteredHelminthiasisRecords.length);
+              
+                          commit(GET_ALL_MYCOPLASMOSIS_RECORDS, filteredMycoplasmosisRecords.length);
+              
+                          commit(GET_ALL_SNAKE_BITE_RECORDS, filteredSnakeBiteRecords.length);
+              
+                          commit(GET_ALL_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length);
+              
+                          commit(GET_ALL_CHRONIC_INFECTIOUS_BRONCHY_RECORDS, filteredChronicInfectiousBronchyRecords.length);
+
+
+                          commit(GET_ALL_OTHER_VILLAGE_CHICKEN_DISEASE_RECORDS, filteredOtherVillageChickenDiseaseRecords.length);
+              
+
+               break;
+          }
+
 
        
            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
@@ -2742,244 +2901,107 @@ export const actions = {
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/vet/allPostMortems`)
 
+
            
-           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
-                      const broilerChickenPostMortemRecords = customeUserRecords.filter( a=>
-                        a.vetPostMortemCategory ==='Broilers'
-                      )
-               
-                     // console.log(broilerChickenPostMortemRecords.length);
-               
-                      const heatStressRecords = broilerChickenPostMortemRecords.filter( af=>
-                       af.vetPostMortemDiseases === 'Heat Stress'
-                      )
-               
-                     // console.log(heatStressRecords.length)
-               
-                      const broilerNewCastleRecords = broilerChickenPostMortemRecords.filter( bf=>
-                        bf.vetPostMortemDiseases === 'Newcastle'
-                      )
-               
-                     // console.log(broilerNewCastleRecords.length)
-               
-                       const broilerCoccidiosisRecords = broilerChickenPostMortemRecords.filter( c=>
-                         c.vetPostMortemDiseases === 'Coccidiosis'
-                       )
-               
-                       const infectiousCoryzaRecords = broilerChickenPostMortemRecords.filter( d=>
-                         d.vetPostMortemDiseases === 'Infectious Coryza'
-                       )
-               
-                       const chronicRespDiseaseRecords = broilerChickenPostMortemRecords.filter( e=>
-                         e.vetPostMortemDiseases === 'Chronic Respiratory Disease'
-                       )
-               
-                       const ascitesRecords = broilerChickenPostMortemRecords.filter( f=>
-                         f.vetPostMortemDiseases === 'Ascites'
-                       )
-               
-                       const broilerColibacillosisRecords = broilerChickenPostMortemRecords.filter( g=>
-                         g.vetPostMortemDiseases === 'Colibacillosis'
-                       )
-               
-                       const traumaRecords = broilerChickenPostMortemRecords.filter( h=>
-                         h.vetPostMortemDiseases === 'Trauma'
-                       )
-               
-                       const broilerGumboroRecords = broilerChickenPostMortemRecords.filter( i=>
-                         i.vetPostMortemDiseases === 'Gumboro'
-                       )
+           const option = loggedInUser.role;
 
-                       const broilerOtherDiseaseRecords = broilerChickenPostMortemRecords.filter( j=>
-                        j.vetPostMortemDiseases === 'Other Disease'
-                      )
-               
-                     
-                      
-                          const filteredHeatStressRecords = heatStressRecords.filter( atf => 
-                          new Date(atf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atf.date) <= new Date(newPostMortemFilterRecord.endDate)
-                          );
-               
-                         // console.log(filteredHeatStressRecords.length)
-               
-                            const filteredNewCastleRecords = broilerNewCastleRecords.filter( btf => 
-                            new Date(btf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btf.date) <= new Date(newPostMortemFilterRecord.endDate)
-                            );
-               
-                           // console.log(filteredNewCastleRecords)
-               
-                            const filteredGumboroRecords = broilerGumboroRecords.filter( ct => 
-                            new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
-                            );
-               
-                             const filteredCoccidiosisecords = broilerCoccidiosisRecords.filter( dt => 
-                             new Date(dt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dt.date) <= new Date(newPostMortemFilterRecord.endDate)
-                             );
-               
-                             const filteredInfectiousCoryzaRecords = infectiousCoryzaRecords.filter( et => 
-                             new Date(et.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(et.date) <= new Date(newPostMortemFilterRecord.endDate)
-                             );
-               
-                            const filteredChronicRespDiseaseRecords = chronicRespDiseaseRecords.filter( ft => 
-                            new Date(ft.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ft.date) <= new Date(newPostMortemFilterRecord.endDate)
-                            );
-               
-                            const filteredAscitesRecords = ascitesRecords.filter( gt => 
-                                new Date(gt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(gt.date) <= new Date(newPostMortemFilterRecord.endDate)
-                                );
-                   
-                       
-               
-                             const filteredColibacillosisRecords = broilerColibacillosisRecords.filter( ht => 
-                             new Date(ht.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ht.date) <= new Date(newPostMortemFilterRecord.endDate)
-                             );
-               
-                            const filteredTraumaRecords = traumaRecords.filter( it => 
-                            new Date(it.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(it.date) <= new Date(newPostMortemFilterRecord.endDate)
-                            );
-
-
-                            const filteredOtherBroilerRecords = broilerOtherDiseaseRecords.filter( jt => 
-                              new Date(jt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(jt.date) <= new Date(newPostMortemFilterRecord.endDate)
-                              );
-                   
-               
-                      
-                           
-               
-                      
-                           commit(GET_FILTERED_BROILER_PM_START_TIME, newPostMortemFilterRecord.startDate);
-               
-                           commit(GET_FILTERED_BROILER_PM_END_TIME, newPostMortemFilterRecord.endDate);
-               
-                           commit(GET_ALL_BROILER_GUMBORO_RECORDS, filteredGumboroRecords.length);
-               
-                           commit(GET_ALL_BROILER_NEWCASTLE_RECORDS, filteredNewCastleRecords.length);
-               
-                           commit(GET_ALL_BROILER_HEAT_STRESS_RECORDS, filteredHeatStressRecords.length);
-               
-                           commit(GET_ALL_BROILER_COCCIDIOSIS_RECORDS, filteredCoccidiosisecords.length);
-               
-                           commit(GET_ALL_BROILER_INFECTIOUS_CORYZA_RECORDS, filteredInfectiousCoryzaRecords.length);
-               
-                           commit(GET_ALL_BROILER_CHRONIC_RESP_DISEASE_RECORDS, filteredChronicRespDiseaseRecords.length);
-               
-                           commit(GET_ALL_BROILER_ASCITES_RECORDS, filteredAscitesRecords.length);
-               
-                           commit(GET_ALL_BROILER_TRAUMA_RECORDS, filteredTraumaRecords.length);
-               
-                           commit(GET_ALL_BROILER_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length);
-
-                           commit(GET_ALL_BROILER_OTHER_RECORDS, filteredOtherBroilerRecords.length);
-               
-                         
-                         
-               
-           }
-
-        }
-
-
-           else{
-            const broilerChickenPostMortemRecords = response.data.filter( a=>
+           switch (option) {
+            case 'Admin':
+              let broilerChickenPostMortemRecords = response.data.filter( a=>
                 a.vetPostMortemCategory ==='Broilers'
               )
        
              // console.log(broilerChickenPostMortemRecords.length);
        
-              const heatStressRecords = broilerChickenPostMortemRecords.filter( af=>
+              let heatStressRecords = broilerChickenPostMortemRecords.filter( af=>
                af.vetPostMortemDiseases === 'Heat Stress'
               )
        
              // console.log(heatStressRecords.length)
        
-              const broilerNewCastleRecords = broilerChickenPostMortemRecords.filter( bf=>
+              let broilerNewCastleRecords = broilerChickenPostMortemRecords.filter( bf=>
                 bf.vetPostMortemDiseases === 'Newcastle'
               )
        
              // console.log(broilerNewCastleRecords.length)
        
-               const broilerCoccidiosisRecords = broilerChickenPostMortemRecords.filter( c=>
+               let broilerCoccidiosisRecords = broilerChickenPostMortemRecords.filter( c=>
                  c.vetPostMortemDiseases === 'Coccidiosis'
                )
        
-               const infectiousCoryzaRecords = broilerChickenPostMortemRecords.filter( d=>
+               let infectiousCoryzaRecords = broilerChickenPostMortemRecords.filter( d=>
                  d.vetPostMortemDiseases === 'Infectious Coryza'
                )
        
-               const chronicRespDiseaseRecords = broilerChickenPostMortemRecords.filter( e=>
+               let chronicRespDiseaseRecords = broilerChickenPostMortemRecords.filter( e=>
                  e.vetPostMortemDiseases === 'Chronic Respiratory Disease'
                )
        
-               const ascitesRecords = broilerChickenPostMortemRecords.filter( f=>
+               let ascitesRecords = broilerChickenPostMortemRecords.filter( f=>
                  f.vetPostMortemDiseases === 'Ascites'
                )
        
-               const broilerColibacillosisRecords = broilerChickenPostMortemRecords.filter( g=>
+               let broilerColibacillosisRecords = broilerChickenPostMortemRecords.filter( g=>
                  g.vetPostMortemDiseases === 'Colibacillosis'
                )
        
-               const traumaRecords = broilerChickenPostMortemRecords.filter( h=>
+               let traumaRecords = broilerChickenPostMortemRecords.filter( h=>
                  h.vetPostMortemDiseases === 'Trauma'
                )
        
-               const broilerGumboroRecords = broilerChickenPostMortemRecords.filter( i=>
+               let broilerGumboroRecords = broilerChickenPostMortemRecords.filter( i=>
                  i.vetPostMortemDiseases === 'Gumboro'
                )
 
-               const broilerOtherDiseaseRecords = broilerChickenPostMortemRecords.filter( j=>
+               let broilerOtherDiseaseRecords = broilerChickenPostMortemRecords.filter( j=>
                 j.vetPostMortemDiseases === 'Other Disease'
               )
        
              
               
-                  const filteredHeatStressRecords = heatStressRecords.filter( atf => 
+                  let filteredHeatStressRecords = heatStressRecords.filter( atf => 
                   new Date(atf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atf.date) <= new Date(newPostMortemFilterRecord.endDate)
                   );
        
                  // console.log(filteredHeatStressRecords.length)
        
-                    const filteredNewCastleRecords = broilerNewCastleRecords.filter( btf => 
+                    let filteredNewCastleRecords = broilerNewCastleRecords.filter( btf => 
                     new Date(btf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btf.date) <= new Date(newPostMortemFilterRecord.endDate)
                     );
        
                    // console.log(filteredNewCastleRecords)
        
-                    const filteredGumboroRecords = broilerGumboroRecords.filter( ct => 
+                    let filteredGumboroRecords = broilerGumboroRecords.filter( ct => 
                     new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
                     );
        
-                     const filteredCoccidiosisecords = broilerCoccidiosisRecords.filter( dt => 
+                     let filteredCoccidiosisecords = broilerCoccidiosisRecords.filter( dt => 
                      new Date(dt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dt.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
        
-                     const filteredInfectiousCoryzaRecords = infectiousCoryzaRecords.filter( et => 
+                     let filteredInfectiousCoryzaRecords = infectiousCoryzaRecords.filter( et => 
                      new Date(et.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(et.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
        
-                    const filteredChronicRespDiseaseRecords = chronicRespDiseaseRecords.filter( ft => 
+                    let filteredChronicRespDiseaseRecords = chronicRespDiseaseRecords.filter( ft => 
                     new Date(ft.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ft.date) <= new Date(newPostMortemFilterRecord.endDate)
                     );
        
-                    const filteredAscitesRecords = ascitesRecords.filter( gt => 
+                    let filteredAscitesRecords = ascitesRecords.filter( gt => 
                         new Date(gt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(gt.date) <= new Date(newPostMortemFilterRecord.endDate)
                         );
            
                
        
-                     const filteredColibacillosisRecords = broilerColibacillosisRecords.filter( ht => 
+                     let filteredColibacillosisRecords = broilerColibacillosisRecords.filter( ht => 
                      new Date(ht.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ht.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
        
-                    const filteredTraumaRecords = traumaRecords.filter( it => 
+                    let filteredTraumaRecords = traumaRecords.filter( it => 
                     new Date(it.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(it.date) <= new Date(newPostMortemFilterRecord.endDate)
                     );
 
-                    const filteredOtherBroilerRecords = broilerOtherDiseaseRecords.filter( jt => 
+                    let filteredOtherBroilerRecords = broilerOtherDiseaseRecords.filter( jt => 
                       new Date(jt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(jt.date) <= new Date(newPostMortemFilterRecord.endDate)
                       );
            
@@ -3014,8 +3036,281 @@ export const actions = {
        
                  
                  
+                break;
+
+            case 'Manager':
+               broilerChickenPostMortemRecords = response.data.filter( a=>
+                a.vetPostMortemCategory ==='Broilers'
+              )
        
+             // console.log(broilerChickenPostMortemRecords.length);
+       
+               heatStressRecords = broilerChickenPostMortemRecords.filter( af=>
+               af.vetPostMortemDiseases === 'Heat Stress'
+              )
+       
+             // console.log(heatStressRecords.length)
+       
+               broilerNewCastleRecords = broilerChickenPostMortemRecords.filter( bf=>
+                bf.vetPostMortemDiseases === 'Newcastle'
+              )
+       
+             // console.log(broilerNewCastleRecords.length)
+       
+                broilerCoccidiosisRecords = broilerChickenPostMortemRecords.filter( c=>
+                 c.vetPostMortemDiseases === 'Coccidiosis'
+               )
+       
+                infectiousCoryzaRecords = broilerChickenPostMortemRecords.filter( d=>
+                 d.vetPostMortemDiseases === 'Infectious Coryza'
+               )
+       
+                chronicRespDiseaseRecords = broilerChickenPostMortemRecords.filter( e=>
+                 e.vetPostMortemDiseases === 'Chronic Respiratory Disease'
+               )
+       
+                ascitesRecords = broilerChickenPostMortemRecords.filter( f=>
+                 f.vetPostMortemDiseases === 'Ascites'
+               )
+       
+                broilerColibacillosisRecords = broilerChickenPostMortemRecords.filter( g=>
+                 g.vetPostMortemDiseases === 'Colibacillosis'
+               )
+       
+                traumaRecords = broilerChickenPostMortemRecords.filter( h=>
+                 h.vetPostMortemDiseases === 'Trauma'
+               )
+       
+                broilerGumboroRecords = broilerChickenPostMortemRecords.filter( i=>
+                 i.vetPostMortemDiseases === 'Gumboro'
+               )
+
+                broilerOtherDiseaseRecords = broilerChickenPostMortemRecords.filter( j=>
+                j.vetPostMortemDiseases === 'Other Disease'
+              )
+       
+             
+              
+                   filteredHeatStressRecords = heatStressRecords.filter( atf => 
+                  new Date(atf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                  );
+       
+                 // console.log(filteredHeatStressRecords.length)
+       
+                     filteredNewCastleRecords = broilerNewCastleRecords.filter( btf => 
+                    new Date(btf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                    );
+       
+                   // console.log(filteredNewCastleRecords)
+       
+                     filteredGumboroRecords = broilerGumboroRecords.filter( ct => 
+                    new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                    );
+       
+                      filteredCoccidiosisecords = broilerCoccidiosisRecords.filter( dt => 
+                     new Date(dt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dt.date) <= new Date(newPostMortemFilterRecord.endDate)
+                     );
+       
+                      filteredInfectiousCoryzaRecords = infectiousCoryzaRecords.filter( et => 
+                     new Date(et.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(et.date) <= new Date(newPostMortemFilterRecord.endDate)
+                     );
+       
+                     filteredChronicRespDiseaseRecords = chronicRespDiseaseRecords.filter( ft => 
+                    new Date(ft.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ft.date) <= new Date(newPostMortemFilterRecord.endDate)
+                    );
+       
+                     filteredAscitesRecords = ascitesRecords.filter( gt => 
+                        new Date(gt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(gt.date) <= new Date(newPostMortemFilterRecord.endDate)
+                        );
+           
+               
+       
+                      filteredColibacillosisRecords = broilerColibacillosisRecords.filter( ht => 
+                     new Date(ht.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ht.date) <= new Date(newPostMortemFilterRecord.endDate)
+                     );
+       
+                     filteredTraumaRecords = traumaRecords.filter( it => 
+                    new Date(it.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(it.date) <= new Date(newPostMortemFilterRecord.endDate)
+                    );
+
+                     filteredOtherBroilerRecords = broilerOtherDiseaseRecords.filter( jt => 
+                      new Date(jt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(jt.date) <= new Date(newPostMortemFilterRecord.endDate)
+                      );
+           
+       
+              
+                   
+       
+              
+                   commit(GET_FILTERED_BROILER_PM_START_TIME, newPostMortemFilterRecord.startDate);
+       
+                   commit(GET_FILTERED_BROILER_PM_END_TIME, newPostMortemFilterRecord.endDate);
+       
+                   commit(GET_ALL_BROILER_GUMBORO_RECORDS, filteredGumboroRecords.length);
+       
+                   commit(GET_ALL_BROILER_NEWCASTLE_RECORDS, filteredNewCastleRecords.length);
+       
+                   commit(GET_ALL_BROILER_HEAT_STRESS_RECORDS, filteredHeatStressRecords.length);
+       
+                   commit(GET_ALL_BROILER_COCCIDIOSIS_RECORDS, filteredCoccidiosisecords.length);
+       
+                   commit(GET_ALL_BROILER_INFECTIOUS_CORYZA_RECORDS, filteredInfectiousCoryzaRecords.length);
+       
+                   commit(GET_ALL_BROILER_CHRONIC_RESP_DISEASE_RECORDS, filteredChronicRespDiseaseRecords.length);
+       
+                   commit(GET_ALL_BROILER_ASCITES_RECORDS, filteredAscitesRecords.length);
+       
+                   commit(GET_ALL_BROILER_TRAUMA_RECORDS, filteredTraumaRecords.length);
+       
+                   commit(GET_ALL_BROILER_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length);
+
+                   commit(GET_ALL_BROILER_OTHER_RECORDS, filteredOtherBroilerRecords.length);
+       
+                 
+                 
+            break;
+           
+            default:
+
+            let customeUserPMRecords = response.data.filter( cur=>
+              cur.createdBy === this.$auth.user.email
+                    )
+
+              broilerChickenPostMortemRecords = customeUserPMRecords.filter( a=>
+                a.vetPostMortemCategory ==='Broilers'
+              )
+       
+             // console.log(broilerChickenPostMortemRecords.length);
+       
+               heatStressRecords = broilerChickenPostMortemRecords.filter( af=>
+               af.vetPostMortemDiseases === 'Heat Stress'
+              )
+       
+             // console.log(heatStressRecords.length)
+       
+               broilerNewCastleRecords = broilerChickenPostMortemRecords.filter( bf=>
+                bf.vetPostMortemDiseases === 'Newcastle'
+              )
+       
+             // console.log(broilerNewCastleRecords.length)
+       
+                broilerCoccidiosisRecords = broilerChickenPostMortemRecords.filter( c=>
+                 c.vetPostMortemDiseases === 'Coccidiosis'
+               )
+       
+                infectiousCoryzaRecords = broilerChickenPostMortemRecords.filter( d=>
+                 d.vetPostMortemDiseases === 'Infectious Coryza'
+               )
+       
+                chronicRespDiseaseRecords = broilerChickenPostMortemRecords.filter( e=>
+                 e.vetPostMortemDiseases === 'Chronic Respiratory Disease'
+               )
+       
+                ascitesRecords = broilerChickenPostMortemRecords.filter( f=>
+                 f.vetPostMortemDiseases === 'Ascites'
+               )
+       
+                broilerColibacillosisRecords = broilerChickenPostMortemRecords.filter( g=>
+                 g.vetPostMortemDiseases === 'Colibacillosis'
+               )
+       
+                traumaRecords = broilerChickenPostMortemRecords.filter( h=>
+                 h.vetPostMortemDiseases === 'Trauma'
+               )
+       
+                broilerGumboroRecords = broilerChickenPostMortemRecords.filter( i=>
+                 i.vetPostMortemDiseases === 'Gumboro'
+               )
+
+                broilerOtherDiseaseRecords = broilerChickenPostMortemRecords.filter( j=>
+                j.vetPostMortemDiseases === 'Other Disease'
+              )
+       
+             
+              
+                   filteredHeatStressRecords = heatStressRecords.filter( atf => 
+                  new Date(atf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                  );
+       
+                 // console.log(filteredHeatStressRecords.length)
+       
+                     filteredNewCastleRecords = broilerNewCastleRecords.filter( btf => 
+                    new Date(btf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                    );
+       
+                   // console.log(filteredNewCastleRecords)
+       
+                     filteredGumboroRecords = broilerGumboroRecords.filter( ct => 
+                    new Date(ct.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ct.date) <= new Date(newPostMortemFilterRecord.endDate)
+                    );
+       
+                      filteredCoccidiosisecords = broilerCoccidiosisRecords.filter( dt => 
+                     new Date(dt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dt.date) <= new Date(newPostMortemFilterRecord.endDate)
+                     );
+       
+                      filteredInfectiousCoryzaRecords = infectiousCoryzaRecords.filter( et => 
+                     new Date(et.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(et.date) <= new Date(newPostMortemFilterRecord.endDate)
+                     );
+       
+                     filteredChronicRespDiseaseRecords = chronicRespDiseaseRecords.filter( ft => 
+                    new Date(ft.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ft.date) <= new Date(newPostMortemFilterRecord.endDate)
+                    );
+       
+                     filteredAscitesRecords = ascitesRecords.filter( gt => 
+                        new Date(gt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(gt.date) <= new Date(newPostMortemFilterRecord.endDate)
+                        );
+           
+               
+       
+                      filteredColibacillosisRecords = broilerColibacillosisRecords.filter( ht => 
+                     new Date(ht.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ht.date) <= new Date(newPostMortemFilterRecord.endDate)
+                     );
+       
+                     filteredTraumaRecords = traumaRecords.filter( it => 
+                    new Date(it.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(it.date) <= new Date(newPostMortemFilterRecord.endDate)
+                    );
+
+                     filteredOtherBroilerRecords = broilerOtherDiseaseRecords.filter( jt => 
+                      new Date(jt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(jt.date) <= new Date(newPostMortemFilterRecord.endDate)
+                      );
+           
+       
+              
+                   
+       
+              
+                   commit(GET_FILTERED_BROILER_PM_START_TIME, newPostMortemFilterRecord.startDate);
+       
+                   commit(GET_FILTERED_BROILER_PM_END_TIME, newPostMortemFilterRecord.endDate);
+       
+                   commit(GET_ALL_BROILER_GUMBORO_RECORDS, filteredGumboroRecords.length);
+       
+                   commit(GET_ALL_BROILER_NEWCASTLE_RECORDS, filteredNewCastleRecords.length);
+       
+                   commit(GET_ALL_BROILER_HEAT_STRESS_RECORDS, filteredHeatStressRecords.length);
+       
+                   commit(GET_ALL_BROILER_COCCIDIOSIS_RECORDS, filteredCoccidiosisecords.length);
+       
+                   commit(GET_ALL_BROILER_INFECTIOUS_CORYZA_RECORDS, filteredInfectiousCoryzaRecords.length);
+       
+                   commit(GET_ALL_BROILER_CHRONIC_RESP_DISEASE_RECORDS, filteredChronicRespDiseaseRecords.length);
+       
+                   commit(GET_ALL_BROILER_ASCITES_RECORDS, filteredAscitesRecords.length);
+       
+                   commit(GET_ALL_BROILER_TRAUMA_RECORDS, filteredTraumaRecords.length);
+       
+                   commit(GET_ALL_BROILER_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length);
+
+                   commit(GET_ALL_BROILER_OTHER_RECORDS, filteredOtherBroilerRecords.length);
+
+                break;
            }
+
+           
+       
+
+
+        
        
         
         //--------------------ALL AGRO RECORDS FILTERED BY CATEGORY --------------------------------// 
@@ -3058,243 +3353,242 @@ export const actions = {
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/vet/allPostMortems`)
 
-           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
-                      
-                      const layerChickenPostMortemRecords = customeUserRecords.filter( a=>
-                        a.vetPostMortemCategory ==='Layers'
-                      )
-               
-                     // console.log(layerChickenPostMortemRecords.length);
-               
-                      const fattyLiveHSRecords = layerChickenPostMortemRecords.filter( af=>
-                       af.vetPostMortemDiseases === 'Fatty Liver HS'
-                      )
-               
-                     // console.log(fattyLiveHSRecords.length)
-               
-                      const layerNewCastleRecords = layerChickenPostMortemRecords.filter( bf=>
-                        bf.vetPostMortemDiseases === 'Newcastle'
-                      )
-               
-                     // console.log(layerNewCastleRecords.length)
-               
-                       const layerCoccidiosisRecords = layerChickenPostMortemRecords.filter( c=>
-                         c.vetPostMortemDiseases === 'Coccidiosis'
-                       )
-               
-                       const laryngotracheitisRecords = layerChickenPostMortemRecords.filter( d=>
-                         d.vetPostMortemDiseases === 'Laryngotracheitis'
-                       )
-               
-                       const layerEggPeritonitisRecords = layerChickenPostMortemRecords.filter( e=>
-                         e.vetPostMortemDiseases === 'Egg Peritonitis'
-                       )
-               
-                       const layerHelminthiasisRecords = layerChickenPostMortemRecords.filter( f=>
-                         f.vetPostMortemDiseases === 'Helminthiasis'
-                       )
-               
-                       const layerInfectiousBronchyRecords = layerChickenPostMortemRecords.filter( g=>
-                         g.vetPostMortemDiseases === 'Infectious Bronchitis'
-                       )
-               
-                       const layerCalciumDeficiencyRecords = layerChickenPostMortemRecords.filter( h=>
-                         h.vetPostMortemDiseases === 'Calcium Deficiency'
-                       )
-               
-                       const layerGumboroRecords = layerChickenPostMortemRecords.filter( i=>
-                         i.vetPostMortemDiseases === 'Gumboro'
-                       )
+           
+           const option = loggedInUser.role;
 
-                       const layerOtherRecords = layerChickenPostMortemRecords.filter( i=>
-                        i.vetPostMortemDiseases === 'Other Disease'
-                      )
+           switch (option) {
+            case 'Admin':
+              
+           
+                let layerChickenPostMortemRecords = response.data.filter( a=>
+                    a.vetPostMortemCategory ==='Layers'
+                  )
+           
+                 // console.log(layerChickenPostMortemRecords.length);
+           
+                  let fattyLiveHSRecords = layerChickenPostMortemRecords.filter( af=>
+                   af.vetPostMortemDiseases === 'Fatty Liver HS'
+                  )
+           
+                 // console.log(fattyLiveHSRecords.length)
+           
+                  let layerNewCastleRecords = layerChickenPostMortemRecords.filter( bf=>
+                    bf.vetPostMortemDiseases === 'Newcastle'
+                  )
+           
+                 // console.log(layerNewCastleRecords.length)
+           
+                   let layerCoccidiosisRecords = layerChickenPostMortemRecords.filter( c=>
+                     c.vetPostMortemDiseases === 'Coccidiosis'
+                   )
+           
+                   let laryngotracheitisRecords = layerChickenPostMortemRecords.filter( d=>
+                     d.vetPostMortemDiseases === 'Laryngotracheitis'
+                   )
+           
+                   let layerEggPeritonitisRecords = layerChickenPostMortemRecords.filter( e=>
+                     e.vetPostMortemDiseases === 'Egg Peritonitis'
+                   )
+           
+                   let layerHelminthiasisRecords = layerChickenPostMortemRecords.filter( f=>
+                     f.vetPostMortemDiseases === 'Helminthiasis'
+                   )
+           
+                   let layerInfectiousBronchyRecords = layerChickenPostMortemRecords.filter( g=>
+                     g.vetPostMortemDiseases === 'Infectious Bronchitis'
+                   )
+           
+                   let layerCalciumDeficiencyRecords = layerChickenPostMortemRecords.filter( h=>
+                     h.vetPostMortemDiseases === 'Calcium Deficiency'
+                   )
+           
+                   let layerGumboroRecords = layerChickenPostMortemRecords.filter( i=>
+                     i.vetPostMortemDiseases === 'Gumboro'
+                   )
+    
+                   let layerOtherRecords = layerChickenPostMortemRecords.filter( i=>
+                    i.vetPostMortemDiseases === 'Other Disease'
+                  )
+           
+                 
+                  
+                      let filteredFattyLiverHSRecords = fattyLiveHSRecords.filter( atf => 
+                      new Date(atf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                      );
+           
+                     // console.log(filteredFattyLiverHSRecords.length)
+           
+                         let filteredNewCastleRecords = layerNewCastleRecords.filter( btf => 
+                         new Date(btf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                         );
+           
+                       // // console.log(filteredNewCastleRecords)
+           
+                         let filteredGumboroRecords = layerGumboroRecords.filter( ctf => 
+                         new Date(ctf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                         );
+           
+                          let filteredLayerCoccidiosisRecords = layerCoccidiosisRecords.filter( dtf => 
+                          new Date(dtf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                          );
+           
+                          let filteredHelminthiasisRecords = layerHelminthiasisRecords.filter( etf => 
+                          new Date(etf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                          );
+           
+                        let filteredInfectiousBronchyRecords = layerInfectiousBronchyRecords.filter( ftf => 
+                        new Date(ftf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ftf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                        );
+           
+                         let filteredEggPeritonitisRecords = layerEggPeritonitisRecords.filter( gtf => 
+                             new Date(gtf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(gtf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                             );
                
-                     
-                      
-                          const filteredFattyLiverHSRecords = fattyLiveHSRecords.filter( atf => 
-                          new Date(atf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                   
+           
+                          let filteredCalciumDeficiencyRecords = layerCalciumDeficiencyRecords.filter( ht => 
+                          new Date(ht.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ht.date) <= new Date(newPostMortemFilterRecord.endDate)
+                          );
+           
+                         let filteredLaryngotracheitisRecords = laryngotracheitisRecords.filter( it => 
+                         new Date(it.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(it.date) <= new Date(newPostMortemFilterRecord.endDate)
+                         );
+    
+                         let filteredOtherLayerDiseaseRecords = layerOtherRecords.filter( Jt => 
+                          new Date(Jt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(Jt.date) <= new Date(newPostMortemFilterRecord.endDate)
                           );
                
-                         // console.log(filteredFattyLiverHSRecords.length)
-               
-                             const filteredNewCastleRecords = layerNewCastleRecords.filter( btf => 
-                             new Date(btf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btf.date) <= new Date(newPostMortemFilterRecord.endDate)
-                             );
-               
-                           // // console.log(filteredNewCastleRecords)
-               
-                             const filteredGumboroRecords = layerGumboroRecords.filter( ctf => 
-                             new Date(ctf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctf.date) <= new Date(newPostMortemFilterRecord.endDate)
-                             );
-               
-                              const filteredLayerCoccidiosisRecords = layerCoccidiosisRecords.filter( dtf => 
-                              new Date(dtf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtf.date) <= new Date(newPostMortemFilterRecord.endDate)
-                              );
-               
-                              const filteredHelminthiasisRecords = layerHelminthiasisRecords.filter( etf => 
-                              new Date(etf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etf.date) <= new Date(newPostMortemFilterRecord.endDate)
-                              );
-               
-                            const filteredInfectiousBronchyRecords = layerInfectiousBronchyRecords.filter( ftf => 
-                            new Date(ftf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ftf.date) <= new Date(newPostMortemFilterRecord.endDate)
-                            );
-               
-                             const filteredEggPeritonitisRecords = layerEggPeritonitisRecords.filter( gtf => 
-                                 new Date(gtf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(gtf.date) <= new Date(newPostMortemFilterRecord.endDate)
-                                 );
-                   
-                       
-               
-                              const filteredCalciumDeficiencyRecords = layerCalciumDeficiencyRecords.filter( ht => 
-                              new Date(ht.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ht.date) <= new Date(newPostMortemFilterRecord.endDate)
-                              );
-               
-                             const filteredLaryngotracheitisRecords = laryngotracheitisRecords.filter( it => 
-                             new Date(it.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(it.date) <= new Date(newPostMortemFilterRecord.endDate)
-                             );
-
-                             const filteredOtherLayerDiseaseRecords = layerOtherRecords.filter( Jt => 
-                              new Date(Jt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(Jt.date) <= new Date(newPostMortemFilterRecord.endDate)
-                              );
-                   
-               
-                      
-                           
-               
-                      
-                           commit(GET_FILTERED_LAYER_PM_START_TIME, newPostMortemFilterRecord.startDate);
-               
-                           commit(GET_FILTERED_LAYER_PM_END_TIME, newPostMortemFilterRecord.endDate);
-               
-               
-                            commit(GET_ALL_LAYER_FATTY_LIVER_HS_RECORDS, filteredFattyLiverHSRecords.length); 
-               
-                            commit(GET_ALL_LAYER_GUMBORO_RECORDS, filteredGumboroRecords.length);
-               
-                            commit(GET_ALL_LAYER_NEWCASTLE_RECORDS, filteredNewCastleRecords.length);
-               
-                            commit(GET_ALL_LAYER_EGG_PERITONITIS_RECORDS, filteredEggPeritonitisRecords.length);
-               
-                            commit(GET_ALL_LAYER_COCCIDIOSIS_RECORDS, filteredLayerCoccidiosisRecords.length);
-               
-                            commit(GET_ALL_LAYER_LARYNGOTRACHEITIS_RECORDS, filteredLaryngotracheitisRecords.length);
-               
-                            commit(GET_ALL_LAYER_HELMINTHIASIS_RECORDS, filteredHelminthiasisRecords.length);
-               
-                            commit(GET_ALL_LAYER_INFECTIOUS_BRONCHITIS_RECORDS, filteredInfectiousBronchyRecords.length);
-               
-                            commit(GET_ALL_LAYER_CALCIUM_DEFICIENCY_RECORDS, filteredCalciumDeficiencyRecords.length);
-
-                            commit(GET_ALL_LAYER_OTHER_RECORDS, filteredOtherLayerDiseaseRecords.length);
-               
-                       
-           }
-
-        }
-
-
-           else{
            
-            const layerChickenPostMortemRecords = response.data.filter( a=>
+                  
+                       
+           
+                  
+                       commit(GET_FILTERED_LAYER_PM_START_TIME, newPostMortemFilterRecord.startDate);
+           
+                       commit(GET_FILTERED_LAYER_PM_END_TIME, newPostMortemFilterRecord.endDate);
+           
+           
+                        commit(GET_ALL_LAYER_FATTY_LIVER_HS_RECORDS, filteredFattyLiverHSRecords.length); 
+           
+                        commit(GET_ALL_LAYER_GUMBORO_RECORDS, filteredGumboroRecords.length);
+           
+                        commit(GET_ALL_LAYER_NEWCASTLE_RECORDS, filteredNewCastleRecords.length);
+           
+                        commit(GET_ALL_LAYER_EGG_PERITONITIS_RECORDS, filteredEggPeritonitisRecords.length);
+           
+                        commit(GET_ALL_LAYER_COCCIDIOSIS_RECORDS, filteredLayerCoccidiosisRecords.length);
+           
+                        commit(GET_ALL_LAYER_LARYNGOTRACHEITIS_RECORDS, filteredLaryngotracheitisRecords.length);
+           
+                        commit(GET_ALL_LAYER_HELMINTHIASIS_RECORDS, filteredHelminthiasisRecords.length);
+           
+                        commit(GET_ALL_LAYER_INFECTIOUS_BRONCHITIS_RECORDS, filteredInfectiousBronchyRecords.length);
+           
+                        commit(GET_ALL_LAYER_CALCIUM_DEFICIENCY_RECORDS, filteredCalciumDeficiencyRecords.length);
+    
+                        
+                        commit(GET_ALL_LAYER_OTHER_RECORDS, filteredOtherLayerDiseaseRecords.length);
+           
+                   
+               
+                break;
+
+            case 'Manager':
+               layerChickenPostMortemRecords = response.data.filter( a=>
                 a.vetPostMortemCategory ==='Layers'
               )
        
              // console.log(layerChickenPostMortemRecords.length);
        
-              const fattyLiveHSRecords = layerChickenPostMortemRecords.filter( af=>
+               fattyLiveHSRecords = layerChickenPostMortemRecords.filter( af=>
                af.vetPostMortemDiseases === 'Fatty Liver HS'
               )
        
              // console.log(fattyLiveHSRecords.length)
        
-              const layerNewCastleRecords = layerChickenPostMortemRecords.filter( bf=>
+               layerNewCastleRecords = layerChickenPostMortemRecords.filter( bf=>
                 bf.vetPostMortemDiseases === 'Newcastle'
               )
        
              // console.log(layerNewCastleRecords.length)
        
-               const layerCoccidiosisRecords = layerChickenPostMortemRecords.filter( c=>
+                layerCoccidiosisRecords = layerChickenPostMortemRecords.filter( c=>
                  c.vetPostMortemDiseases === 'Coccidiosis'
                )
        
-               const laryngotracheitisRecords = layerChickenPostMortemRecords.filter( d=>
+                laryngotracheitisRecords = layerChickenPostMortemRecords.filter( d=>
                  d.vetPostMortemDiseases === 'Laryngotracheitis'
                )
        
-               const layerEggPeritonitisRecords = layerChickenPostMortemRecords.filter( e=>
+                layerEggPeritonitisRecords = layerChickenPostMortemRecords.filter( e=>
                  e.vetPostMortemDiseases === 'Egg Peritonitis'
                )
        
-               const layerHelminthiasisRecords = layerChickenPostMortemRecords.filter( f=>
+                layerHelminthiasisRecords = layerChickenPostMortemRecords.filter( f=>
                  f.vetPostMortemDiseases === 'Helminthiasis'
                )
        
-               const layerInfectiousBronchyRecords = layerChickenPostMortemRecords.filter( g=>
+                layerInfectiousBronchyRecords = layerChickenPostMortemRecords.filter( g=>
                  g.vetPostMortemDiseases === 'Infectious Bronchitis'
                )
        
-               const layerCalciumDeficiencyRecords = layerChickenPostMortemRecords.filter( h=>
+                layerCalciumDeficiencyRecords = layerChickenPostMortemRecords.filter( h=>
                  h.vetPostMortemDiseases === 'Calcium Deficiency'
                )
        
-               const layerGumboroRecords = layerChickenPostMortemRecords.filter( i=>
+                layerGumboroRecords = layerChickenPostMortemRecords.filter( i=>
                  i.vetPostMortemDiseases === 'Gumboro'
                )
 
-               const layerOtherRecords = layerChickenPostMortemRecords.filter( i=>
+                layerOtherRecords = layerChickenPostMortemRecords.filter( i=>
                 i.vetPostMortemDiseases === 'Other Disease'
               )
        
              
               
-                  const filteredFattyLiverHSRecords = fattyLiveHSRecords.filter( atf => 
+                   filteredFattyLiverHSRecords = fattyLiveHSRecords.filter( atf => 
                   new Date(atf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atf.date) <= new Date(newPostMortemFilterRecord.endDate)
                   );
        
                  // console.log(filteredFattyLiverHSRecords.length)
        
-                     const filteredNewCastleRecords = layerNewCastleRecords.filter( btf => 
+                      filteredNewCastleRecords = layerNewCastleRecords.filter( btf => 
                      new Date(btf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btf.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
        
                    // // console.log(filteredNewCastleRecords)
        
-                     const filteredGumboroRecords = layerGumboroRecords.filter( ctf => 
+                      filteredGumboroRecords = layerGumboroRecords.filter( ctf => 
                      new Date(ctf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctf.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
        
-                      const filteredLayerCoccidiosisRecords = layerCoccidiosisRecords.filter( dtf => 
+                       filteredLayerCoccidiosisRecords = layerCoccidiosisRecords.filter( dtf => 
                       new Date(dtf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtf.date) <= new Date(newPostMortemFilterRecord.endDate)
                       );
        
-                      const filteredHelminthiasisRecords = layerHelminthiasisRecords.filter( etf => 
+                       filteredHelminthiasisRecords = layerHelminthiasisRecords.filter( etf => 
                       new Date(etf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etf.date) <= new Date(newPostMortemFilterRecord.endDate)
                       );
        
-                    const filteredInfectiousBronchyRecords = layerInfectiousBronchyRecords.filter( ftf => 
+                     filteredInfectiousBronchyRecords = layerInfectiousBronchyRecords.filter( ftf => 
                     new Date(ftf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ftf.date) <= new Date(newPostMortemFilterRecord.endDate)
                     );
        
-                     const filteredEggPeritonitisRecords = layerEggPeritonitisRecords.filter( gtf => 
+                      filteredEggPeritonitisRecords = layerEggPeritonitisRecords.filter( gtf => 
                          new Date(gtf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(gtf.date) <= new Date(newPostMortemFilterRecord.endDate)
                          );
            
                
        
-                      const filteredCalciumDeficiencyRecords = layerCalciumDeficiencyRecords.filter( ht => 
+                       filteredCalciumDeficiencyRecords = layerCalciumDeficiencyRecords.filter( ht => 
                       new Date(ht.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ht.date) <= new Date(newPostMortemFilterRecord.endDate)
                       );
        
-                     const filteredLaryngotracheitisRecords = laryngotracheitisRecords.filter( it => 
+                      filteredLaryngotracheitisRecords = laryngotracheitisRecords.filter( it => 
                      new Date(it.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(it.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
 
-                     const filteredOtherLayerDiseaseRecords = layerOtherRecords.filter( Jt => 
+                      filteredOtherLayerDiseaseRecords = layerOtherRecords.filter( Jt => 
                       new Date(Jt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(Jt.date) <= new Date(newPostMortemFilterRecord.endDate)
                       );
            
@@ -3328,15 +3622,149 @@ export const actions = {
 
                     
                     commit(GET_ALL_LAYER_OTHER_RECORDS, filteredOtherLayerDiseaseRecords.length);
-       
+            break;
+           
+            default:
+                let customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
+
+                      console.log(customeUserRecords);
+                      console.log(customeUserRecords.length)
                
-           }
-       
+                       layerChickenPostMortemRecords = customeUserRecords.filter( a=>
+                        a.vetPostMortemCategory ==='Layers'
+                      )
+               
+                     // console.log(layerChickenPostMortemRecords.length);
+               
+                       fattyLiveHSRecords = layerChickenPostMortemRecords.filter( af=>
+                       af.vetPostMortemDiseases === 'Fatty Liver HS'
+                      )
+               
+                     // console.log(fattyLiveHSRecords.length)
+               
+                       layerNewCastleRecords = layerChickenPostMortemRecords.filter( bf=>
+                        bf.vetPostMortemDiseases === 'Newcastle'
+                      )
+               
+                     // console.log(layerNewCastleRecords.length)
+               
+                        layerCoccidiosisRecords = layerChickenPostMortemRecords.filter( c=>
+                         c.vetPostMortemDiseases === 'Coccidiosis'
+                       )
+               
+                        laryngotracheitisRecords = layerChickenPostMortemRecords.filter( d=>
+                         d.vetPostMortemDiseases === 'Laryngotracheitis'
+                       )
+               
+                        layerEggPeritonitisRecords = layerChickenPostMortemRecords.filter( e=>
+                         e.vetPostMortemDiseases === 'Egg Peritonitis'
+                       )
+               
+                        layerHelminthiasisRecords = layerChickenPostMortemRecords.filter( f=>
+                         f.vetPostMortemDiseases === 'Helminthiasis'
+                       )
+               
+                        layerInfectiousBronchyRecords = layerChickenPostMortemRecords.filter( g=>
+                         g.vetPostMortemDiseases === 'Infectious Bronchitis'
+                       )
+               
+                        layerCalciumDeficiencyRecords = layerChickenPostMortemRecords.filter( h=>
+                         h.vetPostMortemDiseases === 'Calcium Deficiency'
+                       )
+               
+                        layerGumboroRecords = layerChickenPostMortemRecords.filter( i=>
+                         i.vetPostMortemDiseases === 'Gumboro'
+                       )
         
-        //--------------------ALL AGRO RECORDS FILTERED BY CATEGORY --------------------------------// 
-         
-          
-          
+                        layerOtherRecords = layerChickenPostMortemRecords.filter( i=>
+                        i.vetPostMortemDiseases === 'Other Disease'
+                      )
+               
+                     
+                      
+                           filteredFattyLiverHSRecords = fattyLiveHSRecords.filter( atf => 
+                          new Date(atf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                          );
+               
+                         // console.log(filteredFattyLiverHSRecords.length)
+               
+                              filteredNewCastleRecords = layerNewCastleRecords.filter( btf => 
+                             new Date(btf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                             );
+               
+                           // // console.log(filteredNewCastleRecords)
+               
+                              filteredGumboroRecords = layerGumboroRecords.filter( ctf => 
+                             new Date(ctf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                             );
+               
+                               filteredLayerCoccidiosisRecords = layerCoccidiosisRecords.filter( dtf => 
+                              new Date(dtf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                              );
+               
+                               filteredHelminthiasisRecords = layerHelminthiasisRecords.filter( etf => 
+                              new Date(etf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                              );
+               
+                             filteredInfectiousBronchyRecords = layerInfectiousBronchyRecords.filter( ftf => 
+                            new Date(ftf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ftf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                            );
+               
+                              filteredEggPeritonitisRecords = layerEggPeritonitisRecords.filter( gtf => 
+                                 new Date(gtf.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(gtf.date) <= new Date(newPostMortemFilterRecord.endDate)
+                                 );
+                   
+                       
+               
+                               filteredCalciumDeficiencyRecords = layerCalciumDeficiencyRecords.filter( ht => 
+                              new Date(ht.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ht.date) <= new Date(newPostMortemFilterRecord.endDate)
+                              );
+               
+                              filteredLaryngotracheitisRecords = laryngotracheitisRecords.filter( it => 
+                             new Date(it.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(it.date) <= new Date(newPostMortemFilterRecord.endDate)
+                             );
+        
+                              filteredOtherLayerDiseaseRecords = layerOtherRecords.filter( Jt => 
+                              new Date(Jt.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(Jt.date) <= new Date(newPostMortemFilterRecord.endDate)
+                              );
+                   
+               
+                      
+                           
+               
+                      
+                           commit(GET_FILTERED_LAYER_PM_START_TIME, newPostMortemFilterRecord.startDate);
+               
+                           commit(GET_FILTERED_LAYER_PM_END_TIME, newPostMortemFilterRecord.endDate);
+               
+               
+                            commit(GET_ALL_LAYER_FATTY_LIVER_HS_RECORDS, filteredFattyLiverHSRecords.length); 
+               
+                            commit(GET_ALL_LAYER_GUMBORO_RECORDS, filteredGumboroRecords.length);
+               
+                            commit(GET_ALL_LAYER_NEWCASTLE_RECORDS, filteredNewCastleRecords.length);
+               
+                            commit(GET_ALL_LAYER_EGG_PERITONITIS_RECORDS, filteredEggPeritonitisRecords.length);
+               
+                            commit(GET_ALL_LAYER_COCCIDIOSIS_RECORDS, filteredLayerCoccidiosisRecords.length);
+               
+                            commit(GET_ALL_LAYER_LARYNGOTRACHEITIS_RECORDS, filteredLaryngotracheitisRecords.length);
+               
+                            commit(GET_ALL_LAYER_HELMINTHIASIS_RECORDS, filteredHelminthiasisRecords.length);
+               
+                            commit(GET_ALL_LAYER_INFECTIOUS_BRONCHITIS_RECORDS, filteredInfectiousBronchyRecords.length);
+               
+                            commit(GET_ALL_LAYER_CALCIUM_DEFICIENCY_RECORDS, filteredCalciumDeficiencyRecords.length);
+        
+                            
+                            commit(GET_ALL_LAYER_OTHER_RECORDS, filteredOtherLayerDiseaseRecords.length);
+
+                break;
+           }
+
+
 
        
            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
@@ -3377,147 +3805,147 @@ export const actions = {
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/vet/allPostMortems`)
 
-           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
-                      const pigPostMortemRecords = customeUserRecords.filter( a=>
-                        a.vetPostMortemCategory ==='Pigs'
-                      )
-               
-                     // console.log(pigPostMortemRecords.length);
-               
-                      const mycoPlasmosisRecords = pigPostMortemRecords.filter( ap=>
-                       ap.vetPostMortemDiseases === 'Mycoplasmosis'
-                      )
-               
-                     // console.log(mycoPlasmosisRecords.length)
-               
-                      const pneumoniaRecords = pigPostMortemRecords.filter( bp=>
-                        bp.vetPostMortemDiseases === 'Pneumonia'
-                      )
-               
-                     // console.log(pneumoniaRecords.length)
-               
-                       const clostridialInfectionRecords = pigPostMortemRecords.filter( cp=>
-                         cp.vetPostMortemDiseases === 'Clostridial Infection'
-                       )
-               
-                       const enteritisRecords = pigPostMortemRecords.filter( dp=>
-                         dp.vetPostMortemDiseases === 'Enteritis'
-                       )
+           
+           const option = loggedInUser.role;
 
-                       const otherPigRecords = pigPostMortemRecords.filter( ep=>
-                        ep.vetPostMortemDiseases === 'Other Disease'
-                      )
-               
-                     
-                      
-                          const filteredMycoPlasmosisRecords = mycoPlasmosisRecords.filter( atp => 
-                          new Date(atp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atp.date) <= new Date(newPostMortemFilterRecord.endDate)
+           switch (option) {
+            case 'Admin':
+              
+                let pigPostMortemRecords = response.data.filter( a=>
+                    a.vetPostMortemCategory ==='Pigs'
+                  )
+           
+                 // console.log(pigPostMortemRecords.length);
+           
+                  let mycoPlasmosisRecords = pigPostMortemRecords.filter( ap=>
+                   ap.vetPostMortemDiseases === 'Mycoplasmosis'
+                  )
+           
+                 // console.log(mycoPlasmosisRecords.length)
+           
+                  let pneumoniaRecords = pigPostMortemRecords.filter( bp=>
+                    bp.vetPostMortemDiseases === 'Pneumonia'
+                  )
+           
+                 // console.log(pneumoniaRecords.length)
+           
+                   let clostridialInfectionRecords = pigPostMortemRecords.filter( cp=>
+                     cp.vetPostMortemDiseases === 'Clostridial Infection'
+                   )
+           
+                   let enteritisRecords = pigPostMortemRecords.filter( dp=>
+                     dp.vetPostMortemDiseases === 'Enteritis'
+                   )
+    
+                   
+                   let otherPigRecords = pigPostMortemRecords.filter( ep=>
+                    ep.vetPostMortemDiseases === 'Other Disease'
+                  )
+           
+                 
+                  
+                      let filteredMycoPlasmosisRecords = mycoPlasmosisRecords.filter( atp => 
+                      new Date(atp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atp.date) <= new Date(newPostMortemFilterRecord.endDate)
+                      );
+           
+                     // console.log(filteredMycoPlasmosisRecords.length)
+           
+                         let filteredPneumoniaRecords = pneumoniaRecords.filter( btp => 
+                         new Date(btp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btp.date) <= new Date(newPostMortemFilterRecord.endDate)
+                         );
+           
+                       // console.log(filteredPneumoniaRecords.length)
+           
+                         let filteredClostridialInfectionRecords = clostridialInfectionRecords.filter( ctp => 
+                         new Date(ctp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctp.date) <= new Date(newPostMortemFilterRecord.endDate)
+                         );
+           
+                          let filteredEnteritisRecords = enteritisRecords.filter( dtp => 
+                          new Date(dtp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtp.date) <= new Date(newPostMortemFilterRecord.endDate)
                           );
+                          
+                          let filteredOtherPigRecords = otherPigRecords.filter( etp => 
+                            new Date(etp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etp.date) <= new Date(newPostMortemFilterRecord.endDate)
+                            );
+                     
+                  
+                       
+           
+                  
+                       commit(GET_FILTERED_PIG_PM_START_TIME, newPostMortemFilterRecord.startDate);
+           
+                       commit(GET_FILTERED_PIG_PM_END_TIME, newPostMortemFilterRecord.endDate);
+           
+           
+                        commit(GET_ALL_PIG_MYCOPLASMOSIS_RECORDS, filteredMycoPlasmosisRecords.length); 
+           
+                        commit(GET_ALL_PIG_PNEUMONIA_RECORDS, filteredPneumoniaRecords.length);
+           
+                        commit(GET_ALL_PIG_CLOSTRIDIAL_INFECTION_RECORDS, filteredClostridialInfectionRecords.length);
+           
+                       commit(GET_ALL_PIG_ENTERITIS_RECORDS, filteredEnteritisRecords.length);
+    
+                       
+                       commit(GET_ALL_PIG_OTHER_RECORDS, filteredOtherPigRecords.length)
+           
                
-                         // console.log(filteredMycoPlasmosisRecords.length)
-               
-                             const filteredPneumoniaRecords = pneumoniaRecords.filter( btp => 
-                             new Date(btp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btp.date) <= new Date(newPostMortemFilterRecord.endDate)
-                             );
-               
-                           // console.log(filteredPneumoniaRecords.length)
-               
-                             const filteredClostridialInfectionRecords = clostridialInfectionRecords.filter( ctp => 
-                             new Date(ctp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctp.date) <= new Date(newPostMortemFilterRecord.endDate)
-                             );
-               
-                              const filteredEnteritisRecords = enteritisRecords.filter( dtp => 
-                              new Date(dtp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtp.date) <= new Date(newPostMortemFilterRecord.endDate)
-                              );
+                break;
 
-                              const filteredOtherPigRecords = otherPigRecords.filter( etp => 
-                                new Date(etp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etp.date) <= new Date(newPostMortemFilterRecord.endDate)
-                                );
-               
-                         
-                      
-                           
-               
-                      
-                           commit(GET_FILTERED_PIG_PM_START_TIME, newPostMortemFilterRecord.startDate);
-               
-                           commit(GET_FILTERED_PIG_PM_END_TIME, newPostMortemFilterRecord.endDate);
-               
-               
-                            commit(GET_ALL_PIG_MYCOPLASMOSIS_RECORDS, filteredMycoPlasmosisRecords.length); 
-               
-                            commit(GET_ALL_PIG_PNEUMONIA_RECORDS, filteredPneumoniaRecords.length);
-               
-                            commit(GET_ALL_PIG_CLOSTRIDIAL_INFECTION_RECORDS, filteredClostridialInfectionRecords.length);
-               
-                           commit(GET_ALL_PIG_ENTERITIS_RECORDS, filteredEnteritisRecords.length);
-
-                           commit(GET_ALL_PIG_OTHER_RECORDS, filteredOtherPigRecords.length)
-               
-           }
-
-        }
-
-
-           else{
-            const pigPostMortemRecords = response.data.filter( a=>
+            case 'Manager':
+               pigPostMortemRecords = response.data.filter( a=>
                 a.vetPostMortemCategory ==='Pigs'
               )
        
              // console.log(pigPostMortemRecords.length);
        
-              const mycoPlasmosisRecords = pigPostMortemRecords.filter( ap=>
+               mycoPlasmosisRecords = pigPostMortemRecords.filter( ap=>
                ap.vetPostMortemDiseases === 'Mycoplasmosis'
               )
        
              // console.log(mycoPlasmosisRecords.length)
        
-              const pneumoniaRecords = pigPostMortemRecords.filter( bp=>
+               pneumoniaRecords = pigPostMortemRecords.filter( bp=>
                 bp.vetPostMortemDiseases === 'Pneumonia'
               )
        
              // console.log(pneumoniaRecords.length)
        
-               const clostridialInfectionRecords = pigPostMortemRecords.filter( cp=>
+                clostridialInfectionRecords = pigPostMortemRecords.filter( cp=>
                  cp.vetPostMortemDiseases === 'Clostridial Infection'
                )
        
-               const enteritisRecords = pigPostMortemRecords.filter( dp=>
+                enteritisRecords = pigPostMortemRecords.filter( dp=>
                  dp.vetPostMortemDiseases === 'Enteritis'
                )
 
                
-               const otherPigRecords = pigPostMortemRecords.filter( ep=>
+                otherPigRecords = pigPostMortemRecords.filter( ep=>
                 ep.vetPostMortemDiseases === 'Other Disease'
               )
        
              
               
-                  const filteredMycoPlasmosisRecords = mycoPlasmosisRecords.filter( atp => 
+                   filteredMycoPlasmosisRecords = mycoPlasmosisRecords.filter( atp => 
                   new Date(atp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atp.date) <= new Date(newPostMortemFilterRecord.endDate)
                   );
        
                  // console.log(filteredMycoPlasmosisRecords.length)
        
-                     const filteredPneumoniaRecords = pneumoniaRecords.filter( btp => 
+                      filteredPneumoniaRecords = pneumoniaRecords.filter( btp => 
                      new Date(btp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btp.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
        
                    // console.log(filteredPneumoniaRecords.length)
        
-                     const filteredClostridialInfectionRecords = clostridialInfectionRecords.filter( ctp => 
+                      filteredClostridialInfectionRecords = clostridialInfectionRecords.filter( ctp => 
                      new Date(ctp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctp.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
        
-                      const filteredEnteritisRecords = enteritisRecords.filter( dtp => 
+                       filteredEnteritisRecords = enteritisRecords.filter( dtp => 
                       new Date(dtp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtp.date) <= new Date(newPostMortemFilterRecord.endDate)
                       );
                       
-                      const filteredOtherPigRecords = otherPigRecords.filter( etp => 
+                       filteredOtherPigRecords = otherPigRecords.filter( etp => 
                         new Date(etp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etp.date) <= new Date(newPostMortemFilterRecord.endDate)
                         );
                  
@@ -3541,7 +3969,97 @@ export const actions = {
                    
                    commit(GET_ALL_PIG_OTHER_RECORDS, filteredOtherPigRecords.length)
        
+            break;
+           
+            default:
+                const customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
+
+                      console.log(customeUserRecords);
+                      console.log(customeUserRecords.length)
+                      
+                       pigPostMortemRecords = customeUserRecords.filter( a=>
+                        a.vetPostMortemCategory ==='Pigs'
+                      )
+               
+                     // console.log(pigPostMortemRecords.length);
+               
+                       mycoPlasmosisRecords = pigPostMortemRecords.filter( ap=>
+                       ap.vetPostMortemDiseases === 'Mycoplasmosis'
+                      )
+               
+                     // console.log(mycoPlasmosisRecords.length)
+               
+                       pneumoniaRecords = pigPostMortemRecords.filter( bp=>
+                        bp.vetPostMortemDiseases === 'Pneumonia'
+                      )
+               
+                     // console.log(pneumoniaRecords.length)
+               
+                        clostridialInfectionRecords = pigPostMortemRecords.filter( cp=>
+                         cp.vetPostMortemDiseases === 'Clostridial Infection'
+                       )
+               
+                        enteritisRecords = pigPostMortemRecords.filter( dp=>
+                         dp.vetPostMortemDiseases === 'Enteritis'
+                       )
+        
+                       
+                        otherPigRecords = pigPostMortemRecords.filter( ep=>
+                        ep.vetPostMortemDiseases === 'Other Disease'
+                      )
+               
+                     
+                      
+                           filteredMycoPlasmosisRecords = mycoPlasmosisRecords.filter( atp => 
+                          new Date(atp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atp.date) <= new Date(newPostMortemFilterRecord.endDate)
+                          );
+               
+                         // console.log(filteredMycoPlasmosisRecords.length)
+               
+                              filteredPneumoniaRecords = pneumoniaRecords.filter( btp => 
+                             new Date(btp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btp.date) <= new Date(newPostMortemFilterRecord.endDate)
+                             );
+               
+                           // console.log(filteredPneumoniaRecords.length)
+               
+                              filteredClostridialInfectionRecords = clostridialInfectionRecords.filter( ctp => 
+                             new Date(ctp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctp.date) <= new Date(newPostMortemFilterRecord.endDate)
+                             );
+               
+                               filteredEnteritisRecords = enteritisRecords.filter( dtp => 
+                              new Date(dtp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtp.date) <= new Date(newPostMortemFilterRecord.endDate)
+                              );
+                              
+                               filteredOtherPigRecords = otherPigRecords.filter( etp => 
+                                new Date(etp.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etp.date) <= new Date(newPostMortemFilterRecord.endDate)
+                                );
+                         
+                      
+                           
+               
+                      
+                           commit(GET_FILTERED_PIG_PM_START_TIME, newPostMortemFilterRecord.startDate);
+               
+                           commit(GET_FILTERED_PIG_PM_END_TIME, newPostMortemFilterRecord.endDate);
+               
+               
+                            commit(GET_ALL_PIG_MYCOPLASMOSIS_RECORDS, filteredMycoPlasmosisRecords.length); 
+               
+                            commit(GET_ALL_PIG_PNEUMONIA_RECORDS, filteredPneumoniaRecords.length);
+               
+                            commit(GET_ALL_PIG_CLOSTRIDIAL_INFECTION_RECORDS, filteredClostridialInfectionRecords.length);
+               
+                           commit(GET_ALL_PIG_ENTERITIS_RECORDS, filteredEnteritisRecords.length);
+        
+                           
+                           commit(GET_ALL_PIG_OTHER_RECORDS, filteredOtherPigRecords.length)
+               
+
+                break;
            }
+
        
         //--------------------ALL AGRO RECORDS FILTERED BY CATEGORY --------------------------------// 
         
@@ -3582,174 +4100,269 @@ export const actions = {
            
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/vet/allPostMortems`)
-           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
-                      const goatPostMortemRecords = customeUserRecords.filter( g=>
-                        g.vetPostMortemCategory ==='Goats'
-                      )
-               
-                     // console.log(goatPostMortemRecords.length);
-               
-                      const helminthiasisRecords = goatPostMortemRecords.filter( ag=>
-                       ag.vetPostMortemDiseases === 'Helminthiasis'
-                      )
-               
-                     // console.log(helminthiasisRecords.length)
-               
-                      const heartWaterRecords = goatPostMortemRecords.filter( bg=>
-                        bg.vetPostMortemDiseases === 'Heartwater'
-                      )
-               
-                      
-               
-                       const traumaRecords = goatPostMortemRecords.filter( cg=>
-                         cg.vetPostMortemDiseases === 'Trauma'
-                       )
-               
-                       const hemonchosisRecords = goatPostMortemRecords.filter( dg=>
-                         dg.vetPostMortemDiseases === 'Hemonchosis'
-                       )
 
-                       const otherGoatDiseaseRecords = goatPostMortemRecords.filter( eg=>
-                        eg.vetPostMortemDiseases === 'Other Disease'
-                      )
-               
-                     
-                      
-                          const filteredHelminthiasisRecords = helminthiasisRecords.filter( atg => 
-                          new Date(atg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atg.date) <= new Date(newPostMortemFilterRecord.endDate)
-                          );
-               
-                         // console.log(filteredHelminthiasisRecords.length)
-               
-                             const filteredHeartWaterRecords = heartWaterRecords.filter( btg => 
-                             new Date(btg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btg.date) <= new Date(newPostMortemFilterRecord.endDate)
-                             );
-               
-                           // console.log(filteredHeartWaterRecords.length)
-               
-                             const filteredTraumaRecords = traumaRecords.filter( ctg => 
-                             new Date(ctg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctg.date) <= new Date(newPostMortemFilterRecord.endDate)
-                             );
-               
-                              const filteredHemonchosisRecords = hemonchosisRecords.filter( dtg => 
-                              new Date(dtg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtg.date) <= new Date(newPostMortemFilterRecord.endDate)
-                              );
-               
-                         
-                            const filteredOtherGoatDiseaseRecords = otherGoatDiseaseRecords.filter( etg => 
-                              new Date(etg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etg.date) <= new Date(newPostMortemFilterRecord.endDate)
-                              );
+
+          
+           const option = loggedInUser.role;
+
+           switch (option) {
+            case 'Admin':
+              
+                let goatPostMortemRecords = response.data.filter( g=>
+                    g.vetPostMortemCategory ==='Goats'
+                  )
+           
+                 // console.log(goatPostMortemRecords.length);
+           
+                  let helminthiasisRecords = goatPostMortemRecords.filter( ag=>
+                   ag.vetPostMortemDiseases === 'Helminthiasis'
+                  )
+           
+                 // console.log(helminthiasisRecords.length)
+           
+                  let heartWaterRecords = goatPostMortemRecords.filter( bg=>
+                    bg.vetPostMortemDiseases === 'Heartwater'
+                  )
+           
+                  
+           
+                   let traumaRecords = goatPostMortemRecords.filter( cg=>
+                     cg.vetPostMortemDiseases === 'Trauma'
+                   )
+           
+                   let hemonchosisRecords = goatPostMortemRecords.filter( dg=>
+                     dg.vetPostMortemDiseases === 'Hemonchosis'
+                   )
+    
+                   let otherGoatDiseaseRecords = goatPostMortemRecords.filter( eg=>
+                    eg.vetPostMortemDiseases === 'Other Disease'
+                  )
+           
                  
-                           
-               
-                      
-                           commit(GET_FILTERED_GOAT_PM_START_TIME, newPostMortemFilterRecord.startDate);
-               
-                           commit(GET_FILTERED_GOAT_PM_END_TIME, newPostMortemFilterRecord.endDate);
-               
-               
-                            commit(GET_ALL_GOAT_HELMINTHIASIS_RECORDS, filteredHelminthiasisRecords.length); 
-               
-                            commit(GET_ALL_GOAT_HEARTWATER_RECORDS, filteredHeartWaterRecords.length);
-               
-                            commit(GET_ALL_GOAT_TRAUMA_RECORDS, filteredTraumaRecords.length);
-               
-                           commit(GET_ALL_GOAT_HEMONCHOSIS_RECORDS, filteredHemonchosisRecords.length);
-
-                           commit(GET_ALL_GOAT_OTHER_RECORDS, filteredOtherGoatDiseaseRecords.length)
-               
-           }
-
-        }
-
-
-           else{
-            const goatPostMortemRecords = response.data.filter( g=>
-                g.vetPostMortemCategory ==='Goats'
-              )
-       
-             // console.log(goatPostMortemRecords.length);
-       
-              const helminthiasisRecords = goatPostMortemRecords.filter( ag=>
-               ag.vetPostMortemDiseases === 'Helminthiasis'
-              )
-       
-             // console.log(helminthiasisRecords.length)
-       
-              const heartWaterRecords = goatPostMortemRecords.filter( bg=>
-                bg.vetPostMortemDiseases === 'Heartwater'
-              )
-       
-              
-       
-               const traumaRecords = goatPostMortemRecords.filter( cg=>
-                 cg.vetPostMortemDiseases === 'Trauma'
-               )
-       
-               const hemonchosisRecords = goatPostMortemRecords.filter( dg=>
-                 dg.vetPostMortemDiseases === 'Hemonchosis'
-               )
-
-               const otherGoatDiseaseRecords = goatPostMortemRecords.filter( eg=>
-                eg.vetPostMortemDiseases === 'Other Disease'
-              )
-       
-             
-              
-                  const filteredHelminthiasisRecords = helminthiasisRecords.filter( atg => 
-                  new Date(atg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atg.date) <= new Date(newPostMortemFilterRecord.endDate)
-                  );
-       
-                 // console.log(filteredHelminthiasisRecords.length)
-       
-                     const filteredHeartWaterRecords = heartWaterRecords.filter( btg => 
-                     new Date(btg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btg.date) <= new Date(newPostMortemFilterRecord.endDate)
-                     );
-       
-                   // console.log(filteredHeartWaterRecords.length)
-       
-                     const filteredTraumaRecords = traumaRecords.filter( ctg => 
-                     new Date(ctg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctg.date) <= new Date(newPostMortemFilterRecord.endDate)
-                     );
-       
-                      const filteredHemonchosisRecords = hemonchosisRecords.filter( dtg => 
-                      new Date(dtg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtg.date) <= new Date(newPostMortemFilterRecord.endDate)
+                  
+                      let filteredHelminthiasisRecords = helminthiasisRecords.filter( atg => 
+                      new Date(atg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atg.date) <= new Date(newPostMortemFilterRecord.endDate)
                       );
-
-                      const filteredOtherGoatDiseaseRecords = otherGoatDiseaseRecords.filter( etg => 
-                        new Date(etg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etg.date) <= new Date(newPostMortemFilterRecord.endDate)
-                        );
-       
-                 
-              
-                   
-       
-              
-                   commit(GET_FILTERED_GOAT_PM_START_TIME, newPostMortemFilterRecord.startDate);
-       
-                   commit(GET_FILTERED_GOAT_PM_END_TIME, newPostMortemFilterRecord.endDate);
-       
-       
-                    commit(GET_ALL_GOAT_HELMINTHIASIS_RECORDS, filteredHelminthiasisRecords.length); 
-       
-                    commit(GET_ALL_GOAT_HEARTWATER_RECORDS, filteredHeartWaterRecords.length);
-       
-                    commit(GET_ALL_GOAT_TRAUMA_RECORDS, filteredTraumaRecords.length);
-       
-                   commit(GET_ALL_GOAT_HEMONCHOSIS_RECORDS, filteredHemonchosisRecords.length);
-
-                   commit(GET_ALL_GOAT_OTHER_RECORDS, filteredOtherGoatDiseaseRecords.length);
-
-       
-           }
-       
-        //--------------------ALL AGRO RECORDS FILTERED BY CATEGORY --------------------------------// 
-       
+           
+                     // console.log(filteredHelminthiasisRecords.length)
+           
+                         let filteredHeartWaterRecords = heartWaterRecords.filter( btg => 
+                         new Date(btg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btg.date) <= new Date(newPostMortemFilterRecord.endDate)
+                         );
+           
+                       // console.log(filteredHeartWaterRecords.length)
+           
+                         let filteredTraumaRecords = traumaRecords.filter( ctg => 
+                         new Date(ctg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctg.date) <= new Date(newPostMortemFilterRecord.endDate)
+                         );
+           
+                          let filteredHemonchosisRecords = hemonchosisRecords.filter( dtg => 
+                          new Date(dtg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtg.date) <= new Date(newPostMortemFilterRecord.endDate)
+                          );
+    
+                          let filteredOtherGoatDiseaseRecords = otherGoatDiseaseRecords.filter( etg => 
+                            new Date(etg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etg.date) <= new Date(newPostMortemFilterRecord.endDate)
+                            );
+           
+                     
+                  
+                       
+           
+                  
+                       commit(GET_FILTERED_GOAT_PM_START_TIME, newPostMortemFilterRecord.startDate);
+           
+                       commit(GET_FILTERED_GOAT_PM_END_TIME, newPostMortemFilterRecord.endDate);
+           
+           
+                        commit(GET_ALL_GOAT_HELMINTHIASIS_RECORDS, filteredHelminthiasisRecords.length); 
+           
+                        commit(GET_ALL_GOAT_HEARTWATER_RECORDS, filteredHeartWaterRecords.length);
+           
+                        commit(GET_ALL_GOAT_TRAUMA_RECORDS, filteredTraumaRecords.length);
+           
+                       commit(GET_ALL_GOAT_HEMONCHOSIS_RECORDS, filteredHemonchosisRecords.length);
+    
+                       commit(GET_ALL_GOAT_OTHER_RECORDS, filteredOtherGoatDiseaseRecords.length);
+    
+           
                
+                break;
+
+            case 'Manager':
+              
+                 goatPostMortemRecords = response.data.filter( g=>
+                    g.vetPostMortemCategory ==='Goats'
+                  )
+           
+                 // console.log(goatPostMortemRecords.length);
+           
+                   helminthiasisRecords = goatPostMortemRecords.filter( ag=>
+                   ag.vetPostMortemDiseases === 'Helminthiasis'
+                  )
+           
+                 // console.log(helminthiasisRecords.length)
+           
+                   heartWaterRecords = goatPostMortemRecords.filter( bg=>
+                    bg.vetPostMortemDiseases === 'Heartwater'
+                  )
+           
+                  
+           
+                    traumaRecords = goatPostMortemRecords.filter( cg=>
+                     cg.vetPostMortemDiseases === 'Trauma'
+                   )
+           
+                    hemonchosisRecords = goatPostMortemRecords.filter( dg=>
+                     dg.vetPostMortemDiseases === 'Hemonchosis'
+                   )
+    
+                    otherGoatDiseaseRecords = goatPostMortemRecords.filter( eg=>
+                    eg.vetPostMortemDiseases === 'Other Disease'
+                  )
+           
+                 
+                  
+                       filteredHelminthiasisRecords = helminthiasisRecords.filter( atg => 
+                      new Date(atg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atg.date) <= new Date(newPostMortemFilterRecord.endDate)
+                      );
+           
+                     // console.log(filteredHelminthiasisRecords.length)
+           
+                          filteredHeartWaterRecords = heartWaterRecords.filter( btg => 
+                         new Date(btg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btg.date) <= new Date(newPostMortemFilterRecord.endDate)
+                         );
+           
+                       // console.log(filteredHeartWaterRecords.length)
+           
+                          filteredTraumaRecords = traumaRecords.filter( ctg => 
+                         new Date(ctg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctg.date) <= new Date(newPostMortemFilterRecord.endDate)
+                         );
+           
+                           filteredHemonchosisRecords = hemonchosisRecords.filter( dtg => 
+                          new Date(dtg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtg.date) <= new Date(newPostMortemFilterRecord.endDate)
+                          );
+    
+                           filteredOtherGoatDiseaseRecords = otherGoatDiseaseRecords.filter( etg => 
+                            new Date(etg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etg.date) <= new Date(newPostMortemFilterRecord.endDate)
+                            );
+           
+                     
+                  
+                       
+           
+                  
+                       commit(GET_FILTERED_GOAT_PM_START_TIME, newPostMortemFilterRecord.startDate);
+           
+                       commit(GET_FILTERED_GOAT_PM_END_TIME, newPostMortemFilterRecord.endDate);
+           
+           
+                        commit(GET_ALL_GOAT_HELMINTHIASIS_RECORDS, filteredHelminthiasisRecords.length); 
+           
+                        commit(GET_ALL_GOAT_HEARTWATER_RECORDS, filteredHeartWaterRecords.length);
+           
+                        commit(GET_ALL_GOAT_TRAUMA_RECORDS, filteredTraumaRecords.length);
+           
+                       commit(GET_ALL_GOAT_HEMONCHOSIS_RECORDS, filteredHemonchosisRecords.length);
+    
+                       commit(GET_ALL_GOAT_OTHER_RECORDS, filteredOtherGoatDiseaseRecords.length);
+    
+           
+               
+            break;
+           
+            default:
+                let customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
+
+                      console.log(customeUserRecords);
+                      console.log(customeUserRecords.length)
+
+                     
+
+                         goatPostMortemRecords = customeUserRecords.filter( g=>
+                            g.vetPostMortemCategory ==='Goats'
+                          )
+                   
+                         // console.log(goatPostMortemRecords.length);
+                   
+                           helminthiasisRecords = goatPostMortemRecords.filter( ag=>
+                           ag.vetPostMortemDiseases === 'Helminthiasis'
+                          )
+                   
+                         // console.log(helminthiasisRecords.length)
+                   
+                           heartWaterRecords = goatPostMortemRecords.filter( bg=>
+                            bg.vetPostMortemDiseases === 'Heartwater'
+                          )
+                   
+                          
+                   
+                            traumaRecords = goatPostMortemRecords.filter( cg=>
+                             cg.vetPostMortemDiseases === 'Trauma'
+                           )
+                   
+                            hemonchosisRecords = goatPostMortemRecords.filter( dg=>
+                             dg.vetPostMortemDiseases === 'Hemonchosis'
+                           )
+            
+                            otherGoatDiseaseRecords = goatPostMortemRecords.filter( eg=>
+                            eg.vetPostMortemDiseases === 'Other Disease'
+                          )
+                   
+                         
+                          
+                               filteredHelminthiasisRecords = helminthiasisRecords.filter( atg => 
+                              new Date(atg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atg.date) <= new Date(newPostMortemFilterRecord.endDate)
+                              );
+                   
+                             // console.log(filteredHelminthiasisRecords.length)
+                   
+                                  filteredHeartWaterRecords = heartWaterRecords.filter( btg => 
+                                 new Date(btg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btg.date) <= new Date(newPostMortemFilterRecord.endDate)
+                                 );
+                   
+                               // console.log(filteredHeartWaterRecords.length)
+                   
+                                  filteredTraumaRecords = traumaRecords.filter( ctg => 
+                                 new Date(ctg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctg.date) <= new Date(newPostMortemFilterRecord.endDate)
+                                 );
+                   
+                                   filteredHemonchosisRecords = hemonchosisRecords.filter( dtg => 
+                                  new Date(dtg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(dtg.date) <= new Date(newPostMortemFilterRecord.endDate)
+                                  );
+            
+                                   filteredOtherGoatDiseaseRecords = otherGoatDiseaseRecords.filter( etg => 
+                                    new Date(etg.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(etg.date) <= new Date(newPostMortemFilterRecord.endDate)
+                                    );
+                   
+                             
+                          
+                               
+                   
+                          
+                               commit(GET_FILTERED_GOAT_PM_START_TIME, newPostMortemFilterRecord.startDate);
+                   
+                               commit(GET_FILTERED_GOAT_PM_END_TIME, newPostMortemFilterRecord.endDate);
+                   
+                   
+                                commit(GET_ALL_GOAT_HELMINTHIASIS_RECORDS, filteredHelminthiasisRecords.length); 
+                   
+                                commit(GET_ALL_GOAT_HEARTWATER_RECORDS, filteredHeartWaterRecords.length);
+                   
+                                commit(GET_ALL_GOAT_TRAUMA_RECORDS, filteredTraumaRecords.length);
+                   
+                               commit(GET_ALL_GOAT_HEMONCHOSIS_RECORDS, filteredHemonchosisRecords.length);
+            
+                               commit(GET_ALL_GOAT_OTHER_RECORDS, filteredOtherGoatDiseaseRecords.length);
+            
+                   
+                       
+
+                break;
+           }
+
+
        
            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
            commit(SET_LOADING, false);
@@ -3787,127 +4400,189 @@ export const actions = {
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/vet/allPostMortems`)
 
-           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
-                      const quailPostMortemRecords = customeUserRecords.filter( q=>
-                        q.vetPostMortemCategory ==='Quails'
-                      )
-               
-                     // console.log(quailPostMortemRecords.length);
-               
-                      const colibacillosisRecords = quailPostMortemRecords.filter( aq=>
-                       aq.vetPostMortemDiseases === 'Colibacillosis'
-                      )
-               
-                     // console.log(colibacillosisRecords.length)
-               
-                      const salmonellosisRecords = quailPostMortemRecords.filter( bq=>
-                        bq.vetPostMortemDiseases === 'Salmonellosis'
-                      )
+           
+           const option = loggedInUser.role;
 
-                      const otherQuailDiseaseRecords = quailPostMortemRecords.filter( cq=>
-                        cq.vetPostMortemDiseases === 'Other Disease'
-                      )
-               
-                      
-                      
-                          const filteredColibacillosisRecords = colibacillosisRecords.filter( atq => 
-                          new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
-                          );
-               
-                         // console.log(filteredColibacillosisRecords.length)
-               
-                             const filteredSalmonellosisRecords = salmonellosisRecords.filter( btq => 
-                             new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
-                             );
-
-
-                             const filteredOtherQuailDiseaseRecords = otherQuailDiseaseRecords.filter( ctq => 
-                              new Date(ctq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctq.date) <= new Date(newPostMortemFilterRecord.endDate)
-                              );
-               
-                           // console.log(filteredSalmonellosisRecords.length)
-               
-                        
-                      
-                           commit(GET_FILTERED_QUAIL_PM_START_TIME, newPostMortemFilterRecord.startDate);
-               
-                           commit(GET_FILTERED_QUAIL_PM_END_TIME, newPostMortemFilterRecord.endDate);
-               
-               
-                            commit(GET_ALL_QUAIL_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length); 
-               
-                            commit(GET_ALL_QUAIL_SALMONELLOSIS_RECORDS, filteredSalmonellosisRecords.length);
-
-                            commit(GET_ALL_QUAIL_OTHER_RECORDS, filteredOtherQuailDiseaseRecords.length)
-               
-           }
-
-        }
-
-
-           else{
-            const quailPostMortemRecords = response.data.filter( q=>
-                q.vetPostMortemCategory ==='Quails'
-              )
-       
-             // console.log(quailPostMortemRecords.length);
-       
-              const colibacillosisRecords = quailPostMortemRecords.filter( aq=>
-               aq.vetPostMortemDiseases === 'Colibacillosis'
-              )
-       
-             // console.log(colibacillosisRecords.length)
-       
-              const salmonellosisRecords = quailPostMortemRecords.filter( bq=>
-                bq.vetPostMortemDiseases === 'Salmonellosis' 
-              )
-
-              const otherQuailDiseaseRecords = quailPostMortemRecords.filter( cq=>
-                cq.vetPostMortemDiseases === 'Other Disease'
-              )
-       
+           switch (option) {
+            case 'Admin':
               
-              
-                  const filteredColibacillosisRecords = colibacillosisRecords.filter( atq => 
-                  new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
-                  );
-       
-                 // console.log(filteredColibacillosisRecords.length)
-       
-                     const filteredSalmonellosisRecords = salmonellosisRecords.filter( btq => 
-                     new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
-                     );
-
-                     const filteredOtherQuailDiseaseRecords = otherQuailDiseaseRecords.filter( ctq => 
-                      new Date(ctq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                let quailPostMortemRecords = response.data.filter( q=>
+                    q.vetPostMortemCategory ==='Quails'
+                  )
+           
+                 // console.log(quailPostMortemRecords.length);
+           
+                  let colibacillosisRecords = quailPostMortemRecords.filter( aq=>
+                   aq.vetPostMortemDiseases === 'Colibacillosis'
+                  )
+           
+                 // console.log(colibacillosisRecords.length)
+           
+                  let salmonellosisRecords = quailPostMortemRecords.filter( bq=>
+                    bq.vetPostMortemDiseases === 'Salmonellosis' 
+                  )
+    
+                  let otherQuailDiseaseRecords = quailPostMortemRecords.filter( cq=>
+                    cq.vetPostMortemDiseases === 'Other Disease'
+                  )
+           
+                  
+                  
+                      let filteredColibacillosisRecords = colibacillosisRecords.filter( atq => 
+                      new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
                       );
-       
-                   // console.log(filteredSalmonellosisRecords.length)
-       
-                
-              
-                   commit(GET_FILTERED_QUAIL_PM_START_TIME, newPostMortemFilterRecord.startDate);
-       
-                   commit(GET_FILTERED_QUAIL_PM_END_TIME, newPostMortemFilterRecord.endDate);
-       
-       
-                    commit(GET_ALL_QUAIL_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length); 
-       
-                    commit(GET_ALL_QUAIL_SALMONELLOSIS_RECORDS, filteredSalmonellosisRecords.length);
-
-                    commit(GET_ALL_QUAIL_OTHER_RECORDS, filteredOtherQuailDiseaseRecords.length);
-       
-           }
-       
-        
-        //--------------------ALL AGRO RECORDS FILTERED BY CATEGORY --------------------------------// 
-       
-             
+           
+                     // console.log(filteredColibacillosisRecords.length)
+           
+                         let filteredSalmonellosisRecords = salmonellosisRecords.filter( btq => 
+                         new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                         );
+    
+                         let filteredOtherQuailDiseaseRecords = otherQuailDiseaseRecords.filter( ctq => 
+                          new Date(ctq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                          );
+           
+                       // console.log(filteredSalmonellosisRecords.length)
+           
+                    
+                  
+                       commit(GET_FILTERED_QUAIL_PM_START_TIME, newPostMortemFilterRecord.startDate);
+           
+                       commit(GET_FILTERED_QUAIL_PM_END_TIME, newPostMortemFilterRecord.endDate);
+           
+           
+                        commit(GET_ALL_QUAIL_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length); 
+           
+                        commit(GET_ALL_QUAIL_SALMONELLOSIS_RECORDS, filteredSalmonellosisRecords.length);
+    
+                        commit(GET_ALL_QUAIL_OTHER_RECORDS, filteredOtherQuailDiseaseRecords.length);
+           
                
+                break;
+
+            case 'Manager':
+             
+              quailPostMortemRecords = response.data.filter( q=>
+                    q.vetPostMortemCategory ==='Quails'
+                  )
+           
+                 // console.log(quailPostMortemRecords.length);
+           
+                   colibacillosisRecords = quailPostMortemRecords.filter( aq=>
+                   aq.vetPostMortemDiseases === 'Colibacillosis'
+                  )
+           
+                 // console.log(colibacillosisRecords.length)
+           
+                   salmonellosisRecords = quailPostMortemRecords.filter( bq=>
+                    bq.vetPostMortemDiseases === 'Salmonellosis' 
+                  )
+    
+                   otherQuailDiseaseRecords = quailPostMortemRecords.filter( cq=>
+                    cq.vetPostMortemDiseases === 'Other Disease'
+                  )
+           
+                  
+                  
+                       filteredColibacillosisRecords = colibacillosisRecords.filter( atq => 
+                      new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                      );
+           
+                     // console.log(filteredColibacillosisRecords.length)
+           
+                          filteredSalmonellosisRecords = salmonellosisRecords.filter( btq => 
+                         new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                         );
+    
+                          filteredOtherQuailDiseaseRecords = otherQuailDiseaseRecords.filter( ctq => 
+                          new Date(ctq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                          );
+           
+                       // console.log(filteredSalmonellosisRecords.length)
+           
+                    
+                  
+                       commit(GET_FILTERED_QUAIL_PM_START_TIME, newPostMortemFilterRecord.startDate);
+           
+                       commit(GET_FILTERED_QUAIL_PM_END_TIME, newPostMortemFilterRecord.endDate);
+           
+           
+                        commit(GET_ALL_QUAIL_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length); 
+           
+                        commit(GET_ALL_QUAIL_SALMONELLOSIS_RECORDS, filteredSalmonellosisRecords.length);
+    
+                        commit(GET_ALL_QUAIL_OTHER_RECORDS, filteredOtherQuailDiseaseRecords.length);
+           
+               
+            break;
+           
+            default:
+               let  customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
+
+                      console.log(customeUserRecords);
+                      console.log(customeUserRecords.length)
+
+
+                         quailPostMortemRecords = customeUserRecords.filter( q=>
+                            q.vetPostMortemCategory ==='Quails'
+                          )
+                   
+                         // console.log(quailPostMortemRecords.length);
+                   
+                           colibacillosisRecords = quailPostMortemRecords.filter( aq=>
+                           aq.vetPostMortemDiseases === 'Colibacillosis'
+                          )
+                   
+                         // console.log(colibacillosisRecords.length)
+                   
+                           salmonellosisRecords = quailPostMortemRecords.filter( bq=>
+                            bq.vetPostMortemDiseases === 'Salmonellosis' 
+                          )
+            
+                           otherQuailDiseaseRecords = quailPostMortemRecords.filter( cq=>
+                            cq.vetPostMortemDiseases === 'Other Disease'
+                          )
+                   
+                          
+                          
+                               filteredColibacillosisRecords = colibacillosisRecords.filter( atq => 
+                              new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                              );
+                   
+                             // console.log(filteredColibacillosisRecords.length)
+                   
+                                  filteredSalmonellosisRecords = salmonellosisRecords.filter( btq => 
+                                 new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                                 );
+            
+                                  filteredOtherQuailDiseaseRecords = otherQuailDiseaseRecords.filter( ctq => 
+                                  new Date(ctq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                                  );
+                   
+                               // console.log(filteredSalmonellosisRecords.length)
+                   
+                            
+                          
+                               commit(GET_FILTERED_QUAIL_PM_START_TIME, newPostMortemFilterRecord.startDate);
+                   
+                               commit(GET_FILTERED_QUAIL_PM_END_TIME, newPostMortemFilterRecord.endDate);
+                   
+                   
+                                commit(GET_ALL_QUAIL_COLIBACILLOSIS_RECORDS, filteredColibacillosisRecords.length); 
+                   
+                                commit(GET_ALL_QUAIL_SALMONELLOSIS_RECORDS, filteredSalmonellosisRecords.length);
+            
+                                commit(GET_ALL_QUAIL_OTHER_RECORDS, filteredOtherQuailDiseaseRecords.length);
+                   
+                       
+
+                break;
+           }
+
+
+     
        
            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
            commit(SET_LOADING, false);
@@ -3944,103 +4619,167 @@ export const actions = {
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/vet/allPostMortems`)
 
-           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
-                      const rabbitPostMortemRecords = customeUserRecords.filter( r=>
-                        r.vetPostMortemCategory ==='Rabbits'
-                      )
-               
-                     // console.log(rabbitPostMortemRecords.length);
-               
-                      const coccidiosisRecords = rabbitPostMortemRecords.filter( aq=>
-                       aq.vetPostMortemDiseases === 'Coccidiosis'
-                      )
-               
-                     // console.log(coccidiosisRecords.length)
-               
-                      const bacterialInfectionRecords = rabbitPostMortemRecords.filter( bq=>
-                        bq.vetPostMortemDiseases === 'Bacterial Infection'
-                      )
 
+           
+           const option = loggedInUser.role;
 
-                      const otherRabbitDiseaseRecords = rabbitPostMortemRecords.filter( cq=>
-                        cq.vetPostMortemDiseases === 'Other Disease'
-                      )
-               
-                      
-                      
-                          const filteredCoccidiosisRecords =coccidiosisRecords.filter( atq => 
-                          new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
+           switch (option) {
+            case 'Admin':
+            
+                let rabbitPostMortemRecords = response.data.filter( r=>
+                    r.vetPostMortemCategory ==='Rabbits'
+                  )
+           
+              //   // console.log(rabbitPostMortemRecords.length);
+           
+                  let coccidiosisRecords = rabbitPostMortemRecords.filter( aq=>
+                   aq.vetPostMortemDiseases === 'Coccidiosis'
+                  )
+           //
+                 // console.log(coccidiosisRecords.length)
+           
+                  let bacterialInfectionRecords = rabbitPostMortemRecords.filter( bq=>
+                    bq.vetPostMortemDiseases === 'Bacterial Infection'
+                  )
+    
+                  let otherRabbitDiseaseRecords = rabbitPostMortemRecords.filter( cq=>
+                    cq.vetPostMortemDiseases === 'Other Diseases'
+                  )
+           
+                  
+                  
+                      let filteredCoccidiosisRecords =coccidiosisRecords.filter( atq => 
+                      new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                      );
+           
+                //     // console.log(filteredCoccidiosisRecords.length)
+           
+                         let filteredBacterialInfectionRecords = bacterialInfectionRecords.filter( btq => 
+                         new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                         );
+    
+                         let filteredOtherRabbitDiseaseRecords = otherRabbitDiseaseRecords.filter( ctq => 
+                          new Date(ctq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctq.date) <= new Date(newPostMortemFilterRecord.endDate)
                           );
+           
+                    //   // console.log(filteredBacterialInfectionRecords.length)
+           
+                    
+                  
+                       commit(GET_FILTERED_RABBIT_PM_START_TIME, newPostMortemFilterRecord.startDate);
+           
+                       commit(GET_FILTERED_RABBIT_PM_END_TIME, newPostMortemFilterRecord.endDate);
+           
+           
+                        commit(GET_ALL_RABBIT_COCCIDIOSIS_RECORDS, filteredCoccidiosisRecords.length); 
+           
+                        commit(GET_ALL_RABBIT_BACTERIAL_INFECTION_RECORDS, filteredBacterialInfectionRecords.length);
+    
+                        commit(GET_ALL_RABBIT_OTHER_RECORDS, filteredOtherRabbitDiseaseRecords.length);
+           
+           
                
-                      //   // console.log(filteredCoccidiosisRecords.length)
-               
-                             const filteredBacterialInfectionRecords = bacterialInfectionRecords.filter( btq => 
-                             new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
-                             );
+                break;
 
-                             const filteredOtherRabbitDiseaseRecords = otherRabbitDiseaseRecords.filter( ctq => 
-                              new Date(ctq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctq.date) <= new Date(newPostMortemFilterRecord.endDate)
-                              );
+            case 'Manager':
+              
+                 rabbitPostMortemRecords = response.data.filter( r=>
+                    r.vetPostMortemCategory ==='Rabbits'
+                  )
+           
+              //   // console.log(rabbitPostMortemRecords.length);
+           
+                   coccidiosisRecords = rabbitPostMortemRecords.filter( aq=>
+                   aq.vetPostMortemDiseases === 'Coccidiosis'
+                  )
+           //
+                 // console.log(coccidiosisRecords.length)
+           
+                   bacterialInfectionRecords = rabbitPostMortemRecords.filter( bq=>
+                    bq.vetPostMortemDiseases === 'Bacterial Infection'
+                  )
+    
+                   otherRabbitDiseaseRecords = rabbitPostMortemRecords.filter( cq=>
+                    cq.vetPostMortemDiseases === 'Other Disease'
+                  )
+           
+                  
+                  
+                       filteredCoccidiosisRecords =coccidiosisRecords.filter( atq => 
+                      new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                      );
+           
+                //     // console.log(filteredCoccidiosisRecords.length)
+           
+                          filteredBacterialInfectionRecords = bacterialInfectionRecords.filter( btq => 
+                         new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                         );
+    
+                          filteredOtherRabbitDiseaseRecords = otherRabbitDiseaseRecords.filter( ctq => 
+                          new Date(ctq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                          );
+           
+                    //   // console.log(filteredBacterialInfectionRecords.length)
+           
+                    
+                  
+                       commit(GET_FILTERED_RABBIT_PM_START_TIME, newPostMortemFilterRecord.startDate);
+           
+                       commit(GET_FILTERED_RABBIT_PM_END_TIME, newPostMortemFilterRecord.endDate);
+           
+           
+                        commit(GET_ALL_RABBIT_COCCIDIOSIS_RECORDS, filteredCoccidiosisRecords.length); 
+           
+                        commit(GET_ALL_RABBIT_BACTERIAL_INFECTION_RECORDS, filteredBacterialInfectionRecords.length);
+    
+                        commit(GET_ALL_RABBIT_OTHER_RECORDS, filteredOtherRabbitDiseaseRecords.length);
+           
+           
                
-                    //       // console.log(filteredBacterialInfectionRecords.length)
-               
-                        
-                      
-                           commit(GET_FILTERED_RABBIT_PM_START_TIME, newPostMortemFilterRecord.startDate);
-               
-                           commit(GET_FILTERED_RABBIT_PM_END_TIME, newPostMortemFilterRecord.endDate);
-               
-               
-                            commit(GET_ALL_RABBIT_COCCIDIOSIS_RECORDS, filteredCoccidiosisRecords.length); 
-               
-                            commit(GET_ALL_RABBIT_BACTERIAL_INFECTION_RECORDS, filteredBacterialInfectionRecords.length);
+            break;
+           
+            default:
+               let customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
 
-                            commit(GET_ALL_RABBIT_OTHER_RECORDS, filteredOtherRabbitDiseaseRecords.length);
-               
-               
-           }
+                      console.log(customeUserRecords);
+                      console.log(customeUserRecords.length)
 
-        }
-
-
-           else{
-            const rabbitPostMortemRecords = response.data.filter( r=>
+                 
+             rabbitPostMortemRecords =customeUserRecords.filter( r=>
                 r.vetPostMortemCategory ==='Rabbits'
               )
        
           //   // console.log(rabbitPostMortemRecords.length);
        
-              const coccidiosisRecords = rabbitPostMortemRecords.filter( aq=>
+               coccidiosisRecords = rabbitPostMortemRecords.filter( aq=>
                aq.vetPostMortemDiseases === 'Coccidiosis'
               )
        //
              // console.log(coccidiosisRecords.length)
        
-              const bacterialInfectionRecords = rabbitPostMortemRecords.filter( bq=>
+               bacterialInfectionRecords = rabbitPostMortemRecords.filter( bq=>
                 bq.vetPostMortemDiseases === 'Bacterial Infection'
               )
 
-              const otherRabbitDiseaseRecords = rabbitPostMortemRecords.filter( cq=>
+               otherRabbitDiseaseRecords = rabbitPostMortemRecords.filter( cq=>
                 cq.vetPostMortemDiseases === 'Other Disease'
               )
        
               
               
-                  const filteredCoccidiosisRecords =coccidiosisRecords.filter( atq => 
+                   filteredCoccidiosisRecords =coccidiosisRecords.filter( atq => 
                   new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
                   );
        
             //     // console.log(filteredCoccidiosisRecords.length)
        
-                     const filteredBacterialInfectionRecords = bacterialInfectionRecords.filter( btq => 
+                      filteredBacterialInfectionRecords = bacterialInfectionRecords.filter( btq => 
                      new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
                      );
 
-                     const filteredOtherRabbitDiseaseRecords = otherRabbitDiseaseRecords.filter( ctq => 
+                      filteredOtherRabbitDiseaseRecords = otherRabbitDiseaseRecords.filter( ctq => 
                       new Date(ctq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(ctq.date) <= new Date(newPostMortemFilterRecord.endDate)
                       );
        
@@ -4060,12 +4799,14 @@ export const actions = {
                     commit(GET_ALL_RABBIT_OTHER_RECORDS, filteredOtherRabbitDiseaseRecords.length);
        
        
+           
+
+                break;
            }
-       
-        
-        //--------------------ALL AGRO RECORDS FILTERED BY CATEGORY --------------------------------// 
-                    
-               
+
+
+
+ 
        
            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
            commit(SET_LOADING, false);
@@ -4103,96 +4844,153 @@ export const actions = {
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/vet/allPostMortems`)
 
-           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
-                      const cattlePostMortemRecords = customeUserRecords.filter( c=>
-                        c.vetPostMortemCategory ==='Cattle'
-                      )
-               
-                   //  // console.log(cattlePostMortemRecords.length);
-               
-                      const anaPlasmosisRecords = cattlePostMortemRecords.filter( ac=>
-                       ac.vetPostMortemDiseases === 'Anaplasmosis'
-                      )
+           
+           const option = loggedInUser.role;
 
-                      const otherCattleDiseaseRecords = cattlePostMortemRecords.filter( bc=>
-                        bc.vetPostMortemDiseases === 'Other Disease'
-                       )
-               
-                 //    // console.log(anaPlasmosisRecords.length)
-               
-                 
-                      
-                      
-                          const filteredAnaPlasmosisRecords =anaPlasmosisRecords.filter( atq => 
-                          new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
-                          );
-
-                          const filteredOtherCattleDiseaseRecords =otherCattleDiseaseRecords.filter( btq => 
-                            new Date(btq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(btq.date) <= new Date(newPostMortemFilterRecord.endDate)
-                            );
-               
-                       //  // console.log(filteredAnaPlasmosisRecords.length)
-               
-                      
-                           commit(GET_FILTERED_CATTLE_PM_START_TIME, newPostMortemFilterRecord.startDate);
-               
-                           commit(GET_FILTERED_CATTLE_PM_END_TIME, newPostMortemFilterRecord.endDate);
-               
-               
-                            commit(GET_ALL_CATTLE_ANAPLASMOSIS_RECORDS, filteredAnaPlasmosisRecords.length); 
-
-                            commit(GET_ALL_CATTLE_OTHER_RECORDS, filteredOtherCattleDiseaseRecords.length);
-               
-                       
-                       
-           }
-
-        }
-
-
-           else{
-            const cattlePostMortemRecords = response.data.filter( c=>
-                c.vetPostMortemCategory ==='Cattle'
-              )
-       
-             //// console.log(cattlePostMortemRecords.length);
-       
-              const anaPlasmosisRecords = cattlePostMortemRecords.filter( ac=>
-               ac.vetPostMortemDiseases === 'Anaplasmosis'
-              )
-       
-             // console.log(anaPlasmosisRecords.length)
-       
-         
+           switch (option) {
+            case 'Admin':
               
-              
-                  const filteredAnaPlasmosisRecords =anaPlasmosisRecords.filter( atq => 
-                  new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
-                  );
-       
-                // // console.log(filteredAnaPlasmosisRecords.length)
-       
-              
-                   commit(GET_FILTERED_CATTLE_PM_START_TIME, newPostMortemFilterRecord.startDate);
-       
-                   commit(GET_FILTERED_CATTLE_PM_END_TIME, newPostMortemFilterRecord.endDate);
-       
-       
-                    commit(GET_ALL_CATTLE_ANAPLASMOSIS_RECORDS, filteredAnaPlasmosisRecords.length); 
-       
-               
-               
-           }
-       
+                let cattlePostMortemRecords = response.data.filter( c=>
+                    c.vetPostMortemCategory ==='Cattle'
+                  )
+           
+                 //// console.log(cattlePostMortemRecords.length);
+           
+                  let anaPlasmosisRecords = cattlePostMortemRecords.filter( ac=>
+                   ac.vetPostMortemDiseases === 'Anaplasmosis'
+                  )
 
-        
-        //--------------------ALL AGRO RECORDS FILTERED BY CATEGORY --------------------------------// 
+                  let otherCattlePMRecords = cattlePostMortemRecords.filter( acm=>
+                    acm.vetPostMortemDiseases === 'Other Disease'
+                   )
+           
+                 // console.log(anaPlasmosisRecords.length)
+           
              
+                  
+                  
+                      let filteredAnaPlasmosisRecords =anaPlasmosisRecords.filter( atq => 
+                      new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                      );
+
+                      let filteredOtherCattlePMRecords = otherCattlePMRecords.filter( atq => 
+                        new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                        );
+           
+                    // // console.log(filteredAnaPlasmosisRecords.length)
+           
+                  
+                       commit(GET_FILTERED_CATTLE_PM_START_TIME, newPostMortemFilterRecord.startDate);
+           
+                       commit(GET_FILTERED_CATTLE_PM_END_TIME, newPostMortemFilterRecord.endDate);
+           
+           
+                        commit(GET_ALL_CATTLE_ANAPLASMOSIS_RECORDS, filteredAnaPlasmosisRecords.length); 
+                        
+                        commit(GET_ALL_CATTLE_OTHER_RECORDS, filteredOtherCattlePMRecords.length); 
+           
+                   
+                   
                
+           
+                break;
+
+            case 'Manager':
+            
+                 cattlePostMortemRecords = response.data.filter( c=>
+                    c.vetPostMortemCategory ==='Cattle'
+                  )
+           
+                 //// console.log(cattlePostMortemRecords.length);
+           
+                   anaPlasmosisRecords = cattlePostMortemRecords.filter( ac=>
+                   ac.vetPostMortemDiseases === 'Anaplasmosis'
+                  )
+           
+                   otherCattlePMRecords = cattlePostMortemRecords.filter( acm=>
+                    acm.vetPostMortemDiseases === 'Other Disease'
+                   )
+           
+             
+                  
+                  
+                       filteredAnaPlasmosisRecords =anaPlasmosisRecords.filter( atq => 
+                      new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                      );
+           
+                       filteredOtherCattlePMRecords = otherCattlePMRecords.filter( atq => 
+                        new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                        );
+           
+                  
+                       commit(GET_FILTERED_CATTLE_PM_START_TIME, newPostMortemFilterRecord.startDate);
+           
+                       commit(GET_FILTERED_CATTLE_PM_END_TIME, newPostMortemFilterRecord.endDate);
+           
+           
+                        commit(GET_ALL_CATTLE_ANAPLASMOSIS_RECORDS, filteredAnaPlasmosisRecords.length); 
+           
+                        commit(GET_ALL_CATTLE_OTHER_RECORDS, filteredOtherCattlePMRecords.length); 
+                   
+               
+           
+            break;
+           
+            default:
+                let customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
+
+                      console.log(customeUserRecords);
+                      console.log(customeUserRecords.length)
+
+                      
+                         cattlePostMortemRecords = customeUserRecords.filter( c=>
+                            c.vetPostMortemCategory ==='Cattle'
+                          )
+                   
+                         //// console.log(cattlePostMortemRecords.length);
+                   
+                           anaPlasmosisRecords = cattlePostMortemRecords.filter( ac=>
+                           ac.vetPostMortemDiseases === 'Anaplasmosis'
+                          )
+
+                           otherCattlePMRecords = cattlePostMortemRecords.filter( acm=>
+                            acm.vetPostMortemDiseases === 'Other Disease'
+                           )
+                   
+                         // console.log(anaPlasmosisRecords.length)
+                   
+                     
+                          
+                          
+                               filteredAnaPlasmosisRecords =anaPlasmosisRecords.filter( atq => 
+                              new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                              );
+                   
+                               filteredOtherCattlePMRecords = otherCattlePMRecords.filter( atq => 
+                                new Date(atq.date) >= new Date(newPostMortemFilterRecord.startDate) && new Date(atq.date) <= new Date(newPostMortemFilterRecord.endDate)
+                                );
+                   
+                          
+                               commit(GET_FILTERED_CATTLE_PM_START_TIME, newPostMortemFilterRecord.startDate);
+                   
+                               commit(GET_FILTERED_CATTLE_PM_END_TIME, newPostMortemFilterRecord.endDate);
+                   
+                   
+                                commit(GET_ALL_CATTLE_ANAPLASMOSIS_RECORDS, filteredAnaPlasmosisRecords.length); 
+
+                                commit(GET_ALL_CATTLE_OTHER_RECORDS, filteredOtherCattlePMRecords.length);
+                   
+                           
+                           
+                       
+                   
+
+                break;
+           }
+
+   
        
            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
            commit(SET_LOADING, false);

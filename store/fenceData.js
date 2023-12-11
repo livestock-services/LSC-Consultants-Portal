@@ -170,26 +170,33 @@ export const actions = {
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/fence/allFenceRecords`)
 
-           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
 
+           
+           const option = loggedInUser.role;
+
+           switch (option) {
+            case 'Admin':
+               commit(GET_ALL_FENCE_RECORDS, response.data);
+                break;
+
+            case 'Manager':
+               commit(GET_ALL_FENCE_RECORDS, response.data);
+            break;
+           
+            default:
                 const customeUserRecords = response.data.filter( cur=>
                     cur.createdBy === this.$auth.user.email
                           )
-                          commit(GET_ALL_FENCE_RECORDS, customeUserRecords);
 
-            }
-        }
+                      console.log(customeUserRecords);
+                      console.log(customeUserRecords.length)
+                      commit(GET_ALL_FENCE_RECORDS, customeUserRecords);
 
-        else{
+                break;
+           }
 
-            commit(GET_ALL_FENCE_RECORDS, response.data);
-        }
-   
-          
 
-       
-       
+
            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
            commit(SET_LOADING, false);
 
@@ -229,36 +236,13 @@ export const actions = {
           //---   API REQUEST IS MADE AND RESULT IS STORED IN CONST
             const {data: response} = await api.get(`/fence/allFenceRecords`)
 
+
             
-           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
+            const option = loggedInUser.role;
 
-                    for (let i = 0; i < customeUserRecords.length; i++) {
-                        console.log(customeUserRecords[i].date)
-                        
-                    }
-
-                    const filteredFenceConsultsRecords = customeUserRecords.filter(at => 
-                      new Date(at.date) >= new Date(newFilterRecord.startDate)  && new Date(at.date) <= new Date(newFilterRecord.endDate)
-                      );
-                      
-
-                       
-                       
-                           commit(GET_FILTERED_FENCE_START_TIME, newFilterRecord.startDate);
-               
-                           commit(GET_FILTERED_FENCE_END_TIME, newFilterRecord.endDate);
-               
-                           commit(GET_ALL_FILTERED_FENCE_RECORDS, filteredFenceConsultsRecords.length);
-               
-            }
-        }
-    
-        else{
-            const filteredFenceConsultsRecords = response.data.filter( at => 
+           switch (option) {
+            case 'Admin':
+                let filteredFenceConsultsRecords = response.data.filter( at => 
                 new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
                 );
        
@@ -269,8 +253,47 @@ export const actions = {
                    commit(GET_FILTERED_FENCE_END_TIME, newFilterRecord.endDate);
        
                    commit(GET_ALL_FILTERED_FENCE_RECORDS, filteredFenceConsultsRecords.length);
+                break;
+
+            case 'Manager':
+                
+                 filteredFenceConsultsRecords = response.data.filter( at => 
+                new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
+                );
        
-        }
+              
+       
+                   commit(GET_FILTERED_FENCE_START_TIME, newFilterRecord.startDate);
+       
+                   commit(GET_FILTERED_FENCE_END_TIME, newFilterRecord.endDate);
+       
+                   commit(GET_ALL_FILTERED_FENCE_RECORDS, filteredFenceConsultsRecords.length);
+            break;
+           
+            default:
+                let customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
+    
+                     
+    
+                         filteredFenceConsultsRecords = customeUserRecords.filter(at => 
+                          new Date(at.date) >= new Date(newFilterRecord.startDate)  && new Date(at.date) <= new Date(newFilterRecord.endDate)
+                          );
+                          
+    
+                           
+                           
+                               commit(GET_FILTERED_FENCE_START_TIME, newFilterRecord.startDate);
+                   
+                               commit(GET_FILTERED_FENCE_END_TIME, newFilterRecord.endDate);
+                   
+                               commit(GET_ALL_FILTERED_FENCE_RECORDS, filteredFenceConsultsRecords.length);
+
+                break;
+           }
+
+          
         
         } catch (error) {
             commit(SET_LOADING, false);

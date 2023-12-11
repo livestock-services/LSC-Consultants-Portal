@@ -169,29 +169,33 @@ export const actions = {
 
            const {data: response} = await api.get(`/fish/allFishRecords`)
 
-        
-           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
 
+           
+           const option = loggedInUser.role;
+
+           switch (option) {
+            case 'Admin':
+                commit(GET_ALL_FISH_RECORDS, response.data);
+                break;  
+
+            case 'Manager':
+                commit(GET_ALL_FISH_RECORDS, response.data);
+            break;
+           
+            default:
                 const customeUserRecords = response.data.filter( cur=>
                     cur.createdBy === this.$auth.user.email
                           )
 
-                          commit(GET_ALL_FISH_RECORDS, customeUserRecords);
+                      console.log(customeUserRecords);
+                      console.log(customeUserRecords.length)
+                      commit(GET_ALL_FISH_RECORDS, customeUserRecords);
 
-            }
-        }
+                break;
+           }
 
-        else{
-
-             //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
-           commit(GET_ALL_FISH_RECORDS, response.data);
-
-        }
-   
-          
-
-       
+        
+         
        
            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
            commit(SET_LOADING, false);
@@ -229,15 +233,13 @@ export const actions = {
           //---   API REQUEST IS MADE AND RESULT IS STORED IN CONST
             const {data: response} = await api.get(`/fish/allFishRecords`)
 
-             
-           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
-                    
 
-                      const filteredFishConsultsRecords = customeUserRecords.filter( at => 
+            
+            const option = loggedInUser.role;
+
+           switch (option) {
+            case 'Admin':
+                 let filteredFishConsultsRecords = response.data.filter( at => 
                         new Date(at.date) >= new Date(startDate) && new Date(at.date) <= new Date(endDate)
                         );
 
@@ -251,27 +253,46 @@ export const actions = {
                            commit(GET_FILTERED_FISH_END_TIME, endDate);
                
                            commit(GET_ALL_FILTERED_FISH_RECORDS, filteredFishConsultsRecords.length);
+                break;
+
+            case 'Manager':
+                  filteredFishConsultsRecords = response.data.filter( at => 
+                        new Date(at.date) >= new Date(startDate) && new Date(at.date) <= new Date(endDate)
+                        );
+
+                     
+
+                        console.log(filteredFishConsultsRecords);
                
-            }
-        }
+               
+                           commit(GET_FILTERED_FISH_START_TIME, startDate);
+               
+                           commit(GET_FILTERED_FISH_END_TIME, endDate);
+               
+                           commit(GET_ALL_FILTERED_FISH_RECORDS, filteredFishConsultsRecords.length);
+            break;
+           
+            default:
 
-        else{
+            let customeUserRecords = response.data.filter( cur=>
+                cur.createdBy === this.$auth.user.email
+                      )
 
-            const filteredFishConsultsRecords = response.data.filter( at => 
-                new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
-                );
-       
-       
-                   commit(GET_FILTERED_FISH_START_TIME, newFilterRecord.startDate);
-       
-                   commit(GET_FILTERED_FISH_END_TIME, newFilterRecord.endDate);
-       
-                   commit(GET_ALL_FILTERED_FISH_RECORDS, filteredFishConsultsRecords.length);
+                 filteredFishConsultsRecords = customeUserRecords.filter( at => 
+                    new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
+                    );
+           
+           
+                       commit(GET_FILTERED_FISH_START_TIME, newFilterRecord.startDate);
+           
+                       commit(GET_FILTERED_FISH_END_TIME, newFilterRecord.endDate);
+           
+                       commit(GET_ALL_FILTERED_FISH_RECORDS, filteredFishConsultsRecords.length);
+                break;
+           }
 
-        }
-
-
-
+             
+          
 
  
         } catch (error) {

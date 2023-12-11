@@ -158,26 +158,32 @@ export const actions = {
            let userEmail = loggedInUser.email;
            const {data: response} = await api.get(`/irrigation/allIrrigationRecords`)
 
-        
-           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
 
+           
+           const option = loggedInUser.role;
+
+           switch (option) {
+            case 'Admin':
+                 commit(GET_ALL_IRRIGATION_RECORDS, response.data);
+                break;
+
+            case 'Manager':
+                 commit(GET_ALL_IRRIGATION_RECORDS, response.data);
+            break;
+           
+            default:
                 const customeUserRecords = response.data.filter( cur=>
                     cur.createdBy === this.$auth.user.email
                           )
 
-                          commit(GET_ALL_IRRIGATION_RECORDS, customeUserRecords);
+                      console.log(customeUserRecords);
+                      console.log(customeUserRecords.length)
+                      commit(GET_ALL_IRRIGATION_RECORDS, customeUserRecords);
 
-            }
-        }
+                break;
+           }
 
-        else{
-   
-           //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
-           commit(GET_ALL_IRRIGATION_RECORDS, response.data);
-
-        }
-       
+        
            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
            commit(SET_LOADING, false);
 
@@ -213,29 +219,13 @@ export const actions = {
           //---   API REQUEST IS MADE AND RESULT IS STORED IN CONST
             const {data: response} = await api.get(`/irrigation/allIrrigationRecords`)
 
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-                if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
-                const customeUserRecords = response.data.filter( cur=>
-                    cur.createdBy === this.$auth.user.email
-                          )
+            
+            const option = loggedInUser.role;
 
-                          const filteredIrrigationConsultsRecords = customeUserRecords.filter( at => 
-                            new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
-                            );
-                   
-                          
-                               commit(GET_FILTERED_IRRIGATION_START_TIME, newFilterRecord.startDate);
-                   
-                               commit(GET_FILTERED_IRRIGATION_END_TIME, newFilterRecord.endDate);
-                   
-                               commit(GET_ALL_FILTERED_IRRIGATION_RECORDS, filteredIrrigationConsultsRecords.length);
-                }
-            }
-    
+           switch (option) {
+            case 'Admin':
 
-
-            else{
-                const filteredIrrigationConsultsRecords = response.data.filter( at => 
+                let filteredIrrigationConsultsRecords = response.data.filter( at => 
                     new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
                     );
            
@@ -245,8 +235,46 @@ export const actions = {
                        commit(GET_FILTERED_IRRIGATION_END_TIME, newFilterRecord.endDate);
            
                        commit(GET_ALL_FILTERED_IRRIGATION_RECORDS, filteredIrrigationConsultsRecords.length);
-            }
-         
+                break;
+
+            case 'Manager':
+                 filteredIrrigationConsultsRecords = response.data.filter( at => 
+                    new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
+                    );
+           
+                  
+                       commit(GET_FILTERED_IRRIGATION_START_TIME, newFilterRecord.startDate);
+           
+                       commit(GET_FILTERED_IRRIGATION_END_TIME, newFilterRecord.endDate);
+           
+                       commit(GET_ALL_FILTERED_IRRIGATION_RECORDS, filteredIrrigationConsultsRecords.length);
+            break;
+           
+            default:
+                let customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
+
+                      console.log(customeUserRecords);
+                      console.log(customeUserRecords.length)
+
+                       filteredIrrigationConsultsRecords = customeUserRecords.filter( at => 
+                        new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
+                        );
+               
+                      
+                           commit(GET_FILTERED_IRRIGATION_START_TIME, newFilterRecord.startDate);
+               
+                           commit(GET_FILTERED_IRRIGATION_END_TIME, newFilterRecord.endDate);
+               
+                           commit(GET_ALL_FILTERED_IRRIGATION_RECORDS, filteredIrrigationConsultsRecords.length);
+
+                break;
+           }
+
+
+
+ 
 
          
         } catch (error) {

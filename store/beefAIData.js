@@ -204,28 +204,30 @@ export const actions = {
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/ai/beef/allBeefAIRecords`)
 
-           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
+           const option = loggedInUser.role;
 
-                     // console.log(customeUserRecords);
+           switch (option) {
+            case 'Admin':
+                commit(GET_ALL_BEEF_AI_RECORDS, response.data);
+
+                break;
+
+            case 'Manager':
+                commit(GET_ALL_BEEF_AI_RECORDS, response.data);
+
+            break;
+           
+            default:
+                const customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
+
+                      console.log(customeUserRecords);
+                      console.log(customeUserRecords.length)
                       commit(GET_ALL_BEEF_AI_RECORDS, customeUserRecords);
 
-            }
-        }
-
-
-        
-        else{
-           // console.log(response.data);
-       
-
-            //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
-            commit(GET_ALL_BEEF_AI_RECORDS, response.data);
+                break;
            }
-       
            //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
            commit(SET_LOADING, false);
 
@@ -261,177 +263,268 @@ export const actions = {
             //API REQUEST IS MADE AND RESULT IS STORED IN CONST
            const {data: response} = await api.get(`/ai/beef/allBeefAIRecords`)
 
-           if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Admin" )) ){
-            if( (this.$auth.user.email === userEmail && (loggedInUser.role !== "Manager" )) ){
-            const customeUserRecords = response.data.filter( cur=>
-                cur.createdBy === this.$auth.user.email
-                      )
 
-                     // console.log(customeUserRecords);
+           const option = loggedInUser.role;
+
+           switch (option) {
+            case 'Admin':
+
+                let beefAIDairyRecords =response.data.filter( a=>
+                    a.beefAICategory ==='Dairy'
+                   )
+           
+                   let beefAIBeefRecords =response.data.filter( b=>
+                    b.beefAICategory ==='Beef'
+                   )
+
+                   let beefAIGoatRecords =response.data.filter( a=>
+                    a.beefAICategory ==='Goat'
+                   )
+           
+                   let beefAIPigRecords =response.data.filter( b=>
+                    b.beefAICategory ==='Pig'
+                   )
+
+                   let beefAIOtherRecords =response.data.filter( a=>
+                    a.beefAICategory ==='Other'
+                   )
+           
+           
+             // -------------------------------END OF FILTERING BY CATEGORY----------------------//
+           
+           
+           
+           
+              //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
+                    let filteredBeefAIDairyRecords = beefAIDairyRecords.filter( at => 
+                   new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
+                   );
+           
+                   let filteredBeefAIBeefRecords = beefAIBeefRecords.filter( bt => 
+                       new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
+                       );
+
+
+                    let filteredBeefAIGoatRecords = beefAIGoatRecords.filter( at => 
+                        new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
+                        );
+                
+                    let filteredBeefAIPigRecords = beefAIPigRecords.filter( bt => 
+                            new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
+                            );
+
+                    let filteredBeefAIOtherRecords = beefAIOtherRecords.filter( bt => 
+                                new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
+                            );
+
+
+
+           
+                  
+                   
+                 // console.log(filteredBeefAIConsultsRecords.length);
+           
+                 // console.log(filteredBeefAISalesRecords.length);
+           
+           
+                   //  // console.log(response.data);
+           
+                      //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
+                      commit(GET_ALL_BEEF_AI_RECORDS, customeUserRecords);
+           
+                      commit(GET_FILTERED_BEEF_AI_START_TIME, newFilterRecord.startDate);
+           
+                      commit(GET_FILTERED_BEEF_AI_END_TIME, newFilterRecord.endDate);
+           
+                      commit(GET_ALL_BEEF_AI_DAIRY_RECORDS, filteredBeefAIDairyRecords.length);
+           
+                      commit(GET_ALL_BEEF_AI_BEEF_RECORDS, filteredBeefAIBeefRecords.length);
+                      
+                      commit(GET_ALL_BEEF_AI_GOAT_RECORDS, filteredBeefAIGoatRecords.length);
+           
+                      commit(GET_ALL_BEEF_AI_PIG_RECORDS, filteredBeefAIPigRecords.length);
+
+                      commit(GET_ALL_BEEF_AI_OTHER_RECORDS, filteredBeefAIOtherRecords.length);
+           
+              commit(GET_ALL_BEEF_AI_RECORDS, response.data);
+
+
+                break;
+
+            case 'Manager':
+                 beefAIDairyRecords =response.data.filter( a=>
+                    a.beefAICategory ==='Dairy'
+                   )
+           
+                    beefAIBeefRecords =response.data.filter( b=>
+                    b.beefAICategory ==='Beef'
+                   )
+
+                    beefAIGoatRecords =response.data.filter( a=>
+                    a.beefAICategory ==='Goat'
+                   )
+           
+                    beefAIPigRecords =response.data.filter( b=>
+                    b.beefAICategory ==='Pig'
+                   )
+
+                    beefAIOtherRecords =response.data.filter( a=>
+                    a.beefAICategory ==='Other'
+                   )
+           
+           
+             // -------------------------------END OF FILTERING BY CATEGORY----------------------//
+           
+           
+           
+           
+              //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
+                     filteredBeefAIDairyRecords = beefAIDairyRecords.filter( at => 
+                   new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
+                   );
+           
+                    filteredBeefAIBeefRecords = beefAIBeefRecords.filter( bt => 
+                       new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
+                       );
+
+
+                     filteredBeefAIGoatRecords = beefAIGoatRecords.filter( at => 
+                        new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
+                        );
+                
+                     filteredBeefAIPigRecords = beefAIPigRecords.filter( bt => 
+                            new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
+                            );
+
+                     filteredBeefAIOtherRecords = beefAIOtherRecords.filter( bt => 
+                                new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
+                            );
+
+
+
+           
+                  
+                   
+                 // console.log(filteredBeefAIConsultsRecords.length);
+           
+                 // console.log(filteredBeefAISalesRecords.length);
+           
+           
+                   //  // console.log(response.data);
+           
+                      //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
+                      commit(GET_ALL_BEEF_AI_RECORDS, response.data);
+           
+                      commit(GET_FILTERED_BEEF_AI_START_TIME, newFilterRecord.startDate);
+           
+                      commit(GET_FILTERED_BEEF_AI_END_TIME, newFilterRecord.endDate);
+           
+                      commit(GET_ALL_BEEF_AI_DAIRY_RECORDS, filteredBeefAIDairyRecords.length);
+           
+                      commit(GET_ALL_BEEF_AI_BEEF_RECORDS, filteredBeefAIBeefRecords.length);
+                      
+                      commit(GET_ALL_BEEF_AI_GOAT_RECORDS, filteredBeefAIGoatRecords.length);
+           
+                      commit(GET_ALL_BEEF_AI_PIG_RECORDS, filteredBeefAIPigRecords.length);
+
+                      commit(GET_ALL_BEEF_AI_OTHER_RECORDS, filteredBeefAIOtherRecords.length);
+           
+              commit(GET_ALL_BEEF_AI_RECORDS, customeUserRecords);
+
+
+            break;
+           
+            default:
+                let customeUserRecords = response.data.filter( cur=>
+                    cur.createdBy === this.$auth.user.email
+                          )
+    
+                         // console.log(customeUserRecords);
+                         
+    
+                           beefAIDairyRecords =customeUserRecords.filter( a=>
+                            a.beefAICategory ==='Dairy'
+                           )
+                   
+                            beefAIBeefRecords =customeUserRecords.filter( b=>
+                            b.beefAICategory ==='Beef'
+                           )
+    
+                            beefAIGoatRecords =customeUserRecords.filter( a=>
+                            a.beefAICategory ==='Goat'
+                           )
+                   
+                            beefAIPigRecords =customeUserRecords.filter( b=>
+                            b.beefAICategory ==='Pig'
+                           )
+    
+                            beefAIOtherRecords =customeUserRecords.filter( a=>
+                            a.beefAICategory ==='Other'
+                           )
+                   
+                   
+                     // -------------------------------END OF FILTERING BY CATEGORY----------------------//
+                   
+                   
+                   
+                   
+                      //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
+                             filteredBeefAIDairyRecords = beefAIDairyRecords.filter( at => 
+                           new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
+                           );
+                   
+                            filteredBeefAIBeefRecords = beefAIBeefRecords.filter( bt => 
+                               new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
+                               );
+    
+    
+                             filteredBeefAIGoatRecords = beefAIGoatRecords.filter( at => 
+                                new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
+                                );
+                        
+                             filteredBeefAIPigRecords = beefAIPigRecords.filter( bt => 
+                                    new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
+                                    );
+    
+                             filteredBeefAIOtherRecords = beefAIOtherRecords.filter( bt => 
+                                        new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
+                                    );
+    
+    
+    
+                   
+                          
+                           
+                         // console.log(filteredBeefAIConsultsRecords.length);
+                   
+                         // console.log(filteredBeefAISalesRecords.length);
+                   
+                   
+                           //  // console.log(response.data);
+                   
+                              //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
+                              commit(GET_ALL_BEEF_AI_RECORDS, customeUserRecords);
+                   
+                              commit(GET_FILTERED_BEEF_AI_START_TIME, newFilterRecord.startDate);
+                   
+                              commit(GET_FILTERED_BEEF_AI_END_TIME, newFilterRecord.endDate);
+                   
+                              commit(GET_ALL_BEEF_AI_DAIRY_RECORDS, filteredBeefAIDairyRecords.length);
+                   
+                              commit(GET_ALL_BEEF_AI_BEEF_RECORDS, filteredBeefAIBeefRecords.length);
+                              
+                              commit(GET_ALL_BEEF_AI_GOAT_RECORDS, filteredBeefAIGoatRecords.length);
+                   
+                              commit(GET_ALL_BEEF_AI_PIG_RECORDS, filteredBeefAIPigRecords.length);
+    
+                              commit(GET_ALL_BEEF_AI_OTHER_RECORDS, filteredBeefAIOtherRecords.length);
+                   
                      
 
-                      const beefAIDairyRecords =customeUserRecords.filter( a=>
-                        a.beefAICategory ==='Dairy'
-                       )
-               
-                       const beefAIBeefRecords =customeUserRecords.filter( b=>
-                        b.beefAICategory ==='Beef'
-                       )
-
-                       const beefAIGoatRecords =customeUserRecords.filter( a=>
-                        a.beefAICategory ==='Goat'
-                       )
-               
-                       const beefAIPigRecords =customeUserRecords.filter( b=>
-                        b.beefAICategory ==='Pig'
-                       )
-
-                       const beefAIOtherRecords =customeUserRecords.filter( a=>
-                        a.beefAICategory ==='Other'
-                       )
-               
-               
-                 // -------------------------------END OF FILTERING BY CATEGORY----------------------//
-               
-               
-               
-               
-                  //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
-                        const filteredBeefAIDairyRecords = beefAIDairyRecords.filter( at => 
-                       new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
-                       );
-               
-                       const filteredBeefAIBeefRecords = beefAIBeefRecords.filter( bt => 
-                           new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
-                           );
-
-
-                        const filteredBeefAIGoatRecords = beefAIGoatRecords.filter( at => 
-                            new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
-                            );
-                    
-                        const filteredBeefAIPigRecords = beefAIPigRecords.filter( bt => 
-                                new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
-                                );
-
-                        const filteredBeefAIOtherRecords = beefAIOtherRecords.filter( bt => 
-                                    new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
-                                );
-
-
-
-               
-                      
-                       
-                     // console.log(filteredBeefAIConsultsRecords.length);
-               
-                     // console.log(filteredBeefAISalesRecords.length);
-               
-               
-                       //  // console.log(response.data);
-               
-                          //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
-                          commit(GET_ALL_BEEF_AI_RECORDS, customeUserRecords);
-               
-                          commit(GET_FILTERED_BEEF_AI_START_TIME, newFilterRecord.startDate);
-               
-                          commit(GET_FILTERED_BEEF_AI_END_TIME, newFilterRecord.endDate);
-               
-                          commit(GET_ALL_BEEF_AI_DAIRY_RECORDS, filteredBeefAIDairyRecords.length);
-               
-                          commit(GET_ALL_BEEF_AI_BEEF_RECORDS, filteredBeefAIBeefRecords.length);
-                          
-                          commit(GET_ALL_BEEF_AI_GOAT_RECORDS, filteredBeefAIGoatRecords.length);
-               
-                          commit(GET_ALL_BEEF_AI_PIG_RECORDS, filteredBeefAIPigRecords.length);
-
-                          commit(GET_ALL_BEEF_AI_OTHER_RECORDS, filteredBeefAIOtherRecords.length);
-               
-               
-
-            }
-        }
-
-
-        
-        else{
-            const beefAIDairyRecords =customeUserRecords.filter( a=>
-                a.beefAICategory ==='Dairy'
-               )
-       
-               const beefAIBeefRecords =customeUserRecords.filter( b=>
-                b.beefAICategory ==='Beef'
-               )
-
-               const beefAIGoatRecords =customeUserRecords.filter( a=>
-                a.beefAICategory ==='Goat'
-               )
-       
-               const beefAIPigRecords =customeUserRecords.filter( b=>
-                b.beefAICategory ==='Pig'
-               )
-
-               const beefAIOtherRecords =customeUserRecords.filter( a=>
-                a.beefAICategory ==='Other'
-               )
-       
-         // -------------------------------END OF FILTERING BY CATEGORY----------------------//
-       
-       
-       
-       
-        //--------FILTER CATEGORIES BY DATE AND SUMMATION OF EACH CATEGORY------------------//
-        const filteredBeefAIDairyRecords = beefAIDairyRecords.filter( at => 
-            new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
-            );
-    
-            const filteredBeefAIBeefRecords = beefAIBeefRecords.filter( bt => 
-                new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
-                );
-
-
-             const filteredBeefAIGoatRecords = beefAIGoatRecords.filter( at => 
-                 new Date(at.date) >= new Date(newFilterRecord.startDate) && new Date(at.date) <= new Date(newFilterRecord.endDate)
-                 );
-         
-             const filteredBeefAIPigRecords = beefAIPigRecords.filter( bt => 
-                     new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
-                     );
-
-             const filteredBeefAIOtherRecords = beefAIOtherRecords.filter( bt => 
-                         new Date(bt.date) >= new Date(newFilterRecord.startDate) && new Date(bt.date) <= new Date(newFilterRecord.endDate)
-                     );
-
-              
-               
-             // console.log(filteredBeefAIConsultsRecords.length);
-       
-             // console.log(filteredBeefAISalesRecords.length);
-       
-       
-               //  // console.log(response.data);
-       
-                  //RETRIEVED DATA IS COMMITTED TO THE MUTATION TO MAKE THE CHANGES EFFECTIVE
-                    commit(GET_ALL_BEEF_AI_RECORDS, response.data);
-        
-                    commit(GET_FILTERED_BEEF_AI_START_TIME, newFilterRecord.startDate);
-               
-                    commit(GET_FILTERED_BEEF_AI_END_TIME, newFilterRecord.endDate);
-        
-                    commit(GET_ALL_BEEF_AI_DAIRY_RECORDS, filteredBeefAIDairyRecords.length);
-        
-                    commit(GET_ALL_BEEF_AI_BEEF_RECORDS, filteredBeefAIBeefRecords.length);
-                    
-                    commit(GET_ALL_BEEF_AI_GOAT_RECORDS, filteredBeefAIGoatRecords.length);
-        
-                    commit(GET_ALL_BEEF_AI_PIG_RECORDS, filteredBeefAIPigRecords.length);
-
-                    commit(GET_ALL_BEEF_AI_OTHER_RECORDS, filteredBeefAIOtherRecords.length);
-              
-                  //AFTER ALL ACTIONS HAVE BEEN PERFORMED, LOADING IS SET TO FALSE AND RESULTS ARE DISPLAYED
-                  
+                break;
            }
-       
+
+         
            commit(SET_LOADING, false);
        //    const { data:fetchUsers } = await api.get(`/auth/allUsers`)
         
