@@ -9,61 +9,22 @@
         <!-- Modal Content -->
         <div>
          <b-form v-model="waterPumpForm" class="form">
-          <div v-if="SignedInUser.role !== 'WaterPump Consultant'">
 
-<h4> <b-tooltip 
-  label="This is the designated consultant who may not be 
-  physically available for a consultation, but can do
-  so via phone call, WhatsApp, email etc " 
-  multilined 
-  type="is-dark"
-  position="is-right mt-4">
-    <span class="is-blue"> Consulting Person</span>
-  
-  </b-tooltip> </h4>
-
-    <div class="columns">
-      <div class="column is-three-quarters">
-        <b-select
-          type="text"
-          v-model="waterPumpConsultingPerson"
-          placeholder="Client name"
-        >
-      <option value=" ROTO "> ROTO</option>
-    
-    
-      <option value="Other">Other</option>
-      
-      </b-select>
-      </div>
-
-    </div>
-
-    <div v-if="waterPumpConsultingPerson === 'Other'" >
-      <h4> <b-tooltip 
-          label="This is the designated consultant who may not be 
-          physically available for a consultation, but can do
-          so via phone call, WhatsApp, email etc " 
-          multilined 
-          type="is-dark"
-          position="is-right mt-4">
-            <span class="is-blue"> Consulting Person(if not on list)</span>
           
-          </b-tooltip> </h4>
-    <div class="columns">
-      <div class="column is-three-quarters">
-        <b-input
-          type="text"
-          v-model="waterPumpOtherConsultingPerson"
-          placeholder="Consulting Person"
-        />
-      
-      
-      </div>
-    </div>
-    </div>
+          <h4><span class="is-blue">Search Client by Contact Number</span></h4>
+              <div class="columns">
+                <div class="column is-three-quarters">
+                  <b-input
+                    type="number"
+                    v-model="searchClientPhoneNumber"
+                    placeholder="Enter phone no. to search..."
+                  ></b-input>
+                </div>
+                <div class="column">
+                  <b-button @click="searchClient" type="is-info">Search</b-button>
+                </div>
+              </div>
 
-  </div>
           <h4> <span class="is-blue"> Client Name</span></h4>
   
             <div class="columns">
@@ -109,7 +70,61 @@
               </div>
             </div>
 
+            <div v-if="SignedInUser.role !== 'WaterPump Consultant'">
 
+                <h4> <b-tooltip 
+                label="This is the designated consultant who may not be 
+                physically available for a consultation, but can do
+                so via phone call, WhatsApp, email etc " 
+                multilined 
+                type="is-dark"
+                position="is-right mt-4">
+                <span class="is-blue"> Consulting Person</span>
+
+                </b-tooltip> </h4>
+
+                <div class="columns">
+                  <div class="column is-three-quarters">
+                    <b-select
+                      type="text"
+                      v-model="waterPumpConsultingPerson"
+                      placeholder="Client name"
+                    >
+                  <option value=" ROTO "> ROTO</option>
+
+
+                  <option value="Other">Other</option>
+                  
+                  </b-select>
+                  </div>
+
+                </div>
+
+                <div v-if="waterPumpConsultingPerson === 'Other'" >
+                  <h4> <b-tooltip 
+                      label="This is the designated consultant who may not be 
+                      physically available for a consultation, but can do
+                      so via phone call, WhatsApp, email etc " 
+                      multilined 
+                      type="is-dark"
+                      position="is-right mt-4">
+                        <span class="is-blue"> Consulting Person(if not on list)</span>
+                      
+                      </b-tooltip> </h4>
+                <div class="columns">
+                  <div class="column is-three-quarters">
+                    <b-input
+                      type="text"
+                      v-model="waterPumpOtherConsultingPerson"
+                      placeholder="Consulting Person"
+                    />
+                  
+                  
+                  </div>
+                </div>
+                </div>
+
+</div>
             
            
             <h4> <span class="is-blue"> Comments/Remarks</span></h4>
@@ -228,6 +243,7 @@ export default {
   
         ...mapGetters('pumpData', {
          waterPump: 'selectedwaterPumpRecord',
+         clients: 'allWaterPumpRecords',
         waterPumpLoading: 'loading',
       }),
 
@@ -255,6 +271,47 @@ export default {
      loading() {
         return this.waterPumpLoading 
       },
+
+      showAlert(message) {
+    this.$buefy.dialog.alert({
+      title: 'According to my records,',
+      message: message,
+      type: 'is-info',
+      position: 'is-top',
+      hasIcon: true, // Add this line
+      icon: 'magnify',
+      
+    });
+  },
+
+    async searchClient() {
+    // Assuming you have a Vuex getter named 'getClientByPhoneNumber'
+    const clientData = this.clients.find(client => client.waterPumpClientPhoneNumber === this.searchClientPhoneNumber);
+
+    if (clientData) {
+      this.waterPumpClientName = clientData.waterPumpClientName;
+      this.waterPumpClientPhoneNumber = clientData.waterPumpClientPhoneNumber;
+      this.waterPumpClientLocation = clientData.waterPumpClientLocation;
+      this.waterPumpClientTown = clientData.waterPumpClientTown;
+      // Clear other fields if needed
+      this.waterPumpCategory = '';
+      this.waterPumpOther = '';
+      this.waterPumpComments = '';
+    } else {
+      // Handle case when client is not found
+      this.showAlert('The client being searched for was not found. Please enter their details manually.');
+
+      this.waterPumpClientName = '';
+      this.waterPumpClientPhoneNumber = this.searchClientPhoneNumber;
+      this.waterPumpClientLocation = '';
+      this.waterPumpClientTown = '';
+      // Clear other fields if needed
+      this.waterPumpCategory = '';
+      this.waterPumpOther = '';
+      this.waterPumpComments = '';
+    }
+  },
+  
   
   
       async onSubmit() {

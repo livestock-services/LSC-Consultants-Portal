@@ -9,62 +9,22 @@
       <!-- Modal Content -->
       <div>
        <b-form v-model="fenceForm" class="form">
-        <div v-if="SignedInUser.role !== 'Fence Consultant'">
 
-<h4> <b-tooltip 
-  label="This is the designated consultant who may not be 
-  physically available for a consultation, but can do
-  so via phone call, WhatsApp, email etc " 
-  multilined 
-  type="is-dark"
-  position="is-right mt-4">
-    <span class="is-blue"> Consulting Person</span>
-  
-  </b-tooltip> </h4>
-
-    <div class="columns">
-      <div class="column is-three-quarters">
-        <b-select
-          type="text"
-          v-model="fenceConsultingPerson"
-          placeholder="Client name"
-        >
-      <option value="Paul Shiluwe"> Paul Shiluwe</option>
-      <option value="Desteria Miyanza"> Desteria Miyanza</option>
-      <option value="Emeldah Banda"> Emeldah Banda</option>
-    
-      <option value="Other">Other</option>
-      
-      </b-select>
-      </div>
-
-    </div>
-
-    <div v-if="fenceConsultingPerson === 'Other'" >
-      <h4> <b-tooltip 
-          label="This is the designated consultant who may not be 
-          physically available for a consultation, but can do
-          so via phone call, WhatsApp, email etc " 
-          multilined 
-          type="is-dark"
-          position="is-right mt-4">
-            <span class="is-blue"> Consulting Person(if not on list)</span>
-          
-          </b-tooltip> </h4>
-    <div class="columns">
-      <div class="column is-three-quarters">
-        <b-input
-          type="text"
-          v-model="fenceOtherConsultingPerson"
-          placeholder="Consulting Person"
-        />
-      
-      
-      </div>
-    </div>
-    </div>
-
-  </div>
+        
+        <h4><span class="is-blue">Search Client by Contact Number</span></h4>
+              <div class="columns">
+                <div class="column is-three-quarters">
+                  <b-input
+                    type="number"
+                    v-model="searchClientPhoneNumber"
+                    placeholder="Enter phone no. to search..."
+                  ></b-input>
+                </div>
+                <div class="column">
+                  <b-button @click="searchClient" type="is-info">Search</b-button>
+                </div>
+              </div>
+       
         <h4> <span class="is-blue"> Client Name</span></h4>
 
           <div class="columns">
@@ -112,7 +72,62 @@
 
 
          
+          <div v-if="SignedInUser.role !== 'Fence Consultant'">
 
+            <h4> <b-tooltip 
+              label="This is the designated consultant who may not be 
+              physically available for a consultation, but can do
+              so via phone call, WhatsApp, email etc " 
+              multilined 
+              type="is-dark"
+              position="is-right mt-4">
+                <span class="is-blue"> Consulting Person</span>
+              
+              </b-tooltip> </h4>
+
+                <div class="columns">
+                  <div class="column is-three-quarters">
+                    <b-select
+                      type="text"
+                      v-model="fenceConsultingPerson"
+                      placeholder="Client name"
+                    >
+                  <option value="Paul Shiluwe"> Paul Shiluwe</option>
+                  <option value="Desteria Miyanza"> Desteria Miyanza</option>
+                  <option value="Emeldah Banda"> Emeldah Banda</option>
+                
+                  <option value="Other">Other</option>
+                  
+                  </b-select>
+                  </div>
+
+                </div>
+
+                <div v-if="fenceConsultingPerson === 'Other'" >
+                  <h4> <b-tooltip 
+                      label="This is the designated consultant who may not be 
+                      physically available for a consultation, but can do
+                      so via phone call, WhatsApp, email etc " 
+                      multilined 
+                      type="is-dark"
+                      position="is-right mt-4">
+                        <span class="is-blue"> Consulting Person(if not on list)</span>
+                      
+                      </b-tooltip> </h4>
+                <div class="columns">
+                  <div class="column is-three-quarters">
+                    <b-input
+                      type="text"
+                      v-model="fenceOtherConsultingPerson"
+                      placeholder="Consulting Person"
+                    />
+                  
+                  
+                  </div>
+                </div>
+                </div>
+
+        </div>
 
          
           
@@ -236,6 +251,7 @@ export default {
 
       ...mapGetters('fenceData', {
        fence: 'selectedfenceRecord',
+       clients: 'allFenceRecords',
       fenceLoading: 'loading',
     }),
 
@@ -263,6 +279,47 @@ export default {
    loading() {
       return this.fenceLoading 
     },
+
+    showAlert(message) {
+    this.$buefy.dialog.alert({
+      title: 'According to my records,',
+      message: message,
+      type: 'is-info',
+      position: 'is-top',
+      hasIcon: true, // Add this line
+      icon: 'magnify',
+      
+    });
+  },
+
+    async searchClient() {
+    // Assuming you have a Vuex getter named 'getClientByPhoneNumber'
+    const clientData = this.clients.find(client => client.fenceClientPhoneNumber === this.searchClientPhoneNumber);
+
+    if (clientData) {
+      this.fenceClientName = clientData.fenceClientName;
+      this.fenceClientPhoneNumber = clientData.fenceClientPhoneNumber;
+      this.fenceClientLocation = clientData.fenceClientLocation;
+      this.fenceClientTown = clientData.fenceClientTown;
+      // Clear other fields if needed
+      this.fenceCategory = '';
+      this.fenceOther = '';
+      this.fenceComments = '';
+    } else {
+      // Handle case when client is not found
+      this.showAlert('The client being searched for was not found. Please enter their details manually.');
+
+      this.fenceClientName = '';
+      this.fenceClientPhoneNumber = this.searchClientPhoneNumber;
+      this.fenceClientLocation = '';
+      this.fenceClientTown = '';
+      // Clear other fields if needed
+      this.fenceCategory = '';
+      this.fenceOther = '';
+      this.fenceComments = '';
+    }
+  },
+  
 
 
     async onSubmit() {

@@ -10,59 +10,19 @@
         <div>
          <b-form v-model="beefAIForm" class="form">
 
-          <div v-if="SignedInUser.role !== 'AI Consultant'">
-
-          <h4> <b-tooltip 
-                label="This is the designated consultant who may not be 
-                physically available for a consultation, but can do
-                so via phone call, WhatsApp, email etc " 
-                multilined 
-                type="is-dark"
-                position="is-right mt-4">
-                  <span class="is-blue"> Consulting Person</span>
-                
-                </b-tooltip> </h4>
-
-            <div class="columns">
-              <div class="column is-three-quarters">
-                <b-select
-                  type="text"
-                  v-model="beefAIConsultingPerson"
-                  placeholder="Client name"
-                >
-                <option value="Ethel Lubinda ">Ethel Lubinda</option>
-                 <option value="Pius Sosala ">Pius Sosala</option>
-                 <option value="Other"> Other</option>
-              
-              
-              </b-select>
-              </div>
-            </div>
-
-            <div v-if="beefAIConsultingPerson === 'Other'" >
-              <h4> <b-tooltip 
-                  label="This is the designated consultant who may not be 
-                  physically available for a consultation, but can do
-                  so via phone call, WhatsApp, email etc " 
-                  multilined 
-                  type="is-dark"
-                  position="is-right mt-4">
-                    <span class="is-blue"> Consulting Person(if not on list)</span>
-                  
-                  </b-tooltip> </h4>
-               <div class="columns">
+        
+          <h4><span class="is-blue">Search Client by Contact Number</span></h4>
+              <div class="columns">
                 <div class="column is-three-quarters">
                   <b-input
-                    type="text"
-                    v-model="beefAIOtherConsultingPerson"
-                    placeholder="Consulting Person"
-                  />
-                
-                
+                    type="number"
+                    v-model="searchClientPhoneNumber"
+                    placeholder="Enter phone no. to search..."
+                  ></b-input>
                 </div>
-               </div>
-              </div>
-
+                <div class="column">
+                  <b-button @click="searchClient" type="is-info">Search</b-button>
+                </div>
           </div>
 
   
@@ -112,7 +72,60 @@
             </div>
 
               
+            <div v-if="SignedInUser.role !== 'AI Consultant'">
 
+              <h4> <b-tooltip 
+                    label="This is the designated consultant who may not be 
+                    physically available for a consultation, but can do
+                    so via phone call, WhatsApp, email etc " 
+                    multilined 
+                    type="is-dark"
+                    position="is-right mt-4">
+                      <span class="is-blue"> Consulting Person</span>
+                    
+                    </b-tooltip> </h4>
+
+                <div class="columns">
+                  <div class="column is-three-quarters">
+                    <b-select
+                      type="text"
+                      v-model="beefAIConsultingPerson"
+                      placeholder="Client name"
+                    >
+                    <option value="Ethel Lubinda ">Ethel Lubinda</option>
+                    <option value="Pius Sosala ">Pius Sosala</option>
+                    <option value="Other"> Other</option>
+                  
+                  
+                  </b-select>
+                  </div>
+                </div>
+
+                <div v-if="beefAIConsultingPerson === 'Other'" >
+                  <h4> <b-tooltip 
+                      label="This is the designated consultant who may not be 
+                      physically available for a consultation, but can do
+                      so via phone call, WhatsApp, email etc " 
+                      multilined 
+                      type="is-dark"
+                      position="is-right mt-4">
+                        <span class="is-blue"> Consulting Person(if not on list)</span>
+                      
+                      </b-tooltip> </h4>
+                  <div class="columns">
+                    <div class="column is-three-quarters">
+                      <b-input
+                        type="text"
+                        v-model="beefAIOtherConsultingPerson"
+                        placeholder="Consulting Person"
+                      />
+                    
+                    
+                    </div>
+                  </div>
+                  </div>
+
+              </div>
 
 
            
@@ -268,6 +281,7 @@
   
         ...mapGetters('beefAIData', {
          beefAI: 'selectedbeefAIRecord',
+         clients: 'allBeefAIRecords',
         beefAILoading: 'loading',
       }),
 
@@ -295,6 +309,47 @@
      loading() {
         return this.beefAILoading 
       },
+
+      showAlert(message) {
+    this.$buefy.dialog.alert({
+      title: 'According to my records,',
+      message: message,
+      type: 'is-info',
+      position: 'is-top',
+      hasIcon: true, // Add this line
+      icon: 'magnify',
+      
+    });
+  },
+
+    async searchClient() {
+    // Assuming you have a Vuex getter named 'getClientByPhoneNumber'
+    const clientData = this.clients.find(client => client.beefAIClientPhoneNumber === this.searchClientPhoneNumber);
+
+    if (clientData) {
+      this.beefAIClientName = clientData.beefAIClientName;
+      this.beefAIClientPhoneNumber = clientData.beefAIClientPhoneNumber;
+      this.beefAIClientLocation = clientData.beefAIClientLocation;
+      this.beefAIClientTown = clientData.beefAIClientTown;
+      // Clear other fields if needed
+      this.beefAICategory = '';
+      this.beefAIOther = '';
+      this.beefAIComments = '';
+    } else {
+      // Handle case when client is not found
+      this.showAlert('The client being searched for was not found. Please enter their details manually.');
+
+      this.beefAIClientName = '';
+      this.beefAIClientPhoneNumber = this.searchClientPhoneNumber;
+      this.beefAIClientLocation = '';
+      this.beefAIClientTown = '';
+      // Clear other fields if needed
+      this.beefAICategory = '';
+      this.beefAIOther = '';
+      this.beefAIComments = '';
+    }
+  },
+  
   
   
       async onSubmit() {

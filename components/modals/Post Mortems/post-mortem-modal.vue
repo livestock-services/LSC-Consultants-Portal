@@ -9,73 +9,22 @@
         <!-- Modal Content -->
         <div>
           <b-form v-model="vetPostMortemForm" class="form">
-    <div v-if="SignedInUser.role !== 'Vet Consultant'">
 
-        <h4> <b-tooltip 
-          label="This is the designated consultant who may not be 
-          physically available for a consultation, but can do
-          so via phone call, WhatsApp, email etc " 
-          multilined 
-          type="is-dark"
-          position="is-right mt-4">
-            <span class="is-blue"> Consulting Person</span>
-          
-          </b-tooltip> </h4>
-
-            <div class="columns">
-              <div class="column is-three-quarters">
-                <b-select
-                  type="text"
-                  v-model="vetPostMortemConsultingPerson"
-                  placeholder="Client name"
-                  >
-                <option value=" Moonde Mapepula "> Moonde Mapepula</option>
-                <option value=" David Chanda "> David Chanda</option>
-                <option value=" Lonica Moya "> Lonica Moya</option>
-                <option value=" Nchimunya Siamulonga "> Nchimunya Siamulonga</option>
-                <option value=" Vigirio Mutemwa "> Vigirio Mutemwa</option>
-                <option value=" Yenesha Namenda "> Yenesha Namenda</option>
-                <option value="Augustine Nkhata ">Augustine Nkhata</option>
-                <option value="James Chanda">James Chanda</option>
-                <option value="Christabel Chanda">Christabel Chanda</option>
-                <option value="Edna Malawo">Edna Malawo</option>
-                <option value="Mbao Limande">Mbao Limande</option>
-                <option value="Mwaka M. Chilanga">Mwaka M. Chilanga</option>
-                <option value="Other">Other</option>
-                
-                </b-select>
+            <h4><span class="is-blue">Search Client by Contact Number</span></h4>
+              <div class="columns">
+                <div class="column is-three-quarters">
+                  <b-input
+                    type="number"
+                    v-model="searchClientPhoneNumber"
+                    placeholder="Enter phone no. to search..."
+                  ></b-input>
                 </div>
-
-               </div>
-
-                <div v-if="vetPostMortemConsultingPerson === 'Other'" >
-                  <h4> <b-tooltip 
-                      label="This is the designated consultant who may not be 
-                      physically available for a consultation, but can do
-                      so via phone call, WhatsApp, email etc " 
-                      multilined 
-                      type="is-dark"
-                      position="is-right mt-4">
-                        <span class="is-blue"> Consulting Person(if not on list)</span>
-                      
-                        </b-tooltip> </h4>
-                  <div class="columns">
-                    <div class="column is-three-quarters">
-                      <b-input
-                        type="text"
-                        v-model="vetPostMortemOtherConsultingPerson"
-                        placeholder="Consulting Person"
-                      />
-                    
-                    
-                    </div>
-                  </div>
+                <div class="column">
+                  <b-button @click="searchClient" type="is-info">Search</b-button>
                 </div>
+              </div>
 
-     </div>
-
-
-
+ 
 
             <h4><span class="is-blue"> Client Name</span></h4>
   
@@ -124,6 +73,72 @@
                 ></b-input>
               </div>
             </div>
+
+
+            <div v-if="SignedInUser.role !== 'Vet Consultant'">
+
+              <h4> <b-tooltip 
+              label="This is the designated consultant who may not be 
+              physically available for a consultation, but can do
+              so via phone call, WhatsApp, email etc " 
+              multilined 
+              type="is-dark"
+              position="is-right mt-4">
+              <span class="is-blue"> Consulting Person</span>
+
+              </b-tooltip> </h4>
+
+              <div class="columns">
+              <div class="column is-three-quarters">
+              <b-select
+              type="text"
+              v-model="vetPostMortemConsultingPerson"
+              placeholder="Client name"
+              >
+              <option value=" Moonde Mapepula "> Moonde Mapepula</option>
+              <option value=" David Chanda "> David Chanda</option>
+              <option value=" Lonica Moya "> Lonica Moya</option>
+              <option value=" Nchimunya Siamulonga "> Nchimunya Siamulonga</option>
+              <option value=" Vigirio Mutemwa "> Vigirio Mutemwa</option>
+              <option value=" Yenesha Namenda "> Yenesha Namenda</option>
+              <option value="Augustine Nkhata ">Augustine Nkhata</option>
+              <option value="James Chanda">James Chanda</option>
+              <option value="Christabel Chanda">Christabel Chanda</option>
+              <option value="Edna Malawo">Edna Malawo</option>
+              <option value="Mbao Limande">Mbao Limande</option>
+              <option value="Mwaka M. Chilanga">Mwaka M. Chilanga</option>
+              <option value="Other">Other</option>
+
+              </b-select>
+              </div>
+
+              </div>
+
+              <div v-if="vetPostMortemConsultingPerson === 'Other'" >
+              <h4> <b-tooltip 
+              label="This is the designated consultant who may not be 
+              physically available for a consultation, but can do
+              so via phone call, WhatsApp, email etc " 
+              multilined 
+              type="is-dark"
+              position="is-right mt-4">
+                <span class="is-blue"> Consulting Person(if not on list)</span>
+
+                </b-tooltip> </h4>
+              <div class="columns">
+              <div class="column is-three-quarters">
+              <b-input
+                type="text"
+                v-model="vetPostMortemOtherConsultingPerson"
+                placeholder="Consulting Person"
+              />
+
+
+              </div>
+              </div>
+              </div>
+
+              </div>
 
            
 
@@ -395,6 +410,7 @@
   
       ...mapGetters("vetData", {
         task: "selectedVetRecord",
+        clients: 'allPostMortemRecords',
         taskLoading: "loading",
       }),
 
@@ -417,6 +433,47 @@
       loading() {
         return this.vetLoading;
       },
+
+      showAlert(message) {
+      this.$buefy.dialog.alert({
+      title: 'According to my records,',
+      message: message,
+      type: 'is-info',
+      position: 'is-top',
+      hasIcon: true, // Add this line
+      icon: 'magnify',
+      
+    });
+  },
+
+    async searchClient() {
+    // Assuming you have a Vuex getter named 'getClientByPhoneNumber'
+    const clientData = this.clients.find(client => client.vetPostMortemClientPhoneNumber === this.searchClientPhoneNumber);
+
+    if (clientData) {
+      this.vetPostMortemClientName = clientData.vetPostMortemClientName;
+      this.vetPostMortemClientPhoneNumber = clientData.vetPostMortemClientPhoneNumber;
+      this.vetPostMortemClientLocation = clientData.vetPostMortemClientLocation;
+      this.vetPostMortemClientTown = clientData.vetPostMortemClientTown;
+      // Clear other fields if needed
+      this.vetPostMortemCategory = '';
+      this.vetPostMortemOther = '';
+      this.vetPostMortemComments = '';
+    } else {
+      // Handle case when client is not found
+      this.showAlert('The client being searched for was not found. Please enter their details manually.');
+
+      this.vetPostMortemClientName = '';
+      this.vetPostMortemClientPhoneNumber = this.searchClientPhoneNumber;
+      this.vetPostMortemClientLocation = '';
+      this.vetPostMortemClientTown = '';
+      // Clear other fields if needed
+      this.vetPostMortemCategory = '';
+      this.vetPostMortemOther = '';
+      this.vetPostMortemComments = '';
+    }
+  },
+  
   
       async onSubmit() {
         await this.$buefy.dialog.confirm({

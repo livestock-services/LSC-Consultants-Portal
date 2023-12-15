@@ -10,61 +10,20 @@
       <div>
        <b-form v-model="fishForm" class="form">
 
-        <div v-if="SignedInUser.role !== 'Fish Consultant'">
-
-<h4> <b-tooltip 
-  label="This is the designated consultant who may not be 
-  physically available for a consultation, but can do
-  so via phone call, WhatsApp, email etc " 
-  multilined 
-  type="is-dark"
-  position="is-right mt-4">
-    <span class="is-blue"> Consulting Person</span>
-  
-  </b-tooltip> </h4>
-
-    <div class="columns">
-      <div class="column is-three-quarters">
-        <b-select
-          type="text"
-          v-model="fishConsultingPerson"
-          placeholder="Client name"
-        >
-      <option value=" Moonde Mapepula "> Moonde Mapepula</option>
-      <option value=" Yolantha Chibwe "> Yolantha Chibwe</option>
-      
-      <option value="Other">Other</option>
-      
-      </b-select>
-      </div>
-
-    </div>
-
-    <div v-if="fishConsultingPerson === 'Other'" >
-      <h4> <b-tooltip 
-          label="This is the designated consultant who may not be 
-          physically available for a consultation, but can do
-          so via phone call, WhatsApp, email etc " 
-          multilined 
-          type="is-dark"
-          position="is-right mt-4">
-            <span class="is-blue"> Consulting Person(if not on list)</span>
-          
-          </b-tooltip> </h4>
-     <div class="columns">
-      <div class="column is-three-quarters">
-        <b-input
-          type="text"
-          v-model="fishOtherConsultingPerson"
-          placeholder="Consulting Person"
-        />
-      
-      
-      </div>
-     </div>
-    </div>
-
-  </div>
+        
+        <h4><span class="is-blue">Search Client by Contact Number</span></h4>
+              <div class="columns">
+                <div class="column is-three-quarters">
+                  <b-input
+                    type="number"
+                    v-model="searchClientPhoneNumber"
+                    placeholder="Enter phone no. to search..."
+                  ></b-input>
+                </div>
+                <div class="column">
+                  <b-button @click="searchClient" type="is-info">Search</b-button>
+                </div>
+              </div>
 
         <h4> <span class="is-blue"> Client Name</span></h4>
 
@@ -111,7 +70,61 @@
             </div>
           </div>
           
-        
+          <div v-if="SignedInUser.role !== 'Fish Consultant'">
+
+        <h4> <b-tooltip 
+          label="This is the designated consultant who may not be 
+          physically available for a consultation, but can do
+          so via phone call, WhatsApp, email etc " 
+          multilined 
+          type="is-dark"
+          position="is-right mt-4">
+            <span class="is-blue"> Consulting Person</span>
+          
+          </b-tooltip> </h4>
+
+            <div class="columns">
+              <div class="column is-three-quarters">
+                <b-select
+                  type="text"
+                  v-model="fishConsultingPerson"
+                  placeholder="Client name"
+                >
+              <option value=" Moonde Mapepula "> Moonde Mapepula</option>
+              <option value=" Yolantha Chibwe "> Yolantha Chibwe</option>
+              
+              <option value="Other">Other</option>
+              
+              </b-select>
+              </div>
+
+            </div>
+
+            <div v-if="fishConsultingPerson === 'Other'" >
+              <h4> <b-tooltip 
+                  label="This is the designated consultant who may not be 
+                  physically available for a consultation, but can do
+                  so via phone call, WhatsApp, email etc " 
+                  multilined 
+                  type="is-dark"
+                  position="is-right mt-4">
+                    <span class="is-blue"> Consulting Person(if not on list)</span>
+                  
+                  </b-tooltip> </h4>
+            <div class="columns">
+              <div class="column is-three-quarters">
+                <b-input
+                  type="text"
+                  v-model="fishOtherConsultingPerson"
+                  placeholder="Consulting Person"
+                />
+              
+              
+              </div>
+            </div>
+            </div>
+
+        </div>
            
 
             <h4> <span class="is-blue"> Comments/Remarks</span></h4>
@@ -236,6 +249,7 @@ export default {
 
       ...mapGetters('fishData', {
        fish: 'selectedfishRecord',
+       clients: 'allFishRecords',
       fishLoading: 'loading',
     }),
 
@@ -263,6 +277,48 @@ export default {
    loading() {
       return this.fishLoading 
     },
+
+
+    showAlert(message) {
+    this.$buefy.dialog.alert({
+      title: 'According to my records,',
+      message: message,
+      type: 'is-info',
+      position: 'is-top',
+      hasIcon: true, // Add this line
+      icon: 'magnify',
+      
+    });
+  },
+
+    async searchClient() {
+    // Assuming you have a Vuex getter named 'getClientByPhoneNumber'
+    const clientData = this.clients.find(client => client.fishClientPhoneNumber === this.searchClientPhoneNumber);
+
+    if (clientData) {
+      this.fishClientName = clientData.fishClientName;
+      this.fishClientPhoneNumber = clientData.fishClientPhoneNumber;
+      this.fishClientLocation = clientData.fishClientLocation;
+      this.fishClientTown = clientData.fishClientTown;
+      // Clear other fields if needed
+      this.fishCategory = '';
+      this.fishOther = '';
+      this.fishComments = '';
+    } else {
+      // Handle case when client is not found
+      this.showAlert('The client being searched for was not found. Please enter their details manually.');
+
+      this.fishClientName = '';
+      this.fishClientPhoneNumber = this.searchClientPhoneNumber;
+      this.fishClientLocation = '';
+      this.fishClientTown = '';
+      // Clear other fields if needed
+      this.fishCategory = '';
+      this.fishOther = '';
+      this.fishComments = '';
+    }
+  },
+  
 
 
     async onSubmit() {
