@@ -19,7 +19,7 @@
             height="22"
           >
 
-          <span class=" tag is-warning litmas"> CLAIMS DEV </span>
+          <span class=" tag is-success litmas"> CLAIMS </span>
 
           
 
