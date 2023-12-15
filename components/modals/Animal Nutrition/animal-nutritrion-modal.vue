@@ -10,60 +10,19 @@
         <div>
           <b-form v-model="nutritionForm" class="form">
 
-           <div v-if="SignedInUser.role !== 'Nutrition Consultant'">
-
-            <h4> <b-tooltip 
-                  label="This is the designated consultant who may not be 
-                  physically available for a consultation, but can do
-                  so via phone call, WhatsApp, email etc " 
-                  multilined 
-                  type="is-dark"
-                  position="is-right mt-4">
-                    <span class="is-blue"> Consulting Person</span>
-                  
-                  </b-tooltip> </h4>
-  
+              <h4><span class="is-blue">Search Client by Contact Number</span></h4>
               <div class="columns">
                 <div class="column is-three-quarters">
-                  <b-select
-                    type="text"
-                    v-model="nutritionConsultingPerson"
-                    placeholder="Client name"
-                  >
-                <option value="Mataa Sitwala ">Mataa Sitwala</option>
-                <option value="Other">Other</option>
-                
-                </b-select>
-                </div>
-
-              </div>
-
-              <div v-if="nutritionConsultingPerson === 'Other'" >
-                <h4> <b-tooltip 
-                  label="This is the designated consultant who may not be 
-                  physically available for a consultation, but can do
-                  so via phone call, WhatsApp, email etc " 
-                  multilined 
-                  type="is-dark"
-                  position="is-right mt-4">
-                    <span class="is-blue"> Consulting Person(if not on list)</span>
-                  
-                  </b-tooltip> </h4>
-                  
-                <div class="columns">
-                  <div class="column is-three-quarters">
                   <b-input
-                    type="text"
-                    v-model="nutritionOtherConsultingPerson"
-                    placeholder="Consulting Person"
-                  />
-                
-                
+                    type="number"
+                    v-model="searchClientPhoneNumber"
+                    placeholder="Enter phone no. to search..."
+                  ></b-input>
                 </div>
+                <div class="column">
+                  <b-button @click="searchClient" type="is-info">Search</b-button>
                 </div>
               </div>
-
-           </div>
 
 
             <h4><span class="is-blue"> Client Name</span></h4>
@@ -113,6 +72,63 @@
                 ></b-input>
               </div>
             </div>
+
+            <div v-if="SignedInUser.role !== 'Nutrition Consultant'">
+
+<h4> <b-tooltip 
+      label="This is the designated consultant who may not be 
+      physically available for a consultation, but can do
+      so via phone call, WhatsApp, email etc " 
+      multilined 
+      type="is-dark"
+      position="is-right mt-4">
+        <span class="is-blue"> Consulting Person</span>
+      
+      </b-tooltip> </h4>
+
+  <div class="columns">
+    <div class="column is-three-quarters">
+      <b-select
+        type="text"
+        v-model="nutritionConsultingPerson"
+        placeholder="Consulting Person"
+      >
+    <option value="Mataa Sitwala ">Mataa Sitwala</option>
+    <option value="Dorothy Mukela ">Dorothy Mukela</option>
+    <option value="Inonge Chama ">Inonge Chama</option>
+    <option value="Other">Other</option>
+    
+    </b-select>
+    </div>
+
+  </div>
+
+  <div v-if="nutritionConsultingPerson === 'Other'" >
+    <h4> <b-tooltip 
+      label="This is the designated consultant who may not be 
+      physically available for a consultation, but can do
+      so via phone call, WhatsApp, email etc " 
+      multilined 
+      type="is-dark"
+      position="is-right mt-4">
+        <span class="is-blue"> Consulting Person(if not on list)</span>
+      
+      </b-tooltip> </h4>
+      
+    <div class="columns">
+      <div class="column is-three-quarters">
+      <b-input
+        type="text"
+        v-model="nutritionOtherConsultingPerson"
+        placeholder="Consulting Person"
+      />
+    
+    
+    </div>
+    </div>
+  </div>
+
+</div>
 
            
 
@@ -259,6 +275,7 @@
   
       ...mapGetters("nutritionData", {
         task: "selectednutritionRecord",
+        clients:'allNutritionRecords',
         taskLoading: "loading",
       }),
 
@@ -281,6 +298,46 @@
       loading() {
         return this.nutritionLoading;
       },
+
+      showAlert(message) {
+    this.$buefy.dialog.alert({
+      title: 'According to my records,',
+      message: message,
+      type: 'is-info',
+      position: 'is-top',
+      hasIcon: true, // Add this line
+      icon: 'magnify',
+      
+    });
+  },
+
+    async searchClient() {
+    // Assuming you have a Vuex getter named 'getClientByPhoneNumber'
+    const clientData = this.clients.find(client => client.nutritionClientPhoneNumber === this.searchClientPhoneNumber);
+
+    if (clientData) {
+      this.nutritionClientName = clientData.nutritionClientName;
+      this.nutritionClientPhoneNumber = clientData.nutritionClientPhoneNumber;
+      this.nutritionClientLocation = clientData.nutritionClientLocation;
+      this.nutritionClientTown = clientData.nutritionClientTown;
+      // Clear other fields if needed
+      this.nutritionCategory = '';
+      this.nutritionOther = '';
+      this.nutritionComments = '';
+    } else {
+      // Handle case when client is not found
+      this.showAlert('The client being searched for was not found. Please enter their details manually.');
+
+      this.nutritionClientName = '';
+      this.nutritionClientPhoneNumber = this.searchClientPhoneNumber;
+      this.nutritionClientLocation = '';
+      this.nutritionClientTown = '';
+      // Clear other fields if needed
+      this.nutritionCategory = '';
+      this.nutritionOther = '';
+      this.nutritionComments = '';
+    }
+  },
   
       async onSubmit() {
         await this.$buefy.dialog.confirm({

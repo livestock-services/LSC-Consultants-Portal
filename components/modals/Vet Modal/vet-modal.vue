@@ -300,6 +300,18 @@ export default {
       return this.vetLoading;
     },
 
+    showAlert(message) {
+    this.$buefy.dialog.alert({
+      title: 'According to my records,',
+      message: message,
+      type: 'is-info',
+      position: 'is-top',
+      hasIcon: true, // Add this line
+      icon: 'magnify',
+      
+    });
+  },
+
     async searchClient() {
     // Assuming you have a Vuex getter named 'getClientByPhoneNumber'
     const clientData = this.clients.find(client => client.vetClientPhoneNumber === this.searchClientPhoneNumber);
@@ -315,7 +327,7 @@ export default {
       this.vetComments = '';
     } else {
       // Handle case when client is not found
-      alert('Client not found. Please enter the details manually.');
+      this.showAlert('The client being searched for was not found. Please enter their details manually.');
 
       this.vetClientName = '';
       this.vetClientPhoneNumber = this.searchClientPhoneNumber;
