@@ -128,7 +128,9 @@
     <footer class="modal-card-foot">
        <b-button label="Close" @click="close" />
 
-
+       <b-tooltip label="Export to PDF" type="is-dark" position="is-top">
+          <consultation-template/>
+        </b-tooltip>
      
     </footer>
   </div>
@@ -137,10 +139,15 @@
 <script>
 
 import { mapActions, mapGetters } from 'vuex'
+import ConsultationTemplate from '~/components/PDF Templates/consultation-template.vue'
 export default {
+  
+  components:{ConsultationTemplate},
   name: 'vetSnapshotModal',
 
    data() {
+
+    
     return {
       isFullPage: true,
 

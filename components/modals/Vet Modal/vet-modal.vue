@@ -10,9 +10,75 @@
       <div>
         <b-form v-model="vetForm" class="form">
 
-          <div v-if="SignedInUser.role !== 'Vet Consultant'">
+          <div >
 
-        <h4> <b-tooltip 
+            <h4><span class="is-blue">Search Client by Contact Number</span></h4>
+              <div class="columns">
+                <div class="column is-three-quarters">
+                  <b-input
+                    type="number"
+                    v-model="searchClientPhoneNumber"
+                    placeholder="Enter phone no. to search..."
+                  ></b-input>
+                </div>
+                <div class="column">
+                  <b-button @click="searchClient" type="is-info">Search</b-button>
+                </div>
+              </div>
+
+       
+
+
+          <h4><span class="is-blue"> Client Name</span></h4>
+
+          <div class="columns">
+            <div class="column is-three-quarters">
+              <b-input
+                type="text"
+                v-model="vetClientName"
+                placeholder="Client name"
+              ></b-input>
+            </div>
+          </div>
+
+          <h4><span class="is-blue"> Contact Number</span></h4>
+
+          <div class="columns">
+            <div class="column is-three-quarters">
+              <b-input
+                type="number"
+                v-model="vetClientPhoneNumber"
+                placeholder="Enter phone no. here..."
+              ></b-input>
+            </div>
+          </div>
+
+          <h4><span class="is-blue"> Town</span></h4>
+
+          <div class="columns">
+            <div class="column is-three-quarters">
+              <b-input
+                type="text"
+                v-model="vetClientTown"
+                placeholder="Enter town here..."
+              ></b-input>
+            </div>
+          </div>
+
+          <h4><span class="is-blue"> Location</span></h4>
+
+          <div class="columns">
+            <div class="column is-three-quarters">
+              <b-input
+                type="text"
+                v-model="vetClientLocation"
+                placeholder="Enter address here..."
+              ></b-input>
+            </div>
+          </div>
+
+          <div v-if="SignedInUser.role !== 'Vet Consultant'">
+            <h4> <b-tooltip 
           label="This is the designated consultant who may not be 
           physically available for a consultation, but can do
           so via phone call, WhatsApp, email etc " 
@@ -74,58 +140,8 @@
             </div>
 
           </div>
-
-
-
-          <h4><span class="is-blue"> Client Name</span></h4>
-
-          <div class="columns">
-            <div class="column is-three-quarters">
-              <b-input
-                type="text"
-                v-model="vetClientName"
-                placeholder="Client name"
-              ></b-input>
-            </div>
           </div>
 
-          <h4><span class="is-blue"> Contact Number</span></h4>
-
-          <div class="columns">
-            <div class="column is-three-quarters">
-              <b-input
-                type="number"
-                v-model="vetClientPhoneNumber"
-                placeholder="Enter phone no. here..."
-              ></b-input>
-            </div>
-          </div>
-
-          <h4><span class="is-blue"> Town</span></h4>
-
-          <div class="columns">
-            <div class="column is-three-quarters">
-              <b-input
-                type="text"
-                v-model="vetClientTown"
-                placeholder="Enter town here..."
-              ></b-input>
-            </div>
-          </div>
-
-          <h4><span class="is-blue"> Location</span></h4>
-
-          <div class="columns">
-            <div class="column is-three-quarters">
-              <b-input
-                type="text"
-                v-model="vetClientLocation"
-                placeholder="Enter address here..."
-              ></b-input>
-            </div>
-          </div>
-
-         
 
 
           <h4><span class="is-blue"> Select Category</span></h4>
@@ -259,6 +275,7 @@ export default {
 
     ...mapGetters("vetData", {
       task: "selectedVetRecord",
+      clients: 'allVetRecords',
       taskLoading: "loading",
     }),
 
@@ -282,6 +299,34 @@ export default {
     loading() {
       return this.vetLoading;
     },
+
+    async searchClient() {
+    // Assuming you have a Vuex getter named 'getClientByPhoneNumber'
+    const clientData = this.clients.find(client => client.vetClientPhoneNumber === this.searchClientPhoneNumber);
+
+    if (clientData) {
+      this.vetClientName = clientData.vetClientName;
+      this.vetClientPhoneNumber = clientData.vetClientPhoneNumber;
+      this.vetClientLocation = clientData.vetClientLocation;
+      this.vetClientTown = clientData.vetClientTown;
+      // Clear other fields if needed
+      this.vetCategory = '';
+      this.vetOther = '';
+      this.vetComments = '';
+    } else {
+      // Handle case when client is not found
+      alert('Client not found. Please enter the details manually.');
+
+      this.vetClientName = '';
+      this.vetClientPhoneNumber = this.searchClientPhoneNumber;
+      this.vetClientLocation = '';
+      this.vetClientTown = '';
+      // Clear other fields if needed
+      this.vetCategory = '';
+      this.vetOther = '';
+      this.vetComments = '';
+    }
+  },
 
     async onSubmit() {
       await this.$buefy.dialog.confirm({
