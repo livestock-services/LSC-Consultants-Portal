@@ -33,7 +33,7 @@
        <div  class="card-body">
         <a
           class="navbar-item mx-4"
-          href="/"
+          
         >
           <b-icon
                 icon="home"
@@ -73,7 +73,7 @@
         <div class="card bulls-card  card-body">
       
        <div class="card-body" @click="vetTech">
-        <p
+        <a
           class="navbar-item mx-4 mt-2"
           
         >
@@ -82,7 +82,7 @@
                 size="is-medium"
                 type="is-light">
             </b-icon>
-          </p>
+          </a>
 
       
 
@@ -96,10 +96,10 @@
 
       <div class="card cow-card ml-5 card-body">
       
-       <div class="card-body px-5">
+       <div class="card-body px-5" @click="fence">
         <a
           class="navbar-item mx-4 mt-2"
-          href="/"
+          
         >
           <b-icon
                 icon="wall"
@@ -120,10 +120,10 @@
 
       <div class="card bulling-heifers-card ml-5 card-body">
       
-       <div class="card-body">
+       <div class="card-body" @click="onFish">
         <a
-          class="navbar-item mx-4 mt-2"
-          href="/"
+          class="navbar-item mx-4 mt-2" 
+          href="#"
         >
            <b-icon
                 icon="fish"
@@ -153,10 +153,10 @@
     
         <div class="card yearlings-card  card-body">
       
-       <div class="card-body">
+       <div class="card-body" @click="irrgiate">
         <a
-          class="navbar-item mx-4 mt-2"
-          href="/"
+          class="navbar-item mx-4 mt-2" 
+          
         >
           <b-icon
                 icon="water"
@@ -175,10 +175,10 @@
 
       <div class="card weaners-card ml-5 card-body">
       
-       <div class="card-body px-5">
+       <div class="card-body px-5" @click="nutrition">
         <a
-          class="navbar-item mx-4 mt-2"
-          href="/"
+          class="navbar-item mx-4 mt-2" 
+          
         >
           <b-icon
                 icon="sack"
@@ -199,10 +199,10 @@
 
       <div class="card calf-card ml-5 card-body">
       
-       <div class="card-body">
+       <div class="card-body" @click="AI">
         <a
-          class="navbar-item mx-4 mt-2"
-          href="/"
+          class="navbar-item mx-4 mt-2" 
+          
         >
            <b-icon
                 icon="needle"
@@ -232,10 +232,10 @@
     
     <div class="card agro-card  card-body">
   
-   <div class="card-body">
+   <div class="card-body" @click="agro">
     <a
-      class="navbar-item mx-4 mt-2"
-      href="/"
+      class="navbar-item mx-4 mt-2" 
+      
     >
       <b-icon
             icon="flower"
@@ -254,10 +254,10 @@
 
   <div class="card water-pump-card ml-5 card-body">
   
-   <div class="card-body px-5">
+   <div class="card-body px-5" @click="lab">
     <a
-      class="navbar-item mx-4 mt-2"
-      href="/"
+      class="navbar-item mx-4 mt-2" 
+      
     >
       <b-icon
             icon="test-tube"
@@ -278,10 +278,10 @@
 
   <div class="card post-mortem-card ml-5 card-body">
   
-   <div class="card-body">
+   <div class="card-body" @click="vetTech">
     <a
-      class="navbar-item mx-4 mt-2"
-      href="/"
+      class="navbar-item mx-4 mt-2" 
+      
     >
        <b-icon
             icon="skull"
@@ -319,7 +319,7 @@
          <div  class="card-body">
           <a
             class="navbar-item mx-4"
-            href="/"
+            
           >
             <b-icon
                   icon="home"
@@ -346,7 +346,7 @@
          <div class="card-body">
           <a
             class="navbar-item mx-4 mt-2"
-            href="/"
+            
           >
             <b-icon
                   icon="clock"
@@ -608,9 +608,42 @@ export default {
 
       ...mapActions('vetData', ['getAllVetRecords', ' getAllPostMortemRecords']),
 
+      lab(){
+      this.$router.push("lab")
+    },
 
+    nutrition(){
+      this.$router.push("nutrition")
+    },
        vetTech(){
       this.$router.push("vet-con")
+    },
+
+    agro(){
+      this.$router.push("agro")
+    },
+
+    AI(){
+      this.$router.push("ai-and-breeding")
+    },
+
+ 
+
+     fence(){
+      this.$router.push("fence")
+    },
+
+    onFish(){
+      this.$router.push("fish")
+    },
+
+    irrgiate(){
+      this.$router.push("irrigation")
+    },
+
+
+    pump(){
+      this.$router.push("pumps")
     },
 
       filter() {

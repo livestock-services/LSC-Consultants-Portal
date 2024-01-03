@@ -26,7 +26,9 @@
 
  
 
-            <h4><span class="is-blue"> Client Name</span></h4>
+            <div :disabled="!searchClientPhoneNumber">
+
+              <h4><span class="is-blue"> Client Name</span></h4>
   
             <div class="columns">
               <div class="column is-three-quarters">
@@ -291,20 +293,97 @@
                     </div>
                   </div>
               </div>
+
+             <b-tooltip label="This is the historical data provided by the client during the consultation" multilined type="is-dark" position="is-right"> 
+              <h4><span class="is-blue"> History</span></h4>
+            </b-tooltip>
+              
+              <div class="columns">
+                <div class="column is-full">
+                  <b-input
+                    maxlength="1000"
+                    type="textarea"
+                    v-model="vetPMHistory" 
+                    placeholder="History"
+                  ></b-input>
+                </div>
+              </div>
+             
+
+              <b-tooltip label="These are the findings after performing a post mortem. This will most likely be related to historical data provided by the client during an earlier consultation" multilined type="is-dark" position="is-right"> 
+              <h4><span class="is-blue"> Post Mortem Findings</span></h4>
+            </b-tooltip>
+              
+              <div class="columns">
+                <div class="column is-full">
+                  <b-input
+                    maxlength="1000"
+                    type="textarea"
+                    v-model="vetPMFindings" 
+                    placeholder="Post Mortem Findings"
+                  ></b-input>
+                </div>
+              </div>
+
+             
+              
+
+              <b-tooltip label="A tentative diagnosis refers to a preliminary or provisional identification
+                                of a medical condition or disorder based on initial assessment and clinical information.
+                                It is not a definitive or final diagnosis but serves as an initial step in the diagnostic process." 
+                          multilined 
+                          type="is-dark"
+                          position="is-right"> 
+              <h4><span class="is-blue"> Tentative Diagnosis</span></h4>
+            </b-tooltip>
+              
+              <div class="columns">
+                <div class="column is-full">
+                  <b-input
+                    maxlength="1000"
+                    type="textarea"
+                    v-model="vetPMTentativeDiagnosis" 
+                    placeholder="Tentative Diagnosis"
+                  ></b-input>
+                </div>
+              </div>
+
+
+              <b-tooltip label="This is the recommended treatment given by the consulting veterinarian.
+                                Treatment plans depend on the specific diagnosis, severity of the condition, and other individual factors. " 
+                          multilined 
+                          type="is-dark"
+                          position="is-right"> 
+              <h4><span class="is-blue"> Recommended Treatment</span></h4>
+            </b-tooltip>
+              
+              <div class="columns">
+                <div class="column is-full">
+                  <b-input
+                    maxlength="1000"
+                    type="textarea"
+                    v-model="vetPMRecommendedTreatment" 
+                    placeholder="Recommended Treatment"
+                  ></b-input>
+                </div>
+              </div>
            
 
 
             <h4><span class="is-blue"> Comments/Remarks</span></h4>
   
             <div class="columns">
-              <div class="column is-three-quarters">
+              <div class="column is-full">
                 <b-input
-                  type="text"
+                   maxlength="1000"
+                  type="textarea"
                   v-model="vetPMComments" 
                   placeholder="Comments/Remarks"
                 ></b-input>
               </div>
             </div>
+
+             
   
             <div class="card my-4">
               <div class="summary-content">
@@ -341,10 +420,19 @@
                 <p class="mx-4 cat">
                   Associated Disease Selected (other) :  {{ vetPostMortemOtherDiseases }}
                 </p>
+
+                <p class="mx-4 cat">History : {{ vetPMHistory }}</p>
+
+                <p class="mx-4 cat">Post Mortem Findings : {{ vetPMFindings }}</p>
+
+                <p class="mx-4 cat">Tentative Diagnosis : {{ vetPMTentativeDiagnosis }}</p>
+
+                <p class="mx-4 cat">Recommended Treatment : {{ vetPMRecommendedTreatment }}</p>
                 
                 <p class="mx-4 cat">Comments/Remarks : {{ vetPMComments }}</p>
                
               </div>
+            </div>
             </div>
   
             <b-button @click="onSubmit" type="is-info">Add </b-button>
@@ -406,6 +494,10 @@
         "vetPostMortemForm.vetPostMortemDiseases",
         "vetPostMortemForm.vetPostMortemOtherDiseases",
         "vetPostMortemForm.vetPMComments",
+        "vetPostMortemForm.vetPMHistory",  // New field
+        "vetPostMortemForm.vetPMFindings", // New field
+        "vetPostMortemForm.vetPMTentativeDiagnosis", // New field
+        "vetPostMortemForm.vetPMRecommendedTreatment", // New field
       ]),
   
       ...mapGetters("vetData", {
@@ -451,27 +543,41 @@
     const clientData = this.clients.find(client => client.vetPostMortemClientPhoneNumber === this.searchClientPhoneNumber);
 
     if (clientData) {
-      this.vetPostMortemClientName = clientData.vetPostMortemClientName;
-      this.vetPostMortemClientPhoneNumber = clientData.vetPostMortemClientPhoneNumber;
-      this.vetPostMortemClientLocation = clientData.vetPostMortemClientLocation;
-      this.vetPostMortemClientTown = clientData.vetPostMortemClientTown;
-      // Clear other fields if needed
-      this.vetPostMortemCategory = '';
-      this.vetPostMortemOther = '';
-      this.vetPostMortemComments = '';
-    } else {
-      // Handle case when client is not found
-      this.showAlert('The client being searched for was not found. Please enter their details manually.');
+  this.vetPostMortemClientName = clientData.vetPostMortemClientName;
+  this.vetPostMortemClientPhoneNumber = clientData.vetPostMortemClientPhoneNumber;
+  this.vetPostMortemClientLocation = clientData.vetPostMortemClientLocation;
+  this.vetPostMortemClientTown = clientData.vetPostMortemClientTown;
+  
+  // Clear other fields if needed
+  this.vetPostMortemCategory = '';
+  this.vetPostMortemOther = '';
+  this.vetPostMortemComments = '';
+  // Add the new fields here
+  this.vetPMHistory = '';
+  this.vetPMFindings = '';
+  this.vetPMTentativeDiagnosis = '';
+  this.vetPMRecommendedTreatment = '';
 
-      this.vetPostMortemClientName = '';
-      this.vetPostMortemClientPhoneNumber = this.searchClientPhoneNumber;
-      this.vetPostMortemClientLocation = '';
-      this.vetPostMortemClientTown = '';
-      // Clear other fields if needed
-      this.vetPostMortemCategory = '';
-      this.vetPostMortemOther = '';
-      this.vetPostMortemComments = '';
-    }
+} else {
+  // Handle case when client is not found
+  this.showAlert('The client being searched for was not found. Please enter their details manually.');
+
+  this.vetPostMortemClientName = '';
+  this.vetPostMortemClientPhoneNumber = this.searchClientPhoneNumber;
+  this.vetPostMortemClientLocation = '';
+  this.vetPostMortemClientTown = '';
+  
+  // Clear other fields if needed
+  this.vetPostMortemCategory = '';
+  this.vetPostMortemOther = '';
+  this.vetPostMortemComments = '';
+  // Add the new fields here as well
+  this.vetPMHistory = '';
+  this.vetPMFindings = '';
+  this.vetPMTentativeDiagnosis = '';
+  this.vetPMRecommendedTreatment = '';
+}
+
   },
   
   
@@ -519,20 +625,26 @@
         this.$parent.close();
       },
   
-     clearVetPMForm() {
+      clearVetPMForm() {
         this.vetPostMortemForm = {
-            vetPostMortemConsultingPerson:null,
-            vetPostMortemOtherConsultingPerson:null,
-            vetPostMortemClientName:null,
-            vetPostMortemClientPhoneNumber:null,
-            vetPostMortemClientLocation:null,
-            vetPostMortemClientTown:null,
-            vetPostMortemCategory:null,
-            vetPostMortemDiseases:null,
-            vetPMComments:null,
-            
-        }
-      },
+          vetPostMortemConsultingPerson: null,
+          vetPostMortemOtherConsultingPerson: null,
+          vetPostMortemClientName: null,
+          vetPostMortemClientPhoneNumber: null,
+          vetPostMortemClientLocation: null,
+          vetPostMortemClientTown: null,
+          vetPostMortemCategory: null,
+          vetPostMortemOtherCategory: null,  // Add new field
+          vetPostMortemDiseases: null,
+          vetPostMortemOtherDiseases: null,  // Add new field
+          vetPMComments: null,
+          vetPMHistory: null,  // Add new field
+          vetPMFindings: null,  // Add new field
+          vetPMTentativeDiagnosis: null,  // Add new field
+          vetPMRecommendedTreatment: null,  // Add new field
+       };
+},
+
     },
   };
   </script>
