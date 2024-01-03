@@ -140,7 +140,7 @@
        <b-button label="Close" @click="close" />
 
        <b-tooltip label="Export to PDF" type="is-dark" position="is-top">
-          <post-mortem-template></post-mortem-template>
+          <postMortemTemplate/>
         </b-tooltip>
      
     </footer>
