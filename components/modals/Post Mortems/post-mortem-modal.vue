@@ -299,12 +299,17 @@
             <div class="columns">
               <div class="column is-three-quarters">
                 <b-input
-                  type="text"
+                   maxlength="200"
+                  type="textarea"
                   v-model="vetPMComments" 
                   placeholder="Comments/Remarks"
                 ></b-input>
               </div>
             </div>
+
+             <b-field label="Message">
+                <b-input maxlength="200" type="textarea"></b-input>
+            </b-field>
   
             <div class="card my-4">
               <div class="summary-content">
