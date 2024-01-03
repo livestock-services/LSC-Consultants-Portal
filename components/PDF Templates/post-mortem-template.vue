@@ -86,7 +86,7 @@
 
         doc.setFontSize(16); 
       
-        doc.text('Post Mortem Report', 45,40);
+        doc.text('Post Mortem Report', 90,40);
        
         doc.setFontSize(14)
         doc.text(`Client Name: ${this.vetPM.vetPostMortemClientName}`, 10, 60);  
