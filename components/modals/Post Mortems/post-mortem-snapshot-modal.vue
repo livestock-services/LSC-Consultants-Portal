@@ -139,7 +139,9 @@
     <footer class="modal-card-foot">
        <b-button label="Close" @click="close" />
 
-
+       <b-tooltip label="Export to PDF" type="is-dark" position="is-top">
+          <post-mortem-template></post-mortem-template>
+        </b-tooltip>
      
     </footer>
   </div>
@@ -148,7 +150,9 @@
 <script>
 
 import { mapActions, mapGetters } from 'vuex'
+import postMortemTemplate from '~/components/PDF Templates/post-mortem-template.vue'
 export default {
+  components: { postMortemTemplate },
   name: 'VetPostMortemSnapshotModal',
 
    data() {

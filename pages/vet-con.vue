@@ -28,6 +28,11 @@
 
               <b-tab-item label="Records">
                 <b-tabs>
+
+                  <!-- <b-tab-item label="Total Post Mortems">
+                  <PostMortemCard/>
+                </b-tab-item> -->
+
                   <b-tab-item label="Village Chickens">
                   <VillageChickensCard/>
                 </b-tab-item>

@@ -1277,7 +1277,7 @@ export const actions = {
 
            let allBioSubs = response.data;
           
-           console.log(allBioSubs)
+         //  console.log(allBioSubs)
 
             let filteredBioSubmissionsList = ["Bio Submmission Numbers:"];
 
@@ -1309,11 +1309,11 @@ export const actions = {
 
 
                 // Check if the clientName exists for the selected bioSubmissionNumber
-                if (clientName !== undefined) {
-                    console.log(`Bio S/N ${selectedBioSubmissionNumber}: ${clientName}`);
-                } else {
-                    console.log(`Client Name not found for Bio Submission Number ${selectedBioSubmissionNumber}`);
-                }
+                // if (clientName !== undefined) {
+                //     console.log(`Bio S/N ${selectedBioSubmissionNumber}: ${clientName}`);
+                // } else {
+                //     console.log(`Client Name not found for Bio Submission Number ${selectedBioSubmissionNumber}`);
+                // }
 
 
 
@@ -1366,8 +1366,8 @@ export const actions = {
                     cur.createdBy === this.$auth.user.email
                           )
 
-                      console.log(customeUserRecords);
-                      console.log(customeUserRecords.length)
+                    //   console.log(customeUserRecords);
+                    //   console.log(customeUserRecords.length)
                 commit(GET_ALL_BIO_SUBMISSIONS_RECORDS, customeUserRecords);
 
                 break;

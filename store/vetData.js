@@ -356,22 +356,25 @@ export const state = () => ({
         
     },
 
-    vetPostMortemForm:{
-        vetPostMortemConsultingPerson:null,
-        vetPostMortemOtherConsultingPerson:null,
-        vetPostMortemClientName:null,
-        vetPostMortemClientPhoneNumber:null,
-        vetPostMortemClientLocation:null,
-        vetPostMortemClientTown:null,
-        vetPostMortemCategory:null,
-        vetPostMortemOtherCategory:null,
-        vetPostMortemDiseases:null,
-        vetPostMortemOtherDiseases:null,
-        vetPMComments:null,
-        createdBy:null
-       
-        
+    vetPostMortemForm: {
+      vetPostMortemConsultingPerson: null,
+      vetPostMortemOtherConsultingPerson: null,
+      vetPostMortemClientName: null,
+      vetPostMortemClientPhoneNumber: null,
+      vetPostMortemClientLocation: null,
+      vetPostMortemClientTown: null,
+      vetPostMortemCategory: null,
+      vetPostMortemOtherCategory: null,
+      vetPostMortemDiseases: null,
+      vetPostMortemOtherDiseases: null,
+      vetPMComments: null,
+      createdBy: null,
+      vetPMHistory: null,  // Add new field
+      vetPMFindings: null,  // Add new field
+      vetPMTentativeDiagnosis: null,  // Add new field
+      vetPMRecommendedTreatment: null,  // Add new field
     },
+    
 
 
     vetFilterForm:{
