@@ -125,6 +125,27 @@
         /> 
         </b-tooltip>
 
+        
+        <b-tooltip type="is-dark" label="Make Vet Online Consultant">
+          <b-button   
+          class="mx-1 vet"
+         
+          icon-left="doctor"
+          icon-right="phone"
+          @click="onVetOnline"
+        /> 
+        </b-tooltip>
+
+        <b-tooltip type="is-dark" label="Make Agro Online Consultant">
+          <b-button   
+          class="mx-1 agro"
+          
+          icon-left="flower"
+          icon-right="phone"
+          @click="onAgroOnline"
+        /> 
+        </b-tooltip>
+
         <b-tooltip label="Make Lab Consultant">
           <b-button   
           class="mx-1 lab"
@@ -217,7 +238,7 @@
   
     methods: {
       ...mapActions('users', ['load', 'selectUser', 'makeAdminUser','makeManagerUser',
-                    'makeVetUser','makeAgroUser','makeLabUser','makeNutritionUser',
+                    'makeVetUser','makeVetOnlineUser','makeAgroUser','makeAgroOnlineUser','makeLabUser','makeNutritionUser',
                     'makeAIUser','makeRotoUser','makeFenceUser','makeFishUser', 'makeVetManagerUser', 'makeLabManagerUser']),
   
       async onAdmin() {
@@ -291,9 +312,37 @@
       this.$parent.close()
       },
 
+      async onVetOnline() {
+
+    await this.makeVetOnlineUser();
+
+    const msg = await Promise.resolve('Operation successfull')
+    this.$buefy.toast.open({
+      message: msg, // 'Operation successful',
+      duration: 5000,
+      position: 'is-top',
+      type: 'is-info',
+    })
+    this.$parent.close()
+    },
       async onAgro() {
 
       await this.makeAgroUser();
+
+      const msg = await Promise.resolve('Operation successfull')
+      this.$buefy.toast.open({
+        message: msg, // 'Operation successful',
+        duration: 5000,
+        position: 'is-top',
+        type: 'is-info',
+      })
+      this.$parent.close()
+      },
+
+
+      async onAgroOnline() {
+
+      await this.makeAgroOnlineUser();
 
       const msg = await Promise.resolve('Operation successfull')
       this.$buefy.toast.open({

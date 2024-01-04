@@ -72,7 +72,7 @@
             </div>
           </div>
 
-          <div v-if="SignedInUser.role !== 'Agro Consultant'">
+          <div v-if="SignedInUser.role !== 'Agro Consultant' || SignedInUser.role !== 'Agro Online Consultant'">
 
             <h4> <b-tooltip 
               label="This is the designated consultant who may not be 
@@ -94,7 +94,7 @@
                     >
                   <option value=" Omega Dondoro "> Omega Dondoro</option>
                   <option value=" Nachilima Mandandai "> Nachilima Mandandai</option>
-                  <option value=" David Ng'andu "> David Ng'andu</option>
+                 
                 
                   <option value="Other">Other</option>
                   
@@ -128,6 +128,33 @@
                 </div>
 
               </div>
+
+           <div v-if="SignedInUser.role === 'Vet Online Consultant' || SignedInUser.role === 'Agro Online Consultant'">
+                 
+            <h4> <b-tooltip 
+              label="This is the source of contact between the consultant and the client ie. WhatsApp, Phone Calls etc"
+              multilined 
+              type="is-dark"
+              position="is-right mt-4">
+                <span class="is-blue"> Contact Point</span>
+              
+              </b-tooltip> </h4>
+
+                <div class="columns">
+                  <div class="column is-three-quarters">
+                    <b-select
+                      type="text"
+                      v-model="agroContactPoint"
+                      placeholder="--Select Contact Point--"
+                    >
+                  <option value=" WhatsApp "> WhatsApp</option>
+                  <option value=" Phone Call "> Phone Call</option>
+  
+                  </b-select>
+                  </div>
+
+                </div>
+           </div>
 
         
          
@@ -291,6 +318,7 @@ export default {
       'agroForm.clientLocation',
       'agroForm.clientTown',
       'agroForm.clientPhoneNumber',
+      'agroForm.agroContactPoint',
       'agroForm.agroCategory',
       'agroForm.agroOtherCategory',
       'agroForm.clientComments',
@@ -363,6 +391,7 @@ export default {
       this.clientLocation = '';
       this.clientTown = '';
       // Clear other fields if needed
+      this.agroContactPoint = '';
       this.agroCategory = '';
       this.agroOtherCategory = '';
       this.clientComments = '';
@@ -426,6 +455,7 @@ export default {
               clientPhoneNumber:null,
               clientLocation:null,
               clientTown:null,
+              agroContactPoint:null,
               agroCategory:null,
               agroConsultingPerson:null,
               agroOtherConsultingPerson:null,

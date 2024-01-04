@@ -16,6 +16,8 @@ import {    SET_LOADING,
             MAKE_VET_MANAGER_USER,
             MAKE_LAB_MANAGER_USER,
             MAKE_VET_USER,
+            MAKE_AGRO_ONLINE_USER,
+            MAKE_VET_ONLINE_USER,
             MAKE_AGRO_USER,
             MAKE_LAB_USER,
             MAKE_NUTRITION_USER,
@@ -162,6 +164,19 @@ export const mutations = {
         state.selectedUser = putResponse
         state.selectedUser.role = "Agro Consultant"
         },
+
+        
+        [MAKE_VET_ONLINE_USER](state, putResponse) {
+          state.selectedUser = putResponse
+          state.selectedUser.role = "Vet Online Consultant"
+          },
+  
+          [MAKE_AGRO_ONLINE_USER](state, putResponse) {
+          state.selectedUser = putResponse
+          state.selectedUser.role = "Agro Online Consultant"
+          },
+  
+
 
         [MAKE_LAB_USER](state, putResponse) {
         state.selectedUser = putResponse
@@ -513,6 +528,31 @@ export const actions = {
            
           },
 
+          
+      async makeVetOnlineUser({ state, commit }) {
+        try {
+            commit(SET_LOADING, true) 
+            var date = new Date();
+           
+            const newUser = state.user
+        
+
+            console.log(newUser)
+     
+           const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "Vet Online Consultant" } )
+          
+           commit(MAKE_VET_ONLINE_USER, putResponse)
+    
+            console.log(newUser.data);
+           
+            commit(SET_LOADING, false)
+          } catch (error) {
+            commit(SET_LOADING, false)
+            //throw error
+          }
+           
+          },
+
           async makeAgroUser({ state, commit }) {
             try {
                 commit(SET_LOADING, true) 
@@ -537,6 +577,31 @@ export const actions = {
               }
                
               },
+
+              async makeAgroOnlineUser({ state, commit }) {
+                try {
+                    commit(SET_LOADING, true) 
+                    var date = new Date();
+                   
+            
+                const newUser = state.user
+                    
+            
+                   console.log(newUser)
+            
+                 const {data: putResponse} = await api.put(`/auth/activateUser/${newUser._id}`, {newUser, role: "Agro Online Consultant" } )
+                  
+                   commit(MAKE_AGRO_ONLINE_USER, putResponse)
+            
+                    console.log(newUser.data);
+                   
+                    commit(SET_LOADING, false)
+                  } catch (error) {
+                    commit(SET_LOADING, false)
+                    //throw error
+                  }
+                   
+                  },
 
               async makeLabUser({ state, commit }) {
                 try {

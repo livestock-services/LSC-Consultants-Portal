@@ -77,6 +77,35 @@
             </div>
 
 
+            <div v-if="SignedInUser.role === 'Vet Online Consultant' || SignedInUser.role === 'Agro Online Consultant'">
+                 
+                 <h4> <b-tooltip 
+                   label="This is the source of contact between the consultant and the client ie. WhatsApp, Phone Calls etc" 
+                   multilined 
+                   type="is-dark"
+                   position="is-right mt-4">
+                     <span class="is-blue"> Contact Point</span>
+                   
+                   </b-tooltip> </h4>
+     
+                     <div class="columns">
+                       <div class="column is-three-quarters">
+                         <b-select
+                           type="text"
+                           v-model="vetPostMortemContactPoint"
+                           placeholder="--Select Contact Point--"
+                         >
+                       <option value=" WhatsApp "> WhatsApp</option>
+                       <option value=" Phone Call "> Phone Call</option>
+       
+                       </b-select>
+                       </div>
+     
+                     </div>
+                </div>
+
+
+
             <div v-if="SignedInUser.role !== 'Vet Consultant'">
 
               <h4> <b-tooltip 
@@ -489,6 +518,7 @@
         "vetPostMortemForm.vetPostMortemClientPhoneNumber",
         "vetPostMortemForm.vetPostMortemClientLocation",
         "vetPostMortemForm.vetPostMortemClientTown",
+        "vetPostMortemForm.vetPostMortemContactPoint",
         "vetPostMortemForm.vetPostMortemCategory",
         "vetPostMortemForm.vetPostMortemOtherCategory",
         "vetPostMortemForm.vetPostMortemDiseases",
@@ -547,6 +577,7 @@
   this.vetPostMortemClientPhoneNumber = clientData.vetPostMortemClientPhoneNumber;
   this.vetPostMortemClientLocation = clientData.vetPostMortemClientLocation;
   this.vetPostMortemClientTown = clientData.vetPostMortemClientTown;
+  this.vetPostMortemContactPoint = clientData.vetPostMortemContactPoint;
   
   // Clear other fields if needed
   this.vetPostMortemCategory = '';
@@ -566,6 +597,7 @@
   this.vetPostMortemClientPhoneNumber = this.searchClientPhoneNumber;
   this.vetPostMortemClientLocation = '';
   this.vetPostMortemClientTown = '';
+  this.vetPostMortemContactPoint = '';
   
   // Clear other fields if needed
   this.vetPostMortemCategory = '';
@@ -633,6 +665,7 @@
           vetPostMortemClientPhoneNumber: null,
           vetPostMortemClientLocation: null,
           vetPostMortemClientTown: null,
+          vetPostMortemContactPoint:null,
           vetPostMortemCategory: null,
           vetPostMortemOtherCategory: null,  // Add new field
           vetPostMortemDiseases: null,

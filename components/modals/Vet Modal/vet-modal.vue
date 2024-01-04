@@ -77,8 +77,37 @@
             </div>
           </div>
 
+          <div v-if="SignedInUser.role === 'Vet Online Consultant' || SignedInUser.role === 'Agro Online Consultant'">
+                 
+                 <h4> <b-tooltip 
+                  label="This is the source of contact between the consultant and the client ie. WhatsApp, Phone Calls etc" 
+                   multilined 
+                   type="is-dark"
+                   position="is-right mt-4">
+                     <span class="is-blue"> Contact Point</span>
+                   
+                   </b-tooltip> </h4>
+     
+                     <div class="columns">
+                       <div class="column is-three-quarters">
+                         <b-select
+                           type="text"
+                           v-model="vetContactPoint"
+                           placeholder="--Select Contact Point--"
+                         >
+                       <option value=" WhatsApp "> WhatsApp</option>
+                       <option value=" Phone Call "> Phone Call</option>
+       
+                       </b-select>
+                       </div>
+     
+                     </div>
+                </div>
+
           <div v-if="SignedInUser.role !== 'Vet Consultant'">
-            <h4> <b-tooltip 
+            <div v-if="SignedInUser.role !== 'Vet Online Consultant'">
+
+              <h4> <b-tooltip 
           label="This is the designated consultant who may not be 
           physically available for a consultation, but can do
           so via phone call, WhatsApp, email etc " 
@@ -181,6 +210,8 @@
                   placeholder="Comments/Remarks"
                 ></b-input>
               </div>
+            </div>
+            
             </div>
           </div>
 

@@ -166,6 +166,8 @@
 
                                 <b-menu-item   icon="water"   @click="irrgiate" label="Irrigation">  </b-menu-item>
 
+                                <b-menu-item v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager' || SignedInUser.role === 'Vet Online Consultant' || SignedInUser.role === 'Agro Online Consultant'" icon="phone" @click="callCenter" label="Call Center"></b-menu-item>
+                              
                                
                                 <b-menu-item v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'" icon="account-multiple-outline" @click="customers" label="Users"></b-menu-item>
                               
@@ -387,6 +389,10 @@ export default {
 
     agro(){
       this.$router.push("agro")
+    },
+
+    callCenter(){
+      this.$router.push("call-center")
     },
 
     AI(){

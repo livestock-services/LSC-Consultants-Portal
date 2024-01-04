@@ -69,6 +69,7 @@ export const state = () => ({
         clientPhoneNumber:null,
         clientLocation:null,
         clientTown:null,
+        agroContactPoint:null,
         clientComments:null,
         agroCategory:null,
         agroOtherCategory:null,

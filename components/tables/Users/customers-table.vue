@@ -86,11 +86,11 @@
               },
 
               {
-                'vet' : props.row.role ===  'Vet Consultant' || props.row.role ===  'Vet Manager',
+                'vet' : props.row.role ===  'Vet Online Consultant' || props.row.role ===  'Vet Consultant' || props.row.role ===  'Vet Manager',
               },
   
               {
-                'agro': props.row.role === 'Agro Consultant',
+                'agro': props.row.role === 'Agro Consultant' || props.row.role ===  'Agro Online Consultant',
               },
 
               {
@@ -127,6 +127,7 @@
           <i v-if="props.row.role=== 'Manager'" class="mdi mdi-star"></i>
           <i v-if="props.row.role=== 'Vet Manager'" class="mdi mdi-doctor"></i>
           <i v-if="props.row.role=== 'Lab Manager'" class="mdi mdi-microscope"></i>
+          <i v-if="props.row.role=== 'Vet Online Consultant' || props.row.role ===  'Agro Online Consultant'" class="mdi mdi-phone"></i>
         </span>
          
           <!-- {{ props.row.sumInsured }} -->
