@@ -194,9 +194,9 @@
   <script>
   import { mapActions, mapGetters } from 'vuex'
   import { computed } from 'vue';
-  import NutritionModal from '@/components/modals/Animal Nutrition/animal-nutritrion-modal.vue'
+  import NutritionModal from '@/components/modals/AnimalNutrition/animal-nutritrion-modal.vue'
   
- import NutritionSnapshotModal from '@/components/modals/Animal Nutrition/animal-nutrition-snapshot-modal.vue'
+ import NutritionSnapshotModal from '@/components/modals/AnimalNutrition/animal-nutrition-snapshot-modal.vue'
   export default {
     name: 'nutritionTable',
   

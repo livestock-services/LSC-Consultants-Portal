@@ -178,9 +178,9 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import { computed } from 'vue';
-import FenceModal from '@/components/modals/Fencing Modal/fencing-modal.vue'
+import FenceModal from '@/components/modals/FencingModal/fencing-modal.vue'
 
-import FenceSnapshotModal from '@/components/modals/Fencing Modal/fencing-snapshot-modal.vue'
+import FenceSnapshotModal from '@/components/modals/FencingModal/fencing-snapshot-modal.vue'
 export default {
   name: 'fenceTable',
 

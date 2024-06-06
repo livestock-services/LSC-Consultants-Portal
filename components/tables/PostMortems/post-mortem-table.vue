@@ -21,34 +21,7 @@
            <b-tooltip label="Refresh" type="is-dark">
            <b-button class="mx-2" icon-left="refresh" type="is-info" @click="refresh">Refresh</b-button>
            </b-tooltip>
-           
-
-           <b-tooltip label="Export to Excel" type="is-dark">
-
-                  <download-excel  
-                  :fields="{
-                    'Submission Number':'submissionNumber',
-                    'Sample ID':'sampleID',
-                    'Sample Type':'sampleType',
-                    'Animal Type':'animalType',
-                    'Breed':'breed',
-                    'Age':'age',
-                    'Sex':'sex',
-                    'Sample Condition on Receipt':'sampleGoodOnReceipt',
-                    'Date Sample Collected':'dateSampleCollected',
-                    'Test Requested':'testRequested',
-                    'Comments':'comments',
-                    'Lab Findings':'labFindings'
-                  }"
-                  :data="samples" 
-                  worksheet="Sample Information Worksheet"
-                  type="xls"
-                  name = "Sample Information.xls">
-
-                  <b-button class="mx-2" icon-left="export" type="is-success ">Excel</b-button>
-                  <img src="download_icon.png" />
-                  </download-excel>   
-            </b-tooltip>
+  
          
               
         </div>
@@ -56,7 +29,6 @@
         
       </b-field>
       <b-table
-        :sticky-header="stickyHeaders"
         :data="tableData"
         :loading="loading"
         :paginated="isPaginated"
@@ -65,79 +37,151 @@
         :pagination-position="paginationPosition"
         :default-sort-direction="defaultSortDirection"
         mobile-cards
-        debounce-search="1200"
         default-sort="selectPriority"
         aria-next-label="Next Page"
         aria-previous-label="Previous Page"
         aria-page-label="Page"
+        debounce-search="1200"
         aria-current-label="Current Page"
       >
   
-      <b-table-column
-          v-slot="props"
-          field="dateSubmitted"
-          label="Date "
-          searchable
-          
-        >
-        <span class="tag is-primary is-light">  {{ props.row.dateSubmitted }} </span>
-         
-          <!-- {{ props.row.sumInsured }} -->
-        </b-table-column>
+    
   
-  
-        <b-table-column
+         <b-table-column
           v-slot="props"
-          field="clientName"
+          field="vetPostMortemClientName"
           label="Client Name"
           searchable
           
         >
-        <span class="tag numbers">  {{ props.row.clientName }} </span>
+        <span class=" ">  {{ props.row.vetPostMortemClientName }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
   
- 
+        <b-table-column
+          v-slot="props"
+          field="vetPostMortemClientPhoneNumber"
+          label="Client Phone No."
+          searchable
+          
+          
+        >
+        <span class="tag numbers">  {{ props.row.vetPostMortemClientPhoneNumber }} </span>
+         
+          <!-- {{ props.row.sumInsured }} -->
+        </b-table-column>
+  
+        <b-table-column
+          v-slot="props"
+          field="vetPostMortemClientLocation"
+          label="Location"
+          searchable
+          
+          
+        >
+        <span class="tag is-primary is-light">  {{ props.row.vetPostMortemClientLocation }} </span>
+         
+          <!-- {{ props.row.sumInsured }} -->
+        </b-table-column>
         
         <b-table-column
           v-slot="props"
-          field="bioSubmissionNumber"
-          label="Submission No."
-          searchable
+          field="vetPostMortemClientTown"
+          label="Town"
+         searchable 
           
         >
-        <span class="tag tasks">  {{ props.row.bioSubmissionNumber }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.vetPostMortemClientTown }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
-       
 
-       
+  
+       <!-- <b-table-column
+          v-slot="props"
+          field="vetPostMortemCategory"
+          label="Category"
+          searchable
+        >
+  
+        <span class="tag is-info is-light">  {{ props.row.vetPostMortemCategory }} </span>
+         
+        </b-table-column>
+
         <b-table-column
           v-slot="props"
-          field="timeStamp"
-          label="Time Stamp"
+          field="vetPostMortemOtherCategory"
+          label="Category(Other)"
           searchable
-          
         >
-        <span class="tag is-primary is-light">  {{ props.row.timeStamp }} </span>
-         
-          <!-- {{ props.row.sumInsured }} -->
-        </b-table-column>
   
+        <span class="tag is-info is-light">  {{ props.row.vetPostMortemOtherCategory }} </span>
+         
+        </b-table-column>
+
+       
+
+        <b-table-column
+          v-slot="props"
+          field="vetPostMortemDiseases"
+          label="Disease"
+          searchable
+        >
+  
+        <span class="is-info is-light">  {{ props.row.vetPostMortemDiseases }} </span>
+         
+        </b-table-column>
+
+        <b-table-column
+          v-slot="props"
+          field="vetPostMortemOtherDiseases"
+          label="Disease(Other)"
+          searchable
+        >
+  
+        <span class="is-info is-light">  {{ props.row.vetPostMortemOtherDiseases }} </span>
+         
+        </b-table-column>
+   -->
+  
+        <b-table-column
+          v-slot="props"
+          field="date"
+          label="Date"
+          searchable
+        >
+  
+        <span class="tag is-info is-light">  {{ props.row.date }} </span>
+         
+        </b-table-column>
+
+        <!-- <b-table-column
+          v-slot="props"
+          field="selectPriority"
+          label="Comments"
+          sortable
+        >
+  
+        <span class="">  {{ props.row.vetPMComments }} </span>
+         
+        </b-table-column> -->
+
         
         <b-table-column
         v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'"
-            v-slot="props"
-            field="createdBy"
-            label="Created By"
-            searchable
-          >
-    
-          <span class="tag is-info is-light">  {{ props.row.createdBy }} </span>
-           
-          </b-table-column>
+          v-slot="props"
+          field="createdBy"
+          label="Created By"
+          searchable
+        >
+  
+        <span class="tag is-info is-light">  {{ props.row.createdBy }} </span>
+         
+        </b-table-column>
+        
+        
+         
   
   
           
@@ -145,7 +189,7 @@
   
   
         
-         <b-table-column v-slot="props" label="Options">
+        <b-table-column v-slot="props" label="Options">
           <span class="buttons">
             <b-tooltip label="View more details about this consult" type="is-dark" position="is-left">
             <b-button
@@ -154,17 +198,10 @@
               @click="captureReceipt(props.row)"
               class="preview"
               ></b-button>
-
-              
-         
   
             </b-tooltip>
           </span>
-
-         
-         
-        
-        </b-table-column> 
+        </b-table-column>
   
         
                    
@@ -175,7 +212,7 @@
         <template #empty>
   
           <b-tooltip  label="Once freshed, your details will appear here" type="is-dark">
-          <h4 class="is-size-4 text-center has-text-centered">No Bio Submissions Data yet. &#x1F4DA;. Click the <span class="tag is-info"> refresh button</span> right above</h4>
+          <h4 class="is-size-4 text-center has-text-centered">No Post Mortem Data yet. &#x1F4CA;. Click the <span class="tag is-info"> refresh button</span> right above</h4>
           </b-tooltip>
   
         </template>
@@ -190,29 +227,19 @@
   
   <script>
   import { mapActions, mapGetters } from 'vuex'
-  
-  import BioSubmissionsModal from '@/components/modals/Lab Modal/Biological Data/bio-submissions-modal.vue'
   import { computed } from 'vue';
-  import BioSubmissionSnapshotModal from '@/components/modals/Lab Modal/Biological Data/bio-submission-snapshot-modal.vue'
-import bioSubmissionsTemplate from '~/components/PDF Templates/bio-submissions-template.vue';
+  import PostMortemModal from '@/components/modals/PostMortems/post-mortem-modal.vue'
+  
+  import PostMortemSnapshotModal from '@/components/modals/PostMortems/post-mortem-snapshot-modal.vue'
   export default {
-  components: { bioSubmissionsTemplate },
-    name: 'SampleInfoTable',
+    name: 'VetTable',
   
     data() {  
-        const min = new Date()
-            min.setHours(9)
-            min.setMinutes(0)
-            const max = new Date()
-            max.setHours(18)
-            max.setMinutes(0)
-      var allSamples = computed(()=>this.samples)
-
+    
+      
       var SignedInUser = computed(()=>this.user)
       return {
         SignedInUser,
-        minTime: min,
-        maxTime: max,
         isPaginated: true,
         currentPage: 1,
         perPage: 10,
@@ -221,29 +248,15 @@ import bioSubmissionsTemplate from '~/components/PDF Templates/bio-submissions-t
         defaultSortDirection: 'asc',
         sortIcon: 'arrow-up',
         sortIconSize: 'is-small',
-        stickyHeaders: true,
-
-        // samples_fields:{
-        //         "Submission No.":"submission_no",
-        //         "Number":"number",
-              
-        //     },
-
-            
-
-            agro_data:[
-              allSamples
-            ]
       }
-
     },
   
   
     computed: {
       
-      ...mapGetters('labData', {
+      ...mapGetters('vetData', {
           loading: 'loading',
-          samples: 'allBioSubmissionsRecords',
+          PMs: 'allPostMortemRecords',
         }),
 
         ...mapGetters('users', {
@@ -255,7 +268,7 @@ import bioSubmissionsTemplate from '~/components/PDF Templates/bio-submissions-t
         }),
       
        isEmpty() {
-       return this.samples.length === 0
+       return this.PMs.length === 0
        },
   
       
@@ -265,12 +278,13 @@ import bioSubmissionsTemplate from '~/components/PDF Templates/bio-submissions-t
       },
       
       tableData() {
-        return this.isEmpty ? [] : this.samples
+        return this.isEmpty ? [] : this.PMs
       },
     },
   
     async created() {
-      await this.getAllBioSubmissionsRecords();
+    // await this.load()
+    // this.selectAgroRecord(this.agros[0])
     },
   
     
@@ -278,7 +292,7 @@ import bioSubmissionsTemplate from '~/components/PDF Templates/bio-submissions-t
     methods: {
      
   
-       ...mapActions('labData', ['addNewBioSubmissionRecord','getAllBioSubmissionsRecords','selectBioSubmissionRecord', 'load']),
+       ...mapActions('vetData', ['addNewPostMortemRecord','getAllPostMortemRecords','selectPostMortemRecord', 'load']),
   
        async refresh(){
   
@@ -286,18 +300,18 @@ import bioSubmissionsTemplate from '~/components/PDF Templates/bio-submissions-t
         //   "Refreshed!"
         // )
       //  this.isLoading = true
-       await this.getAllBioSubmissionsRecords();
+       await this.getAllPostMortemRecords();
      //   this.isLoading = false
    
       },
   
   
-       captureReceipt(sample) {
-         this.selectBioSubmissionRecord(sample)
+       captureReceipt(PM) {
+         this.selectPostMortemRecord(PM)
          setTimeout(() => {
            this.$buefy.modal.open({
              parent: this,
-             component: BioSubmissionSnapshotModal,
+             component: PostMortemSnapshotModal,
              hasModalCard: true,
              trapFocus: true,
              canCancel: ['x'],
@@ -320,7 +334,7 @@ import bioSubmissionsTemplate from '~/components/PDF Templates/bio-submissions-t
         setTimeout(() => {
           this.$buefy.modal.open({
             parent: this,
-            component: BioSubmissionsModal,
+            component: PostMortemModal,
             hasModalCard: true,
             trapFocus: true,
             canCancel: ['x'],

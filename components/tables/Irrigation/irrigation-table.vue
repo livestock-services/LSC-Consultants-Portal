@@ -178,9 +178,9 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import { computed } from 'vue';
-import IrrigationModal from '@/components/modals/Irrigation Modal/irrigation-modal.vue'
+import IrrigationModal from '@/components/modals/IrrigationModal/irrigation-modal.vue'
 
-import IrrigationSnapshotModal from '@/components/modals/Irrigation Modal/irrigation-snapshot-modal.vue'
+import IrrigationSnapshotModal from '@/components/modals/IrrigationModal/irrigation-snapshot-modal.vue'
 export default {
   name: 'IrrigationTable',
 

@@ -87,7 +87,68 @@
 
 
 
-        <b-tab-item label="General">
+       
+  
+
+  
+         
+        <b-tab-item label="Nutrition">
+            <b-tabs>
+              <b-tab-item label="Consultations">
+                <NutritionTable/>
+              </b-tab-item>
+
+              <b-tab-item label="Records">
+               <NutritionCard/>
+              </b-tab-item>
+
+            </b-tabs>
+          </b-tab-item> 
+          
+          
+          <b-tab-item label="AI & Breeding">
+                <b-tabs>
+                  <b-tab-item label="Consultation" >
+                        <BeefAiTable/>
+                    </b-tab-item>
+
+                    <b-tab-item label="Records" >
+                       <BeefAiCard/>
+                    </b-tab-item>
+                </b-tabs>
+               </b-tab-item> 
+               
+               
+            <b-tab-item label="Fence">
+              
+              <b-tabs>
+                  
+                    <b-tab-item label="Fence Consultation" >
+                    <FenceTable/>
+                    </b-tab-item>
+
+                    <b-tab-item label="Records" >
+                        <FenceCard/>
+                    </b-tab-item>
+                    
+
+              </b-tabs>
+            </b-tab-item >
+
+            <b-tab-item label="Fish">
+              <b-tabs>
+                <b-tab-item label="Fish Consultation" >
+                      <FishTable/>
+                  </b-tab-item>
+
+                  <b-tab-item label="Records" >
+                       <FishCard/>
+                    </b-tab-item>
+              </b-tabs>
+            </b-tab-item>
+              
+             
+          <b-tab-item label="General">
             <b-tabs >
                  
                  <b-tab-item label="General Consultation" >
@@ -102,14 +163,6 @@
 
       </b-tabs>
         </b-tab-item>
-  
-
-  
-         
-        
-              
-             
-       
                    
   
         </b-tabs>
@@ -121,7 +174,7 @@
   
   import VetCard from '~/components/Tools/Reports/vet-card.vue'
   import VetTable from '~/components/tables/Vet/vet-table.vue';
-  import PostMortemTable from '~/components/tables/Post Mortems/post-mortem-table.vue';
+  import PostMortemTable from '~/components/tables/PostMortems/post-mortem-table.vue';
   import PostMortemCard from '~/components/Tools/Reports/post-mortem-card.vue';
   import BroilersCard from '~/components/Tools/Reports/broilers-card.vue'
   import VillageChickensCard from '~/components/Tools/Reports/village-chickens-card.vue'
@@ -134,6 +187,16 @@
   import AgroTable from '~/components/tables/Agro/agro-table.vue'
   import AgroCard from '~/components/Tools/Reports/agro-card.vue'
 import GeneralTable from '~/components/tables/General/general-table.vue';
+import NutritionTable from '~/components/tables/AnimalNutrition/nutrition-table.vue'
+import NutritionCard from '~/components/Tools/Reports/animal-nutrition-card.vue'
+
+import BeefAiTable from '~/components/tables/BeefAI/beef-ai-table.vue';
+import BeefAiCard from '~/components/Tools/Reports/beef-ai-card.vue';
+
+import FenceTable from '~/components/tables/Fencing/fencing-table.vue'
+import FenceCard from '~/components/Tools/Reports/fence-card.vue';
+import FishTable from '~/components/tables/Fish/fish-table.vue'
+import FishCard from '~/components/Tools/Reports/fish-card.vue';
   
   
   export default {
@@ -142,7 +205,8 @@ import GeneralTable from '~/components/tables/General/general-table.vue';
                   PostMortemCard, BroilersCard, VillageChickensCard,
                   LayersCard, PigsCard, GoatsCard, 
                   QuailsCard, RabbitsCard, CattleCard,AgroTable, AgroCard,
-        GeneralTable
+        GeneralTable, NutritionTable, NutritionCard, BeefAiTable, BeefAiCard,
+         FenceTable, FenceCard, FishTable, FishCard
                  },
   
     data(){

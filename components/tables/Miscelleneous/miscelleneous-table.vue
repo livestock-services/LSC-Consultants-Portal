@@ -162,8 +162,8 @@
   
   <script>
   import { mapActions, mapGetters } from 'vuex'
-  import TaskModal from '@/components/modals/Task Modal/task-modal.vue'
-  import TaskSnapshotModal from '@/components/modals/Task Modal/task-snapshot-modal.vue'
+  import TaskModal from '@/components/modals/TaskModal/task-modal.vue'
+  import TaskSnapshotModal from '@/components/modals/TaskModal/task-snapshot-modal.vue'
   export default {
     name: 'UnreceiptedDebitsTable',
   

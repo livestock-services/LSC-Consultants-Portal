@@ -95,7 +95,7 @@
   import { PDFDocument, rgb } from 'pdf-lib';
    import { mapActions, mapGetters } from 'vuex'
   import { computed } from 'vue';
-import bioSubmissionsTemplate from '~/components/PDF Templates/bio-submissions-template.vue';
+import bioSubmissionsTemplate from '~/components/PDFTemplates/bio-submissions-template.vue';
 
   
   export default {

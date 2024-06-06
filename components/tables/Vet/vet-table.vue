@@ -206,9 +206,9 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import { computed } from 'vue';
-import VetModal from '@/components/modals/Vet Modal/vet-modal.vue'
+import VetModal from '@/components/modals/VetModal/vet-modal.vue'
 
-import VetSnapshotModal from '@/components/modals/Vet Modal/vet-snapshot-modal'
+import VetSnapshotModal from '@/components/modals/VetModal/vet-snapshot-modal'
 export default {
   name: 'VetTable',
 

@@ -24,7 +24,7 @@
 
 <script>
 
-import NutritionTable from '~/components/tables/Animal Nutrition/nutrition-table.vue'
+import NutritionTable from '~/components/tables/AnimalNutrition/nutrition-table.vue'
 
 import NutritionCard from '~/components/Tools/Reports/animal-nutrition-card.vue'
 

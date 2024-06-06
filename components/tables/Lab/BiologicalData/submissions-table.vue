@@ -676,7 +676,7 @@
   <script>
   import { mapActions, mapGetters } from 'vuex'
   import { computed } from 'vue';
-  import SubmissionsModal from '@/components/modals/Lab Modal/Biological Data/submissions-modal.vue'
+  import SubmissionsModal from '@/components/modals/Lab Modal/BiologicalData/submissions-modal.vue'
   
   // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
   export default {

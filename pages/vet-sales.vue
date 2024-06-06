@@ -24,7 +24,7 @@
   
   import VetCard from '~/components/Tools/Reports/vet-card.vue'
   import VetTable from '~/components/tables/Vet/vet-table.vue';
-  import PostMortemTable from '~/components/tables/Post Mortems/post-mortem-table.vue';
+  import PostMortemTable from '~/components/tables/PostMortems/post-mortem-table.vue';
   import PostMortemCard from '~/components/Tools/Reports/post-mortem-card.vue';
   import BroilersCard from '~/components/Tools/Reports/broilers-card.vue'
   import VillageChickensCard from '~/components/Tools/Reports/village-chickens-card.vue'

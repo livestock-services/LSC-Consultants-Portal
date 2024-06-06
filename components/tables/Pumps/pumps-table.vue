@@ -179,8 +179,8 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import { computed } from 'vue';
-import WaterPumpModal from '@/components/modals/Pumps Modal/pumps-modal.vue'
-import WaterPumpSnapshotModal from '@/components/modals/Pumps Modal/pumps-snapshot-modal.vue'
+import WaterPumpModal from '@/components/modals/PumpsModal/pumps-modal.vue'
+import WaterPumpSnapshotModal from '@/components/modals/PumpsModal/pumps-snapshot-modal.vue'
 export default {
   name: 'WaterPumpTable',
 

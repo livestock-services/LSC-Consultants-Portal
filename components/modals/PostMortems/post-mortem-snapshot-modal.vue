@@ -150,7 +150,7 @@
 <script>
 
 import { mapActions, mapGetters } from 'vuex'
-import postMortemTemplate from '~/components/PDF Templates/post-mortem-template.vue'
+import postMortemTemplate from '~/components/PDFTemplates/post-mortem-template.vue'
 export default {
   components: { postMortemTemplate },
   name: 'VetPostMortemSnapshotModal',

@@ -182,8 +182,8 @@
   <script>
    import { computed } from 'vue';
   import { mapActions, mapGetters } from 'vuex'
-  import CustomerModal from'~/components/modals/Customer Modal/customer-modal.vue'
-  import CustomerSnapshotModal from '~/components/modals/Customer Modal/customer-snapshot-modal.vue'
+  import CustomerModal from'~/components/modals/CustomerModal/customer-modal.vue'
+  import CustomerSnapshotModal from '~/components/modals/CustomerModal/customer-snapshot-modal.vue'
   export default {
     name: 'CustomersTable',
   

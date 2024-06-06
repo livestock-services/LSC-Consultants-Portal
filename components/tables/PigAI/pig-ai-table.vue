@@ -176,9 +176,9 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import { computed } from 'vue';
-import PigAIModal from '~/components/modals/Pig AI Modal/pig-ai-modal.vue'
+import PigAIModal from '~/components/modals/PigAIModal/pig-ai-modal.vue'
 
- import PigAISnapshotModal from '@/components/modals/Pig AI Modal/pig-ai-snapshot-modal.vue'
+ import PigAISnapshotModal from '@/components/modals/PigAIModal/pig-ai-snapshot-modal.vue'
 export default {
   name: 'PigAITable',
 

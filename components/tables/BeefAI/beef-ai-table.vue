@@ -21,34 +21,7 @@
            <b-tooltip label="Refresh" type="is-dark">
            <b-button class="mx-2" icon-left="refresh" type="is-info" @click="refresh">Refresh</b-button>
            </b-tooltip>
-           
-
-           <b-tooltip label="Export to Excel" type="is-dark">
-
-                  <download-excel  
-                  :fields="{
-                    'Submission Number':'submissionNumber',
-                    'Sample ID':'sampleID',
-                    'Sample Type':'sampleType',
-                    'Animal Type':'animalType',
-                    'Breed':'breed',
-                    'Age':'age',
-                    'Sex':'sex',
-                    'Sample Condition on Receipt':'sampleGoodOnReceipt',
-                    'Date Sample Collected':'dateSampleCollected',
-                    'Test Requested':'testRequested',
-                    'Comments':'comments',
-                    'Lab Findings':'labFindings'
-                  }"
-                  :data="samples" 
-                  worksheet="Sample Information Worksheet"
-                  type="xls"
-                  name = "Sample Information.xls">
-
-                  <b-button class="mx-2" icon-left="export" type="is-success ">Excel</b-button>
-                  <img src="download_icon.png" />
-                  </download-excel>   
-            </b-tooltip>
+  
          
               
         </div>
@@ -56,7 +29,6 @@
         
       </b-field>
       <b-table
-        :sticky-header="stickyHeaders"
         :data="tableData"
         :loading="loading"
         :paginated="isPaginated"
@@ -73,107 +45,132 @@
         aria-current-label="Current Page"
       >
   
-      <b-table-column
-          v-slot="props"
-          field="dateReceived"
-          label="Date Received"
-          searchable
-          
-        >
-        <span class="tag is-primary is-light">  {{ props.row.dateSubmitted }} </span>
-         
-          <!-- {{ props.row.sumInsured }} -->
-        </b-table-column>
-
+    
   
-       
-  
-        <b-table-column
+         <b-table-column
           v-slot="props"
-          field="clientName"
+          field="beefAIClientName"
           label="Client Name"
-          sortable
+          searchable
           
         >
-        <span class="tag numbers">  {{ props.row.feedClientName }} </span>
+        <span class="tag tasks">  {{ props.row.beefAIClientName }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
   
-       
-
-
-       
-
         <b-table-column
           v-slot="props"
-          field="description"
-          label="Description"
+          field="beefAIClientPhoneNumber"
+          label="Client Phone No."
           searchable
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.feedDescription }} </span>
+        <span class="tag numbers">  {{ props.row.beefAIClientPhoneNumber }} </span>
+         
+          <!-- {{ props.row.sumInsured }} -->
+        </b-table-column>
+  
+        <b-table-column
+          v-slot="props"
+          field="beefAIClientLocation"
+          label="Location"
+          searchable
+          
+        >
+        <span class="tag is-primary is-light">  {{ props.row.beefAIClientLocation }} </span>
+         
+          <!-- {{ props.row.sumInsured }} -->
+        </b-table-column>
+  
+        <b-table-column
+          v-slot="props"
+          field="beefAIClientTown"
+          label="Town"
+         searchable 
+          
+        >
+        <span class="tag is-primary is-light">  {{ props.row.beefAIClientTown }} </span>
          
           <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
 
+       <b-table-column
+          v-slot="props"
+          field="beefAICategory"
+          label="Category"
+          searchable
+        >
+  
+        <span class="tag is-info is-light">  {{ props.row.beefAICategory }} </span>
+         
+        </b-table-column>
+  
         <b-table-column
           v-slot="props"
-          field="typeOfSample"
-          label="Type Of Sample"
-          searchable
+          field="selectPriority"
+          label="Date"
+          sortable
+        >
+  
+        <span class="tag is-info is-light">  {{ props.row.date }} </span>
+         
+        </b-table-column>
+        
+        <!-- <b-table-column
+          v-slot="props"
+          field="beefAIClientComments"
+          label="Comments/Remarks"
+         searchable 
           
         >
-        <span class="tag is-primary is-light">  {{ props.row.typeOfSample }} </span>
+        <span class="tag is-primary is-light">  {{ props.row.beefAIClientComments }} </span>
          
-          <!-- {{ props.row.sumInsured }} -->
-        </b-table-column>
+          
+        </b-table-column> -->
 
         <b-table-column
+        v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'"
           v-slot="props"
-          field="submissionNumber"
-          label="Submission No."
+          field="createdBy"
+          label="Created By"
           searchable
-          
         >
-        <span class="tag tasks">  {{ props.row.feedSubmissionNumber }} </span>
+  
+        <span class="tag is-info is-light">  {{ props.row.createdBy }} </span>
          
-          <!-- {{ props.row.sumInsured }} -->
         </b-table-column>
-
-       
-        <b-table-column
-          v-slot="props"
-          field="timeStamp"
-          label="Time Stamp"
-          searchable
+  
+  
           
-        >
-        <span class="tag is-primary is-light">  {{ props.row.timeStamp }} </span>
-         
-          <!-- {{ props.row.sumInsured }} -->
+        
+  
+  
+        
+       <b-table-column v-slot="props" label="Options">
+          <span class="buttons">
+            <b-tooltip label="View more details about this consult" type="is-dark" position="is-left">
+            <b-button
+              type="is-secondary-outline"
+              icon-left="eye-check"
+              @click="captureReceipt(props.row)"
+              class="preview"
+              ></b-button>
+  
+            </b-tooltip>
+          </span>
         </b-table-column>
   
         
-        <b-table-column
-        v-if="SignedInUser.role === 'Admin' || SignedInUser.role === 'Manager'"
-            v-slot="props"
-            field="createdBy"
-            label="Created By"
-            searchable
-          >
-    
-          <span class="tag is-info is-light">  {{ props.row.createdBy }} </span>
-           
-          </b-table-column>
+                   
   
-  
+        
   
   
         <template #empty>
   
           <b-tooltip  label="Once freshed, your details will appear here" type="is-dark">
-          <h4 class="is-size-4 text-center has-text-centered">No Feed Submissions Data yet. &#x1F4DA;. Click the <span class="tag is-info"> refresh button</span> right above</h4>
+          <h4 class="is-size-4 text-center has-text-centered">No Beef AI Data yet. &#x1F4DA;. Click the <span class="tag is-info"> refresh button</span> right above</h4>
           </b-tooltip>
   
         </template>
@@ -188,17 +185,17 @@
   
   <script>
   import { mapActions, mapGetters } from 'vuex'
-  
-  import FeedSubmissionsModal from '@/components/modals/Lab Modal/Feed Data/feed-submissions-modal.vue'
   import { computed } from 'vue';
+  import BeefAIModal from '@/components/modals/BeefAIModal/beef-ai-modal.vue'
+  import BeefAISnapshotModal from '~/components/modals/BeefAIModal/beef-ai-snapshot-modal.vue';
   
   // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
   export default {
-    name: 'SampleInfoTable',
+    name: 'BeefAITable',
   
     data() {  
     
-      var allSamples = computed(()=>this.samples)
+      
       var SignedInUser = computed(()=>this.user)
       return {
         SignedInUser,
@@ -210,29 +207,15 @@
         defaultSortDirection: 'asc',
         sortIcon: 'arrow-up',
         sortIconSize: 'is-small',
-        stickyHeaders: true,
-
-        // samples_fields:{
-        //         "Submission No.":"submission_no",
-        //         "Number":"number",
-              
-        //     },
-
-            
-
-            agro_data:[
-              allSamples
-            ]
       }
-
     },
   
   
     computed: {
       
-      ...mapGetters('labData', {
+      ...mapGetters('beefAIData', {
           loading: 'loading',
-          samples: 'allFeedSubmissionsRecords',
+          beefs: 'allBeefAIRecords',
         }),
 
         ...mapGetters('users', {
@@ -244,7 +227,7 @@
         }),
       
        isEmpty() {
-       return this.samples.length === 0
+       return this.beefs.length === 0
        },
   
       
@@ -254,7 +237,7 @@
       },
       
       tableData() {
-        return this.isEmpty ? [] : this.samples
+        return this.isEmpty ? [] : this.beefs
       },
     },
   
@@ -268,7 +251,7 @@
     methods: {
      
   
-       ...mapActions('labData', ['addNewFeedSubmissionRecord','getAllFeedSubmissionsRecords', 'load']),
+       ...mapActions('beefAIData', ['addNewBeefAIRecord','getAllBeefAIRecords','selectBeefAIRecord', 'load']),
   
        async refresh(){
   
@@ -276,41 +259,41 @@
         //   "Refreshed!"
         // )
       //  this.isLoading = true
-       await this.getAllFeedSubmissionsRecords();
+       await this.getAllBeefAIRecords();
      //   this.isLoading = false
    
       },
   
   
-      // captureReceipt(agro) {
-      //   this.selectAgroRecord(agro)
-      //   setTimeout(() => {
-      //     this.$buefy.modal.open({
-      //       parent: this,
-      //       component: AgroSnapshotModal,
-      //       hasModalCard: true,
-      //       trapFocus: true,
-      //       canCancel: ['x'],
-      //       destroyOnHide: true,
-      //       customClass: '',
-      //       onCancel: () => {
-      //         this.$buefy.toast.open({
-      //           message: `Snapshot closed`,
-      //           duration: 5000,
-      //           position: 'is-top',
-      //           type: 'is-info',
-      //         })
-      //       },
-      //     })
-      //   }, 300)
-      // },
+       captureReceipt(beef) {
+         this.selectBeefAIRecord(beef)
+         setTimeout(() => {
+           this.$buefy.modal.open({
+             parent: this,
+             component: BeefAISnapshotModal,
+             hasModalCard: true,
+             trapFocus: true,
+             canCancel: ['x'],
+             destroyOnHide: true,
+             customClass: '',
+             onCancel: () => {
+               this.$buefy.toast.open({
+                 message: `Snapshot closed`,
+                 duration: 5000,
+                 position: 'is-top',
+                 type: 'is-info',
+               })
+             },
+           })
+         }, 300)
+       },
   
        addNewTask() {
         
         setTimeout(() => {
           this.$buefy.modal.open({
             parent: this,
-            component: FeedSubmissionsModal,
+            component: BeefAIModal,
             hasModalCard: true,
             trapFocus: true,
             canCancel: ['x'],
@@ -318,7 +301,7 @@
             customClass: '',
             onCancel: () => {
               this.$buefy.toast.open({
-                message: `Task Snapshot closed!`,
+                message: `Beef AI Snapshot closed!`,
                 duration: 5000,
                 position: 'is-top',
                 type: 'is-info',

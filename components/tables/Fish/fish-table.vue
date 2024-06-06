@@ -179,8 +179,8 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import { computed } from 'vue';
-import FishModal from '@/components/modals/Fish Modal/fish-modal.vue'
-import FishSnapshotModal from '@/components/modals/Fish Modal/Fish-snapshot-modal'
+import FishModal from '@/components/modals/FishModal/fish-modal.vue'
+import FishSnapshotModal from '@/components/modals/FishModal/Fish-snapshot-modal'
 export default {
   name: 'FishnomyTable',
 

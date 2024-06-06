@@ -19,7 +19,7 @@
   
   <script>
 
-import BeefAiTable from '~/components/tables/Beef AI/beef-ai-table.vue';
+import BeefAiTable from '~/components/tables/BeefAI/beef-ai-table.vue';
 import BeefAiCard from '~/components/Tools/Reports/beef-ai-card.vue';
 
   export default {

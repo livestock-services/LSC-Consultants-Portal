@@ -179,8 +179,8 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import { computed } from 'vue';
-import GeneralModal from '@/components/modals/General Modal/general-modal.vue';
-import GeneralSnapshotModal from '@/components/modals/General Modal/general-snapshot-modal'
+import GeneralModal from '@/components/modals/GeneralModal/general-modal.vue';
+import GeneralSnapshotModal from '@/components/modals/GeneralModal/general-snapshot-modal'
 export default {
   name: 'generalTable',
 

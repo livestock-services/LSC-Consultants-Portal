@@ -189,9 +189,9 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import { computed } from 'vue';
-import AgroModal from '@/components/modals/Agro Modal/agro-modal.vue'
+import AgroModal from '@/components/modals/AgroModal/agro-modal.vue'
 
-import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
+import AgroSnapshotModal from '@/components/modals/AgroModal/agro-snapshot-modal.vue'
 export default {
   name: 'AgronomyTable',
 

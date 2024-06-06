@@ -139,7 +139,7 @@
 <script>
 
 import { mapActions, mapGetters } from 'vuex'
-import ConsultationTemplate from '~/components/PDF Templates/consultation-template.vue'
+import ConsultationTemplate from '~/components/PDFTemplates/consultation-template.vue'
 export default {
   
   components:{ConsultationTemplate},
