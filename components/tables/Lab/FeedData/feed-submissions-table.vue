@@ -189,7 +189,7 @@
   <script>
   import { mapActions, mapGetters } from 'vuex'
   
-  import FeedSubmissionsModal from '@/components/modals/Lab Modal/FeedData/feed-submissions-modal.vue'
+  import FeedSubmissionsModal from '@/components/modals/LabModal/FeedData/feed-submissions-modal.vue'
   import { computed } from 'vue';
   
   // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'

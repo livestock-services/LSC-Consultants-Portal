@@ -483,7 +483,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 
-import NMModal from '@/components/modals/Lab Modal/FeedData/no-3-meal-modal.vue'
+import NMModal from '@/components/modals/LabModal/FeedData/no-3-meal-modal.vue'
 import { computed } from 'vue';
 // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
 export default {

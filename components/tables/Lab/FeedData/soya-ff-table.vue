@@ -440,7 +440,7 @@
   <script>
   import { mapActions, mapGetters } from 'vuex'
   
-  import FFModal from '@/components/modals/Lab Modal/FeedData/soya-ff-modal.vue'
+  import FFModal from '@/components/modals/LabModal/FeedData/soya-ff-modal.vue'
   import { computed } from 'vue';
   // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
   export default {

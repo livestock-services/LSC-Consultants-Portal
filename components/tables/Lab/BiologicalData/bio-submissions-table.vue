@@ -191,9 +191,9 @@
   <script>
   import { mapActions, mapGetters } from 'vuex'
   
-  import BioSubmissionsModal from '@/components/modals/Lab Modal/BiologicalData/bio-submissions-modal.vue'
+  import BioSubmissionsModal from '@/components/modals/LabModal/BiologicalData/bio-submissions-modal.vue'
   import { computed } from 'vue';
-  import BioSubmissionSnapshotModal from '@/components/modals/Lab Modal/BiologicalData/bio-submission-snapshot-modal.vue'
+  import BioSubmissionSnapshotModal from '@/components/modals/LabModal/BiologicalData/bio-submission-snapshot-modal.vue'
 import bioSubmissionsTemplate from '~/components/PDFTemplates/bio-submissions-template.vue';
   export default {
   components: { bioSubmissionsTemplate },

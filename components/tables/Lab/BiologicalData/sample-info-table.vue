@@ -296,7 +296,7 @@
   <script>
   import { mapActions, mapGetters } from 'vuex'
   
-  import SampleInfoModal from '@/components/modals/Lab Modal/BiologicalData/sample-info-modal.vue'
+  import SampleInfoModal from '@/components/modals/LabModal/BiologicalData/sample-info-modal.vue'
   import { computed } from 'vue';
   
   // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'

@@ -440,7 +440,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 
-import SEModal from '@/components/modals/Lab Modal/FeedData/soya-se-modal.vue'
+import SEModal from '@/components/modals/LabModal/FeedData/soya-se-modal.vue'
 import { computed } from 'vue';
 // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
 export default {

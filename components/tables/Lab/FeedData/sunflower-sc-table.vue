@@ -482,7 +482,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 
-import SCModal from '@/components/modals/Lab Modal/FeedData/sunflower-sc-modal.vue'
+import SCModal from '@/components/modals/LabModal/FeedData/sunflower-sc-modal.vue'
 import { computed } from 'vue';
 // import AgroSnapshotModal from '@/components/modals/Agro Modal/agro-snapshot-modal.vue'
 export default {
