@@ -13,12 +13,12 @@
           <h1 class="header center my-4">
            
              <br> <b-tooltip style="font-size: medium;" label="Consultants and Laboratory Assistive Information Management System (CLAIMS)." position="is-top" type="is-warning">
-              <span class="is-greenish" style="font-style: italic; font-family:Alegreya Sans; font-size:4rem; color: rgb(29, 28, 52);">CLAIMS </span> <span class="tag is-warning">dev</span>
+              <span class="is-greenish" style="font-style: italic; font-family:Alegreya Sans; font-size:4rem; color: rgb(29, 28, 52);">CLAIMS </span> <span class="tag is-info">v1.0</span>
              </b-tooltip>
               <b-icon
                 icon="flower"
                 size="is-large"
-                type="is-primary">
+                type="is-danger">
             </b-icon>
           
           </h1>
@@ -286,7 +286,7 @@ import PageLoadingVue from '~/components/Tools/Other/page-loading.vue'
     grid-row: 2/3;
     grid-column: 3/3;
     width: 100%;
-    background-color: rgba(253, 228, 181, 0.863);
+    background-color: rgba(182, 247, 191, 0.863);
     
     
   }
