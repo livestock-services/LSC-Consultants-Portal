@@ -81,12 +81,14 @@
         </p>
          -->
       </div>
-  
-     
-  
-     
-  
       </div>
+
+      <b-loading :active="showLoading" >
+        <div class="custom-loading-content">
+          <page-loading-vue/>
+        </div>
+      </b-loading>
+      
     </div>
   </template>
   
@@ -111,6 +113,7 @@ import PageLoadingVue from '~/components/Tools/Other/page-loading.vue'
         hasError: true,
         isLoading: false,
         isFullPage: true,
+        showLoading: false,
       }
     },
 
@@ -165,8 +168,10 @@ import PageLoadingVue from '~/components/Tools/Other/page-loading.vue'
 
 
       async loginUser(user) {
-  
+        this.showLoading = true
         try {
+
+          
 
           await this.getAllUsers();
 
@@ -190,6 +195,8 @@ import PageLoadingVue from '~/components/Tools/Other/page-loading.vue'
             position: 'is-top',
             type: 'is-success',
           })
+
+
     
   
           this.$router.push({ path: '/' })
@@ -198,11 +205,22 @@ import PageLoadingVue from '~/components/Tools/Other/page-loading.vue'
             if (!this.isPageReloaded) {
              
               this.isPageReloaded = true;
+
+            
              
               window.location.reload();
 
+             
+             
+              
+                
+
               
             }
+
+       
+            
+
           
         } catch (error) {
           this.form.password = null
@@ -216,6 +234,8 @@ import PageLoadingVue from '~/components/Tools/Other/page-loading.vue'
             type: 'is-danger',
           })
         }
+
+        this.showLoading = false
       },
     },
   }

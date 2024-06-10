@@ -365,7 +365,7 @@
        </div>
       
       
-     
+      
   
   
   
@@ -374,7 +374,11 @@
 
     
 
-    
+      <b-loading :active="showLoading" >
+        <div class="custom-loading-content">
+          <page-loading-vue/>
+        </div>
+      </b-loading>
      
    
 
@@ -389,6 +393,7 @@ import TotalConsultsFilterModal from '~/components/modals/Filter/total-consults-
  import countTo from 'vue-count-to';
 import {mapActions, mapGetters} from 'vuex'
 import { computed } from 'vue';
+import PageLoadingVue from '~/components/Tools/Other/page-loading.vue'
 
 
 export default {
@@ -397,7 +402,8 @@ export default {
    countTo ,
     Card,
     DigitalClock,
-    Greeting
+    Greeting,
+    PageLoadingVue
    
    
   },
@@ -449,6 +455,7 @@ export default {
         Cows:60,
         Heifers:10,
         Calves: 20,
+        showLoading: false,
         
         totalConsults_fields:{
                 "Consultations By Category":"consultation",
@@ -568,6 +575,7 @@ export default {
 
 // COMPONENT THAT GETS ALL THE FILTERED DATA. THIS IS WHERE WE GET ALL DASHBOARD DATA FROM
   async created() {
+    this.showLoading = true;
   let agros = await this.getAllAgroRecords();
   let beef = await this.getAllBeefAIRecords();
 
@@ -581,6 +589,13 @@ export default {
   
   let users = await this.getAllUsers();
   console.log(users)
+
+  setTimeout(() => {
+  
+  
+    this.showLoading = false;
+  
+}, 2000); // Optional delay for a smoother transition
 
   },
 
