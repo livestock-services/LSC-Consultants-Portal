@@ -12,7 +12,7 @@
         >
           <h1 class="header center my-4">
            
-             <br> <b-tooltip style="font-size: medium;" label="Consultants and Laboratory Assistive Information Management System (CLAIMS)." position="is-top" type="is-warning">
+             <br> <b-tooltip style="font-size: medium;" label="Consultants and Laboratory Assistive Information Management System (CLAIMS)." position="is-top" type="is-dark">
               <span class="is-greenish" style="font-style: italic; font-family:Alegreya Sans; font-size:4rem; color: rgb(29, 28, 52);">CLAIMS </span> <span class="tag is-info">v1.0</span>
              </b-tooltip>
               <b-icon
@@ -81,12 +81,14 @@
         </p>
          -->
       </div>
-  
-     
-  
-     
-  
       </div>
+
+      <b-loading :active="showLoading" >
+        <div class="custom-loading-content">
+          <page-loading-vue/>
+        </div>
+      </b-loading>
+      
     </div>
   </template>
   
@@ -111,6 +113,7 @@ import PageLoadingVue from '~/components/Tools/Other/page-loading.vue'
         hasError: true,
         isLoading: false,
         isFullPage: true,
+        showLoading: false,
       }
     },
 
@@ -165,8 +168,10 @@ import PageLoadingVue from '~/components/Tools/Other/page-loading.vue'
 
 
       async loginUser(user) {
-  
+        this.showLoading = true
         try {
+
+          
 
           await this.getAllUsers();
 
@@ -190,6 +195,8 @@ import PageLoadingVue from '~/components/Tools/Other/page-loading.vue'
             position: 'is-top',
             type: 'is-success',
           })
+
+
     
   
           this.$router.push({ path: '/' })
@@ -198,11 +205,22 @@ import PageLoadingVue from '~/components/Tools/Other/page-loading.vue'
             if (!this.isPageReloaded) {
              
               this.isPageReloaded = true;
+
+            
              
               window.location.reload();
 
+             
+             
+              
+                
+
               
             }
+
+       
+            
+
           
         } catch (error) {
           this.form.password = null
@@ -216,6 +234,8 @@ import PageLoadingVue from '~/components/Tools/Other/page-loading.vue'
             type: 'is-danger',
           })
         }
+
+        this.showLoading = false
       },
     },
   }
@@ -286,7 +306,7 @@ import PageLoadingVue from '~/components/Tools/Other/page-loading.vue'
     grid-row: 2/3;
     grid-column: 3/3;
     width: 100%;
-    background-color: rgba(182, 247, 191, 0.863);
+    background-color: rgba(181, 253, 209, 0.863);
     
     
   }

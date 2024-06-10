@@ -7,6 +7,14 @@
         <svg class="spinner-icon" width="50" height="50" viewBox="0 0 40 40">
           <circle class="spinner-path" cx="20" cy="20" r="15" />
         </svg>
+
+        <svg class="spinner-icon" width="20" height="20" viewBox="0 0 40 40">
+          <circle class="spinner-path" cx="20" cy="20" r="15" />
+        </svg>
+
+        
+
+        
       </div>
     </div>
   </template>
@@ -25,11 +33,11 @@
     justify-content: center;
     align-items: center;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
+    top: 50%;
+    left: 50%;
+    width: 10%;
+    height: 20%;
+    background-color: rgba(200, 243, 236, 0.9);
     z-index: 9999;
   }
   
